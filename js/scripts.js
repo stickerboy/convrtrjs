@@ -389,6 +389,12 @@ toolChange.addEventListener('click', function() {
         case 'specialcharsonly':
             document.getElementById("textResults").textContent = specialCharsOnly(textResults);
             break;
+        case 'urlencode':
+            document.getElementById("textResults").textContent = urlEncode(textResults);
+            break;
+        case 'urldecode':
+            document.getElementById("textResults").textContent = urlDecode(textResults);
+            break;
             default:
     }
 });

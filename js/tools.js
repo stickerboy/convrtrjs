@@ -42,3 +42,13 @@ function stripNumbers(string) {
 function specialCharsOnly(string) {
     return string.replace(/[a-z0-9]/gi, "");
 }
+
+// URL encode
+function urlEncode(string) {
+    return encodeURIComponent(string).replace(/%20/gi, "+");
+}
+
+// URL decode
+function urlDecode(string) {
+    return decodeURIComponent(string).replace(/\+/gi, " ");
+}
