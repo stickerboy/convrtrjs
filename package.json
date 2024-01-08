@@ -1,0 +1,30 @@
+{
+  "name": "convrtrjs",
+  "version": "1.1.0",
+  "description": "A simple JavaScript based tool to quickly convert text between different formats",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stickerboy/convrtrjs.git"
+  },
+  "keywords": [
+    "decode",
+    "decoding",
+    "tools",
+    "js",
+    "arg",
+    "converter",
+    "encoding",
+    "text",
+    "tools"
+  ],
+  "author": "Kenny Cameron",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stickerboy/convrtrjs/issues"
+  },
+  "homepage": "https://www.kenny.cx/convrtrjs"
+}
