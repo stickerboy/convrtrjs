@@ -4,27 +4,20 @@
   "description": "A simple JavaScript based tool to quickly convert text between different formats",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "sass --watch --update --style=expanded scss:assets/devcss",
+    "prod": "sass --no-source-map --style=compressed scss:_site/assets/css",
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stickerboy/convrtrjs.git"
   },
-  "keywords": [
-    "decode",
-    "decoding",
-    "tools",
-    "js",
-    "arg",
-    "converter",
-    "encoding",
-    "text",
-    "tools"
-  ],
-  "author": "Kenny Cameron",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/stickerboy/convrtrjs/issues"
   },
-  "homepage": "https://www.kenny.cx/convrtrjs"
+  "author": "Kenny Cameron",
+  "license": "ISC",
+  "homepage": "https://www.kenny.cx/convrtrjs",
+  "dependencies": {
+    "bootstrap-scss": "^5.3.2"
+  }
 }
