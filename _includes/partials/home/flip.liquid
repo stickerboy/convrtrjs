@@ -1,0 +1,37 @@
+<section id="flip">
+    <div class="py-4 px-2 px-sm-4 bg-light">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="flipText">Flip text</label>
+            <hr>
+            <p class="text-dark px-2">
+                Fip text upside down - allows you to turn this into ʇɥıs
+            </p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Flip Text</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: " title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="flipDecode" title="Flip text upside down">Flip</button>
+                            <div class="form-check form-switch mx-2">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flipDirection">
+                                <label class="form-check-label" for="flipDirection">Reverse</label>
+                            </div>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="flipResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

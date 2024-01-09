@@ -10,6 +10,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+                    {% if page-id == "home" %}
                     <li class="nav-item">
                         <a class="nav-link active" href="#convrtrs">Home</a>
                     </li>
@@ -28,10 +29,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#tools">Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">tools</span></a>
                     </li>
+                    {% else %}
+                    <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="https://www.kenny.cx/convrtrjs/">Home</a>
+                        </li>
+                    </ul>
+                    {% endif %}
                 </ul>
                 <span class="navbar-text text-white mx-0 mx-md-3">
                     For everlost and Grollow!
                 </span>
+                {% if page-id == "home" %}
                 <div class="mt-3 mt-md-0">
                     <button type="button" class="btn btn-sm btn-outline-light" id="resetData" 
                             aria-label="Clear all data inside textareas" title="Clear data"
@@ -40,6 +49,7 @@
                         <span class="d-md-none mx-2">Clear all data</span>
                     </button>
                 </div>
+                {% endif %}
             </div>
         </div>
     </nav>

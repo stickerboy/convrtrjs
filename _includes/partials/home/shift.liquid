@@ -1,0 +1,52 @@
+<section id="shift">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="shiftText">Shift hex</label>
+            <hr>
+            <p class="text-dark px-2">
+                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
+                Supports any delimiter is available in the Hex convrtr delimiter dropdown
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Shift hex string</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="input-group w-auto me-2">
+                                <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
+                                <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
+                                <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
+                            </div>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="shiftResults" class="d-flex flex-row">
+                            <div class="nav flex-column nav-pills me-3" id="shiftTabs" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
+                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
+                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
+                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
+                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
+                              </div>
+                              <div class="tab-content flex-column flex-fill" id="shiftTabs-content">
+                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
