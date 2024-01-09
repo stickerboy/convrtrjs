@@ -2,7 +2,6 @@
 layout: layout.liquid
 title: Zm91ciBvaCBmb3Vy - Convrtr
 page-id: fourohfour
-page-heading: 404
 permalink: /404.html
 ---
 
@@ -12,9 +11,9 @@ permalink: /404.html
                   <div class="container">
                       <div class="row justify-content-center">
                           <div class="col-md-12 text-center">
-                              <h1 class="display-1 d-block">{{ page-heading }}</h1>
+                              <h1 class="display-1 d-block">{{ page.fileSlug }}</h1>
                               <div class="mb-4 lead">The page you are looking for was not found.</div>
-                              <a href="https://www.kenny.cx/convrtrjs/" class="btn btn-link text-convrtr">Back to Home</a>
+                              <a href="{{ pkg.homepage }}" class="btn btn-link text-convrtr">Back to Home</a>
                           </div>
                       </div>
                   </div>

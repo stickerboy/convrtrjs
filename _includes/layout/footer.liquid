@@ -1,4 +1,3 @@
-
 <footer class="{% if page-id == "fourohfour" %}mt-auto {% endif %}text-dark bg-light">
     <div class="p-4 pb-2">
         {% if page-id == "home" %}
@@ -9,12 +8,12 @@
         </p>
         {% endif %}
         <p class="mb-1">
-            &copy; @<a href="https://twitter.com/stickerboy" class="text-convrtr" title="Follow @stickerboy on Twitter">stickerboy</a> / <a href="https://www.kenny.cx/" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2024. <br />All Rights Reserved.
+            &copy; <a href="{{ pkg.authorUrl }}" title="{{ pkg.authorDesc}}" class="text-convrtr">{{ pkg.author }}</a> {{ page.date | date: '%Y' }}. <br />All Rights Reserved.
         </p>
     </div>
     <div class="p-4 pt-2">
-        <abbr title="Release version: v1.0.1" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-            <small>v1.1.0</small>
+        <abbr title="Release version: v{{ pkg.version }}" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <small>v{{ pkg.version }}</small>
         </abbr>
     </div>
 </footer>
