@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en"{% if page-id == "fourohfour" %} class="h-100"{% endif %}>
     <head>
-        {% render "meta" %}
+        {% render "layout/meta" %}
         <title>{{ title }}</title>
 
         <link rel="canonical" href="https://www.kenny.cx/convrtrjs">
-        {% render "css" %}
-        {% render "favicons" %}
+        {% render "layout/css" %}
+        {% render "layout/favicons" %}
     </head>
     
     <body id="IOOBI9O4IEIEOIO4O4IB" 
@@ -15,13 +15,13 @@
           data-bs-smooth-scroll="true"
           {% if page-id == "fourohfour" %}class="d-flex flex-column h-100 top-0"{% endif %}>
 
-        {% include "nav" %}
+        {% include "layout/nav" %}
 
         {{ content }}
 
-        {% include "footer" %}
-        {% include "scripts" %}
-        {% render "toast" %}
+        {% include "layout/footer" %}
+        {% include "layout/scripts" %}
+        {% render "layout/toast" %}
     </body>
 </html>
 {% render "partials/routes/{{ page-id }}" %}
