@@ -5,7 +5,7 @@
   "main": "index.html",
   "scripts": {
     "dev": "sass --watch --update --style=expanded scss:assets/devcss",
-    "prod": "sass --no-source-map --style=compressed scss:_site/assets/css",
+    "prod": "sass --no-source-map --style=compressed scss:assets/css",
     "build": "npx @11ty/eleventy --formats=html"
   },
   "repository": {
