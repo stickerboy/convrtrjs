@@ -42,11 +42,15 @@ function stringToBinary(string) {
 
 // Decode Binary
 function binaryToString(string) {
-    try {
+    let stringReplacement = string.replace(/[\D2-9]/g,""); // Strip everything but 1s and 0s
+    string = string.replace(/[^w\s10]/g); // Same, but preserve spaces
+    // Probably better ways to handle this, but make sure the string is divible by 8
+    // If it's not, it's probably an incomplete binary string
+    if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
         return String.fromCharCode(
             ...string.split(' ').map(bin => parseInt(bin, 2))
         );
-    } catch (e) {
+    } else {
         throw Error("Binary is not valid");
     }
 }
