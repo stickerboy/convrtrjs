@@ -84,7 +84,7 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
     try {
         binaryToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = binaryToString(data);
@@ -113,7 +113,7 @@ document.getElementById("hexDecode").addEventListener('click', function() {
     try {
         hexToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = hexToString(data);
@@ -142,7 +142,7 @@ document.getElementById("b64Decode").addEventListener('click', function() {
     try {
         base64ToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = base64ToString(data);
@@ -258,7 +258,7 @@ document.getElementById("morseDecode").addEventListener('click', function() {
     try {
         morseToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = morseToString(data);
@@ -287,7 +287,7 @@ document.getElementById("mrsnryDecode").addEventListener('click', function() {
     try {
         morsenaryToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error",`An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = morsenaryToString(data);

@@ -17,6 +17,7 @@ const textMorseDict = {
     "Z": "--..", "!": "-.-.--", ".": ".-.-.-", ",": "--..--"
 }
 
+
 // Reverse String
 function reverseString(string) {
     return Array.from(string).reverse().join("");
@@ -41,9 +42,13 @@ function stringToBinary(string) {
 
 // Decode Binary
 function binaryToString(string) {
-    return String.fromCharCode(
-        ...string.split(' ').map(bin => parseInt(bin, 2))
-      );
+    try {
+        return String.fromCharCode(
+            ...string.split(' ').map(bin => parseInt(bin, 2))
+        );
+    } catch (e) {
+        throw Error("Binary is not valid");
+    }
 }
 
 // Convert to Hex
@@ -61,10 +66,14 @@ function stringToHex(string, delimiter) { // UTF-8
 // Decode Hex to string
 // https://stackoverflow.com/a/60505243/3172872
 function hexToString(string) {
-    return decodeURIComponent(
-        string.replace(/\s|-|:|\.|\!|,|(0x)/g, '') // remove spaces
-          .replace(/[0-9a-f]{2}/g, '%$&') // add '%' before each 2 characters
-      );
+    try {
+        return decodeURIComponent(
+            string.replace(/\s|-|:|\.|\!|,|(0x)/g, '') // remove spaces
+            .replace(/[0-9a-f]{2}/g, '%$&') // add '%' before each 2 characters
+        );
+    } catch (e) {
+        throw Error("Hexadecimal is not valid");
+    }
 }
 // Previous method: https://stackoverflow.com/a/69420340/3172872
 // return decodeURIComponent('%' + string.replace(/ /g, "").match(/.{1,2}/g).join('%'));
@@ -84,14 +93,19 @@ function stringToBase64(string) {
 // Decode Base64
 function base64ToString(string) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
-    return decodeURIComponent(atob(string).split('').map(function(c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    try {
+        return decodeURIComponent(atob(string).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    } catch (e) {
+        throw Error("not a valid Base64 string");
+    }
 }
 
 // Rot 13: rotate chararcters 13 times
 // https://stackoverflow.com/a/28490254/3172872
 function rot13(string) {
+    // Non-letter characters will not be replaced and we don't error out to preserve the string
     return /^[a-zA-Z]/.test(string) ? string.replace(/[A-Z]/gi, c => alphaRot[ alphabet.indexOf(c) ] ) : "";
 }
 
@@ -146,7 +160,8 @@ function decimalToString(string) {
 
 // Morse code to String
 function morseToString(string) {
-    return /^[ /.-]*$/.test(string) ? string // test valid morse
+    if(/^[ /.-]*$/.test(string)){
+        string // test valid morse
             .replaceAll(" / "," ")
             .split(' ')
             .map(word => word
@@ -155,7 +170,11 @@ function morseToString(string) {
                         .join('')
             )
             .join(' ')
-            .trim() : "Morse code contains invalid characters";
+            .trim();
+    } else {
+        throw Error("Morse code contains invalid characters");
+    } 
+    return string;
 }
 
 // Convert to Morse
@@ -176,14 +195,18 @@ function stringToMorse(string) {
 function stringToMorsenary(string) {
     let morsenarySetting = document.getElementById("morsenarySetting").value;
     return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g,"").replaceAll("0",".").replaceAll("1","-") :
-                                            stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
+                                        stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
 }
 
 // Decode Morsenary to String
 function morsenaryToString(string) {
-    let morsenarySetting = document.getElementById("morsenarySetting").value;
-    string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
-    return binaryToString(splitString(string, 8));
+    if(/^[ /.-]*$/.test(string)) {
+        let morsenarySetting = document.getElementById("morsenarySetting").value;
+        string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
+        return binaryToString(splitString(string, 8));
+    } else {
+       throw Error("Morsenary contains invalid characters");
+    }
 }
 
 
