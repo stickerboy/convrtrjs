@@ -83,7 +83,7 @@
                 </span>
                 
                 <div class="mt-3 mt-md-0">
-                    <button type="button" class="btn btn-sm btn-outline-light" id="resetData" 
+                    <button type="button" class="btn btn-sm btn-outline-light btn-reset-data" id="resetData" 
                             aria-label="Clear all data inside textareas" title="Clear data"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                         <i class="bi bi-arrow-clockwise"></i>
@@ -654,14 +654,14 @@
                         </div>
                         <hr />
                         <div id="shiftResults" class="d-flex flex-row">
-                            <div class="nav flex-column nav-pills me-3" id="shiftTabs" role="tablist" aria-orientation="vertical">
+                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shiftTabs" role="tablist" aria-orientation="vertical">
                                 <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
                                 <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
                                 <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
                                 <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
                                 <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
                               </div>
-                              <div class="tab-content flex-column flex-fill" id="shiftTabs-content">
+                              <div class="tab-content flex-column flex-fill shift-tabs" id="shiftTabs-content">
                                 <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
                                 <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
                                 <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
