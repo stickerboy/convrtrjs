@@ -1,12 +1,11 @@
 <!doctype html>
 <html lang="en"{% if page-id == "fourohfour" %} class="h-100"{% endif %}>
     <head>
-        {% render "layout/meta" %}
-        <title>{{ title }}</title>
+        {% include "layout/meta" %}
+        {% include "layout/header" %}
 
-        <link rel="canonical" href="{{ pgk.homepage }}">
         {% render "layout/css" %}
-        {% render "layout/favicons" %}
+        {% include "layout/favicons" %}
     </head>
     
     <body id="IOOBI9O4IEIEOIO4O4IB" 
