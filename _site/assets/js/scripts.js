@@ -190,15 +190,11 @@ Array.from(rotButtons, c => c.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
     const rotNumber = c.getAttribute("data-rot-number");
 
-    if(rotText.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        rotText.classList.add("is-invalid");
+    if(!emptyContainerCheck(rotText.value, rotText)) {
         document.getElementById("rotResults").textContent = "";
-        return;
+        return false;
     }
-    if(rotText.classList.contains("is-invalid")) {
-        rotText.classList.remove("is-invalid");
-    }
+
     Array.from(rotButtons, button => {
         button.classList.remove("active");
     });
@@ -211,15 +207,10 @@ Array.from(rotButtons, c => c.addEventListener('click', function() {
 rotPrevious.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
 
-    if(rotText.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        rotText.classList.add("is-invalid");
-        return;
+    if(!emptyContainerCheck(rotText.value, rotText)) {
+        return false;
     }
 
-    if(rotText.classList.contains("is-invalid")) {
-        rotText.classList.remove("is-invalid");
-    }
     let activeButton;
     if(document.querySelector(".rot-link.active") !== null) {
         activeButton = document.querySelector(".rot-link.active");
@@ -240,15 +231,10 @@ rotPrevious.addEventListener('click', function() {
 rotNext.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
 
-    if(rotText.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        rotText.classList.add("is-invalid");
-        return;
+    if(!emptyContainerCheck(rotText.value, rotText)) {
+        return false;
     }
 
-    if(rotText.classList.contains("is-invalid")) {
-        rotText.classList.remove("is-invalid");
-    }
     let activeButton;
     if(document.querySelector(".rot-link.active") !== null) {
         activeButton = document.querySelector(".rot-link.active");
@@ -270,16 +256,11 @@ const flipButton = document.getElementById("flipDecode");
 flipButton.addEventListener('click', function() {
     const flipString = document.getElementById("flipText");
 
-    if(flipString.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        flipString.classList.add("is-invalid");
+    if(!emptyContainerCheck(flipString.value, flipString)) {
         document.getElementById("flipResults").textContent = "";
-        return;
+        return false;
     }
 
-    if(flipString.classList.contains("is-invalid")) {
-        flipString.classList.remove("is-invalid");
-    }
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
                                                          flipText(flipString.value, alphabet, alphaFlip) : 
@@ -313,27 +294,16 @@ shiftButton.addEventListener('click', function() {
     const shiftString = document.getElementById("shiftText");
     let shiftValue = document.getElementById("shiftValue");
 
-    if(shiftString.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        shiftString.classList.add("is-invalid");
+    if(!emptyContainerCheck(shiftString.value, shiftString)) {
         document.getElementById("text-tab-pane").textContent = "";
         document.getElementById("binary-tab-pane").textContent = "";
         document.getElementById("hex-tab-pane").textContent = "";
         document.getElementById("base64-tab-pane").textContent = "";
         document.getElementById("decimal-tab-pane").textContent = "";
-        return;
+        return false;
     }
-
-    if(shiftValue.value.trim() === "") {
-        shiftValue.classList.add("is-invalid");
-        return;
-    }
-
-    if(shiftString.classList.contains("is-invalid")) {
-        shiftString.classList.remove("is-invalid");
-    }
-    if(shiftValue.classList.contains("is-invalid")) {
-        shiftValue.classList.remove("is-invalid");
+    if(!emptyContainerCheck(shiftValue.value, shiftValue)) {
+        return false;
     }
 
     document.getElementById("text-tab-pane").textContent = decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value));
@@ -347,14 +317,8 @@ const toolChange = document.getElementById("toolChange");
 toolChange.addEventListener('click', function() {
     let toolsString = document.getElementById("toolsTextarea");
 
-    if(toolsString.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        toolsString.classList.add("is-invalid");
-        return;
-    }
-
-    if(toolsString.classList.contains("is-invalid")) {
-        toolsString.classList.remove("is-invalid");
+    if(!emptyContainerCheck(toolsString.value, toolsString)) {
+        return false;
     }
 
     let textTools = document.getElementById("textToolsSelect");
@@ -405,14 +369,8 @@ const reverseHexButton = document.getElementById("reverseHexDecode");
 reverseHexButton.addEventListener('click', function() {
     const reverseHexString = document.getElementById("reverseHexText");
 
-    if(reverseHexString.value.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to convert", "warning");
-        reverseHexString.classList.add("is-invalid");
-        return;
-    }
-
-    if(reverseHexString.classList.contains("is-invalid")) {
-        reverseHexString.classList.remove("is-invalid");
+    if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
+        return false;
     }
 
     document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value);

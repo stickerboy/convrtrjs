@@ -28,6 +28,23 @@ function largeDataWarning(data) {
     return true;
 }
 
+function emptyContainerCheck(data, container) {
+    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
+    for (let element of allElements) {
+        element.classList.remove('is-invalid');
+    }
+
+    if(data.trim() === "") {
+        container.classList.add("is-invalid");
+        showToast("Warning", "There is no content in the container you are trying to encode", "warning");
+        return false;
+    }
+
+    if(container.classList.contains("is-invalid")) {
+        container.classList.remove("is-invalid");
+    }
+    return true;
+}
 
 // Make it so
 document.getElementById("encode").addEventListener('click', function() {
@@ -38,19 +55,8 @@ document.getElementById("encode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to encode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(data);
     document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(data);
@@ -72,19 +78,8 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-    
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         binaryToString(data);
@@ -112,19 +107,8 @@ document.getElementById("hexDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-    
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         hexToString(data);
@@ -152,19 +136,8 @@ document.getElementById("b64Decode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-    
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         base64ToString(data);
@@ -192,19 +165,8 @@ document.getElementById("decDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         decimalToString(data);
@@ -232,19 +194,8 @@ document.getElementById("revDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-    
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         reverseString(data);
@@ -272,19 +223,8 @@ document.getElementById("rot13Decode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         rot13(data);
@@ -312,19 +252,8 @@ document.getElementById("morseDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         morseToString(data);
@@ -352,19 +281,8 @@ document.getElementById("mrsnryDecode").addEventListener('click', function() {
         return false;
     }
 
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to decode", "warning");
-        return;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if(!emptyContainerCheck(data, container)) {
+        return false;
     }
     try {
         morsenaryToString(data);
