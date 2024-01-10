@@ -1,5 +1,4 @@
 // YEAH Toast!
-
 function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById('toast');
     const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
@@ -18,17 +17,25 @@ function showToast(heading, content, color, delay) {
     toast.show();
 }
 
-// Make it so
-document.getElementById("encode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
-    const data = container.value;
-
+function largeDataWarning(data) {
     if(data.length > 200000 && data.length < 1000000) {
         showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
     }
     if(data.length > 1000000) {
         showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+        return false;
+    }
+    return true;
+}
+
+
+// Make it so
+document.getElementById("encode").addEventListener('click', function() {
+    const container = this.closest(".card-body").querySelector("textarea");
+    const data = container.value;
+
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
@@ -61,12 +68,8 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
@@ -105,12 +108,8 @@ document.getElementById("hexDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
@@ -149,12 +148,8 @@ document.getElementById("b64Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
@@ -193,19 +188,15 @@ document.getElementById("decDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
     for (let element of allElements) {
         element.classList.remove('is-invalid');
     }
-    
+
     if(data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", "There is no content in the container you are trying to decode", "warning");
@@ -237,12 +228,8 @@ document.getElementById("revDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
@@ -281,19 +268,15 @@ document.getElementById("rot13Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
     for (let element of allElements) {
         element.classList.remove('is-invalid');
     }
-    
+
     if(data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", "There is no content in the container you are trying to decode", "warning");
@@ -325,19 +308,15 @@ document.getElementById("morseDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
     for (let element of allElements) {
         element.classList.remove('is-invalid');
     }
-    
+
     if(data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", "There is no content in the container you are trying to decode", "warning");
@@ -369,19 +348,15 @@ document.getElementById("mrsnryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return;
+    if (!largeDataWarning(data)) {
+        return false;
     }
 
     let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
     for (let element of allElements) {
         element.classList.remove('is-invalid');
     }
-    
+
     if(data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", "There is no content in the container you are trying to decode", "warning");
