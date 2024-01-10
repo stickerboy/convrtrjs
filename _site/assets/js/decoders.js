@@ -1,7 +1,9 @@
-// TEAH Toast!
+// YEAH Toast!
+
 function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById('toast');
-    const toast = new bootstrap.Toast(toastEL, {delay: delay? delay : 5000});
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
+
     toastEL.addEventListener('hidden.bs.toast', () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
         toastEL.querySelector(".toast-header").classList.add("text-bg-convrtr");
