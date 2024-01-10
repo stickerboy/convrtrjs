@@ -22,7 +22,7 @@
   "authorUrl": "https://kenny.cx",
   "license": "ISC",
   "sitename": "Convrtr",
-  "homepage": "https://www.convrtrjs.xyz",
+  "homepage": "https://www.convrtr.xyz",
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
     "bootstrap-scss": "^5.3.2"
