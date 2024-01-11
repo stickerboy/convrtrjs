@@ -1,6 +1,19 @@
 /*!
 * Convrtr styles
 */
+@import "../node_modules/bootstrap-scss/functions";
+
+@import "../node_modules/bootstrap-scss/variables";
+@import "../node_modules/bootstrap-scss/variables-dark";
+
+@import "../node_modules/bootstrap-scss/maps";
+@import "../node_modules/bootstrap-scss/mixins";
+@import "../node_modules/bootstrap-scss/utilities";
+@import "../node_modules/bootstrap-scss/root";
+
+// Utilities
+@import "../node_modules/bootstrap-scss/utilities/api";
+
 :root {
     --convrtr-bg-color: #11806a;
     --convrtr-bg-color-rgb: 17, 128, 106;
@@ -105,9 +118,16 @@ body {
     &-brand {
         font-weight: 300;
     }
-    &-nav,
-    &-item {
-        align-items: center;
+    &-nav {
+        align-items: flex-start;
+        @include media-breakpoint-down(md) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0 1rem;
+        }
+        @include media-breakpoint-up(md) { 
+            align-items: center;
+        }
     }
 
     .nav-link {

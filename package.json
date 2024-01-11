@@ -12,7 +12,8 @@
   "repository": {
     "name": "stickerboy",
     "type": "git",
-    "url": "git+https://github.com/stickerboy/convrtrjs.git"
+    "url": "git+https://github.com/stickerboy/convrtrjs.git",
+    "site": "https://github.com/stickerboy/convrtrjs"
   },
   "bugs": {
     "url": "https://github.com/stickerboy/convrtrjs/issues"
