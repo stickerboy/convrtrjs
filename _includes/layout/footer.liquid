@@ -1,0 +1,19 @@
+<footer class="{% if page-id == "fourohfour" %}mt-auto {% endif %}text-dark bg-light">
+    <div class="p-4 pb-2">
+        {% if page-id == "home" %}
+        <p class="float-end mb-1">
+            <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary" title="Back to top">
+                <i class="bi bi-arrow-up-square"></i>
+            </a>
+        </p>
+        {% endif %}
+        <p class="mb-1">
+            &copy; <a href="{{ pkg.authorUrl }}" title="{{ pkg.authorDesc }}" class="text-convrtr">{{ pkg.author }}</a> {{ page.date | date: '%Y' }}. <br />All Rights Reserved.
+        </p>
+    </div>
+    <div class="p-4 pt-2">
+        <abbr title="Release version: v{{ pkg.version }}" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <small>v{{ pkg.version }}</small>
+        </abbr>
+    </div>
+</footer>

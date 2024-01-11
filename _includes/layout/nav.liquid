@@ -1,0 +1,56 @@
+<header>
+    <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark bg-convrtr shadow-sm">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white mb-0 h1 fw-normal">
+                {{ pkg.sitename }}
+            </span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+                    {% if page-id == "home" %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#convrtrs">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rotate">ROT <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#flip">Flip <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#shift">Shift <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">hex</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reverseHex">Reverse <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">hex</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tools">Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">tools</span></a>
+                    </li>
+                    {% else %}
+                    <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{ pkg.homepage }}">Home</a>
+                        </li>
+                    </ul>
+                    {% endif %}
+                </ul>
+                <span class="navbar-text text-white mx-0 mx-md-3">
+                    {{ pkg.tagline }}
+                </span>
+                {% if page-id == "home" %}
+                <div class="mt-3 mt-md-0">
+                    <button type="button" class="btn btn-sm btn-outline-light btn-reset-data" id="resetData" 
+                            aria-label="Clear all data inside textareas" title="Clear data"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class="bi bi-arrow-clockwise"></i>
+                        <span class="d-md-none mx-2">Clear all data</span>
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+</header>
