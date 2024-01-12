@@ -323,7 +323,8 @@ toolChange.addEventListener('click', function() {
 
     let textTools = document.getElementById("textToolsSelect");
     let chainCommands = document.getElementById("chainCommands");
-    let textResults = chainCommands.checked ? document.getElementById("textResults").textContent : toolsString.value;
+    let tR = document.getElementById("textResults").textContent
+    let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
 
     switch (textTools.value) {
         case 'stripspaces':
