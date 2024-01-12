@@ -313,6 +313,7 @@ shiftButton.addEventListener('click', function() {
     document.getElementById("decimal-tab-pane").textContent =  shiftHexString(shiftString.value.trim(), shiftValue.value);
 });
 
+// Text tools
 const toolChange = document.getElementById("toolChange");
 toolChange.addEventListener('click', function() {
     let toolsString = document.getElementById("toolsTextarea");
@@ -363,7 +364,6 @@ toolChange.addEventListener('click', function() {
             default:
     }
 });
-
 
 // Reverse Hex
 const reverseHexButton = document.getElementById("reverseHexDecode");
