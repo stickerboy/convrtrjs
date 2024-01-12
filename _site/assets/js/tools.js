@@ -15,27 +15,27 @@ function lowercase(string) {
 
 // Numbers only
 function numbersOnly(string) {
-    return string.replace(/[^0-9 ]/gi, "");
+    return string.replace(/[^0-9]/g, "");
 }
 
 // Letters only
 function lettersOnly(string) {
-    return string.replace(/[^a-z ]/gi, "");
+    return string.replace(/[^a-z]/gi, "");
 }
 
 // Remove special characters
 function stripSpecialChars(string) {
-    return string.replace(/[^a-z0-9 ]/gi, "");
+    return string.replace(/[^a-z0-9]/gi, "");
 }
 
 // Remove all letters
 function stripLetters(string) {
-    return string.replace(/[a-z ]/gi, "");
+    return string.replace(/[a-z]/gi, "");
 }
 
 // Remove all numbers
 function stripNumbers(string) {
-    return string.replace(/[0-9 ]/gi, "");
+    return string.replace(/[0-9]/g, "");
 }
 
 // Special characters only
