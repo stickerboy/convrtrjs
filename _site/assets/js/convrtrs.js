@@ -17,6 +17,20 @@ const textMorseDict = {
     "Z": "--..", "!": "-.-.--", ".": ".-.-.-", ",": "--..--"
 }
 
+// Check if character/string is a letter
+function isLetter(string) {
+    return string.length === 1 && string.match(/[a-zA-Z]/i);
+}
+
+// Check is character/string is uppercase or lowecase
+function isUpperCase(string) {
+    if (string === string.toUpperCase()) {
+        return true;
+    }
+    if (string === string.toLowerCase()) {
+        return false;
+    }
+}
 
 // Reverse String
 function reverseString(string) {
