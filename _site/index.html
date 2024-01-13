@@ -64,12 +64,6 @@
                         <a class="nav-link active" href="#convrtrs"><span class="bi bi-code-square fs-5 d-none d-md-flex" aria-label="Home" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Home"></span> <span class="d-sm-inline-flex d-md-none">Home</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#rotate">ROT <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#vigenere">Vigenère <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">cipher</span></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#flip">Flip <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
                     </li>
                     <li class="nav-item">
@@ -80,6 +74,12 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#tools">Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">tools</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#rotate">ROT <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vigenere">Vigenère <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">cipher</span></a>
                     </li>
                     
                 </ul>
@@ -472,179 +472,6 @@
         </div>
     </div>
 </section>
-            <section id="rotate">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <label class="display-6" for="rotText">Rotation cipher</label>
-            <hr>
-            <p class="text-dark px-2">
-                A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
-            </p>
-        </div>
-        <ul class="pagination justify-content-center flex-wrap" id="pagination">
-            <li class="page-item">
-                <button type="button" class="page-link" id="rotPrev" aria-label="Previous" data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot1" aria-label="A: Rot 1" data-rot-number="1" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 1">a<span class="visually-hidden">: rot 1</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot2" aria-label="B: Rot 2" data-rot-number="2" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 2">b<span class="visually-hidden">: rot 2</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot3" aria-label="C: Rot 3" data-rot-number="3" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 3">c<span class="visually-hidden">: rot 3</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot4" aria-label="D: Rot 4" data-rot-number="4" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 4">d<span class="visually-hidden">: rot 4</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot5" aria-label="E: Rot 5" data-rot-number="5" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 5">e<span class="visually-hidden">: rot 5</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot6" aria-label="F: Rot 6" data-rot-number="6" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 6">f<span class="visually-hidden">: rot 6</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot7" aria-label="G: Rot 7" data-rot-number="7" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 7">g<span class="visually-hidden">: rot 7</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot8" aria-label="H: Rot 8" data-rot-number="8" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 8">h<span class="visually-hidden">: rot 8</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot9" aria-label="I: Rot 9" data-rot-number="9" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 9">i<span class="visually-hidden">: rot 9</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot10" aria-label="J: Rot 10" data-rot-number="10" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 10">j<span class="visually-hidden">: rot 10</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot11" aria-label="K: Rot 11" data-rot-number="11" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 11">k<span class="visually-hidden">: rot 11</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot12" aria-label="L: Rot 12" data-rot-number="12" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 12">l<span class="visually-hidden">: rot 12</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot13" aria-label="M: Rot 13" data-rot-number="13" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 13">m<span class="visually-hidden">: rot 13</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot14" aria-label="N: Rot 14" data-rot-number="14" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 14">n<span class="visually-hidden">: rot 14</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot15" aria-label="O: Rot 15" data-rot-number="15" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 15">o<span class="visually-hidden">: rot 15</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot16" aria-label="P: Rot 16" data-rot-number="16" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 16">p<span class="visually-hidden">: rot 16</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot17" aria-label="Q: Rot 17" data-rot-number="17" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 17">q<span class="visually-hidden">: rot 17</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot18" aria-label="R: Rot 18" data-rot-number="18" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 18">r<span class="visually-hidden">: rot 18</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot19" aria-label="S: Rot 19" data-rot-number="19" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 19">s<span class="visually-hidden">: rot 19</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot20" aria-label="T: Rot 20" data-rot-number="20" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 20">t<span class="visually-hidden">: rot 20</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot21" aria-label="U: Rot 21" data-rot-number="21" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 21">u<span class="visually-hidden">: rot 21</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot22" aria-label="V: Rot 22" data-rot-number="22" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 22">v<span class="visually-hidden">: rot 22</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot23" aria-label="W: Rot 23" data-rot-number="23" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 23">w<span class="visually-hidden">: rot 23</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot24" aria-label="X: Rot 24" data-rot-number="24" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 24">x<span class="visually-hidden">: rot 24</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot25" aria-label="Y: Rot 25" data-rot-number="25" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 25">y<span class="visually-hidden">: rot 25</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot26" aria-label="Z: Rot 26" data-rot-number="26" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 26">z<span class="visually-hidden">: rot 26</span></button>
-            </li>
-            <li class="page-item">
-                <button type="button" class="page-link" id="rotNext" aria-label="Next" data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </button>
-            </li>
-        </ul>
-        <div class="row justify-content-center">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">ROT Cipher</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
-                    </div>
-                    <div class="card-footer text-dark py-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="m-0">Results:</p>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="rotResults" class="data-to-copy active"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-            <section id="vigenere">
-    <div class="py-4 px-2 px-sm-4 bg-light">
-        <div class="section-heading mb-4">
-            <label class="display-6" for="vigenereText">Vigenère cipher</label>
-            <hr>
-            <p class="text-dark px-2">
-                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
-                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    S → T → L
-                </code> 
-                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    E → E → I
-                </code>
-                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    N → S → F
-                </code> 
-                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    T → T → M
-                </code>
-                - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
-            </p>
-        <div class="row justify-content-center">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Vigenère cipher</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher"></textarea>
-                    </div>
-                    <div class="card-footer text-dark py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <div class="input-group w-auto me-2">
-                                <label class="input-group-text" id="basic-addon1" for="vigenereKey"><span class="d-none d-md-block">Key&nbsp;</span></label>
-                                <input type="text" class="form-control" id="vigenereKey" title="Vigenère cipher key">
-                                <button class="btn btn-outline-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
-                                <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
-                            </div>
-                            <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="vigenereResults" class="data-to-copy active"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
             <section id="flip">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -831,6 +658,179 @@
         </div>
     </div>
 </section>
+            <section id="rotate">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="rotText">Rotation cipher</label>
+            <hr>
+            <p class="text-dark px-2">
+                A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <ul class="pagination justify-content-center flex-wrap" id="pagination">
+            <li class="page-item">
+                <button type="button" class="page-link" id="rotPrev" aria-label="Previous" data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot1" aria-label="A: Rot 1" data-rot-number="1" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 1">a<span class="visually-hidden">: rot 1</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot2" aria-label="B: Rot 2" data-rot-number="2" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 2">b<span class="visually-hidden">: rot 2</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot3" aria-label="C: Rot 3" data-rot-number="3" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 3">c<span class="visually-hidden">: rot 3</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot4" aria-label="D: Rot 4" data-rot-number="4" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 4">d<span class="visually-hidden">: rot 4</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot5" aria-label="E: Rot 5" data-rot-number="5" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 5">e<span class="visually-hidden">: rot 5</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot6" aria-label="F: Rot 6" data-rot-number="6" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 6">f<span class="visually-hidden">: rot 6</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot7" aria-label="G: Rot 7" data-rot-number="7" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 7">g<span class="visually-hidden">: rot 7</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot8" aria-label="H: Rot 8" data-rot-number="8" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 8">h<span class="visually-hidden">: rot 8</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot9" aria-label="I: Rot 9" data-rot-number="9" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 9">i<span class="visually-hidden">: rot 9</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot10" aria-label="J: Rot 10" data-rot-number="10" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 10">j<span class="visually-hidden">: rot 10</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot11" aria-label="K: Rot 11" data-rot-number="11" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 11">k<span class="visually-hidden">: rot 11</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot12" aria-label="L: Rot 12" data-rot-number="12" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 12">l<span class="visually-hidden">: rot 12</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot13" aria-label="M: Rot 13" data-rot-number="13" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 13">m<span class="visually-hidden">: rot 13</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot14" aria-label="N: Rot 14" data-rot-number="14" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 14">n<span class="visually-hidden">: rot 14</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot15" aria-label="O: Rot 15" data-rot-number="15" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 15">o<span class="visually-hidden">: rot 15</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot16" aria-label="P: Rot 16" data-rot-number="16" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 16">p<span class="visually-hidden">: rot 16</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot17" aria-label="Q: Rot 17" data-rot-number="17" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 17">q<span class="visually-hidden">: rot 17</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot18" aria-label="R: Rot 18" data-rot-number="18" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 18">r<span class="visually-hidden">: rot 18</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot19" aria-label="S: Rot 19" data-rot-number="19" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 19">s<span class="visually-hidden">: rot 19</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot20" aria-label="T: Rot 20" data-rot-number="20" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 20">t<span class="visually-hidden">: rot 20</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot21" aria-label="U: Rot 21" data-rot-number="21" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 21">u<span class="visually-hidden">: rot 21</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot22" aria-label="V: Rot 22" data-rot-number="22" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 22">v<span class="visually-hidden">: rot 22</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot23" aria-label="W: Rot 23" data-rot-number="23" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 23">w<span class="visually-hidden">: rot 23</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot24" aria-label="X: Rot 24" data-rot-number="24" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 24">x<span class="visually-hidden">: rot 24</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot25" aria-label="Y: Rot 25" data-rot-number="25" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 25">y<span class="visually-hidden">: rot 25</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link rot-link" id="rot26" aria-label="Z: Rot 26" data-rot-number="26" data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 26">z<span class="visually-hidden">: rot 26</span></button>
+            </li>
+            <li class="page-item">
+                <button type="button" class="page-link" id="rotNext" aria-label="Next" data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </button>
+            </li>
+        </ul>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">ROT Cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="m-0">Results:</p>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="rotResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="vigenere">
+    <div class="py-4 px-2 px-sm-4 bg-light">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="vigenereText">Vigenère cipher</label>
+            <hr>
+            <p class="text-dark px-2">
+                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    S → T → L
+                </code> 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    E → E → I
+                </code>
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    N → S → F
+                </code> 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    T → T → M
+                </code>
+                - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Vigenère cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="input-group w-auto me-2">
+                                <label class="input-group-text" id="basic-addon1" for="vigenereKey"><span class="d-none d-md-block">Key&nbsp;</span></label>
+                                <input type="text" class="form-control" id="vigenereKey" title="Vigenère cipher key">
+                                <button class="btn btn-outline-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
+                                <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
+                            </div>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="vigenereResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         </main>
 
         <footer class="text-dark bg-light">
@@ -848,8 +848,8 @@
         </p>
     </div>
     <div class="p-4 pt-2">
-        <abbr title="Release version: v1.1.1" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-            <small>v1.1.1</small>
+        <abbr title="Release version: v1.2.0" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <small>v1.2.0</small>
         </abbr>
     </div>
 </footer>
