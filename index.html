@@ -3,9 +3,14 @@ layout: layout.liquid
 title: For everlost and Grollow!
 page-id: home
 ---
-        <main>
+<main class="mt-5"
+        data-bs-spy="scroll" 
+        data-bs-target="#navbarText" 
+        data-bs-smooth-scroll="true"
+        data-bs-threshold="0,1"
+        data-bs-root-margin="10% 0% -90%">
             <section id="home">
-                <div class="convrtrs py-5 pb-4 px-2 px-sm-4">
+                <div class="py-5 pb-4 px-2 px-sm-4">
                     <div class="section-heading">
                         <h1 class="display-6">Encoding and Decoding</h1>
                         <hr>
@@ -20,10 +25,10 @@ page-id: home
             </section>
 
             {% render "partials/home/convrtrs" %}
+            {% render "partials/home/tools" %}
             {% render "partials/home/flip" %}
             {% render "partials/home/shift" %}
             {% render "partials/home/reversehex" %}
-            {% render "partials/home/tools" %}
             {% render "partials/home/rotate" %}
             {% render "partials/home/vigenere" %}
         </main>
