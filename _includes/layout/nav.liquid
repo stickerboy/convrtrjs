@@ -15,26 +15,53 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
                     {% if page-id == "home" %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#convrtrs"><span class="bi bi-code-square fs-5 d-none d-md-flex" aria-label="Home" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Home"></span> <span class="d-sm-inline-flex d-md-none">Home</span></a>
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link active" href="#home"><span class="bi bi-house fs-5 d-none d-md-flex" role="generic" aria-label="Converters" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Converters"></span> <span class="d-sm-inline-flex d-md-none">Convrtrs</span></a>
+                    </li> -->
+                    <!-- Text tools -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#home">Convrtrs</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#tools">Text tools</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#flip">Flip text</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#flip">Flip <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
+                    <!-- Hex tools -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hex <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#shift">Shift hex</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#reverseHex">Reverse hex</a>
+                            </li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#shift">Shift <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">hex</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reverseHex">Reverse <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">hex</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#tools">Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">tools</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#rotate">ROT <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#vigenere">Vigenère <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">cipher</span></a>
+                    <!-- Ciphers -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cipher<span class="d-none d-md-inline-flex d-lg-none">s</span> <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#rotate">ROT text</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#vigenere">Vigenère cipher</a>
+                            </li>
+                        </ul>
                     </li>
                     {% else %}
                     <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
