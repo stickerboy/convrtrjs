@@ -17,6 +17,20 @@ const textMorseDict = {
     "Z": "--..", "!": "-.-.--", ".": ".-.-.-", ",": "--..--"
 }
 
+// Check if character/string is a letter
+function isLetter(string) {
+    return string.length === 1 && string.match(/[a-zA-Z]/i);
+}
+
+// Check is character/string is uppercase or lowecase
+function isUpperCase(string) {
+    if (string === string.toUpperCase()) {
+        return true;
+    }
+    if (string === string.toLowerCase()) {
+        return false;
+    }
+}
 
 // Reverse String
 function reverseString(string) {
@@ -213,14 +227,12 @@ function morsenaryToString(string) {
     }
 }
 
-
 // Flip text upside down
 function flipText(string, alphabet, replacement) {
 	return Array.from(string).map(c => 
         typeof replacement[alphabet.search(c)] == 'undefined' ? ' ' : replacement[alphabet.search(c)]
     ).join("");
 }
-
 
 // Convert Hex String to Binary
 // https://newbedev.com/convert-hex-to-binary-in-javascript
@@ -232,7 +244,6 @@ function hexToBinary(string) {
 function hex2Bin(string) {
     return parseInt(string, 16).toString(2).padStart(8, '0');
 }
-
 
 // Convert Hex to Decimal
 // Returns: Decimal, space delimited
@@ -248,7 +259,6 @@ function hex2Dec(string) {
     return ord(hexToString(string));
 }
 
-
 // Shift Hex left or right
 // Returns: Decimal, space delimited
 function shiftHexString(string, shiftValue) {
@@ -257,10 +267,49 @@ function shiftHexString(string, shiftValue) {
         ).join(" ");
 }
 
-
 // Reverse Hex nibbles
 function reverseHex(string) {
     return stringToHex(hexToString(string), " ").split(" ").map(c => 
             reverseString(c)
            ).join(" ");
+}
+
+// Encrypt using Vigenère cipher
+function vignereEncrypt(string, key) {
+    let result = "";
+
+    for (let i = 0, j = 0; i < string.length; i++) {
+        const c = string.charAt(i);
+        if (isLetter(c)) {
+            if (isUpperCase(c)) {
+                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65)
+            } else {
+                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97)
+            }
+        } else {
+            result += c;
+        }
+        j = ++j % key.length;
+    }
+    return result;
+}
+
+// Decrypt Vigenère cipher
+function vignereDecrypt(string, key) {
+    let result = "";
+
+    for (let i = 0, j = 0; i < string.length; i++) {
+        const c = string.charAt(i);
+        if (isLetter(c)) {
+            if (isUpperCase(c)) {
+                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toUpperCase().charCodeAt(j))) % 26);
+            } else {
+                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLowerCase().charCodeAt(j))) % 26);
+            }
+        } else {
+            result += c
+        }
+        j = ++j % key.length;
+    }
+    return result;
 }

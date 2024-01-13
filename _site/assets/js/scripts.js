@@ -313,6 +313,7 @@ shiftButton.addEventListener('click', function() {
     document.getElementById("decimal-tab-pane").textContent =  shiftHexString(shiftString.value.trim(), shiftValue.value);
 });
 
+// Text tools
 const toolChange = document.getElementById("toolChange");
 toolChange.addEventListener('click', function() {
     let toolsString = document.getElementById("toolsTextarea");
@@ -364,7 +365,6 @@ toolChange.addEventListener('click', function() {
     }
 });
 
-
 // Reverse Hex
 const reverseHexButton = document.getElementById("reverseHexDecode");
 reverseHexButton.addEventListener('click', function() {
@@ -375,4 +375,28 @@ reverseHexButton.addEventListener('click', function() {
     }
 
     document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value);
+});
+
+// Vigenère cipher
+const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
+vigenereEncryptButton.addEventListener('click', function() {
+    const vigenereString = document.getElementById("vigenereText");
+    const vigenereKey = document.getElementById("vigenereKey");
+
+    if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
+        return false;
+    }
+
+    document.getElementById("vigenereResults").textContent = vignereEncrypt(vigenereString.value, vigenereKey.value);
+});
+const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
+vigenereDecryptButton.addEventListener('click', function() {
+    const vigenereString = document.getElementById("vigenereText");
+    const vigenereKey = document.getElementById("vigenereKey");
+
+    if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
+        return false;
+    }
+
+    document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
 });

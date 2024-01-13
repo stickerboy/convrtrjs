@@ -61,10 +61,13 @@
                 <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
                     
                     <li class="nav-item">
-                        <a class="nav-link active" href="#convrtrs">Home</a>
+                        <a class="nav-link active" href="#convrtrs"><span class="bi bi-code-square fs-5 d-none d-md-flex" aria-label="Home" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Home"></span> <span class="d-sm-inline-flex d-md-none">Home</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#rotate">ROT <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#vigenere">Vigenère <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">cipher</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#flip">Flip <span class="d-sm-inline-flex d-md-none d-lg-inline-flex">text</span></a>
@@ -475,7 +478,7 @@
             <label class="display-6" for="rotText">Rotation cipher</label>
             <hr>
             <p class="text-dark px-2">
-                A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="">Caesar_cipher</a> Wikipedia page. 
+                A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
             </p>
         </div>
         <ul class="pagination justify-content-center flex-wrap" id="pagination">
@@ -573,7 +576,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">ROT Cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: " title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
+                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-between align-items-center">
@@ -592,8 +595,58 @@
         </div>
     </div>
 </section>
-            <section id="flip">
+            <section id="vigenere">
     <div class="py-4 px-2 px-sm-4 bg-light">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="vigenereText">Vigenère cipher</label>
+            <hr>
+            <p class="text-dark px-2">
+                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    S → T → L
+                </code> 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    E → E → I
+                </code>
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    N → S → F
+                </code> 
+                <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    T → T → M
+                </code>
+                - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Vigenère cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="input-group w-auto me-2">
+                                <label class="input-group-text" id="basic-addon1" for="vigenereKey"><span class="d-none d-md-block">Key&nbsp;</span></label>
+                                <input type="text" class="form-control" id="vigenereKey" title="Vigenère cipher key">
+                                <button class="btn btn-outline-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
+                                <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
+                            </div>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="vigenereResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="flip">
+    <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <label class="display-6" for="flipText">Flip text</label>
             <hr>
@@ -606,7 +659,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Flip Text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: " title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text"></textarea>
+                        <textarea placeholder="Example: TEST → ┴SƎ┴" title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-start align-items-center">
@@ -630,7 +683,7 @@
     </div>
 </section>
             <section id="shift">
-    <div class="py-4 px-2 px-sm-4">
+    <div class="py-4 px-2 px-sm-4 bg-light">
         <div class="section-heading mb-4">
             <label class="display-6" for="shiftText">Shift hex</label>
             <hr>
@@ -682,7 +735,7 @@
     </div>
 </section>
             <section id="reverseHex">
-    <div class="py-4 px-2 px-sm-4 bg-light">
+    <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <label class="display-6" for="flipText">Reverse hex</label>
             <hr>
