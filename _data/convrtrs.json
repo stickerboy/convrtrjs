@@ -1,0 +1,92 @@
+[
+    {
+      "id": "text",
+      "card-label": "Text",
+      "popover-content": "Enter any text you wish to encode in here. The results of decoded text will also appear here.",
+      "placeholder": "Example: Hello",
+      "button-id": "encode",
+      "button-label": "Encode text",
+      "html": false,
+      "delimiter": false
+    },
+    {
+      "id": "binary",
+      "card-label": "Binary",
+      "popover-content": "Find out more about Binary on the <a href=\"http://en.wikipedia.org/wiki/Binary_numeral_system\" class=\"text-convrtr\" title=\"Binary Numeral System on Wikipedia\">Binary</a> Wikipedia page",
+      "placeholder": "Example: 01001000 01100101 01101100 01101100 01101111",
+      "button-id": "binaryDecode",
+      "button-label": "Decode binary",
+      "html": true,
+      "delimiter": false
+    },
+    {
+      "id": "hex",
+      "card-label": "Hexidecimal",
+      "popover-content": "Replacement of spaces, hyphens, colons and commas are supported here. \"\\x\" and \"0x\" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href=\"http://en.wikipedia.org/wiki/Hexidecimal\" class=\"text-convrtr\" title=\"Hexidecimal on Wikipedia\">Hexidecimal</a> Wikipedia page",
+      "placeholder": "Example: 48 65 6c 6c 6f",
+      "button-id": "hexDecode",
+      "button-label": "Decode Hexadecimal",
+      "html": true,
+      "delimiter": true
+    },
+    {
+      "id": "base64",
+      "card-label": "Base64",
+      "popover-content": "Find out more about Base64 on the <a href=\"http://en.wikipedia.org/wiki/Base64\" class=\"text-convrtr\" title=\"Base64 on Wikipedia\">Base64</a> Wikipedia page",
+      "placeholder": "Example: SGVsbG8=",
+      "button-id": "b64Decode",
+      "button-label": "Decode Base64",
+      "html": true,
+      "delimiter": false
+    },
+    {
+      "id": "decimal",
+      "card-label": "Decimal",
+      "popover-content": "A numerical representation of each letter that computers use. Find out more about on the <a href=\"https://www.lookuptables.com/text/ascii-table\" class=\"text-convrtr\" title=\"ASCII Table\">ASCII Table</a> website",
+      "placeholder": "Example: 72 101 108 108 111",
+      "button-id": "decDecode",
+      "button-label": "Decode Decimal",
+      "html": true,
+      "delimiter": false
+    },
+    {
+      "id": "reverse",
+      "card-label": "Reverse",
+      "popover-content": "A simple function for displaying a string of text backwards.",
+      "placeholder": "Example: olleH",
+      "button-id": "revDecode",
+      "button-label": "Reverse text",
+      "html": false,
+      "delimiter": false
+    },
+    {
+      "id": "rot13",
+      "card-label": "ROT13",
+      "popover-content": "Find out more about Rotational ciphers on the <a href=\"http://en.wikipedia.org/wiki/ROT13\" class=\"text-convrtr\" title=\"ROT13 on Wikipedia\">ROT13</a> Wikipedia page",
+      "placeholder": "Example: Uryyb",
+      "button-id": "rot13Decode",
+      "button-label": "Decode Rot13",
+      "html": true,
+      "delimiter": false
+    },
+    {
+      "id": "morse",
+      "card-label": "Morse",
+      "popover-content": "Find out more about Morse on the <a href=\"http://en.wikipedia.org/wiki/Morse_code\" class=\"text-convrtr\" title=\"Morse Code on Wikipedia\">Morse Code</a> Wikipedia page",
+      "placeholder": "Example: .... . .-.. .-.. ---",
+      "button-id": "morseDecode",
+      "button-label": "Decode Morse Code",
+      "html": true,
+      "delimiter": false
+    },
+    {
+      "id": "morsenary",
+      "card-label": "Morsenary",
+      "popover-content": "Morsenary is Binary disguised as Morse code. Replace dots with 0 and dashes with 1 (or vice versa) and convert the binary to a string. You can go further and use other characters or words in place of dots and dashes, making your puzzle a bit harder.",
+      "placeholder": "Example: .-..-....--..-.-.--.--...--.--...--.----",
+      "button-id": "mrsnryDecode",
+      "button-label": "Decode Morsenary",
+      "html": true,
+      "delimiter": true
+    }
+]

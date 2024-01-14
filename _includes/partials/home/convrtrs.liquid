@@ -6,346 +6,68 @@
             <p class="text-dark px-2"></p>
         </div>
         <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-text">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase">
-                                <label class="card-label" for="form-text">Text</label>
-                            </span>
-                            <div class="d-flex ms-auto">
-                                <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for encoding"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover" 
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-content="Enter any text you wish to encode in here. The results of decoded text will also appear here.">
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: Hello" rows="6" id="form-text" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <button type="button" class="btn btn-md btn-convrtr" id="encode">Encode</button>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-binary">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-binary">Binary</label> 
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for decoding binary"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='Find out more about Binary on the <a href="http://en.wikipedia.org/wiki/Binary_numeral_system" class="text-convrtr" title="Binary Numeral System on Wikipedia">Binary</a> Wikipedia page'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: 01001000 01100101 01101100 01101100 01101111" rows="6" id="form-binary" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Binary">
-                                <button type="button" class="btn btn-md btn-light" id="binaryDecode" aria-label="Decode Binary">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
+        {% for tool in convrtrs %}
+        {% if convrtrs.length %}
+        <div class="col">
+            <div class="card shadow-sm" id="convrtr-{{ tool.id }}">
+                <div class="card-body">
+                    <div class="card-title d-flex align-items-center">
+                        <span class="h6 m-0 text-uppercase">
+                            <label class="card-label" for="form-{{ tool.id }}">
+                                {{ tool.card-label }}
+                            </label>
+                        </span>
+                        {% if tool.id == "hex" %}
+                        <select id="hexDelimiter" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Hexadecimal delimiter">
+                            <option value=" " selected="">Space</option>
+                            <option value="-">Hyphen</option>
+                            <option value=":">Colon</option>
+                            <option value=",">Comma</option>
+                            <option value="\x">Slash x (\x)</option>
+                            <option value="0x">Zero x (0x)</option>
+                        </select>
+                        {% endif %}
+                        {% if tool.id == "morsenary" %}
+                        <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
+                            <option value="default" selected="">. = 0, - = 1</option>
+                            <option value="flipped">. = 1, - = 0</option>
+                        </select>
+                        {% endif %}
+                        <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
+                            <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                aria-label="Information popover for {% if forloop.first == 0 %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
+                                data-bs-container="body" 
+                                data-bs-toggle="popover" 
+                                data-bs-placement="left" 
+                                {% if tool.html == true %}data-bs-html="true"{% endif %}
+                                data-bs-trigger="focus"
+                                data-bs-content='{{ tool.popover-content }}'>
+                                <i class="bi bi-info-circle"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-hex">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-hex">Hexidecimal</label> 
-                            </span>
-                            <select id="hexDelimiter" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Hexadecimal delimiter">
-                                <option value=" " selected="">Space</option>
-                                <option value="-">Hyphen</option>
-                                <option value=":">Colon</option>
-                                <option value=",">Comma</option>
-                                <option value="\x">Slash x (\x)</option>
-                                <option value="0x">Zero x (0x)</option>
-                            </select>
-                            <div class="d-flex align-items-center">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                aria-label="Information popover for decoding hexadecimal"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='Replacement of spaces, hyphens, colons and commas are supported here. "\x" and "0x" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href="http://en.wikipedia.org/wiki/Hexidecimal" class="text-convrtr" title="Hexidecimal on Wikipedia">Hexidecimal</a> Wikipedia page'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: 48 65 6c 6c 6f" rows="6" id="form-hex" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Hex">
-                                <button type="button" class="btn btn-md btn-light" id="hexDecode" aria-label="Decode Hexadecimal">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-base64">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-base64">Base64</label> 
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                aria-label="Information popover for decoding base64"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='Find out more about Base64 on the <a href="http://en.wikipedia.org/wiki/Base64" class="text-convrtr" title="Base64 on Wikipedia">Base64</a> Wikipedia page'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: SGVsbG8=" rows="6" id="form-base64" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Base64">
-                                <button type="button" class="btn btn-md btn-light" id="b64Decode" aria-label="Decode Base64">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-decimal">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-decimal">Decimal</label> 
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for decoding decimal"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='A numerical representation of each letter that computers use. Find out more about on the <a href="https://www.lookuptables.com/text/ascii-table" class="text-convrtr" title="ASCII Table">ASCII Table</a> website'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: 72 101 108 108 111 " rows="6" id="form-decimal" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Decimal">
-                                <button type="button" class="btn btn-md btn-light" id="decDecode" aria-label="Decode Decimal">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-reverse">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-reverse">Reverse</label>
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for reversing text"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-content="A simple function for displaying a string of text backwards.">
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: olleH" rows="6" id="form-reverse" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Reverse text">
-                                <button type="button" class="btn btn-md btn-light" id="revDecode" aria-label="Decode Reverse Text">
-                                    <span class="d-none d-sm-block">Decode<span class="visually-hidden"> Reverse Text</span></span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-rot13">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-rot13">ROT13</label> 
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for Rot 13 ciphers"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='Find out more about Rotational ciphers on the <a href="http://en.wikipedia.org/wiki/ROT13" class="text-convrtr" title="ROT13 on Wikipedia">ROT13</a> Wikipedia page'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: Uryyb" rows="6" id="form-rot13" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Rot13">
-                                <button type="button" class="btn btn-md btn-light" id="rot13Decode" aria-label="Decode Rot13">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-morse">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase align-self-center">
-                                <label class="card-label" for="form-morse">Morse</label> 
-                            </span>
-                            <div class="d-flex align-items-center ms-auto">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for decoding morse code"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content='Find out more about Morse on the <a href="http://en.wikipedia.org/wiki/Morse_code" class="text-convrtr" title="Morse Code on Wikipedia">Morse Code</a> Wikipedia page'>
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: .... . .-.. .-.. ---" rows="6" id="form-morse" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Morse">
-                                <button type="button" class="btn btn-md btn-light" id="morseDecode" aria-label="Decode Morse Code">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card shadow-sm" id="convrtr-morsenary">
-                    <div class="card-body">
-                        <div class="card-title d-flex align-items-center">
-                            <span class="h6 m-0 text-uppercase">
-                                <label class="card-label" for="form-morsenary">Morsenary</label>
-                            </span>
-                            <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
-                                <option value="default" selected="">. = 0, - = 1</option>
-                                <option value="flipped">. = 1, - = 0</option>
-                            </select>
-                            <div class="d-flex align-items-center">
-                                <a role="button" tabindex="0" class="card-popover text-convrtr px-1 border border-convrtr rounded"
-                                    aria-label="Information popover for decoding morsenary"
-                                    data-bs-container="body" 
-                                    data-bs-toggle="popover"
-                                    data-bs-placement="left" 
-                                    data-bs-trigger="focus"
-                                    data-bs-html="true"
-                                    data-bs-content="Morsenary is Binary disguised as Morse code. Replace dots with 0 and dashes with 1 (or vice versa) and convert the binary to a string. You can go further and use other characters or words in place of dots and dashes, making your puzzle a bit harder.">
-                                    <i class="bi bi-info-circle"></i>
-                                </a>    
-                            </div>
-                        </div>
-                        <textarea placeholder="Example: .-..-....--..-.-.--.--...--.--...--.----" rows="6" id="form-morsenary" class="form-control data-to-copy active"></textarea>
-                        <div class="d-flex justify-content-between align-items-center mt-3">
-                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="Decode Morsenary">
-                                <button type="button" class="btn btn-md btn-light mr-2" id="mrsnryDecode" aria-label="Decode Morsenary">
-                                    <span class="d-none d-sm-block">Decode</span>
-                                    <i class="bi bi-code-square d-sm-none"></i>
-                                </button>
-                            </span>
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
+                    <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active"></textarea>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        {% if forloop.first == true %}
+                        <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}">Encode</button>
+                        {% else %}
+                        <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
+                            <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
+                                <span class="d-none d-sm-block">Decode</span>
+                                <i class="bi bi-code-square d-sm-none"></i>
+                            </button>
+                        </span>
+                        {% endif %}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                            <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                            <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% endfor %}
     </div>
-</section>
+</div>
