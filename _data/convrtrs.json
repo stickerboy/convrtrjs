@@ -15,13 +15,13 @@
       "popover-content": "Find out more about Binary on the <a href=\"http://en.wikipedia.org/wiki/Binary_numeral_system\" class=\"text-convrtr\" title=\"Binary Numeral System on Wikipedia\">Binary</a> Wikipedia page",
       "placeholder": "Example: 01001000 01100101 01101100 01101100 01101111",
       "button-id": "binaryDecode",
-      "button-label": "Decode binary",
+      "button-label": "Decode Binary",
       "html": true,
       "delimiter": false
     },
     {
       "id": "hex",
-      "card-label": "Hexidecimal",
+      "card-label": "Hexadecimal",
       "popover-content": "Replacement of spaces, hyphens, colons and commas are supported here. \"\\x\" and \"0x\" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href=\"http://en.wikipedia.org/wiki/Hexidecimal\" class=\"text-convrtr\" title=\"Hexidecimal on Wikipedia\">Hexidecimal</a> Wikipedia page",
       "placeholder": "Example: 48 65 6c 6c 6f",
       "button-id": "hexDecode",
