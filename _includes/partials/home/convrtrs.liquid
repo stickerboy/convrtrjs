@@ -35,7 +35,7 @@
                         {% endif %}
                         <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
                             <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
-                                aria-label="Information popover for {% if forloop.first == 0 %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
+                                aria-label="Information popover for {% if forloop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
                                 data-bs-container="body" 
                                 data-bs-toggle="popover" 
                                 data-bs-placement="left" 
@@ -53,8 +53,7 @@
                         {% else %}
                         <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
                             <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
-                                <span class="d-none d-sm-block">Decode</span>
-                                <i class="bi bi-code-square d-sm-none"></i>
+                                Decode
                             </button>
                         </span>
                         {% endif %}

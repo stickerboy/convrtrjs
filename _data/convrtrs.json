@@ -55,7 +55,7 @@
       "popover-content": "A simple function for displaying a string of text backwards.",
       "placeholder": "Example: olleH",
       "button-id": "revDecode",
-      "button-label": "Reverse text",
+      "button-label": "Decode Reverse text",
       "html": false,
       "delimiter": false
     },
