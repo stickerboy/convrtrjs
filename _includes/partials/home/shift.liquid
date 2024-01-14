@@ -15,16 +15,22 @@
                         <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <div class="input-group w-auto me-2">
-                                <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
-                                <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
-                                <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
-                            </div>
-                            <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
+                                        <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
+                                        <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto">
+                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr />
