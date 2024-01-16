@@ -400,3 +400,23 @@ vigenereDecryptButton.addEventListener('click', function() {
 
     document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
 });
+
+// Hash strings
+const hashButton = document.getElementById("hashDecode");
+hashButton.addEventListener('click', function() {
+    const hashString = document.getElementById("hashText");
+    let hashResults = document.getElementById("hashResults");
+
+    if(!emptyContainerCheck(hashString.value, hashString)) {
+        return false;
+    }
+
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">MD5</th><td>${generateHashes(hashString.value, "MD5")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-1</th><td>${generateHashes(hashString.value, "SHA1")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-256</th><td>${generateHashes(hashString.value, "SHA256")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-512</th><td>${generateHashes(hashString.value, "SHA512")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [224]</th><td>${generateHashes(hashString.value, "SHA3224")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [256]</th><td>${generateHashes(hashString.value, "SHA3256")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [384]</th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [512]</th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
+});

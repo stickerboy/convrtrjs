@@ -9,21 +9,7 @@ page-id: home
         data-bs-smooth-scroll="true"
         data-bs-threshold="0,1"
         data-bs-root-margin="10% 0% -90%">
-            <section id="home">
-                <div class="py-5 pb-4 px-2 px-sm-4">
-                    <div class="section-heading">
-                        <h1 class="display-6">Encoding and Decoding</h1>
-                        <hr>
-                        <p class="text-dark px-2">
-                            Convrtr is a simple JavaScript based tool to quickly convert text between different formats. A description of each decoder and link to more information is available using the info button in the top-right of each decoder. You can also copy the contents on individual decoders and download the contents to a text file.
-                        </p>
-                        <p class="text-dark px-2 m-0">
-                            Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
+            {% render "partials/home/home" %}
             {% include "partials/home/convrtrs" %}
             {% render "partials/home/tools" %}
             {% render "partials/home/flip" %}
@@ -31,4 +17,5 @@ page-id: home
             {% render "partials/home/reversehex" %}
             {% render "partials/home/rotate" %}
             {% render "partials/home/vigenere" %}
+            {% render "partials/home/hash" %}
         </main>

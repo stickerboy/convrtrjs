@@ -313,3 +313,35 @@ function vignereDecrypt(string, key) {
     }
     return result;
 }
+
+// Generate hash values
+function generateHashes(string, hash, key) {
+    switch (hash) {
+        case "MD5": 
+            return CryptoJS.MD5(string);
+        break;
+        case "SHA1":
+            return CryptoJS.SHA1(string);
+        break;
+        case "SHA256":
+            return CryptoJS.SHA256(string);
+        break;
+        case "SHA512":
+            return CryptoJS.SHA512(string);
+        break;
+        case "SHA3512":
+            return CryptoJS.SHA3(string, { outputLength: 512 });
+        break;
+        case "SHA3384":
+            return CryptoJS.SHA3(string, { outputLength: 384 });
+        break;
+        case "SHA3256":
+            return CryptoJS.SHA3(string, { outputLength: 256 });
+        break;
+        case "SHA3224":
+            return CryptoJS.SHA3(string, { outputLength: 224 });
+        break;
+        default:
+            return "Invalid hash method provided or not supported";
+    }
+}

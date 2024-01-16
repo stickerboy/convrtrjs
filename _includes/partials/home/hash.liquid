@@ -1,30 +1,40 @@
-<section id="reverseHex" class="section">
+<section id="hash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <label class="display-6" for="flipText">Reverse hex</label>
+            <label class="display-6" for="hashText">Hash</label>
             <hr>
             <p class="text-dark px-2">
-                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+                Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
             </p>
         </div>
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Reverse hex</span>
+                    <span class="card-label visually-hidden">Hash text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex"></textarea>
+                        <textarea placeholder="Example: " title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
-                                <div class="btn-group ms-auto">
+                            <button type="button" class="btn btn-md btn-convrtr" id="hashDecode" title="Generate hashes">Hash</button>
+                            <div class="btn-group ms-auto">
                                 <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
                             </div>
                         </div>
                         <hr />
-                        <div id="reverseHexResults" class="data-to-copy active"></div>
+                        <div class="data-to-copy active table-responsive">
+                            <table class="table table-striped hash-table">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th scope="col" class="col-3 col-md-2 col-lg-2">Hash Type</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hashResults"></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
