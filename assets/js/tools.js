@@ -25,6 +25,18 @@ function lettersOnly(string, preserveSpaces) {
     return string.replace(regex, "");
 }
 
+// Capital letters only
+function lettersOnlyCap(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[^A-Z ]/g : /[A-Z]/g;
+    return string.replace(regex, "");
+}
+
+// Lowercase letters only
+function lettersOnlyLow(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[^a-z ]/g : /[^a-z]/g;
+    return string.replace(regex, "");
+}
+
 // Remove special characters
 function stripSpecialChars(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^a-z0-9 ]/gi : /[^a-z0-9]/gi;
