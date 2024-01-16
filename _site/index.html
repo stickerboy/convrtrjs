@@ -679,6 +679,48 @@
         </div>
     </div>
 </section>
+            <section id="freq" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="freqText">Character frequencies</label>
+            <hr>
+            <p class="text-dark px-2">
+                For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Character frequencies</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: " title="Characters to check" rows="6" id="freqText" class="form-control word-freqs"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="data-to-copy active table-responsive">
+                            <table class="table table-striped hash-table">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th scope="col" class="col-3 col-md-2 col-lg-2">Frquency</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="freqResults"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             <section id="shift" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -756,7 +798,7 @@
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
-                                <div class="btn-group ms-auto">
+                            <div class="btn-group ms-auto">
                                 <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>

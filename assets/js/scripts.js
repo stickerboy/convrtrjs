@@ -421,3 +421,25 @@ hashButton.addEventListener('click', function() {
     hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [384]</th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
     hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [512]</th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
 });
+
+// Frequencies
+const freqButton = document.getElementById("freqDecode");
+freqButton.addEventListener('click', function() {
+    const freqString = document.getElementById("freqText");
+    let freqResults = document.getElementById("freqResults");
+    freqResults.innerHTML = "";
+
+    if(!emptyContainerCheck(freqString.value, freqString)) {
+        return false;
+    }
+
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Word count</th><td>${stringStats(freqString.value, "word-count")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Character count</th><td>${stringStats(freqString.value, "char-count")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Character count<br />(no spaces)</th><td>${stringStats(freqString.value, "char-count-ns")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count</th><td>${stringStats(freqString.value, "letter-count")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count<br />(only capitals)</th><td>${stringStats(freqString.value, "letter-count-caps")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count<br />(only lowercase)</th><td>${stringStats(freqString.value, "letter-count-low")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Number count</th><td>${stringStats(freqString.value, "number-count")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Special character count</th><td>${stringStats(freqString.value, "special-count")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Special character count<br />(no spaces)</th><td>${stringStats(freqString.value, "special-count-ns")}</td></tr>`);
+});
