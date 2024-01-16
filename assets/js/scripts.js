@@ -412,14 +412,14 @@ hashButton.addEventListener('click', function() {
         return false;
     }
 
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span></th><td>${generateHashes(hashString.value, "MD5")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span></th><td>${generateHashes(hashString.value, "SHA1")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span></th><td>${generateHashes(hashString.value, "SHA256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span></th><td>${generateHashes(hashString.value, "SHA512")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span></th><td>${generateHashes(hashString.value, "SHA3224")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span></th><td>${generateHashes(hashString.value, "SHA3256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span></th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span></th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
 });
 
 // Frequencies
@@ -433,13 +433,13 @@ freqButton.addEventListener('click', function() {
         return false;
     }
 
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Word count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count (no spaces)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count<br /></span><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only capitals)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only lowercase)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Number count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count (no spaces)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code></div>`);
 });
