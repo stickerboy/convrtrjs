@@ -362,6 +362,12 @@ function stringStats(string, stat, delimiter) {
         case "letter-count":
             return lettersOnly(string).length;
         break;
+        case "letter-count-caps":
+            return lettersOnlyCap(string).length;
+        break;
+        case "letter-count-low":
+            return lettersOnlyLow(string).length;
+        break;
         case "number-count":
             return numbersOnly(string).length;
         break;
