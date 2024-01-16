@@ -433,13 +433,13 @@ freqButton.addEventListener('click', function() {
         return false;
     }
 
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Word count</th><td>${stringStats(freqString.value, "word-count")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Character count</th><td>${stringStats(freqString.value, "char-count")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Character count<br />(no spaces)</th><td>${stringStats(freqString.value, "char-count-ns")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count</th><td>${stringStats(freqString.value, "letter-count")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count<br />(only capitals)</th><td>${stringStats(freqString.value, "letter-count-caps")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Letter count<br />(only lowercase)</th><td>${stringStats(freqString.value, "letter-count-low")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Number count</th><td>${stringStats(freqString.value, "number-count")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Special character count</th><td>${stringStats(freqString.value, "special-count")}</td></tr>`);
-    freqResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">Special character count<br />(no spaces)</th><td>${stringStats(freqString.value, "special-count-ns")}</td></tr>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Word count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Character count (no spaces)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count<br /></span><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only capitals)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Letter count (only lowercase)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Number count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="col"><span class="display-6 fs-5">Special character count (no spaces)</span><br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code></div>`);
 });
