@@ -171,14 +171,14 @@ Array.from(downloadButtons, c => c.addEventListener('click', function() {
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
     }
+    download(dt, dtc);
+
     c.classList.replace("btn-light", "btn-convrtr");
     tooltip.setContent({ '.tooltip-inner': 'Downloaded!' });
     setTimeout(() => {
         c.classList.replace("btn-convrtr", "btn-light");
         tooltip.setContent({ '.tooltip-inner': 'Download' });
     }, 3430);
-
-    download(dt, dtc);
 }));
 
 // ROT Text
