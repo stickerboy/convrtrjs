@@ -245,6 +245,12 @@ textarea {
     }
 }
 
+.hash-table {
+    td {
+        word-break: break-all;
+    }
+}
+
 .toast {
     border-radius: var(--bs-toast-border-radius);
     &-header {
