@@ -42,8 +42,9 @@ function stripNumbers(string) {
 }
 
 // Special characters only
-function specialCharsOnly(string) {
-    return string.replace(/[a-z0-9]/gi, "");
+function specialCharsOnly(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[a-z0-9]/gi : /[a-z0-9 ]/gi;
+    return string.replace(regex, "");
 }
 
 // URL encode
