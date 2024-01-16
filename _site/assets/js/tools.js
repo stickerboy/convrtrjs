@@ -14,18 +14,21 @@ function lowercase(string) {
 }
 
 // Numbers only
-function numbersOnly(string) {
-    return string.replace(/[^0-9]/g, "");
+function numbersOnly(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[^0-9 ]/g : /[^0-9]/g;
+    return string.replace(regex, "");
 }
 
 // Letters only
-function lettersOnly(string) {
-    return string.replace(/[^a-z]/gi, "");
+function lettersOnly(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[^a-z ]/gi : /[^a-z]/gi;
+    return string.replace(regex, "");
 }
 
 // Remove special characters
-function stripSpecialChars(string) {
-    return string.replace(/[^a-z0-9]/gi, "");
+function stripSpecialChars(string, preserveSpaces) {
+    let regex = preserveSpaces === true ? /[^a-z0-9 ]/gi : /[^a-z0-9]/gi;
+    return string.replace(regex, "");
 }
 
 // Remove all letters
