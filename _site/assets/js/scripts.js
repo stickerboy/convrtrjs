@@ -406,6 +406,7 @@ const hashButton = document.getElementById("hashDecode");
 hashButton.addEventListener('click', function() {
     const hashString = document.getElementById("hashText");
     let hashResults = document.getElementById("hashResults");
+    hashResults.innerHTML = "";
 
     if(!emptyContainerCheck(hashString.value, hashString)) {
         return false;
