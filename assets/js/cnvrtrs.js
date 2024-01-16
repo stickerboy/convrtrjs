@@ -1,6 +1,7 @@
 const alphabet	= " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz";
 const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
 // Morse map
 const morseTextDict = {  
     "-----":"0", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", 
@@ -77,7 +78,7 @@ function stringToHex(string, delimiter) { // UTF-8
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
         encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
     ).join(`${hexDelimiter}`);
-    
+
     return (hexDelimiter === "\\x" || hexDelimiter === "0x") ? hexDelimiter + returnValue : returnValue;
 }
 

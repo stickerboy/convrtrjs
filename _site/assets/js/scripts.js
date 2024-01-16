@@ -18,7 +18,7 @@ resetData.addEventListener("click", function() {
         ta.value = "";
     });
     resetData.querySelector(".bi").classList.add("convrtr-spin");
-    
+
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
         tooltip.hide();
@@ -46,7 +46,7 @@ function download(filename, text) {
     let e = document.createElement('a');
     e.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     e.setAttribute('download', `${filename}.txt`);
-  
+
     e.style.display = 'none';
     document.body.appendChild(e);
     e.click();
@@ -83,7 +83,7 @@ Array.from(selectButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
     c.classList.replace("btn-light", "btn-convrtr");
     tooltip.setContent({ '.tooltip-inner': 'Selected!' });
     setTimeout(() => {
@@ -91,7 +91,7 @@ Array.from(selectButtons, c => c.addEventListener('click', function() {
         tooltip.setContent({ '.tooltip-inner': 'Sellect All' });
     }, 3430);
 
-    selectAllText(textarea);        
+    selectAllText(textarea);
 }));
 
 // Copy current textarea contents to clipboard
@@ -124,7 +124,7 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
     c.classList.replace("btn-light", "btn-convrtr");
     setTimeout(() => {
         c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
@@ -136,7 +136,7 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
         tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
     }, 3430);
 
-    copyToClipboard(dtc, c);        
+    copyToClipboard(dtc, c);
 }));
 
 // Download the contents of the closest textarea
@@ -170,14 +170,14 @@ Array.from(downloadButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
     c.classList.replace("btn-light", "btn-convrtr");
     tooltip.setContent({ '.tooltip-inner': 'Downloaded!' });
     setTimeout(() => {
         c.classList.replace("btn-convrtr", "btn-light");
         tooltip.setContent({ '.tooltip-inner': 'Download' });
     }, 3430);
-    
+
     download(dt, dtc);
 }));
 
@@ -242,7 +242,7 @@ rotNext.addEventListener('click', function() {
         activeButton = document.querySelector(".rot-link:first-child");
     }
     let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let nextRotNumber = parseInt(activeRotNumber) + 1; 
+    let nextRotNumber = parseInt(activeRotNumber) + 1;
 
     if (activeButton.getAttribute("data-rot-number") === "26") {
         document.getElementById("rot1").click();
