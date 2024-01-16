@@ -125,6 +125,10 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
     }
+    if(!copyToClipboard(dtc, c)) {
+        return false;
+    }
+
     c.classList.replace("btn-light", "btn-convrtr");
     setTimeout(() => {
         c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
@@ -135,8 +139,6 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
         c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
         tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
     }, 3430);
-
-    copyToClipboard(dtc, c);
 }));
 
 // Download the contents of the closest textarea

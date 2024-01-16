@@ -32,7 +32,7 @@ function copyToClipboard(text, el) {
 	if (!navigator.clipboard) {
 		console.log("Fell back to legacy clipboard");
 		copyToClipboardLegacy(text, el);
-	  return;
+	  return false;
 	}
 
 	const elOriginalText = el.getAttribute('data-bs-original-title');
@@ -45,4 +45,5 @@ function copyToClipboard(text, el) {
 		tooltip.setContent({ '.tooltip-inner': 'Whoops, not copied!' });
 	});
 	tooltip.setContent({ '.tooltip-inner': elOriginalText });
+	return true;
 }
