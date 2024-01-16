@@ -345,3 +345,33 @@ function generateHashes(string, hash, key) {
             return "Invalid hash method provided or not supported";
     }
 }
+
+function stringStats(string, stat, delimiter) {
+    let split = delimiter ? delimiter : " ";
+
+    switch (stat) {
+        case "word-count":
+            return string.split(split).length;
+        break;
+        case "char-count":
+            return string.length;
+        break;
+        case "char-count-ns":
+            return stripSpaces(string).length;
+        break;
+        case "letter-count":
+            return lettersOnly(string).length;
+        break;
+        case "number-count":
+            return numbersOnly(string).length;
+        break;
+        case "special-count":
+            return specialCharsOnly(string, true).length;
+        break;
+        case "special-count-ns":
+            return specialCharsOnly(string).length;
+        break;
+        default:
+            return "No stat specified or stat is not available";
+    }
+}
