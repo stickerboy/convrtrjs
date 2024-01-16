@@ -412,14 +412,14 @@ hashButton.addEventListener('click', function() {
         return false;
     }
 
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">MD5</th><td>${generateHashes(hashString.value, "MD5")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-1</th><td>${generateHashes(hashString.value, "SHA1")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-256</th><td>${generateHashes(hashString.value, "SHA256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-512</th><td>${generateHashes(hashString.value, "SHA512")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [224]</th><td>${generateHashes(hashString.value, "SHA3224")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [256]</th><td>${generateHashes(hashString.value, "SHA3256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [384]</th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [512]</th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span></th><td>${generateHashes(hashString.value, "MD5")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span></th><td>${generateHashes(hashString.value, "SHA1")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span></th><td>${generateHashes(hashString.value, "SHA256")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span></th><td>${generateHashes(hashString.value, "SHA512")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span></th><td>${generateHashes(hashString.value, "SHA3224")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span></th><td>${generateHashes(hashString.value, "SHA3256")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span></th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span></th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
 });
 
 // Frequencies
