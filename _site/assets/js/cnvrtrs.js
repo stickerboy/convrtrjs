@@ -397,10 +397,10 @@ function countArrayFreq(string) {
 }
 
 function styledUniqueArrayItems(data) {
-    let result = `<div class="col col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
-    <div class="d-flex justify-content-start flex-wrap mt-2" id="unique-chars">`;
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <div class="grid mt-2" id="unique-chars">`;
     data.forEach(char => {
-        result += `<code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" aria-label="${char.replace(/ /g, "Space")}" title="${char.replace(/ /g, "Space")}">
+        result += `<code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space")}" title="${char.replace(/ /g, "Space")}">
                 ${char.replace(/ /g, "&nbsp;")}
             </code>`;
     });
