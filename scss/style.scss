@@ -167,6 +167,10 @@ textarea {
     min-height: 2rem;
 }
 
+.grid-auto {
+    grid-template-columns: repeat(auto-fill, 1rem)
+}
+
 .page {
     &-item {
         margin-bottom: 0.5rem;
