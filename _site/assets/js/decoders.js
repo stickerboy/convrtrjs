@@ -13,7 +13,7 @@ function showToast(heading, content, color, delay) {
     }
     toastEL.querySelector(".toast-header strong").textContent = heading;
     toastEL.querySelector(".toast-body").textContent = content;
-  
+
     toast.show();
 }
 

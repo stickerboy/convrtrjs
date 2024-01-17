@@ -5,10 +5,10 @@
             <hr>
             <p class="text-dark px-2"></p>
         </div>
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="grid g-3">
         {% for tool in convrtrs %}
         {% if convrtrs.length %}
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-{{ tool.id }}">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">

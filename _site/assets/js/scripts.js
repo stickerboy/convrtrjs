@@ -18,7 +18,7 @@ resetData.addEventListener("click", function() {
         ta.value = "";
     });
     resetData.querySelector(".bi").classList.add("convrtr-spin");
-    
+
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
         tooltip.hide();
@@ -46,7 +46,7 @@ function download(filename, text) {
     let e = document.createElement('a');
     e.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
     e.setAttribute('download', `${filename}.txt`);
-  
+
     e.style.display = 'none';
     document.body.appendChild(e);
     e.click();
@@ -83,7 +83,7 @@ Array.from(selectButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
     c.classList.replace("btn-light", "btn-convrtr");
     tooltip.setContent({ '.tooltip-inner': 'Selected!' });
     setTimeout(() => {
@@ -91,7 +91,7 @@ Array.from(selectButtons, c => c.addEventListener('click', function() {
         tooltip.setContent({ '.tooltip-inner': 'Sellect All' });
     }, 3430);
 
-    selectAllText(textarea);        
+    selectAllText(textarea);
 }));
 
 // Copy current textarea contents to clipboard
@@ -124,7 +124,11 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
+    if(!copyToClipboard(dtc, c)) {
+        return false;
+    }
+
     c.classList.replace("btn-light", "btn-convrtr");
     setTimeout(() => {
         c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
@@ -135,8 +139,6 @@ Array.from(copyButtons, c => c.addEventListener('click', function() {
         c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
         tooltip.setContent({ '.tooltip-inner': 'Copy to clipboard' });
     }, 3430);
-
-    copyToClipboard(dtc, c);        
 }));
 
 // Download the contents of the closest textarea
@@ -170,15 +172,15 @@ Array.from(downloadButtons, c => c.addEventListener('click', function() {
 
     if(textarea.classList.contains("is-invalid")) {
         textarea.classList.remove("is-invalid");
-    }        
+    }
+    download(dt, dtc);
+
     c.classList.replace("btn-light", "btn-convrtr");
     tooltip.setContent({ '.tooltip-inner': 'Downloaded!' });
     setTimeout(() => {
         c.classList.replace("btn-convrtr", "btn-light");
         tooltip.setContent({ '.tooltip-inner': 'Download' });
     }, 3430);
-    
-    download(dt, dtc);
 }));
 
 // ROT Text
@@ -242,7 +244,7 @@ rotNext.addEventListener('click', function() {
         activeButton = document.querySelector(".rot-link:first-child");
     }
     let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let nextRotNumber = parseInt(activeRotNumber) + 1; 
+    let nextRotNumber = parseInt(activeRotNumber) + 1;
 
     if (activeButton.getAttribute("data-rot-number") === "26") {
         document.getElementById("rot1").click();
@@ -406,17 +408,43 @@ const hashButton = document.getElementById("hashDecode");
 hashButton.addEventListener('click', function() {
     const hashString = document.getElementById("hashText");
     let hashResults = document.getElementById("hashResults");
+    hashResults.innerHTML = "";
 
     if(!emptyContainerCheck(hashString.value, hashString)) {
         return false;
     }
 
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">MD5</th><td>${generateHashes(hashString.value, "MD5")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-1</th><td>${generateHashes(hashString.value, "SHA1")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-256</th><td>${generateHashes(hashString.value, "SHA256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-512</th><td>${generateHashes(hashString.value, "SHA512")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [224]</th><td>${generateHashes(hashString.value, "SHA3224")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [256]</th><td>${generateHashes(hashString.value, "SHA3256")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [384]</th><td>${generateHashes(hashString.value, "SHA3384")}</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row">SHA-3 [512]</th><td>${generateHashes(hashString.value, "SHA3512")}</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
+});
+
+// Frequencies
+const freqButton = document.getElementById("freqDecode");
+freqButton.addEventListener('click', function() {
+    const freqString = document.getElementById("freqText");
+    let freqResults = document.getElementById("freqResults");
+    freqResults.innerHTML = "";
+
+    if(!emptyContainerCheck(freqString.value, freqString)) {
+        return false;
+    }
+
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
+    
+    freqResults.insertAdjacentHTML('beforeend', `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
+    freqResults.insertAdjacentHTML('beforeend', `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
 });

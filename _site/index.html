@@ -75,6 +75,9 @@
                             <li>
                                 <a class="dropdown-item" href="#flip">Flip text</a>
                             </li>
+                            <li>
+                                <a class="dropdown-item" href="#freq">Character frequencies</a>
+                            </li>
                         </ul>
                     </li>
                     <!-- Hex tools -->
@@ -159,10 +162,10 @@
             <hr>
             <p class="text-dark px-2"></p>
         </div>
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-3">
+        <div class="grid g-3">
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-text">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -203,7 +206,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-binary">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -248,7 +251,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-hex">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -302,7 +305,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-base64">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -347,7 +350,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-decimal">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -392,7 +395,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-reverse">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -437,7 +440,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-rot13">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -482,7 +485,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-morse">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -527,7 +530,7 @@
         
         
         
-        <div class="col">
+        <div class="g-col-12 g-col-md-6 g-col-lg-4">
             <div class="card shadow-sm" id="convrtr-morsenary">
                 <div class="card-body">
                     <div class="card-title d-flex align-items-center">
@@ -679,6 +682,40 @@
         </div>
     </div>
 </section>
+            <section id="freq" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="freqText">Character frequencies</label>
+            <hr>
+            <p class="text-dark px-2">
+                For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Character frequencies</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: " title="Characters to check" rows="6" id="freqText" class="form-control word-freqs"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="data-to-copy active">
+                            <div class="grid g-4 my-1" id="freqResults"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             <section id="shift" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -756,7 +793,7 @@
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
-                                <div class="btn-group ms-auto">
+                            <div class="btn-group ms-auto">
                                 <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -975,7 +1012,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="data-to-copy active table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-striped hash-table">
                                 <thead class="table-success">
                                     <tr>
@@ -983,7 +1020,7 @@
                                         <th scope="col">Value</th>
                                     </tr>
                                 </thead>
-                                <tbody id="hashResults"></tbody>
+                                <tbody class="data-to-copy active" id="hashResults"></tbody>
                             </table>
                         </div>
                     </div>
@@ -1009,8 +1046,8 @@
         </p>
     </div>
     <div class="p-4 pt-2">
-        <abbr title="Release version: v1.3.0" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-            <small>v1.3.0</small>
+        <abbr title="Release version: v1.4.0" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <small>v1.4.0</small>
         </abbr>
     </div>
 </footer>

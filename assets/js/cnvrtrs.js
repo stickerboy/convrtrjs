@@ -1,6 +1,7 @@
 const alphabet	= " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz";
 const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
 // Morse map
 const morseTextDict = {  
     "-----":"0", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", 
@@ -77,7 +78,7 @@ function stringToHex(string, delimiter) { // UTF-8
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
         encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
     ).join(`${hexDelimiter}`);
-    
+
     return (hexDelimiter === "\\x" || hexDelimiter === "0x") ? hexDelimiter + returnValue : returnValue;
 }
 
@@ -282,9 +283,9 @@ function vignereEncrypt(string, key) {
         const c = string.charAt(i);
         if (isLetter(c)) {
             if (isUpperCase(c)) {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65)
+                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
             } else {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97)
+                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
             }
         } else {
             result += c;
@@ -307,7 +308,7 @@ function vignereDecrypt(string, key) {
                 result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLowerCase().charCodeAt(j))) % 26);
             }
         } else {
-            result += c
+            result += c;
         }
         j = ++j % key.length;
     }
@@ -344,4 +345,77 @@ function generateHashes(string, hash, key) {
         default:
             return "Invalid hash method provided or not supported";
     }
+}
+
+// Various information about a given string
+function stringStats(string, stat, delimiter) {
+    let split = delimiter ? delimiter : " ";
+
+    switch (stat) {
+        case "word-count":
+            return string.split(split).length;
+        break;
+        case "char-count":
+            return string.length;
+        break;
+        case "char-count-ns":
+            return stripSpaces(string).length;
+        break;
+        case "letter-count":
+            return lettersOnly(string).length;
+        break;
+        case "letter-count-caps":
+            return lettersOnlyCap(string).length;
+        break;
+        case "letter-count-low":
+            return lettersOnlyLow(string).length;
+        break;
+        case "number-count":
+            return numbersOnly(string).length;
+        break;
+        case "special-count":
+            return specialCharsOnly(string, true).length;
+        break;
+        case "special-count-ns":
+            return specialCharsOnly(string).length;
+        break;
+        default:
+            return "No stat specified or stat is not available";
+    }
+}
+
+// Return unique values from an array
+function uniqueArray(string) {
+    return [...new Set(string)];
+}
+
+function styledUniqueArrayItems(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <div class="grid mt-2 grid-auto" id="unique-chars">`;
+    data.forEach(char => {
+        result += `<code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space")}" title="${char.replace(/ /g, "Space")}">
+                ${char.replace(/ /g, "&nbsp;")}
+            </code>`;
+    });
+    result += `</div></div>`;
+    return result;
+}
+
+// Simple and efficient method of returning counts of each unique value in an array
+// https://stackoverflow.com/a/66002712/3172872
+function countArrayFreq(string) {
+    let split = [...string];
+    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
+}
+
+function styledArrayFrequencies(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
+    <div class="grid mt-2" id="unique-chars">`;
+    for (let [key, value] of Object.entries(data)) {
+        result += `<code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space")}" title="Frequency of ${key.replace(/ /g, "Space")}">
+                ${key.replace(/ /g, "Space")} - ${value}
+            </code>`;
+    }
+    result += `</div></div>`;
+    return result;
 }

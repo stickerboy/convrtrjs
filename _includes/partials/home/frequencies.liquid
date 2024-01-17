@@ -1,22 +1,21 @@
-<section id="hash" class="section">
+<section id="freq" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <label class="display-6" for="hashText">Hash</label>
+            <label class="display-6" for="freqText">Character frequencies</label>
             <hr>
             <p class="text-dark px-2">
-                Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
+                For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
-        </div>
         <div class="row justify-content-center">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Hash text</span>
+                    <span class="card-label visually-hidden">Character frequencies</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: " title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text"></textarea>
+                        <textarea placeholder="Example: " title="Characters to check" rows="6" id="freqText" class="form-control word-freqs"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="hashDecode" title="Generate hashes">Hash</button>
+                            <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
                             <div class="btn-group ms-auto">
                                 <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                                 <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
@@ -24,16 +23,8 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="table-responsive">
-                            <table class="table table-striped hash-table">
-                                <thead class="table-success">
-                                    <tr>
-                                        <th scope="col" class="col-3 col-md-2 col-lg-2">Hash Type</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="data-to-copy active" id="hashResults"></tbody>
-                            </table>
+                        <div class="data-to-copy active">
+                            <div class="grid g-4 my-1" id="freqResults"></div>
                         </div>
                     </div>
                 </div>
