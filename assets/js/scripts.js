@@ -446,4 +446,5 @@ freqButton.addEventListener('click', function() {
     freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
     
     freqResults.insertAdjacentHTML('beforeend', `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
+    freqResults.insertAdjacentHTML('beforeend', `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
 });

@@ -389,13 +389,6 @@ function uniqueArray(string) {
     return [...new Set(string)];
 }
 
-// Simple and efficient method of returning counts of each unique value in an array
-// https://stackoverflow.com/a/66002712/3172872
-function countArrayFreq(string) {
-    let split = [...string];
-    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
-}
-
 function styledUniqueArrayItems(data) {
     let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
     <div class="grid mt-2 grid-auto" id="unique-chars">`;
@@ -404,6 +397,25 @@ function styledUniqueArrayItems(data) {
                 ${char.replace(/ /g, "&nbsp;")}
             </code>`;
     });
+    result += `</div></div>`;
+    return result;
+}
+
+// Simple and efficient method of returning counts of each unique value in an array
+// https://stackoverflow.com/a/66002712/3172872
+function countArrayFreq(string) {
+    let split = [...string];
+    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
+}
+
+function styledArrayFrequencies(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
+    <div class="grid mt-2" id="unique-chars">`;
+    for (let [key, value] of Object.entries(data)) {
+        result += `<code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space")}" title="Frequency of ${key.replace(/ /g, "Space")}">
+                ${key.replace(/ /g, "Space")} - ${value}
+            </code>`;
+    }
     result += `</div></div>`;
     return result;
 }
