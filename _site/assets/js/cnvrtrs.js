@@ -347,6 +347,7 @@ function generateHashes(string, hash, key) {
     }
 }
 
+// Various information about a given string
 function stringStats(string, stat, delimiter) {
     let split = delimiter ? delimiter : " ";
 
@@ -381,4 +382,30 @@ function stringStats(string, stat, delimiter) {
         default:
             return "No stat specified or stat is not available";
     }
+}
+
+// Return unique values from an array
+function uniqueArray(string) {
+    return [...new Set(string)];
+}
+
+// Simple and efficient method of returning counts of each unique value in an array
+// https://stackoverflow.com/a/66002712/3172872
+function countArrayFreq(string) {
+    let split = [...string];
+    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
+}
+
+function styledUniqueArrayItems(data) {
+    let result = `<p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <ul class="pagination justify-content-center flex-wrap mt-2" id="unique-chars">`;
+    data.forEach(char => {
+        result += `<li class="page-item">
+            <button type="button" class="page-link" aria-label="${char}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="${char}">
+                ${char}
+            </button>
+        </li>`;
+    });
+    result += `</ul>`;
+    return result;
 }
