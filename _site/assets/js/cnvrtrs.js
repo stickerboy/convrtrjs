@@ -398,11 +398,11 @@ function countArrayFreq(string) {
 
 function styledUniqueArrayItems(data) {
     let result = `<p class="display-5 fs-5 mt-4">Unique chracters</p>
-    <ul class="pagination justify-content-center flex-wrap mt-2" id="unique-chars">`;
+    <ul class="pagination justify-content-start flex-wrap mt-2" id="unique-chars">`;
     data.forEach(char => {
         result += `<li class="page-item">
-            <button type="button" class="page-link" aria-label="${char}" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="${char}">
-                ${char}
+            <button type="button" class="page-link" aria-label="${char.replace(/ /g, "Space")}">
+                ${char.replace(/ /g, " ")}
             </button>
         </li>`;
     });
