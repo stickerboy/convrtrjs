@@ -112,7 +112,7 @@ body {
 }
 
 .mw {
-    max-width: var(--bs-breakpoint-uhd);
+    max-width: var(--bs-breakpoint-fhd);
 }
 
 .navbar {
@@ -161,7 +161,7 @@ body {
 .section:nth-of-type(odd) {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
-    @include media-breakpoint-up(uhd) {
+    @include media-breakpoint-up(fhd) {
         border-radius: var(--bs-border-radius-lg);
     }
 }
@@ -274,4 +274,9 @@ textarea {
         border-bottom-left-radius: var(--bs-toast-border-radius);
         border-bottom-right-radius: var(--bs-toast-border-radius);
     }
+}
+
+.was-validated textarea.form-control.ld-warning:invalid, 
+textarea.form-control.is-invalid.ld-warning {
+    background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
 }
