@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
+        <meta name="author" content="Kenny Cameron">
+        <title>Convrtr - For everlost and Grollow!</title>
+
+        <link rel="canonical" href="https://www.convrtr.xyz">
+
+                <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Core theme and Bootstrap CSS -->
+        <link href="../assets/css/main.css" rel="stylesheet">
+        <!-- Favicons -->
+        <meta name="theme-color" content="#11806a">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="./assets/favicons/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./assets/favicons/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./assets/favicons/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./assets/favicons/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="./assets/favicons/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="./assets/favicons/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="./assets/favicons/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="./assets/favicons/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="./assets/favicons/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="./assets/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="./assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="./assets/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="./assets/favicons/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="Convrtr"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="./assets/favicons/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="./assets/favicons/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="./assets/favicons/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="./assets/favicons/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="./assets/favicons/mstile-310x310.png" />
+    </head>
+    
+    <body id="IOOBI9O4IEIEOIO4O4IB" 
+          >
+
+        <header>
+    <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark bg-convrtr shadow-sm">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3">
+                Convrtr
+            </span>
+            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="https://github.com/stickerboy/convrtrjs">
+                <i class="bi bi-github"></i>
+                <span class="d-none mx-2">Github</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+                    
+                    <!-- <li class="nav-item dropdown">
+                        <a class="nav-link active" href="#home"><span class="bi bi-house fs-5 d-none d-md-flex" role="generic" aria-label="Converters" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Converters"></span> <span class="d-sm-inline-flex d-md-none">Convrtrs</span></a>
+                    </li> -->
+                    <!-- Text tools -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#home">Convrtrs</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#tools">Text tools</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#flip">Flip text</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#freq">Character frequencies</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Hex tools -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hex <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#shift">Shift hex</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#reverseHex">Reverse hex</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Ciphers -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Cipher<span class="d-none d-md-inline-flex d-lg-none">s</span> <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="#rotate">ROT text</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#vigenere">Vigenère cipher</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#hash">Hash algorithms</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                </ul>
+                <span class="navbar-text text-white mx-0 mx-md-3">
+                    For everlost and Grollow!
+                </span>
+                <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
+                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="https://github.com/stickerboy/convrtrjs">
+                        <i class="bi bi-github"></i>
+                        <span class="d-none mx-2">Github</span>
+                    </a>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+        <main class="mt-5"
+        data-bs-spy="scroll" 
+        data-bs-target="#navbarText" 
+        data-bs-smooth-scroll="true"
+        data-bs-threshold="0,1"
+        data-bs-root-margin="10% 0% -90%">
+            <section id="home" class="section">
+    <div class="py-5 pb-4 px-2 px-sm-4">
+        <div class="section-heading">
+            <h1 class="display-6">Hexadecimal tools</h1>
+            <hr>
+            <p class="text-dark px-2">
+                Convrtr is a simple JavaScript based tool to quickly convert text between different formats. A description of each decoder and link to more information is available using the info button in the top-right of each decoder. You can also copy the contents on individual decoders and download the contents to a text file.
+            </p>
+            <p class="text-dark px-2 m-0">
+                Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
+            </p>
+        </div>
+    </div>
+</section>
+            <section id="shift" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="shiftText">Shift hex</label>
+            <hr>
+            <p class="text-dark px-2">
+                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
+                Supports any delimiter is available in the Hex convrtr delimiter dropdown
+            </p>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Shift hex string</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
+                                        <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
+                                        <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto">
+                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="shiftResults" class="d-flex flex-row">
+                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shiftTabs" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
+                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
+                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
+                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
+                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
+                              </div>
+                              <div class="tab-content flex-column flex-fill shift-tabs" id="shiftTabs-content">
+                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="reverseHex" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <label class="display-6" for="flipText">Reverse hex</label>
+            <hr>
+            <p class="text-dark px-2">
+                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+            </p>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Reverse hex</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            <div class="btn-group ms-auto">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="reverseHexResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        </main>
+
+        <footer class="text-dark bg-light">
+    <div class="p-4 pb-2">
+        
+        <p class="mb-1">
+            &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2024. All Rights Reserved.<br />
+            Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
+        </p>
+    </div>
+    <div class="p-4 pt-2">
+        <abbr title="Release version: v1.4.0" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <small>v1.4.0</small>
+        </abbr>
+    </div>
+</footer>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="../assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+
+        <div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
+        <div class="toast-header text-bg-convrtr">
+            <strong class="me-auto"></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-bg-light"></div>
+    </div>
+</div>
+    </body>
+</html>
+<!--
+//START FILE/ IETY JNM URER
+/Packet detected..
+/Processing......
+/Packet found:
+/UoneFVQVJFUoneFVQVJFUoneFVQVJFUEVOVEFTUVVBUkVFTEVQRUfiveUQUNBVFBFTlRBQzerolSQzeroxFUoneFVQVJFRknineYUEVOVEFDSVJDTEVTUVVBUkVOTzerofiveBUEVOVEFEVUFM==
+/END FILE ../
+MMMMMMMWKc;.                 ;cXWMMMMMMM
+MMMMMMWNK:.  .'''.......''.. .:NWMMMMMMM
+MMMMWWxo,. ,xKXKKK0000KKKXKd, .';oMWMMMM
+MMMWXNl'..ckKKOdl:;,,,;:lkKXOc. .:xXWMMM
+MMW0o;. 'dKX0o::lxOKXKOo,'lOXKd' .'lxWMM
+MWdo,..:kKKxc:xXXNNNNXXX0c.cOKKk:..,:oNM
+Kk'. .c0XXKc:OXXNNWWWNNXXO:.:KXX0c. ..KN
+kc. .cKXXXXKKNNWWWNNNNXX0d::dKXXXKc. .lO
+c.  ;kXNNNNNNNNNNNNNNKkl;;o0XXXXXKx;  .c
+0d. .c0XXNNWWWWWNNKOd;':dd:dKXXXX0c. .d0
+NKl, .:ONNNNNNNNNXo'.;ooxO0KXXXXO:. ',0N
+WWNx;. ,dKXNNNNNXK; ,;.;xKXXXXKx, .;okWM
+WWWOo:. .l0XXNNNNX:  .cOXXXXX0l. .:oxMMM
+WWWWWWo,..;kXXXXXKl':kKXXXXKx;..;oWWMMWW
+WWWWWWkl:. .l0KKKKK0KKKKKK0o. .:lkMMMMNN
+MWWWWWWWXl,  ..............  ,lNWMMMMMNN
+MWWWWWWWNd:.                .:oNWMMMMMWW
+-->
