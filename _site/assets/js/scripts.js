@@ -31,7 +31,7 @@ resetData.addEventListener("click", function() {
 
     if(dtcLength === 0) {
         tooltip.hide();
-        showToast("Notice", "No data to clear", "warning", 3000);
+        showToast("Warning", "No data to clear", "warning", 3000);
         return;
     }
     resetData.querySelector(".bi").classList.add("convrtr-spin");
