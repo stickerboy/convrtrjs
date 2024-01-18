@@ -111,6 +111,10 @@ body {
     }
 }
 
+.mw {
+    max-width: var(--bs-breakpoint-uhd);
+}
+
 .navbar {
     color: var(--bs-white);
 
@@ -157,6 +161,9 @@ body {
 .section:nth-of-type(odd) {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+    @include media-breakpoint-up(uhd) {
+        border-radius: var(--bs-border-radius-lg);
+    }
 }
 
 textarea {
