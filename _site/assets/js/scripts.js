@@ -14,16 +14,27 @@ const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 const resetData = document.getElementById("resetData");
 resetData.addEventListener("click", function() {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
+    let dtcLength = 0;
     [...textareas].map(ta => {
-        console.log
         if(ta.localName === 'textarea' || ta.localName === 'input') {
-            ta.value = "";
+            if(ta.value.length !== 0) {
+                dtcLength += ta.value.length;
+                ta.value = "";
+            }
         } else {
-            ta.innerHTML = "";
+            if(ta.innerHTML.length !== 0) {
+                dtcLength += ta.value.length;
+                ta.innerHTML = "";
+            }
         }
     });
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
 
+    if(dtcLength === 0) {
+        tooltip.hide();
+        showToast("Notice", "No data to clear", "warning", 3000);
+        return;
+    }
+    resetData.querySelector(".bi").classList.add("convrtr-spin");
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
         tooltip.hide();
