@@ -27,6 +27,9 @@ toolChange.addEventListener('click', function() {
     if(!emptyContainerCheck(toolsString.value, toolsString)) {
         return false;
     }
+    if (!largeDataWarning(toolsString.value, toolsString)) {
+        return false;
+    }
 
     let textTools = document.getElementById("textToolsSelect");
     let chainCommands = document.getElementById("chainCommands");
@@ -81,6 +84,9 @@ flipButton.addEventListener('click', function() {
         document.getElementById("flipResults").textContent = "";
         return false;
     }
+    if (!largeDataWarning(flipString.value, flipString)) {
+        return false;
+    }
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
@@ -97,6 +103,9 @@ freqButton.addEventListener('click', function() {
     freqResults.innerHTML = "";
 
     if(!emptyContainerCheck(freqString.value, freqString)) {
+        return false;
+    }
+    if (!largeDataWarning(freqString.value, freqString)) {
         return false;
     }
 

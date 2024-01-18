@@ -11,6 +11,9 @@ Array.from(rotButtons, c => c.addEventListener('click', function() {
         document.getElementById("rotResults").textContent = "";
         return false;
     }
+    if (!largeDataWarning(rotText.value, rotText)) {
+        return false;
+    }
 
     Array.from(rotButtons, button => {
         button.classList.remove("active");
@@ -25,6 +28,9 @@ rotPrevious.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
+        return false;
+    }
+    if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
 
@@ -49,6 +55,9 @@ rotNext.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
+        return false;
+    }
+    if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
 
@@ -78,6 +87,9 @@ vigenereEncryptButton.addEventListener('click', function() {
     if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
         return false;
     }
+    if (!largeDataWarning(vigenereString.value, vigenereString)) {
+        return false;
+    }
 
     document.getElementById("vigenereResults").textContent = vignereEncrypt(vigenereString.value, vigenereKey.value);
 });
@@ -87,6 +99,9 @@ vigenereDecryptButton.addEventListener('click', function() {
     const vigenereKey = document.getElementById("vigenereKey");
 
     if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
+        return false;
+    }
+    if (!largeDataWarning(vigenereString.value, vigenereString)) {
         return false;
     }
 
@@ -101,6 +116,9 @@ hashButton.addEventListener('click', function() {
     hashResults.innerHTML = "";
 
     if(!emptyContainerCheck(hashString.value, hashString)) {
+        return false;
+    }
+    if (!largeDataWarning(hashString.value, hashString)) {
         return false;
     }
 

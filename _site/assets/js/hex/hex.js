@@ -15,6 +15,9 @@ shiftButton.addEventListener('click', function() {
     if(!emptyContainerCheck(shiftValue.value, shiftValue)) {
         return false;
     }
+    if (!largeDataWarning(shiftString.value, shiftString)) {
+        return false;
+    }
 
     document.getElementById("text-tab-pane").textContent = decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value));
     document.getElementById("binary-tab-pane").textContent = stringToBinary(decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value)));
@@ -29,6 +32,9 @@ reverseHexButton.addEventListener('click', function() {
     const reverseHexString = document.getElementById("reverseHexText");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
+        return false;
+    }
+    if (!largeDataWarning(reverseHexString.value, reverseHexString)) {
         return false;
     }
 
