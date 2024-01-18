@@ -11,6 +11,26 @@ const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 
+const resetData = document.getElementById("resetData");
+resetData.addEventListener("click", function() {
+    const tooltip = bootstrap.Tooltip.getInstance(resetData);
+    [...textareas].map(ta => {
+        console.log
+        if(ta.localName === 'textarea' || ta.localName === 'input') {
+            ta.value = "";
+        } else {
+            ta.innerHTML = "";
+        }
+    });
+    resetData.querySelector(".bi").classList.add("convrtr-spin");
+
+    setTimeout(() => {
+        resetData.querySelector(".bi").classList.remove("convrtr-spin");
+        tooltip.hide();
+        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
+    }, 1000);
+});
+
 // YEAH Toast!
 function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById('toast');

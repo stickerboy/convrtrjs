@@ -1,22 +1,3 @@
-const resetData = document.getElementById("resetData");
-resetData.addEventListener("click", function() {
-    const tooltip = bootstrap.Tooltip.getInstance(resetData);
-    [...textareas].map(ta => {
-        if(ta.localName === 'textarea') {
-            ta.value = "";
-        } else {
-            ta.innerHTML = "";
-        }
-    });
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
-
-    setTimeout(() => {
-        resetData.querySelector(".bi").classList.remove("convrtr-spin");
-        tooltip.hide();
-        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
-    }, 1000);
-});
-
 // Re-code Hex on delimeter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener('change', function() {
