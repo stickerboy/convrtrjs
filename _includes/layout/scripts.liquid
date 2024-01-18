@@ -1,10 +1,13 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-<script src="../assets/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-{% if page-id == "home" %}
-<script src="../assets/js/clip.js"></script>
+<script src="../assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+{% if page-id != "fourohfour" %}
 <script src="../assets/js/rot.js"></script>
-<script src="../assets/js/cnvrtrs.js"></script>
+<script src="../assets/js/clip.js"></script>
+<script src="../assets/js/toolkit.js"></script>
 <script src="../assets/js/tools.js"></script>
-<script src="../assets/js/decoders.js"></script>
 <script src="../assets/js/scripts.js"></script>
+{% if page-id == "home" %}
+<script src="../assets/js/home/convrtrs.js"></script>
+{% endif %}
+<script src="../assets/js/{{ page-id }}/{{ page-id }}.js"></script>
 {% endif %}

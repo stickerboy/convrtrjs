@@ -9,22 +9,93 @@ const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootst
 // Enable popovers
 const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 
 const resetData = document.getElementById("resetData");
-const textareas = document.getElementsByClassName("data-to-copy");
 resetData.addEventListener("click", function() {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
+    let dtcLength = 0;
     [...textareas].map(ta => {
-        ta.value = "";
+        if(ta.localName === 'textarea' || ta.localName === 'input') {
+            if(ta.value.length !== 0) {
+                dtcLength += ta.value.length;
+                ta.value = "";
+            }
+        } else {
+            if(ta.innerHTML.length !== 0) {
+                dtcLength += ta.value.length;
+                ta.innerHTML = "";
+            }
+        }
     });
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
 
+    if(dtcLength === 0) {
+        tooltip.hide();
+        showToast("Warning", "No data to clear", "warning", 3000);
+        return;
+    }
+    resetData.querySelector(".bi").classList.add("convrtr-spin");
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
         tooltip.hide();
         showToast("Notice", "Data successfully cleared", "convrtr", 3000);
     }, 1000);
 });
+
+// YEAH Toast!
+function showToast(heading, content, color, delay) {
+    let toastEL = document.getElementById('toast');
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
+
+    toastEL.addEventListener('hidden.bs.toast', () => {
+        toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
+        toastEL.querySelector(".toast-header").classList.add("text-bg-convrtr");
+    });
+
+    if (color) {
+        toastEL.querySelector(".toast-header").classList.replace("text-bg-convrtr", `text-bg-${color}`);
+    }
+    toastEL.querySelector(".toast-header strong").textContent = heading;
+    toastEL.querySelector(".toast-body").textContent = content;
+
+    toast.show();
+}
+
+function largeDataWarning(data, container) {
+    if(container) {
+        container.classList.remove("is-invalid", "ld-warning");
+    }
+    if(data.length > 200000 && data.length < 1000000) {
+        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
+    }
+    if(data.length > 1000000) {
+        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
+
+        if(container) {
+            container.classList.add("is-invalid", "ld-warning");
+        }
+        return false;
+    }
+    return true;
+}
+
+function emptyContainerCheck(data, container) {
+    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
+    for (let element of allElements) {
+        element.classList.remove('is-invalid');
+    }
+
+    if(data.trim() === "") {
+        container.classList.add("is-invalid");
+        showToast("Warning", "There is no content in the container you are trying to encode", "warning");
+        return false;
+    }
+
+    if(container.classList.contains("is-invalid")) {
+        container.classList.remove("is-invalid");
+    }
+    return true;
+}
 
 // Select text
 // https://stackoverflow.com/a/20079910/3172872
@@ -182,269 +253,3 @@ Array.from(downloadButtons, c => c.addEventListener('click', function() {
         tooltip.setContent({ '.tooltip-inner': 'Download' });
     }, 3430);
 }));
-
-// ROT Text
-const rotButtons = document.getElementsByClassName("rot-link");
-const rotPrevious = document.getElementById("rotPrev");
-const rotNext     = document.getElementById("rotNext");
-
-Array.from(rotButtons, c => c.addEventListener('click', function() {
-    const rotText = document.getElementById("rotText");
-    const rotNumber = c.getAttribute("data-rot-number");
-
-    if(!emptyContainerCheck(rotText.value, rotText)) {
-        document.getElementById("rotResults").textContent = "";
-        return false;
-    }
-
-    Array.from(rotButtons, button => {
-        button.classList.remove("active");
-    });
-    c.classList.add("active");
-
-    document.getElementById("rotResults").textContent = rot(rotText.value.trim(), parseInt(rotNumber));
-}));
-
-// ROT - Go backwards
-rotPrevious.addEventListener('click', function() {
-    const rotText = document.getElementById("rotText");
-
-    if(!emptyContainerCheck(rotText.value, rotText)) {
-        return false;
-    }
-
-    let activeButton;
-    if(document.querySelector(".rot-link.active") !== null) {
-        activeButton = document.querySelector(".rot-link.active");
-    } else {
-        activeButton = document.querySelector(".rot-link:first-child");
-    }
-    let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let previousRotNumber = parseInt(activeRotNumber) - 1; 
-
-    if (activeButton.getAttribute("data-rot-number") === "1") {
-        document.getElementById("rot26").click();
-    } else {
-        document.getElementById(`rot${previousRotNumber}`).click();
-    }
-});
-
-// TOR - Go forwards
-rotNext.addEventListener('click', function() {
-    const rotText = document.getElementById("rotText");
-
-    if(!emptyContainerCheck(rotText.value, rotText)) {
-        return false;
-    }
-
-    let activeButton;
-    if(document.querySelector(".rot-link.active") !== null) {
-        activeButton = document.querySelector(".rot-link.active");
-    } else {
-        activeButton = document.querySelector(".rot-link:first-child");
-    }
-    let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let nextRotNumber = parseInt(activeRotNumber) + 1;
-
-    if (activeButton.getAttribute("data-rot-number") === "26") {
-        document.getElementById("rot1").click();
-    } else {
-        document.getElementById(`rot${nextRotNumber}`).click();
-    }
-});
-
-// Flip text upside down
-const flipButton = document.getElementById("flipDecode");
-flipButton.addEventListener('click', function() {
-    const flipString = document.getElementById("flipText");
-
-    if(!emptyContainerCheck(flipString.value, flipString)) {
-        document.getElementById("flipResults").textContent = "";
-        return false;
-    }
-
-    let flipDirection = document.getElementById("flipDirection");
-    document.getElementById("flipResults").textContent = flipDirection.checked ? 
-                                                         flipText(flipString.value, alphabet, alphaFlip) : 
-                                                         reverseString(flipText(flipString.value, alphabet, alphaFlip));
-});
-
-// Re-code Hex on delimeter change
-let hexDelimiterSelect = document.getElementById("hexDelimiter");
-hexDelimiterSelect.addEventListener('change', function() {
-    let hexData = document.getElementById("form-hex").value;
-    if(hexData === "") {
-        return;
-    }
-    document.getElementById("encode").click();
-});
-
-// Re-code Morsenary on delimeter change
-let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect.addEventListener('change', function() {
-    let morsenaryData = document.getElementById("form-morsenary").value;
-    if(morsenaryData === "") {
-        return;
-    }
-    document.getElementById("mrsnryDecode").click();
-});
-
-
-// Shift Hex
-const shiftButton = document.getElementById("shiftDecode");
-shiftButton.addEventListener('click', function() {
-    const shiftString = document.getElementById("shiftText");
-    let shiftValue = document.getElementById("shiftValue");
-
-    if(!emptyContainerCheck(shiftString.value, shiftString)) {
-        document.getElementById("text-tab-pane").textContent = "";
-        document.getElementById("binary-tab-pane").textContent = "";
-        document.getElementById("hex-tab-pane").textContent = "";
-        document.getElementById("base64-tab-pane").textContent = "";
-        document.getElementById("decimal-tab-pane").textContent = "";
-        return false;
-    }
-    if(!emptyContainerCheck(shiftValue.value, shiftValue)) {
-        return false;
-    }
-
-    document.getElementById("text-tab-pane").textContent = decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value));
-    document.getElementById("binary-tab-pane").textContent = stringToBinary(decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value)));
-    document.getElementById("hex-tab-pane").textContent = stringToHex(decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value)));
-    document.getElementById("base64-tab-pane").textContent = stringToBase64(decimalToString(shiftHexString(shiftString.value.trim(), shiftValue.value)));
-    document.getElementById("decimal-tab-pane").textContent =  shiftHexString(shiftString.value.trim(), shiftValue.value);
-});
-
-// Text tools
-const toolChange = document.getElementById("toolChange");
-toolChange.addEventListener('click', function() {
-    let toolsString = document.getElementById("toolsTextarea");
-
-    if(!emptyContainerCheck(toolsString.value, toolsString)) {
-        return false;
-    }
-
-    let textTools = document.getElementById("textToolsSelect");
-    let chainCommands = document.getElementById("chainCommands");
-    let tR = document.getElementById("textResults").textContent
-    let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
-
-    switch (textTools.value) {
-        case 'stripspaces':
-            document.getElementById("textResults").textContent = stripSpaces(textResults);
-            break;
-        case 'uppercase':
-            document.getElementById("textResults").textContent = uppercase(textResults);
-            break;
-        case 'lowercase':
-            document.getElementById("textResults").textContent = lowercase(textResults);
-            break;
-        case 'numbersonly':
-            document.getElementById("textResults").textContent = numbersOnly(textResults);
-            break;
-        case 'lettersonly':
-            document.getElementById("textResults").textContent = lettersOnly(textResults);
-            break;
-        case 'stripspecialchars':
-            document.getElementById("textResults").textContent = stripSpecialChars(textResults);
-            break;
-        case 'removenumbers':
-            document.getElementById("textResults").textContent = stripNumbers(textResults);
-            break;
-        case 'removeletters':
-            document.getElementById("textResults").textContent = stripLetters(textResults);
-            break;
-        case 'specialcharsonly':
-            document.getElementById("textResults").textContent = specialCharsOnly(textResults);
-            break;
-        case 'urlencode':
-            document.getElementById("textResults").textContent = urlEncode(textResults);
-            break;
-        case 'urldecode':
-            document.getElementById("textResults").textContent = urlDecode(textResults);
-            break;
-            default:
-    }
-});
-
-// Reverse Hex
-const reverseHexButton = document.getElementById("reverseHexDecode");
-reverseHexButton.addEventListener('click', function() {
-    const reverseHexString = document.getElementById("reverseHexText");
-
-    if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
-        return false;
-    }
-
-    document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value);
-});
-
-// Vigenère cipher
-const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
-vigenereEncryptButton.addEventListener('click', function() {
-    const vigenereString = document.getElementById("vigenereText");
-    const vigenereKey = document.getElementById("vigenereKey");
-
-    if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
-        return false;
-    }
-
-    document.getElementById("vigenereResults").textContent = vignereEncrypt(vigenereString.value, vigenereKey.value);
-});
-const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
-vigenereDecryptButton.addEventListener('click', function() {
-    const vigenereString = document.getElementById("vigenereText");
-    const vigenereKey = document.getElementById("vigenereKey");
-
-    if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
-        return false;
-    }
-
-    document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
-});
-
-// Hash strings
-const hashButton = document.getElementById("hashDecode");
-hashButton.addEventListener('click', function() {
-    const hashString = document.getElementById("hashText");
-    let hashResults = document.getElementById("hashResults");
-    hashResults.innerHTML = "";
-
-    if(!emptyContainerCheck(hashString.value, hashString)) {
-        return false;
-    }
-
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
-});
-
-// Frequencies
-const freqButton = document.getElementById("freqDecode");
-freqButton.addEventListener('click', function() {
-    const freqString = document.getElementById("freqText");
-    let freqResults = document.getElementById("freqResults");
-    freqResults.innerHTML = "";
-
-    if(!emptyContainerCheck(freqString.value, freqString)) {
-        return false;
-    }
-
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
-    
-    freqResults.insertAdjacentHTML('beforeend', `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
-    freqResults.insertAdjacentHTML('beforeend', `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
-});

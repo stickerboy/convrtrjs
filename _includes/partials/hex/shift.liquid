@@ -5,26 +5,34 @@
             <hr>
             <p class="text-dark px-2">
                 Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
-                Supports any delimiter is available in the Hex convrtr delimiter dropdown
+                Supports any delimiter is available in the delimiter dropdown, the default is always a space. 
             </p>
         <div class="row justify-content-center">
-            <div class="col">
+            <div class="col"
                 <div class="card">
                     <span class="card-label visually-hidden">Shift hex string</span>
                     <div class="card-body text-center">
                         <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex"></textarea>
                     </div>
                     <div class="card-footer text-dark py-3">
-                        <div class="text-center mb-4 g-0">
+                        <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
+                                <div class="col col-12 col-md-auto me-2 mb-2">
                                     <div class="input-group w-auto">
                                         <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
                                         <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
                                         <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill justify-content-end">
+                                <div class="col d-flex flex-fill justify-content-start mb-2">
+                                    <select id="hexDelimiter" class="form-select w-auto" aria-label="Change Hexadecimal delimiter">
+                                        <option value=" " selected="">Space</option>
+                                        <option value="-">Hyphen</option>
+                                        <option value=":">Colon</option>
+                                        <option value=",">Comma</option>
+                                        <option value="\x">Slash x (\x)</option>
+                                        <option value="0x">Zero x (0x)</option>
+                                    </select>
                                     <div class="btn-group ms-auto">
                                         <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                                         <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>

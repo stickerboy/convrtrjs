@@ -1,63 +1,15 @@
-// YEAH Toast!
-function showToast(heading, content, color, delay) {
-    let toastEL = document.getElementById('toast');
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
-
-    toastEL.addEventListener('hidden.bs.toast', () => {
-        toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
-        toastEL.querySelector(".toast-header").classList.add("text-bg-convrtr");
-    });
-
-    if (color) {
-        toastEL.querySelector(".toast-header").classList.replace("text-bg-convrtr", `text-bg-${color}`);
-    }
-    toastEL.querySelector(".toast-header strong").textContent = heading;
-    toastEL.querySelector(".toast-body").textContent = content;
-
-    toast.show();
-}
-
-function largeDataWarning(data) {
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-        return false;
-    }
-    return true;
-}
-
-function emptyContainerCheck(data, container) {
-    let allElements = Array.from(document.querySelectorAll('.data-to-copy'));
-    for (let element of allElements) {
-        element.classList.remove('is-invalid');
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to encode", "warning");
-        return false;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
-    }
-    return true;
-}
-
 // Make it so
 document.getElementById("encode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(data);
     document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(data);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(data);
@@ -74,13 +26,13 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         binaryToString(data);
     } catch (e) {
@@ -103,13 +55,13 @@ document.getElementById("hexDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         hexToString(data);
     } catch (e) {
@@ -132,13 +84,13 @@ document.getElementById("b64Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         base64ToString(data);
     } catch (e) {
@@ -161,13 +113,13 @@ document.getElementById("decDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         decimalToString(data);
     } catch (e) {
@@ -190,13 +142,13 @@ document.getElementById("revDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         reverseString(data);
     } catch (e) {
@@ -219,13 +171,13 @@ document.getElementById("rot13Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         rot13(data);
     } catch (e) {
@@ -248,13 +200,13 @@ document.getElementById("morseDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         morseToString(data);
     } catch (e) {
@@ -277,13 +229,13 @@ document.getElementById("mrsnryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         morsenaryToString(data);
     } catch (e) {

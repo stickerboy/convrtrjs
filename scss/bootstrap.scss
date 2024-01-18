@@ -9,6 +9,15 @@
 
 $enable-cssgrid: true;
 
+$large-grid-breakpoints: (
+  xxxl: 1600px,
+  fhd: 1920px,
+  2k: 2048px,
+  qhd: 2560px
+);
+
+$grid-breakpoints: map-merge($grid-breakpoints, $large-grid-breakpoints);
+
 @import "../node_modules/bootstrap-scss/maps";
 @import "../node_modules/bootstrap-scss/mixins";
 @import "../node_modules/bootstrap-scss/utilities";
