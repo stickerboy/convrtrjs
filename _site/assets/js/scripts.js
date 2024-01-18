@@ -61,12 +61,19 @@ function showToast(heading, content, color, delay) {
     toast.show();
 }
 
-function largeDataWarning(data) {
+function largeDataWarning(data, container) {
+    if(container) {
+        container.classList.remove("is-invalid");
+    }
     if(data.length > 200000 && data.length < 1000000) {
         showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
     }
     if(data.length > 1000000) {
         showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
+
+        if(container) {
+            container.classList.add("is-invalid");
+        }
         return false;
     }
     return true;
