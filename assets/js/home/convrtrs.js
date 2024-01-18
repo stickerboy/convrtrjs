@@ -3,13 +3,13 @@ document.getElementById("encode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(data);
     document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(data);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(data);
@@ -26,13 +26,13 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         binaryToString(data);
     } catch (e) {
@@ -55,13 +55,13 @@ document.getElementById("hexDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         hexToString(data);
     } catch (e) {
@@ -84,13 +84,13 @@ document.getElementById("b64Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         base64ToString(data);
     } catch (e) {
@@ -113,13 +113,13 @@ document.getElementById("decDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         decimalToString(data);
     } catch (e) {
@@ -142,13 +142,13 @@ document.getElementById("revDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         reverseString(data);
     } catch (e) {
@@ -171,13 +171,13 @@ document.getElementById("rot13Decode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         rot13(data);
     } catch (e) {
@@ -200,13 +200,13 @@ document.getElementById("morseDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         morseToString(data);
     } catch (e) {
@@ -229,13 +229,13 @@ document.getElementById("mrsnryDecode").addEventListener('click', function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
-    if (!largeDataWarning(data)) {
-        return false;
-    }
-
     if(!emptyContainerCheck(data, container)) {
         return false;
     }
+    if (!largeDataWarning(data, container)) {
+        return false;
+    }
+
     try {
         morsenaryToString(data);
     } catch (e) {
