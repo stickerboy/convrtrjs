@@ -180,7 +180,7 @@ function decimalToString(string) {
 // Morse code to String
 function morseToString(string) {
     if(/^[ /.-]*$/.test(string)){
-        string // test valid morse
+        return string // test valid morse
             .replaceAll(" / "," ")
             .split(' ')
             .map(word => word
@@ -192,8 +192,7 @@ function morseToString(string) {
             .trim();
     } else {
         throw Error("Morse code contains invalid characters");
-    } 
-    return string;
+    }
 }
 
 // Convert to Morse
