@@ -15,7 +15,7 @@ jobs:
           color: "2105893"
           username: "Convrtr"
           avatar_url: "https://cdn.discordapp.com/icons/816337982634065942/b5ee39b52207eb8808a3c03c7efee1dd.png"
-          content: "## A new update to Convrtr has been released"
+          content: "## A new update to Convrtr has been released\nhttps://www.convrtr.xyz/"
           footer_title: "Changelog"
           footer_icon_url: "https://cdn.discordapp.com/icons/816337982634065942/b5ee39b52207eb8808a3c03c7efee1dd.png"
           footer_timestamp: true
