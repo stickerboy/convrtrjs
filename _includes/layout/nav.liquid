@@ -4,6 +4,10 @@
             <span class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3">
                 {{ pkg.sitename }}
             </span>
+            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
+                <i class="bi bi-discord"></i>
+                <span class="d-none mx-2">Join the Discord</span>
+            </a>
             <a class="btn btn-md btn-link text-light d-md-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
                 <i class="bi bi-github"></i>
                 <span class="d-none mx-2">Github</span>
@@ -81,6 +85,10 @@
                     {{ pkg.tagline }}
                 </span>
                 <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
+                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
+                        <i class="bi bi-discord"></i>
+                        <span class="d-none mx-2">Join the discord</span>
+                    </a>
                     <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
                         <i class="bi bi-github"></i>
                         <span class="d-none mx-2">Github</span>
