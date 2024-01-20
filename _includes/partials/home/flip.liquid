@@ -1,13 +1,22 @@
 <section id="flip" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <label class="display-6" for="flipText">Flip text</label>
+            <div class="d-flex justify-content-between section-toggle"
+                data-bs-toggle="collapse" href="#flipCollapse" role="button" 
+                aria-expanded="false" aria-controls="flipCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Flip text
+                </h2>
+                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </div>
             <hr>
             <p class="text-dark px-2">
                 Fip text upside down - allows you to turn this into ʇɥıs
             </p>
         </div>
-        <div class="row justify-content-center">
+        <div id="flipCollapse" class="collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Flip Text</span>

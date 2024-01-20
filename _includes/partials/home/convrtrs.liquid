@@ -1,72 +1,84 @@
 <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
-            <h1 class="display-6">Convrtrs</h1>
+            <div class="d-flex justify-content-between section-toggle"
+                data-bs-toggle="collapse" href="#convrtrCollapse" role="button" 
+                aria-expanded="true" aria-controls="convrtrCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Convrtrs
+                </h2>
+                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </div>
             <hr>
-            <p class="text-dark px-2"></p>
+            <p class="text-dark px-2">
+                A description of each decoder and link to more information is available using the info button in the top-right of each decoder. You can also copy the contents on individual decoders and download the contents to a text file.
+            </p>
         </div>
-        <div class="grid g-3">
-        {% for tool in convrtrs %}
-        {% if convrtrs.length %}
-        <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
-            <div class="card shadow-sm" id="convrtr-{{ tool.id }}">
-                <div class="card-body">
-                    <div class="card-title d-flex align-items-center">
-                        <span class="h6 m-0 text-uppercase">
-                            <label class="card-label" for="form-{{ tool.id }}">
-                                {{ tool.card-label }}
-                            </label>
-                        </span>
-                        {% if tool.id == "hex" %}
-                        <select id="hexDelimiter" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Hexadecimal delimiter">
-                            <option value=" " selected="">Space</option>
-                            <option value="-">Hyphen</option>
-                            <option value=":">Colon</option>
-                            <option value=",">Comma</option>
-                            <option value="\x">Slash x (\x)</option>
-                            <option value="0x">Zero x (0x)</option>
-                        </select>
-                        {% endif %}
-                        {% if tool.id == "morsenary" %}
-                        <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
-                            <option value="default" selected="">. = 0, - = 1</option>
-                            <option value="flipped">. = 1, - = 0</option>
-                        </select>
-                        {% endif %}
-                        <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
-                            <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
-                                aria-label="Information popover for {% if forloop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
-                                data-bs-container="body" 
-                                data-bs-toggle="popover" 
-                                data-bs-placement="left" 
-                                {% if tool.html == true %}data-bs-html="true"{% endif %}
-                                data-bs-trigger="focus"
-                                data-bs-content='{{ tool.popover-content }}'>
-                                <i class="bi bi-info-circle"></i>
-                            </a>
+        <div class="grid g-3 collapse show" id="convrtrCollapse">
+            {% for tool in convrtrs %}
+            {% if convrtrs.length %}
+            <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                <div class="card shadow-sm" id="convrtr-{{ tool.id }}">
+                    <div class="card-body">
+                        <div class="card-title d-flex align-items-center">
+                            <span class="h6 m-0 text-uppercase">
+                                <label class="card-label" for="form-{{ tool.id }}">
+                                    {{ tool.card-label }}
+                                </label>
+                            </span>
+                            {% if tool.id == "hex" %}
+                            <select id="hexDelimiter" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Hexadecimal delimiter">
+                                <option value=" " selected="">Space</option>
+                                <option value="-">Hyphen</option>
+                                <option value=":">Colon</option>
+                                <option value=",">Comma</option>
+                                <option value="\x">Slash x (\x)</option>
+                                <option value="0x">Zero x (0x)</option>
+                            </select>
+                            {% endif %}
+                            {% if tool.id == "morsenary" %}
+                            <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
+                                <option value="default" selected="">. = 0, - = 1</option>
+                                <option value="flipped">. = 1, - = 0</option>
+                            </select>
+                            {% endif %}
+                            <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
+                                <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    aria-label="Information popover for {% if forloop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
+                                    data-bs-container="body" 
+                                    data-bs-toggle="popover" 
+                                    data-bs-placement="left" 
+                                    {% if tool.html == true %}data-bs-html="true"{% endif %}
+                                    data-bs-trigger="focus"
+                                    data-bs-content='{{ tool.popover-content }}'>
+                                    <i class="bi bi-info-circle"></i>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                    <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active"></textarea>
-                    <div class="d-flex justify-content-between align-items-center mt-3">
-                        {% if forloop.first == true %}
-                        <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}">Encode</button>
-                        {% else %}
-                        <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
-                            <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
-                                Decode
-                            </button>
-                        </span>
-                        {% endif %}
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                            <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                            <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                        <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active"></textarea>
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            {% if forloop.first == true %}
+                            <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}">Encode</button>
+                            {% else %}
+                            <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
+                                <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
+                                    Decode
+                                </button>
+                            </span>
+                            {% endif %}
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
         </div>
-        {% endif %}
-        {% endfor %}
     </div>
 </section>

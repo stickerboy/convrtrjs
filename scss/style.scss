@@ -166,6 +166,14 @@ body {
     }
 }
 
+.section-toggle .bi::before {
+    transition: transform 0.4s ease-in-out;
+    transform: rotate(0deg);
+}
+.section-toggle[aria-expanded="true"] .bi::before {
+    transform: rotate(-90deg);
+}
+
 textarea {
     background-color: var(--convrtr-textarea);
 }
