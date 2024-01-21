@@ -1,0 +1,50 @@
+[
+    {
+        "id": "home",
+        "label": "Text tools",
+        "short-label": "Text",
+        "children": [{
+                "id": "home",
+                "label": "Convrtrs"
+            }, {
+                "id": "tools",
+                "label": "Text tools"
+            }, {
+                "id": "flip",
+                "label": "Flip text"
+            }, {
+                "id": "freq",
+                "label": "Character frequencies"
+            }
+        ]
+    },
+    {
+        "id": "hex",
+        "label": "Hex tools",
+        "short-label": "Hex",
+        "children":[{
+                "id": "shift",
+                "label": "Shift hex"
+            },{
+                "id": "reverseHex",
+                "label": "Reverse hex"
+            }
+        ]
+    },
+    {
+        "id": "ciphers",
+        "label": "Cipher tools",
+        "short-label": "Ciphers",
+        "children":[{
+                "id": "rotate",
+                "label": "ROT text"
+            }, {
+                "id": "vigenere",
+                "label": "Vigenère cipher"
+            }, {
+                "id": "hash",
+                "label": "Hash algorithms"
+            }
+        ]
+    }
+]
