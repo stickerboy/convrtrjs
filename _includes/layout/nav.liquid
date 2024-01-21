@@ -1,108 +1,28 @@
-<header>
-    <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark bg-convrtr shadow-sm">
-        <div class="container-fluid mw">
-            <span class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3">
-                {{ pkg.sitename }}
-            </span>
-            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
-                <i class="bi bi-discord"></i>
-                <span class="d-none mx-2">Join the Discord</span>
+
+{% if page-id == "fourohfour" %}
+<ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ pkg.homepage }}">Home</a>
+    </li>
+</ul>
+{% else %}
+<ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+    {% for link in nav %}
+        <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">{{ link.label }}</span>
+                <span class="d-none d-md-inline-flex d-lg-none ms-1 me-auto">{{ link.short-label }}</span>
             </a>
-            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
-                <i class="bi bi-github"></i>
-                <span class="d-none mx-2">Github</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
-                    {% if page-id == "fourohfour" %}
-                    <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="{{ pkg.homepage }}">Home</a>
-                        </li>
-                    </ul>
-                    {% else %}
-                    <!-- <li class="nav-item dropdown">
-                        <a class="nav-link active" href="#home"><span class="bi bi-house fs-5 d-none d-md-flex" role="generic" aria-label="Converters" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Converters"></span> <span class="d-sm-inline-flex d-md-none">Convrtrs</span></a>
-                    </li> -->
-                    <!-- Text tools -->
-                    <li class="nav-item dropdown{% if page-id == 'home' %} active{% endif %}">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Text <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="../#home">Convrtrs</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../#tools">Text tools</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../#flip">Flip text</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../#freq">Character frequencies</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Hex tools -->
-                    <li class="nav-item dropdown{% if page-id == 'hex' %} active{% endif %}">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Hex <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="../hex/#shift">Shift hex</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../hex/#reverseHex">Reverse hex</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!-- Ciphers -->
-                    <li class="nav-item dropdown{% if page-id == 'ciphers' %} active{% endif %}">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Cipher<span class="d-none d-md-inline-flex d-lg-none">s</span> <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">tools</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item" href="../ciphers/#rotate">ROT text</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../ciphers/#vigenere">Vigenère cipher</a>
-                            </li>
-                            <li>
-                                <a class="dropdown-item" href="../ciphers/#hash">Hash algorithms</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% endif %}
-                </ul>
-                <span class="navbar-text text-white mx-0 mx-md-3">
-                    {{ pkg.tagline }}
-                </span>
-                <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
-                        <i class="bi bi-discord"></i>
-                        <span class="d-none mx-2">Join the discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
-                        <i class="bi bi-github"></i>
-                        <span class="d-none mx-2">Github</span>
-                    </a>
-                {% if page-id != "fourohfour" %}
-                    <button type="button" class="btn btn-sm btn-outline-light btn-reset-data" id="resetData" 
-                            aria-label="Clear all data inside textareas" title="Clear data"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        <span class="d-md-none mx-2">Clear all data</span>
-                    </button>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </nav>
-</header>
+            {% if link.children %}
+            <ul class="dropdown-menu">
+                {% for child in link.children %}
+                <li>
+                    <a class="dropdown-item" href="../{% if link.id != 'home'%}{{ link.id }}/{% endif %}#{{ child.id }}">{{ child.label }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endif %}
