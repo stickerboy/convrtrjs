@@ -6,6 +6,9 @@ function getLocalStorageItem(string) {
     string = string.replace("\"", "");
     return JSON.parse(localStorage.getItem(string));
 }
+function clearLocalStorage() {
+    localStorage.clear();
+}
 
 // Load toggle states
 const sectionToggles = document.getElementsByClassName("section-toggle");
@@ -45,6 +48,7 @@ const resetData = document.getElementById("resetData");
 resetData.addEventListener("click", function() {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
     let dtcLength = 0;
+
     [...textareas].map(ta => {
         if(ta.localName === 'textarea' || ta.localName === 'input') {
             if(ta.value.length !== 0) {
@@ -58,12 +62,13 @@ resetData.addEventListener("click", function() {
             }
         }
     });
-
     if(dtcLength === 0) {
         tooltip.hide();
         showToast("Warning", "No data to clear", "warning", 3000);
         return;
     }
+    clearLocalStorage();
+
     resetData.querySelector(".bi").classList.add("convrtr-spin");
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
