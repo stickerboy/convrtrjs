@@ -122,3 +122,29 @@ freqButton.addEventListener('click', function() {
     freqResults.insertAdjacentHTML('beforeend', `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
     freqResults.insertAdjacentHTML('beforeend', `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
 });
+
+
+// Replace characters
+const replaceButton = document.getElementById("replaceDecode");
+replaceButton.addEventListener('click', function() {
+    const replaceString = document.getElementById("replaceText");
+    const replaceOld = document.getElementById("replaceValue");
+    const replaceNew = document.getElementById("replacementValue");
+
+    if(!emptyContainerCheck(replaceString.value, replaceString)) {
+        return false;
+    }
+    if (!largeDataWarning(replaceString.value, replaceString)) {
+        return false;
+    }
+
+    let chainReplacements = document.getElementById("replaceChain");
+    let replaceCase = document.getElementById("replaceCase").checked;
+    let replaceResults = document.getElementById("replaceResults");
+
+    if(chainReplacements.checked && replaceResults.textContent.length > 0) {
+        replaceResults.textContent = replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase);
+    } else {
+        replaceResults.textContent = replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase);
+    }
+});

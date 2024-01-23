@@ -79,6 +79,10 @@
                 </li>
                 
                 <li>
+                    <a class="dropdown-item" href="../#replace">Replace characters</a>
+                </li>
+                
+                <li>
                     <a class="dropdown-item" href="../#flip">Flip text</a>
                 </li>
                 
@@ -693,6 +697,73 @@
         </div>
     </div>
 </section>
+            <section id="replace" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <div class="d-flex justify-content-between section-toggle"
+                data-bs-toggle="collapse" href="#replaceCollapse" role="button" 
+                aria-expanded="false" aria-controls="replaceCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Replace characters
+                </h2>
+                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </div>
+            <hr>
+            <p class="text-dark px-2">
+                Replace characters in a string - allows replace any characters or phrases in a string with any character or phrase. 
+                Supports regex so you can run your own custom advanced replacements
+            </p>
+        </div>
+        <div id="replaceCollapse" class="collapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Replace characters</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: TESTING → ST → EA → TEASING" title="Replace characters in a string" rows="6" id="replaceText" class="form-control replace-text"></textarea>
+                    </div>
+                    <div class="card-footer text-dark py-3">
+                        <div class="text-center mb-2 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-lg-auto me-2 mb-2">
+                                    <div class="input-group w-auto mb-2">
+                                        <label class="input-group-text" id="basic-addon1" for="replaceValue">Old<span class="d-none d-md-block">&nbsp;characters</span></label>
+                                        <input type="text" class="form-control" id="replaceValue" title="Characters to be replaced, regex is allowed">
+                                    </div>
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="basic-addon2" for="replacementValue">New<span class="d-none d-md-block">&nbsp;characters</span></label>
+                                        <input type="text" class="form-control" id="replacementValue" title="New characters">
+                                        <button class="btn btn-outline-convrtr" type="button" id="replaceDecode">Replace</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill mb-2">
+                                    <div class="me-auto flex-fill">
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceCase">
+                                            <label class="form-check-label" for="replaceCase">Case sensitive</label>
+                                        </div>
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceChain">
+                                            <label class="form-check-label" for="replaceChain">Chain commands</label>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group ms-auto">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="replaceResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
             <section id="flip" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -708,7 +779,7 @@
             </div>
             <hr>
             <p class="text-dark px-2">
-                Fip text upside down - allows you to turn this into ʇɥıs
+                Flip text upside down - allows you to turn this into ʇɥıs
             </p>
         </div>
         <div id="flipCollapse" class="collapse">

@@ -10,6 +10,9 @@
                 "id": "tools",
                 "label": "Text tools"
             }, {
+                "id": "replace",
+                "label": "Replace characters"
+            }, {
                 "id": "flip",
                 "label": "Flip text"
             }, {
