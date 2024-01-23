@@ -1,3 +1,36 @@
+// Local storage
+function saveLocalStorage(key, value) {
+    return localStorage.setItem(key, value);
+}
+function getLocalStorageItem(string) {
+    string = string.replace("\"", "");
+    return JSON.parse(localStorage.getItem(string));
+}
+function clearLocalStorage() {
+    localStorage.clear();
+}
+
+// Load toggle states
+const sectionToggles = document.getElementsByClassName("section-toggle");
+function restoreOptions() {
+    console.log("%cSFNBREhTQURIU0FEVE9ESFNBRFRPREhTQURIU0FESFNBRFRPREhTQURUT0RUT0RUT0RUT0RIU0FESFNBREhTQURIU0FEVE9ESFNBRFRPRFRPREhTQURIU0FESFNBRFRPREhTQURUT0RUT0RUT0RIU0FESFNBREhTQURUT0RUT0RUT0RUT0RUT0RIU0FEVE9ESFNBRFRPREhTQURUT0RUT0RUT0RIU0FESFNBREhTQURIU0FEVE9ESFNBRFRPRFRPREhTQURIU0FESFNBREhTQURIU0FESFNBRFRPRFRPREhTQURUT0RUT0RUT0RIU0FESFNBRFRPREhTQURIU0FESFNBREhTQURIU0FESFNBREhTQURIU0FESFNBRFRPRFRPRFRPRFRPREhTQURUT0RUT0RUT0RIU0FEVE9EVE9EVE9ESFNBRFRPRFRPRFRPREhTQURIU0FESFNBREhTQURUT0RIU0FEVE9EVE9ESFNBRFRPRFRPRFRPRFRPREhTQURIU0FEVE9ESFNBRFRPRFRPRFRPREhTQURIU0FEVE9ESFNBREhTQURUT0RUT0RIU0FESFNBRFRPRFRPREhTQURIU0FESFNBREhTQURUT0RIU0FEVE9EVE9EVE9ESFNBREhTQURIU0FESFNBREhTQURUT0RUT0RUT0RIU0FESFNBRFRPREhTQURUT0RUT0RIU0FEVE9ESFNBRFRPRFRPREhTQURIU0FEVE9EVE9EVE9ESFNBREhTQURIU0FESFNBRFRPREhTQURUT0RUT0RIU0FESFNBREhTQURIU0FESFNBRFRPRFRPRFRPREhTQURUT0RUT0RIU0FEVE9ESFNBRFRPRFRPREhTQURIU0FESFNBREhTQURUT0RIU0FEVE9EVE9ESFNBRFRPREhTQURIU0FEVE9EVE9ESFNBRFRPREhTQURUT0RUT0RUT0RIU0FESFNBRFRPREhTQURIU0FEVE9ESFNBRFRPRFRPREhTQURUT0RUT0RIU0FESFNBRFRPRFRPREhTQURUT0RUT0RUT0RIU0FEVE9EVE9EVE9ESFNBREhTQURUT0RIU0FESFNBREhTQURIU0FESFNBREhTQURIU0FESFNBREhTQURUT0RUT0RIU0FESFNBRFRPRFRPRFRPRFRPREhTQURIU0FEVE9EVE9ESFNBRFRPRFRPRFRPREhTQURIU0FESFNBRFRPREhTQURUT0RUT0RUT0RIU0FESFNBREhTQURUT0RUT0RIU0FEVE9EVE9ESFNBREhTQURIU0FEVE9ESFNBRFRPRFRPRFRPREhTQURUT0RUT0RUT0RIU0FESFNBRFRPREhTQURIU0FESFNBRFRPRFRPRFRPREhTQURUT0RUT0RIU0FEVE9ESFNBRFRPREhTQURUT0RUT0RUT0RIU0FESFNBREhTQURIU0FESFNBRFRPRFRPRFRPREhTQURUT0RIU0FEVE9EVE9EVE9EVE9EVE9ESFNBREhTQURUT0RUT0RIU0FEVE9EVE9EVE9ESFNBRFRPRFRPREhTQURIU0FEVE9EVE9EVE9ESFNBRFRPRFRPRFRPREhTQURIU0FEVE9ESFNBREhTQURUT0RIU0FEVE9ESFNBRFRPRFRPRFRPREhTQURIU0FESFNBREhTQURIU0FEVE9ESFNBRFRPREhTQUQ=", "color: #11806a; font-size:18px;");
+    if(localStorage.length !== 0) {
+        for (sectionToggle of sectionToggles) {
+            let section = sectionToggle.closest(".section");
+            let sectionID = sectionToggle.closest(".section").id;
+            sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
+            let x = getLocalStorageItem(sectionID);
+
+            if(x === true) {
+                section.querySelector(".collapse").classList.add("show");
+            } else {
+                section.querySelector(".collapse").classList.remove("show");
+            }
+        }
+    }
+}
+document.addEventListener('DOMContentLoaded', restoreOptions);
+
 // Enable tooltips
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -15,6 +48,7 @@ const resetData = document.getElementById("resetData");
 resetData.addEventListener("click", function() {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
     let dtcLength = 0;
+
     [...textareas].map(ta => {
         if(ta.localName === 'textarea' || ta.localName === 'input') {
             if(ta.value.length !== 0) {
@@ -28,12 +62,13 @@ resetData.addEventListener("click", function() {
             }
         }
     });
-
     if(dtcLength === 0) {
         tooltip.hide();
         showToast("Warning", "No data to clear", "warning", 3000);
         return;
     }
+    clearLocalStorage();
+
     resetData.querySelector(".bi").classList.add("convrtr-spin");
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
@@ -123,6 +158,13 @@ function download(filename, text) {
     e.click();
     document.body.removeChild(e);
 }
+
+// Save toggle state
+Array.from(sectionToggles, c => c.addEventListener('click', function() {
+    let section = c.closest(".section");
+
+    saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
+}));
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select"); 
