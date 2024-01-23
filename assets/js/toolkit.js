@@ -418,3 +418,9 @@ function styledArrayFrequencies(data) {
     result += `</div></div>`;
     return result;
 }
+
+// Replace characters in a string, works for any unicode characters
+// Can also pass your own regex for replacements
+function replaceChars(string, toReplace, replacement, caseSensitive) {
+    return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
+}
