@@ -2,7 +2,7 @@
     <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw">
             <span class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3">
-                {{ pkg.sitename }}
+                {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk"></i> {% endif %}{{ pkg.sitename }}
             </span>
             <a class="btn btn-md btn-link text-light d-md-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
                 <i class="bi bi-discord"></i>

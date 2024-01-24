@@ -14,8 +14,8 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <abbr title="Release version: v{{ pkg.version }}" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-                <small>v{{ pkg.version }}</small>
+            <abbr title="Release version: v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+                <small>v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}</small>
             </abbr>
         </div>
     </div>

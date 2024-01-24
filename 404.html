@@ -13,7 +13,7 @@ permalink: /404.html
                           <div class="col-md-12 text-center">
                               <h1 class="display-1 d-block">{{ page.fileSlug }}</h1>
                               <div class="mb-4 lead">The page you are looking for was not found.</div>
-                              <a href="{{ pkg.homepage }}" class="btn btn-link text-convrtr">Back to Home</a>
+                              <a href="{% if data.environment == 'development' %}http://localhost:8088/{% else %}{{ pkg.homepage }}{% endif %}" class="btn btn-link text-convrtr">Back to Home</a>
                           </div>
                       </div>
                   </div>
