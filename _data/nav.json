@@ -42,6 +42,9 @@
                 "id": "rotate",
                 "label": "ROT text"
             }, {
+                "id": "sub",
+                "label": "Substitution cipher"
+            }, {
                 "id": "vigenere",
                 "label": "Vigenère cipher"
             }, {
