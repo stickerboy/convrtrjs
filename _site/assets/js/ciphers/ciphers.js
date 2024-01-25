@@ -131,3 +131,19 @@ hashButton.addEventListener('click', function() {
     hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
     hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
 });
+
+// Substitution cipher
+const subEncryptButton = document.getElementById("subEncrypt");
+subEncryptButton.addEventListener('click', function() {
+    const subString = document.getElementById("subText");
+    const subKey = document.getElementById("subKey");
+
+    if(!emptyContainerCheck(subString.value, subString)) {
+        return false;
+    }
+    if (!largeDataWarning(subString.value, subString)) {
+        return false;
+    }
+
+    document.getElementById("subResults").textContent = substituteChars(subString.value, subKey.value);
+});

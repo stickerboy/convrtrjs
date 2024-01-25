@@ -424,3 +424,28 @@ function styledArrayFrequencies(data) {
 function replaceChars(string, toReplace, replacement, caseSensitive) {
     return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
 }
+
+// Build up a custom alphabet using a key
+// ABCDEFG... → TEST → TESABCDFG...
+function getCustomAlphabet(string) {
+    let stringArr = [...new Set(string.toLowerCase())];
+    let alphaArr = [...new Set(alphabet.trim().toLowerCase().substring(0,26))];
+    return [...new Set(stringArr.concat(alphaArr))].join("");
+}
+
+// Substitute each letter in a string with a corresponding letter from a custom alphabet
+// Custom alphabet is built using a user specified text string
+function substituteChars(string, key) {
+    const alpha = getCustomAlphabet(key);
+    return string.toLowerCase().split("").map((char) => {
+        if (char >= "a" && char <= "z") {
+            // Get the index of the original letter in the standard alphabet
+            let index = char.charCodeAt(0) - 97;
+            // Return the corresponding letter from the custom alphabet
+            return alpha.charAt(index);
+        } else {
+            // Return the original character
+            return char;
+        }
+    }).join("");
+}

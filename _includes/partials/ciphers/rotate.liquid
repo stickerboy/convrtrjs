@@ -16,36 +16,34 @@
                 A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
             </p>
         </div>
-
-        <ul class="pagination justify-content-center flex-wrap" id="pagination">
-        {% for char in alpha %}
-            {% if forloop.first %}
-            <li class="page-item">
-                <button type="button" class="page-link" id="rotPrev" aria-label="Previous" 
-                        data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </button>
-            </li>
-            {% endif %}
-            <li class="page-item">
-                <button type="button" class="page-link rot-link" id="rot{{ forloop.index }}" 
-                    aria-label="{{ char.letter }}: Rot {{ forloop.index }}" data-rot-number="{{ forloop.index }}" 
-                    data-bs-toggle="tooltip" data-bs-placement="top" title="Rot {{ forloop.index }}">
-                        {{ char.letter | downcase }}<span class="visually-hidden">: rot {{ forloop.index }}</span>
-                </button>
-            </li>
-            {% if forloop.last %}
-            <li class="page-item">
-                <button type="button" class="page-link" id="rotNext" aria-label="Next" 
-                        data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </button>
-            </li>
-            {% endif %}
-        {% endfor %}
-        </ul>
-
         <div class="collapse show" id="rotCollapse">
+            <ul class="pagination justify-content-center flex-wrap" id="pagination">
+                {% for char in alpha %}
+                    {% if forloop.first %}
+                    <li class="page-item">
+                        <button type="button" class="page-link" id="rotPrev" aria-label="Previous" 
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </button>
+                    </li>
+                    {% endif %}
+                    <li class="page-item">
+                        <button type="button" class="page-link rot-link" id="rot{{ forloop.index }}" 
+                            aria-label="{{ char.letter }}: Rot {{ forloop.index }}" data-rot-number="{{ forloop.index }}" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot {{ forloop.index }}">
+                                {{ char.letter | downcase }}<span class="visually-hidden">: rot {{ forloop.index }}</span>
+                        </button>
+                    </li>
+                    {% if forloop.last %}
+                    <li class="page-item">
+                        <button type="button" class="page-link" id="rotNext" aria-label="Next" 
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </button>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">ROT Cipher</span>
