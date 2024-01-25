@@ -428,16 +428,16 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
 // Build up a custom alphabet using a key
 // ABCDEFG... → TEST → TESABCDFG...
 function getCustomAlphabet(string) {
-    let stringArr = [...new Set(string)];
+    let stringArr = [...new Set(string.toLowerCase())];
     let alphaArr = [...new Set(alphabet.trim().toLowerCase().substring(0,26))];
     return [...new Set(stringArr.concat(alphaArr))].join("");
 }
 
 // Substitute each letter in a string with a corresponding letter from a custom alphabet
 // Custom alphabet is built using a user specified text string
-function substitureChars(string, key) {
+function substituteChars(string, key) {
     const alpha = getCustomAlphabet(key);
-    return string.split("").map((char) => {
+    return string.toLowerCase().split("").map((char) => {
         if (char >= "a" && char <= "z") {
             // Get the index of the original letter in the standard alphabet
             let index = char.charCodeAt(0) - 97;
