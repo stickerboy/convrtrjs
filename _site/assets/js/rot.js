@@ -17,16 +17,12 @@
 
 	/*--------------------------------------------------------------------------*/
 
-	//var lowercase = 'abcdefghijklmnopqrstuvwxyz';
-	//var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var lowercase = 'abcdefghijklmnopqrstuvwxyz';
+	var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var regexLowercase = /[a-z]/;
 	var regexUppercase = /[A-Z]/;
 
-	var rot = function(string, n, lower, upper) {
-
-		var lowercase = lower ? lower : 'abcdefghijklmnopqrstuvwxyz';
-		var uppercase = upper ? upper : 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
+	var rot = function(string, n) {
 		if (n == null) {
 			// use ROT-13 by default
 			n = 13;
