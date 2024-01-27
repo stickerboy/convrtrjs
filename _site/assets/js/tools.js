@@ -68,3 +68,13 @@ function urlEncode(string) {
 function urlDecode(string) {
     return decodeURIComponent(string).replace(/\+/gi, " ");
 }
+
+// Convert letters to their alphabet number: A = 1, B = 2, Z = 26
+function lettersToNumbers(string) {
+    string = lettersOnly(string);
+    const numbers = [];
+    string.split("").forEach((s) => { 
+        numbers.push(s.toLowerCase().charCodeAt(0) - 97 + 1);
+    });
+    return numbers.join(" ");
+}

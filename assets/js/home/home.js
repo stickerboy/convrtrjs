@@ -61,6 +61,9 @@ toolChange.addEventListener('click', function() {
         case 'removeletters':
             document.getElementById("textResults").textContent = stripLetters(textResults);
             break;
+        case 'alphabet':
+            document.getElementById("textResults").textContent = lettersToNumbers(textResults);
+            break;
         case 'specialcharsonly':
             document.getElementById("textResults").textContent = specialCharsOnly(textResults);
             break;
