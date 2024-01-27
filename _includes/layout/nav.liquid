@@ -1,12 +1,5 @@
-
-{% if page-id == "fourohfour" %}
 <ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
-    <li class="nav-item">
-        <a class="nav-link active" href="{% if data.environment == 'development' %}http://localhost:8088/{% else %}{{ pkg.homepage }}{% endif %}">Home</a>
-    </li>
-</ul>
-{% else %}
-<ul class="navbar-nav me-auto mt-3 mt-md-0 mb-2 mb-md-0">
+{% if page-id != "fourohfour" %}
     {% for link in nav %}
         <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -24,5 +17,5 @@
             {% endif %}
         </li>
     {% endfor %}
-</ul>
 {% endif %}
+</ul>
