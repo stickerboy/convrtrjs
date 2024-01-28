@@ -409,7 +409,7 @@ function countArrayFreq(string) {
 
 function styledArrayFrequencies(data) {
     let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
-    <div class="grid mt-2" id="unique-chars">`;
+    <div class="grid mt-2" id="unique-freqs">`;
     for (let [key, value] of Object.entries(data)) {
         result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1"><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space")}" title="Frequency of ${key.replace(/ /g, "Space")}">
                 ${key.replace(/ /g, "Space")} - ${value}
