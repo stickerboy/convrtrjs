@@ -21,24 +21,68 @@
                 <span class="navbar-text text-white mx-0 mx-md-3">
                     {{ pkg.tagline }}
                 </span>
-                <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
-                        <i class="bi bi-discord"></i>
-                        <span class="d-none mx-2">Join the discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
-                        <i class="bi bi-github"></i>
-                        <span class="d-none mx-2">Github</span>
-                    </a>
-                {% if page-id != "fourohfour" %}
-                    <button type="button" class="btn btn-sm btn-outline-light btn-reset-data" id="resetData" 
-                            aria-label="Clear all data inside textareas" title="Clear data"
+                <ul class="navbar-nav mt-2 mt-md-0 mx-0 mx-md-2">
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Discord support server" 
+                            title="Discord" href="{{ pkg.support }}" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        <span class="d-md-none mx-2">Clear all data</span>
-                    </button>
-                </div>
+                            <i class="bi bi-discord"></i>
+                            <span class="d-none mx-2">Join the discord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Github code repository" 
+                            title="Github" href="{{ pkg.repository.site }}" title="Github"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-github"></i>
+                            <span class="d-none mx-2">Github</span>
+                        </a>
+                    </li>
+                {% if page-id != "fourohfour" %}
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-sm text-light btn-reset-data" id="resetData" 
+                                aria-label="Clear all data inside textareas" title="Clear data"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-recycle"></i>
+                            <span class="d-md-none mx-2">Clear all data</span>
+                        </button>
+                    </li>
                 {% endif %}
+                <li class="nav-item dropdown">
+                    <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                    aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
+                    data-current-icon="bi-circle-half">
+                    <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                      <span class="d-md-none ms-2" id="bd-theme-text">Toggle theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
+                            Light
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
+                            Dark
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center active" 
+                        data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                            <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
+                            Auto
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
             </div>
         </div>
     </nav>

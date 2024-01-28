@@ -7,12 +7,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Character frequencies
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
         </div>
@@ -23,7 +23,7 @@
                     <div class="card-body text-center">
                         <textarea placeholder="Example: " title="Characters to check" rows="6" id="freqText" class="form-control word-freqs"></textarea>
                     </div>
-                    <div class="card-footer text-dark py-3">
+                    <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
                             {% include "components/select-copy-dl" %}

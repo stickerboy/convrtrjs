@@ -64,16 +64,59 @@
                 <span class="navbar-text text-white mx-0 mx-md-3">
                     For everlost and Grollow!
                 </span>
-                <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="https://discord.gg/FhwjhdkTwD">
-                        <i class="bi bi-discord"></i>
-                        <span class="d-none mx-2">Join the discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="https://github.com/stickerboy/convrtrjs">
-                        <i class="bi bi-github"></i>
-                        <span class="d-none mx-2">Github</span>
-                    </a>
+                <ul class="navbar-nav mt-2 mt-md-0 mx-0 mx-md-2">
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Discord support server" 
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-discord"></i>
+                            <span class="d-none mx-2">Join the discord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Github code repository" 
+                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-github"></i>
+                            <span class="d-none mx-2">Github</span>
+                        </a>
+                    </li>
                 
+                <li class="nav-item dropdown">
+                    <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                    aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
+                    data-current-icon="bi-circle-half">
+                    <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                      <span class="d-md-none ms-2" id="bd-theme-text">Toggle theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
+                            Light
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
+                            Dark
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center active" 
+                        data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                            <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
+                            Auto
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -96,7 +139,7 @@
             </section>
         </main>
 
-        <footer class="mt-auto text-dark bg-light">
+        <footer class="section footer mt-auto">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">
             
@@ -106,14 +149,15 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <abbr title="Release version: v1.7.2" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-                <small>v1.7.2</small>
+            <abbr title="Release version: v1.8.0" class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+                <small>v1.8.0</small>
             </abbr>
         </div>
     </div>
 </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="../assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="../assets/js/theme.js"></script>
 
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
