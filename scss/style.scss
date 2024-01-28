@@ -16,6 +16,7 @@
 
 :root {
     --convrtr-bg-color: #11806a;
+    --bs-bg-success: 17, 128, 106;
     --convrtr-bg-color-rgb: 17, 128, 106;
     --convrtr-bg-color-10: #0f735f;
     --convrtr-bg-color-20: #0e6655;
@@ -291,7 +292,7 @@ code {
 }
 @include color-mode(dark) {
     code {
-        background-color: rgba(var(--bs-success-rgb), var(--convrtr-code-opacity)) !important;
+        background-color: rgba(var(--bs-bg-success), 0.7) !important;
     }
     .btn-light {
         background-color: rgba(var(--bs-body-color-rgb), var(--bs-bg-dark-opacity)) !important;
