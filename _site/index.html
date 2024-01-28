@@ -146,24 +146,68 @@
                 <span class="navbar-text text-white mx-0 mx-md-3">
                     For everlost and Grollow!
                 </span>
-                <div class="d-md-inline-flex mt-2 mt-md-0 mx-0 mx-md-2">
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="https://discord.gg/FhwjhdkTwD">
-                        <i class="bi bi-discord"></i>
-                        <span class="d-none mx-2">Join the discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light d-none d-md-block" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="https://github.com/stickerboy/convrtrjs">
-                        <i class="bi bi-github"></i>
-                        <span class="d-none mx-2">Github</span>
-                    </a>
-                
-                    <button type="button" class="btn btn-sm btn-outline-light btn-reset-data" id="resetData" 
-                            aria-label="Clear all data inside textareas" title="Clear data"
+                <ul class="navbar-nav mt-2 mt-md-0 mx-0 mx-md-2">
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Discord support server" 
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                        <i class="bi bi-arrow-clockwise"></i>
-                        <span class="d-md-none mx-2">Clear all data</span>
-                    </button>
-                </div>
+                            <i class="bi bi-discord"></i>
+                            <span class="d-none mx-2">Join the discord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Github code repository" 
+                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-github"></i>
+                            <span class="d-none mx-2">Github</span>
+                        </a>
+                    </li>
                 
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-sm text-light btn-reset-data" id="resetData" 
+                                aria-label="Clear all data inside textareas" title="Clear data"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-recycle"></i>
+                            <span class="d-md-none mx-2">Clear all data</span>
+                        </button>
+                    </li>
+                
+                <li class="nav-item dropdown">
+                    <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                    aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
+                    data-current-icon="bi-circle-half">
+                    <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                      <span class="d-lg-none ms-2" id="bd-theme-text">Toggle theme</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
+                            Light
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center" 
+                        data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                            <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
+                            Dark
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                      <li>
+                        <button type="button" class="dropdown-item d-flex align-items-center active" 
+                        data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                            <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
+                            Auto
+                            <i class="bi ms-auto d-none bi-check2"></i>
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -180,11 +224,11 @@
         <div class="section-heading">
             <h1 class="display-6">Encoding and Decoding</h1>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 Convrtr is a simple JavaScript based tool to quickly convert text between different formats and to help create or solve data driven puzzles and ciphers.
             </p>
-            <p class="text-dark px-2 m-0">
-                Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 text-dark bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
+            <p class="px-2 m-0">
+                Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
             </p>
         </div>
     </div>
@@ -198,12 +242,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Convrtrs
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 A description of each decoder and link to more information is available using the info button in the top-right of each decoder. You can also copy the contents on individual decoders and download the contents to a text file.
             </p>
         </div>
@@ -636,12 +680,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Tools
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 Various operations that can be performed on any kind of text string. By default all changes are based on what you enter into the textarea. By selecting "Chain commands" this shifts to the results section at the bottom, you can then perform actions in succession. E.g. Strip spaces from a string, then select Remove all numbers and both will be performed. 
             </p>
         </div>
@@ -652,7 +696,7 @@
                     <div class="card-body text-center">
                         <textarea  title="Text tools" rows="6" id="toolsTextarea" class="form-control flip-text"></textarea>
                     </div>
-                    <div class="card-footer text-dark py-3">
+                    <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
@@ -710,12 +754,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Replace characters
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 Replace characters in a string - allows replace any characters or phrases in a string with any character or phrase. 
                 Supports regex so you can run your own custom advanced replacements
             </p>
@@ -727,7 +771,7 @@
                     <div class="card-body text-center">
                         <textarea placeholder="Example: TESTING → ST → EA → TEASING" title="Replace characters in a string" rows="6" id="replaceText" class="form-control replace-text"></textarea>
                     </div>
-                    <div class="card-footer text-dark py-3">
+                    <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
@@ -777,12 +821,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Flip text
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 Flip text upside down - allows you to turn this into ʇɥıs
             </p>
         </div>
@@ -793,7 +837,7 @@
                     <div class="card-body text-center">
                         <textarea placeholder="Example: TEST → ┴SƎ┴" title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text"></textarea>
                     </div>
-                    <div class="card-footer text-dark py-3">
+                    <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="flipDecode" title="Flip text upside down">Flip</button>
                             <div class="form-check form-switch mx-2">
@@ -823,12 +867,12 @@
                 <h2 class="display-6 w-100 d-flex m-0">
                     Character frequencies
                 </h2>
-                <span class="text-light px-1 border bg-dark border-dark rounded align-self-end">
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </div>
             <hr>
-            <p class="text-dark px-2">
+            <p class="px-2">
                 For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
         </div>
@@ -839,7 +883,7 @@
                     <div class="card-body text-center">
                         <textarea placeholder="Example: " title="Characters to check" rows="6" id="freqText" class="form-control word-freqs"></textarea>
                     </div>
-                    <div class="card-footer text-dark py-3">
+                    <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
                             <div class="btn-group ms-auto">
@@ -860,7 +904,7 @@
 </section>
         </main>
 
-        <footer class="text-dark bg-light">
+        <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">
             
@@ -876,7 +920,7 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <abbr title="Release version: v1.7.2" class="d-inline-flex px-2 py-1 fw-semibold text-dark bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+            <abbr title="Release version: v1.7.2" class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
                 <small>v1.7.2</small>
             </abbr>
         </div>
@@ -884,6 +928,7 @@
 </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="../assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="../assets/js/theme.js"></script>
 
 <script src="../assets/js/rot.js"></script>
 <script src="../assets/js/clip.js"></script>
