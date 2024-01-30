@@ -1,26 +1,30 @@
 // ROT Text
-const rotButtons = document.getElementsByClassName("rot-link");
-const rotPrevious = document.getElementById("rotPrev");
-const rotNext     = document.getElementById("rotNext");
+const rotButtons    = document.getElementsByClassName("rot-link");
+const rotPrevious   = document.getElementById("rotPrev");
+const rotNext       = document.getElementById("rotNext");
 
 Array.from(rotButtons, c => c.addEventListener('click', function() {
     const rotText = document.getElementById("rotText");
     const rotNumber = c.getAttribute("data-rot-number");
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
-        document.getElementById("rotResults").textContent = "";
+        rotResults = "";
         return false;
     }
     if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
 
+    let chainRots = document.getElementById("chainRots");
+    let rR = document.getElementById("rotResults").textContent;
+    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
+
     Array.from(rotButtons, button => {
         button.classList.remove("active");
     });
     c.classList.add("active");
 
-    document.getElementById("rotResults").textContent = rot(rotText.value.trim(), parseInt(rotNumber));
+    document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber));
 }));
 
 // ROT - Go backwards
