@@ -1,6 +1,6 @@
 {
   "name": "convrtrjs",
-  "version": "1.8.1",
+  "version": "1.8.2",
   "description": "A simple JavaScript based tool to quickly convert text between different formats",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
