@@ -40,7 +40,7 @@
         "short-label": "Ciphers",
         "children":[{
                 "id": "rotate",
-                "label": "ROT text"
+                "label": "Caesar cipher"
             }, {
                 "id": "sub",
                 "label": "Substitution cipher"

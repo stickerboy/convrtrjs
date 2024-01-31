@@ -5,7 +5,7 @@
                 data-bs-toggle="collapse" href="#rotCollapse" role="button" 
                 aria-expanded="true" aria-controls="rotCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Rotation cipher
+                    Caesar cipher
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -13,7 +13,15 @@
             </div>
             <hr>
             <p class="px-2">
-                A very simple method of encription, rotaion ciphers - also known as substution of shift ciphers - replace letters with a different letter at another place in the alphabet. The most common is the Caeser cipher or Rot 13 cipher, more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
+                A very simple method of encription, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.  
+            
+            </p>
+            <p class="px-2">
+                The most common Caeser cipher is Rot 13, where 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">A</code> 
+                becomes 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">N</code> 
+                and so forth. There is  more information is available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
             </p>
         </div>
         <div class="collapse show" id="rotCollapse">
@@ -51,9 +59,14 @@
                         <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <p class="m-0">Results:</p>
-                            {% include "components/select-copy-dl" %}
+                        <div class="row row-cols-sm-2 row-cols-1 g-md-0 gx-0 gy-2">
+                            <div class="form-check form-switch text-start">
+                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots">
+                                <label class="form-check-label" for="chainRots" aria-label="Chain substitutions together">Chain commands</label>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                {% include "components/select-copy-dl" %}
+                            </div>
                         </div>
                         <hr />
                         <div id="rotResults" class="data-to-copy active"></div>
