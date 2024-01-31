@@ -23,7 +23,8 @@ document.getElementById("encode").addEventListener('click', function() {
 
 // Convert from Binary
 document.getElementById("binaryDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -52,7 +53,8 @@ document.getElementById("binaryDecode").addEventListener('click', function() {
 
 // Convert from Hex
 document.getElementById("hexDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -81,7 +83,8 @@ document.getElementById("hexDecode").addEventListener('click', function() {
 
 // Convert from Base64
 document.getElementById("b64Decode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -110,7 +113,8 @@ document.getElementById("b64Decode").addEventListener('click', function() {
 
 // Convert from Decimal
 document.getElementById("decDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -139,7 +143,8 @@ document.getElementById("decDecode").addEventListener('click', function() {
 
 // Reverse
 document.getElementById("revDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -168,7 +173,8 @@ document.getElementById("revDecode").addEventListener('click', function() {
 
 // Convert from Rot13
 document.getElementById("rot13Decode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -197,7 +203,8 @@ document.getElementById("rot13Decode").addEventListener('click', function() {
 
 // Convert from Morse
 document.getElementById("morseDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
@@ -226,7 +233,8 @@ document.getElementById("morseDecode").addEventListener('click', function() {
 
 // Convert from Morsenary
 document.getElementById("mrsnryDecode").addEventListener('click', function() {
-    const container = this.closest(".card-body").querySelector("textarea");
+    const chainDecoders = document.getElementById("chainDecoders");
+    const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
 
     if(!emptyContainerCheck(data, container)) {
