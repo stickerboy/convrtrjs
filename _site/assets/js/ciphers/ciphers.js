@@ -149,5 +149,9 @@ subEncryptButton.addEventListener('click', function() {
         return false;
     }
 
-    document.getElementById("subResults").textContent = substituteChars(subString.value, subKey.value);
+    let chainSubs = document.getElementById("chainSubs");
+    let sR = document.getElementById("subResults").textContent;
+    let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
+
+    document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
 });
