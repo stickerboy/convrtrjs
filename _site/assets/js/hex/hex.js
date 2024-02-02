@@ -1,3 +1,18 @@
+// Shift Hex left or right
+// Returns: Decimal, space delimited
+function shiftHexString(string, shiftValue) {
+    return hexToString(string).split("").map(c => 
+            ord(c) + parseInt(shiftValue)
+        ).join(" ");
+}
+
+// Reverse Hex nibbles
+function reverseHex(string) {
+    return stringToHex(hexToString(string), " ").split(" ").map(c => 
+            reverseString(c)
+           ).join(" ");
+}
+
 // Shift Hex
 const shiftButton = document.getElementById("shiftDecode");
 shiftButton.addEventListener('click', function() {

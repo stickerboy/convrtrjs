@@ -1,3 +1,155 @@
+// Decode Binary
+function binaryToString(string) {
+    let stringReplacement = string.replace(/[\D2-9]/g,""); // Strip everything but 1s and 0s
+    string = string.replace(/[^w\s10]/g); // Same, but preserve spaces
+    // Probably better ways to handle this, but make sure the string is divible by 8
+    // If it's not, it's probably an incomplete binary string
+    if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
+        return String.fromCharCode(
+            ...string.split(' ').map(bin => parseInt(bin, 2))
+        );
+    } else {
+        throw Error("Binary is not valid");
+    }
+}
+
+// Decode Base64
+function base64ToString(string) {
+    // Going backwards: from bytestream, to percent-encoding, to original string.
+    try {
+        return decodeURIComponent(atob(string).split('').map(function(c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(''));
+    } catch (e) {
+        throw Error("not a valid Base64 string");
+    }
+}
+
+// Morse code to String
+function morseToString(string) {
+    if(/^[ /.-]*$/.test(string)){
+        return string // test valid morse
+            .replaceAll(" / "," ")
+            .split(' ')
+            .map(word => word
+                        .split(' ') // get character code,
+                        .map(character => morseTextDict[character])
+                        .join('')
+            )
+            .join(' ')
+            .trim();
+    } else {
+        throw Error("Morse code contains invalid characters");
+    }
+}
+
+// Convert to Morse
+function stringToMorse(string) {
+    return string
+            .toUpperCase()
+            .split(' ')
+            .map(word => word
+                        .split('') // get character code,
+                        .map(character => textMorseDict[character])
+                        .join(' ')
+            )
+            .join(' / ')
+            .trim();
+}
+
+// Convert to Morsenary
+function stringToMorsenary(string) {
+    let morsenarySetting = document.getElementById("morsenarySetting").value;
+    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g,"").replaceAll("0",".").replaceAll("1","-") :
+                                        stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
+}
+
+// Decode Morsenary to String
+function morsenaryToString(string) {
+    if(/^[ /.-]*$/.test(string)) {
+        let morsenarySetting = document.getElementById("morsenarySetting").value;
+        string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
+        return binaryToString(splitString(string, 8));
+    } else {
+       throw Error("Morsenary contains invalid characters");
+    }
+}
+
+// Flip text upside down
+function flipText(string, alphabet, replacement) {
+	return Array.from(string).map(c => 
+        typeof replacement[alphabet.search(c)] == 'undefined' ? ' ' : replacement[alphabet.search(c)]
+    ).join("");
+}
+
+// Various information about a given string
+function stringStats(string, stat, delimiter) {
+    let split = delimiter ? delimiter : " ";
+
+    switch (stat) {
+        case "word-count":
+            return string.split(split).length;
+        break;
+        case "char-count":
+            return string.length;
+        break;
+        case "char-count-ns":
+            return stripSpaces(string).length;
+        break;
+        case "letter-count":
+            return lettersOnly(string).length;
+        break;
+        case "letter-count-caps":
+            return lettersOnlyCap(string).length;
+        break;
+        case "letter-count-low":
+            return lettersOnlyLow(string).length;
+        break;
+        case "number-count":
+            return numbersOnly(string).length;
+        break;
+        case "special-count":
+            return specialCharsOnly(string, true).length;
+        break;
+        case "special-count-ns":
+            return specialCharsOnly(string).length;
+        break;
+        default:
+            return "No stat specified or stat is not available";
+    }
+}
+
+function styledUniqueArrayItems(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <div class="grid mt-2 grid-auto" id="unique-chars">`;
+    data.forEach(char => {
+        result += `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space")}" title="${char.replace(/ /g, "Space")}">
+                ${char.replace(/ /g, "&nbsp;")}
+            </code>`;
+    });
+    result += `</div></div>`;
+    return result;
+}
+
+// Simple and efficient method of returning counts of each unique value in an array
+// https://stackoverflow.com/a/66002712/3172872
+function countArrayFreq(string) {
+    let split = [...string];
+    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
+}
+
+function styledArrayFrequencies(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
+    <div class="grid mt-2" id="unique-freqs">`;
+    for (let [key, value] of Object.entries(data)) {
+        result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1"><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space")}" title="Frequency of ${key.replace(/ /g, "Space")}">
+                ${key.replace(/ /g, "Space")} - ${value}
+            </code></div>`;
+    }
+    result += `</div></div>`;
+    return result;
+}
+
 // Re-code Hex on delimeter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener('change', function() {

@@ -1,3 +1,100 @@
+// Build up a custom alphabet using a key
+// ABCDEFG... → TEST → TESABCDFG...
+function getCustomAlphabet(string) {
+    let stringArr = [...new Set(string.toLowerCase())];
+    let alphaArr = [...new Set(alphabet.trim().toLowerCase().substring(0,26))];
+    return [...new Set(stringArr.concat(alphaArr))].join("");
+}
+
+// Substitute each letter in a string with a corresponding letter from a custom alphabet
+// Custom alphabet is built using a user specified text string
+function substituteChars(string, key) {
+    const alpha = getCustomAlphabet(key);
+    return string.toLowerCase().split("").map((char) => {
+        if (char >= "a" && char <= "z") {
+            // Get the index of the original letter in the standard alphabet
+            let index = char.charCodeAt(0) - 97;
+            // Return the corresponding letter from the custom alphabet
+            return alpha.charAt(index);
+        } else {
+            // Return the original character
+            return char;
+        }
+    }).join("");
+}
+
+// Generate hash values
+function generateHashes(string, hash, key) {
+    switch (hash) {
+        case "MD5": 
+            return CryptoJS.MD5(string);
+        break;
+        case "SHA1":
+            return CryptoJS.SHA1(string);
+        break;
+        case "SHA256":
+            return CryptoJS.SHA256(string);
+        break;
+        case "SHA512":
+            return CryptoJS.SHA512(string);
+        break;
+        case "SHA3512":
+            return CryptoJS.SHA3(string, { outputLength: 512 });
+        break;
+        case "SHA3384":
+            return CryptoJS.SHA3(string, { outputLength: 384 });
+        break;
+        case "SHA3256":
+            return CryptoJS.SHA3(string, { outputLength: 256 });
+        break;
+        case "SHA3224":
+            return CryptoJS.SHA3(string, { outputLength: 224 });
+        break;
+        default:
+            return "Invalid hash method provided or not supported";
+    }
+}
+
+// Encrypt using Vigenère cipher
+function vignereEncrypt(string, key) {
+    let result = "";
+
+    for (let i = 0, j = 0; i < string.length; i++) {
+        const c = string.charAt(i);
+        if (isLetter(c)) {
+            if (isUpperCase(c)) {
+                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
+            } else {
+                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
+            }
+        } else {
+            result += c;
+        }
+        j = ++j % key.length;
+    }
+    return result;
+}
+
+// Decrypt Vigenère cipher
+function vignereDecrypt(string, key) {
+    let result = "";
+
+    for (let i = 0, j = 0; i < string.length; i++) {
+        const c = string.charAt(i);
+        if (isLetter(c)) {
+            if (isUpperCase(c)) {
+                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toUpperCase().charCodeAt(j))) % 26);
+            } else {
+                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLowerCase().charCodeAt(j))) % 26);
+            }
+        } else {
+            result += c;
+        }
+        j = ++j % key.length;
+    }
+    return result;
+}
+
 // ROT Text
 const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
