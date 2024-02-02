@@ -100,7 +100,7 @@ const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
 const rotNext       = document.getElementById("rotNext");
 
-Array.from(rotButtons, c => c.addEventListener('click', function() {
+Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
     const rotNumber = c.getAttribute("data-rot-number");
 
@@ -125,7 +125,7 @@ Array.from(rotButtons, c => c.addEventListener('click', function() {
 }));
 
 // ROT - Go backwards
-rotPrevious.addEventListener('click', function() {
+rotPrevious.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
@@ -152,7 +152,7 @@ rotPrevious.addEventListener('click', function() {
 });
 
 // TOR - Go forwards
-rotNext.addEventListener('click', function() {
+rotNext.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
@@ -181,7 +181,7 @@ rotNext.addEventListener('click', function() {
 
 // Vigenère cipher
 const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
-vigenereEncryptButton.addEventListener('click', function() {
+vigenereEncryptButton.addEventListener("click", function() {
     const vigenereString = document.getElementById("vigenereText");
     const vigenereKey = document.getElementById("vigenereKey");
 
@@ -195,7 +195,7 @@ vigenereEncryptButton.addEventListener('click', function() {
     document.getElementById("vigenereResults").textContent = vignereEncrypt(vigenereString.value, vigenereKey.value);
 });
 const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
-vigenereDecryptButton.addEventListener('click', function() {
+vigenereDecryptButton.addEventListener("click", function() {
     const vigenereString = document.getElementById("vigenereText");
     const vigenereKey = document.getElementById("vigenereKey");
 
@@ -211,7 +211,7 @@ vigenereDecryptButton.addEventListener('click', function() {
 
 // Hash strings
 const hashButton = document.getElementById("hashDecode");
-hashButton.addEventListener('click', function() {
+hashButton.addEventListener("click", function() {
     const hashString = document.getElementById("hashText");
     let hashResults = document.getElementById("hashResults");
     hashResults.innerHTML = "";
@@ -223,19 +223,19 @@ hashButton.addEventListener('click', function() {
         return false;
     }
 
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML('beforeend', `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
+    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
 });
 
 // Substitution cipher
 const subEncryptButton = document.getElementById("subEncrypt");
-subEncryptButton.addEventListener('click', function() {
+subEncryptButton.addEventListener("click", function() {
     const subString = document.getElementById("subText");
     const subKey = document.getElementById("subKey");
 

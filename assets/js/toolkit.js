@@ -41,13 +41,13 @@ function reverseString(string) {
 // Split string every n items
 // https://stackoverflow.com/a/12686829/3172872
 function splitString(string, number) {
-    return string.match(new RegExp('.{1,' + number + '}', 'g')).join(" ");
+    return string.match(new RegExp(".{1," + number + "}", "g")).join(" ");
 }
 
 // Split string to array every n items
 // https://stackoverflow.com/a/12686829/3172872
 function stringToArray(string, number) {
-    return string.match(new RegExp('.{1,' + number + '}', 'g'));
+    return string.match(new RegExp(".{1," + number + "}", "g"));
 }
 
 // Convert to Binary
@@ -61,7 +61,7 @@ function stringToHex(string, delimiter) { // UTF-8
     let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
     let returnValue = Array.from(string).map(c => 
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
-        encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
+        encodeURIComponent(c).replace(/\%/g,"").toLowerCase()
     ).join(`${hexDelimiter}`);
 
     return (hexDelimiter === "\\x" || hexDelimiter === "0x") ? hexDelimiter + returnValue : returnValue;
@@ -72,15 +72,15 @@ function stringToHex(string, delimiter) { // UTF-8
 function hexToString(string) {
     try {
         return decodeURIComponent(
-            string.replace(/\s|-|:|\.|\!|,|(0x)/g, '') // remove spaces
-            .replace(/[0-9a-f]{2}/g, '%$&') // add '%' before each 2 characters
+            string.replace(/\s|-|:|\.|\!|,|(0x)/g, "") // remove spaces
+            .replace(/[0-9a-f]{2}/g, "%$&") // add "%" before each 2 characters
         );
     } catch (e) {
         throw Error("Hexadecimal is not valid");
     }
 }
 // Previous method: https://stackoverflow.com/a/69420340/3172872
-// return decodeURIComponent('%' + string.replace(/ /g, "").match(/.{1,2}/g).join('%'));
+// return decodeURIComponent("%" + string.replace(/ /g, "").match(/.{1,2}/g).join("%"));
 
 // Convert to Base64
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
@@ -90,7 +90,7 @@ function stringToBase64(string) {
     // can be fed into btoa.
     return btoa(encodeURIComponent(string).replace(/%([0-9A-F]{2})/g,
         function toSolidBytes(match, p1) {
-            return String.fromCharCode('0x' + p1);
+            return String.fromCharCode("0x" + p1);
     }));
 }
 
@@ -108,11 +108,11 @@ function ord(string) {
     // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
     // improved by: Brett Zamir (https://brett-zamir.me)
     //    input by: incidence
-    //   example 1: ord('K')
+    //   example 1: ord("K")
     //   returns 1: 75
-    //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+    //   example 2: ord("\uD800\uDC00"); // surrogate pair to create a single Unicode character
     //   returns 2: 65536
-    const str = string + '';
+    const str = string + "";
     const code = str.charCodeAt(0);
     if (code >= 0xD800 && code <= 0xDBFF) {
         // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
@@ -146,24 +146,24 @@ function string2Dec(string) {
 
 // Decimal to String
 function decimalToString(string) {
-    return string.trim().split(' ').map(c => String.fromCharCode(c)).join("");
+    return string.trim().split(" ").map(c => String.fromCharCode(c)).join("");
 }
 
 // Convert Hex String to Binary
 // https://newbedev.com/convert-hex-to-binary-in-javascript
 function hexToBinary(string) {
-    return string.split(' ').map(c => hex2Bin(c)).join("");
+    return string.split(" ").map(c => hex2Bin(c)).join("");
 }
 
 // Convert individual Hex char to Binary
 function hex2Bin(string) {
-    return parseInt(string, 16).toString(2).padStart(8, '0');
+    return parseInt(string, 16).toString(2).padStart(8, "0");
 }
 
 // Convert Hex to Decimal
 // Returns: Decimal, space delimited
 function hexToDecimal(string) {
-    return string.split(' ').map(c =>
+    return string.split(" ").map(c =>
         hex2Dec(c)
     ).join(" ");
 }

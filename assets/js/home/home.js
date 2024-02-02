@@ -6,7 +6,7 @@ function binaryToString(string) {
     // If it's not, it's probably an incomplete binary string
     if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
         return String.fromCharCode(
-            ...string.split(' ').map(bin => parseInt(bin, 2))
+            ...string.split(" ").map(bin => parseInt(bin, 2))
         );
     } else {
         throw Error("Binary is not valid");
@@ -17,9 +17,9 @@ function binaryToString(string) {
 function base64ToString(string) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
     try {
-        return decodeURIComponent(atob(string).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
+        return decodeURIComponent(atob(string).split("").map(function(c) {
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(""));
     } catch (e) {
         throw Error("not a valid Base64 string");
     }
@@ -30,13 +30,13 @@ function morseToString(string) {
     if(/^[ /.-]*$/.test(string)){
         return string // test valid morse
             .replaceAll(" / "," ")
-            .split(' ')
+            .split(" ")
             .map(word => word
-                        .split(' ') // get character code,
+                        .split(" ") // get character code,
                         .map(character => morseTextDict[character])
-                        .join('')
+                        .join("")
             )
-            .join(' ')
+            .join(" ")
             .trim();
     } else {
         throw Error("Morse code contains invalid characters");
@@ -47,13 +47,13 @@ function morseToString(string) {
 function stringToMorse(string) {
     return string
             .toUpperCase()
-            .split(' ')
+            .split(" ")
             .map(word => word
-                        .split('') // get character code,
+                        .split("") // get character code,
                         .map(character => textMorseDict[character])
-                        .join(' ')
+                        .join(" ")
             )
-            .join(' / ')
+            .join(" / ")
             .trim();
 }
 
@@ -78,7 +78,7 @@ function morsenaryToString(string) {
 // Flip text upside down
 function flipText(string, alphabet, replacement) {
 	return Array.from(string).map(c => 
-        typeof replacement[alphabet.search(c)] == 'undefined' ? ' ' : replacement[alphabet.search(c)]
+        typeof replacement[alphabet.search(c)] == "undefined" ? " " : replacement[alphabet.search(c)]
     ).join("");
 }
 
@@ -152,7 +152,7 @@ function styledArrayFrequencies(data) {
 
 // Re-code Hex on delimeter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
-hexDelimiterSelect.addEventListener('change', function() {
+hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
     if(hexData === "") {
         return;
@@ -162,7 +162,7 @@ hexDelimiterSelect.addEventListener('change', function() {
 
 // Re-code Morsenary on delimeter change
 let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect.addEventListener('change', function() {
+morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;
     if(morsenaryData === "") {
         return;
@@ -173,7 +173,7 @@ morsenarySelect.addEventListener('change', function() {
 
 // Text tools
 const toolChange = document.getElementById("toolChange");
-toolChange.addEventListener('click', function() {
+toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
     if(!emptyContainerCheck(toolsString.value, toolsString)) {
@@ -189,40 +189,40 @@ toolChange.addEventListener('click', function() {
     let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
 
     switch (textTools.value) {
-        case 'stripspaces':
+        case "stripspaces":
             document.getElementById("textResults").textContent = stripSpaces(textResults);
             break;
-        case 'uppercase':
+        case "uppercase":
             document.getElementById("textResults").textContent = uppercase(textResults);
             break;
-        case 'lowercase':
+        case "lowercase":
             document.getElementById("textResults").textContent = lowercase(textResults);
             break;
-        case 'numbersonly':
+        case "numbersonly":
             document.getElementById("textResults").textContent = numbersOnly(textResults);
             break;
-        case 'lettersonly':
+        case "lettersonly":
             document.getElementById("textResults").textContent = lettersOnly(textResults);
             break;
-        case 'stripspecialchars':
+        case "stripspecialchars":
             document.getElementById("textResults").textContent = stripSpecialChars(textResults);
             break;
-        case 'removenumbers':
+        case "removenumbers":
             document.getElementById("textResults").textContent = stripNumbers(textResults);
             break;
-        case 'removeletters':
+        case "removeletters":
             document.getElementById("textResults").textContent = stripLetters(textResults);
             break;
-        case 'alphabet':
+        case "alphabet":
             document.getElementById("textResults").textContent = lettersToNumbers(textResults);
             break;
-        case 'specialcharsonly':
+        case "specialcharsonly":
             document.getElementById("textResults").textContent = specialCharsOnly(textResults);
             break;
-        case 'urlencode':
+        case "urlencode":
             document.getElementById("textResults").textContent = urlEncode(textResults);
             break;
-        case 'urldecode':
+        case "urldecode":
             document.getElementById("textResults").textContent = urlDecode(textResults);
             break;
             default:
@@ -232,7 +232,7 @@ toolChange.addEventListener('click', function() {
 
 // Flip text upside down
 const flipButton = document.getElementById("flipDecode");
-flipButton.addEventListener('click', function() {
+flipButton.addEventListener("click", function() {
     const flipString = document.getElementById("flipText");
 
     if(!emptyContainerCheck(flipString.value, flipString)) {
@@ -252,7 +252,7 @@ flipButton.addEventListener('click', function() {
 
 // Frequencies
 const freqButton = document.getElementById("freqDecode");
-freqButton.addEventListener('click', function() {
+freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("freqText");
     let freqResults = document.getElementById("freqResults");
     freqResults.innerHTML = "";
@@ -264,24 +264,24 @@ freqButton.addEventListener('click', function() {
         return false;
     }
 
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML('beforeend', `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
     
-    freqResults.insertAdjacentHTML('beforeend', `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
-    freqResults.insertAdjacentHTML('beforeend', `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
 });
 
 
 // Replace characters
 const replaceButton = document.getElementById("replaceDecode");
-replaceButton.addEventListener('click', function() {
+replaceButton.addEventListener("click", function() {
     const replaceString = document.getElementById("replaceText");
     const replaceOld = document.getElementById("replaceValue");
     const replaceNew = document.getElementById("replacementValue");
