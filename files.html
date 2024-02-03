@@ -11,5 +11,8 @@ page-id: files
         data-bs-root-margin="10% 0% -90%">
             {% render "partials/files/home" %}
             {% render "partials/files/filecheck" %}
-            {% render "partials/files/headers" %}
+            {% include "partials/files/headers" %}
         </main>
+<script>
+    const HEADERS = {{ headers | json }};
+</script>
