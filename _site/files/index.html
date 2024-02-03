@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
-        <title>Convrtr - Hexadecimal tools</title>
+        <title>Convrtr - For everlost and Grollow!</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
@@ -93,7 +93,7 @@
             
         </li>
     
-        <li class="nav-item dropdown active">
+        <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">Hex tools</span>
                 <span class="d-none d-md-inline-flex d-lg-none ms-1 me-auto">Hex</span>
@@ -141,7 +141,7 @@
             
         </li>
     
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown active">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="d-sm-inline-flex d-md-none d-lg-inline-flex ms-1 me-auto">File tools</span>
                 <span class="d-none d-md-inline-flex d-lg-none ms-1 me-auto">Files</span>
@@ -238,10 +238,10 @@
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         <div class="section-heading">
-            <h1 class="display-6">Hexadecimal tools</h1>
+            <h1 class="display-6">File tools</h1>
             <hr>
             <p class="px-2">
-                Various tools for working with hexadecimal strings.
+                Various tools for working with files and file formats.
             </p>
             <p class="px-2 m-0">
                 Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
@@ -249,14 +249,14 @@
         </div>
     </div>
 </section>
-            <section id="shift" class="section">
+            <section id="filecheck" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <div class="d-flex justify-content-between section-toggle"
-                data-bs-toggle="collapse" href="#shiftHexCollapse" role="button" 
-                aria-expanded="true" aria-controls="shiftHexCollapse">
+                data-bs-toggle="collapse" href="#filecheckCollapse" role="button" 
+                aria-expanded="false" aria-controls="filecheckCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Shift hex
+                    Check file type
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -264,75 +264,43 @@
             </div>
             <hr>
             <p class="px-2">
-                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
-                Supports any delimiter is available in the delimiter dropdown, the default is always a space. 
+                Select a file to check its file type / header. Only the first 16 bytes of each file are read and then discarded, no files are actually uploaded or stored anywhere.
             </p>
         </div>
-        <div class="collapse show" id="shiftHexCollapse">
+        <div id="filecheckCollapse" class="collapse">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Shift hex string</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex"></textarea>
+                    <span class="card-label visually-hidden">Check file headers</span>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="fileInput">
+                          </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="text-center mb-2 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto me-2 mb-2">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="basic-addon1" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
-                                        <input type="text" class="form-control" id="shiftValue" title="Shift Hex by number, negative numbers are allowed">
-                                        <button class="btn btn-outline-convrtr" type="button" id="shiftDecode">Shift</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <select id="hexDelimiter" class="form-select w-auto" aria-label="Change Hexadecimal delimiter">
-                                        <option value=" " selected="">Space</option>
-                                        <option value="-">Hyphen</option>
-                                        <option value=":">Colon</option>
-                                        <option value=",">Comma</option>
-                                        <option value="\x">Slash x (\x)</option>
-                                        <option value="0x">Zero x (0x)</option>
-                                    </select>
-                                    <div class="btn-group ms-auto">
-                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="btn-group ms-auto">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                         </div>
                         <hr />
-                        <div id="shiftResults" class="d-flex flex-row">
-                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shiftTabs" role="tablist" aria-orientation="vertical">
-                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
-                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
-                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
-                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
-                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
-                              </div>
-                              <div class="tab-content flex-column flex-fill shift-tabs" id="shiftTabs-content">
-                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
-                              </div>
-                        </div>
+                        <div id="filecheckResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-            <section id="reverseHex" class="section">
+            <section id="headers" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <div class="d-flex justify-content-between section-toggle"
-                data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
-                aria-expanded="false" aria-controls="reverseHexCollapse">
+                data-bs-toggle="collapse" href="#headersCollapse" role="button" 
+                aria-expanded="false" aria-controls="headersCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Reverse hex
+                    File headers
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -340,27 +308,167 @@
             </div>
             <hr>
             <p class="px-2">
-                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+                A list of common file headers in hexadecimal format, useful if you have a chunk of data so you can quickly match it with a potential file type.
             </p>
         </div>
-        <div class="collapse" id="reverseHexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Reverse hex</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex"></textarea>
+        <div id="headersCollapse" class="collapse">
+            <div class="card">
+                <span class="card-label visually-hidden">Hash text</span>
+                <div class="card-body bg-light py-3">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <div class="btn-group ms-auto">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                     </div>
-                    <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
-                            <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="reverseHexResults" class="data-to-copy active"></div>
+                    <hr />
+                    <div class="table-responsive">
+                        <table class="table table-striped hash-table">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col" class="col-3 col-md-2 col-lg-2">File type</th>
+                                    <th scope="col">Header</th>
+                                </tr>
+                            </thead>
+                            <tbody class="data-to-copy active" id="fileResults">
+                                <tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">DMG</span>&nbsp;
+    </th>
+    <td>78&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">SSH</span>&nbsp;
+    </th>
+    <td>2D 2D 2D 2D 2D 42 45 47 49 4E 20 53 53 48 32 20&nbsp;</td>
+</tr><tr>
+    <th scope="row" rowspan="2">
+        <span class="display-6 fs-6 fw-normal">PNG</span>&nbsp;
+    </th>
+    <td>89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52&nbsp;</td>
+</tr><tr>
+    
+    <td>89 50 4E 47 0D 0A 1A 0A&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">DB, DOC, DOT, PPS, PPT, XLS, VSD, WPS</span>&nbsp;
+    </th>
+    <td>D0 CF 11 E0 A1 B1 1A E1&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">MIDI</span>&nbsp;
+    </th>
+    <td>4D 54 68 64&nbsp;</td>
+</tr><tr>
+    <th scope="row" rowspan="3">
+        <span class="display-6 fs-6 fw-normal">MP4</span>&nbsp;
+    </th>
+    <td>66 74 79 70 69 73 6F 6D&nbsp;</td>
+</tr><tr>
+    
+    <td>66 74 79 70 6D 70 34 32&nbsp;</td>
+</tr><tr>
+    
+    <td>66 74 79 70 4D 53 4E 56&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">PSD</span>&nbsp;
+    </th>
+    <td>38 42 50 53 00 01&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">GIF87a</span>&nbsp;
+    </th>
+    <td>47 49 46 38 37 61&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">GIF89a</span>&nbsp;
+    </th>
+    <td>47 49 46 38 39 61&nbsp;</td>
+</tr><tr>
+    <th scope="row" rowspan="3">
+        <span class="display-6 fs-6 fw-normal">GIF</span>&nbsp;
+    </th>
+    <td>49 44 33 03 37&nbsp;</td>
+</tr><tr>
+    
+    <td>49 44 33 03 39&nbsp;</td>
+</tr><tr>
+    
+    <td>49 44 33 03&nbsp;</td>
+</tr><tr>
+    <th scope="row" rowspan="3">
+        <span class="display-6 fs-6 fw-normal">MP3</span>&nbsp;
+    </th>
+    <td>FF FB&nbsp;</td>
+</tr><tr>
+    
+    <td>FF F3&nbsp;</td>
+</tr><tr>
+    
+    <td>FF F2&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">RTF</span>&nbsp;
+    </th>
+    <td>7B 5C 72 74 66 31&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">PDF</span>&nbsp;
+    </th>
+    <td>25 50 44 46&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">WAV</span>&nbsp;
+    </th>
+    <td>52 49 46 46&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">GZIP</span>&nbsp;
+    </th>
+    <td>1F 8B&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">ZIP</span>&nbsp;
+    </th>
+    <td>50 4B 03 04&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">7ZIP</span>&nbsp;
+    </th>
+    <td>37 7A BC AF 27 1C&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">XZ</span>&nbsp;
+    </th>
+    <td>FD 37 7A 58 5A 00&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">JPG</span>&nbsp;
+    </th>
+    <td>FF D8 FF&nbsp;</td>
+</tr><tr>
+    <th scope="row" rowspan="2">
+        <span class="display-6 fs-6 fw-normal">JPEG 2000</span>&nbsp;
+    </th>
+    <td>00 00 00 0C 6A 50 20 20 0D 0A 87 0A&nbsp;</td>
+</tr><tr>
+    
+    <td>FF 4F FF 51&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">BMP</span>&nbsp;
+    </th>
+    <td>42 4D&nbsp;</td>
+</tr><tr>
+    <th scope="row">
+        <span class="display-6 fs-6 fw-normal">DLL, EXE, PIF, SCR, SYS</span>&nbsp;
+    </th>
+    <td>4D 5A&nbsp;</td>
+</tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -401,7 +509,7 @@
 <script src="../assets/js/tools.js"></script>
 <script src="../assets/js/scripts.js"></script>
 
-<script src="../assets/js/hex/hex.js"></script>
+<script src="../assets/js/files/files.js"></script>
 
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">

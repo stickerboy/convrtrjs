@@ -52,5 +52,15 @@
                 "label": "Hash algorithms"
             }
         ]
+    },
+    {
+        "id": "files",
+        "label": "File tools",
+        "short-label": "Files",
+        "children":[{
+                "id": "headers",
+                "label": "File headers"
+            }
+        ]
     }
 ]
