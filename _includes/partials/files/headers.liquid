@@ -18,11 +18,8 @@
         </div>
         <div id="headersCollapse" class="collapse">
             <div class="card">
-                <span class="card-label visually-hidden">Hash text</span>
+                <span class="card-label visually-hidden">File headers in hexadecimal format</span>
                 <div class="card-body bg-light py-3">
-                    <div class="d-flex justify-content-start align-items-center">
-                        {% include "components/select-copy-dl" %}
-                    </div>
                     <hr />
                     <div class="table-responsive">
                         <table class="table table-striped hash-table">
@@ -33,7 +30,7 @@
                                     <th scope="col">Extensions</th>
                                 </tr>
                             </thead>
-                            <tbody class="data-to-copy active" id="fileResults">
+                            <tbody class="active" id="fileResults">
                             {% for header in headers %}
                                 {% for item in header.hex %}
                                 {% if forloop.first %}

@@ -254,7 +254,7 @@
         <div class="section-heading mb-4">
             <div class="d-flex justify-content-between section-toggle"
                 data-bs-toggle="collapse" href="#filecheckCollapse" role="button" 
-                aria-expanded="false" aria-controls="filecheckCollapse">
+                aria-expanded="true" aria-controls="filecheckCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Check file type
                 </h2>
@@ -267,7 +267,7 @@
                 Select a file to check its file type / header. Only the first 16 bytes of each file are read and then discarded, no files are actually uploaded or stored anywhere.
             </p>
         </div>
-        <div id="filecheckCollapse" class="collapse">
+        <div id="filecheckCollapse" class="collapse show">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Check file headers</span>
@@ -313,15 +313,8 @@
         </div>
         <div id="headersCollapse" class="collapse">
             <div class="card">
-                <span class="card-label visually-hidden">Hash text</span>
+                <span class="card-label visually-hidden">File headers in hexadecimal format</span>
                 <div class="card-body bg-light py-3">
-                    <div class="d-flex justify-content-start align-items-center">
-                        <div class="btn-group ms-auto">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                    </div>
                     <hr />
                     <div class="table-responsive">
                         <table class="table table-striped hash-table">
@@ -332,7 +325,7 @@
                                     <th scope="col">Extensions</th>
                                 </tr>
                             </thead>
-                            <tbody class="data-to-copy active" id="fileResults">
+                            <tbody class="active" id="fileResults">
                             
                                 
                                 

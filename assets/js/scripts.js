@@ -49,15 +49,15 @@ resetData.addEventListener("click", function() {
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        if(ta.localName === "textarea" || ta.localName === "input") {
+        if(ta.localName === "div") {
+            if(ta.innerHTML.length !== 0) {
+                dtcLength += ta.innerHTML.length;
+                ta.innerHTML = "";
+            }
+        } else {
             if(ta.value.length !== 0) {
                 dtcLength += ta.value.length;
                 ta.value = "";
-            }
-        } else {
-            if(ta.innerHTML.length !== 0) {
-                dtcLength += ta.value.length;
-                ta.innerHTML = "";
             }
         }
     });

@@ -16,12 +16,15 @@ function getFileHeader(file) {
             header.hex.forEach((item) => {
                 if(hexString.toUpperCase().includes(item)) {
                     fileInfo = `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">File match</code>
-                     <br />${hexString}<br /><strong>${header.label}</strong>`;
+<br />${hexString}
+<br /><strong>${header.label}</strong>`;
                 }
             });
         });
 
-        fileInfo = fileInfo ? fileInfo : `<code class="d-inline-flex px-2 bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">No match</code><br />This file header is not on our list: <br />${hexString}`;
+        fileInfo = fileInfo ? fileInfo : `<code class="d-inline-flex px-2 bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">No match</code>
+<br />This file header is not on our list:
+<br />${hexString}`;
         document.getElementById("filecheckResults").innerHTML = fileInfo;
     };
 
