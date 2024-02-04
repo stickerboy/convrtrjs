@@ -58,6 +58,9 @@
         "label": "File tools",
         "short-label": "Files",
         "children":[{
+                "id": "filecheck",
+                "label": "Check file type"
+            }, {
                 "id": "headers",
                 "label": "File headers"
             }
