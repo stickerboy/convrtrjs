@@ -2,23 +2,23 @@
 ;(function(root) {
 
 	// Detect free variables `exports`
-	var freeExports = typeof exports == 'object' && exports;
+	var freeExports = typeof exports == "object" && exports;
 
 	// Detect free variable `module`
-	var freeModule = typeof module == 'object' && module &&
+	var freeModule = typeof module == "object" && module &&
 		module.exports == freeExports && module;
 
 	// Detect free variable `global`, from Node.js or Browserified code,
 	// and use it as `root`
-	var freeGlobal = typeof global == 'object' && global;
+	var freeGlobal = typeof global == "object" && global;
 	if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
 		root = freeGlobal;
 	}
 
 	/*--------------------------------------------------------------------------*/
 
-	var lowercase = 'abcdefghijklmnopqrstuvwxyz';
-	var uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	var lowercase = "abcdefghijklmnopqrstuvwxyz";
+	var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	var regexLowercase = /[a-z]/;
 	var regexUppercase = /[A-Z]/;
 
@@ -37,7 +37,7 @@
 		}
 		var length = string.length; // note: no need to account for astral symbols
 		var index = -1;
-		var result = '';
+		var result = "";
 		var character;
 		var currentPosition;
 		var shiftedPosition;
@@ -58,13 +58,13 @@
 		return result;
 	};
 
-	rot.version = '0.1.0';
+	rot.version = "0.1.0";
 
 	// Some AMD build optimizers, like r.js, check for specific condition patterns
 	// like the following:
 	if (
-		typeof define == 'function' &&
-		typeof define.amd == 'object' &&
+		typeof define == "function" &&
+		typeof define.amd == "object" &&
 		define.amd
 	) {
 		define(function() {

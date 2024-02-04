@@ -1,0 +1,18 @@
+---
+layout: layout.liquid
+title: For everlost and Grollow!
+page-id: files
+---
+<main class="mt-5 ms-auto me-auto mw"
+        data-bs-spy="scroll" 
+        data-bs-target="#navbarText" 
+        data-bs-smooth-scroll="true"
+        data-bs-threshold="0,1"
+        data-bs-root-margin="10% 0% -90%">
+            {% render "partials/files/home" %}
+            {% render "partials/files/filecheck" %}
+            {% include "partials/files/headers" %}
+        </main>
+<script>
+    const HEADERS = {{ headers | json }};
+</script>

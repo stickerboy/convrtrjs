@@ -41,33 +41,18 @@ function reverseString(string) {
 // Split string every n items
 // https://stackoverflow.com/a/12686829/3172872
 function splitString(string, number) {
-    return string.match(new RegExp('.{1,' + number + '}', 'g')).join(" ");
+    return string.match(new RegExp(".{1," + number + "}", "g")).join(" ");
 }
 
 // Split string to array every n items
 // https://stackoverflow.com/a/12686829/3172872
 function stringToArray(string, number) {
-    return string.match(new RegExp('.{1,' + number + '}', 'g'));
+    return string.match(new RegExp(".{1," + number + "}", "g"));
 }
 
 // Convert to Binary
 function stringToBinary(string) {
     return Array.from(string).map(c => c.charCodeAt().toString(2).padStart(8,0)).join(" ");
-}
-
-// Decode Binary
-function binaryToString(string) {
-    let stringReplacement = string.replace(/[\D2-9]/g,""); // Strip everything but 1s and 0s
-    string = string.replace(/[^w\s10]/g); // Same, but preserve spaces
-    // Probably better ways to handle this, but make sure the string is divible by 8
-    // If it's not, it's probably an incomplete binary string
-    if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
-        return String.fromCharCode(
-            ...string.split(' ').map(bin => parseInt(bin, 2))
-        );
-    } else {
-        throw Error("Binary is not valid");
-    }
 }
 
 // Convert to Hex
@@ -76,7 +61,7 @@ function stringToHex(string, delimiter) { // UTF-8
     let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
     let returnValue = Array.from(string).map(c => 
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
-        encodeURIComponent(c).replace(/\%/g,'').toLowerCase()
+        encodeURIComponent(c).replace(/\%/g,"").toLowerCase()
     ).join(`${hexDelimiter}`);
 
     return (hexDelimiter === "\\x" || hexDelimiter === "0x") ? hexDelimiter + returnValue : returnValue;
@@ -87,16 +72,15 @@ function stringToHex(string, delimiter) { // UTF-8
 function hexToString(string) {
     try {
         return decodeURIComponent(
-            string.replace(/\s|-|:|\.|\!|,|(0x)/g, '') // remove spaces
-            .replace(/[0-9a-f]{2}/g, '%$&') // add '%' before each 2 characters
+            string.replace(/\s|-|:|\.|\!|,|(0x)/g, "") // remove spaces
+            .replace(/[0-9a-f]{2}/g, "%$&") // add "%" before each 2 characters
         );
     } catch (e) {
         throw Error("Hexadecimal is not valid");
     }
 }
 // Previous method: https://stackoverflow.com/a/69420340/3172872
-// return decodeURIComponent('%' + string.replace(/ /g, "").match(/.{1,2}/g).join('%'));
-
+// return decodeURIComponent("%" + string.replace(/ /g, "").match(/.{1,2}/g).join("%"));
 
 // Convert to Base64
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
@@ -106,19 +90,8 @@ function stringToBase64(string) {
     // can be fed into btoa.
     return btoa(encodeURIComponent(string).replace(/%([0-9A-F]{2})/g,
         function toSolidBytes(match, p1) {
-            return String.fromCharCode('0x' + p1);
+            return String.fromCharCode("0x" + p1);
     }));
-}
-// Decode Base64
-function base64ToString(string) {
-    // Going backwards: from bytestream, to percent-encoding, to original string.
-    try {
-        return decodeURIComponent(atob(string).split('').map(function(c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(''));
-    } catch (e) {
-        throw Error("not a valid Base64 string");
-    }
 }
 
 // Rot 13: rotate chararcters 13 times
@@ -135,11 +108,11 @@ function ord(string) {
     // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
     // improved by: Brett Zamir (https://brett-zamir.me)
     //    input by: incidence
-    //   example 1: ord('K')
+    //   example 1: ord("K")
     //   returns 1: 75
-    //   example 2: ord('\uD800\uDC00'); // surrogate pair to create a single Unicode character
+    //   example 2: ord("\uD800\uDC00"); // surrogate pair to create a single Unicode character
     //   returns 2: 65536
-    const str = string + '';
+    const str = string + "";
     const code = str.charCodeAt(0);
     if (code >= 0xD800 && code <= 0xDBFF) {
         // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
@@ -173,82 +146,24 @@ function string2Dec(string) {
 
 // Decimal to String
 function decimalToString(string) {
-    return string.trim().split(' ').map(c => String.fromCharCode(c)).join("");
-}
-
-
-// Morse code to String
-function morseToString(string) {
-    if(/^[ /.-]*$/.test(string)){
-        return string // test valid morse
-            .replaceAll(" / "," ")
-            .split(' ')
-            .map(word => word
-                        .split(' ') // get character code,
-                        .map(character => morseTextDict[character])
-                        .join('')
-            )
-            .join(' ')
-            .trim();
-    } else {
-        throw Error("Morse code contains invalid characters");
-    }
-}
-
-// Convert to Morse
-function stringToMorse(string) {
-    return string
-            .toUpperCase()
-            .split(' ')
-            .map(word => word
-                        .split('') // get character code,
-                        .map(character => textMorseDict[character])
-                        .join(' ')
-            )
-            .join(' / ')
-            .trim();
-}
-
-// Convert to Morsenary
-function stringToMorsenary(string) {
-    let morsenarySetting = document.getElementById("morsenarySetting").value;
-    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g,"").replaceAll("0",".").replaceAll("1","-") :
-                                        stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
-}
-
-// Decode Morsenary to String
-function morsenaryToString(string) {
-    if(/^[ /.-]*$/.test(string)) {
-        let morsenarySetting = document.getElementById("morsenarySetting").value;
-        string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
-        return binaryToString(splitString(string, 8));
-    } else {
-       throw Error("Morsenary contains invalid characters");
-    }
-}
-
-// Flip text upside down
-function flipText(string, alphabet, replacement) {
-	return Array.from(string).map(c => 
-        typeof replacement[alphabet.search(c)] == 'undefined' ? ' ' : replacement[alphabet.search(c)]
-    ).join("");
+    return string.trim().split(" ").map(c => String.fromCharCode(c)).join("");
 }
 
 // Convert Hex String to Binary
 // https://newbedev.com/convert-hex-to-binary-in-javascript
 function hexToBinary(string) {
-    return string.split(' ').map(c => hex2Bin(c)).join("");
+    return string.split(" ").map(c => hex2Bin(c)).join("");
 }
 
 // Convert individual Hex char to Binary
 function hex2Bin(string) {
-    return parseInt(string, 16).toString(2).padStart(8, '0');
+    return parseInt(string, 16).toString(2).padStart(8, "0");
 }
 
 // Convert Hex to Decimal
 // Returns: Decimal, space delimited
 function hexToDecimal(string) {
-    return string.split(' ').map(c =>
+    return string.split(" ").map(c =>
         hex2Dec(c)
     ).join(" ");
 }
@@ -259,193 +174,13 @@ function hex2Dec(string) {
     return ord(hexToString(string));
 }
 
-// Shift Hex left or right
-// Returns: Decimal, space delimited
-function shiftHexString(string, shiftValue) {
-    return hexToString(string).split("").map(c => 
-            ord(c) + parseInt(shiftValue)
-        ).join(" ");
-}
-
-// Reverse Hex nibbles
-function reverseHex(string) {
-    return stringToHex(hexToString(string), " ").split(" ").map(c => 
-            reverseString(c)
-           ).join(" ");
-}
-
-// Encrypt using Vigenère cipher
-function vignereEncrypt(string, key) {
-    let result = "";
-
-    for (let i = 0, j = 0; i < string.length; i++) {
-        const c = string.charAt(i);
-        if (isLetter(c)) {
-            if (isUpperCase(c)) {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
-            } else {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
-            }
-        } else {
-            result += c;
-        }
-        j = ++j % key.length;
-    }
-    return result;
-}
-
-// Decrypt Vigenère cipher
-function vignereDecrypt(string, key) {
-    let result = "";
-
-    for (let i = 0, j = 0; i < string.length; i++) {
-        const c = string.charAt(i);
-        if (isLetter(c)) {
-            if (isUpperCase(c)) {
-                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toUpperCase().charCodeAt(j))) % 26);
-            } else {
-                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLowerCase().charCodeAt(j))) % 26);
-            }
-        } else {
-            result += c;
-        }
-        j = ++j % key.length;
-    }
-    return result;
-}
-
-// Generate hash values
-function generateHashes(string, hash, key) {
-    switch (hash) {
-        case "MD5": 
-            return CryptoJS.MD5(string);
-        break;
-        case "SHA1":
-            return CryptoJS.SHA1(string);
-        break;
-        case "SHA256":
-            return CryptoJS.SHA256(string);
-        break;
-        case "SHA512":
-            return CryptoJS.SHA512(string);
-        break;
-        case "SHA3512":
-            return CryptoJS.SHA3(string, { outputLength: 512 });
-        break;
-        case "SHA3384":
-            return CryptoJS.SHA3(string, { outputLength: 384 });
-        break;
-        case "SHA3256":
-            return CryptoJS.SHA3(string, { outputLength: 256 });
-        break;
-        case "SHA3224":
-            return CryptoJS.SHA3(string, { outputLength: 224 });
-        break;
-        default:
-            return "Invalid hash method provided or not supported";
-    }
-}
-
-// Various information about a given string
-function stringStats(string, stat, delimiter) {
-    let split = delimiter ? delimiter : " ";
-
-    switch (stat) {
-        case "word-count":
-            return string.split(split).length;
-        break;
-        case "char-count":
-            return string.length;
-        break;
-        case "char-count-ns":
-            return stripSpaces(string).length;
-        break;
-        case "letter-count":
-            return lettersOnly(string).length;
-        break;
-        case "letter-count-caps":
-            return lettersOnlyCap(string).length;
-        break;
-        case "letter-count-low":
-            return lettersOnlyLow(string).length;
-        break;
-        case "number-count":
-            return numbersOnly(string).length;
-        break;
-        case "special-count":
-            return specialCharsOnly(string, true).length;
-        break;
-        case "special-count-ns":
-            return specialCharsOnly(string).length;
-        break;
-        default:
-            return "No stat specified or stat is not available";
-    }
-}
-
 // Return unique values from an array
 function uniqueArray(string) {
     return [...new Set(string)];
-}
-
-function styledUniqueArrayItems(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
-    <div class="grid mt-2 grid-auto" id="unique-chars">`;
-    data.forEach(char => {
-        result += `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space")}" title="${char.replace(/ /g, "Space")}">
-                ${char.replace(/ /g, "&nbsp;")}
-            </code>`;
-    });
-    result += `</div></div>`;
-    return result;
-}
-
-// Simple and efficient method of returning counts of each unique value in an array
-// https://stackoverflow.com/a/66002712/3172872
-function countArrayFreq(string) {
-    let split = [...string];
-    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
-}
-
-function styledArrayFrequencies(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
-    <div class="grid mt-2" id="unique-freqs">`;
-    for (let [key, value] of Object.entries(data)) {
-        result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1"><code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space")}" title="Frequency of ${key.replace(/ /g, "Space")}">
-                ${key.replace(/ /g, "Space")} - ${value}
-            </code></div>`;
-    }
-    result += `</div></div>`;
-    return result;
 }
 
 // Replace characters in a string, works for any unicode characters
 // Can also pass your own regex for replacements
 function replaceChars(string, toReplace, replacement, caseSensitive) {
     return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
-}
-
-// Build up a custom alphabet using a key
-// ABCDEFG... → TEST → TESABCDFG...
-function getCustomAlphabet(string) {
-    let stringArr = [...new Set(string.toLowerCase())];
-    let alphaArr = [...new Set(alphabet.trim().toLowerCase().substring(0,26))];
-    return [...new Set(stringArr.concat(alphaArr))].join("");
-}
-
-// Substitute each letter in a string with a corresponding letter from a custom alphabet
-// Custom alphabet is built using a user specified text string
-function substituteChars(string, key) {
-    const alpha = getCustomAlphabet(key);
-    return string.toLowerCase().split("").map((char) => {
-        if (char >= "a" && char <= "z") {
-            // Get the index of the original letter in the standard alphabet
-            let index = char.charCodeAt(0) - 97;
-            // Return the corresponding letter from the custom alphabet
-            return alpha.charAt(index);
-        } else {
-            // Return the original character
-            return char;
-        }
-    }).join("");
 }

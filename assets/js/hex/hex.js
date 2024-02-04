@@ -1,6 +1,21 @@
+// Shift Hex left or right
+// Returns: Decimal, space delimited
+function shiftHexString(string, shiftValue) {
+    return hexToString(string).split("").map(c => 
+            ord(c) + parseInt(shiftValue)
+        ).join(" ");
+}
+
+// Reverse Hex nibbles
+function reverseHex(string) {
+    return stringToHex(hexToString(string), " ").split(" ").map(c => 
+            reverseString(c)
+           ).join(" ");
+}
+
 // Shift Hex
 const shiftButton = document.getElementById("shiftDecode");
-shiftButton.addEventListener('click', function() {
+shiftButton.addEventListener("click", function() {
     const shiftString = document.getElementById("shiftText");
     let shiftValue = document.getElementById("shiftValue");
 
@@ -28,7 +43,7 @@ shiftButton.addEventListener('click', function() {
 
 // Reverse Hex
 const reverseHexButton = document.getElementById("reverseHexDecode");
-reverseHexButton.addEventListener('click', function() {
+reverseHexButton.addEventListener("click", function() {
     const reverseHexString = document.getElementById("reverseHexText");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
