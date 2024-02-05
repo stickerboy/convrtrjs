@@ -65,7 +65,7 @@ body {
 .text-bg-convrtr {
     --bs-text-opacity: 1;
     color: var(--bs-white) !important;
-    background-color: rgba(var(--convrtr-bg-color-75-rbg), var(--bs-text-opacity)) !important;
+    background-color: rgba(var(--convrtr-bg-color-75rbg), var(--bs-text-opacity)) !important;
 }
 
 .btn-convrtr {
@@ -395,6 +395,7 @@ code {
 }
 
 .toast {
+    --bs-toast-bg: rgba(var(--bs-body-bg-rgb), 1);
     border-radius: var(--bs-toast-border-radius);
     &-header {
         border: none;
