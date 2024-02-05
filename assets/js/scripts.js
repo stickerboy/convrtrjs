@@ -49,7 +49,7 @@ resetData.addEventListener("click", function() {
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        if(ta.localName === "div") {
+        if(ta.localName === "div" || ta.localName === "tbody") {
             if(ta.innerHTML.length !== 0) {
                 dtcLength += ta.innerHTML.length;
                 ta.innerHTML = "";
