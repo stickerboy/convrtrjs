@@ -27,7 +27,7 @@ function lettersOnly(string, preserveSpaces) {
 
 // Capital letters only
 function lettersOnlyCap(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^A-Z ]/g : /[A-Z]/g;
+    let regex = preserveSpaces === true ? /[^A-Z ]/g : /[^A-Z]/g;
     return string.replace(regex, "");
 }
 
