@@ -216,6 +216,12 @@ toolChange.addEventListener("click", function() {
         case "alphabet":
             document.getElementById("textResults").textContent = lettersToNumbers(textResults);
             break;
+        case "uppercaseonly":
+            document.getElementById("textResults").textContent = lettersOnlyCap(textResults);
+            break;
+        case "lowercaseonly":
+            document.getElementById("textResults").textContent = lettersOnlyLow(textResults);
+            break;
         case "specialcharsonly":
             document.getElementById("textResults").textContent = specialCharsOnly(textResults);
             break;
