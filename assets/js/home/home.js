@@ -9,7 +9,7 @@ function binaryToString(string) {
             ...string.split(" ").map(bin => parseInt(bin, 2))
         );
     } else {
-        throw Error("Binary is not valid");
+        throw Error("Not a valid Binary string");
     }
 }
 
@@ -21,7 +21,7 @@ function base64ToString(string) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(""));
     } catch (e) {
-        throw Error("not a valid Base64 string");
+        throw Error("Not a valid Base64 string");
     }
 }
 
