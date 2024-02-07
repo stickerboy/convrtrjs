@@ -40,6 +40,13 @@ shiftButton.addEventListener("click", function() {
         return false;
     }
 
+    try {
+        shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter);
+    } catch (e) {
+        showToast("Error", `An error occured trying to shift the hex string: ${e.message}`, "danger");
+        return;
+    }
+
     document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter), hexDelimiter);
     document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter), hexDelimiter));
     document.getElementById("hex-tab-pane").textContent = shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter);
