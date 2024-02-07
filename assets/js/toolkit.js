@@ -60,7 +60,7 @@ function stringToBinary(string) {
 function stringToHex(string, delimiter) { // UTF-8
     let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
     let returnValue = Array.from(string).map(c => 
-        c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16) : 
+        c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16).padStart(2, '0') : 
         encodeURIComponent(c).replace(/\%/g,"").toLowerCase()
     ).join(`${hexDelimiter}`);
 
