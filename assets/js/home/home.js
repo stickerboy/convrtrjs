@@ -60,15 +60,16 @@ function stringToMorse(string) {
 // Convert to Morsenary
 function stringToMorsenary(string) {
     let morsenarySetting = document.getElementById("morsenarySetting").value;
-    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g,"").replaceAll("0",".").replaceAll("1","-") :
-                                        stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
+    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '-' : '.')) :
+    stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '.' : '-'));
 }
+
 
 // Decode Morsenary to String
 function morsenaryToString(string) {
     if(/^[ /.-]*$/.test(string)) {
         let morsenarySetting = document.getElementById("morsenarySetting").value;
-        string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
+        string = morsenarySetting === "default" ? string.replace(/[.-]/g, (match) => (match === '.' ? '0' : '1')) : string.replace(/[.-]/g, (match) => (match === '.' ? '1' : '0'));
         return binaryToString(splitString(string, 8));
     } else {
        throw Error("Morsenary contains invalid characters");
