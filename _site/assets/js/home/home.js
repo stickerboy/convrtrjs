@@ -46,7 +46,7 @@ function morseToString(string) {
 // Convert to Morse
 function stringToMorse(string) {
     return string
-            .toUpperCase()
+            .toLocaleUpperCase()
             .split(" ")
             .map(word => word
                         .split("") // get character code,

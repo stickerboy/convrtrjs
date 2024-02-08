@@ -25,10 +25,10 @@ function isLetter(string) {
 
 // Check is character/string is uppercase or lowecase
 function isUpperCase(string) {
-    if (string === string.toUpperCase()) {
+    if (string === string.toLocaleUpperCase()) {
         return true;
     }
-    if (string === string.toLowerCase()) {
+    if (string === string.toLocaleLowerCase()) {
         return false;
     }
 }
