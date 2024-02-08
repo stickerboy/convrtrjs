@@ -1,17 +1,23 @@
 // Decode Binary
+function isValidBinaryLength(string) {
+    return string.length % 8 === 0;
+}
+
 function binaryToString(string) {
-    let stringReplacement = string.replace(/[\D2-9]/g,""); // Strip everything but 1s and 0s
-    string = string.replace(/[^w\s10]/g); // Same, but preserve spaces
-    // Probably better ways to handle this, but make sure the string is divible by 8
-    // If it's not, it's probably an incomplete binary string
-    if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
-        return String.fromCharCode(
-            ...string.split(" ").map(bin => parseInt(bin, 2))
-        );
+    if(isValidBinaryLength(string)) {
+        string = string.replace(/[^10\s]/g, "");
+
+        let charCodes = string.split(" ").map(bin => {
+            bin = bin.padStart(8, "0");
+            return parseInt(bin, 2);
+        });
+
+        return String.fromCharCode(...charCodes);
     } else {
         throw Error("Not a valid Binary string");
     }
 }
+
 
 // Decode Base64
 function base64ToString(string) {
