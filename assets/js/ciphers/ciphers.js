@@ -63,9 +63,9 @@ function vignereEncrypt(string, key) {
         const c = string.charAt(i);
         if (isLetter(c)) {
             if (isUpperCase(c)) {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
+                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
             } else {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
+                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
             }
         } else {
             result += c;
@@ -83,9 +83,9 @@ function vignereDecrypt(string, key) {
         const c = string.charAt(i);
         if (isLetter(c)) {
             if (isUpperCase(c)) {
-                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toUpperCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toLocaleUpperCase().charCodeAt(j))) % 26);
             } else {
-                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLowerCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLocaleLowerCase().charCodeAt(j))) % 26);
             }
         } else {
             result += c;

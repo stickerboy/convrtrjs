@@ -1,6 +1,6 @@
 // Remove spaces
 function stripSpaces(string) {
-    return string.replace(/ /gi, "");
+    return string.replace(/ /g, "");
 }
 
 // Uppercase string
@@ -21,7 +21,7 @@ function numbersOnly(string, preserveSpaces) {
 
 // Letters only
 function lettersOnly(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^a-z ]/gi : /[^a-z]/gi;
+    let regex = preserveSpaces === true ? /[^A-Za-z ]/g : /[^A-Za-z]/g;
     return string.replace(regex, "");
 }
 
@@ -39,13 +39,13 @@ function lettersOnlyLow(string, preserveSpaces) {
 
 // Remove special characters
 function stripSpecialChars(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^a-z0-9 ]/gi : /[^a-z0-9]/gi;
+    let regex = preserveSpaces === true ? /[^0-9A-Za-z ]/g : /[^0-9A-Za-z]/g;
     return string.replace(regex, "");
 }
 
 // Remove all letters
 function stripLetters(string) {
-    return string.replace(/[a-z]/gi, "");
+    return string.replace(/[A-Za-z]/g, "");
 }
 
 // Remove all numbers
@@ -55,18 +55,18 @@ function stripNumbers(string) {
 
 // Special characters only
 function specialCharsOnly(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[a-z0-9]/gi : /[a-z0-9 ]/gi;
+    let regex = preserveSpaces === true ? /[0-9A-Za-z]/g : /[0-9A-Za-z ]/g;
     return string.replace(regex, "");
 }
 
 // URL encode
 function urlEncode(string) {
-    return encodeURIComponent(string).replace(/%20/gi, "+");
+    return encodeURIComponent(string).replace(/%20/g, "+");
 }
 
 // URL decode
 function urlDecode(string) {
-    return decodeURIComponent(string).replace(/\+/gi, " ");
+    return decodeURIComponent(string).replace(/\+/g, " ");
 }
 
 // Convert letters to their alphabet number: A = 1, B = 2, Z = 26

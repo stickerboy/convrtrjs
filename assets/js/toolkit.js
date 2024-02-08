@@ -25,10 +25,10 @@ function isLetter(string) {
 
 // Check is character/string is uppercase or lowecase
 function isUpperCase(string) {
-    if (string === string.toUpperCase()) {
+    if (string === string.toLocaleUpperCase()) {
         return true;
     }
-    if (string === string.toLowerCase()) {
+    if (string === string.toLocaleLowerCase()) {
         return false;
     }
 }
@@ -69,18 +69,23 @@ function stringToHex(string, delimiter) { // UTF-8
 
 // Decode Hex to string
 // https://stackoverflow.com/a/60505243/3172872
-function hexToString(string) {
-    try {
-        return decodeURIComponent(
-            string.replace(/\s|-|:|\.|\!|,|(0x)/g, "") // remove spaces
-            .replace(/[0-9a-f]{2}/g, "%$&") // add "%" before each 2 characters
-        );
-    } catch (e) {
-        throw Error("Hexadecimal is not valid");
+function hexToString(string, delimiter) {
+    let validHex = /[0-9A-Fa-f]+$/g;
+
+    if (validHex.test(string)) {
+        let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
+        const hex = Array.from(string.trim().split(hexDelimiter));
+        const len = hex.length;
+        let hexArray = [];
+
+        for (let i = 0; i < len; i++) {
+            hexArray.push(String.fromCharCode(parseInt(hex[i], 16)));
+        }
+        return hexArray.join("");
+    } else {
+        throw Error("Hexadecimal contains invalid characters");
     }
 }
-// Previous method: https://stackoverflow.com/a/69420340/3172872
-// return decodeURIComponent("%" + string.replace(/ /g, "").match(/.{1,2}/g).join("%"));
 
 // Convert to Base64
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
