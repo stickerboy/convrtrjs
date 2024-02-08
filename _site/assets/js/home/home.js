@@ -29,6 +29,15 @@ function base64ToString(string) {
     } catch (e) {
         throw Error("Not a valid Base64 string");
     }
+
+    // try {
+    //     const decodedString = atob(base64String);
+    //     const utf8String = decodeURIComponent(encodeURIComponent(decodedString));
+    //     return utf8String;
+    // } catch (error) {
+    //     console.error("Error decoding Base64 string:", error);
+    //     return null;
+    // }
 }
 
 // Morse code to String
