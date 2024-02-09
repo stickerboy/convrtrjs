@@ -22,22 +22,14 @@ function binaryToString(string) {
 // Decode Base64
 function base64ToString(string) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
+    // https://stackoverflow.com/a/30106551/3172872
     try {
         return decodeURIComponent(atob(string).split("").map(function(c) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(""));
     } catch (e) {
-        throw Error("Not a valid Base64 string");
+        throw new Error("Not a valid Base64 string");
     }
-
-    // try {
-    //     const decodedString = atob(base64String);
-    //     const utf8String = decodeURIComponent(encodeURIComponent(decodedString));
-    //     return utf8String;
-    // } catch (error) {
-    //     console.error("Error decoding Base64 string:", error);
-    //     return null;
-    // }
 }
 
 // Morse code to String
