@@ -1,7 +1,6 @@
 const alphabet	= " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz";
 const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-const validHex = /[0-9A-Fa-f]+$/g;
 
 // Morse map
 const morseTextDict = {  
@@ -71,6 +70,8 @@ function stringToHex(string, delimiter) { // UTF-8
 // Decode Hex to string
 // https://stackoverflow.com/a/60505243/3172872
 function hexToString(string, delimiter) {
+    const validHex = /[0-9A-Fa-f]+$/g;
+
     if (validHex.test(string)) {
         const hex = Array.from(string.trim().split(delimiter));
         const len = hex.length;
