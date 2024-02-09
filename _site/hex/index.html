@@ -290,19 +290,19 @@
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <select id="hexDelimiter" class="form-select w-auto" aria-label="Change Hexadecimal delimiter">
-                                        <option value=" " selected="">Space</option>
-                                        <option value="-">Hyphen</option>
-                                        <option value=":">Colon</option>
-                                        <option value=",">Comma</option>
-                                        <option value="\x">Slash x (\x)</option>
-                                        <option value="0x">Zero x (0x)</option>
-                                    </select>
+                                    <select class="form-select w-auto hex-delimiter" aria-label="Change Hexadecimal delimiter">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x (\x)</option>
+    <option value="0x">Zero x (0x)</option>
+</select>
                                     <div class="btn-group ms-auto">
-                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                                    </div>
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -356,12 +356,20 @@
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            <select class="form-select w-auto hex-delimiter" aria-label="Change Hexadecimal delimiter">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x (\x)</option>
+    <option value="0x">Zero x (0x)</option>
+</select>
                             <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                         </div>
                         <hr />
                         <div id="reverseHexResults" class="data-to-copy active"></div>
