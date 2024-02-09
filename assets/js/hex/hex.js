@@ -1,7 +1,7 @@
 // Shift Hex left or right
 // Returns: Decimal, space delimited
 function shiftHexString(string, shiftValue, delimiter) {
-    const validHex = /[0-9A-Fa-f]+$/g;
+    
     if(validHex.test(string)) {
         return hexToString(string, delimiter).split("").map(c => 
             (ord(c) + parseInt(shiftValue)).toString(16)
@@ -21,14 +21,12 @@ function reverseHex(string, delimiter) {
 
 // Reverse Hex nibbles
 // Reverses the position of each Hex nibble: 74 65 73 74 becomes 74 73 65 74
-function reverseHexNibbles(string) {
-    const nibbles = [];
-    const strLength = string.length;
-    for (let i = 0; i < strLength; i += 2) {
-        const nibble = parseInt(string.substr(i, 2), 16);
-        nibbles.push(nibble);
+function reverseHexNibbles(string, delimiter) {
+    if(validHex.test(string)) {
+        return string.split(delimiter).reverse().join(delimiter);
+    } else {
+        throw new Error("Hexadecimal contains invalid characters");
     }
-    return nibbles.reverse().map(nibble => nibble.toString(16)).join("");
 }
 
 
