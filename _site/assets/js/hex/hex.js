@@ -1,7 +1,7 @@
 // Shift Hex left or right
 // Returns: Decimal, space delimited
 function shiftHexString(string, shiftValue, delimiter) {
-    let validHex = /[0-9A-Fa-f]+$/g;
+    const validHex = /[0-9A-Fa-f]+$/g;
     if(validHex.test(string)) {
         return hexToString(string, delimiter).split("").map(c => 
             (ord(c) + parseInt(shiftValue)).toString(16)
@@ -11,12 +11,26 @@ function shiftHexString(string, shiftValue, delimiter) {
     }
 }
 
-// Reverse Hex nibbles
+// Reverse Hex
+// Swaps the order of each hex nibble: 74 65 73 74 [test] becomes 47 56 37 47
 function reverseHex(string) {
     return stringToHex(hexToString(string), " ").split(" ").map(c => 
             reverseString(c)
            ).join(" ");
 }
+
+// Reverse Hex nibbles
+// Reverses the position of each Hex nibble: 74 65 73 74 becomes 74 73 65 74
+function reverseHexNibbles(string) {
+    const nibbles = [];
+    const strLength = string.length;
+    for (let i = 0; i < strLength; i += 2) {
+        const nibble = parseInt(string.substr(i, 2), 16);
+        nibbles.push(nibble);
+    }
+    return nibbles.reverse().map(nibble => nibble.toString(16)).join("");
+}
+
 
 // Shift Hex
 const shiftButton = document.getElementById("shiftDecode");
