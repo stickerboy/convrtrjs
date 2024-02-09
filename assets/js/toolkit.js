@@ -58,13 +58,13 @@ function stringToBinary(string) {
 // Convert to Hex
 // https://stackoverflow.com/a/69420340/3172872
 function stringToHex(string, delimiter) { // UTF-8
-    let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
+    console.log(delimiter);
     let returnValue = Array.from(string).map(c => 
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16).padStart(2, '0') : 
         encodeURIComponent(c).replace(/\%/g,"").toLowerCase()
-    ).join(`${hexDelimiter}`);
+    ).join(`${delimiter}`);
 
-    return (hexDelimiter === "\\x" || hexDelimiter === "0x") ? hexDelimiter + returnValue : returnValue;
+    return (delimiter === "\\x" || delimiter === "0x") ? delimiter + returnValue : returnValue;
 }
 
 // Decode Hex to string
@@ -73,8 +73,7 @@ function hexToString(string, delimiter) {
     let validHex = /[0-9A-Fa-f]+$/g;
 
     if (validHex.test(string)) {
-        let hexDelimiter = delimiter ? delimiter : document.getElementById("hexDelimiter").value;
-        const hex = Array.from(string.trim().split(hexDelimiter));
+        const hex = Array.from(string.trim().split(delimiter));
         const len = hex.length;
         let hexArray = [];
 

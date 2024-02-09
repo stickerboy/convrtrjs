@@ -13,10 +13,10 @@ function shiftHexString(string, shiftValue, delimiter) {
 
 // Reverse Hex
 // Swaps the order of each hex nibble: 74 65 73 74 [test] becomes 47 56 37 47
-function reverseHex(string) {
-    return stringToHex(hexToString(string), " ").split(" ").map(c => 
-            reverseString(c)
-           ).join(" ");
+function reverseHex(string, delimiter) {
+    return string.split(delimiter).map(c => 
+              reverseString(c)
+           ).join(delimiter);
 }
 
 // Reverse Hex nibbles
@@ -36,8 +36,6 @@ function reverseHexNibbles(string) {
 const shiftButton = document.getElementById("shiftDecode");
 shiftButton.addEventListener("click", function() {
     const shiftString = document.getElementById("shiftText");
-    let shiftValue = document.getElementById("shiftValue");
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
 
     if(!emptyContainerCheck(shiftString.value, shiftString)) {
         document.getElementById("text-tab-pane").textContent = "";
@@ -61,6 +59,8 @@ shiftButton.addEventListener("click", function() {
         return;
     }
 
+    let shiftValue = document.getElementById("shiftValue");
+    let hexDelimiter = document.getElementById("shiftHexDelimiter").value;
     document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter), hexDelimiter);
     document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter), hexDelimiter));
     document.getElementById("hex-tab-pane").textContent = shiftHexString(shiftString.value.trim(), shiftValue.value, hexDelimiter);
@@ -80,5 +80,6 @@ reverseHexButton.addEventListener("click", function() {
         return false;
     }
 
-    document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value);
+    let hexDelimiter = document.getElementById("shiftHexDelimiter").value;
+    document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value, hexDelimiter);
 });

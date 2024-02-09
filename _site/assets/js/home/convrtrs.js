@@ -1,4 +1,6 @@
 // Make it so
+let hexDelimiter = document.getElementById("hexDelimiter").value;
+
 document.getElementById("encode").addEventListener("click", function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -11,7 +13,7 @@ document.getElementById("encode").addEventListener("click", function() {
     }
 
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(data);
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(data);
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(data, hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(data);
     document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(data);
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
@@ -41,7 +43,7 @@ document.getElementById("binaryDecode").addEventListener("click", function() {
         return;
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = binaryToString(data);
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(binaryToString(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(binaryToString(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(binaryToString(data));
     document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(binaryToString(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
@@ -65,19 +67,19 @@ document.getElementById("hexDecode").addEventListener("click", function() {
     }
 
     try {
-        hexToString(data);
+        hexToString(data, hexDelimiter);
     } catch (e) {
         showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
         return;
     }
-    document.getElementById("convrtr-text").querySelector("textarea").value = hexToString(data);
-    document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(hexToString(data));
-    document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(hexToString(data));
-    document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(hexToString(data));
+    document.getElementById("convrtr-text").querySelector("textarea").value = hexToString(data, hexDelimiter);
+    document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(hexToString(data), hexDelimiter);
+    document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(hexToString(data), hexDelimiter);
+    document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(hexToString(data), hexDelimiter);
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-rot13").querySelector("textarea").value = rot13(data);
-    document.getElementById("convrtr-morse").querySelector("textarea").value = stringToMorse(hexToString(data));
-    document.getElementById("convrtr-morsenary").querySelector("textarea").value = stringToMorsenary(hexToString(data));
+    document.getElementById("convrtr-morse").querySelector("textarea").value = stringToMorse(hexToString(data), hexDelimiter);
+    document.getElementById("convrtr-morsenary").querySelector("textarea").value = stringToMorsenary(hexToString(data), hexDelimiter);
 });
 
 
@@ -102,7 +104,7 @@ document.getElementById("b64Decode").addEventListener("click", function() {
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = base64ToString(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(base64ToString(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(base64ToString(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(base64ToString(data), hexDelimiter);
     document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(base64ToString(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-rot13").querySelector("textarea").value = "";
@@ -132,7 +134,7 @@ document.getElementById("decDecode").addEventListener("click", function() {
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = decimalToString(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(decimalToString(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(decimalToString(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(decimalToString(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(decimalToString(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-rot13").querySelector("textarea").value = rot13(data);
@@ -160,9 +162,12 @@ document.getElementById("revDecode").addEventListener("click", function() {
         showToast("Error", "An error occured trying to decode the data.", "danger");
         return;
     }
+
+    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    console.log("Delimiter", hexDelimiter);
     document.getElementById("convrtr-text").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = reverseString(stringToBinary(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = reverseString(stringToHex(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = reverseString(stringToHex(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = reverseString(stringToBase64(data));
     document.getElementById("convrtr-decimal").querySelector("textarea").value = reverseString(stringToDecimal(data));
     document.getElementById("convrtr-rot13").querySelector("textarea").value = reverseString(rot13(data));
@@ -192,7 +197,7 @@ document.getElementById("rot13Decode").addEventListener("click", function() {
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = rot13(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(rot13(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(rot13(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(rot13(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(rot13(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-decimal").querySelector("textarea").value = stringToDecimal(rot13(data));
@@ -222,7 +227,7 @@ document.getElementById("morseDecode").addEventListener("click", function() {
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = morseToString(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(morseToString(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(morseToString(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(morseToString(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(morseToString(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-rot13").querySelector("textarea").value = rot13(morseToString(data));
@@ -252,7 +257,7 @@ document.getElementById("mrsnryDecode").addEventListener("click", function() {
     }
     document.getElementById("convrtr-text").querySelector("textarea").value = morsenaryToString(data);
     document.getElementById("convrtr-binary").querySelector("textarea").value = stringToBinary(morsenaryToString(data));
-    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(morsenaryToString(data));
+    document.getElementById("convrtr-hex").querySelector("textarea").value = stringToHex(morsenaryToString(data), hexDelimiter);
     document.getElementById("convrtr-base64").querySelector("textarea").value = stringToBase64(morsenaryToString(data));
     document.getElementById("convrtr-reverse").querySelector("textarea").value = reverseString(data);
     document.getElementById("convrtr-rot13").querySelector("textarea").value = "";

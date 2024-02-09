@@ -158,17 +158,18 @@ function styledArrayFrequencies(data) {
     return result;
 }
 
-// Re-code Hex on delimeter change
+// Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
+    console.log(hexData);
     if(hexData === "") {
         return;
     }
     document.getElementById("encode").click();
 });
 
-// Re-code Morsenary on delimeter change
+// Re-code Morsenary on delimiter change
 let morsenarySelect = document.getElementById("morsenarySetting");
 morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;
