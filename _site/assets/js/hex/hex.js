@@ -7,7 +7,7 @@ function shiftHexString(string, shiftValue, delimiter) {
             (ord(c) + parseInt(shiftValue)).toString(16)
         ).join(delimiter);
     } else {
-        throw Error("Hexadecimal contains invalid characters");
+        throw new Error("Hexadecimal contains invalid characters");
     }
 }
 

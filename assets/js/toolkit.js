@@ -83,7 +83,7 @@ function hexToString(string, delimiter) {
         }
         return hexArray.join("");
     } else {
-        throw Error("Hexadecimal contains invalid characters");
+        throw new Error("Hexadecimal contains invalid characters");
     }
 }
 

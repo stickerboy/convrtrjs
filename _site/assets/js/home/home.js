@@ -14,7 +14,7 @@ function binaryToString(string) {
 
         return String.fromCharCode(...charCodes);
     } else {
-        throw Error("Not a valid Binary string");
+        throw new Error("Not a valid Binary string");
     }
 }
 
@@ -54,7 +54,7 @@ function morseToString(string) {
             .join(" ")
             .trim();
     } else {
-        throw Error("Morse code contains invalid characters");
+        throw new Error("Morse code contains invalid characters");
     }
 }
 
@@ -87,7 +87,7 @@ function morsenaryToString(string) {
         string = morsenarySetting === "default" ? string.replace(/[.-]/g, (match) => (match === '.' ? '0' : '1')) : string.replace(/[.-]/g, (match) => (match === '.' ? '1' : '0'));
         return binaryToString(splitString(string, 8));
     } else {
-       throw Error("Morsenary contains invalid characters");
+       throw new Error("Morsenary contains invalid characters");
     }
 }
 
