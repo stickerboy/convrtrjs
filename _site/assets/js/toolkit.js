@@ -99,8 +99,7 @@ function hexToString(string, delimiter) {
 // https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
 function stringToBase64(string) {
     // first we use encodeURIComponent to get percent-encoded UTF-8,
-    // then we convert the percent encodings into raw bytes which
-    // can be fed into btoa.
+    // then we convert the percent encodings into raw bytes which can be fed into btoa.
     return btoa(encodeURIComponent(string).replace(/%([0-9A-F]{2})/g,
         function toSolidBytes(match, p1) {
             return String.fromCharCode("0x" + p1);
@@ -176,9 +175,7 @@ function hex2Bin(string) {
 // Convert Hex to Decimal
 // Returns: Decimal, space delimited
 function hexToDecimal(string) {
-    return string.split(" ").map(c =>
-        hex2Dec(c)
-    ).join(" ");
+    return string.split(" ").map(c => hex2Dec(c)).join(" ");
 }
 
 // Convert individual Hex char to Decimal
