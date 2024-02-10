@@ -25,12 +25,11 @@ function isLetter(string) {
 
 // Check is character/string is uppercase or lowecase
 function isUpperCase(string) {
-    if (string === string.toLocaleUpperCase()) {
-        return true;
-    }
-    if (string === string.toLocaleLowerCase()) {
+    if (typeof string !== 'string' || string.length === 0) {
+        // Handle non-string or empty input
         return false;
     }
+    return string === string.toLocaleUpperCase();
 }
 
 // Reverse String
