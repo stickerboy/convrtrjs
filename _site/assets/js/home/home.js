@@ -162,7 +162,6 @@ function styledArrayFrequencies(data) {
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
-    console.log(hexData);
     if(hexData === "") {
         return;
     }

@@ -55,10 +55,15 @@ function stringToBinary(string) {
     return Array.from(string).map(c => c.charCodeAt().toString(2).padStart(8,0)).join(" ");
 }
 
+function isValidHex(string, delimiter) {
+    const validHex = /^[0-9A-Fa-f]+$/g;
+    let hexTest = string.replaceAll(delimiter, "");
+    return validHex.test(hexTest);
+}
+
 // Convert to Hex
 // https://stackoverflow.com/a/69420340/3172872
 function stringToHex(string, delimiter) { // UTF-8
-    console.log(delimiter);
     let returnValue = Array.from(string).map(c => 
         c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16).padStart(2, '0') : 
         encodeURIComponent(c).replace(/\%/g,"").toLowerCase()
@@ -70,19 +75,24 @@ function stringToHex(string, delimiter) { // UTF-8
 // Decode Hex to string
 // https://stackoverflow.com/a/60505243/3172872
 function hexToString(string, delimiter) {
-    const validHex = /[0-9A-Fa-f]+$/g;
-
-    if (validHex.test(string)) {
-        const hex = Array.from(string.trim().split(delimiter));
-        const len = hex.length;
+    if (isValidHex(string, delimiter)) {
         let hexArray = [];
-
-        for (let i = 0; i < len; i++) {
-            hexArray.push(String.fromCharCode(parseInt(hex[i], 16)));
+        const len = string.length;
+        if(delimiter === "") {
+            for (let i = 0; i < len; i += 2) {
+                const chunk = string.slice(i, i + 2);
+                hexArray.push(String.fromCharCode(parseInt(chunk, 16)));
+            }
+        } else {
+            const hex = Array.from(string.trim().split(delimiter));
+            const len = hex.length;
+            for (let i = 0; i < len; i++) {
+                hexArray.push(String.fromCharCode(parseInt(hex[i], 16)));
+            }
         }
         return hexArray.join("");
     } else {
-        throw new Error("Hexadecimal contains invalid characters");
+        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
 }
 

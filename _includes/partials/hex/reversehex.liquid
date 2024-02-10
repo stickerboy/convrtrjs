@@ -14,7 +14,10 @@
             </div>
             <hr>
             <p class="px-2">
-                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+                Unlike reversing the entire string, this reverses each individual hex byte. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces.
             </p>
         </div>
         <div class="collapse" id="reverseHexCollapse">
