@@ -1,3 +1,4 @@
+{% assign hexDelimiter = "reverseHexDelimiter" %}
 <section id="reverseHex" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -13,7 +14,10 @@
             </div>
             <hr>
             <p class="px-2">
-                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+                Unlike reversing the entire string, this reverses each individual hex byte. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces.
             </p>
         </div>
         <div class="collapse" id="reverseHexCollapse">
@@ -25,12 +29,9 @@
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
-                            <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
+                            <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            {% include "components/delimiter" %}
+                            {% include "components/select-copy-dl" %}
                         </div>
                         <hr />
                         <div id="reverseHexResults" class="data-to-copy active"></div>

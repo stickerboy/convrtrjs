@@ -1,3 +1,4 @@
+{% assign hexDelimiter = "shiftHexDelimiter" %}
 <section id="shift" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -14,7 +15,9 @@
             <hr>
             <p class="px-2">
                 Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
-                Supports any delimiter is available in the delimiter dropdown, the default is always a space. 
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces.
             </p>
         </div>
         <div class="collapse show" id="shiftHexCollapse">
@@ -35,19 +38,8 @@
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <select id="hexDelimiter" class="form-select w-auto" aria-label="Change Hexadecimal delimiter">
-                                        <option value=" " selected="">Space</option>
-                                        <option value="-">Hyphen</option>
-                                        <option value=":">Colon</option>
-                                        <option value=",">Comma</option>
-                                        <option value="\x">Slash x (\x)</option>
-                                        <option value="0x">Zero x (0x)</option>
-                                    </select>
-                                    <div class="btn-group ms-auto">
-                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                                    </div>
+                                    {% include "components/delimiter" %}
+                                    {% include "components/select-copy-dl" %}
                                 </div>
                             </div>
                         </div>

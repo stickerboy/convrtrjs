@@ -1,27 +1,34 @@
 // Decode Binary
+function isValidBinaryLength(string) {
+    return string.length % 8 === 0;
+}
+
 function binaryToString(string) {
-    let stringReplacement = string.replace(/[\D2-9]/g,""); // Strip everything but 1s and 0s
-    string = string.replace(/[^w\s10]/g); // Same, but preserve spaces
-    // Probably better ways to handle this, but make sure the string is divible by 8
-    // If it's not, it's probably an incomplete binary string
-    if((stringReplacement.length > 0 && stringReplacement.length % 8) === 0) {
-        return String.fromCharCode(
-            ...string.split(" ").map(bin => parseInt(bin, 2))
-        );
+    if(isValidBinaryLength(string)) {
+        string = string.replace(/[^10\s]/g, "");
+
+        let charCodes = string.split(" ").map(bin => {
+            bin = bin.padStart(8, "0");
+            return parseInt(bin, 2);
+        });
+
+        return String.fromCharCode(...charCodes);
     } else {
-        throw Error("Not a valid Binary string");
+        throw new Error("Not a valid Binary string");
     }
 }
+
 
 // Decode Base64
 function base64ToString(string) {
     // Going backwards: from bytestream, to percent-encoding, to original string.
+    // https://stackoverflow.com/a/30106551/3172872
     try {
         return decodeURIComponent(atob(string).split("").map(function(c) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         }).join(""));
     } catch (e) {
-        throw Error("Not a valid Base64 string");
+        throw new Error("Not a valid Base64 string");
     }
 }
 
@@ -39,7 +46,7 @@ function morseToString(string) {
             .join(" ")
             .trim();
     } else {
-        throw Error("Morse code contains invalid characters");
+        throw new Error("Morse code contains invalid characters");
     }
 }
 
@@ -60,18 +67,19 @@ function stringToMorse(string) {
 // Convert to Morsenary
 function stringToMorsenary(string) {
     let morsenarySetting = document.getElementById("morsenarySetting").value;
-    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g,"").replaceAll("0",".").replaceAll("1","-") :
-                                        stringToBinary(string).replace(/ /g,"").replaceAll("1",".").replaceAll("0","-");
+    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '-' : '.')) :
+    stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '.' : '-'));
 }
+
 
 // Decode Morsenary to String
 function morsenaryToString(string) {
     if(/^[ /.-]*$/.test(string)) {
         let morsenarySetting = document.getElementById("morsenarySetting").value;
-        string = morsenarySetting === "default" ? string.replaceAll(".","0").replaceAll("-","1") : string.replaceAll(".","1").replaceAll("-","0");
+        string = morsenarySetting === "default" ? string.replace(/[.-]/g, (match) => (match === '.' ? '0' : '1')) : string.replace(/[.-]/g, (match) => (match === '.' ? '1' : '0'));
         return binaryToString(splitString(string, 8));
     } else {
-       throw Error("Morsenary contains invalid characters");
+       throw new Error("Morsenary contains invalid characters");
     }
 }
 
@@ -150,7 +158,7 @@ function styledArrayFrequencies(data) {
     return result;
 }
 
-// Re-code Hex on delimeter change
+// Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
@@ -160,7 +168,7 @@ hexDelimiterSelect.addEventListener("change", function() {
     document.getElementById("encode").click();
 });
 
-// Re-code Morsenary on delimeter change
+// Re-code Morsenary on delimiter change
 let morsenarySelect = document.getElementById("morsenarySetting");
 morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;

@@ -253,7 +253,8 @@
         </div>
     </div>
 </section>
-            <section id="shift" class="section">
+            
+<section id="shift" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <div class="d-flex justify-content-between section-toggle"
@@ -269,7 +270,9 @@
             <hr>
             <p class="px-2">
                 Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
-                Supports any delimiter is available in the delimiter dropdown, the default is always a space. 
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces.
             </p>
         </div>
         <div class="collapse show" id="shiftHexCollapse">
@@ -290,19 +293,20 @@
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <select id="hexDelimiter" class="form-select w-auto" aria-label="Change Hexadecimal delimiter">
-                                        <option value=" " selected="">Space</option>
-                                        <option value="-">Hyphen</option>
-                                        <option value=":">Colon</option>
-                                        <option value=",">Comma</option>
-                                        <option value="\x">Slash x (\x)</option>
-                                        <option value="0x">Zero x (0x)</option>
-                                    </select>
+                                    <select class="form-select w-auto hex-delimiter" aria-label="Change Hexadecimal delimiter" id="shiftHexDelimiter">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x (\x)</option>
+    <option value="0x">Zero x (0x)</option>
+    <option value="">No delimiter</option>
+</select>
                                     <div class="btn-group ms-auto">
-                                        <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                        <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                                    </div>
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                                 </div>
                             </div>
                         </div>
@@ -329,7 +333,8 @@
         </div>
     </div>
 </section>
-            <section id="reverseHex" class="section">
+            
+<section id="reverseHex" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <div class="d-flex justify-content-between section-toggle"
@@ -344,7 +349,10 @@
             </div>
             <hr>
             <p class="px-2">
-                Unlike reversing the entire string, this reverses each individual hex string. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+                Unlike reversing the entire string, this reverses each individual hex byte. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">74 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 56 37 47</code>.
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces.
             </p>
         </div>
         <div class="collapse" id="reverseHexCollapse">
@@ -356,12 +364,21 @@
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                            <select class="form-select w-auto hex-delimiter" aria-label="Change Hexadecimal delimiter" id="reverseHexDelimiter">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x (\x)</option>
+    <option value="0x">Zero x (0x)</option>
+    <option value="">No delimiter</option>
+</select>
                             <div class="btn-group ms-auto">
-                                <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-                                <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-                            </div>
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
                         </div>
                         <hr />
                         <div id="reverseHexResults" class="data-to-copy active"></div>
@@ -389,8 +406,8 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <abbr title="Release version: v1.10.5" class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
-                <small>v1.10.5</small>
+            <abbr title="Release version: v1.10.6" class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-decoration-none">
+                <small>v1.10.6</small>
             </abbr>
         </div>
     </div>

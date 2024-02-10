@@ -1,3 +1,4 @@
+{% assign hexDelimiter = "hexDelimiter" %}
 <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
@@ -58,14 +59,7 @@
                                     </label>
                                 </span>
                                 {% if tool.id == "hex" %}
-                                <select id="hexDelimiter" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Hexadecimal delimiter">
-                                    <option value=" " selected="">Space</option>
-                                    <option value="-">Hyphen</option>
-                                    <option value=":">Colon</option>
-                                    <option value=",">Comma</option>
-                                    <option value="\x">Slash x (\x)</option>
-                                    <option value="0x">Zero x (0x)</option>
-                                </select>
+                                {% include "components/delimiter" %}
                                 {% endif %}
                                 {% if tool.id == "morsenary" %}
                                 <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
