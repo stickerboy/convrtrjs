@@ -75,6 +75,7 @@ const reverseHexButton = document.getElementById("reverseHexDecode");
 reverseHexButton.addEventListener("click", function() {
     const reverseHexString = document.getElementById("reverseHexText");
     let reverseHexDelimiter = document.getElementById("reverseHexDelimiter").value;
+    let reverseNibbles = document.getElementById("reverseNibbles");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
         return false;
@@ -84,10 +85,21 @@ reverseHexButton.addEventListener("click", function() {
     }
 
     try {
-        reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
+        if(reverseNibbles.checked) {
+            reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter)
+        } else {
+            reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
+        } 
     } catch (e) {
         showToast("Error", `An error occured trying to reverse the hex string: ${e.message}`, "danger");
         return;
     }
-    document.getElementById("reverseHexResults").textContent = reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
+
+    let revHexContent;
+    if(reverseNibbles.checked) {
+        revHexContent = reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter)
+    } else {
+        revHexContent = reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
+    } 
+    document.getElementById("reverseHexResults").textContent = revHexContent;
 });
