@@ -1,0 +1,17 @@
+---
+layout: layout.liquid
+title: For everlost and Grollow!
+page-id: misc
+---
+<main class="mt-5 ms-auto me-auto mw"
+        data-bs-spy="scroll" 
+        data-bs-target="#navbarText" 
+        data-bs-smooth-scroll="true"
+        data-bs-threshold="0,1"
+        data-bs-root-margin="10% 0% -90%">
+            {% render "partials/misc/home" %}
+            {% render "partials/misc/elements" %}
+        </main>
+    <script>
+        const ELEMENTS = {{ elements | json }};
+    </script>
