@@ -65,5 +65,15 @@
                 "label": "File headers"
             }
         ]
+    },
+    {
+        "id": "misc",
+        "label": "Misc",
+        "short-label": "Misc",
+        "children":[{
+                "id": "elements",
+                "label": "Periodic elements"
+            }
+        ]
     }
 ]
