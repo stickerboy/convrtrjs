@@ -161,29 +161,6 @@ function decimalToString(string) {
     return string.trim().split(" ").map(c => String.fromCharCode(c)).join("");
 }
 
-// Convert Hex String to Binary
-// https://newbedev.com/convert-hex-to-binary-in-javascript
-function hexToBinary(string) {
-    return string.split(" ").map(c => hex2Bin(c)).join("");
-}
-
-// Convert individual Hex char to Binary
-function hex2Bin(string) {
-    return parseInt(string, 16).toString(2).padStart(8, "0");
-}
-
-// Convert Hex to Decimal
-// Returns: Decimal, space delimited
-function hexToDecimal(string) {
-    return string.split(" ").map(c => hex2Dec(c)).join(" ");
-}
-
-// Convert individual Hex char to Decimal
-// Returns: Decimal
-function hex2Dec(string) {
-    return ord(hexToString(string));
-}
-
 // Return unique values from an array
 function uniqueArray(string) {
     return [...new Set(string)];
