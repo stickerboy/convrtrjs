@@ -1,8 +1,8 @@
 // Build up a custom alphabet using a key
 // ABCDEFG... → TEST → TESABCDFG...
 function getCustomAlphabet(string) {
-    let stringArr = [...new Set(string.toLowerCase())];
-    let alphaArr = [...new Set(alphabet.trim().toLowerCase().substring(0,26))];
+    let stringArr = [...new Set(string.trim())];
+    let alphaArr = [...new Set(alphabet.trim())];
     return [...new Set(stringArr.concat(alphaArr))].join("");
 }
 
@@ -10,12 +10,13 @@ function getCustomAlphabet(string) {
 // Custom alphabet is built using a user specified text string
 function substituteChars(string, key) {
     const alpha = getCustomAlphabet(key);
-    return string.toLowerCase().split("").map((char) => {
-        if (char >= "a" && char <= "z") {
-            // Get the index of the original letter in the standard alphabet
-            let index = char.charCodeAt(0) - 97;
+    return string.split("").map((char) => {
+         if (char >= "a" && char <= "z" || char >= "A" && char <= "Z") {
             // Return the corresponding letter from the custom alphabet
-            return alpha.charAt(index);
+            // Get the index of the original letter in the standard alphabet
+            let index = char.toLowerCase().charCodeAt(0) - 97;
+            index = index % 26; // handle uppercase characters
+            return matchCase(char, alpha.charAt(index));
         } else {
             // Return the original character
             return char;
