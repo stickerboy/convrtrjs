@@ -1,5 +1,5 @@
 // Co-pilot assisted
-function rot(string, n) {
+function rot(string, n, alpha) {
     if (n == null) {
         // Use ROT-13 by default
         n = -13;
@@ -13,7 +13,7 @@ function rot(string, n) {
         // Decode instead of encode
         n += 26;
     }
-    const ab = alphabet.substring(1);
+    const ab = alpha ? alpha : alphabet.substring(1);
     const length = ab.length;
     let result = "";
 

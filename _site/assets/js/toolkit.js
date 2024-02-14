@@ -32,6 +32,15 @@ function isUpperCase(string) {
     return string === string.toLocaleUpperCase();
 }
 
+function matchCase(string, char) {
+  // If the character is uppercase, return the char in uppercase
+  if (string === string.toUpperCase()) {
+    return char.toUpperCase();
+  }
+  // Otherwise, return the char in lowercase
+  return char.toLowerCase();
+}
+
 // Reverse String
 function reverseString(string) {
     return Array.from(string).reverse().join("");
