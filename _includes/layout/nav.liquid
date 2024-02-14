@@ -1,20 +1,18 @@
 <ul class="navbar-nav me-auto mb-2">
-{% if page-id != "fourohfour" %}
-    {% for link in nav %}
-        <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="{% if page-id ==  link.id %}true{% else %}false{% endif %}">
-                <span class="d-inline-flex ms-1 me-auto">{{ link.label }}</span>
-            </a>
-            {% if link.children %}
-            <ul class="dropdown-menu{% if page-id ==  link.id %} show{% endif %}">
-                {% for child in link.children %}
-                <li>
-                    <a class="dropdown-item" href="../{% if link.id != 'home'%}{{ link.id }}/{% endif %}#{{ child.id }}">{{ child.label }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-        </li>
-    {% endfor %}
-{% endif %}
+{% for link in nav %}
+    <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="{% if page-id ==  link.id %}true{% else %}false{% endif %}">
+            <span class="d-inline-flex ms-1 me-auto">{{ link.label }}</span>
+        </a>
+        {% if link.children %}
+        <ul class="dropdown-menu{% if page-id ==  link.id %} show{% endif %}">
+            {% for child in link.children %}
+            <li>
+                <a class="dropdown-item" href="../{% if link.id != 'home'%}{{ link.id }}/{% endif %}#{{ child.id }}">{{ child.label }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+{% endfor %}
 </ul>
