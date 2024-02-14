@@ -35,9 +35,9 @@
                         </button>
                     </li>
                 {% endif %}
-                    <li class="nav-item dropdown">
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
                         <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
-                        aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
+                        aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
                         data-current-icon="bi-circle-half">
                             <i class="bi my-1 theme-icon-active bi-circle-half"></i>
                             <span class="d-none ms-2" id="bd-theme-text">Toggle theme</span>
@@ -83,11 +83,11 @@
                 <div class="offcanvas-body">
                     {% include 'layout/nav' %}
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Discord" href="{{ pkg.support }}">
                         <i class="bi bi-discord"></i>
                         <span class="mx-2">Join the Discord</span>
                     </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Github" href="{{ pkg.repository.site }}">
                         <i class="bi bi-github"></i>
                         <span class="mx-2">Convrtr on Github</span>
                     </a>
