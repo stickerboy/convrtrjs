@@ -1,29 +1,16 @@
 <header>
-    <nav id="navbar" class="navbar fixed-top navbar-expand-md navbar-dark bg-convrtr shadow-sm">
+    <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw">
             <a href="{% if data.environment == 'development' %}http://localhost:8088/{% else %}{{ pkg.homepage }}{% endif %}" class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3" title="Home">
                 {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk"></i> {% endif %}{{ pkg.sitename }}
             </a>
-            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
-                <i class="bi bi-discord"></i>
-                <span class="d-none mx-2">Join the Discord</span>
-            </a>
-            <a class="btn btn-md btn-link text-light d-md-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
-                <i class="bi bi-github"></i>
-                <span class="d-none mx-2">Github</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" 
-                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                {% include 'layout/nav' %}
-                <span class="navbar-text text-white mx-0 mx-md-3">
+            <div class="d-flex">
+                <span class="navbar-text text-white mx-0 mx-md-3 d-none d-sm-block">
                     {{ pkg.tagline }}
                 </span>
-                <ul class="navbar-nav mt-2 mt-md-0 mx-0 mx-md-2">
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row">
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Discord support server" 
+                        <a class="btn btn-sm btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="{{ pkg.support }}" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord"></i>
@@ -31,7 +18,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light d-none d-md-block" aria-label="Github code repository" 
+                        <a class="btn btn-sm btn-link text-light" aria-label="Github code repository" 
                             title="Github" href="{{ pkg.repository.site }}" title="Github"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-github"></i>
@@ -44,45 +31,67 @@
                                 aria-label="Clear all data inside textareas" title="Clear data"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-recycle"></i>
-                            <span class="d-md-none mx-2">Clear all data</span>
+                            <span class="d-none mx-2">Clear all data</span>
                         </button>
                     </li>
                 {% endif %}
-                <li class="nav-item dropdown">
-                    <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
-                    aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
-                    data-current-icon="bi-circle-half">
-                    <i class="bi my-1 theme-icon-active bi-circle-half"></i>
-                      <span class="d-md-none ms-2" id="bd-theme-text">Toggle theme</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="bd-theme-text">
-                      <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center" 
-                        data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
-                            <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
-                            Light
-                            <i class="bi ms-auto d-none bi-check2"></i>
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                        aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" title="Toggle theme"
+                        data-current-icon="bi-circle-half">
+                            <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                            <span class="d-none ms-2" id="bd-theme-text">Toggle theme</span>
                         </button>
-                      </li>
-                      <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center" 
-                        data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
-                            <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
-                            Dark
-                            <i class="bi ms-auto d-none bi-check2"></i>
-                        </button>
-                      </li>
-                      <li>
-                        <button type="button" class="dropdown-item d-flex align-items-center active" 
-                        data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
-                            <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
-                            Auto
-                            <i class="bi ms-auto d-none bi-check2"></i>
-                        </button>
-                      </li>
-                    </ul>
-                  </li>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute"" aria-labelledby="bd-theme-text">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center" 
+                                data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
+                                    Light
+                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center" 
+                                data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
+                                    Dark
+                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center active" 
+                                data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
+                                    Auto
+                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navigation" 
+                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end bg-convrtr" id="navigation" tabindex="-1" aria-labelledby="navLabel" data-bs-scroll="true">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title text-light" id="navLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    {% include 'layout/nav' %}
+
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Discord" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Discord" href="{{ pkg.support }}">
+                        <i class="bi bi-discord"></i>
+                        <span class="mx-2">Join the Discord</span>
+                    </a>
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Github" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="Github" href="{{ pkg.repository.site }}">
+                        <i class="bi bi-github"></i>
+                        <span class="mx-2">Convrtr on Github</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>

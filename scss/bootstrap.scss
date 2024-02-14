@@ -42,6 +42,7 @@ $grid-breakpoints: map-merge($grid-breakpoints, $large-grid-breakpoints);
 @import "../node_modules/bootstrap-scss/toasts";
 @import "../node_modules/bootstrap-scss/tooltip";
 @import "../node_modules/bootstrap-scss/popover";
+@import "../node_modules/bootstrap-scss/offcanvas";
 
 
 // Helpers
