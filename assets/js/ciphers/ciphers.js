@@ -100,6 +100,7 @@ function vignereDecrypt(string, key) {
 const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
 const rotNext       = document.getElementById("rotNext");
+const rotKey       = document.getElementById("rotKey");
 
 Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
@@ -121,8 +122,11 @@ Array.from(rotButtons, c => c.addEventListener("click", function() {
         button.classList.remove("active");
     });
     c.classList.add("active");
-
-    document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber));
+    if(rotKey.value.length > 0) {
+        document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber), getCustomAlphabet(rotKey.value));
+    } else {
+        document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber));
+    }
 }));
 
 // ROT - Go backwards
