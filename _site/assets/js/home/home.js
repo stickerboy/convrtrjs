@@ -200,6 +200,9 @@ toolChange.addEventListener("click", function() {
         case "stripspaces":
             document.getElementById("textResults").textContent = stripSpaces(textResults);
             break;
+        case "reverse":
+            document.getElementById("textResults").textContent = reverseString(textResults);
+            break;
         case "uppercase":
             document.getElementById("textResults").textContent = uppercase(textResults);
             break;
@@ -232,6 +235,9 @@ toolChange.addEventListener("click", function() {
             break;
         case "specialcharsonly":
             document.getElementById("textResults").textContent = specialCharsOnly(textResults);
+            break;
+        case "unique":
+            document.getElementById("textResults").textContent = uniqueArray(textResults).join("");
             break;
         case "urlencode":
             document.getElementById("textResults").textContent = urlEncode(textResults);
