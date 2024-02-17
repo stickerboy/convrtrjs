@@ -73,6 +73,9 @@
         "children":[{
                 "id": "elements",
                 "label": "Periodic elements"
+            }, {
+                "id": "forerunner",
+                "label": "Forerunner glyphs"
             }
         ]
     }
