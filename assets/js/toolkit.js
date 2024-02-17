@@ -42,6 +42,15 @@ function matchCase(string, char) {
   return char.toLowerCase();
 }
 
+function getKeyValue(string, array) {
+    for (const pair of array) {
+        if (pair[0] === string) {
+            return pair[1];
+        }
+    }
+    return null;
+}
+
 // Reverse String
 function reverseString(string) {
     return Array.from(string).reverse().join("");
