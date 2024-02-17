@@ -14,6 +14,13 @@
 // Utilities
 @import "../node_modules/bootstrap-scss/utilities/api";
 
+@font-face {
+    font-family: "TerminalGlyphs";
+    font-style: normal;
+    font-weight: normal;
+	font-family:'TerminalGlyphs';src:url('../fonts/spherograms.eot');src:url('../fonts/spherograms.eot?#iefix') format('embedded-opentype'),url('../fonts/spherograms.woff') format('woff'),url('../assets/fonts/spherograms.svg#Spherograms') format('svg');
+}
+
 :root {
     --convrtr-bg-color: rgb(17, 128, 106);
     --bs-bg-success: 17, 128, 106;
@@ -449,4 +456,19 @@ code {
 .was-validated textarea.form-control.ld-warning:invalid, 
 textarea.form-control.is-invalid.ld-warning {
     background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
+}
+
+.forerunner {
+    font-family: 'TerminalGlyphs';
+    font-size: 2rem;
+    letter-spacing: 8px;
+    width: max-content;
+    color: var(--convrtr-base-color);
+}
+.fr-glyph {
+    font-family: 'TerminalGlyphs';
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.75rem;
+    line-height: 1;
 }

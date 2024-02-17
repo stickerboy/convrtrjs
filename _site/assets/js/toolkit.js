@@ -42,6 +42,15 @@ function matchCase(string, char) {
   return char.toLowerCase();
 }
 
+function getKeyValue(string, array) {
+    for (const pair of array) {
+        if (pair[0] === string) {
+            return pair[1];
+        }
+    }
+    return null;
+}
+
 // Reverse String
 function reverseString(string) {
     return Array.from(string).reverse().join("");
@@ -180,4 +189,21 @@ function uniqueArray(string) {
 // Can also pass your own regex for replacements
 function replaceChars(string, toReplace, replacement, caseSensitive) {
     return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
+}
+
+function createImage(width, height, filename, element, string, bgcolor, textcolor) {
+    var canvas = document.createElement("canvas");
+    canvas.width = (width * 1.5) + 10;
+    canvas.height = height * 1.5;
+
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = bgcolor ? bgcolor : 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.font = "4rem 'TerminalGlyphs'";
+    ctx.fillStyle = textcolor ? textcolor : 'black';
+    ctx.fillText(string, 10, 60);
+
+    var url = canvas.toDataURL();
+    element.download = filename;
+    element.href = url;
 }
