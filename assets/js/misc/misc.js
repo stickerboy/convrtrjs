@@ -1,3 +1,6 @@
+// Forerunner
+const fralphabet = " …†‡ˆŠŒŽ‘’“™šœžŸ¡¤¥¦§«¬®¯±²´µº»½¾¿ÀÂÃÅ";
+
 function convertElements(string, sourceProp, targetProp, removeDelimiters) {
     const strings = string.split(/[ ,:;\-]+/);
     const results = [];
