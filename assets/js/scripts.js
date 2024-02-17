@@ -113,7 +113,7 @@ function largeDataWarning(data, container) {
     return true;
 }
 
-function emptyContainerCheck(data, container) {
+function emptyContainerCheck(data, container, error) {
     let allElements = Array.from(document.querySelectorAll(".data-to-copy"));
     for (let element of allElements) {
         element.classList.remove("is-invalid");
@@ -121,7 +121,7 @@ function emptyContainerCheck(data, container) {
 
     if(data.trim() === "") {
         container.classList.add("is-invalid");
-        showToast("Warning", "There is no content in the container you are trying to encode", "warning");
+        showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
         return false;
     }
 
