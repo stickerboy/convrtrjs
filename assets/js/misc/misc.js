@@ -1,5 +1,6 @@
 // Forerunner
-const fralphabet = " …†‡ˆŠŒŽ‘’“™šœžŸ¡¤¥¦§«¬®¯±²´µº»½¾¿ÀÂÃÅ";
+const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
+];
 
 function convertElements(string, sourceProp, targetProp, removeDelimiters) {
     const strings = string.split(/[ ,:;\-]+/);
@@ -65,3 +66,14 @@ elementsChange.addEventListener("click", function() {
 
     document.getElementById("elementResults").textContent = convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
 });
+
+const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
+let fR = document.getElementById("forerunnerResults");
+Array.from(forerunnerButtons, c => c.addEventListener("click", function() {
+
+    Array.from(forerunnerButtons, button => {
+        button.classList.remove("active");
+    });
+    c.classList.add("active");
+    fR.textContent += getKeyValue(c.innerHTML, fralphabet);
+}));
