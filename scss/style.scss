@@ -458,6 +458,13 @@ textarea.form-control.is-invalid.ld-warning {
     background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
 }
 
+.forerunner {
+    font-family: 'TerminalGlyphs';
+    font-size: 2rem;
+    letter-spacing: 8px;
+    width: max-content;
+    color: var(--convrtr-base-color);
+}
 .fr-glyph {
     font-family: 'TerminalGlyphs';
     width: 3rem;
