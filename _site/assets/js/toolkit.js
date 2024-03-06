@@ -191,6 +191,7 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
     return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
 }
 
+// Create an image from a specific container
 function createImage(width, height, filename, element, string, bgcolor, textcolor) {
     var canvas = document.createElement("canvas");
     canvas.width = (width * 1.5) + 10;
