@@ -261,6 +261,9 @@ body {
 .section:not(.footer):nth-of-type(odd) {
     @include media-breakpoint-up(fhd) {
         border-radius: var(--bs-border-radius-lg);
+        &:last-of-type {
+            border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
+        }
     }
 }
 
