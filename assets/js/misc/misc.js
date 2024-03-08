@@ -2,6 +2,16 @@
 const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
 ];
 
+/**
+ * Converts periodic elements from a string representation to their corresponding target property values.
+ * @param {string} string - The input string containing element representations.
+ * @param {string} sourceProp - The property used for matching elements in the input string.
+ * @param {string} targetProp - The target property whose value should be extracted.
+ * @param {boolean} removeDelimiters - Whether to remove delimiters (optional, default is false).
+ * @returns {string} - The resulting string after converting elements.
+ * @throws {Error} - Throws an error if an element with the specified source property is not found,
+ * or if the target property does not exist for a matched element.
+ */
 function convertElements(string, sourceProp, targetProp, removeDelimiters) {
     const strings = string.split(/[ ,:;\-]+/);
     const results = [];

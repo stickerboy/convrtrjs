@@ -1,4 +1,13 @@
-// Pull the first 16 bytes from a file and try a header match
+/**
+ * Pulls the first 16 bytes from a file and tries to match the header
+ *
+ * @param {File} file - The file to analyze.
+ * @returns {void} - Displays the file header information in the specified format.
+ *
+ * @example
+ * // Input: A file with specific content
+ * // Output: Displays whether the file header matches any predefined headers.
+ */
 function getFileHeader(file) {
     const reader = new FileReader();
     reader.onload = function (event) {

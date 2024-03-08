@@ -1,13 +1,29 @@
-// Build up a custom alphabet using a key
-// ABCDEFG... → TEST → TESABCDFG...
+/**
+ * Builds a custom alphabet using a given key.
+ * @param {string} string - A user-specified text string.
+ * @returns {string} - A string containing the custom alphabet formed by combining unique characters from the input string and the standard alphabet.
+ *
+ * @example
+ * // Input: "TEST"
+ * // Output: "TESABCDFGHIJKLMNOPQRUVWXYZ"
+ */
 function getCustomAlphabet(string) {
     let stringArr = [...new Set(string.trim())];
     let alphaArr = [...new Set(alphabet.trim())];
     return [...new Set(stringArr.concat(alphaArr))].join("");
 }
 
-// Substitute each letter in a string with a corresponding letter from a custom alphabet
-// Custom alphabet is built using a user specified text string
+/**
+ * Substitutes each letter in the a string with a corresponding letter from a custom alphabet
+ * Custom alphabet is built using a user specified text string
+ * @param {string} string - The original string to be modified.
+ * @param {string} key - A user-specified text string used to create the custom alphabet.
+ * @returns {string} - The modified string with letters replaced according to the custom alphabet.
+ *
+ * @example
+ * // Input: "Hello, World!" with key "TEST"
+ * // Output: "Tqxxa, Tqxxa!"
+ */
 function substituteChars(string, key) {
     const alpha = getCustomAlphabet(key);
     return string.split("").map((char) => {
@@ -24,7 +40,18 @@ function substituteChars(string, key) {
     }).join("");
 }
 
-// Generate hash values
+/**
+ * Generates hash values using various hash algorithms
+ *
+ * @param {string} string - The input string to be hashed.
+ * @param {string} hash - The hash method (e.g., "MD5", "SHA1", etc.).
+ * @param {string} key - Optional key (if applicable for the hash method).
+ * @returns {string} - The hash value or an error message if the method is invalid or not supported.
+ *
+ * @example
+ * // Input: "Hello, World!" with hash method "MD5"
+ * // Output: "65a8e27d8879283831b664bd8b7f0ad4"
+ */
 function generateHashes(string, hash, key) {
     switch (hash) {
         case "MD5": 
@@ -56,7 +83,17 @@ function generateHashes(string, hash, key) {
     }
 }
 
-// Encrypt using Vigenère cipher
+/**
+ * Encrypts a string using the Vigenère cipher.
+ *
+ * @param {string} string - The original string to be encrypted.
+ * @param {string} key - The encryption key.
+ * @returns {string} - The encrypted string.
+ *
+ * @example
+ * // Input: "Hello, World!" with key "KEY"
+ * // Output: "Rovvy, Gybvn!"
+ */
 function vignereEncrypt(string, key) {
     let result = "";
 
@@ -76,7 +113,17 @@ function vignereEncrypt(string, key) {
     return result;
 }
 
-// Decrypt Vigenère cipher
+/**
+ * Decrypts a string encrypted using the Vigenère cipher
+ *
+ * @param {string} string - The encrypted string to be decrypted.
+ * @param {string} key - The decryption key.
+ * @returns {string} - The original plaintext string.
+ *
+ * @example
+ * // Input: "Rovvy, Gybvn!" with key "KEY"
+ * // Output: "Hello, World!"
+ */
 function vignereDecrypt(string, key) {
     let result = "";
 
