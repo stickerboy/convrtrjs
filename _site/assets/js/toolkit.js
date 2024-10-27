@@ -289,20 +289,29 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * @param {string} filename - The suggested filename for downloading the image.
  * @param {HTMLAnchorElement} element - The anchor element used for downloading the image.
  * @param {string} string - The text to display in the image.
- * @param {string} [bgcolor='white'] - The background color of the image.
- * @param {string} [textcolor='black'] - The text color of the image.
+ * @param {object} [options] - Optional parameters.
+ * @param {string} [options.bgcolor='white'] - The background color of the image.
+ * @param {string} [options.textcolor='black'] - The text color of the image.
+ * @param {string} [options.font="5.5rem 'TerminalGlyphs'"] - The font of the text in the image.
+ * @param {number} [options.paddingTop=90] - The padding from the top of the image to the start of the text.
  */
-function createImage(width, height, filename, element, string, bgcolor, textcolor) {
+function createImage(width, height, filename, element, string, options = {}) {
     var canvas = document.createElement("canvas");
-    canvas.width = (width * 1.5) + 10;
+    canvas.width = (width * 1.5) + 20;
     canvas.height = height * 1.5;
-
     var ctx = canvas.getContext("2d");
-    ctx.fillStyle = bgcolor ? bgcolor : 'white';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "4rem 'TerminalGlyphs'";
-    ctx.fillStyle = textcolor ? textcolor : 'black';
-    ctx.fillText(string, 10, 60);
+
+    var bgcolor = options.bgcolor || 'white';
+    var textcolor = options.textcolor || 'black';
+    var font = options.font || "5.5rem 'TerminalGlyphs'";
+    var paddingTop = options.paddingTop || 90;
+
+    ctx.fillStyle = bgcolor;
+    ctx.fillRect(10, 10, canvas.width, canvas.height);
+
+    ctx.font = font;
+    ctx.fillStyle = textcolor;
+    ctx.fillText(string, 10, paddingTop);
 
     var url = canvas.toDataURL();
     element.download = filename;

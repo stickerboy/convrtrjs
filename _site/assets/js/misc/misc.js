@@ -77,6 +77,7 @@ elementsChange.addEventListener("click", function() {
     document.getElementById("elementResults").textContent = convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
 });
 
+// Forerunner glyphs
 const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
 let fIR = document.getElementById("forerunnerImageResults");
@@ -95,6 +96,9 @@ forerunnerImage.addEventListener("click", function() {
     if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
         return false;
     }
-    let fITransparency = fIT.checked ? "rgba(0, 0, 0, 0)" : "rgba(255, 255, 255, 1)";
-    createImage(fIR.offsetWidth,fIR.offsetHeight,"forerunner-glyphs.png", forerunnerImage, fIR.innerText, fITransparency);
+    let fOptions = {};
+    if (fIT.checked) {
+        fOptions.bgcolor = "rgba(0, 0, 0, 0)";
+    } 
+    createImage(fIR.offsetWidth, fIR.offsetHeight, "forerunner-glyphs.png", forerunnerImage, fIR.innerText, fOptions);
 });
