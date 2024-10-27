@@ -76,6 +76,9 @@
             }, {
                 "id": "forerunner",
                 "label": "Forerunner glyphs"
+            }, {
+                "id": "covenant",
+                "label": "Covenant glyphs"
             }
         ]
     }
