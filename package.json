@@ -1,6 +1,6 @@
 {
   "name": "convrtrjs",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "A simple JavaScript based tool to quickly convert text between different formats",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
@@ -17,6 +17,9 @@
   },
   "bugs": {
     "url": "https://github.com/stickerboy/convrtrjs/issues"
+  },
+  "releases": {
+    "url": "https://github.com/stickerboy/convrtrjs/releases"
   },
   "support": "https://discord.gg/FhwjhdkTwD",
   "author": "Kenny Cameron",

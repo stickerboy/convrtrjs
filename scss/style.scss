@@ -471,6 +471,14 @@ textarea.form-control.is-invalid.ld-warning {
     background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
 }
 
+.release-version {
+    &:active,
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    } 
+}
+
 .forerunner {
     font-family: 'TerminalGlyphs';
     font-size: 3rem;
