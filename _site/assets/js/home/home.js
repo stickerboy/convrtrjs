@@ -1,8 +1,21 @@
-// Decode Binary
+/**
+ * Checks for a valid binary string length (multiple of 8)
+ *
+ * @param {string} string - The binary string to validate.
+ * @returns {boolean} - `true` if the length is valid, otherwise `false`.
+ * @throws {Error} - If the input is not a valid binary string.
+ */
 function isValidBinaryLength(string) {
     return string.length % 8 === 0;
 }
 
+/**
+ * Converts a valid binary string to its corresponding ASCII string
+ *
+ * @param {string} string - The binary string to convert.
+ * @returns {string} - The resulting ASCII string.
+ * @throws {Error} - If the input is not a valid binary string.
+ */
 function binaryToString(string) {
     if(isValidBinaryLength(string)) {
         string = string.replace(/[^10\s]/g, "");
@@ -18,11 +31,17 @@ function binaryToString(string) {
     }
 }
 
-
-// Decode Base64
+/**
+ * Converts a Base64-encoded string to its original decoded string
+ * Going backwards: from bytestream, to percent-encoding, to original string
+ * // https://stackoverflow.com/a/30106551/3172872
+ *
+ * @param {string} string - The Base64-encoded string.
+ * @returns {string} - The decoded original string.
+ * @throws {Error} - If the input is not a valid Base64 string.
+ */
 function base64ToString(string) {
-    // Going backwards: from bytestream, to percent-encoding, to original string.
-    // https://stackoverflow.com/a/30106551/3172872
+    // 
     try {
         return decodeURIComponent(atob(string).split("").map(function(c) {
             return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
@@ -32,7 +51,13 @@ function base64ToString(string) {
     }
 }
 
-// Morse code to String
+/**
+ * Converts Morse code to string
+ *
+ * @param {string} string - The Morse code string to convert.
+ * @returns {string} - The resulting plain text string.
+ * @throws {Error} - If the input contains invalid Morse code characters.
+ */
 function morseToString(string) {
     if(/^[ /.-]*$/.test(string)){
         return string // test valid morse
@@ -50,7 +75,16 @@ function morseToString(string) {
     }
 }
 
-// Convert to Morse
+/**
+ * Converts a string to Morse code
+ *
+ * @param {string} string - The input string to be converted.
+ * @returns {string} - The Morse code representation of the input string.
+ *
+ * @example
+ * // Input: "hello world"
+ * // Output: ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
+ */
 function stringToMorse(string) {
     return string
             .toLocaleUpperCase()
@@ -64,15 +98,36 @@ function stringToMorse(string) {
             .trim();
 }
 
-// Convert to Morsenary
+/**
+ * Converts a string to Morsenary code (binary-based Morse code)
+ *
+ * @param {string} string - The input string to be converted.
+ * @returns {string} - The Morsenary code representation of the input string.
+ *
+ * @example
+ * // Input: "hello world" with default setting
+ * // Output: ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
+ * // Input: "hello world" with custom setting (e.g., "default" or "reverse")
+ * // Output: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100"
+ */
 function stringToMorsenary(string) {
     let morsenarySetting = document.getElementById("morsenarySetting").value;
     return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '-' : '.')) :
     stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '.' : '-'));
 }
 
-
-// Decode Morsenary to String
+/**
+ * Converts Morsenary code (binary-based Morse code) back to a string
+ *
+ * @param {string} string - The Morsenary code to be converted.
+ * @returns {string} - The original plaintext string.
+ *
+ * @throws {Error} - If the input contains invalid characters.
+ *
+ * @example
+ * // Input: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100" with default setting
+ * // Output: "hello, world"
+ */
 function morsenaryToString(string) {
     if(/^[ /.-]*$/.test(string)) {
         let morsenarySetting = document.getElementById("morsenarySetting").value;
@@ -83,14 +138,36 @@ function morsenaryToString(string) {
     }
 }
 
-// Flip text upside down
+/**
+ * Flips text upside down (custom alphabet mapping)
+ *
+ * @param {string} string - The input string to be flipped.
+ * @param {string} alphabet - The original alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
+ * @param {string[]} replacement - An array of replacement characters corresponding to each character in the alphabet.
+ * @returns {string} - The flipped string.
+ *
+ * @example
+ * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement array ["z", "y", "x", ...]
+ * // Output: "pןɹoʍ oןןǝɥ"
+ */
 function flipText(string, alphabet, replacement) {
 	return Array.from(string).map(c => 
         typeof replacement[alphabet.search(c)] == "undefined" ? " " : replacement[alphabet.search(c)]
     ).join("");
 }
 
-// Various information about a given string
+/**
+ * Provides various information about a given string based on the specified stat
+ *
+ * @param {string} string - The input string to analyze.
+ * @param {string} stat - The type of information to retrieve (e.g., "word-count", "char-count", etc.).
+ * @param {string} delimiter - Optional delimiter used for splitting words or characters.
+ * @returns {number|string} - The requested statistic or an error message if the stat is not available.
+ *
+ * @example
+ * // Input: "Hello, world!", stat: "word-count", delimiter: " "
+ * // Output: 2
+ */
 function stringStats(string, stat, delimiter) {
     let split = delimiter ? delimiter : " ";
 
@@ -127,6 +204,16 @@ function stringStats(string, stat, delimiter) {
     }
 }
 
+/**
+ * Creates styled HTML elements for displaying unique characters from an array.
+ *
+ * @param {string[]} data - An array of unique characters.
+ * @returns {string} - The HTML representation of the unique characters.
+ *
+ * @example
+ * // Input: ["a", "b", "c"]
+ * // Output: "<div class="g-col-12"> ..."
+ */
 function styledUniqueArrayItems(data) {
     let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
     <div class="grid mt-2 grid-auto" id="unique-chars">`;
@@ -139,13 +226,32 @@ function styledUniqueArrayItems(data) {
     return result;
 }
 
-// Simple and efficient method of returning counts of each unique value in an array
-// https://stackoverflow.com/a/66002712/3172872
+/**
+ * Simple and efficient method of returning frequency counts of each unique value in an array
+ * https://stackoverflow.com/a/66002712/3172872
+ *
+ * @param {string} string - The input string to analyze.
+ * @returns {Object} - An object where keys represent unique values and values represent their frequencies.
+ *
+ * @example
+ * // Input: "hello, world!"
+ * // Output: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }
+ */
 function countArrayFreq(string) {
     let split = [...string];
     return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
 }
 
+/**
+ * Creates styled HTML elements for displaying unique character frequencies.
+ *
+ * @param {Object} data - An object containing unique characters as keys and their frequencies as values.
+ * @returns {string} - The HTML representation of the unique character frequencies.
+ *
+ * @example
+ * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }
+ * // Output: "<div class="g-col-12"> ..."
+ */
 function styledArrayFrequencies(data) {
     let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
     <div class="grid mt-2" id="unique-freqs">`;

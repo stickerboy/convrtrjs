@@ -1,26 +1,155 @@
-// Local storage
+/**
+ * Saves a value to local storage
+ * @param {string} key - The key under which to store the value.
+ * @param {string} value - The value to be stored.
+ * @returns {void}
+ */
 function saveLocalStorage(key, value) {
     return localStorage.setItem(key, value);
 }
+
+/**
+ * Retrieves an item from local storage
+ * @param {string} string - The key of the item to retrieve.
+ * @returns {any} - The parsed value retrieved from local storage.
+ */
 function getLocalStorageItem(string) {
-    string = string.replace("\"", "");
+    string = string.replace("\"", ""); // Remove any double quotes
     return JSON.parse(localStorage.getItem(string));
 }
+
+/**
+ * Clears all items from local storage
+ * @returns {void}
+ */
 function clearLocalStorage() {
     localStorage.clear();
 }
 
-// Load toggle states
+/**
+ * YEAH Toast! Displays a toast notification
+ * @param {string} heading - The heading for the toast.
+ * @param {string} content - The content of the toast.
+ * @param {string} color - The color theme for the toast (optional).
+ * @param {number} delay - The delay in milliseconds before the toast disappears (optional, default is 5000 milliseconds).
+ * @returns {void}
+ */
+function showToast(heading, content, color, delay) {
+    let toastEL = document.getElementById("toast");
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
+
+    toastEL.addEventListener("hidden.bs.toast", () => {
+        toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
+        toastEL.querySelector(".toast-header").classList.add("text-bg-convrtr");
+    });
+
+    if (color) {
+        toastEL.querySelector(".toast-header").classList.replace("text-bg-convrtr", `text-bg-${color}`);
+    }
+    toastEL.querySelector(".toast-header strong").textContent = heading;
+    toastEL.querySelector(".toast-body").textContent = content;
+
+    toast.show();
+}
+
+/**
+ * Checks if the data length exceeds a certain threshold and displays a warning if necessary
+ * @param {string} data - The data to be checked.
+ * @param {HTMLElement} container - The container element associated with the data (optional).
+ * @returns {boolean} - Returns true if the data length is within acceptable limits, otherwise false.
+ */
+function largeDataWarning(data, container) {
+    if(container) {
+        container.classList.remove("is-invalid", "ld-warning");
+    }
+    if(data.length > 200000 && data.length < 1000000) {
+        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
+    }
+    if(data.length > 1000000) {
+        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
+
+        if(container) {
+            container.classList.add("is-invalid", "ld-warning");
+        }
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Checks if the data is empty and displays a warning if necessary
+ * @param {string} data - The data to be checked.
+ * @param {HTMLElement} container - The container element associated with the data.
+ * @param {string} error - Custom error message (optional).
+ * @returns {boolean} - Returns true if the data is not empty, otherwise false.
+ */
+function emptyContainerCheck(data, container, error) {
+    let allElements = Array.from(document.querySelectorAll(".data-to-copy"));
+    for (let element of allElements) {
+        element.classList.remove("is-invalid");
+    }
+
+    if(data.trim() === "") {
+        container.classList.add("is-invalid");
+        showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
+        return false;
+    }
+
+    if(container.classList.contains("is-invalid")) {
+        container.classList.remove("is-invalid");
+    }
+    return true;
+}
+
+/**
+ * Selects all text within an element (works with textareas and divs)
+ * https://stackoverflow.com/a/20079910/3172872
+ * @param {HTMLElement} element - The element containing the text to be selected.
+ * @returns {void}
+ */
+function selectAllText(element) {
+    if (element.localName === "textarea") {
+        element.focus();
+        element.setSelectionRange(0, element.value.length);
+    } else {
+        window.getSelection()
+            .selectAllChildren(
+                element
+        );
+    }
+}
+
+/**
+ * File download with the specified filename and text content
+ * @param {string} filename - The desired filename for the downloaded file.
+ * @param {string} text - The content to be saved in the file.
+ * @returns {void}
+ */
+function download(filename, text) {
+    let e = document.createElement("a");
+    e.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
+    e.setAttribute("download", `${filename}.txt`);
+
+    e.style.display = "none";
+    document.body.appendChild(e);
+    e.click();
+    document.body.removeChild(e);
+}
+
+/**
+ * Restores toggle states from local storage
+ * @returns {void}
+ */
 const sectionToggles = document.getElementsByClassName("section-toggle");
 function restoreOptions() {
-    if(localStorage.length !== 0) {
-        for (sectionToggle of sectionToggles) {
-            let section = sectionToggle.closest(".section");
-            let sectionID = sectionToggle.closest(".section").id;
+    if (localStorage.length !== 0) {
+        for (const sectionToggle of sectionToggles) {
+            const section = sectionToggle.closest(".section");
+            const sectionID = sectionToggle.closest(".section").id;
             sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
-            let x = getLocalStorageItem(sectionID);
+            const x = getLocalStorageItem(sectionID);
 
-            if(x === true) {
+            if (x === true) {
                 section.querySelector(".collapse").classList.add("show");
             } else {
                 section.querySelector(".collapse").classList.remove("show");
@@ -28,7 +157,15 @@ function restoreOptions() {
         }
     }
 }
+
 document.addEventListener("DOMContentLoaded", restoreOptions);
+
+// Save toggle state
+Array.from(sectionToggles, c => c.addEventListener("click", function() {
+    let section = c.closest(".section");
+
+    saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
+}));
 
 // Enable tooltips
 const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle=\"tooltip\"]");
@@ -75,95 +212,6 @@ resetData.addEventListener("click", function() {
         showToast("Notice", "Data successfully cleared", "convrtr", 3000);
     }, 1000);
 });
-
-// YEAH Toast!
-function showToast(heading, content, color, delay) {
-    let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
-
-    toastEL.addEventListener("hidden.bs.toast", () => {
-        toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
-        toastEL.querySelector(".toast-header").classList.add("text-bg-convrtr");
-    });
-
-    if (color) {
-        toastEL.querySelector(".toast-header").classList.replace("text-bg-convrtr", `text-bg-${color}`);
-    }
-    toastEL.querySelector(".toast-header strong").textContent = heading;
-    toastEL.querySelector(".toast-body").textContent = content;
-
-    toast.show();
-}
-
-function largeDataWarning(data, container) {
-    if(container) {
-        container.classList.remove("is-invalid", "ld-warning");
-    }
-    if(data.length > 200000 && data.length < 1000000) {
-        showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
-    }
-    if(data.length > 1000000) {
-        showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
-
-        if(container) {
-            container.classList.add("is-invalid", "ld-warning");
-        }
-        return false;
-    }
-    return true;
-}
-
-function emptyContainerCheck(data, container, error) {
-    let allElements = Array.from(document.querySelectorAll(".data-to-copy"));
-    for (let element of allElements) {
-        element.classList.remove("is-invalid");
-    }
-
-    if(data.trim() === "") {
-        container.classList.add("is-invalid");
-        showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
-        return false;
-    }
-
-    if(container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
-    }
-    return true;
-}
-
-// Select text
-// https://stackoverflow.com/a/20079910/3172872
-// Modified to work with inputs and divs
-function selectAllText(element) {
-    if (element.localName === "textarea") {
-        element.focus();
-        element.setSelectionRange(0, element.value.length);
-    } else {
-        window.getSelection()
-            .selectAllChildren(
-                element
-        );
-    }
-}
-
-// File downloads
-function download(filename, text) {
-    let e = document.createElement("a");
-    e.setAttribute("href", "data:text/plain;charset=utf-8," + encodeURIComponent(text));
-    e.setAttribute("download", `${filename}.txt`);
-
-    e.style.display = "none";
-    document.body.appendChild(e);
-    e.click();
-    document.body.removeChild(e);
-}
-
-// Save toggle state
-Array.from(sectionToggles, c => c.addEventListener("click", function() {
-    let section = c.closest(".section");
-
-    saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
-}));
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select"); 

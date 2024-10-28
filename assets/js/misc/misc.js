@@ -2,6 +2,16 @@
 const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
 ];
 
+/**
+ * Converts periodic elements from a string representation to their corresponding target property values.
+ * @param {string} string - The input string containing element representations.
+ * @param {string} sourceProp - The property used for matching elements in the input string.
+ * @param {string} targetProp - The target property whose value should be extracted.
+ * @param {boolean} removeDelimiters - Whether to remove delimiters (optional, default is false).
+ * @returns {string} - The resulting string after converting elements.
+ * @throws {Error} - Throws an error if an element with the specified source property is not found,
+ * or if the target property does not exist for a matched element.
+ */
 function convertElements(string, sourceProp, targetProp, removeDelimiters) {
     const strings = string.split(/[ ,:;\-]+/);
     const results = [];
@@ -67,6 +77,7 @@ elementsChange.addEventListener("click", function() {
     document.getElementById("elementResults").textContent = convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
 });
 
+// Forerunner glyphs
 const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
 let fIR = document.getElementById("forerunnerImageResults");
@@ -85,6 +96,37 @@ forerunnerImage.addEventListener("click", function() {
     if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
         return false;
     }
-    let fITransparency = fIT.checked ? "rgba(0, 0, 0, 0)" : "rgba(255, 255, 255, 1)";
-    createImage(fIR.offsetWidth,fIR.offsetHeight,"forerunner-glyphs.png", forerunnerImage, fIR.innerText, fITransparency);
+    let fOptions = {};
+    if (fIT.checked) {
+        fOptions.bgcolor = "rgba(0, 0, 0, 0)";
+    } 
+    createImage(fIR.offsetWidth, fIR.offsetHeight, "forerunner-glyphs.png", forerunnerImage, fIR.innerText, fOptions);
+});
+
+// Covenant glyphs
+const covenantButtons    = document.getElementsByClassName("cov-glyph");
+let cR = document.getElementById("covenantResults");
+let cIR = document.getElementById("covenantImageResults");
+let cIT = document.getElementById("covImageTransparency");
+Array.from(covenantButtons, c => c.addEventListener("click", function() {
+    Array.from(covenantButtons, button => {
+        button.classList.remove("active");
+    });
+    c.classList.add("active");
+    cR.textContent += c.textContent;
+    cIR.textContent += c.innerHTML;
+}));
+
+let covenantImage = document.getElementById("generateCovenantImage");
+covenantImage.addEventListener("click", function() {
+    if(!emptyContainerCheck(cIR.innerHTML, cIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
+        return false;
+    }
+    let cOptions = {};
+    cOptions.font = "6rem 'Covenant'";
+    cOptions.paddingTop = 108;
+    if (cIT.checked) {
+        cOptions.bgcolor = "rgba(0, 0, 0, 0)";
+    } 
+    createImage(cIR.offsetWidth, cIR.offsetHeight, "covenant-glyphs.png", covenantImage, cIR.innerText, cOptions);
 });

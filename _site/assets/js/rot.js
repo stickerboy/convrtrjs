@@ -1,4 +1,10 @@
-// Co-pilot assisted
+/**
+ * Applies the ROT (Caesar cipher) encryption or decryption to a given string.
+ * @param {string} string - The input string to be encoded or decoded.
+ * @param {number} n - The rotation value (positive for encoding, negative for decoding).
+ * @param {string} alpha - Custom alphabet (optional, defaults to English alphabet excluding 'a').
+ * @returns {string} - The resulting string after applying the ROT transformation.
+ */
 function rot(string, n, alpha) {
     if (n == null) {
         // Use ROT-13 by default
@@ -13,7 +19,7 @@ function rot(string, n, alpha) {
         // Decode instead of encode
         n += 26;
     }
-    const ab = alpha ? alpha : alphabet.substring(1);
+    const ab = alpha ? alpha : alphabet.substring(1); // Custom alphabet (default: English alphabet trimming the initial space)
     const length = ab.length;
     let result = "";
 

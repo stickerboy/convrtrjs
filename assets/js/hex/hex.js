@@ -1,5 +1,17 @@
-// Shift Hex left or right
-// Returns: Decimal, space delimited
+/**
+ * Shifts a hex string left or right by a specified value
+ *
+ * @param {string} string - The input hexadecimal string.
+ * @param {number} shiftValue - The value to shift by (positive for left, negative for right).
+ * @param {string} delimiter - The delimiter used in the hexadecimal string.
+ * @returns {string} - The resulting shifted hexadecimal string (space delimited).
+ *
+ * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ *
+ * @example
+ * // Input: "74657374" (hex for "test"), shiftValue: 2, delimiter: ""
+ * // Output: "76 65 73 74"
+ */
 function shiftHexString(string, shiftValue, delimiter) {
     if(isValidHex(string, delimiter)) {
         return hexToString(string, delimiter).split("").map(c => (ord(c) + parseInt(shiftValue)).toString(16)).join(delimiter);
@@ -8,8 +20,19 @@ function shiftHexString(string, shiftValue, delimiter) {
     }
 }
 
-// Reverse Hex
-// Swaps the order of each hex nibble: 74 65 73 74 [test] becomes 47 56 37 47
+/**
+ * Reverses the order of each hex nibble in a hex string.
+ *
+ * @param {string} string - The input hexadecimal string.
+ * @param {string} delimiter - The delimiter used in the hexadecimal string.
+ * @returns {string} - The reversed hexadecimal string.
+ *
+ * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ *
+ * @example
+ * // Input: "74657374" (hex for "test"), delimiter: ""
+ * // Output: "47 56 37 47"
+ */
 function reverseHex(string, delimiter) {
     let reversedString;
     if(isValidHex(string, delimiter)) {
@@ -24,8 +47,19 @@ function reverseHex(string, delimiter) {
     }
 }
 
-// Reverse Hex nibbles
-// Reverses the position of each Hex nibble: 74 65 73 74 becomes 74 73 65 74
+/**
+ * Reverses the position of each Hex nibble in a hex string
+ *
+ * @param {string} string - The input hexadecimal string.
+ * @param {string} delimiter - The delimiter used in the hexadecimal string.
+ * @returns {string} - The reversed hexadecimal string.
+ *
+ * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ *
+ * @example
+ * // Input: "74657374" (hex for "test"), delimiter: ""
+ * // Output: "74 73 65 74"
+ */
 function reverseHexNibbles(string, delimiter) {
     if(isValidHex(string, delimiter)) {
         return string.split(delimiter).reverse().join(delimiter);

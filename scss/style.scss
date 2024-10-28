@@ -18,7 +18,17 @@
     font-family: "TerminalGlyphs";
     font-style: normal;
     font-weight: normal;
-	font-family:'TerminalGlyphs';src:url('../fonts/spherograms.eot');src:url('../fonts/spherograms.eot?#iefix') format('embedded-opentype'),url('../fonts/spherograms.woff') format('woff'),url('../assets/fonts/spherograms.svg#Spherograms') format('svg');
+	font-family:'TerminalGlyphs';
+    src:url('../fonts/spherograms.eot');
+    src:url('../fonts/spherograms.eot?#iefix') format('embedded-opentype'),url('../fonts/spherograms.woff') format('woff'),url('../assets/fonts/spherograms.svg#Spherograms') format('svg');
+}
+@font-face {
+    font-family: 'Covenant';
+    font-style: normal;
+    font-weight: normal;
+    font-family: 'Covenant';
+    src:  url('../fonts/Covenant.eot');
+    src:  url('../fonts/Covenant.eot?#iefix') format('embedded-opentype'),url('../fonts/Covenant.ttf') format('truetype'),url('../fonts/Covenant.woff') format('woff'),url('../assets/fonts/Covenant.svg#Covenant') format('svg');
 }
 
 :root {
@@ -261,6 +271,9 @@ body {
 .section:not(.footer):nth-of-type(odd) {
     @include media-breakpoint-up(fhd) {
         border-radius: var(--bs-border-radius-lg);
+        &:last-of-type {
+            border-radius: var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0 0;
+        }
     }
 }
 
@@ -458,9 +471,17 @@ textarea.form-control.is-invalid.ld-warning {
     background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
 }
 
+.release-version {
+    &:active,
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    } 
+}
+
 .forerunner {
     font-family: 'TerminalGlyphs';
-    font-size: 2rem;
+    font-size: 3rem;
     letter-spacing: 8px;
     width: max-content;
     color: var(--convrtr-base-color);
@@ -471,4 +492,21 @@ textarea.form-control.is-invalid.ld-warning {
     height: 3rem;
     font-size: 1.75rem;
     line-height: 1;
+}
+
+.covenant {
+    font-family: 'Covenant';
+    font-size: 4rem;
+    letter-spacing: 0px;
+    width: max-content;
+    color: var(--convrtr-base-color);
+    line-height: 1.2;
+}
+.cov-glyph {
+    font-family: 'Covenant';
+    width: 3rem;
+    height: 3rem;
+    font-size: 2.5rem;
+    line-height: 1;
+    font-weight: normal;
 }

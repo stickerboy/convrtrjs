@@ -1,9 +1,12 @@
-/*
-*	Copy To Clipboard jS by Nathan Long
-*	https://codepen.io/nathanlong/pen/ZpAmjv
-*/
+/**
+ * Copy text to Clipboard legacy support - jS by Nathan Long
+ * https://codepen.io/nathanlong/pen/ZpAmjv
+ * @param {string} text - The text to be copied.
+ * @param {HTMLElement} el - The element triggering the copy action (usually a button or link).
+ * @returns {boolean} - Returns true if the copy operation was successful, otherwise false.
+ */
 function copyToClipboardLegacy(text, el) {
-	var copyTest = document.queryCommandSupported("copy");
+	var copyTest = document.queryCommandSupported("copy"); // legacy support test
 	var elOriginalText = el.getAttribute("data-bs-original-title");
 	const tooltip = bootstrap.Tooltip.getInstance(el); // Returns a Bootstrap tooltip instance
 
@@ -13,7 +16,7 @@ function copyToClipboardLegacy(text, el) {
 		document.body.appendChild(copyTextArea);
 		copyTextArea.select();
 		try {
-			var successful = document.execCommand("copy");
+			var successful = document.execCommand("copy"); // legacy support test
 			var msg = successful ? "Copied!" : "Whoops, not copied!";
 			tooltip.setContent({ ".tooltip-inner": msg });
 		} catch (err) {
@@ -28,6 +31,12 @@ function copyToClipboardLegacy(text, el) {
 	}
 }
 
+/**
+ * Copies text to the clipboard
+ * @param {string} text - The text to be copied.
+ * @param {HTMLElement} el - The element triggering the copy action (usually a button or link).
+ * @returns {boolean} - Returns true if the copy operation was successful, otherwise false.
+ */
 function copyToClipboard(text, el) {
 	if (!navigator.clipboard) {
 		console.log("Fell back to legacy clipboard");
