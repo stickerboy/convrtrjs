@@ -5,8 +5,8 @@
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
   "scripts": {
-    "dev": "sass --watch --update --style=expanded scss:assets/devcss",
-    "prod": "sass --no-source-map --style=compressed scss:assets/css",
+    "sass:dev": "sass --watch --update --style=expanded scss:assets/devcss",
+    "sass:prod": "sass --no-source-map --style=compressed scss:assets/css",
     "build": "npx @11ty/eleventy --formats=html"
   },
   "repository": {
@@ -29,7 +29,7 @@
   "sitename": "Convrtr",
   "homepage": "https://www.convrtr.xyz",
   "dependencies": {
-    "@11ty/eleventy": "^2.0.1",
-    "bootstrap-scss": "^5.3.2"
+    "@11ty/eleventy": "^3.0.0",
+    "bootstrap-scss": "^5.3.3"
   }
 }
