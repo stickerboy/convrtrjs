@@ -28,8 +28,8 @@
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto me-2 mb-2">
+                            <div class="row row-cols-3 g-md-0 gx-0 gy-2">
+                                <div class="col w-auto me-2 mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="input-group w-auto mb-2">
                                             <a class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</a>
@@ -43,13 +43,15 @@
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
                                             <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch">
-                                            <label class="form-check-label" for="brailleSwitch">Convert to Braille</label>
+                                            <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
                                             <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" checked>
                                             <label class="form-check-label" for="brImageTransparency">Transparent background</label>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col col-12 col-md-auto me-2 mb-2 d-flex justify-content-end">
                                     {% include "components/select-copy-dl" %}
                                 </div>
                             </div>

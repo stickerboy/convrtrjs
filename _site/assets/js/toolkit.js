@@ -57,15 +57,18 @@ function matchCase(string, char) {
 }
 
 /**
- * Retrieves the value associated with a given key from an array of key-value pairs.
- * @param {string} string - The key to search for.
+ * Retrieves the value associated with a given key or the key associated with a given value from an array of key-value pairs.
+ * @param {string} searchString - The key or value to search for.
  * @param {Array<Array<string>>} array - An array of key-value pairs.
- * @returns {string|null} - The value corresponding to the key, or null if not found.
+ * @param {string} [searchBy='key'] - Specify 'key' to search by key or 'value' to search by value.
+ * @returns {string|null} - The corresponding key or value, or null if not found.
  */
-function getKeyValue(string, array) {
+function getKeyValue(searchString, array, searchBy = 'key') {
     for (const pair of array) {
-        if (pair[0] === string) {
+        if (searchBy === 'key' && pair[0] === searchString) {
             return pair[1];
+        } else if (searchBy === 'value' && pair[1] === searchString) {
+            return pair[0];
         }
     }
     return null;
@@ -284,6 +287,7 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
 
 /**
  * Create an image from a specific container, with specified dimensions and content.
+ * Provides an option to either download the image or return it for injection into a container.
  * @param {number} width - The desired width of the image.
  * @param {number} height - The desired height of the image.
  * @param {string} filename - The suggested filename for downloading the image.
@@ -294,6 +298,9 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * @param {string} [options.textcolor='black'] - The text color of the image.
  * @param {string} [options.font="5.5rem 'TerminalGlyphs'"] - The font of the text in the image.
  * @param {number} [options.paddingTop=90] - The padding from the top of the image to the start of the text.
+ * @param {boolean} [options.download=true] - Whether to download the image or return it for injection.
+ * @param {boolean} [options.fontAdjust=false] - Whether to adjust the font position based on its metrics.
+ * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
  */
 function createImage(width, height, filename, element, string, options = {}) {
     var canvas = document.createElement("canvas");
@@ -305,15 +312,40 @@ function createImage(width, height, filename, element, string, options = {}) {
     var textcolor = options.textcolor || 'black';
     var font = options.font || "5.5rem 'TerminalGlyphs'";
     var paddingTop = options.paddingTop || 90;
+    var download = options.download !== undefined ? options.download : true;
+    var fontAdjust = options.fontAdjust !== undefined ? options.fontAdjust : false;
 
     ctx.fillStyle = bgcolor;
     ctx.fillRect(10, 10, canvas.width, canvas.height);
 
     ctx.font = font;
     ctx.fillStyle = textcolor;
-    ctx.fillText(string, 10, paddingTop);
+
+    if (fontAdjust) {
+        var textMetrics = ctx.measureText(string);
+        var textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+
+        // Adjust the position so the text is centered vertically
+        var textY = paddingTop + textHeight;
+
+        if (textY + textHeight > canvas.height) {
+            textY = canvas.height - textHeight;
+        }
+
+        ctx.fillText(string, 10, textY);
+    } else {
+        ctx.fillText(string, 10, paddingTop);
+    }
 
     var url = canvas.toDataURL();
-    element.download = filename;
-    element.href = url;
+
+    if (download) {
+        element.download = filename;
+        element.href = url;
+        return null;
+    } else {
+        var img = new Image();
+        img.src = url;
+        return img;
+    }
 }

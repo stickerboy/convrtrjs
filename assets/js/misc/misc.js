@@ -5,14 +5,25 @@ var braille = [[" "," "],["⠀"," "],["⠸","_"],["⠤","-"],["⠠",","],["⠰",
 const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
 ];
 
-
-function brailleToText(string) {
-    console.log(string);
+/**
+ * Converts between Braille and text using a specified map.
+ * If `mode` is 'braille', converts from Braille to text.
+ * If `mode` is 'text', converts from text to Braille.
+ * @param {string} string - The string to convert.
+ * @param {string} mode - The mode of conversion, either 'braille' or 'text'.
+ * @param {Array<Array<string>>} [map=braille] - The custom map to use for conversion. Defaults to the 'braille' map.
+ * @returns {string} - The converted string.
+ */
+function convertBraille(string, mode, map = braille) {
+    if (mode === 'braille') {
+        return string.split("").map(b => getKeyValue(b.toUpperCase(), map)).join("");
+    } else if (mode === 'text') {
+        return string.split("").map(b => getKeyValue(b.toUpperCase(), map, 'value')).join("");
+    } else {
+        throw new Error(`Invalid mode "${mode}". Use "braille" or "text".`);
+    }
 }
 
-function textToBraille(string) {
-    console.log(string);
-}
 
 /**
  * Converts periodic elements from a string representation to their corresponding target property values.
@@ -94,6 +105,7 @@ let bR = document.getElementById("brailleResults");
 let bIR = document.getElementById("brailleImageResults");
 let bIT = document.getElementById("brImageTransparency");
 let brailleImage = document.getElementById("generateBrailleImage");
+let brailleSwitch = document.getElementById("brailleSwitch");
 
 const brailleButton = document.getElementById("brailleConvert");
 brailleButton.addEventListener("click", function() {
@@ -106,11 +118,20 @@ brailleButton.addEventListener("click", function() {
     if (!largeDataWarning(brailleString.value, brailleString)) {
         return false;
     }
+    
+    if(brailleSwitch.checked) {
+        bR.textContent = convertBraille(brailleString.value, 'braille');
+    } else {
+        bIR.textContent = convertBraille(brailleString.value, 'text');
+    }
+});
 
-    let brailleSwitch = document.getElementById("brailleSwitch");
-    bR.textContent = brailleSwitch.checked ? 
-                                            brailleToText(brailleString.value, braille) : 
-                                            textToBraille(brailleString.value, braille);
+brailleSwitch.addEventListener("click", function() {
+    if(brailleSwitch.checked) {
+        this.nextElementSibling.innerText = "Convert Braille to Text";
+    } else {
+        this.nextElementSibling.innerText = "Convert Text to Braille";
+    }
 });
 
 brailleImage.addEventListener("click", function() {
@@ -118,11 +139,12 @@ brailleImage.addEventListener("click", function() {
         return false;
     }
     let bOptions = {};
-    bOptions.font = "6rem 'system'";
-    bOptions.paddingTop = 108;
-    if (cIT.checked) {
+    bOptions.font = `3rem system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
+    bOptions.paddingTop = 0;
+    bOptions.fontAdjust = true;
+    if (bIT.checked) {
         bOptions.bgcolor = "rgba(0, 0, 0, 0)";
-    } 
+    }
     createImage(bIR.offsetWidth, bIR.offsetHeight, "braille.png", brailleImage, bIR.innerText, bOptions);
 });
 
