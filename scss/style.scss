@@ -479,6 +479,14 @@ textarea.form-control.is-invalid.ld-warning {
     } 
 }
 
+.braille {
+    font-size: 3rem;
+    letter-spacing: 2px;
+    width: max-content;
+    color: var(--convrtr-base-color);
+    line-height: 1.2;
+}
+
 .forerunner {
     font-family: 'TerminalGlyphs';
     font-size: 3rem;

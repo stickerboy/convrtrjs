@@ -71,6 +71,9 @@
         "label": "Misc",
         "short-label": "Misc",
         "children":[{
+                "id": "braille",
+                "label": "Braille"
+            },{
                 "id": "elements",
                 "label": "Periodic elements"
             }, {

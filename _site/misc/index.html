@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
+        <meta name="generator" content="Eleventy v3.0.0">
         <title>Convrtr - For everlost and Grollow!</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
@@ -228,6 +229,10 @@
         <ul class="dropdown-menu show">
             
             <li>
+                <a class="dropdown-item" href="../misc/#braille">Braille</a>
+            </li>
+            
+            <li>
                 <a class="dropdown-item" href="../misc/#elements">Periodic elements</a>
             </li>
             
@@ -276,6 +281,77 @@
             <p class="px-2 m-0">
                 Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
             </p>
+        </div>
+    </div>
+</section>
+            <section id="braille" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <div class="d-flex justify-content-between section-toggle"
+                data-bs-toggle="collapse" href="#brailleCollapse" role="button" 
+                aria-expanded="true" aria-controls="brailleCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Braille
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </div>
+            <hr>
+            <p class="px-2">
+                Convert Braille to text and vice-versa. The "Create image" button downloads an image version of the generated Braille.
+            </p>
+            <p class="px-2">
+                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Halopedia page. 
+            </p>
+        </div>
+        <div class="collapse show" id="brailleCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Braille</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-2 g-0">
+                            <div class="row row-cols-3 g-md-0 gx-0 gy-2">
+                                <div class="col w-auto me-2 mb-2">
+                                    <div class="me-auto flex-fill">
+                                        <div class="input-group w-auto mb-2">
+                                            <a class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</a>
+                                        </div>
+                                        <div class="input-group w-auto mb-2">
+                                            <a class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill mb-2">
+                                    <div class="me-auto flex-fill">
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch">
+                                            <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
+                                        </div>
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency">
+                                            <label class="form-check-label" for="brImageTransparency">Transparent background</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-12 col-md-auto me-2 mb-2 d-flex justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="brailleResults" class="data-to-copy active"></div>
+                        <div id="brailleImageResults" class="braille"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -427,7 +503,7 @@
                         <div class="d-flex justify-content-start align-items-center">
                             <a class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</a>
                             <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency">
                                 <label class="form-check-label" for="frImageTransparency">Transparent background</label>
                             </div>
                             <div class="btn-group ms-auto align-items-start">
@@ -514,7 +590,7 @@
                         <div class="d-flex justify-content-start align-items-center">
                             <a class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</a>
                             <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" checked>
+                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency">
                                 <label class="form-check-label" for="covImageTransparency">Transparent background</label>
                             </div>
                             <div class="btn-group ms-auto align-items-start">
@@ -554,9 +630,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.14.1" 
+                title="Release version: v1.15.0" 
                 class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-body release-version">
-                <small>v1.14.1</small>
+                <small>v1.15.0</small>
             </a>
         </div>
     </div>

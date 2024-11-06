@@ -1,6 +1,29 @@
+// Braille
+var braille = [[" "," "],["⠀"," "],["⠸","_"],["⠤","-"],["⠠",","],["⠰",";"],["⠱",":"],["⠮","!"],["⠹","?"],["⠨","."],["⠷","("],["⠪","["],["⠈","@"],["⠡","*"],["⠌","/"],["⠄","'"],["⠐","\""],["⠳","\\"],["⠯","&"],["⠩","%"],["⠘","^"],["⠬","+"],["⠣","<"],["⠜",">"],["⠫","$"],["⠴","0"],["⠂","1"],["⠆","2"],["⠒","3"],["⠲","4"],["⠢","5"],["⠖","6"],["⠶","7"],["⠦","8"],["⠔","9"],["⠁","A"],["⠃","B"],["⠉","C"],["⠙","D"],["⠑","E"],["⠋","F"],["⠛","G"],["⠓","H"],["⠊","I"],["⠚","J"],["⠅","K"],["⠇","L"],["⠍","M"],["⠝","N"],["⠕","O"],["⠏","P"],["⠟","Q"],["⠗","R"],["⠎","S"],["⠞","T"],["⠥","U"],["⠧","V"],["⠺","W"],["⠭","X"],["⠵","Z"],["⠻","]"],["⠼","#"],["⠽","Y"],["⠾",")"],["⠿","="]];
+
 // Forerunner
 const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
 ];
+
+/**
+ * Converts between Braille and text using a specified map.
+ * If `mode` is 'braille', converts from Braille to text.
+ * If `mode` is 'text', converts from text to Braille.
+ * @param {string} string - The string to convert.
+ * @param {string} mode - The mode of conversion, either 'braille' or 'text'.
+ * @param {Array<Array<string>>} [map=braille] - The custom map to use for conversion. Defaults to the 'braille' map.
+ * @returns {string} - The converted string.
+ */
+function convertBraille(string, mode, map = braille) {
+    if (mode === 'braille') {
+        return string.split("").map(b => getKeyValue(b.toUpperCase(), map)).join("");
+    } else if (mode === 'text') {
+        return string.split("").map(b => getKeyValue(b.toUpperCase(), map, 'value')).join("");
+    } else {
+        throw new Error(`Invalid mode "${mode}". Use "braille" or "text".`);
+    }
+}
+
 
 /**
  * Converts periodic elements from a string representation to their corresponding target property values.
@@ -77,6 +100,54 @@ elementsChange.addEventListener("click", function() {
     document.getElementById("elementResults").textContent = convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
 });
 
+// Braille
+let bR = document.getElementById("brailleResults");
+let bIR = document.getElementById("brailleImageResults");
+let bIT = document.getElementById("brImageTransparency");
+let brailleImage = document.getElementById("generateBrailleImage");
+let brailleSwitch = document.getElementById("brailleSwitch");
+
+const brailleButton = document.getElementById("brailleConvert");
+brailleButton.addEventListener("click", function() {
+    const brailleString = document.getElementById("brailleTextarea");
+
+    if(!emptyContainerCheck(brailleString.value, brailleString)) {
+        bR.textContent = "";
+        return false;
+    }
+    if (!largeDataWarning(brailleString.value, brailleString)) {
+        return false;
+    }
+    
+    if(brailleSwitch.checked) {
+        bR.textContent = convertBraille(brailleString.value, 'braille');
+    } else {
+        bIR.textContent = convertBraille(brailleString.value, 'text');
+    }
+});
+
+brailleSwitch.addEventListener("click", function() {
+    if(brailleSwitch.checked) {
+        this.nextElementSibling.innerText = "Convert Braille to Text";
+    } else {
+        this.nextElementSibling.innerText = "Convert Text to Braille";
+    }
+});
+
+brailleImage.addEventListener("click", function() {
+    if(!emptyContainerCheck(bIR.innerHTML, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
+        return false;
+    }
+    let bOptions = {};
+    bOptions.font = `3rem system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
+    bOptions.paddingTop = 0;
+    bOptions.fontAdjust = true;
+    if (bIT.checked) {
+        bOptions.bgcolor = "rgba(0, 0, 0, 0)";
+    }
+    createImage(bIR.offsetWidth, bIR.offsetHeight, "braille.png", brailleImage, bIR.innerText, bOptions);
+});
+
 // Forerunner glyphs
 const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
@@ -93,7 +164,7 @@ Array.from(forerunnerButtons, c => c.addEventListener("click", function() {
 
 let forerunnerImage = document.getElementById("generateForerunnerImage");
 forerunnerImage.addEventListener("click", function() {
-    if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
+    if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at least one glyph to generate an image")) {
         return false;
     }
     let fOptions = {};
