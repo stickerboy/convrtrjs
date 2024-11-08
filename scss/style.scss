@@ -483,7 +483,14 @@ code {
 .form-select {
     width: 5.82rem;
     padding: 0.66rem 0.5rem;
-    font-size: 1rem;;
+    font-size: 1rem;
+}
+.form-control,
+.form-select {
+    &:focus {
+        border-color: var(--convrtr-bg-color-25-rgb);
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb);
+    }
 }
 @include color-mode(dark) {
     .form-control,
