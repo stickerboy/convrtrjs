@@ -43,12 +43,12 @@
 
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
-        <div class="container-fluid mw justify-content-end">
+        <div class="container-fluid mw justify-content-start">
             <a href="https://www.convrtr.xyz" 
                class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
                 Convrtr
             </a>
-            <div class="d-flex">
+            <div class="d-flex ms-auto">
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
                     For everlost and Grollow!
                 </span>
@@ -503,17 +503,21 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
-                                <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto me-2 mb-2">
+                                <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
                             </div>
-                            <div class="btn-group ms-auto align-items-start">
+                            <div class="col d-flex flex-fill">
+                                <div class="form-check form-switch mx-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
+                                    <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                                </div>
+                                <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="forerunnerResults" class="data-to-copy active"></div>
@@ -590,17 +594,21 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false">
-                                <label class="form-check-label" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto me-2 mb-2">
+                                <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
                             </div>
-                            <div class="btn-group ms-auto align-items-start">
+                            <div class="col d-flex flex-fill">
+                                <div class="form-check form-switch mx-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false">
+                                    <label class="form-check-label" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
+                                </div>
+                                <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="covenantResults" class="data-to-copy active"></div>
