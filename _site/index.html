@@ -44,16 +44,17 @@
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw">
-            <a href="https://www.convrtr.xyz" class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3" title="Home">
+            <a href="https://www.convrtr.xyz" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
                 Convrtr
             </a>
             <div class="d-flex">
-                <span class="navbar-text text-white mx-0 mx-md-3 d-none d-sm-block">
+                <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
                     For everlost and Grollow!
                 </span>
                 <ul class="navbar-nav mx-0 mx-md-2 flex-row">
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light" aria-label="Discord support server" 
+                        <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord"></i>
@@ -61,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light" aria-label="Github code repository" 
+                        <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
                             title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-github"></i>
@@ -70,7 +71,7 @@
                     </li>
                 
                     <li class="nav-item">
-                        <button type="button" class="btn btn-sm text-light btn-reset-data" id="resetData" 
+                        <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-recycle"></i>
@@ -79,7 +80,7 @@
                     </li>
                 
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
-                        <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
                         aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
                         data-current-icon="bi-circle-half">
                             <i class="bi my-1 theme-icon-active bi-circle-half"></i>
@@ -289,7 +290,7 @@
             <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#convrtrCollapse" role="button" 
                 aria-expanded="true" aria-controls="convrtrCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -348,7 +349,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for encoding"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -357,7 +358,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Enter any text you wish to encode in here. The results of decoded text will also appear here.'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: Hello" rows="6" id="form-text" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -391,7 +392,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding binary"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -400,7 +401,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Find out more about Binary on the <a href="http://en.wikipedia.org/wiki/Binary_numeral_system" class="text-convrtr" title="Binary Numeral System on Wikipedia">Binary</a> Wikipedia page'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: 01001000 01100101 01101100 01101100 01101111" rows="6" id="form-binary" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -436,19 +437,19 @@
                                 
                                 
                                 <label class="visually-hidden" id="hexLabel">Hex Delimiter</label>
-                                <select class="form-select form-select-sm mx-2 ms-auto w-auto hex-delimiter" aria-labelledby="hexLabel" id="hexDelimiter" autocomplete="off">
+                                <select class="form-select form-select-sm mx-2 ms-auto hex-delimiter" aria-labelledby="hexLabel" id="hexDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
     <option value=",">Comma</option>
-    <option value="\x">Slash x (\x)</option>
-    <option value="0x">Zero x (0x)</option>
-    <option value="">No delimiter</option>
+    <option value="\x">Slash x </option>
+    <option value="0x">Zero x</option>
+    <option value="">None</option>
 </select>
                                 
                                 
                                 <div class="d-flex align-items-center">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding hex"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -457,7 +458,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Replacement of spaces, hyphens, colons and commas are supported here. "\x" and "0x" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href="http://en.wikipedia.org/wiki/Hexidecimal" class="text-convrtr" title="Hexidecimal on Wikipedia">Hexidecimal</a> Wikipedia page'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: 48 65 6c 6c 6f" rows="6" id="form-hex" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -493,7 +494,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding base64"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -502,7 +503,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Find out more about Base64 on the <a href="http://en.wikipedia.org/wiki/Base64" class="text-convrtr" title="Base64 on Wikipedia">Base64</a> Wikipedia page'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: SGVsbG8=" rows="6" id="form-base64" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -538,7 +539,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding decimal"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -547,7 +548,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='A numerical representation of each letter that computers use. Find out more about on the <a href="https://www.lookuptables.com/text/ascii-table" class="text-convrtr" title="ASCII Table">ASCII Table</a> website'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: 72 101 108 108 111" rows="6" id="form-decimal" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -583,7 +584,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding reverse"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -592,7 +593,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='A simple function for displaying a string of text backwards.'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: olleH" rows="6" id="form-reverse" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -628,7 +629,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding rot13"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -637,7 +638,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Find out more about Rotational ciphers on the <a href="http://en.wikipedia.org/wiki/ROT13" class="text-convrtr" title="ROT13 on Wikipedia">ROT13</a> Wikipedia page'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: Uryyb" rows="6" id="form-rot13" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -673,7 +674,7 @@
                                 
                                 
                                 <div class="d-flex align-items-center ms-auto">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding morse"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -682,7 +683,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Find out more about Morse on the <a href="http://en.wikipedia.org/wiki/Morse_code" class="text-convrtr" title="Morse Code on Wikipedia">Morse Code</a> Wikipedia page'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: .... . .-.. .-.. ---" rows="6" id="form-morse" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -717,13 +718,13 @@
                                 </span>
                                 
                                 
-                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution" autocomplete="off">
-                                    <option value="default" selected="">. = 0, - = 1</option>
-                                    <option value="flipped">. = 1, - = 0</option>
+                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto" aria-label="Change Binary substitution" autocomplete="off">
+                                    <option value="default" selected="">. = 0</option>
+                                    <option value="flipped">- = 0</option>
                                 </select>
                                 
                                 <div class="d-flex align-items-center">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for decoding morsenary"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -732,7 +733,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='Morsenary is Binary disguised as Morse code. Replace dots with 0 and dashes with 1 (or vice versa) and convert the binary to a string. You can go further and use other characters or words in place of dots and dashes, making your puzzle a bit harder.'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="Example: .-..-....--..-.-.--.--...--.--...--.----" rows="6" id="form-morsenary" class="form-control data-to-copy active" autocomplete="off"></textarea>
@@ -762,7 +763,7 @@
             <section id="tools" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#toolsCollapse" role="button" 
                 aria-expanded="false" aria-controls="toolsCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -842,7 +843,7 @@
             <section id="replace" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#replaceCollapse" role="button" 
                 aria-expanded="false" aria-controls="replaceCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -910,7 +911,7 @@
             <section id="flip" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#flipCollapse" role="button" 
                 aria-expanded="false" aria-controls="flipCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -957,7 +958,7 @@
             <section id="freq" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#freqCollapse" role="button" 
                 aria-expanded="false" aria-controls="freqCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -1006,7 +1007,7 @@
         <div class="p-4 pb-2">
             
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
                     <i class="bi bi-arrow-up-square"></i>
                     <span class="visually-hidden" focusable="false" aria-hidden="true">
                         Back to top
@@ -1022,7 +1023,7 @@
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
                 title="Release version: v1.15.1" 
-                class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-body release-version">
+                class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
                 <small>v1.15.1</small>
             </a>
         </div>

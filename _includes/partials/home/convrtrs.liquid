@@ -1,7 +1,7 @@
 <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-dark text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#convrtrCollapse" role="button" 
                 aria-expanded="true" aria-controls="convrtrCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -63,13 +63,13 @@
                                 {% include "components/delimiter" %}
                                 {% endif %}
                                 {% if tool.id == "morsenary" %}
-                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution" autocomplete="off">
-                                    <option value="default" selected="">. = 0, - = 1</option>
-                                    <option value="flipped">. = 1, - = 0</option>
+                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto" aria-label="Change Binary substitution" autocomplete="off">
+                                    <option value="default" selected="">. = 0</option>
+                                    <option value="flipped">- = 0</option>
                                 </select>
                                 {% endif %}
                                 <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for {% if forloop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -78,7 +78,7 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='{{ tool.popover-content }}'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                             <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active" autocomplete="off"></textarea>

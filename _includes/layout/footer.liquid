@@ -3,7 +3,7 @@
         <div class="p-4 pb-2">
             {% if page-id != "fourohfour" %}
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
                     <i class="bi bi-arrow-up-square"></i>
                     <span class="visually-hidden" focusable="false" aria-hidden="true">
                         Back to top
@@ -19,7 +19,7 @@
         <div class="p-4 pt-2">
             <a href="{{ pkg.releases.url }}" 
                 title="Release version: v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}" 
-                class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-body release-version">
+                class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
                 <small>v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}</small>
             </a>
         </div>
