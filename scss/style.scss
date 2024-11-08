@@ -302,17 +302,18 @@ body {
     }
 }
 
-.display-6 {
-    font-size: calc(1.975rem + 1.5vw);
-}
-@media (min-width: 800px) {
-    .display-6 {
-        font-size: calc(1.575rem + 1.5vw);
+.display {
+    &-5 {
+        line-height: 1.5;
     }
-}
-@media (min-width: 1200px) {
-    .display-6 {
-        font-size: 2.5rem;
+    &-6 {
+        font-size: calc(1.975rem + 1.5vw);
+        @media (min-width: 800px) {
+            font-size: calc(1.575rem + 1.5vw);
+        }
+        @media (min-width: 1200px) {
+            font-size: 2.5rem;
+        }
     }
 }
 
@@ -500,6 +501,11 @@ code {
             box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb);
         }
     }
+}
+
+.input-group > .form-select {
+    width: auto;
+    padding: 0.66rem 2.25rem 0.66rem 0.5rem;
 }
 
 .tab-content {
