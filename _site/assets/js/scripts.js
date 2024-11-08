@@ -342,3 +342,12 @@ Array.from(downloadButtons, c => c.addEventListener("click", function() {
         tooltip.setContent({ ".tooltip-inner": "Download" });
     }, 3430);
 }));
+
+// Toggle aria values for checkboxes
+const customSwitch = document.querySelector('[role="switch"]');
+if(customSwitch) {
+    customSwitch.addEventListener('click', () => {
+        const isChecked = customSwitch.getAttribute('aria-checked') === 'true';
+        customSwitch.setAttribute('aria-checked', !isChecked);
+    });
+}

@@ -39,6 +39,7 @@
     </head>
     <body id="IOOBI9O4IEIEOIO4O4IB" 
           >
+          <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
 
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
@@ -56,7 +57,7 @@
                             title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord"></i>
-                            <span class="d-none mx-2">Join the discord</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -64,7 +65,7 @@
                             title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-github"></i>
-                            <span class="d-none mx-2">Github</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
                 
@@ -73,7 +74,7 @@
                                 aria-label="Clear all data inside textareas" title="Clear data"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-recycle"></i>
-                            <span class="d-none mx-2">Clear all data</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Clear all data</span>
                         </button>
                     </li>
                 
@@ -82,7 +83,7 @@
                         aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
                         data-current-icon="bi-circle-half">
                             <i class="bi my-1 theme-icon-active bi-circle-half"></i>
-                            <span class="d-none ms-2" id="bd-theme-text">Toggle theme</span>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">Toggle theme</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute"" aria-labelledby="bd-theme-text">
                             <li>
@@ -269,7 +270,8 @@
         data-bs-target="#navbarText" 
         data-bs-smooth-scroll="true"
         data-bs-threshold="0,1"
-        data-bs-root-margin="10% 0% -90%">
+        data-bs-root-margin="10% 0% -90%"
+        id="content">
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         <div class="section-heading">
@@ -324,9 +326,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot1" 
-                            aria-label="A: Rot 1" data-rot-number="1" 
+                            aria-label="Letter a - Rot 1" data-rot-number="1" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 1">
-                                a<span class="visually-hidden">: rot 1</span>
+                            <span class="visually-hidden">Letter</span> a<span class="visually-hidden"> - Rot 1</span>
                         </button>
                     </li>
                     
@@ -334,9 +336,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot2" 
-                            aria-label="B: Rot 2" data-rot-number="2" 
+                            aria-label="Letter b - Rot 2" data-rot-number="2" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 2">
-                                b<span class="visually-hidden">: rot 2</span>
+                            <span class="visually-hidden">Letter</span> b<span class="visually-hidden"> - Rot 2</span>
                         </button>
                     </li>
                     
@@ -344,9 +346,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot3" 
-                            aria-label="C: Rot 3" data-rot-number="3" 
+                            aria-label="Letter c - Rot 3" data-rot-number="3" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 3">
-                                c<span class="visually-hidden">: rot 3</span>
+                            <span class="visually-hidden">Letter</span> c<span class="visually-hidden"> - Rot 3</span>
                         </button>
                     </li>
                     
@@ -354,9 +356,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot4" 
-                            aria-label="D: Rot 4" data-rot-number="4" 
+                            aria-label="Letter d - Rot 4" data-rot-number="4" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 4">
-                                d<span class="visually-hidden">: rot 4</span>
+                            <span class="visually-hidden">Letter</span> d<span class="visually-hidden"> - Rot 4</span>
                         </button>
                     </li>
                     
@@ -364,9 +366,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot5" 
-                            aria-label="E: Rot 5" data-rot-number="5" 
+                            aria-label="Letter e - Rot 5" data-rot-number="5" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 5">
-                                e<span class="visually-hidden">: rot 5</span>
+                            <span class="visually-hidden">Letter</span> e<span class="visually-hidden"> - Rot 5</span>
                         </button>
                     </li>
                     
@@ -374,9 +376,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot6" 
-                            aria-label="F: Rot 6" data-rot-number="6" 
+                            aria-label="Letter f - Rot 6" data-rot-number="6" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 6">
-                                f<span class="visually-hidden">: rot 6</span>
+                            <span class="visually-hidden">Letter</span> f<span class="visually-hidden"> - Rot 6</span>
                         </button>
                     </li>
                     
@@ -384,9 +386,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot7" 
-                            aria-label="G: Rot 7" data-rot-number="7" 
+                            aria-label="Letter g - Rot 7" data-rot-number="7" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 7">
-                                g<span class="visually-hidden">: rot 7</span>
+                            <span class="visually-hidden">Letter</span> g<span class="visually-hidden"> - Rot 7</span>
                         </button>
                     </li>
                     
@@ -394,9 +396,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot8" 
-                            aria-label="H: Rot 8" data-rot-number="8" 
+                            aria-label="Letter h - Rot 8" data-rot-number="8" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 8">
-                                h<span class="visually-hidden">: rot 8</span>
+                            <span class="visually-hidden">Letter</span> h<span class="visually-hidden"> - Rot 8</span>
                         </button>
                     </li>
                     
@@ -404,9 +406,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot9" 
-                            aria-label="I: Rot 9" data-rot-number="9" 
+                            aria-label="Letter i - Rot 9" data-rot-number="9" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 9">
-                                i<span class="visually-hidden">: rot 9</span>
+                            <span class="visually-hidden">Letter</span> i<span class="visually-hidden"> - Rot 9</span>
                         </button>
                     </li>
                     
@@ -414,9 +416,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot10" 
-                            aria-label="J: Rot 10" data-rot-number="10" 
+                            aria-label="Letter j - Rot 10" data-rot-number="10" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 10">
-                                j<span class="visually-hidden">: rot 10</span>
+                            <span class="visually-hidden">Letter</span> j<span class="visually-hidden"> - Rot 10</span>
                         </button>
                     </li>
                     
@@ -424,9 +426,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot11" 
-                            aria-label="K: Rot 11" data-rot-number="11" 
+                            aria-label="Letter k - Rot 11" data-rot-number="11" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 11">
-                                k<span class="visually-hidden">: rot 11</span>
+                            <span class="visually-hidden">Letter</span> k<span class="visually-hidden"> - Rot 11</span>
                         </button>
                     </li>
                     
@@ -434,9 +436,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot12" 
-                            aria-label="L: Rot 12" data-rot-number="12" 
+                            aria-label="Letter l - Rot 12" data-rot-number="12" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 12">
-                                l<span class="visually-hidden">: rot 12</span>
+                            <span class="visually-hidden">Letter</span> l<span class="visually-hidden"> - Rot 12</span>
                         </button>
                     </li>
                     
@@ -444,9 +446,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot13" 
-                            aria-label="M: Rot 13" data-rot-number="13" 
+                            aria-label="Letter m - Rot 13" data-rot-number="13" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 13">
-                                m<span class="visually-hidden">: rot 13</span>
+                            <span class="visually-hidden">Letter</span> m<span class="visually-hidden"> - Rot 13</span>
                         </button>
                     </li>
                     
@@ -454,9 +456,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot14" 
-                            aria-label="N: Rot 14" data-rot-number="14" 
+                            aria-label="Letter n - Rot 14" data-rot-number="14" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 14">
-                                n<span class="visually-hidden">: rot 14</span>
+                            <span class="visually-hidden">Letter</span> n<span class="visually-hidden"> - Rot 14</span>
                         </button>
                     </li>
                     
@@ -464,9 +466,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot15" 
-                            aria-label="O: Rot 15" data-rot-number="15" 
+                            aria-label="Letter o - Rot 15" data-rot-number="15" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 15">
-                                o<span class="visually-hidden">: rot 15</span>
+                            <span class="visually-hidden">Letter</span> o<span class="visually-hidden"> - Rot 15</span>
                         </button>
                     </li>
                     
@@ -474,9 +476,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot16" 
-                            aria-label="P: Rot 16" data-rot-number="16" 
+                            aria-label="Letter p - Rot 16" data-rot-number="16" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 16">
-                                p<span class="visually-hidden">: rot 16</span>
+                            <span class="visually-hidden">Letter</span> p<span class="visually-hidden"> - Rot 16</span>
                         </button>
                     </li>
                     
@@ -484,9 +486,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot17" 
-                            aria-label="Q: Rot 17" data-rot-number="17" 
+                            aria-label="Letter q - Rot 17" data-rot-number="17" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 17">
-                                q<span class="visually-hidden">: rot 17</span>
+                            <span class="visually-hidden">Letter</span> q<span class="visually-hidden"> - Rot 17</span>
                         </button>
                     </li>
                     
@@ -494,9 +496,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot18" 
-                            aria-label="R: Rot 18" data-rot-number="18" 
+                            aria-label="Letter r - Rot 18" data-rot-number="18" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 18">
-                                r<span class="visually-hidden">: rot 18</span>
+                            <span class="visually-hidden">Letter</span> r<span class="visually-hidden"> - Rot 18</span>
                         </button>
                     </li>
                     
@@ -504,9 +506,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot19" 
-                            aria-label="S: Rot 19" data-rot-number="19" 
+                            aria-label="Letter s - Rot 19" data-rot-number="19" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 19">
-                                s<span class="visually-hidden">: rot 19</span>
+                            <span class="visually-hidden">Letter</span> s<span class="visually-hidden"> - Rot 19</span>
                         </button>
                     </li>
                     
@@ -514,9 +516,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot20" 
-                            aria-label="T: Rot 20" data-rot-number="20" 
+                            aria-label="Letter t - Rot 20" data-rot-number="20" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 20">
-                                t<span class="visually-hidden">: rot 20</span>
+                            <span class="visually-hidden">Letter</span> t<span class="visually-hidden"> - Rot 20</span>
                         </button>
                     </li>
                     
@@ -524,9 +526,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot21" 
-                            aria-label="U: Rot 21" data-rot-number="21" 
+                            aria-label="Letter u - Rot 21" data-rot-number="21" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 21">
-                                u<span class="visually-hidden">: rot 21</span>
+                            <span class="visually-hidden">Letter</span> u<span class="visually-hidden"> - Rot 21</span>
                         </button>
                     </li>
                     
@@ -534,9 +536,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot22" 
-                            aria-label="V: Rot 22" data-rot-number="22" 
+                            aria-label="Letter v - Rot 22" data-rot-number="22" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 22">
-                                v<span class="visually-hidden">: rot 22</span>
+                            <span class="visually-hidden">Letter</span> v<span class="visually-hidden"> - Rot 22</span>
                         </button>
                     </li>
                     
@@ -544,9 +546,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot23" 
-                            aria-label="W: Rot 23" data-rot-number="23" 
+                            aria-label="Letter w - Rot 23" data-rot-number="23" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 23">
-                                w<span class="visually-hidden">: rot 23</span>
+                            <span class="visually-hidden">Letter</span> w<span class="visually-hidden"> - Rot 23</span>
                         </button>
                     </li>
                     
@@ -554,9 +556,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot24" 
-                            aria-label="X: Rot 24" data-rot-number="24" 
+                            aria-label="Letter x - Rot 24" data-rot-number="24" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 24">
-                                x<span class="visually-hidden">: rot 24</span>
+                            <span class="visually-hidden">Letter</span> x<span class="visually-hidden"> - Rot 24</span>
                         </button>
                     </li>
                     
@@ -564,9 +566,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot25" 
-                            aria-label="Y: Rot 25" data-rot-number="25" 
+                            aria-label="Letter y - Rot 25" data-rot-number="25" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 25">
-                                y<span class="visually-hidden">: rot 25</span>
+                            <span class="visually-hidden">Letter</span> y<span class="visually-hidden"> - Rot 25</span>
                         </button>
                     </li>
                     
@@ -574,9 +576,9 @@
                     
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot26" 
-                            aria-label="Z: Rot 26" data-rot-number="26" 
+                            aria-label="Letter z - Rot 26" data-rot-number="26" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 26">
-                                z<span class="visually-hidden">: rot 26</span>
+                            <span class="visually-hidden">Letter</span> z<span class="visually-hidden"> - Rot 26</span>
                         </button>
                     </li>
                     
@@ -593,23 +595,23 @@
                 <div class="card">
                     <span class="card-label visually-hidden">ROT Cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
+                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="rot-group" for="rotKey">Key</label>
-                                        <input type="text" class="form-control" id="rotKey" title="Caesar cipher key">
+                                        <label class="input-group-text" id="rot-group" for="rotKey"><span class="visually-hidden">Caesar Cipher </span>Key</label>
+                                        <input type="text" class="form-control" id="rotKey" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots">
-                                                <label class="form-check-label" for="chainRots" aria-label="Chain substitutions together">Chain commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots" aria-checked="false">
+                                                <label class="form-check-label" for="chainRots">Chain <span class="visually-hidden">rotation </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">
@@ -693,15 +695,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Substitution cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher"></textarea>
+                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="substitution-group" for="subKey">Key</label>
-                                        <input type="text" class="form-control" id="subKey" title="Substitution cipher key">
+                                        <label class="input-group-text" id="substitution-group" for="subKey"><span class="visually-hidden">Substitution </span>Key</label>
+                                        <input type="text" class="form-control" id="subKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="subEncrypt">Encrypt</button>
                                         
                                     </div>
@@ -710,8 +712,8 @@
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSubs">
-                                                <label class="form-check-label" for="chainSubs">Chain commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSubs" aria-checked="false">
+                                                <label class="form-check-label" for="chainSubs">Chain <span class="visually-hidden">substitution </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">
@@ -769,15 +771,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher"></textarea>
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="basic-addon1" for="vigenereKey">Key</label>
-                                        <input type="text" class="form-control" id="vigenereKey" title="Vigenère cipher key">
+                                        <label class="input-group-text" id="basic-addon1" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
+                                        <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
                                         <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
                                     </div>
@@ -822,7 +824,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Hash text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: " title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text"></textarea>
+                        <textarea placeholder="Example: " title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
@@ -842,7 +844,11 @@
                                         <th scope="col">Value</th>
                                     </tr>
                                 </thead>
-                                <tbody class="data-to-copy active" id="hashResults"></tbody>
+                                <tbody class="data-to-copy active" id="hashResults">
+                                    <tr class="visually-hidden">
+                                        <td colspan="2" class="text-center">No data available</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -860,6 +866,9 @@
             <p class="float-end mb-1">
                 <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary" title="Back to top">
                     <i class="bi bi-arrow-up-square"></i>
+                    <span class="visually-hidden" focusable="false" aria-hidden="true">
+                        Back to top
+                    </span>
                 </a>
             </p>
             

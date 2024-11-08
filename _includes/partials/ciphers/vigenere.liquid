@@ -34,15 +34,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher"></textarea>
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="basic-addon1" for="vigenereKey">Key</label>
-                                        <input type="text" class="form-control" id="vigenereKey" title="Vigenère cipher key">
+                                        <label class="input-group-text" id="basic-addon1" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
+                                        <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
                                         <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
                                     </div>

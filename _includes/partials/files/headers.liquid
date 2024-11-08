@@ -36,23 +36,23 @@
                                 </tr>
                             </thead>
                             <tbody class="active" id="fileResults">
-                            {% for header in headers %}
-                                {% for item in header.hex %}
-                                {% if forloop.first %}
-                                <tr>
-                                    <th scope="row" rowspan="{{ header.hex.size }}">
-                                        <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
-                                    </th>
-                                    <td>{{ item }}</td>
-                                    <td scope="row" rowspan="{{ header.hex.size }}">{{ header.extensions }}</td>
-                                </tr>
-                                {% else %}
-                                <tr>
-                                    <td>{{ item }}</td>
-                                </tr>
-                                {% endif %}
+                                {% for header in headers %}
+                                    {% for item in header.hex %}
+                                        {% if forloop.first %}
+                                        <tr>
+                                            <th scope="row" rowspan="{{ header.hex.size }}">
+                                                <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
+                                            </th>
+                                            <td>{{ item }}</td>
+                                            <td rowspan="{{ header.hex.size }}">{{ header.extensions }}</td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td>{{ item }}</td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endfor %}
-                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

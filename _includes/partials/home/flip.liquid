@@ -21,13 +21,13 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Flip Text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → ┴SƎ┴" title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text"></textarea>
+                        <textarea placeholder="Example: TEST → ┴SƎ┴" title="Flip text upside down" rows="6" id="flipText" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
                             <button type="button" class="btn btn-md btn-convrtr" id="flipDecode" title="Flip text upside down">Flip</button>
                             <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="flipDirection">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flipDirection" aria-checked="false">
                                 <label class="form-check-label" for="flipDirection">Reverse</label>
                             </div>
                             {% include "components/select-copy-dl" %}
