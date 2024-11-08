@@ -84,7 +84,9 @@
                             <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active" autocomplete="off"></textarea>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 {% if forloop.first == true %}
-                                <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}">Encode</button>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
+                                    <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">Encode</button>
+                                </span>
                                 {% else %}
                                 <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
                                     <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
