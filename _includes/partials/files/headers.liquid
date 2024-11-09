@@ -1,7 +1,7 @@
 <section id="headers" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#headersCollapse" role="button" 
                 aria-expanded="true" aria-controls="headersCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 A list of common file headers in hexadecimal format, useful if you have a chunk of data so you can quickly match it with a potential file type.
@@ -36,23 +36,23 @@
                                 </tr>
                             </thead>
                             <tbody class="active" id="fileResults">
-                            {% for header in headers %}
-                                {% for item in header.hex %}
-                                {% if forloop.first %}
-                                <tr>
-                                    <th scope="row" rowspan="{{ header.hex.size }}">
-                                        <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
-                                    </th>
-                                    <td>{{ item }}</td>
-                                    <td scope="row" rowspan="{{ header.hex.size }}">{{ header.extensions }}</td>
-                                </tr>
-                                {% else %}
-                                <tr>
-                                    <td>{{ item }}</td>
-                                </tr>
-                                {% endif %}
+                                {% for header in headers %}
+                                    {% for item in header.hex %}
+                                        {% if forloop.first %}
+                                        <tr>
+                                            <th scope="row" rowspan="{{ header.hex.size }}">
+                                                <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
+                                            </th>
+                                            <td>{{ item }}</td>
+                                            <td rowspan="{{ header.hex.size }}">{{ header.extensions }}</td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td>{{ item }}</td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endfor %}
-                            {% endfor %}
                             </tbody>
                         </table>
                     </div>

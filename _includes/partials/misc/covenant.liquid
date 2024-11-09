@@ -1,7 +1,7 @@
 <section id="covenant" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#covenantCollapse" role="button" 
                 aria-expanded="true" aria-controls="covenantCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert Covenant glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were featured during an episode of the Halo 5: Guardians behdind the scenes show "<a href="https://www.halopedia.org/File:H5G_The_Sprint_Covenant_Font.png" title="Halopedia - Covenant Font image" class="text-convrtr">The Sprint</a>". The "Create image" button downloads an image version of the glyphs selected and displayed below the text version.
@@ -64,13 +64,17 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <a class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</a>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency">
-                                <label class="form-check-label" for="covImageTransparency">Transparent background</label>
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto me-2 mb-2">
+                                <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
                             </div>
-                            {% include "components/select-copy-dl" %}
+                            <div class="col d-flex flex-fill">
+                                <div class="form-check form-switch mx-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false">
+                                    <label class="form-check-label" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
+                                </div>
+                                {% include "components/select-copy-dl" %}
+                            </div>
                         </div>
                         <hr />
                         <div id="covenantResults" class="data-to-copy active"></div>

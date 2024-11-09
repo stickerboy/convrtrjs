@@ -6,7 +6,7 @@
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
-        <title>Convrtr - For everlost and Grollow!</title>
+        <title>Convrtr - Miscellaneous tools</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
@@ -39,50 +39,52 @@
     </head>
     <body id="IOOBI9O4IEIEOIO4O4IB" 
           >
+          <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
 
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
-        <div class="container-fluid mw">
-            <a href="https://www.convrtr.xyz" class="navbar-brand text-white mb-0 h1 fw-normal me-auto me-md-3" title="Home">
+        <div class="container-fluid mw justify-content-start">
+            <a href="https://www.convrtr.xyz" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
                 Convrtr
             </a>
-            <div class="d-flex">
-                <span class="navbar-text text-white mx-0 mx-md-3 d-none d-sm-block">
+            <div class="d-flex ms-auto">
+                <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
                     For everlost and Grollow!
                 </span>
                 <ul class="navbar-nav mx-0 mx-md-2 flex-row">
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light" aria-label="Discord support server" 
+                        <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord"></i>
-                            <span class="d-none mx-2">Join the discord</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-sm btn-link text-light" aria-label="Github code repository" 
+                        <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
                             title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-github"></i>
-                            <span class="d-none mx-2">Github</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
                 
                     <li class="nav-item">
-                        <button type="button" class="btn btn-sm text-light btn-reset-data" id="resetData" 
+                        <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
                                 data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-recycle"></i>
-                            <span class="d-none mx-2">Clear all data</span>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Clear all data</span>
                         </button>
                     </li>
                 
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
-                        <button class="btn btn-sm text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
                         aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
                         data-current-icon="bi-circle-half">
                             <i class="bi my-1 theme-icon-active bi-circle-half"></i>
-                            <span class="d-none ms-2" id="bd-theme-text">Toggle theme</span>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">Toggle theme</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute"" aria-labelledby="bd-theme-text">
                             <li>
@@ -269,7 +271,8 @@
         data-bs-target="#navbarText" 
         data-bs-smooth-scroll="true"
         data-bs-threshold="0,1"
-        data-bs-root-margin="10% 0% -90%">
+        data-bs-root-margin="10% 0% -90%"
+        id="content">
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         <div class="section-heading">
@@ -287,7 +290,7 @@
             <section id="braille" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#brailleCollapse" role="button" 
                 aria-expanded="true" aria-controls="brailleCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -296,7 +299,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert Braille to text and vice-versa. The "Create image" button downloads an image version of the generated Braille.
@@ -310,7 +313,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Braille</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text"></textarea>
+                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
@@ -318,22 +321,22 @@
                                 <div class="col w-auto me-2 mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="input-group w-auto mb-2">
-                                            <a class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</a>
+                                            <button role="button" class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</button>
                                         </div>
                                         <div class="input-group w-auto mb-2">
-                                            <a class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</a>
+                                            <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
                                             <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency">
-                                            <label class="form-check-label" for="brImageTransparency">Transparent background</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
+                                            <label class="form-check-label" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
                                         </div>
                                     </div>
                                 </div>
@@ -358,7 +361,7 @@
             <section id="elements" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#elementsCollapse" role="button" 
                 aria-expanded="false" aria-controls="elementsCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -367,7 +370,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert periodic element property values to different property values, for example atomic numbers to element names or symbols.
@@ -380,15 +383,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Periodic elements conversion</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text"></textarea>
+                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
                                     <div class="input-group w-auto mb-2">
-                                        <label class="input-group-text" for="elementPropFrom">Convert from</label>
-                                        <select class="form-select" id="elementPropFrom" aria-label="Element properties">
+                                        <label class="input-group-text" for="elementPropFrom">Convert from <span class="visually-hidden">element properties</span></label>
+                                        <select class="form-select" id="elementPropFrom" autocomplete="off">
                                             <option value="symbol" selected="">Element symbol</option>
                                             <option value="name">Element name</option>
                                             <option value="number">Atomic number</option>
@@ -398,8 +401,8 @@
                                         </select>
                                     </div>
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="elementPropTo">Convert to</label>
-                                        <select class="form-select" id="elementPropTo" aria-label="Element properties">
+                                        <label class="input-group-text" for="elementPropTo">Convert to <span class="visually-hidden">element properties</span></label>
+                                        <select class="form-select" id="elementPropTo" autocomplete="off">
                                             <option value="symbol" selected="">Element symbol</option>
                                             <option value="name">Element name</option>
                                             <option value="number">Atomic number</option>
@@ -413,7 +416,7 @@
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false">
                                             <label class="form-check-label" for="removeDelimiters">Remove delimiters</label>
                                         </div>
                                     </div>
@@ -436,7 +439,7 @@
             <section id="forerunner" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#forerunnerCollapse" role="button" 
                 aria-expanded="true" aria-controls="forerunnerCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -445,7 +448,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert Forerunner glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were primarily used during an <a href="https://www.halopedia.org/Section_3_ARG" title="Halopedia - Section 3 ARG" class="text-convrtr">ARG</a> for Halo 4. The "Create image" button downloads an image version of the glyphs selected and displayed below the text version.
@@ -500,17 +503,21 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <a class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</a>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency">
-                                <label class="form-check-label" for="frImageTransparency">Transparent background</label>
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto me-2 mb-2">
+                                <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
                             </div>
-                            <div class="btn-group ms-auto align-items-start">
+                            <div class="col d-flex flex-fill">
+                                <div class="form-check form-switch mx-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
+                                    <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                                </div>
+                                <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="forerunnerResults" class="data-to-copy active"></div>
@@ -524,7 +531,7 @@
             <section id="covenant" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#covenantCollapse" role="button" 
                 aria-expanded="true" aria-controls="covenantCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -533,7 +540,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert Covenant glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were featured during an episode of the Halo 5: Guardians behdind the scenes show "<a href="https://www.halopedia.org/File:H5G_The_Sprint_Covenant_Font.png" title="Halopedia - Covenant Font image" class="text-convrtr">The Sprint</a>". The "Create image" button downloads an image version of the glyphs selected and displayed below the text version.
@@ -587,17 +594,21 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <a class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</a>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency">
-                                <label class="form-check-label" for="covImageTransparency">Transparent background</label>
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto me-2 mb-2">
+                                <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
                             </div>
-                            <div class="btn-group ms-auto align-items-start">
+                            <div class="col d-flex flex-fill">
+                                <div class="form-check form-switch mx-2">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false">
+                                    <label class="form-check-label" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
+                                </div>
+                                <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="covenantResults" class="data-to-copy active"></div>
@@ -618,8 +629,11 @@
         <div class="p-4 pb-2">
             
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
                     <i class="bi bi-arrow-up-square"></i>
+                    <span class="visually-hidden" focusable="false" aria-hidden="true">
+                        Back to top
+                    </span>
                 </a>
             </p>
             
@@ -630,9 +644,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.15.0" 
-                class="d-inline-flex px-2 py-1 fw-semibold bg-success bg-opacity-25 border border-success border-opacity-10 rounded-2 text-body release-version">
-                <small>v1.15.0</small>
+                title="Release version: v1.15.1" 
+                class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
+                <small>v1.15.1</small>
             </a>
         </div>
     </div>

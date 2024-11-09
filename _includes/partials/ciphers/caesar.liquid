@@ -1,7 +1,7 @@
 <section id="rotate" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#rotCollapse" role="button" 
                 aria-expanded="true" aria-controls="rotCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 A very simple method of encription, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.
@@ -38,9 +38,9 @@
                     {% endif %}
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot{{ forloop.index }}" 
-                            aria-label="{{ char.letter }}: Rot {{ forloop.index }}" data-rot-number="{{ forloop.index }}" 
+                            aria-label="Letter {{ char.letter | downcase }} - Rot {{ forloop.index }}" data-rot-number="{{ forloop.index }}" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot {{ forloop.index }}">
-                                {{ char.letter | downcase }}<span class="visually-hidden">: rot {{ forloop.index }}</span>
+                            <span class="visually-hidden">Letter</span> {{ char.letter | downcase }}<span class="visually-hidden"> - Rot {{ forloop.index }}</span>
                         </button>
                     </li>
                     {% if forloop.last %}
@@ -57,23 +57,23 @@
                 <div class="card">
                     <span class="card-label visually-hidden">ROT Cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text"></textarea>
+                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="rot-group" for="rotKey">Key</label>
-                                        <input type="text" class="form-control" id="rotKey" title="Caesar cipher key">
+                                        <label class="input-group-text" id="rot-group" for="rotKey"><span class="visually-hidden">Caesar Cipher </span>Key</label>
+                                        <input type="text" class="form-control" id="rotKey" autocomplete="off">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots">
-                                                <label class="form-check-label" for="chainRots" aria-label="Chain substitutions together">Chain commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots" aria-checked="false">
+                                                <label class="form-check-label" for="chainRots">Chain <span class="visually-hidden">rotation </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">

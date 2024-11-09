@@ -1,9 +1,9 @@
-<select class="form-select {% if page-id == "home" %}form-select-sm mx-2 ms-auto {%endif %}w-auto hex-delimiter" aria-label="Change Hexadecimal delimiter" id="{{ hexDelimiter }}">
+<select class="form-select {% if page-id == "home" %}form-select-sm mx-2 ms-auto {%endif %}hex-delimiter" aria-labelledby="{{ hexDelimiter }}Label" id="{{ hexDelimiter }}Delimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
     <option value=",">Comma</option>
-    <option value="\x">Slash x (\x)</option>
-    <option value="0x">Zero x (0x)</option>
-    <option value="">No delimiter</option>
+    <option value="\x">Slash x </option>
+    <option value="0x">Zero x</option>
+    <option value="">None</option>
 </select>

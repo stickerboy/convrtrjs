@@ -1,7 +1,7 @@
 <section id="replace" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#replaceCollapse" role="button" 
                 aria-expanded="false" aria-controls="replaceCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Replace characters in a string - allows replace any characters or phrases in a string with any character or phrase. 
@@ -22,7 +22,8 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Replace characters</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TESTING → ST → EA → TEASING" title="Replace characters in a string" rows="6" id="replaceText" class="form-control replace-text"></textarea>
+                        <label for="replaceText" class="visually-hidden">Replace characters in a string</label>
+                        <textarea placeholder="Example: TESTING → ST → EA → TEASING" rows="6" id="replaceText" class="form-control replace-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
@@ -30,23 +31,23 @@
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
                                     <div class="input-group w-auto mb-2">
                                         <label class="input-group-text" id="basic-addon1" for="replaceValue">Old<span class="d-none d-md-block">&nbsp;characters</span></label>
-                                        <input type="text" class="form-control" id="replaceValue" title="Characters to be replaced, regex is allowed">
+                                        <input type="text" class="form-control" id="replaceValue" autocomplete="off">
                                     </div>
                                     <div class="input-group w-auto">
                                         <label class="input-group-text" id="basic-addon2" for="replacementValue">New<span class="d-none d-md-block">&nbsp;characters</span></label>
-                                        <input type="text" class="form-control" id="replacementValue" title="New characters">
+                                        <input type="text" class="form-control" id="replacementValue" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="replaceDecode">Replace</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceCase">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceCase" aria-checked="false">
                                             <label class="form-check-label" for="replaceCase">Case sensitive</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceChain">
-                                            <label class="form-check-label" for="replaceChain">Chain commands</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="replaceChain" aria-checked="false">
+                                            <label class="form-check-label" for="replaceChain">Chain <span class="visually-hidden" aria-hidden="true" focusable="true">replace</span> commands</label>
                                         </div>
                                     </div>
                                     {% include "components/select-copy-dl" %}

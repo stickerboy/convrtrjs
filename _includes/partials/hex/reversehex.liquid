@@ -1,8 +1,8 @@
-{% assign hexDelimiter = "reverseHexDelimiter" %}
+{% assign hexDelimiter = "reverseHex" %}
 <section id="reverseHex" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
                 aria-expanded="false" aria-controls="reverseHexCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -11,7 +11,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, this reverses each individual hex byte in the same order. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code>. The Reverse Nibbles toggle reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code>
@@ -25,23 +25,23 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Reverse hex</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex"></textarea>
+                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="reverseHexDelimiter">Delimiter</label>
+                                        <label class="input-group-text" id="reverseHexLabel">Delimiter</label>
                                         {% include "components/delimiter" %}
-                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode" title="Reverse hex nibbles">Reverse</button>
+                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode">Reverse</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="reverseNibbles">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="reverseNibbles" aria-checked="false">
                                                 <label class="form-check-label" for="reverseNibbles">Reverse Nibbles</label>
                                             </div>
                                         </div>

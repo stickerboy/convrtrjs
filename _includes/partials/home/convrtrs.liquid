@@ -1,8 +1,7 @@
-{% assign hexDelimiter = "hexDelimiter" %}
 <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#convrtrCollapse" role="button" 
                 aria-expanded="true" aria-controls="convrtrCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -11,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 A description of each decoder and link to more information is available using the info button in the top-right of each decoder, ou can also copy the contents on individual decoders and download the contents to a text file. By selecting the "chain decoders" option, the "decode" button under each decode switches its target to the Text decoder.
@@ -42,8 +41,8 @@
         <div class="collapse" id="convrtrCollapse">
             <div class="grid">
                 <div class="form-check form-switch text-star g-col-12 mb-3">
-                    <input class="form-check-input" type="checkbox" role="switch" id="chainDecoders">
-                    <label class="form-check-label" for="chainDecoders" aria-label="Chain decoders together">Chain decoders</label>
+                    <input class="form-check-input" type="checkbox" role="switch" id="chainDecoders" aria-checked="false">
+                    <label class="form-check-label" for="chainDecoders">Chain decoders</label>
                 </div>
             </div>
             <div class="grid g-3">
@@ -59,16 +58,18 @@
                                     </label>
                                 </span>
                                 {% if tool.id == "hex" %}
+                                {% assign hexDelimiter = "hex" %}
+                                <label class="visually-hidden" id="hexLabel">Hex Delimiter</label>
                                 {% include "components/delimiter" %}
                                 {% endif %}
                                 {% if tool.id == "morsenary" %}
-                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto w-auto" aria-label="Change Binary substitution">
-                                    <option value="default" selected="">. = 0, - = 1</option>
-                                    <option value="flipped">. = 1, - = 0</option>
+                                <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto" aria-label="Change Binary substitution" autocomplete="off">
+                                    <option value="default" selected="">. = 0</option>
+                                    <option value="flipped">- = 0</option>
                                 </select>
                                 {% endif %}
                                 <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
-                                    <a role="button" tabindex="0" class="text-convrtr px-1 border border-convrtr rounded"
+                                    <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
                                         aria-label="Information popover for {% if forloop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
                                         data-bs-container="body" 
                                         data-bs-toggle="popover" 
@@ -77,15 +78,17 @@
                                         data-bs-trigger="focus"
                                         data-bs-content='{{ tool.popover-content }}'>
                                         <i class="bi bi-info-circle"></i>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
-                            <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active"></textarea>
+                            <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active" autocomplete="off"></textarea>
                             <div class="d-flex justify-content-between align-items-center mt-3">
                                 {% if forloop.first == true %}
-                                <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}">Encode</button>
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
+                                    <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">Encode</button>
+                                </span>
                                 {% else %}
-                                <span tabindex="0" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
+                                <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
                                     <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
                                         Decode
                                     </button>

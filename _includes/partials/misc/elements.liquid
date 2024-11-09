@@ -1,7 +1,7 @@
 <section id="elements" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#elementsCollapse" role="button" 
                 aria-expanded="false" aria-controls="elementsCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert periodic element property values to different property values, for example atomic numbers to element names or symbols.
@@ -23,15 +23,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Periodic elements conversion</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text"></textarea>
+                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
                                     <div class="input-group w-auto mb-2">
-                                        <label class="input-group-text" for="elementPropFrom">Convert from</label>
-                                        <select class="form-select" id="elementPropFrom" aria-label="Element properties">
+                                        <label class="input-group-text" for="elementPropFrom">Convert from <span class="visually-hidden">element properties</span></label>
+                                        <select class="form-select" id="elementPropFrom" autocomplete="off">
                                             <option value="symbol" selected="">Element symbol</option>
                                             <option value="name">Element name</option>
                                             <option value="number">Atomic number</option>
@@ -41,8 +41,8 @@
                                         </select>
                                     </div>
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="elementPropTo">Convert to</label>
-                                        <select class="form-select" id="elementPropTo" aria-label="Element properties">
+                                        <label class="input-group-text" for="elementPropTo">Convert to <span class="visually-hidden">element properties</span></label>
+                                        <select class="form-select" id="elementPropTo" autocomplete="off">
                                             <option value="symbol" selected="">Element symbol</option>
                                             <option value="name">Element name</option>
                                             <option value="number">Atomic number</option>
@@ -56,7 +56,7 @@
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false">
                                             <label class="form-check-label" for="removeDelimiters">Remove delimiters</label>
                                         </div>
                                     </div>

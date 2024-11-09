@@ -1,7 +1,7 @@
 <section id="sub" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#subCollapse" role="button" 
                 aria-expanded="false" aria-controls="subCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 A substitution cipher uses a key or a phrease to make a new alphabet, with the end result potentially being a completely jumbled up alphabet. 
@@ -60,15 +60,15 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Substitution cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher"></textarea>
+                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="substitution-group" for="subKey">Key</label>
-                                        <input type="text" class="form-control" id="subKey" title="Substitution cipher key">
+                                        <label class="input-group-text" id="substitution-group" for="subKey"><span class="visually-hidden">Substitution </span>Key</label>
+                                        <input type="text" class="form-control" id="subKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="subEncrypt">Encrypt</button>
                                         {% comment %}<button class="btn btn-outline-convrtr" type="button" id="subDecrypt" title="Decryption is currently unavailable">Decrypt</button>{% endcomment %}
                                     </div>
@@ -77,8 +77,8 @@
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSubs">
-                                                <label class="form-check-label" for="chainSubs">Chain commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSubs" aria-checked="false">
+                                                <label class="form-check-label" for="chainSubs">Chain <span class="visually-hidden">substitution </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">

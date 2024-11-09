@@ -36,7 +36,7 @@ function convertBraille(string, mode, map = braille) {
  * or if the target property does not exist for a matched element.
  */
 function convertElements(string, sourceProp, targetProp, removeDelimiters) {
-    const strings = string.split(/[ ,:;\-]+/);
+    const strings = string.trim().split(/[ ,:;\-]+/);
     const results = [];
 
     for (const str of strings) {

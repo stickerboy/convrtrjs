@@ -1,7 +1,7 @@
 <section id="braille" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <div class="d-flex justify-content-between section-toggle"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
                 data-bs-toggle="collapse" href="#brailleCollapse" role="button" 
                 aria-expanded="true" aria-controls="brailleCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -10,7 +10,7 @@
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
-            </div>
+            </a>
             <hr>
             <p class="px-2">
                 Convert Braille to text and vice-versa. The "Create image" button downloads an image version of the generated Braille.
@@ -24,7 +24,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Braille</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text"></textarea>
+                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
@@ -32,22 +32,22 @@
                                 <div class="col w-auto me-2 mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="input-group w-auto mb-2">
-                                            <a class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</a>
+                                            <button role="button" class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</button>
                                         </div>
                                         <div class="input-group w-auto mb-2">
-                                            <a class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</a>
+                                            <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
                                             <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency">
-                                            <label class="form-check-label" for="brImageTransparency">Transparent background</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
+                                            <label class="form-check-label" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
                                         </div>
                                     </div>
                                 </div>
