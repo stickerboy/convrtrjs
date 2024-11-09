@@ -508,6 +508,13 @@ code {
     padding: 0.66rem 2.25rem 0.66rem 0.5rem;
 }
 
+.card-label,
+.form-switch .form-check-input,
+.form-check-label,
+.input-group-text {
+    cursor: pointer;
+}
+
 .tab-content {
     padding: 0.5rem 0.65rem;
     background-color: var(--bs-white);
