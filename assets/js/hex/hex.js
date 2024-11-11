@@ -88,7 +88,8 @@ function generateHexFrequencies(string, delimiter) {
             8: {}
         };
 
-        const upperInput = string.toUpperCase();
+        // Remove delimiters and convert input to uppercase for case insensitivity
+        const upperInput = string.replace(new RegExp(delimiter, 'g'), '').toUpperCase();
 
         /**
          * Updates the frequencies for a given group size.
