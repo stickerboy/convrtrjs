@@ -68,6 +68,50 @@ function reverseHexNibbles(string, delimiter) {
     }
 }
 
+/**
+ * Calculates the frequencies of hexadecimal groups of the same characters in different sizes (2, 4, 6, 8).
+ * Converts the input to uppercase for case insensitivity.
+ * Only includes groups where all hex pairs are identical.
+ * 
+ * @param {string} string - The input string containing hexadecimal characters.
+ * @param {string} delimiter - The delimiter used to separate hex characters in the input string.
+ * @returns {Object} An object containing the frequencies of hex groups for sizes 2, 4, 6, and 8.
+ * @throws {Error} If the hexadecimal input contains invalid characters.
+ */
+function generateHexFrequencies(string, delimiter) {
+
+    if (isValidHex(string, delimiter)) {
+        const hexFrequencies = {
+            2: {},
+            4: {},
+            6: {},
+            8: {}
+        };
+
+        const upperInput = string.toUpperCase();
+
+        /**
+         * Updates the frequencies for a given group size.
+         * 
+         * @param {number} size - The size of the hex group (2, 4, 6, or 8 characters).
+         */
+        function updateHexFrequencies(size) {
+            const split = upperInput.match(new RegExp(`.{1,${size}}`, 'g')) || [];
+            split.forEach((group) => {
+                if (group.length === size && new Set(group.match(/.{2}/g)).size === 1) { // Check if all pairs are identical
+                    hexFrequencies[size][group] = (hexFrequencies[size][group] || 0) + 1;
+                }
+            });
+        }
+
+        [2, 4, 6, 8].forEach(updateHexFrequencies);
+
+        return hexFrequencies;
+    } else {
+        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
+    }
+}
+
 // Shift Hex
 const shiftButton = document.getElementById("shiftDecode");
 shiftButton.addEventListener("click", function() {
