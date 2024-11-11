@@ -59,7 +59,7 @@
                                 </span>
                                 {% if tool.id == "hex" %}
                                 {% assign hexDelimiter = "hex" %}
-                                <label class="visually-hidden" id="hexLabel">Hex Delimiter</label>
+                                <label class="visually-hidden" for="{{ hexDelimiter }}Delimiter">Hex Delimiter</label>
                                 {% include "components/delimiter" %}
                                 {% endif %}
                                 {% if tool.id == "morsenary" %}

@@ -3,8 +3,8 @@
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#shiftHexCollapse" role="button" 
-                aria-expanded="true" aria-controls="shiftHexCollapse">
+                data-bs-toggle="collapse" href="#{{ hexDelimiter }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ hexDelimiter }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Shift hex
                 </h2>
@@ -20,7 +20,7 @@
                 The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. Negative numbers are allowed.
             </p>
         </div>
-        <div class="collapse show" id="shiftHexCollapse">
+        <div class="collapse show" id="{{ hexDelimiter }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Shift hex string</span>
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <label class="visually-hidden" id="shiftHexLabel">Shift Hex Delimiter</label>
+                                    <label class="visually-hidden" for="{{ hexDelimiter }}Delimiter">Shift Hex Delimiter</label>
                                     {% include "components/delimiter" %}
                                     {% include "components/select-copy-dl" %}
                                 </div>
