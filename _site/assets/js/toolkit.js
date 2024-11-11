@@ -115,15 +115,15 @@ function stringToBinary(string) {
 }
 
 /**
- * Validate Hex
- * @param {string} string - The input string.
- * @param {string} delimiter - The delimiter used in the string (e.g., '0x', '\\x').
- * @returns {boolean} - True if the input is a valid hexadecimal value, otherwise false.
+ * Validate hexadecimal characters
+ *
+ * @param {string} string - The input string containing hexadecimal characters.
+ * @param {string} delimiter - The delimiter used to separate hex characters in the input string (e.g., '0x', '\\x').
+ * @returns {boolean} True if the input string is valid hexadecimal, otherwise false.
  */
 function isValidHex(string, delimiter) {
-    const validHex = /^[0-9A-Fa-f]+$/g;
-    let hexTest = string.replaceAll(delimiter, "");
-    return validHex.test(hexTest);
+    const validHex = new RegExp(`^[0-9a-fA-F${delimiter}]+$`);
+    return validHex.test(string);
 }
 
 /**
