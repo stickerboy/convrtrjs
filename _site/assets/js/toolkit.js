@@ -264,12 +264,23 @@ function decimalToString(string) {
 }
 
 /**
- * Return an array of unique values from an array
- * @param {Array} string - The input array.
- * @returns {Array} - An array with unique values.
+ * Return an array of unique character groups from a string, divided into chunks
+ * @param {string} str - The input string.
+ * @param {Number} [chunkSize=1] - The size of each chunk. Default is 1.
+ * @returns {Array} - An array of unique character groups for each chunk.
  */
-function uniqueArray(string) {
-    return [...new Set(string)];
+function uniqueArray(str, chunkSize = 1) {
+    if (chunkSize <= 0) {
+        throw new Error('Invalid chunk size');
+    }
+
+    const chunks = [];
+    for (let i = 0; i < str.length; i += chunkSize) {
+        const chunk = str.substring(i, i + chunkSize);
+        chunks.push(chunk);
+    }
+
+    return [...new Set(chunks)];
 }
 
 /**
