@@ -31,6 +31,9 @@
             },{
                 "id": "reverseHex",
                 "label": "Reverse hex"
+            },{
+                "id": "hexFreq",
+                "label": "Hex Frequencies"
             }
         ]
     },
