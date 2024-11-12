@@ -384,22 +384,23 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
  * Creates styled HTML elements for displaying unique character frequencies.
  *
  * @param {Object} data - An object containing unique characters as keys and their frequencies as values.
- * @param {string} title - The title to be displayed above the frequencies.
+ * @param {string} [title="Frequencies"] - The title to be displayed above the frequencies.
+ * @param {number} [minColWidth=6] - The minimum column width for the grid.
  * @returns {string} - The HTML representation of the unique character frequencies.
  *
  * @example
  * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }, "Character Frequencies"
  * // Output: "<div class="g-col-12"> ..."
  */
-function styledArrayFrequencies(data, title = "Frequencies") {
+function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
     // Initialize the result string with the opening div and title
     let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">${title}</p>
-    <div class="grid mt-2" id="unique-freqs">`;
+    <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">`;
 
     // Iterate over the data object to generate HTML for each key-value pair
     for (let [key, value] of Object.entries(data)) {
-        result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1">
-                    <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
+        result += `<div>
+                    <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
                         ${key} - ${value}
                     </code>
                    </div>`;
@@ -409,7 +410,6 @@ function styledArrayFrequencies(data, title = "Frequencies") {
     result += `</div></div>`;
     return result;
 }
-
 
 /**
  * Create an image from a specific container, with specified dimensions and content.

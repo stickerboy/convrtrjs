@@ -414,6 +414,17 @@ textarea {
     }
 }
 
+.grid {
+    &--fill {
+        --bs-column-fill: 6rem;
+        grid-template-columns: repeat(auto-fill, minmax(var(--bs-column-fill), 1fr));
+    }
+    &--fit {
+        --bs-column-fit: 6rem;
+        grid-template-columns: repeat(auto-fill, minmax(var(--bs-column-fit), 1fr));
+    }
+}
+
 code {
     color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
     background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
