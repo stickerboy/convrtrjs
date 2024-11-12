@@ -192,12 +192,12 @@ freqButton.addEventListener("click", function() {
         freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4), "Hex frequencies [double]", 8)}`);
     }
     if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6), "Hex frequencies [triple]", 8)}`);
+        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6), "Hex frequencies [triple]", 9)}`);
     }
     if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 8)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 7), "Hex frequencies [quad]", 9)}`);
+        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 7), "Hex frequencies [quad]", 10)}`);
     }
     if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10), "Hex frequencies [quint]", 11)}`);
+        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10), "Hex frequencies [quint]", 12)}`);
     }
 });
