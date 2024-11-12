@@ -78,36 +78,9 @@ function reverseHexNibbles(string, delimiter) {
  * @returns {Object} An object containing the frequencies of hex groups for sizes 2, 4, 6, and 8.
  * @throws {Error} If the hexadecimal input contains invalid characters.
  */
-function generateHexFrequencies(string, delimiter) {
-
+function generateHexFrequencies(string, delimiter, chunkSize) {
     if (isValidHex(string, delimiter)) {
-        const hexFrequencies = {
-            2: {},
-            4: {},
-            6: {},
-            8: {}
-        };
-
-        // Remove delimiters and convert input to uppercase for case insensitivity
-        const upperInput = string.replace(new RegExp(delimiter, 'g'), '').toUpperCase();
-
-        /**
-         * Updates the frequencies for a given group size.
-         * 
-         * @param {number} size - The size of the hex group (2, 4, 6, or 8 characters).
-         */
-        function updateHexFrequencies(size) {
-            const split = upperInput.match(new RegExp(`.{1,${size}}`, 'g')) || [];
-            split.forEach((group) => {
-                if (group.length === size && new Set(group.match(/.{2}/g)).size === 1) { // Check if all pairs are identical
-                    hexFrequencies[size][group] = (hexFrequencies[size][group] || 0) + 1;
-                }
-            });
-        }
-
-        [2, 4, 6, 8].forEach(updateHexFrequencies);
-
-        return hexFrequencies;
+        return countArrayFreq(string, delimiter, chunkSize);
     } else {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
@@ -181,4 +154,30 @@ reverseHexButton.addEventListener("click", function() {
         revHexContent = reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
     } 
     document.getElementById("reverseHexResults").textContent = revHexContent;
+});
+
+
+// Hex Frequencies
+const freqButton = document.getElementById("freqDecode");
+freqButton.addEventListener("click", function() {
+    const freqString = document.getElementById("freqText");
+    let freqResults = document.getElementById("freqResults");
+    let hexFrequenciesDelimiter = document.getElementById("hexFrequenciesDelimiter").value;
+
+    freqResults.innerHTML = "";
+
+    if(!emptyContainerCheck(freqString.value, freqString)) {
+        return false;
+    }
+    if (!largeDataWarning(freqString.value, freqString)) {
+        return false;
+    }
+
+    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${freqString.value.replaceAll(hexFrequenciesDelimiter, "").length}</code>&nbsp;<br /></div>`);
+    
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value, 2, hexFrequenciesDelimiter), "Hex frequencies")}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value, 4, hexFrequenciesDelimiter), "Hex frequencies [double]")}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value, 6, hexFrequenciesDelimiter), "Hex frequencies [triple]")}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value, 8, hexFrequenciesDelimiter), "Hex frequencies [quadruple]")}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value, 10, hexFrequenciesDelimiter), "Hex frequencies [quintuple]")}`);
 });
