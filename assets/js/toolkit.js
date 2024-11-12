@@ -20,6 +20,15 @@ const textMorseDict = {
 }
 
 /**
+ * Trims whitespace from the start and end of a string. 
+ * @param {string} input - The input string to be trimmed. 
+ * @returns {string} The trimmed string. 
+ **/
+ function cleanString(string) { 
+    return string.trimStart().trim(); 
+}
+
+/**
  * Check if character/string is a letter
  * @param {string} string - The input character or string.
  * @returns {boolean} - True if the input is a letter, otherwise false.
@@ -75,6 +84,20 @@ function getKeyValue(searchString, array, searchBy = 'key') {
 }
 
 /**
+ * Calculates the number of keys in an object.
+ *
+ * @param {Object} input - The input object to check the size of.
+ * @returns {number} The number of keys in the object.
+ * @throws {Error} Throws an error if the provided input is not an object.
+ */
+function objectSize(input) {
+    if (typeof input === 'object' && !Array.isArray(input) && input !== null) {
+        return Object.keys(input).length;
+    }
+    throw new Error("Input provided is not an object");
+}
+
+/**
  * Reverse String
  * @param {string} string - The input string.
  * @returns {string} - The reversed string.
@@ -123,7 +146,8 @@ function stringToBinary(string) {
  */
 function isValidHex(string, delimiter) {
     const validHex = new RegExp(`^[0-9a-fA-F${delimiter}]+$`);
-    return validHex.test(string);
+    let cleanStr = cleanString(string);
+    return validHex.test(cleanStr);
 }
 
 /**
@@ -319,7 +343,7 @@ function styledUniqueArrayItems(data) {
 }
 
 /**
- * Simple and efficient method of returning frequency counts of each unique value in an array
+ * Simple and efficient method of returning frequency counts of each unique grouping of the same characters in an array
  * If a delimiter is present, removes those characters from the string before processing.
  * Based on code from this stackoverflow post
  * https://stackoverflow.com/a/66002712/3172872
@@ -342,7 +366,11 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
     // Split the string into substrings of the specified chunk size
     let split = [];
     for (let i = 0; i <= string.length - chunkSize; i += chunkSize) {
-        split.push(string.substring(i, i + chunkSize));
+        const chunk = string.substring(i, i + chunkSize);
+        // Check if all characters in the chunk are the same
+        if (chunk.split('').every(char => char === chunk[0])) {
+            split.push(chunk);
+        }
     }
 
     // Count the frequencies of the substrings
