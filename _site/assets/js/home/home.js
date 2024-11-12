@@ -204,66 +204,6 @@ function stringStats(string, stat, delimiter) {
     }
 }
 
-/**
- * Creates styled HTML elements for displaying unique characters from an array.
- *
- * @param {string[]} data - An array of unique characters.
- * @returns {string} - The HTML representation of the unique characters.
- *
- * @example
- * // Input: ["a", "b", "c"]
- * // Output: "<div class="g-col-12"> ..."
- */
-function styledUniqueArrayItems(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
-    <div class="grid mt-2 grid-auto" id="unique-chars">`;
-    data.forEach(char => {
-        result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
-                ${char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;")}
-            </code>`;
-    });
-    result += `</div></div>`;
-    return result;
-}
-
-/**
- * Simple and efficient method of returning frequency counts of each unique value in an array
- * https://stackoverflow.com/a/66002712/3172872
- *
- * @param {string} string - The input string to analyze.
- * @returns {Object} - An object where keys represent unique values and values represent their frequencies.
- *
- * @example
- * // Input: "hello, world!"
- * // Output: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }
- */
-function countArrayFreq(string) {
-    let split = [...string];
-    return split.reduce((split, curr) => (split[curr] = (split[curr] || 0) + 1, split), {});
-}
-
-/**
- * Creates styled HTML elements for displaying unique character frequencies.
- *
- * @param {Object} data - An object containing unique characters as keys and their frequencies as values.
- * @returns {string} - The HTML representation of the unique character frequencies.
- *
- * @example
- * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }
- * // Output: "<div class="g-col-12"> ..."
- */
-function styledArrayFrequencies(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique character frequencies</p>
-    <div class="grid mt-2" id="unique-freqs">`;
-    for (let [key, value] of Object.entries(data)) {
-        result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1"><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="Frequency of ${key.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
-                ${key.replace(/ /g, "Space").replace(/\t/g, "Tab")} - ${value}
-            </code></div>`;
-    }
-    result += `</div></div>`;
-    return result;
-}
-
 // Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("hexDelimiter");
 hexDelimiterSelect.addEventListener("change", function() {
@@ -401,7 +341,7 @@ freqButton.addEventListener("click", function() {
     freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
     
     freqResults.insertAdjacentHTML("beforeend", `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
-    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value))}`);
+    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`);
 });
 
 

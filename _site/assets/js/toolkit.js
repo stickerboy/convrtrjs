@@ -297,6 +297,93 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
 }
 
 /**
+ * Creates styled HTML elements for displaying unique characters from an array.
+ *
+ * @param {string[]} data - An array of unique characters.
+ * @returns {string} - The HTML representation of the unique characters.
+ *
+ * @example
+ * // Input: ["a", "b", "c"]
+ * // Output: "<div class="g-col-12"> ..."
+ */
+function styledUniqueArrayItems(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <div class="grid mt-2 grid-auto" id="unique-chars">`;
+    data.forEach(char => {
+        result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
+                ${char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;")}
+            </code>`;
+    });
+    result += `</div></div>`;
+    return result;
+}
+
+/**
+ * Simple and efficient method of returning frequency counts of each unique value in an array
+ * If a delimiter is present, removes those characters from the string before processing.
+ * Based on code from this stackoverflow post
+ * https://stackoverflow.com/a/66002712/3172872
+ *
+ * @param {string} string - The input string to be split and analyzed.
+ * @param {number} chunkSize - The number of characters in each substring segment.
+ * @param {string} [delimiter] - The delimiter used to separate characters in the input string (optional).
+ * @returns {Object} An object containing substrings as keys and their frequencies as values.
+ *
+ * @example
+ * // Input: "he:ll:oh:el:lo", 2, ":"
+ * // Output: { he: 1, ll: 1, oh: 1, el: 1, lo: 1 }
+ */
+function countArrayFreq(string, chunkSize = 1, delimiter) {
+    // Remove the delimiter from the string if it is present
+    if (delimiter) {
+        string = string.split(delimiter).join('');
+    }
+
+    // Split the string into substrings of the specified chunk size
+    let split = [];
+    for (let i = 0; i <= string.length - chunkSize; i += chunkSize) {
+        split.push(string.substring(i, i + chunkSize));
+    }
+
+    // Count the frequencies of the substrings
+    return split.reduce((counts, curr) => {
+        counts[curr] = (counts[curr] || 0) + 1;
+        return counts;
+    }, {});
+}
+
+/**
+ * Creates styled HTML elements for displaying unique character frequencies.
+ *
+ * @param {Object} data - An object containing unique characters as keys and their frequencies as values.
+ * @param {string} title - The title to be displayed above the frequencies.
+ * @returns {string} - The HTML representation of the unique character frequencies.
+ *
+ * @example
+ * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }, "Character Frequencies"
+ * // Output: "<div class="g-col-12"> ..."
+ */
+function styledArrayFrequencies(data, title = "Frequencies") {
+    // Initialize the result string with the opening div and title
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">${title}</p>
+    <div class="grid mt-2" id="unique-freqs">`;
+
+    // Iterate over the data object to generate HTML for each key-value pair
+    for (let [key, value] of Object.entries(data)) {
+        result += `<div class="g-col-4 g-col-md-3 g-col-lg-2 g-col-xxl-1">
+                    <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
+                        ${key} - ${value}
+                    </code>
+                   </div>`;
+    }
+
+    // Close the div tags and return the result string
+    result += `</div></div>`;
+    return result;
+}
+
+
+/**
  * Create an image from a specific container, with specified dimensions and content.
  * Provides an option to either download the image or return it for injection into a container.
  * @param {number} width - The desired width of the image.
