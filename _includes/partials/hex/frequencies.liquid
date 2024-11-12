@@ -1,0 +1,54 @@
+{% assign hexDelimiter = "hexFrequencies" %}
+<section id="hexFreq" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
+                aria-expanded="false" aria-controls="freqCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Hex frequencies
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+            </p>
+        </div>
+        <div class="collapse" id="freqCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Hex frequencies</span>
+                    <div class="card-body text-center">
+                        <label for="freqText" class="visually-hidden">Hex characters to check</label>
+                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" for="{{ hexDelimiter }}Delimiter">Delimiter</label>
+                                        {% include "components/delimiter" %}
+                                        <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate hex frequencies">Generate</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        {% include "components/select-copy-dl" %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="">
+                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

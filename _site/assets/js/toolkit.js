@@ -20,6 +20,15 @@ const textMorseDict = {
 }
 
 /**
+ * Trims whitespace from the start and end of a string. 
+ * @param {string} input - The input string to be trimmed. 
+ * @returns {string} The trimmed string. 
+ **/
+ function cleanString(string) { 
+    return string.trimStart().trim(); 
+}
+
+/**
  * Check if character/string is a letter
  * @param {string} string - The input character or string.
  * @returns {boolean} - True if the input is a letter, otherwise false.
@@ -75,6 +84,20 @@ function getKeyValue(searchString, array, searchBy = 'key') {
 }
 
 /**
+ * Calculates the number of keys in an object.
+ *
+ * @param {Object} input - The input object to check the size of.
+ * @returns {number} The number of keys in the object.
+ * @throws {Error} Throws an error if the provided input is not an object.
+ */
+function objectSize(input) {
+    if (typeof input === 'object' && !Array.isArray(input) && input !== null) {
+        return Object.keys(input).length;
+    }
+    throw new Error("Input provided is not an object");
+}
+
+/**
  * Reverse String
  * @param {string} string - The input string.
  * @returns {string} - The reversed string.
@@ -115,15 +138,16 @@ function stringToBinary(string) {
 }
 
 /**
- * Validate Hex
- * @param {string} string - The input string.
- * @param {string} delimiter - The delimiter used in the string (e.g., '0x', '\\x').
- * @returns {boolean} - True if the input is a valid hexadecimal value, otherwise false.
+ * Validate hexadecimal characters
+ *
+ * @param {string} string - The input string containing hexadecimal characters.
+ * @param {string} delimiter - The delimiter used to separate hex characters in the input string (e.g., '0x', '\\x').
+ * @returns {boolean} True if the input string is valid hexadecimal, otherwise false.
  */
 function isValidHex(string, delimiter) {
-    const validHex = /^[0-9A-Fa-f]+$/g;
-    let hexTest = string.replaceAll(delimiter, "");
-    return validHex.test(hexTest);
+    const validHex = new RegExp(`^[0-9a-fA-F${delimiter}]+$`);
+    let cleanStr = cleanString(string);
+    return validHex.test(cleanStr);
 }
 
 /**
@@ -264,12 +288,23 @@ function decimalToString(string) {
 }
 
 /**
- * Return an array of unique values from an array
- * @param {Array} string - The input array.
- * @returns {Array} - An array with unique values.
+ * Return an array of unique character groups from a string, divided into chunks
+ * @param {string} str - The input string.
+ * @param {Number} [chunkSize=1] - The size of each chunk. Default is 1.
+ * @returns {Array} - An array of unique character groups for each chunk.
  */
-function uniqueArray(string) {
-    return [...new Set(string)];
+function uniqueArray(str, chunkSize = 1) {
+    if (chunkSize <= 0) {
+        throw new Error('Invalid chunk size');
+    }
+
+    const chunks = [];
+    for (let i = 0; i < str.length; i += chunkSize) {
+        const chunk = str.substring(i, i + chunkSize);
+        chunks.push(chunk);
+    }
+
+    return [...new Set(chunks)];
 }
 
 /**
@@ -283,6 +318,97 @@ function uniqueArray(string) {
  */
 function replaceChars(string, toReplace, replacement, caseSensitive) {
     return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
+}
+
+/**
+ * Creates styled HTML elements for displaying unique characters from an array.
+ *
+ * @param {string[]} data - An array of unique characters.
+ * @returns {string} - The HTML representation of the unique characters.
+ *
+ * @example
+ * // Input: ["a", "b", "c"]
+ * // Output: "<div class="g-col-12"> ..."
+ */
+function styledUniqueArrayItems(data) {
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    <div class="grid mt-2 grid-auto" id="unique-chars">`;
+    data.forEach(char => {
+        result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
+                ${char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;")}
+            </code>`;
+    });
+    result += `</div></div>`;
+    return result;
+}
+
+/**
+ * Simple and efficient method of returning frequency counts of each unique grouping of the same characters in an array
+ * If a delimiter is present, removes those characters from the string before processing.
+ * Based on code from this stackoverflow post
+ * https://stackoverflow.com/a/66002712/3172872
+ *
+ * @param {string} string - The input string to be split and analyzed.
+ * @param {number} chunkSize - The number of characters in each substring segment.
+ * @param {string} [delimiter] - The delimiter used to separate characters in the input string (optional).
+ * @returns {Object} An object containing substrings as keys and their frequencies as values.
+ *
+ * @example
+ * // Input: "he:ll:oh:el:lo", 2, ":"
+ * // Output: { he: 1, ll: 1, oh: 1, el: 1, lo: 1 }
+ */
+function countArrayFreq(string, chunkSize = 1, delimiter) {
+    // Remove the delimiter from the string if it is present
+    if (delimiter) {
+        string = string.split(delimiter).join('');
+    }
+
+    // Split the string into substrings of the specified chunk size
+    let split = [];
+    for (let i = 0; i <= string.length - chunkSize; i += chunkSize) {
+        const chunk = string.substring(i, i + chunkSize);
+        // Check if all characters in the chunk are the same
+        if (chunk.split('').every(char => char === chunk[0])) {
+            split.push(chunk);
+        }
+    }
+
+    // Count the frequencies of the substrings
+    return split.reduce((counts, curr) => {
+        counts[curr] = (counts[curr] || 0) + 1;
+        return counts;
+    }, {});
+}
+
+/**
+ * Creates styled HTML elements for displaying unique character frequencies.
+ *
+ * @param {Object} data - An object containing unique characters as keys and their frequencies as values.
+ * @param {string} [title="Frequencies"] - The title to be displayed above the frequencies.
+ * @param {number} [minColWidth=6] - The minimum column width for the grid.
+ * @returns {string} - The HTML representation of the unique character frequencies.
+ *
+ * @example
+ * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }, "Character Frequencies"
+ * // Output: "<div class="g-col-12"> ..."
+ */
+function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
+    // Initialize the result string with the opening div and title
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">${title}</p>
+    <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">`;
+
+    // Iterate over the data object to generate HTML for each key-value pair
+    for (let [key, value] of Object.entries(data)) {
+        result += `<div>
+                    <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
+                        ${key} - ${value}
+                    </code>
+                   </div>`;
+    }
+
+    // Close the div tags and return the result string
+    result += `</div></div>`;
+    return result;
 }
 
 /**
