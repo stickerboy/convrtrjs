@@ -351,6 +351,34 @@ function interleave(string1, string2, delimiter = "") {
 }
 
 /**
+ * Unscrambles a string by interleaving its characters.
+ * e.g. "abcdef" => "badcfe"
+ *
+ * @param {string} data - The input scrambled string.
+ * @returns {string} - The unscrambled string.
+ */
+function unscramble(data) {
+    const length = data.length;
+    const part1 = [];
+    const part2 = [];
+
+    for (let i = 0; i < length; i++) {
+        if (i % 2 === 0) {
+            part2.push(data[i]);
+        } else {
+            part1.push(data[i]);
+        }
+    }
+
+    let result = "";
+    for (let i = 0; i < part1.length; i++) {
+        result += part1[i] + (part2[i] || '');
+    }
+
+    return result;
+}
+
+/**
  * Creates styled HTML elements for displaying unique characters from an array.
  *
  * @param {string[]} data - An array of unique characters.
