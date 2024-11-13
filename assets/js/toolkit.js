@@ -351,6 +351,19 @@ function interleave(string1, string2, delimiter = "") {
 }
 
 /**
+ * Extracts sequences of printable characters from a string.
+ *
+ * @param {string} data - The input string to be scanned.
+ * @param {number} [n=4] - The minimum length of sequences to extract.
+ * @returns {Array<string>} - An array of sequences of printable characters of at least length `n`.
+ */
+function strings(string, n = 4) {
+    // Regular expression to match sequences of at least `n` printable characters
+    const regex = new RegExp(`[\\x20-\\x7E]{${n},}`, 'g');
+    return string.match(regex) || [];
+}
+
+/**
  * Unscrambles a string by interleaving its characters.
  * e.g. "abcdef" => "badcfe"
  *
@@ -377,6 +390,7 @@ function unscramble(data) {
 
     return result;
 }
+
 
 /**
  * Creates styled HTML elements for displaying unique characters from an array.
