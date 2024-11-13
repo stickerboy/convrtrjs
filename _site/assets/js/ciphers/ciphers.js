@@ -14,6 +14,27 @@ function getCustomAlphabet(string) {
 }
 
 /**
+ * Reverses the alphabet for the given string.
+ * Transforms 'A' to 'Z', 'B' to 'Y', etc.
+ *
+ * @param {string} string - The original string to be transformed.
+ * @returns {string} - The transformed string with reversed alphabet.
+ *
+ * @example
+ * // Input: "ABCxyz"
+ * // Output: "ZYXcba"
+ */
+function reverseAlphabet(string) {
+    const lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const reversedLower = lowerAlphabet.split('').reverse().join('');
+    const reversedUpper = upperAlphabet.split('').reverse().join('');
+
+    return string.replace(/[a-z]/g, c => reversedLower[lowerAlphabet.indexOf(c)])
+                 .replace(/[A-Z]/g, c => reversedUpper[upperAlphabet.indexOf(c)]);
+}
+
+/**
  * Substitutes each letter in the a string with a corresponding letter from a custom alphabet
  * Custom alphabet is built using a user specified text string
  * @param {string} string - The original string to be modified.
@@ -143,11 +164,33 @@ function vignereDecrypt(string, key) {
     return result;
 }
 
+/**
+ * Encrypts or decrypts a string using the Beaufort cipher.
+ * The encryption and decryption process is identical.
+ *
+ * @param {string} string - The original string to be encrypted or decrypted.
+ * @param {string} key - The encryption/decryption key.
+ * @returns {string} - The encrypted or decrypted string.
+ *
+ * @example
+ * // Input: "Hello, World!" with key "KEY"
+ * // Output: Encrypted text
+ *
+ * // Input: Encrypted text with key "KEY"
+ * // Output: "Hello, World!"
+ */
+function beaufortCipher(string, key) {
+    const transformedString = reverseAlphabet(string);
+    const transformedKey = reverseAlphabet(key);
+
+    return vignereDecrypt(transformedString, transformedKey);
+}
+
 // ROT Text
 const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
 const rotNext       = document.getElementById("rotNext");
-const rotKey       = document.getElementById("rotKey");
+const rotKey        = document.getElementById("rotKey");
 
 Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
