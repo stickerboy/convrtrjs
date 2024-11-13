@@ -42,6 +42,43 @@ function unmunge(key, datanode) {
 }
 
 /**
+ * Performs a lookahead operation on the datanode using the given key.
+ *
+ * @param {string} key - The key used for the lookahead operation.
+ * @param {string} datanode - The datanode to process.
+ * @returns {string} - The processed output.
+ */
+function lookahead(key, datanode) {
+    const size = datanode.length >> 1;
+    let a, b, k = 0;
+
+    // Convert key to array of numbers
+    const keyArray = Array.from(key, char => char.charCodeAt(0));
+    const s = keyArray.length;
+
+    // Convert datanode to array of numbers
+    const datanodeArray = Array.from(datanode, char => char.charCodeAt(0));
+    let output = [];
+
+    // Define the out_byte operations
+    const outByte = {
+        default: (b, keyByte) => (b - keyByte) & 0xFF,
+        1: (b, keyByte) => (b + keyByte) & 0xFF
+    };
+
+    // Loop through the datanode
+    for (let i = 0; i < size; i++) {
+        k = keyArray[i % s];
+        a = datanodeArray[i << 1];
+        b = datanodeArray[(i << 1) + 1];
+        output.push(outByte[a & 1 in outByte ? a & 1 : "default"](b, k));
+    }
+
+    // Convert output array back to string
+    return String.fromCharCode(...output);
+}
+
+/**
  * Unscrambles a string by interleaving its characters.
  * e.g. "abcdef" => "badcfe"
  *
