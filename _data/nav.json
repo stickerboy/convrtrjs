@@ -53,6 +53,9 @@
             }, {
                 "id": "beaufort",
                 "label": "Beaufort cipher"
+            },{
+                "id": "alpha",
+                "label": "Reverse alphabet"
             }, {
                 "id": "hash",
                 "label": "Hash algorithms"

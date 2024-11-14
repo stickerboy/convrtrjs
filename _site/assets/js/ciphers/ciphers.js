@@ -336,6 +336,22 @@ beaufortDecryptButton.addEventListener("click", function() {
 });
 
 
+// Reverse alphabet
+const alphaDecodeButton = document.getElementById("alphaDecode");
+alphaDecodeButton.addEventListener("click", function() {
+    const alphaString = document.getElementById("alphaText");
+
+    if(!emptyContainerCheck(alphaString.value, alphaString)) {
+        return false;
+    }
+    if (!largeDataWarning(alphaString.value, alphaString)) {
+        return false;
+    }
+
+    document.getElementById("alphaResults").textContent = reverseAlphabet(alphaString.value);
+});
+
+
 // Hash strings
 const hashButton = document.getElementById("hashDecode");
 hashButton.addEventListener("click", function() {
