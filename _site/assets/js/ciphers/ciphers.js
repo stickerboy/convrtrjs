@@ -14,7 +14,7 @@ function getCustomAlphabet(string) {
 }
 
 /**
- * Reverses the alphabet for the given string.
+ * Atbash cipher - reverses the alphabet for the given string.
  * Transforms 'A' to 'Z', 'B' to 'Y', etc.
  *
  * @param {string} string - The original string to be transformed.
@@ -24,7 +24,7 @@ function getCustomAlphabet(string) {
  * // Input: "ABCxyz"
  * // Output: "ZYXcba"
  */
-function reverseAlphabet(string) {
+function atbashCipher(string) {
     const lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz';
     const upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const reversedLower = lowerAlphabet.split('').reverse().join('');
@@ -180,8 +180,8 @@ function vignereDecrypt(string, key) {
  * // Output: "Hello, World!"
  */
 function beaufortCipher(string, key) {
-    const transformedString = reverseAlphabet(string);
-    const transformedKey = reverseAlphabet(key);
+    const transformedString = atbashCipher(string);
+    const transformedKey = atbashCipher(key);
 
     return vignereDecrypt(transformedString, transformedKey);
 }
@@ -336,19 +336,19 @@ beaufortDecryptButton.addEventListener("click", function() {
 });
 
 
-// Reverse alphabet
-const alphaDecodeButton = document.getElementById("alphaDecode");
-alphaDecodeButton.addEventListener("click", function() {
-    const alphaString = document.getElementById("alphaText");
+// Atbash cipher
+const atbashDecodeButton = document.getElementById("atbashDecode");
+atbashDecodeButton.addEventListener("click", function() {
+    const atbashString = document.getElementById("atbashText");
 
-    if(!emptyContainerCheck(alphaString.value, alphaString)) {
+    if(!emptyContainerCheck(atbashString.value, atbashString)) {
         return false;
     }
-    if (!largeDataWarning(alphaString.value, alphaString)) {
+    if (!largeDataWarning(atbashString.value, atbashString)) {
         return false;
     }
 
-    document.getElementById("alphaResults").textContent = reverseAlphabet(alphaString.value);
+    document.getElementById("atbashResults").textContent = atbashCipher(atbashString.value);
 });
 
 

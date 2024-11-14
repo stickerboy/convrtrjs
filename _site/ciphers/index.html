@@ -205,7 +205,7 @@
             </li>
             
             <li>
-                <a class="dropdown-item" href="../ciphers/#alpha">Reverse alphabet</a>
+                <a class="dropdown-item" href="../ciphers/#atbash">Atbash cipher</a>
             </li>
             
             <li>
@@ -880,14 +880,14 @@
         </div>
     </div>
 </section>
-            <section id="alpha" class="section">
+            <section id="atbash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#alphaCollapse" role="button" 
-                aria-expanded="false" aria-controls="alphaCollapse">
+                data-bs-toggle="collapse" href="#atbashCollapse" role="button" 
+                aria-expanded="false" aria-controls="atbashCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Reverse alphabet
+                    Atbash cipher
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -895,7 +895,7 @@
             </a>
             <hr>
             <p class="px-2">
-                Transforms each letter in a string to its mirror image in the alphabet 
+                a simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     A ⇆ Z
                 </code>
@@ -905,16 +905,16 @@
                 etc.
             </p>
         </div>
-        <div class="collapse" id="alphaCollapse">
+        <div class="collapse" id="atbashCollapse">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Reverse alphabet</span>
+                    <span class="card-label visually-hidden">Atbash</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: " title="Reverse the alphabet for a string" rows="6" id="alphaText" class="form-control alpha-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: (A ⇆ Z) (B ⇆ Y)" title="Reverse the alphabet for a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="alphaDecode" title="Generate">Generate</button>
+                            <button type="button" class="btn btn-md btn-convrtr" id="atbashDecode" title="Generate">Generate</button>
                             <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
@@ -922,7 +922,7 @@
 </div>
                         </div>
                         <hr />
-                        <div id="alphaResults" class="data-to-copy active"></div>
+                        <div id="atbashResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
