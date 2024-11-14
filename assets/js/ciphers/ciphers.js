@@ -186,6 +186,46 @@ function beaufortCipher(string, key) {
     return vignereDecrypt(transformedString, transformedKey);
 }
 
+
+/**
+ * Encodes a string using a keyword by creating a substitution cipher.
+ *
+ * @param {string} string - The input string to encode.
+ * @param {string} key - The keyword used for encoding.
+ * @returns {string} - The encoded string.
+ */
+function keywordEncode(string, key) {
+    // Create the translation string
+    let trans = key.toUpperCase().split('').filter((item, pos, self) => self.indexOf(item) === pos).join('')
+        + alphabet.slice(1, 26).replace(new RegExp(`[${key.toUpperCase()}]`, 'g'), '');
+    trans += trans.toLowerCase();
+
+    // Translate the string
+    return string.replace(/[A-Za-z]/g, function (c) {
+        return trans[alphabet.trim().indexOf(c)];
+    });
+}
+
+/**
+ * Decodes an encoded string using a keyword by reversing the substitution cipher.
+ *
+ * @param {string} string - The encoded string to decode.
+ * @param {string} key - The keyword used for decoding.
+ * @returns {string} - The decoded original string.
+ */
+function keywordDecode(string, key) {
+    // Create the translation string
+    let trans = key.toUpperCase().split('').filter((item, pos, self) => self.indexOf(item) === pos).join('')
+        + alphabet.slice(1, 26).replace(new RegExp(`[${key.toUpperCase()}]`, 'g'), '');
+    trans += trans.toLowerCase();
+
+    // Reverse translate the string
+    return string.replace(new RegExp(`[${trans}]`, 'g'), function (c) {
+        return alphabet.trim()[trans.indexOf(c)];
+    });
+}
+
+
 // ROT Text
 const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
