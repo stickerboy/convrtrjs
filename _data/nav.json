@@ -63,6 +63,11 @@
         ]
     },
     {
+        "id": "oni",
+        "label": "ONI tools",
+        "short-label": "ONI"
+    },
+    {
         "id": "files",
         "label": "File tools",
         "short-label": "Files",
