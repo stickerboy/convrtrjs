@@ -188,40 +188,50 @@ function beaufortCipher(string, key) {
 
 
 /**
- * Encodes a string using a keyword by creating a substitution cipher.
+ * Encodes a string using a keyword by creating a substitution cipher that supports both uppercase and lowercase keys.
  *
  * @param {string} string - The input string to encode.
- * @param {string} key - The keyword used for encoding.
+ * @param {string} key - The keyword used for encoding, supporting both uppercase and lowercase.
  * @returns {string} - The encoded string.
  */
 function keywordEncode(string, key) {
-    // Create the translation string
-    let trans = key.toUpperCase().split('').filter((item, pos, self) => self.indexOf(item) === pos).join('')
-        + alphabet.slice(1, 26).replace(new RegExp(`[${key.toUpperCase()}]`, 'g'), '');
-    trans += trans.toLowerCase();
+    // Normalize the key to ensure unique characters
+    let uniqueKey = key.split('').filter((item, pos, self) => self.indexOf(item) === pos).join('');
+    let upperKey = uniqueKey.toUpperCase();
+    let lowerKey = uniqueKey.toLowerCase();
 
-    // Translate the string
+    // Create the translation string
+    let transUpper = upperKey + alphabet.slice(1, 27).replace(new RegExp(`[${upperKey}]`, 'g'), '');
+    let transLower = lowerKey + alphabet.slice(27).replace(new RegExp(`[${lowerKey}]`, 'g'), '');
+    let trans = transUpper + transLower;
+
+    // Translate the string using the custom alphabet
     return string.replace(/[A-Za-z]/g, function (c) {
-        return trans[alphabet.trim().indexOf(c)];
+        return trans[alphabet.indexOf(c)];
     });
 }
 
 /**
- * Decodes an encoded string using a keyword by reversing the substitution cipher.
+ * Decodes an encoded string using a keyword by reversing the substitution cipher that supports both uppercase and lowercase keys.
  *
  * @param {string} string - The encoded string to decode.
- * @param {string} key - The keyword used for decoding.
+ * @param {string} key - The keyword used for decoding, supporting both uppercase and lowercase.
  * @returns {string} - The decoded original string.
  */
 function keywordDecode(string, key) {
-    // Create the translation string
-    let trans = key.toUpperCase().split('').filter((item, pos, self) => self.indexOf(item) === pos).join('')
-        + alphabet.slice(1, 26).replace(new RegExp(`[${key.toUpperCase()}]`, 'g'), '');
-    trans += trans.toLowerCase();
+    // Normalize the key to ensure unique characters
+    let uniqueKey = key.split('').filter((item, pos, self) => self.indexOf(item) === pos).join('');
+    let upperKey = uniqueKey.toUpperCase();
+    let lowerKey = uniqueKey.toLowerCase();
 
-    // Reverse translate the string
+    // Create the translation string
+    let transUpper = upperKey + alphabet.slice(1, 27).replace(new RegExp(`[${upperKey}]`, 'g'), '');
+    let transLower = lowerKey + alphabet.slice(27).replace(new RegExp(`[${lowerKey}]`, 'g'), '');
+    let trans = transUpper + transLower;
+
+    // Reverse translate the string using the custom alphabet
     return string.replace(new RegExp(`[${trans}]`, 'g'), function (c) {
-        return alphabet.trim()[trans.indexOf(c)];
+        return alphabet[trans.indexOf(c)];
     });
 }
 
@@ -374,6 +384,41 @@ beaufortDecryptButton.addEventListener("click", function() {
 
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
+
+
+// Keyword cipher
+const keywordEncryptButton = document.getElementById("keywordEncrypt");
+if(keywordEncryptButton) {
+    keywordEncryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+
+        document.getElementById("keywordResults").textContent = keywordEncode(keywordString.value, keywordKey.value);
+    });
+}
+const keywordDecryptButton = document.getElementById("keywordDecrypt");
+if(keywordDecryptButton) {
+    keywordDecryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+    
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+    
+        document.getElementById("keywordResults").textContent = keywordDecode(keywordString.value, keywordKey.value);
+    });
+}
 
 
 // Atbash cipher
