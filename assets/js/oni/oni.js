@@ -173,3 +173,21 @@ function calendar(string) {
 
     return out;
 }
+
+// Extract strings
+const stringsDecodeButton = document.getElementById("stringsDecode");
+if(stringsDecodeButton) {
+    stringsDecodeButton.addEventListener("click", function () {
+        const stringsString = document.getElementById("stringsText");
+        const stringsKey = document.getElementById("stringsKey");
+
+        if (!emptyContainerCheck(stringsString.value, stringsString)) {
+            return false;
+        }
+        if (!largeDataWarning(stringsString.value, stringsString)) {
+            return false;
+        }
+
+        document.getElementById("stringsResults").textContent = strings(stringsString.value);
+    });
+}
