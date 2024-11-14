@@ -1,0 +1,62 @@
+<section id="beaufort" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#beaufortCollapse" role="button" 
+                aria-expanded="false" aria-controls="beaufortCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Beaufort cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    S → T → B
+                </code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    E → E → A
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    N → S → F
+                </code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    T → T → A
+                </code>
+                - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <div class="collapse" id="beaufortCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Beaufort cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → DKZK WNQDKEBS" title="beaufort string" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="basic-addon1" for="beaufortKey"><span class="visually-hidden">Beaufort </span>Key</label>
+                                        <input type="text" class="form-control" id="beaufortKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="beaufortEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="beaufortDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="beaufortResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

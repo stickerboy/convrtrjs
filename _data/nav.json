@@ -51,6 +51,9 @@
                 "id": "vigenere",
                 "label": "Vigenère cipher"
             }, {
+                "id": "beaufort",
+                "label": "Beaufort cipher"
+            }, {
                 "id": "hash",
                 "label": "Hash algorithms"
             }

@@ -304,6 +304,38 @@ vigenereDecryptButton.addEventListener("click", function() {
     document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
 });
 
+
+// Beaufort cipher
+const beaufortEncryptButton = document.getElementById("beaufortEncrypt");
+beaufortEncryptButton.addEventListener("click", function() {
+    const beaufortString = document.getElementById("beaufortText");
+    const beaufortKey = document.getElementById("beaufortKey");
+
+    if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
+        return false;
+    }
+    if (!largeDataWarning(beaufortString.value, beaufortString)) {
+        return false;
+    }
+
+    document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
+});
+const beaufortDecryptButton = document.getElementById("beaufortDecrypt");
+beaufortDecryptButton.addEventListener("click", function() {
+    const beaufortString = document.getElementById("beaufortText");
+    const beaufortKey = document.getElementById("beaufortKey");
+
+    if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
+        return false;
+    }
+    if (!largeDataWarning(beaufortString.value, beaufortString)) {
+        return false;
+    }
+
+    document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
+});
+
+
 // Hash strings
 const hashButton = document.getElementById("hashDecode");
 hashButton.addEventListener("click", function() {
