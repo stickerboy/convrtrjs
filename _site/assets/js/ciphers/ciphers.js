@@ -25,8 +25,8 @@ function getCustomAlphabet(string) {
  * // Output: "ZYXcba"
  */
 function atbashCipher(string) {
-    const lowerAlphabet = 'abcdefghijklmnopqrstuvwxyz';
-    const upperAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lowerAlphabet = alphabet.slice(27, 53);
+    const upperAlphabet = alphabet.slice(1, 27);
     const reversedLower = lowerAlphabet.split('').reverse().join('');
     const reversedUpper = upperAlphabet.split('').reverse().join('');
 
