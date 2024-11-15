@@ -71,7 +71,30 @@
     {
         "id": "oni",
         "label": "ONI tools",
-        "short-label": "ONI"
+        "short-label": "ONI",
+        "children": [{
+                "id": "unmunge",
+                "label": "Unmunge"
+            }, {
+                "id": "lookahead",
+                "label": "Lookahead"
+            }, {
+                "id": "mergeb64",
+                "label": "Merge Base64"
+            }, {
+                "id": "unscramble",
+                "label": "Unscramble"
+            }, {
+                "id": "interleave",
+                "label": "Interleave"
+            }, {
+                "id": "strings",
+                "label": "Extract strings"
+            }, {
+                "id": "calendar",
+                "label": "Calendar"
+            }
+        ]
     },
     {
         "id": "files",

@@ -21,7 +21,6 @@ function mergeBase64(...args) {
         );
     });
 
-    // Join the array back into a string
     return merged.join('');
 }
 
@@ -52,21 +51,17 @@ function lookahead(key, datanode) {
     const size = datanode.length >> 1;
     let a, b, k = 0;
 
-    // Convert key to array of numbers
     const keyArray = Array.from(key, char => char.charCodeAt(0));
     const s = keyArray.length;
 
-    // Convert datanode to array of numbers
     const datanodeArray = Array.from(datanode, char => char.charCodeAt(0));
     let output = [];
 
-    // Define the out_byte operations
     const outByte = {
         default: (b, keyByte) => (b - keyByte) & 0xFF,
         1: (b, keyByte) => (b + keyByte) & 0xFF
     };
 
-    // Loop through the datanode
     for (let i = 0; i < size; i++) {
         k = keyArray[i % s];
         a = datanodeArray[i << 1];
@@ -74,7 +69,6 @@ function lookahead(key, datanode) {
         output.push(outByte[a & 1 in outByte ? a & 1 : "default"](b, k));
     }
 
-    // Convert output array back to string
     return String.fromCharCode(...output);
 }
 

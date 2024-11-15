@@ -226,9 +226,40 @@
 
     <li class="nav-item dropdown active" data-link-id="oni" data-page-id="oni">
         
-        <a class="nav-link" href="../oni" role="button">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
             <span class="d-inline-flex ms-1 me-auto">ONI tools</span>
         </a>
+        <ul class="dropdown-menu show">
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#unmunge">Unmunge</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#lookahead">Lookahead</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#mergeb64">Merge Base64</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#unscramble">Unscramble</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#interleave">Interleave</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#strings">Extract strings</a>
+            </li>
+            
+            <li>
+                <a class="dropdown-item" href="../oni/#calendar">Calendar</a>
+            </li>
+            
+        </ul>
         
     </li>
 
@@ -307,11 +338,336 @@
             <h1 class="display-6">ONI tools</h1>
             <hr>
             <p class="px-2">
-                A collection of custom decosing tools for encrypting and decrypting data, built primarily for use in data-drive ARG puzzles (specifically the <a href="https://www.halopedia.org/Section_3_ARG" class="text-convrtr">Halo 4 Section 3 ARG</a>).
+                A collection of custom decoding tools for encrypting and decrypting data, built primarily for use in data-drive ARG puzzles (specifically the <a href="https://www.halopedia.org/Section_3_ARG" class="text-convrtr">Halo 4 Section 3 ARG</a>).
+            </p>
+            <p class="px-2">
+                <strong>Note:</strong> This section is still a work in progress, and tools are currently only avaialble via the web console until a UI can be built for them. Most require specifically crafted data packets that were built for the ARG, there may still be some floating around out in space somewhere!
             </p>
             <p class="px-2 m-0">
                 Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
             </p>
+        </div>
+    </div>
+</section>
+            <section id="unmunge" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#unmungeCollapse" role="button" 
+                aria-expanded="false" aria-controls="unmungeCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Unmunge
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Unmunges a datanode using a given key.
+            </p>
+        </div>
+        <div class="collapse" id="unmungeCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Unmunge node</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unmunge(key, datanode)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="lookahead" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#lookaheadCollapse" role="button" 
+                aria-expanded="false" aria-controls="lookaheadCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Lookahead
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Performs a lookahead operation on the datanode using the given key.
+            </p>
+        </div>
+        <div class="collapse" id="lookaheadCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Lookahead</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">lookahead(key, datanode)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="mergeb64" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#mergeb64Collapse" role="button" 
+                aria-expanded="false" aria-controls="mergeb64Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Merge Base64
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Merges multiple Base64 strings by selecting the most frequent character at each position.
+            </p>
+        </div>
+        <div class="collapse" id="mergeb64Collapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Merge Base64</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">mergeb64(...args)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="unscramble" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#unscrambleCollapse" role="button" 
+                aria-expanded="false" aria-controls="unscrambleCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Unscramble
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">abcdef</code> → <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
+            </p>
+        </div>
+        <div class="collapse" id="unscrambleCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Unscramble</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unscramble(string)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="interleave" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#interleaveCollapse" role="button" 
+                aria-expanded="false" aria-controls="interleaveCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Interleave
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Interleaves the characters of two strings, you may optionally pass in a delimiter.
+            </p>
+        </div>
+        <div class="collapse" id="interleaveCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Interleave</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">interleave(string1, string2, delimiter = "")</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="strings" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#stringsCollapse" role="button" 
+                aria-expanded="false" aria-controls="stringsCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Extract strings
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                 Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
+            </p>
+        </div>
+        <div class="collapse" id="stringsCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Extract strings</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">strings(string, n = 4)</code>
+                        </div>
+                    <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            <section id="calendar" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#calendarCollapse" role="button" 
+                aria-expanded="false" aria-controls="calendarCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Calendar
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Extracts characters from the data string at specific positions based on calendar-like offsets.
+            </p>
+        </div>
+        <div class="collapse" id="calendarCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Calendar</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">calendar(string)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
