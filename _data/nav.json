@@ -57,6 +57,9 @@
                 "id": "rail",
                 "label": "Rail fence cipher"
             }, {
+                "id": "chaos",
+                "label": "Chaocipher"
+            }, {
                 "id": "atbash",
                 "label": "Atbash cipher"
             }, {
