@@ -53,7 +53,10 @@
             }, {
                 "id": "beaufort",
                 "label": "Beaufort cipher"
-            },{
+            }, {
+                "id": "rail",
+                "label": "Rail fence cipher"
+            }, {
                 "id": "atbash",
                 "label": "Atbash cipher"
             }, {

@@ -1,0 +1,67 @@
+<section id="rail" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#railCollapse" role="button" 
+                aria-expanded="false" aria-controls="railCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Rail fence cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Also known as the Zig Zag cipher, takes it name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
+                There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
+            </p>
+            <p class="px-2">
+                <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WE ARE DISCOVERED. RUN AT ONCE.
+                </code>
+                <code class="d-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2" style="
+            white-space: pre-wrap;
+            ">
+    W . . . E . . . C . . . R . . . U . . . O . . . 
+    . E . R . D . S . O . E . E . R . N . T . N . E 
+    . . A . . . I . . . V . . . D . . . A . . . C . 
+            </code>
+            <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                WECRUO ERDSOEERNTNE AIVDAC
+            </code>
+
+            </p>
+            
+        </div>
+        <div class="collapse" id="railCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Rail fence cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" title="rail string" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="basic-addon1" for="railAmount"><span class="visually-hidden">Number of </span>Rails</label>
+                                        <input type="number" class="form-control" id="railAmount" autocomplete="off" min="2" value="2">
+                                        <button class="btn btn-convrtr" type="button" id="railEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="railDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="railResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
