@@ -21,6 +21,29 @@ function shiftHexString(string, shiftValue, delimiter) {
 }
 
 /**
+ * Shifts the bytes of the input string based on the provided key bytes.
+ * @param {string} string - The input string.
+ * @param {Uint8Array} keyBytes - The key bytes.
+ * @returns {string} - The shifted string.
+ */
+function shiftHexPattern(string, keyBytes) {
+    const inputBytes = new TextEncoder().encode(string);
+    const shiftedBytes = inputBytes.map((byte, i) => (byte - keyBytes[i % keyBytes.length]) & 0xFF);
+    return new TextDecoder().decode(new Uint8Array(shiftedBytes));
+}
+
+/**
+ * Shifts the bytes of the input string based on the provided key.
+ * @param {string} string - The input string.
+ * @param {string} key - The key string.
+ * @returns {string} - The shifted string.
+ */
+function shiftHexKey(string, key) {
+    const keyBytes = new TextEncoder().encode(key);
+    return shiftHexPattern(string, keyBytes);
+}
+
+/**
  * Reverses the order of each hex nibble in a hex string.
  *
  * @param {string} string - The input hexadecimal string.
