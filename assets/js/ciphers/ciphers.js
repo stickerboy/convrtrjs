@@ -339,7 +339,7 @@ function rotateWheel(wheel, steps) {
  * @returns {string} - The encoded string.
  */
 function chaocipherEncode(string, inc_a = 0, del_a = 1, inc_b = 1, del_b = 2) {
-    return runChaocipher(string, "encode", inc_a, del_a, inc_b, del_b);
+    return runChaocipher(lettersOnly(string), "encode", inc_a, del_a, inc_b, del_b);
 }
 
 /**
@@ -353,7 +353,7 @@ function chaocipherEncode(string, inc_a = 0, del_a = 1, inc_b = 1, del_b = 2) {
  * @returns {string} - The decoded string.
  */
 function chaocipherDecode(string, inc_a = 1, del_a = 2, inc_b = 0, del_b = 1) {
-    return runChaocipher(string, "decode", inc_a, del_a, inc_b, del_b);
+    return runChaocipher(lettersOnly(string), "decode", inc_a, del_a, inc_b, del_b);
 }
 
 /**
