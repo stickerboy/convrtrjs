@@ -353,7 +353,7 @@ function chaocipherEncode(string, inc_a = 0, del_a = 1, inc_b = 1, del_b = 2) {
  * @returns {string} - The decoded string.
  */
 function chaocipherDecode(string, inc_a = 1, del_a = 2, inc_b = 0, del_b = 1) {
-    return runChaocipher(lettersOnly(string), "decode", inc_a, del_a, inc_b, del_b);
+    return runChaocipher(string, "decode", inc_a, del_a, inc_b, del_b);
 }
 
 /**
@@ -624,6 +624,39 @@ if(railDecryptButton) {
             return;
         }
         document.getElementById("railResults").textContent = railFenceDecode(railString.value, railAmount.value);
+    });
+}
+
+
+// Rail fence cipher
+const chaosEncryptButton = document.getElementById("chaosEncrypt");
+if(chaosEncryptButton) {
+    chaosEncryptButton.addEventListener("click", function () {
+        const chaosString = document.getElementById("chaosText");
+
+        if (!emptyContainerCheck(chaosString.value, chaosString)) {
+            return false;
+        }
+        if (!largeDataWarning(chaosString.value, chaosString)) {
+            return false;
+        }
+
+        document.getElementById("chaosResults").textContent = chaocipherEncode(chaosString.value);
+    });
+}
+const chaosDecryptButton = document.getElementById("chaosDecrypt");
+if(chaosDecryptButton) {
+    chaosDecryptButton.addEventListener("click", function () {
+        const chaosString = document.getElementById("chaosText");
+    
+        if (!emptyContainerCheck(chaosString.value, chaosString)) {
+            return false;
+        }
+        if (!largeDataWarning(chaosString.value, chaosString)) {
+            return false;
+        }
+
+        document.getElementById("chaosResults").textContent = chaocipherDecode(chaosString.value)
     });
 }
 
