@@ -50,6 +50,9 @@
             }, {
                 "id": "vigenere",
                 "label": "Vigenère cipher"
+            },  {
+                "id": "keyword",
+                "label": "Keyword cipher"
             }, {
                 "id": "beaufort",
                 "label": "Beaufort cipher"
