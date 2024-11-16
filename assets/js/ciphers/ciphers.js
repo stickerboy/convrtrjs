@@ -113,7 +113,7 @@ function generateHashes(string, hash, key) {
  *
  * @example
  * // Input: "Hello, World!" with key "KEY"
- * // Output: "Rovvy, Gybvn!"
+ * // Output: "Rijvs Uyvjn!"
  */
 function vignereEncrypt(string, key) {
     let result = "";
@@ -121,15 +121,16 @@ function vignereEncrypt(string, key) {
     for (let i = 0, j = 0; i < string.length; i++) {
         const c = string.charAt(i);
         if (isLetter(c)) {
+            const keyChar = key[j % key.length];
             if (isUpperCase(c)) {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
+                result += String.fromCharCode((c.charCodeAt(0) - 65 + keyChar.toUpperCase().charCodeAt(0) - 65) % 26 + 65);
             } else {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
+                result += String.fromCharCode((c.charCodeAt(0) - 97 + keyChar.toLowerCase().charCodeAt(0) - 97) % 26 + 97);
             }
+            j++;
         } else {
             result += c;
         }
-        j = ++j % key.length;
     }
     return result;
 }
@@ -142,7 +143,7 @@ function vignereEncrypt(string, key) {
  * @returns {string} - The original plaintext string.
  *
  * @example
- * // Input: "Rovvy, Gybvn!" with key "KEY"
+ * // Input: "Rijvs Uyvjn!" with key "KEY"
  * // Output: "Hello, World!"
  */
 function vignereDecrypt(string, key) {
@@ -151,18 +152,20 @@ function vignereDecrypt(string, key) {
     for (let i = 0, j = 0; i < string.length; i++) {
         const c = string.charAt(i);
         if (isLetter(c)) {
+            const keyChar = key[j % key.length];
             if (isUpperCase(c)) {
-                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toLocaleUpperCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode((c.charCodeAt(0) - keyChar.toUpperCase().charCodeAt(0) + 26) % 26 + 65);
             } else {
-                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLocaleLowerCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode((c.charCodeAt(0) - keyChar.toLowerCase().charCodeAt(0) + 26) % 26 + 97);
             }
+            j++;
         } else {
             result += c;
         }
-        j = ++j % key.length;
     }
     return result;
 }
+
 
 /**
  * Encrypts or decrypts a string using the Beaufort cipher.
