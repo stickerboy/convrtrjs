@@ -601,7 +601,7 @@ if(railEncryptButton) {
         try {
             railFenceEncode(railString.value, railAmount.value)
         } catch (e) {
-            showToast("Error", `An error occured trying to encrypt the string: ${e.message}`, "danger");
+            showToast("Error", `An error occurred trying to encrypt the string: ${e.message}`, "danger");
             return;
         }
         document.getElementById("railResults").textContent = railFenceEncode(railString.value, railAmount.value);
@@ -623,7 +623,7 @@ if(railDecryptButton) {
         try {
             railFenceDecode(railString.value, railAmount.value)
         } catch (e) {
-            showToast("Error", `An error occured trying to decrypt the string: ${e.message}`, "danger");
+            showToast("Error", `An error occurred trying to decrypt the string: ${e.message}`, "danger");
             return;
         }
         document.getElementById("railResults").textContent = railFenceDecode(railString.value, railAmount.value);

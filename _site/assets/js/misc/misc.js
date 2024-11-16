@@ -93,7 +93,7 @@ elementsChange.addEventListener("click", function() {
     try {
         convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value);
     } catch(e) {
-        showToast("Error", `An error occured trying to map elements: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to map elements: ${e.message}`, "danger");
         return;
     }
 

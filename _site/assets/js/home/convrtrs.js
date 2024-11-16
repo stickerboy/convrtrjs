@@ -39,7 +39,7 @@ document.getElementById("binaryDecode").addEventListener("click", function() {
     try {
         binaryToString(data);
     } catch (e) {
-        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -71,7 +71,7 @@ document.getElementById("hexDecode").addEventListener("click", function() {
     try {
         hexToString(data, hexDelimiter);
     } catch (e) {
-        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -103,7 +103,7 @@ document.getElementById("b64Decode").addEventListener("click", function() {
     try {
         base64ToString(data);
     } catch (e) {
-        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -135,7 +135,7 @@ document.getElementById("decDecode").addEventListener("click", function() {
     try {
         decimalToString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", "An error occurred trying to decode the data.", "danger");
         return;
     }
 
@@ -167,7 +167,7 @@ document.getElementById("revDecode").addEventListener("click", function() {
     try {
         reverseString(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", "An error occurred trying to decode the data.", "danger");
         return;
     }
 
@@ -199,7 +199,7 @@ document.getElementById("rot13Decode").addEventListener("click", function() {
     try {
         rot13(data);
     } catch (e) {
-        showToast("Error", "An error occured trying to decode the data.", "danger");
+        showToast("Error", "An error occurred trying to decode the data.", "danger");
         return;
     }
 
@@ -231,7 +231,7 @@ document.getElementById("morseDecode").addEventListener("click", function() {
     try {
         morseToString(data);
     } catch (e) {
-        showToast("Error", `An error occured trying to decode the data: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -263,7 +263,7 @@ document.getElementById("mrsnryDecode").addEventListener("click", function() {
     try {
         morsenaryToString(data);
     } catch (e) {
-        showToast("Error",`An error occured trying to decode the data: ${e.message}`, "danger");
+        showToast("Error",`An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
