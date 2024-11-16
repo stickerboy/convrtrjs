@@ -14,6 +14,27 @@ function getCustomAlphabet(string) {
 }
 
 /**
+ * Atbash cipher - reverses the alphabet for the given string.
+ * Transforms 'A' to 'Z', 'B' to 'Y', etc.
+ *
+ * @param {string} string - The original string to be transformed.
+ * @returns {string} - The transformed string with reversed alphabet.
+ *
+ * @example
+ * // Input: "ABCxyz"
+ * // Output: "ZYXcba"
+ */
+function atbashCipher(string) {
+    const lowerAlphabet = alphabet.slice(27, 53);
+    const upperAlphabet = alphabet.slice(1, 27);
+    const reversedLower = lowerAlphabet.split('').reverse().join('');
+    const reversedUpper = upperAlphabet.split('').reverse().join('');
+
+    return string.replace(/[a-z]/g, c => reversedLower[lowerAlphabet.indexOf(c)])
+                 .replace(/[A-Z]/g, c => reversedUpper[upperAlphabet.indexOf(c)]);
+}
+
+/**
  * Substitutes each letter in the a string with a corresponding letter from a custom alphabet
  * Custom alphabet is built using a user specified text string
  * @param {string} string - The original string to be modified.
@@ -92,7 +113,7 @@ function generateHashes(string, hash, key) {
  *
  * @example
  * // Input: "Hello, World!" with key "KEY"
- * // Output: "Rovvy, Gybvn!"
+ * // Output: "Rijvs Uyvjn!"
  */
 function vignereEncrypt(string, key) {
     let result = "";
@@ -100,15 +121,16 @@ function vignereEncrypt(string, key) {
     for (let i = 0, j = 0; i < string.length; i++) {
         const c = string.charAt(i);
         if (isLetter(c)) {
+            const keyChar = key[j % key.length];
             if (isUpperCase(c)) {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleUpperCase().charCodeAt(j) - 2 * 65) % 26 + 65);
+                result += String.fromCharCode((c.charCodeAt(0) - 65 + keyChar.toUpperCase().charCodeAt(0) - 65) % 26 + 65);
             } else {
-                result += String.fromCharCode((c.charCodeAt(0) + key.toLocaleLowerCase().charCodeAt(j) - 2 * 97) % 26 + 97);
+                result += String.fromCharCode((c.charCodeAt(0) - 97 + keyChar.toLowerCase().charCodeAt(0) - 97) % 26 + 97);
             }
+            j++;
         } else {
             result += c;
         }
-        j = ++j % key.length;
     }
     return result;
 }
@@ -121,7 +143,7 @@ function vignereEncrypt(string, key) {
  * @returns {string} - The original plaintext string.
  *
  * @example
- * // Input: "Rovvy, Gybvn!" with key "KEY"
+ * // Input: "Rijvs Uyvjn!" with key "KEY"
  * // Output: "Hello, World!"
  */
 function vignereDecrypt(string, key) {
@@ -130,24 +152,258 @@ function vignereDecrypt(string, key) {
     for (let i = 0, j = 0; i < string.length; i++) {
         const c = string.charAt(i);
         if (isLetter(c)) {
+            const keyChar = key[j % key.length];
             if (isUpperCase(c)) {
-                result += String.fromCharCode(90 - (25 - (c.charCodeAt(0) - key.toLocaleUpperCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode((c.charCodeAt(0) - keyChar.toUpperCase().charCodeAt(0) + 26) % 26 + 65);
             } else {
-                result += String.fromCharCode(122 - (25 - (c.charCodeAt(0) - key.toLocaleLowerCase().charCodeAt(j))) % 26);
+                result += String.fromCharCode((c.charCodeAt(0) - keyChar.toLowerCase().charCodeAt(0) + 26) % 26 + 97);
             }
+            j++;
         } else {
             result += c;
         }
-        j = ++j % key.length;
     }
     return result;
 }
+
+
+/**
+ * Encrypts or decrypts a string using the Beaufort cipher.
+ * The encryption and decryption process is identical.
+ *
+ * @param {string} string - The original string to be encrypted or decrypted.
+ * @param {string} key - The encryption/decryption key.
+ * @returns {string} - The encrypted or decrypted string.
+ *
+ * @example
+ * // Input: "Hello, World!" with key "KEY"
+ * // Output: Encrypted text
+ *
+ * // Input: Encrypted text with key "KEY"
+ * // Output: "Hello, World!"
+ */
+function beaufortCipher(string, key) {
+    const transformedString = atbashCipher(string);
+    const transformedKey = atbashCipher(key);
+
+    return vignereDecrypt(transformedString, transformedKey);
+}
+
+
+/**
+ * Encodes a string using a keyword by creating a substitution cipher that supports both uppercase and lowercase keys.
+ *
+ * @param {string} string - The input string to encode.
+ * @param {string} key - The keyword used for encoding, supporting both uppercase and lowercase.
+ * @returns {string} - The encoded string.
+ */
+function keywordEncode(string, key) {
+    // Normalize the key to ensure unique characters
+    let uniqueKey = key.split('').filter((item, pos, self) => self.indexOf(item) === pos).join('');
+    let upperKey = uniqueKey.toUpperCase();
+    let lowerKey = uniqueKey.toLowerCase();
+
+    // Create the translation string
+    let transUpper = upperKey + alphabet.slice(1, 27).replace(new RegExp(`[${upperKey}]`, 'g'), '');
+    let transLower = lowerKey + alphabet.slice(27).replace(new RegExp(`[${lowerKey}]`, 'g'), '');
+    let trans = transUpper + transLower;
+
+    // Translate the string using the custom alphabet
+    return string.replace(/[A-Za-z]/g, function (c) {
+        return trans[alphabet.indexOf(c)];
+    });
+}
+
+/**
+ * Decodes an encoded string using a keyword by reversing the substitution cipher that supports both uppercase and lowercase keys.
+ *
+ * @param {string} string - The encoded string to decode.
+ * @param {string} key - The keyword used for decoding, supporting both uppercase and lowercase.
+ * @returns {string} - The decoded original string.
+ */
+function keywordDecode(string, key) {
+    // Normalize the key to ensure unique characters
+    let uniqueKey = key.split('').filter((item, pos, self) => self.indexOf(item) === pos).join('');
+    let upperKey = uniqueKey.toUpperCase();
+    let lowerKey = uniqueKey.toLowerCase();
+
+    // Create the translation string
+    let transUpper = upperKey + alphabet.slice(1, 27).replace(new RegExp(`[${upperKey}]`, 'g'), '');
+    let transLower = lowerKey + alphabet.slice(27).replace(new RegExp(`[${lowerKey}]`, 'g'), '');
+    let trans = transUpper + transLower;
+
+    // Reverse translate the string using the custom alphabet
+    return string.replace(new RegExp(`[${trans}]`, 'g'), function (c) {
+        return alphabet[trans.indexOf(c)];
+    });
+}
+
+
+
+/**
+ * Encodes a string using the Rail Fence Cipher.
+ *
+ * @param {string} string - The input string to encode.
+ * @param {number} rails - The number of rails for the Rail Fence Cipher.
+ * @returns {string} - The encoded string.
+ */
+function railFenceEncode(string, rails) {
+    if(rails < 2) {
+        throw new Error("A minimum of 2 rails is required to make the cipher work effectively");
+    }
+
+    string = string = lettersOnly(string);
+    const railStrings = Array.from({ length: rails }, () => []);
+
+    let rail = 0;
+    let direction = 1;
+
+    for (let i = 0; i < string.length; i++) {
+        railStrings[rail].push(string[i]);
+        rail += direction;
+        if (rail === 0 || rail === rails - 1) {
+            direction *= -1;  // Change direction at the top and bottom
+        }
+    }
+
+    return railStrings.flat().join('');
+}
+
+/**
+ * Decodes a string encoded with the Rail Fence Cipher.
+ *
+ * @param {string} string - The encoded string to decode.
+ * @param {number} rails - The number of rails used for the Rail Fence Cipher.
+ * @returns {string} - The decoded original string.
+ */
+function railFenceDecode(string, rails) {
+    if(rails < 2) {
+        throw new Error("A minimum of 2 rails is required to make the cipher work effectively");
+    }
+
+    string = lettersOnly(string);
+    const railLengths = Array.from({ length: rails }, () => 0);
+
+    let rail = 0;
+    let direction = 1;
+
+    // Determine the length of each rail
+    for (let i = 0; i < string.length; i++) {
+        railLengths[rail]++;
+        rail += direction;
+        if (rail === 0 || rail === rails - 1) {
+            direction *= -1;
+        }
+    }
+
+    // Fill the rails with characters from the encoded string
+    const railStrings = Array.from({ length: rails }, (_, i) => string.slice(i > 0 ? railLengths.slice(0, i).reduce((a, b) => a + b, 0) : 0, railLengths.slice(0, i + 1).reduce((a, b) => a + b, 0)).split(''));
+
+    // Reconstruct the original message by reading the rails in the correct order
+    let decoded = '';
+    rail = 0;
+    direction = 1;
+
+    for (let i = 0; i < string.length; i++) {
+        if (railStrings[rail].length) {
+            decoded += railStrings[rail].shift();
+        }
+        rail += direction;
+        if (rail === 0 || rail === rails - 1) {
+            direction *= -1;
+        }
+    }
+    return decoded;
+}
+
+
+/**
+ * Rotates the wheel by a given number of steps.
+ *
+ * @param {Array} wheel - The wheel array to rotate.
+ * @param {number} steps - The number of steps to rotate.
+ * @returns {Array} - The rotated wheel.
+ */
+function rotateWheel(wheel, steps) {
+    if (steps < 0) {
+        steps = wheel.length + steps;
+    }
+    return wheel.slice(steps).concat(wheel.slice(0, steps));
+}
+
+/**
+ * Encodes a string using the Chaocipher algorithm.
+ *
+ * @param {string} string - The input string to encode.
+ * @param {number} [inc_a=0] - The increment for rotating the left wheel.
+ * @param {number} [del_a=1] - The position for deletion and re-insertion in the left wheel.
+ * @param {number} [inc_b=1] - The increment for rotating the right wheel.
+ * @param {number} [del_b=2] - The position for deletion and re-insertion in the right wheel.
+ * @returns {string} - The encoded string.
+ */
+function chaocipherEncode(string, inc_a = 0, del_a = 1, inc_b = 1, del_b = 2) {
+    return runChaocipher(lettersOnly(string), "encode", inc_a, del_a, inc_b, del_b);
+}
+
+/**
+ * Decodes a string using the Chaocipher algorithm.
+ *
+ * @param {string} string - The input string to decode.
+ * @param {number} [inc_a=1] - The increment for rotating the left wheel.
+ * @param {number} [del_a=2] - The position for deletion and re-insertion in the left wheel.
+ * @param {number} [inc_b=0] - The increment for rotating the right wheel.
+ * @param {number} [del_b=1] - The position for deletion and re-insertion in the right wheel.
+ * @returns {string} - The decoded string.
+ */
+function chaocipherDecode(string, inc_a = 1, del_a = 2, inc_b = 0, del_b = 1) {
+    return runChaocipher(string, "decode", inc_a, del_a, inc_b, del_b);
+}
+
+/**
+ * The core function that performs encoding or decoding using the Chaocipher algorithm.
+ *
+ * @param {string} string - The input string to process.
+ * @param {string} mode - The mode ('encode' or 'decode') to determine the operation.
+ * @param {number} inc_a - The increment for rotating the left wheel.
+ * @param {number} del_a - The position for deletion and re-insertion in the left wheel.
+ * @param {number} inc_b - The increment for rotating the right wheel.
+ * @param {number} del_b - The position for deletion and re-insertion in the right wheel.
+ * @returns {string} - The processed (encoded or decoded) string.
+ */
+function runChaocipher(string, mode, inc_a, del_a, inc_b, del_b) {
+    let left = ["H","X","U","C","Z","V","A","M","D","S","L","K","P","E","F","J","R","I","G","T","W","O","B","N","Y","Q"];
+    let right = ["P","T","L","N","B","Q","D","E","O","Y","S","F","A","V","Z","K","G","J","R","I","H","W","X","U","M","C"];
+
+    if (mode === "decode") {
+        [left, right] = [right, left];
+    }
+
+    return Array.from(string).map(char => {
+        if (/[A-Za-z]/.test(char)) {
+            const index = right.indexOf(char.toUpperCase());
+            let out = left[index];
+            out = isUpperCase(char) ? out : out.toLowerCase();
+
+            left = rotateWheel(left, index + inc_a);
+            const delIndexA = (del_a < 0) ? left.length + del_a : del_a;
+            left.splice(13, 0, left.splice(delIndexA, 1)[0]);
+
+            right = rotateWheel(right, index + inc_b);
+            const delIndexB = (del_b < 0) ? right.length + del_b : del_b;
+            right.splice(13, 0, right.splice(delIndexB, 1)[0]);
+
+            return out;
+        }
+        return char;
+    }).join("");
+}
+
 
 // ROT Text
 const rotButtons    = document.getElementsByClassName("rot-link");
 const rotPrevious   = document.getElementById("rotPrev");
 const rotNext       = document.getElementById("rotNext");
-const rotKey       = document.getElementById("rotKey");
+const rotKey        = document.getElementById("rotKey");
 
 Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
@@ -260,6 +516,169 @@ vigenereDecryptButton.addEventListener("click", function() {
 
     document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
 });
+
+
+// Beaufort cipher
+const beaufortEncryptButton = document.getElementById("beaufortEncrypt");
+beaufortEncryptButton.addEventListener("click", function() {
+    const beaufortString = document.getElementById("beaufortText");
+    const beaufortKey = document.getElementById("beaufortKey");
+
+    if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
+        return false;
+    }
+    if (!largeDataWarning(beaufortString.value, beaufortString)) {
+        return false;
+    }
+
+    document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
+});
+const beaufortDecryptButton = document.getElementById("beaufortDecrypt");
+beaufortDecryptButton.addEventListener("click", function() {
+    const beaufortString = document.getElementById("beaufortText");
+    const beaufortKey = document.getElementById("beaufortKey");
+
+    if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
+        return false;
+    }
+    if (!largeDataWarning(beaufortString.value, beaufortString)) {
+        return false;
+    }
+
+    document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
+});
+
+
+// Keyword cipher
+const keywordEncryptButton = document.getElementById("keywordEncrypt");
+if(keywordEncryptButton) {
+    keywordEncryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+
+        document.getElementById("keywordResults").textContent = keywordEncode(keywordString.value, keywordKey.value);
+    });
+}
+const keywordDecryptButton = document.getElementById("keywordDecrypt");
+if(keywordDecryptButton) {
+    keywordDecryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+    
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+    
+        document.getElementById("keywordResults").textContent = keywordDecode(keywordString.value, keywordKey.value);
+    });
+}
+
+
+// Rail fence cipher
+const railEncryptButton = document.getElementById("railEncrypt");
+if(railEncryptButton) {
+    railEncryptButton.addEventListener("click", function () {
+        const railString = document.getElementById("railText");
+        const railAmount = document.getElementById("railAmount");
+
+        if (!emptyContainerCheck(railString.value, railString)) {
+            return false;
+        }
+        if (!largeDataWarning(railString.value, railString)) {
+            return false;
+        }
+
+        try {
+            railFenceEncode(railString.value, railAmount.value)
+        } catch (e) {
+            showToast("Error", `An error occured trying to encrypt the string: ${e.message}`, "danger");
+            return;
+        }
+        document.getElementById("railResults").textContent = railFenceEncode(railString.value, railAmount.value);
+    });
+}
+const railDecryptButton = document.getElementById("railDecrypt");
+if(railDecryptButton) {
+    railDecryptButton.addEventListener("click", function () {
+        const railString = document.getElementById("railText");
+        const railAmount = document.getElementById("railAmount");
+    
+        if (!emptyContainerCheck(railString.value, railString)) {
+            return false;
+        }
+        if (!largeDataWarning(railString.value, railString)) {
+            return false;
+        }
+
+        try {
+            railFenceDecode(railString.value, railAmount.value)
+        } catch (e) {
+            showToast("Error", `An error occured trying to decrypt the string: ${e.message}`, "danger");
+            return;
+        }
+        document.getElementById("railResults").textContent = railFenceDecode(railString.value, railAmount.value);
+    });
+}
+
+
+// Rail fence cipher
+const chaosEncryptButton = document.getElementById("chaosEncrypt");
+if(chaosEncryptButton) {
+    chaosEncryptButton.addEventListener("click", function () {
+        const chaosString = document.getElementById("chaosText");
+
+        if (!emptyContainerCheck(chaosString.value, chaosString)) {
+            return false;
+        }
+        if (!largeDataWarning(chaosString.value, chaosString)) {
+            return false;
+        }
+
+        document.getElementById("chaosResults").textContent = chaocipherEncode(chaosString.value);
+    });
+}
+const chaosDecryptButton = document.getElementById("chaosDecrypt");
+if(chaosDecryptButton) {
+    chaosDecryptButton.addEventListener("click", function () {
+        const chaosString = document.getElementById("chaosText");
+    
+        if (!emptyContainerCheck(chaosString.value, chaosString)) {
+            return false;
+        }
+        if (!largeDataWarning(chaosString.value, chaosString)) {
+            return false;
+        }
+
+        document.getElementById("chaosResults").textContent = chaocipherDecode(chaosString.value)
+    });
+}
+
+
+// Atbash cipher
+const atbashDecodeButton = document.getElementById("atbashDecode");
+atbashDecodeButton.addEventListener("click", function() {
+    const atbashString = document.getElementById("atbashText");
+
+    if(!emptyContainerCheck(atbashString.value, atbashString)) {
+        return false;
+    }
+    if (!largeDataWarning(atbashString.value, atbashString)) {
+        return false;
+    }
+
+    document.getElementById("atbashResults").textContent = atbashCipher(atbashString.value);
+});
+
 
 // Hash strings
 const hashButton = document.getElementById("hashDecode");

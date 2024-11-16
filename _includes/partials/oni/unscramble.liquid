@@ -1,0 +1,42 @@
+<section id="unscramble" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#unscrambleCollapse" role="button" 
+                aria-expanded="false" aria-controls="unscrambleCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Unscramble
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">abcdef</code> → <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
+            </p>
+        </div>
+        <div class="collapse" id="unscrambleCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Unscramble</span>
+                    <div class="card-body text-left">
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unscramble(string)</code>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

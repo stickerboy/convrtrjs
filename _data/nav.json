@@ -50,9 +50,52 @@
             }, {
                 "id": "vigenere",
                 "label": "Vigenère cipher"
+            },  {
+                "id": "keyword",
+                "label": "Keyword cipher"
+            }, {
+                "id": "beaufort",
+                "label": "Beaufort cipher"
+            }, {
+                "id": "rail",
+                "label": "Rail fence cipher"
+            }, {
+                "id": "chaos",
+                "label": "Chaocipher"
+            }, {
+                "id": "atbash",
+                "label": "Atbash cipher"
             }, {
                 "id": "hash",
                 "label": "Hash algorithms"
+            }
+        ]
+    },
+    {
+        "id": "oni",
+        "label": "ONI tools",
+        "short-label": "ONI",
+        "children": [{
+                "id": "unmunge",
+                "label": "Unmunge"
+            }, {
+                "id": "lookahead",
+                "label": "Lookahead"
+            }, {
+                "id": "mergeb64",
+                "label": "Merge Base64"
+            }, {
+                "id": "unscramble",
+                "label": "Unscramble"
+            }, {
+                "id": "interleave",
+                "label": "Interleave"
+            }, {
+                "id": "strings",
+                "label": "Extract strings"
+            }, {
+                "id": "calendar",
+                "label": "Calendar"
             }
         ]
     },

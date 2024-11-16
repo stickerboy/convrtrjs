@@ -1,0 +1,45 @@
+<section id="atbash" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#atbashCollapse" role="button" 
+                aria-expanded="false" aria-controls="atbashCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Atbash cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    A ⇆ Z
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    B ⇆ Y
+                </code>
+                etc.
+            </p>
+        </div>
+        <div class="collapse" id="atbashCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Atbash</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: (A ⇆ Z) (B ⇆ Y)" title="Atbash encrypt a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="atbashDecode" title="Encrypt">Encrypt</button>
+                            {% include "components/select-copy-dl" %}
+                        </div>
+                        <hr />
+                        <div id="atbashResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

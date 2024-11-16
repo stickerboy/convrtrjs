@@ -1,0 +1,21 @@
+---
+layout: layout.liquid
+title: ONI tools
+page-id: oni
+---
+<main class="mt-5 ms-auto me-auto mw"
+        data-bs-spy="scroll" 
+        data-bs-target="#navbarText" 
+        data-bs-smooth-scroll="true"
+        data-bs-threshold="0,1"
+        data-bs-root-margin="10% 0% -90%"
+        id="content">
+            {% render "partials/oni/home" %}
+            {% include "partials/oni/unmunge" %}
+            {% include "partials/oni/lookahead" %}
+            {% include "partials/oni/mergeb64" %}
+            {% include "partials/oni/unscramble" %}
+            {% include "partials/oni/interleave" %}
+            {% include "partials/oni/strings" %}
+            {% include "partials/oni/calendar" %}
+        </main>
