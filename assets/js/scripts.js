@@ -248,7 +248,7 @@ Array.from(selectButtons, c => c.addEventListener("click", function() {
     tooltip.setContent({ ".tooltip-inner": "Selected!" });
     setTimeout(() => {
         c.classList.replace("btn-convrtr", "btn-light");
-        tooltip.setContent({ ".tooltip-inner": "Sellect All" });
+        tooltip.setContent({ ".tooltip-inner": "Select All" });
     }, 3430);
 
     selectAllText(textarea);

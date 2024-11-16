@@ -147,7 +147,7 @@ shiftButton.addEventListener("click", function() {
     try {
         shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter);
     } catch (e) {
-        showToast("Error", `An error occured trying to shift the hex string: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to shift the hex string: ${e.message}`, "danger");
         return;
     }
 
@@ -179,7 +179,7 @@ reverseHexButton.addEventListener("click", function() {
             reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
         } 
     } catch (e) {
-        showToast("Error", `An error occured trying to reverse the hex string: ${e.message}`, "danger");
+        showToast("Error", `An error occurred trying to reverse the hex string: ${e.message}`, "danger");
         return;
     }
 

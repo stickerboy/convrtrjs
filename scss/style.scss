@@ -64,6 +64,15 @@ body {
     color: var(--convrtr-base-color);
     position: relative;
 }
+
+:target::before { 
+    content: "";
+    display: block;
+    height: 64px; /* Height of your navbar */
+    margin-top: -64px; /* Negative value of navbar height */
+    visibility: hidden;
+}
+
 .border-convrtr {
     border-color: var(--convrtr-bg-color) !important;
 }

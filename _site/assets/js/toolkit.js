@@ -331,7 +331,7 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * // Output: "<div class="g-col-12"> ..."
  */
 function styledUniqueArrayItems(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique chracters</p>
+    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique characters</p>
     <div class="grid mt-2 grid-auto" id="unique-chars">`;
     data.forEach(char => {
         result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
