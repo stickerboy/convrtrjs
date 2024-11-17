@@ -1,16 +1,9 @@
 ---
 layout: layout.liquid
 title: Cipher tools
+description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
 page-id: ciphers
 ---
-<main class="mt-5 ms-auto me-auto mw"
-        data-bs-spy="scroll" 
-        data-bs-target="#navbarText" 
-        data-bs-smooth-scroll="true"
-        data-bs-threshold="0,1"
-        data-bs-root-margin="10% 0% -90%"
-        id="content">
-            {% render "partials/ciphers/home" %}
             {% include "partials/ciphers/caesar" %}
             {% include "partials/ciphers/sub" %}
             {% include "partials/ciphers/vigenere" %}
@@ -20,4 +13,3 @@ page-id: ciphers
             {% include "partials/ciphers/chaos" %}
             {% include "partials/ciphers/atbash" %}
             {% include "partials/ciphers/hash" %}
-        </main>

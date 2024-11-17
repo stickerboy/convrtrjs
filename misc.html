@@ -1,21 +1,13 @@
 ---
 layout: layout.liquid
 title: Miscellaneous tools
+description: A collection of miscellaneous tools for use in puzzle solving.
 page-id: misc
 ---
-<main class="mt-5 ms-auto me-auto mw"
-        data-bs-spy="scroll" 
-        data-bs-target="#navbarText" 
-        data-bs-smooth-scroll="true"
-        data-bs-threshold="0,1"
-        data-bs-root-margin="10% 0% -90%"
-        id="content">
-            {% render "partials/misc/home" %}
             {% render "partials/misc/braille" %}
             {% render "partials/misc/elements" %}
             {% render "partials/misc/forerunner" %}
             {% render "partials/misc/covenant" %}
-        </main>
     <script>
         const ELEMENTS = {{ elements | json }};
     </script>
