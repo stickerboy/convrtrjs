@@ -645,6 +645,10 @@ beaufortEncryptButton.addEventListener("click", function() {
         return false;
     }
 
+    if (/[^A-Za-z]/.test(beaufortKey.value)) {
+        showToast("Error", "Beaufort key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
 const beaufortDecryptButton = document.getElementById("beaufortDecrypt");
@@ -662,6 +666,10 @@ beaufortDecryptButton.addEventListener("click", function() {
         return false;
     }
 
+    if (/[^A-Za-z]/.test(beaufortKey.value)) {
+        showToast("Error", "Beaufort key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
 
