@@ -177,7 +177,7 @@ function vignereDecrypt(string, key) {
  *
  * @example
  * // Input: "Hello, World!" with key "KEY"
- * // Output: Encrypted text
+ * // Output: Danzq Cwnnh!
  *
  * // Input: Encrypted text with key "KEY"
  * // Output: "Hello, World!"
@@ -487,6 +487,30 @@ rotNext.addEventListener("click", function() {
 });
 
 
+// Substitution cipher
+const subEncryptButton = document.getElementById("subEncrypt");
+subEncryptButton.addEventListener("click", function() {
+    const subString = document.getElementById("subText");
+    const subKey = document.getElementById("subKey");
+
+    if(!emptyContainerCheck(subString.value, subString)) {
+        return false;
+    }
+    if (!emptyContainerCheck(subKey.value, subKey, "A key is required to encrypt this cipher")) {
+        return false;
+    }
+    if (!largeDataWarning(subString.value, subString)) {
+        return false;
+    }
+
+    let chainSubs = document.getElementById("chainSubs");
+    let sR = document.getElementById("subResults").textContent;
+    let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
+
+    document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
+});
+
+
 // Vigenère cipher
 const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
 vigenereEncryptButton.addEventListener("click", function() {
@@ -496,11 +520,18 @@ vigenereEncryptButton.addEventListener("click", function() {
     if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
         return false;
     }
+    if (!emptyContainerCheck(vigenereKey.value, vigenereKey, "A key is required to encrypt this cipher")) {
+        return false;
+    }
     if (!largeDataWarning(vigenereString.value, vigenereString)) {
         return false;
     }
 
-    document.getElementById("vigenereResults").textContent = vignereEncrypt(vigenereString.value, vigenereKey.value);
+    let chainVig = document.getElementById("chainVig");
+    let vR = document.getElementById("vigenereResults").textContent;
+    let vigResults = chainVig.checked && vR.length > 0 ? vR : vigenereString.value;
+
+    document.getElementById("vigenereResults").textContent = vignereEncrypt(vigResults, vigenereKey.value);
 });
 const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
 vigenereDecryptButton.addEventListener("click", function() {
@@ -510,12 +541,68 @@ vigenereDecryptButton.addEventListener("click", function() {
     if(!emptyContainerCheck(vigenereString.value, vigenereString)) {
         return false;
     }
+    if (!emptyContainerCheck(vigenereKey.value, vigenereKey, "A key is required to decrypt this cipher")) {
+        return false;
+    }
     if (!largeDataWarning(vigenereString.value, vigenereString)) {
         return false;
     }
 
-    document.getElementById("vigenereResults").textContent = vignereDecrypt(vigenereString.value, vigenereKey.value);
+    let chainVig = document.getElementById("chainVig");
+    let vR = document.getElementById("vigenereResults").textContent;
+    let vigResults = chainVig.checked && vR.length > 0 ? vR : vigenereString.value;
+
+    document.getElementById("vigenereResults").textContent = vignereDecrypt(vigResults, vigenereKey.value);
 });
+
+
+// Keyword cipher
+const keywordEncryptButton = document.getElementById("keywordEncrypt");
+if(keywordEncryptButton) {
+    keywordEncryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to encrypt this cipher")) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+
+        let chainKw = document.getElementById("chainKw");
+        let kR = document.getElementById("keywordResults").textContent;
+        let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
+    
+        document.getElementById("keywordResults").textContent = keywordEncode(kwResults, keywordKey.value);
+    });
+}
+const keywordDecryptButton = document.getElementById("keywordDecrypt");
+if(keywordDecryptButton) {
+    keywordDecryptButton.addEventListener("click", function () {
+        const keywordString = document.getElementById("keywordText");
+        const keywordKey = document.getElementById("keywordKey");
+
+        if (!emptyContainerCheck(keywordString.value, keywordString)) {
+            return false;
+        }
+        if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to decrypt this cipher")) {
+            return false;
+        }
+        if (!largeDataWarning(keywordString.value, keywordString)) {
+            return false;
+        }
+    
+        let chainKw = document.getElementById("chainKw");
+        let kR = document.getElementById("keywordResults").textContent;
+        let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
+    
+        document.getElementById("keywordResults").textContent = keywordDecode(kwResults, keywordKey.value);
+    });
+}
 
 
 // Beaufort cipher
@@ -525,6 +612,9 @@ beaufortEncryptButton.addEventListener("click", function() {
     const beaufortKey = document.getElementById("beaufortKey");
 
     if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
+        return false;
+    }
+    if(!emptyContainerCheck(beaufortKey.value, beaufortKey, "A key is required to encrypt this cipher")) {
         return false;
     }
     if (!largeDataWarning(beaufortString.value, beaufortString)) {
@@ -541,47 +631,15 @@ beaufortDecryptButton.addEventListener("click", function() {
     if(!emptyContainerCheck(beaufortString.value, beaufortString)) {
         return false;
     }
+    if(!emptyContainerCheck(beaufortKey.value, beaufortKey, "A key is required to decrypt this cipher")) {
+        return false;
+    }
     if (!largeDataWarning(beaufortString.value, beaufortString)) {
         return false;
     }
 
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
-
-
-// Keyword cipher
-const keywordEncryptButton = document.getElementById("keywordEncrypt");
-if(keywordEncryptButton) {
-    keywordEncryptButton.addEventListener("click", function () {
-        const keywordString = document.getElementById("keywordText");
-        const keywordKey = document.getElementById("keywordKey");
-
-        if (!emptyContainerCheck(keywordString.value, keywordString)) {
-            return false;
-        }
-        if (!largeDataWarning(keywordString.value, keywordString)) {
-            return false;
-        }
-
-        document.getElementById("keywordResults").textContent = keywordEncode(keywordString.value, keywordKey.value);
-    });
-}
-const keywordDecryptButton = document.getElementById("keywordDecrypt");
-if(keywordDecryptButton) {
-    keywordDecryptButton.addEventListener("click", function () {
-        const keywordString = document.getElementById("keywordText");
-        const keywordKey = document.getElementById("keywordKey");
-    
-        if (!emptyContainerCheck(keywordString.value, keywordString)) {
-            return false;
-        }
-        if (!largeDataWarning(keywordString.value, keywordString)) {
-            return false;
-        }
-    
-        document.getElementById("keywordResults").textContent = keywordDecode(keywordString.value, keywordKey.value);
-    });
-}
 
 
 // Rail fence cipher
@@ -592,6 +650,9 @@ if(railEncryptButton) {
         const railAmount = document.getElementById("railAmount");
 
         if (!emptyContainerCheck(railString.value, railString)) {
+            return false;
+        }
+        if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to encrypt this cipher text")) {
             return false;
         }
         if (!largeDataWarning(railString.value, railString)) {
@@ -614,6 +675,9 @@ if(railDecryptButton) {
         const railAmount = document.getElementById("railAmount");
     
         if (!emptyContainerCheck(railString.value, railString)) {
+            return false;
+        }
+        if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to decrypt this cipher text")) {
             return false;
         }
         if (!largeDataWarning(railString.value, railString)) {
@@ -702,24 +766,4 @@ hashButton.addEventListener("click", function() {
     hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
     hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
     hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
-});
-
-// Substitution cipher
-const subEncryptButton = document.getElementById("subEncrypt");
-subEncryptButton.addEventListener("click", function() {
-    const subString = document.getElementById("subText");
-    const subKey = document.getElementById("subKey");
-
-    if(!emptyContainerCheck(subString.value, subString)) {
-        return false;
-    }
-    if (!largeDataWarning(subString.value, subString)) {
-        return false;
-    }
-
-    let chainSubs = document.getElementById("chainSubs");
-    let sR = document.getElementById("subResults").textContent;
-    let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
-
-    document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
 });

@@ -37,8 +37,18 @@
                                         <button class="btn btn-outline-convrtr" type="button" id="keywordDecrypt">Decrypt</button>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    {% include "components/select-copy-dl" %}
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainKw" aria-checked="false">
+                                                <label class="form-check-label" for="chainKw">Chain <span class="visually-hidden">keyword </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            {% include "components/select-copy-dl" %}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
