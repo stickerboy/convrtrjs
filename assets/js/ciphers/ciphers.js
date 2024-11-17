@@ -690,6 +690,10 @@ if(railEncryptButton) {
         if (!largeDataWarning(railString.value, railString)) {
             return false;
         }
+        if (/[^0-9]/.test(railAmount.value)) {
+            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
 
         try {
             railFenceEncode(railString.value, railAmount.value)
@@ -714,6 +718,10 @@ if(railDecryptButton) {
         }
         if (!largeDataWarning(railString.value, railString)) {
             return false;
+        }
+        if (/[^0-9]/.test(railAmount.value)) {
+            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+            return;
         }
 
         try {
