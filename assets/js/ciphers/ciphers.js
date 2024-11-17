@@ -510,6 +510,11 @@ subEncryptButton.addEventListener("click", function() {
     let sR = document.getElementById("subResults").textContent;
     let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
 
+    if (/[^A-Za-z]/.test(subKey.value)) {
+        showToast("Error", "Substitution key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
+
     document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
 });
 
