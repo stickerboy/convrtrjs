@@ -330,12 +330,12 @@
 </header>
 
         <main class="mt-5 ms-auto me-auto mw"
-        data-bs-spy="scroll" 
-        data-bs-target="#navbarText" 
-        data-bs-smooth-scroll="true"
-        data-bs-threshold="0,1"
-        data-bs-root-margin="10% 0% -90%"
-        id="content">
+            data-bs-spy="scroll" 
+            data-bs-target="#navbarText" 
+            data-bs-smooth-scroll="true"
+            data-bs-threshold="0,1"
+            data-bs-root-margin="10% 0% -90%"
+            id="content">
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         <div class="section-heading">
@@ -345,12 +345,11 @@
                 A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
             </p>
             <p class="px-2 m-0">
-                Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
-            </p>
+    Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
+</p>
         </div>
     </div>
-</section>
-            <section id="rotate" class="section">
+</section>            <section id="rotate" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -848,12 +847,22 @@
                                         <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    <div class="btn-group ms-auto align-items-start">
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainVig" aria-checked="false">
+                                                <label class="form-check-label" for="chainVig">Chain <span class="visually-hidden">vigenère </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -904,12 +913,22 @@
                                         <button class="btn btn-outline-convrtr" type="button" id="keywordDecrypt">Decrypt</button>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    <div class="btn-group ms-auto align-items-start">
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainKw" aria-checked="false">
+                                                <label class="form-check-label" for="chainKw">Chain <span class="visually-hidden">keyword </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1092,16 +1111,32 @@
                         <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaosText" class="form-control chaos-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <div class="input-group w-auto">
-                                <button type="button" class="btn btn-convrtr" id="chaosEncrypt" title="Encrypt">Encrypt</button>
-                                <button class="btn btn-outline-convrtr" type="button" id="chaosDecrypt">Decrypt</button>
-                            </div>
-                            <div class="btn-group ms-auto align-items-start">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <button type="button" class="btn btn-convrtr" id="chaosEncrypt" title="Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="chaosDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainChaos" aria-checked="false">
+                                                <label class="form-check-label" for="chainChaos">Chain <span class="visually-hidden">chaocipher </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="chaosResults" class="data-to-copy active"></div>
@@ -1144,13 +1179,31 @@
                         <textarea placeholder="Example: (A ⇆ Z) (B ⇆ Y)" title="Atbash encrypt a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="atbashDecode" title="Encrypt">Encrypt</button>
-                            <div class="btn-group ms-auto align-items-start">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <button type="button" class="btn btn-md btn-convrtr" id="atbashDecode" title="Encrypt">Encrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainAb" aria-checked="false">
+                                                <label class="form-check-label" for="chainAb">Chain <span class="visually-hidden">atbash </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <hr />
                         <div id="atbashResults" class="data-to-copy active"></div>
@@ -1216,6 +1269,7 @@
         </div>
     </div>
 </section>
+
         </main>
 
         <footer class="section footer">
@@ -1238,9 +1292,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.17.1" 
+                title="Release version: v1.17.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v1.17.1</small>
+                <small>v1.17.2</small>
             </a>
         </div>
     </div>

@@ -13,7 +13,18 @@
 
         {% include "layout/header" %}
 
-        {{ content }}
+        <main class="{% if page-id == "fourohfour" %}flex-shrink-0 {% endif %}mt-5 ms-auto me-auto mw"
+            data-bs-spy="scroll" 
+            data-bs-target="#navbarText" 
+            data-bs-smooth-scroll="true"
+            data-bs-threshold="0,1"
+            data-bs-root-margin="10% 0% -90%"
+            id="content">
+            {% if page-id != "fourohfour" -%}
+            {% include "partials/default" %}
+            {%- endif -%}
+            {{ content }}
+        </main>
 
         {% include "layout/footer" %}
         {% include "layout/scripts" %}
