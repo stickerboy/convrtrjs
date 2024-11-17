@@ -419,6 +419,10 @@ Array.from(rotButtons, c => c.addEventListener("click", function() {
     if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
+    if (rotKey.value.length > 0 && /[^A-Za-z]/.test(rotKey.value)) {
+        showToast("Error", "ROT key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
 
     Array.from(rotButtons, button => {
         button.classList.remove("active");
