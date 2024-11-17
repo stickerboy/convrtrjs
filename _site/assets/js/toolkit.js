@@ -295,7 +295,7 @@ function decimalToString(string) {
  */
 function uniqueArray(str, chunkSize = 1) {
     if (chunkSize <= 0) {
-        throw new Error('Invalid chunk size');
+        throw new Error("Invalid chunk size");
     }
 
     const chunks = [];
@@ -317,7 +317,11 @@ function uniqueArray(str, chunkSize = 1) {
  * @returns {string} - The modified string with replacements.
  */
 function replaceChars(string, toReplace, replacement, caseSensitive) {
-    return string.replaceAll(new RegExp(toReplace, `g${caseSensitive === true ? "" : "i"}`), replacement);
+    const regex = new RegExp(toReplace, `g${caseSensitive ? "" : "i"}`);
+    if (!regex.test(string)) {
+        throw new Error(`"${toReplace}" was not found within the original string.`);
+    }
+    return string.replaceAll(regex, replacement);
 }
 
 /**

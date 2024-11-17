@@ -355,6 +355,12 @@ replaceButton.addEventListener("click", function() {
     if(!emptyContainerCheck(replaceString.value, replaceString)) {
         return false;
     }
+    if(!emptyContainerCheck(replaceOld.value, replaceOld, "Please provide the characters, words, or phrases you want to replace")) {
+        return false;
+    }
+    if(!emptyContainerCheck(replaceNew.value, replaceNew, "Please provide the new characters, word, or phrases you want to be the replacements")) {
+        return false;
+    }
     if (!largeDataWarning(replaceString.value, replaceString)) {
         return false;
     }
@@ -364,8 +370,20 @@ replaceButton.addEventListener("click", function() {
     let replaceResults = document.getElementById("replaceResults");
 
     if(chainReplacements.checked && replaceResults.textContent.length > 0) {
+        try {
+            replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase)
+        } catch (e) {
+            showToast("Error", `An error occurred trying to replace characters: ${e.message}`, "danger");
+            return;
+        }
         replaceResults.textContent = replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase);
     } else {
+        try {
+            replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase)
+        } catch (e) {
+            showToast("Error", `An error occurred trying to replace characters: ${e.message}`, "danger");
+            return;
+        }
         replaceResults.textContent = replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase);
     }
 });
