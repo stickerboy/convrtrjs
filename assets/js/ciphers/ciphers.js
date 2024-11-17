@@ -708,7 +708,11 @@ if(chaosEncryptButton) {
             return false;
         }
 
-        document.getElementById("chaosResults").textContent = chaocipherEncode(chaosString.value);
+        let chainChaos = document.getElementById("chainChaos");
+        let chR = document.getElementById("chaosResults").textContent;
+        let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
+
+        document.getElementById("chaosResults").textContent = chaocipherEncode(chaosResults);
     });
 }
 const chaosDecryptButton = document.getElementById("chaosDecrypt");
@@ -723,7 +727,11 @@ if(chaosDecryptButton) {
             return false;
         }
 
-        document.getElementById("chaosResults").textContent = chaocipherDecode(chaosString.value)
+        let chainChaos = document.getElementById("chainChaos");
+        let chR = document.getElementById("chaosResults").textContent;
+        let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
+
+        document.getElementById("chaosResults").textContent = chaocipherDecode(chaosResults);
     });
 }
 
@@ -740,7 +748,11 @@ atbashDecodeButton.addEventListener("click", function() {
         return false;
     }
 
-    document.getElementById("atbashResults").textContent = atbashCipher(atbashString.value);
+    let chainAb = document.getElementById("chainAb");
+    let abR = document.getElementById("atbashResults").textContent;
+    let atbashResults = chainAb.checked && abR.length > 0 ? abR : atbashString.value;
+
+    document.getElementById("atbashResults").textContent = atbashCipher(atbashResults);
 });
 
 
