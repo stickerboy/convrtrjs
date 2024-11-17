@@ -592,7 +592,11 @@ if(keywordEncryptButton) {
         let chainKw = document.getElementById("chainKw");
         let kR = document.getElementById("keywordResults").textContent;
         let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
-    
+
+        if (/[^A-Za-z]/.test(keywordKey.value)) {
+            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
         document.getElementById("keywordResults").textContent = keywordEncode(kwResults, keywordKey.value);
     });
 }
@@ -616,6 +620,10 @@ if(keywordDecryptButton) {
         let kR = document.getElementById("keywordResults").textContent;
         let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
     
+        if (/[^A-Za-z]/.test(keywordKey.value)) {
+            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
         document.getElementById("keywordResults").textContent = keywordDecode(kwResults, keywordKey.value);
     });
 }
