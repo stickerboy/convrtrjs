@@ -408,6 +408,9 @@ const rotKey        = document.getElementById("rotKey");
 Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
     const rotNumber = c.getAttribute("data-rot-number");
+    let chainRots = document.getElementById("chainRots");
+    let rR = document.getElementById("rotResults").textContent;
+    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
         rotResults = "";
@@ -416,10 +419,10 @@ Array.from(rotButtons, c => c.addEventListener("click", function() {
     if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
-
-    let chainRots = document.getElementById("chainRots");
-    let rR = document.getElementById("rotResults").textContent;
-    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
+    if (rotKey.value.length > 0 && /[^A-Za-z]/.test(rotKey.value)) {
+        showToast("Error", "ROT key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
 
     Array.from(rotButtons, button => {
         button.classList.remove("active");
@@ -507,6 +510,11 @@ subEncryptButton.addEventListener("click", function() {
     let sR = document.getElementById("subResults").textContent;
     let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
 
+    if (/[^A-Za-z]/.test(subKey.value)) {
+        showToast("Error", "Substitution key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
+
     document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
 });
 
@@ -531,6 +539,10 @@ vigenereEncryptButton.addEventListener("click", function() {
     let vR = document.getElementById("vigenereResults").textContent;
     let vigResults = chainVig.checked && vR.length > 0 ? vR : vigenereString.value;
 
+    if (/[^A-Za-z]/.test(vigenereKey.value)) {
+        showToast("Error", "Vigenère key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("vigenereResults").textContent = vignereEncrypt(vigResults, vigenereKey.value);
 });
 const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
@@ -552,6 +564,10 @@ vigenereDecryptButton.addEventListener("click", function() {
     let vR = document.getElementById("vigenereResults").textContent;
     let vigResults = chainVig.checked && vR.length > 0 ? vR : vigenereString.value;
 
+    if (/[^A-Za-z]/.test(vigenereKey.value)) {
+        showToast("Error", "Vigenère key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("vigenereResults").textContent = vignereDecrypt(vigResults, vigenereKey.value);
 });
 
@@ -576,7 +592,11 @@ if(keywordEncryptButton) {
         let chainKw = document.getElementById("chainKw");
         let kR = document.getElementById("keywordResults").textContent;
         let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
-    
+
+        if (/[^A-Za-z]/.test(keywordKey.value)) {
+            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
         document.getElementById("keywordResults").textContent = keywordEncode(kwResults, keywordKey.value);
     });
 }
@@ -600,6 +620,10 @@ if(keywordDecryptButton) {
         let kR = document.getElementById("keywordResults").textContent;
         let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
     
+        if (/[^A-Za-z]/.test(keywordKey.value)) {
+            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
         document.getElementById("keywordResults").textContent = keywordDecode(kwResults, keywordKey.value);
     });
 }
@@ -621,6 +645,10 @@ beaufortEncryptButton.addEventListener("click", function() {
         return false;
     }
 
+    if (/[^A-Za-z]/.test(beaufortKey.value)) {
+        showToast("Error", "Beaufort key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
 const beaufortDecryptButton = document.getElementById("beaufortDecrypt");
@@ -638,6 +666,10 @@ beaufortDecryptButton.addEventListener("click", function() {
         return false;
     }
 
+    if (/[^A-Za-z]/.test(beaufortKey.value)) {
+        showToast("Error", "Beaufort key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
 
@@ -657,6 +689,10 @@ if(railEncryptButton) {
         }
         if (!largeDataWarning(railString.value, railString)) {
             return false;
+        }
+        if (/[^0-9]/.test(railAmount.value)) {
+            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+            return;
         }
 
         try {
@@ -682,6 +718,10 @@ if(railDecryptButton) {
         }
         if (!largeDataWarning(railString.value, railString)) {
             return false;
+        }
+        if (/[^0-9]/.test(railAmount.value)) {
+            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+            return;
         }
 
         try {
