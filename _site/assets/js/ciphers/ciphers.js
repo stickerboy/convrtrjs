@@ -408,6 +408,9 @@ const rotKey        = document.getElementById("rotKey");
 Array.from(rotButtons, c => c.addEventListener("click", function() {
     const rotText = document.getElementById("rotText");
     const rotNumber = c.getAttribute("data-rot-number");
+    let chainRots = document.getElementById("chainRots");
+    let rR = document.getElementById("rotResults").textContent;
+    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
 
     if(!emptyContainerCheck(rotText.value, rotText)) {
         rotResults = "";
@@ -416,10 +419,6 @@ Array.from(rotButtons, c => c.addEventListener("click", function() {
     if (!largeDataWarning(rotText.value, rotText)) {
         return false;
     }
-
-    let chainRots = document.getElementById("chainRots");
-    let rR = document.getElementById("rotResults").textContent;
-    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
 
     Array.from(rotButtons, button => {
         button.classList.remove("active");
