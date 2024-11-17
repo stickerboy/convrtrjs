@@ -137,7 +137,7 @@ shiftButton.addEventListener("click", function() {
         document.getElementById("decimal-tab-pane").textContent = "";
         return false;
     }
-    if(!emptyContainerCheck(shiftValue.value, shiftValue)) {
+    if(!emptyContainerCheck(shiftValue.value, shiftValue, "Please enter a number to shift the hex string by")) {
         return false;
     }
     if (!largeDataWarning(shiftString.value, shiftString)) {
