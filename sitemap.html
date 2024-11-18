@@ -1,0 +1,33 @@
+---
+layout: layout.liquid
+title: Sitemap
+description: Overview of all pages
+page-id: sitemap
+---
+
+<section id="sitemap" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <div class="grid grid-g3">
+                {% for nav-item in nav %}
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                {{ nav-item.label }}
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            {% for nav-child in nav-item.children %}
+                            <a href="../{% if nav-item.id != 'home'%}{{ nav-item.id }}/{% endif %}#{{ nav-child.id }}" 
+                            class="list-group-item list-group-item-action">{{ nav-child.label }}</a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+

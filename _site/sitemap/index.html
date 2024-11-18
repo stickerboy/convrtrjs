@@ -6,7 +6,7 @@
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
-        <title>Convrtr - Hexadecimal tools</title>
+        <title>Convrtr - Sitemap</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
@@ -127,7 +127,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2">
 
-    <li class="nav-item dropdown" data-link-id="home" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="home" data-page-id="sitemap">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Text tools</span>
@@ -158,7 +158,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="sitemap">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Cipher tools</span>
@@ -205,7 +205,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="oni" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="oni" data-page-id="sitemap">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">ONI tools</span>
@@ -244,12 +244,12 @@
         
     </li>
 
-    <li class="nav-item dropdown active" data-link-id="hex" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="hex" data-page-id="sitemap">
         
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Hex tools</span>
         </a>
-        <ul class="dropdown-menu show">
+        <ul class="dropdown-menu">
             
             <li class="mb-1">
                 <a class="dropdown-item" href="../hex/#shift">Shift hex</a>
@@ -267,7 +267,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="files" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="files" data-page-id="sitemap">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">File tools</span>
@@ -286,7 +286,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="misc" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="misc" data-page-id="sitemap">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Misc</span>
@@ -339,239 +339,194 @@
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         <div class="section-heading">
-            <h1 class="display-6">Hexadecimal tools</h1>
+            <h1 class="display-6">Sitemap</h1>
             <hr>
             <p class="px-2">
-                Various tools for working with hexadecimal strings.
+                Overview of all pages
             </p>
-            
-            <p class="px-2 m-0">
-    Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
-</p>
             
         </div>
     </div>
-</section>            
-<section id="shift" class="section">
+</section>
+<section id="sitemap" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#shiftHexCollapse" role="button" 
-                aria-expanded="true" aria-controls="shiftHexCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Shift hex
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
-            </p>
-            <p class="px-2">
-                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. Negative numbers are allowed.
-            </p>
-        </div>
-        <div class="collapse show" id="shiftHexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Shift hex string</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-2 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto me-2 mb-2">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="shiftValueLabel" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
-                                        <input type="number" class="form-control" id="shiftValue" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="shiftDecode">Shift</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <label class="visually-hidden" for="shiftHexDelimiter">Shift Hex Delimiter</label>
-                                    <select class="form-select hex-delimiter" id="shiftHexDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                    <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                </div>
-                            </div>
+            <div class="grid grid-g3">
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                Text tools
+                            </h5>
                         </div>
-                        <hr />
-                        <div id="shiftResults" class="d-flex flex-row">
-                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shiftTabs" role="tablist" aria-orientation="vertical">
-                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
-                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
-                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
-                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
-                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
-                              </div>
-                              <div class="tab-content flex-column flex-fill shift-tabs" id="shiftTabs-content">
-                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
-                              </div>
-                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../#home" 
+                            class="list-group-item list-group-item-action">Convrtrs</a>
+                            
+                            <a href="../#tools" 
+                            class="list-group-item list-group-item-action">Text tools</a>
+                            
+                            <a href="../#replace" 
+                            class="list-group-item list-group-item-action">Replace characters</a>
+                            
+                            <a href="../#flip" 
+                            class="list-group-item list-group-item-action">Flip text</a>
+                            
+                            <a href="../#freq" 
+                            class="list-group-item list-group-item-action">Character frequencies</a>
+                            
+                        </ul>
                     </div>
                 </div>
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                Cipher tools
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../ciphers/#rotate" 
+                            class="list-group-item list-group-item-action">Caesar cipher</a>
+                            
+                            <a href="../ciphers/#sub" 
+                            class="list-group-item list-group-item-action">Substitution cipher</a>
+                            
+                            <a href="../ciphers/#vigenere" 
+                            class="list-group-item list-group-item-action">Vigenère cipher</a>
+                            
+                            <a href="../ciphers/#keyword" 
+                            class="list-group-item list-group-item-action">Keyword cipher</a>
+                            
+                            <a href="../ciphers/#beaufort" 
+                            class="list-group-item list-group-item-action">Beaufort cipher</a>
+                            
+                            <a href="../ciphers/#rail" 
+                            class="list-group-item list-group-item-action">Rail fence cipher</a>
+                            
+                            <a href="../ciphers/#chaos" 
+                            class="list-group-item list-group-item-action">Chaocipher</a>
+                            
+                            <a href="../ciphers/#atbash" 
+                            class="list-group-item list-group-item-action">Atbash cipher</a>
+                            
+                            <a href="../ciphers/#hash" 
+                            class="list-group-item list-group-item-action">Hash algorithms</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                ONI tools
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../oni/#unmunge" 
+                            class="list-group-item list-group-item-action">Unmunge</a>
+                            
+                            <a href="../oni/#lookahead" 
+                            class="list-group-item list-group-item-action">Lookahead</a>
+                            
+                            <a href="../oni/#mergeb64" 
+                            class="list-group-item list-group-item-action">Merge Base64</a>
+                            
+                            <a href="../oni/#unscramble" 
+                            class="list-group-item list-group-item-action">Unscramble</a>
+                            
+                            <a href="../oni/#interleave" 
+                            class="list-group-item list-group-item-action">Interleave</a>
+                            
+                            <a href="../oni/#strings" 
+                            class="list-group-item list-group-item-action">Extract strings</a>
+                            
+                            <a href="../oni/#calendar" 
+                            class="list-group-item list-group-item-action">Calendar</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                Hex tools
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../hex/#shift" 
+                            class="list-group-item list-group-item-action">Shift hex</a>
+                            
+                            <a href="../hex/#reverseHex" 
+                            class="list-group-item list-group-item-action">Reverse hex</a>
+                            
+                            <a href="../hex/#hexFreq" 
+                            class="list-group-item list-group-item-action">Hex Frequencies</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                File tools
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../files/#filecheck" 
+                            class="list-group-item list-group-item-action">Check file type</a>
+                            
+                            <a href="../files/#headers" 
+                            class="list-group-item list-group-item-action">File headers</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title mb-0 mt-2">
+                                Misc
+                            </h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            
+                            <a href="../misc/#braille" 
+                            class="list-group-item list-group-item-action">Braille</a>
+                            
+                            <a href="../misc/#elements" 
+                            class="list-group-item list-group-item-action">Periodic elements</a>
+                            
+                            <a href="../misc/#forerunner" 
+                            class="list-group-item list-group-item-action">Forerunner glyphs</a>
+                            
+                            <a href="../misc/#covenant" 
+                            class="list-group-item list-group-item-action">Covenant glyphs</a>
+                            
+                        </ul>
+                    </div>
+                </div>
+                
             </div>
         </div>
     </div>
 </section>
-            
-<section id="reverseHex" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
-                aria-expanded="false" aria-controls="reverseHexCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Reverse hex
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, this reverses each individual hex byte in the same order. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code>. The Reverse Nibbles toggle reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code>
-            </p>
-            <p class="px-2">
-                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. 
-            </p>
-        </div>
-        <div class="collapse" id="reverseHexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Reverse hex</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="reverseHexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="reverseHexDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode">Reverse</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="reverseNibbles" aria-checked="false">
-                                                <label class="form-check-label" for="reverseNibbles">Reverse Nibbles</label>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-fill justify-content-end">
-                                            <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="reverseHexResults" class="data-to-copy active"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-            
-<section id="hexFreq" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
-                aria-expanded="false" aria-controls="freqCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Hex frequencies
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
-            </p>
-        </div>
-        <div class="collapse" id="freqCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Hex frequencies</span>
-                    <div class="card-body text-center">
-                        <label for="freqText" class="visually-hidden">Hex characters to check</label>
-                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="hexFrequenciesDelimiter">Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="hexFrequenciesDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate hex frequencies">Generate</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
+
         </main>
 
         <footer class="section footer">
@@ -611,7 +566,7 @@
 <script src="../assets/js/scripts.js"></script>
 
 
-<script src="../assets/js/hex/hex.js"></script>
+
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
         <div class="toast-header text-bg-convrtr">

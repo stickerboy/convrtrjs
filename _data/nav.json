@@ -22,22 +22,6 @@
         ]
     },
     {
-        "id": "hex",
-        "label": "Hex tools",
-        "short-label": "Hex",
-        "children":[{
-                "id": "shift",
-                "label": "Shift hex"
-            },{
-                "id": "reverseHex",
-                "label": "Reverse hex"
-            },{
-                "id": "hexFreq",
-                "label": "Hex Frequencies"
-            }
-        ]
-    },
-    {
         "id": "ciphers",
         "label": "Cipher tools",
         "short-label": "Ciphers",
@@ -96,6 +80,22 @@
             }, {
                 "id": "calendar",
                 "label": "Calendar"
+            }
+        ]
+    },
+    {
+        "id": "hex",
+        "label": "Hex tools",
+        "short-label": "Hex",
+        "children":[{
+                "id": "shift",
+                "label": "Shift hex"
+            },{
+                "id": "reverseHex",
+                "label": "Reverse hex"
+            },{
+                "id": "hexFreq",
+                "label": "Hex Frequencies"
             }
         ]
     },
