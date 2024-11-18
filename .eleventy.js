@@ -18,4 +18,12 @@ module.exports = function(eleventyConfig) {
         const fullJSPath = path.join('assets', filePath);
         return fs.existsSync(fullJSPath);
     });
+    eleventyConfig.addFilter('listFiles', function(folderPath) {
+        const fullPath = path.join('_includes', folderPath);
+        return fs.readdirSync(fullPath).map(file => path.join(folderPath, file));
+    });
+    eleventyConfig.setLiquidOptions({
+        dynamicPartials: true,
+        strict_filters: true,
+    });
 }
