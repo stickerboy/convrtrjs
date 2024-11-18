@@ -4,8 +4,12 @@ title: File tools
 description: Various tools for working with files and file formats.
 page-id: files
 ---
-            {% render "partials/files/filecheck" %}
-            {% include "partials/files/headers" %}
+
+{% assign folderPath = "partials/" | append: page-id %}
+{% assign files = folderPath | listFiles %} 
+{% for file in files %}
+    {% include file %}
+{% endfor %}
 
 <script>
     const HEADERS = {{ headers | json }};

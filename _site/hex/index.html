@@ -351,7 +351,153 @@
             
         </div>
     </div>
-</section>            
+</section>
+
+ 
+
+    
+<section id="hexFreq" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
+                aria-expanded="false" aria-controls="freqCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Hex frequencies
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+            </p>
+        </div>
+        <div class="collapse" id="freqCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Hex frequencies</span>
+                    <div class="card-body text-center">
+                        <label for="freqText" class="visually-hidden">Hex characters to check</label>
+                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" for="hexFrequenciesDelimiter">Delimiter</label>
+                                        <select class="form-select hex-delimiter" id="hexFrequenciesDelimiter" autocomplete="off">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x </option>
+    <option value="0x">Zero x</option>
+    <option value="">None</option>
+</select>
+                                        <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate hex frequencies">Generate</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="">
+                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
+<section id="reverseHex" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
+                aria-expanded="false" aria-controls="reverseHexCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Reverse hex
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr>
+            <p class="px-2">
+                Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, this reverses each individual hex byte in the same order. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code>. The Reverse Nibbles toggle reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code>
+            </p>
+            <p class="px-2">
+                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. 
+            </p>
+        </div>
+        <div class="collapse" id="reverseHexCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Reverse hex</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" for="reverseHexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+                                        <select class="form-select hex-delimiter" id="reverseHexDelimiter" autocomplete="off">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x </option>
+    <option value="0x">Zero x</option>
+    <option value="">None</option>
+</select>
+                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode">Reverse</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="reverseNibbles" aria-checked="false">
+                                                <label class="form-check-label" for="reverseNibbles">Reverse Nibbles</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="reverseHexResults" class="data-to-copy active"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    
 <section id="shift" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -432,146 +578,7 @@
         </div>
     </div>
 </section>
-            
-<section id="reverseHex" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
-                aria-expanded="false" aria-controls="reverseHexCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Reverse hex
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, this reverses each individual hex byte in the same order. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code>. The Reverse Nibbles toggle reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code>
-            </p>
-            <p class="px-2">
-                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. 
-            </p>
-        </div>
-        <div class="collapse" id="reverseHexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Reverse hex</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="reverseHexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="reverseHexDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode">Reverse</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="reverseNibbles" aria-checked="false">
-                                                <label class="form-check-label" for="reverseNibbles">Reverse Nibbles</label>
-                                            </div>
-                                        </div>
-                                        <div class="col d-flex flex-fill justify-content-end">
-                                            <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="reverseHexResults" class="data-to-copy active"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-            
-<section id="hexFreq" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
-                aria-expanded="false" aria-controls="freqCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Hex frequencies
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
-            </p>
-        </div>
-        <div class="collapse" id="freqCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Hex frequencies</span>
-                    <div class="card-body text-center">
-                        <label for="freqText" class="visually-hidden">Hex characters to check</label>
-                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="hexFrequenciesDelimiter">Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="hexFrequenciesDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate hex frequencies">Generate</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
         </main>
 
         <footer class="section footer">
