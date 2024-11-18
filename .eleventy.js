@@ -16,7 +16,6 @@ module.exports = function(eleventyConfig) {
     });
     eleventyConfig.addFilter('assetExists', function(filePath) {
         const fullJSPath = path.join('assets', filePath);
-        console.log(fullJSPath);
         return fs.existsSync(fullJSPath);
     });
 }
