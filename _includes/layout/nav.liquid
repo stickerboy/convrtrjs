@@ -3,18 +3,18 @@
     <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
         {% if link.children %}
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="{% if page-id ==  link.id %}true{% else %}false{% endif %}">
-            <span class="d-inline-flex ms-1 me-auto">{{ link.label }}</span>
+            <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
         </a>
         <ul class="dropdown-menu{% if page-id ==  link.id %} show{% endif %}">
             {% for child in link.children %}
-            <li>
+            <li class="mb-1">
                 <a class="dropdown-item" href="../{% if link.id != 'home'%}{{ link.id }}/{% endif %}#{{ child.id }}">{{ child.label }}</a>
             </li>
             {% endfor %}
         </ul>
         {% else %}
         <a class="nav-link" href="../{{ link.id }}" role="button">
-            <span class="d-inline-flex ms-1 me-auto">{{ link.label }}</span>
+            <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
         </a>
         {% endif %}
     </li>
