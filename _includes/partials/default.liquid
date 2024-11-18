@@ -6,7 +6,9 @@
             <p class="px-2">
                 {{ description }}
             </p>
+            {% if page-id != "sitemap" %}
             {% render "components/data-limits" %}
+            {% endif %}
         </div>
     </div>
 </section>
