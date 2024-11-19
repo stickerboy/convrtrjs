@@ -186,14 +186,13 @@ resetData.addEventListener("click", function() {
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        console.log(ta.localName);
-        if(ta.localName === "div" || ta.localName === "tbody") {
+        if(inArray(ta.localName, ["div","tbody"])) {
             if(ta.innerHTML.length !== 0) {
                 dtcLength += ta.innerHTML.length;
                 ta.innerHTML = "";
             }
         } else {
-            if(ta.value.length !== 0) {
+            if(ta.value !== undefined  && ta.value.length !== 0) {
                 dtcLength += ta.value.length;
                 ta.value = "";
             }

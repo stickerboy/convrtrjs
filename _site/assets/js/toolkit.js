@@ -98,6 +98,17 @@ function objectSize(input) {
 }
 
 /**
+ * Checks if a string is included in an array (case sensitive)
+ *
+ * @param {string} string - The string to check for.
+ * @param {Array} array - The array to search within.
+ * @returns {boolean} - Returns true if the string is found in the array, otherwise false.
+ */
+function inArray(string, array) {
+    return array.includes(string);
+}
+
+/**
  * Reverse String
  * @param {string} string - The input string.
  * @returns {string} - The reversed string.
