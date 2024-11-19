@@ -30,6 +30,7 @@
   "homepage": "https://www.convrtr.xyz",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "bootstrap-scss": "^5.3.3"
+    "bootstrap-scss": "^5.3.3",
+    "sass": "^1.81.0"
   }
 }
