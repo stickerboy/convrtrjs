@@ -18,7 +18,8 @@ page-id: sitemap
                             </h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            {% for nav-child in nav-item.children %}
+                            {%- assign sortedItems = nav-item.children | sort: 'id' -%}
+                            {% for nav-child in sortedItems %}
                             <a href="../{% if nav-item.id != 'home'%}{{ nav-item.id }}/{% endif %}#{{ nav-child.id }}" 
                             class="list-group-item list-group-item-action">{{ nav-child.label }}</a>
                             {% endfor %}
