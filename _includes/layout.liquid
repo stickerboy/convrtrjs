@@ -31,4 +31,9 @@
         {% render "layout/toast" %}
     </body>
 </html>
-{% render "partials/routes/{{ page-id }}" %}
+{% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
+{% if dynamicPartialPath | fileExists %}
+{% render dynamicPartialPath %}
+{% else %}
+{% render "partials/routes/home" %}
+{% endif %}

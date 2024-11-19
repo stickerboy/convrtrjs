@@ -4,7 +4,7 @@
         "label": "Text tools",
         "short-label": "Text",
         "children": [{
-                "id": "home",
+                "id": "convrtrs",
                 "label": "Convrtrs"
             }, {
                 "id": "tools",
@@ -22,27 +22,11 @@
         ]
     },
     {
-        "id": "hex",
-        "label": "Hex tools",
-        "short-label": "Hex",
-        "children":[{
-                "id": "shift",
-                "label": "Shift hex"
-            },{
-                "id": "reverseHex",
-                "label": "Reverse hex"
-            },{
-                "id": "hexFreq",
-                "label": "Hex Frequencies"
-            }
-        ]
-    },
-    {
         "id": "ciphers",
         "label": "Cipher tools",
         "short-label": "Ciphers",
         "children":[{
-                "id": "rotate",
+                "id": "caesar",
                 "label": "Caesar cipher"
             }, {
                 "id": "sub",
@@ -96,6 +80,22 @@
             }, {
                 "id": "calendar",
                 "label": "Calendar"
+            }
+        ]
+    },
+    {
+        "id": "hex",
+        "label": "Hex tools",
+        "short-label": "Hex",
+        "children":[{
+                "id": "shift",
+                "label": "Shift hex"
+            },{
+                "id": "reverseHex",
+                "label": "Reverse hex"
+            },{
+                "id": "hexFreq",
+                "label": "Hex Frequencies"
             }
         ]
     },

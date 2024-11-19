@@ -92,7 +92,7 @@ body {
 .text-bg-convrtr {
     --bs-text-opacity: 1;
     color: var(--bs-white) !important;
-    background-color: rgba(var(--convrtr-bg-color-75-rbg), var(--bs-text-opacity)) !important;
+    background-color: rgba(var(--convrtr-bg-color-75rbg), var(--bs-text-opacity)) !important;
 }
 
 .btn-link {
@@ -167,7 +167,7 @@ body {
 .btn-btt,
 .btn-link {
     --bs-btn-padding-x: 0.85rem;
-    --bs-btn-padding-y: 0.5rem;
+    --bs-btn-padding-y: 0.55rem;
 }
 .btn-md,
 .btn-reset-data,

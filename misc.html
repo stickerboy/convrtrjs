@@ -4,10 +4,13 @@ title: Miscellaneous tools
 description: A collection of miscellaneous tools for use in puzzle solving.
 page-id: misc
 ---
-            {% render "partials/misc/braille" %}
-            {% render "partials/misc/elements" %}
-            {% render "partials/misc/forerunner" %}
-            {% render "partials/misc/covenant" %}
-    <script>
-        const ELEMENTS = {{ elements | json }};
-    </script>
+
+{% assign folderPath = "partials/" | append: page-id %}
+{% assign files = folderPath | listFiles %} 
+{% for file in files %}
+    {% include file %}
+{% endfor %}
+
+<script>
+    const ELEMENTS = {{ elements | json }};
+</script>

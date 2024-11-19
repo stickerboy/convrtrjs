@@ -4,12 +4,9 @@ title: Cipher tools
 description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
 page-id: ciphers
 ---
-            {% include "partials/ciphers/caesar" %}
-            {% include "partials/ciphers/sub" %}
-            {% include "partials/ciphers/vigenere" %}
-            {% include "partials/ciphers/keyword" %}
-            {% include "partials/ciphers/beaufort" %}
-            {% include "partials/ciphers/rail" %}
-            {% include "partials/ciphers/chaos" %}
-            {% include "partials/ciphers/atbash" %}
-            {% include "partials/ciphers/hash" %}
+
+{% assign folderPath = "partials/" | append: page-id %}
+{% assign files = folderPath | listFiles %} 
+{% for file in files %}
+    {% include file %}
+{% endfor %}

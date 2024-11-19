@@ -1,6 +1,6 @@
 {
   "name": "convrtrjs",
-  "version": "1.17.3",
+  "version": "1.17.4",
   "description": "A simple JavaScript based tool to quickly convert text between different formats",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
@@ -30,6 +30,7 @@
   "homepage": "https://www.convrtr.xyz",
   "dependencies": {
     "@11ty/eleventy": "^3.0.0",
-    "bootstrap-scss": "^5.3.3"
+    "bootstrap-scss": "^5.3.3",
+    "sass": "^1.81.0"
   }
 }

@@ -33,6 +33,7 @@ $grid-breakpoints: map-merge($grid-breakpoints, $large-grid-breakpoints);
 @import "../node_modules/bootstrap-scss/transitions";
 @import "../node_modules/bootstrap-scss/dropdown";
 @import "../node_modules/bootstrap-scss/button-group";
+@import "../node_modules/bootstrap-scss/list-group";
 @import "../node_modules/bootstrap-scss/nav";
 @import "../node_modules/bootstrap-scss/navbar";
 @import "../node_modules/bootstrap-scss/card";
