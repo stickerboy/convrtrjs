@@ -13,17 +13,17 @@ page-id: sitemap
                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title mb-0 mt-2">
+                            <h2 class="card-title h5 mb-0 mt-2">
                                 {{ nav-item.label }}
-                            </h5>
+                            </h2>
                         </div>
-                        <ul class="list-group list-group-flush">
+                        <div class="list-group list-group-flush">
                             {%- assign sortedItems = nav-item.children | sort: 'id' -%}
                             {% for nav-child in sortedItems %}
                             <a href="../{% if nav-item.id != 'home'%}{{ nav-item.id }}/{% endif %}#{{ nav-child.id }}" 
-                            class="list-group-item list-group-item-action">{{ nav-child.label }}</a>
+                            class="list-group-item list-group-item-action py-3">{{ nav-child.label }}</a>
                             {% endfor %}
-                        </ul>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
