@@ -136,7 +136,7 @@ body {
 @include color-mode(dark) {
     .btn-outline-convrtr {
         --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--convrtr-bg-color-50-rgb);
+        --bs-btn-bg: var(--convrtr-bg-color-25-rgb);
     }
 }
 
