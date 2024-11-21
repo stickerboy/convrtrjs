@@ -226,7 +226,7 @@ morsenarySelect.addEventListener("change", function() {
 
 
 // Text tools
-const toolChange = document.getElementById("toolChange");
+const toolChange = document.getElementById("toolsChange");
 toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
@@ -237,7 +237,7 @@ toolChange.addEventListener("click", function() {
         return false;
     }
 
-    let textTools = document.getElementById("textToolsSelect");
+    let textTools = document.getElementById("toolsSelect");
     let chainCommands = document.getElementById("chainCommands");
     let tR = document.getElementById("textResults").textContent
     let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
