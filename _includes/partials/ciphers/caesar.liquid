@@ -27,15 +27,15 @@
         </div>
         <div class="collapse show" id="rotCollapse">
             <ul class="pagination justify-content-center flex-wrap" id="pagination">
-                {% for char in alpha %}
-                    {% if forloop.first %}
+                {% for char in alpha -%}
+                    {% if forloop.first -%}
                     <li class="page-item">
                         <button type="button" class="page-link" id="rotPrev" aria-label="Previous" 
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </button>
                     </li>
-                    {% endif %}
+                    {% endif -%}
                     <li class="page-item">
                         <button type="button" class="page-link rot-link" id="rot{{ forloop.index }}" 
                             aria-label="Letter {{ char.letter | downcase }} - Rot {{ forloop.index }}" data-rot-number="{{ forloop.index }}" 
@@ -43,15 +43,15 @@
                             <span class="visually-hidden">Letter</span> {{ char.letter | downcase }}<span class="visually-hidden"> - Rot {{ forloop.index }}</span>
                         </button>
                     </li>
-                    {% if forloop.last %}
+                    {% if forloop.last -%}
                     <li class="page-item">
                         <button type="button" class="page-link" id="rotNext" aria-label="Next" 
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </button>
                     </li>
-                    {% endif %}
-                {% endfor %}
+                    {% endif -%}
+                {% endfor -%}
             </ul>
             <div class="col">
                 <div class="card">

@@ -22,6 +22,16 @@ module.exports = function(eleventyConfig) {
         const fullPath = path.join('_includes', folderPath);
         return fs.readdirSync(fullPath).map(file => path.join(folderPath, file));
     });
+    eleventyConfig.addFilter('listFilesWithInfo', function (folderPath) {
+        const fullPath = path.join('_includes', folderPath);
+        return fs.readdirSync(fullPath).map(file => {
+            const fileNoExtension = path.parse(file).name;
+            return {
+                filePath: path.join(folderPath, file),
+                fileName: fileNoExtension
+            }
+        });
+    });
     eleventyConfig.setLiquidOptions({
         dynamicPartials: true,
         strict_filters: true,
