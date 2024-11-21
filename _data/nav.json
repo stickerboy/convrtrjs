@@ -94,7 +94,7 @@
                 "id": "reverseHex",
                 "label": "Reverse hex"
             },{
-                "id": "hexFreq",
+                "id": "hexfrequencies",
                 "label": "Hex Frequencies"
             }
         ]
