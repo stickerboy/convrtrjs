@@ -1,9 +1,9 @@
-<section id="filecheck" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#filecheckCollapse" role="button" 
-                aria-expanded="true" aria-controls="filecheckCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Check file type
                 </h2>
@@ -17,7 +17,7 @@
                 Files are matches against the File headers table below and won't catch everything. Feel free to reach out if there's a header missing or one you think would be worth adding.
             </p>
         </div>
-        <div id="filecheckCollapse" class="collapse show">
+        <div id="{{ filename }}Collapse" class="collapse show">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Check file headers</span>
@@ -32,7 +32,7 @@
                             {% include "components/select-copy-dl" %}
                         </div>
                         <hr />
-                        <div id="filecheckResults" class="data-to-copy active"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
