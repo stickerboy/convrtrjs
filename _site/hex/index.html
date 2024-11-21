@@ -359,13 +359,12 @@
         </div>
     </div>
 </section>
-
-<section id="hexFreq" class="section">
+<section id="hexfrequencies" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
-                aria-expanded="false" aria-controls="freqCollapse">
+                data-bs-toggle="collapse" href="#hexfrequenciesCollapse" role="button" 
+                aria-expanded="false" aria-controls="hexfrequenciesCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Hex frequencies
                 </h2>
@@ -378,21 +377,21 @@
                 For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
         </div>
-        <div class="collapse" id="freqCollapse">
+        <div class="collapse" id="hexfrequenciesCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Hex frequencies</span>
                     <div class="card-body text-center">
-                        <label for="freqText" class="visually-hidden">Hex characters to check</label>
-                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
+                        <label for="hexfrequenciesText" class="visually-hidden">Hex characters to check</label>
+                        <textarea placeholder="Example: " rows="6" id="hexfrequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="hexFrequenciesDelimiter">Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="hexFrequenciesDelimiter" autocomplete="off">
+                                        <label class="input-group-text" for="hexfrequenciesDelimiter">Delimiter</label>
+                                        <select class="form-select hex-delimiter" id="hexfrequenciesDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
@@ -401,7 +400,7 @@
     <option value="0x">Zero x</option>
     <option value="">None</option>
 </select>
-                                        <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate hex frequencies">Generate</button>
+                                        <button type="button" class="btn btn-md btn-convrtr" id="hexfrequenciesDecode" title="Generate hex frequencies">Generate</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
@@ -417,7 +416,7 @@
                         </div>
                         <hr />
                         <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
+                            <div class="grid g-4 my-1 data-to-copy active" id="hexfrequenciesResults"></div>
                         </div>
                     </div>
                 </div>
@@ -460,7 +459,7 @@
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
                                         <label class="input-group-text" for="reverseHexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="reverseHexDelimiter" autocomplete="off">
+                                        <select class="form-select hex-delimiter" id="reversehexDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
@@ -540,7 +539,7 @@
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
                                     <label class="visually-hidden" for="shiftHexDelimiter">Shift Hex Delimiter</label>
-                                    <select class="form-select hex-delimiter" id="shiftHexDelimiter" autocomplete="off">
+                                    <select class="form-select hex-delimiter" id="shiftDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>

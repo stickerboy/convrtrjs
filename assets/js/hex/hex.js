@@ -194,11 +194,11 @@ reverseHexButton.addEventListener("click", function() {
 
 
 // Hex Frequencies
-const freqButton = document.getElementById("freqDecode");
+const freqButton = document.getElementById("hexfrequenciesDecode");
 freqButton.addEventListener("click", function() {
-    const freqString = document.getElementById("freqText");
-    let freqResults = document.getElementById("freqResults");
-    let hexFrequenciesDelimiter = document.getElementById("hexFrequenciesDelimiter").value;
+    const freqString = document.getElementById("hexfrequenciesText");
+    let freqResults = document.getElementById("hexfrequenciesResults");
+    let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
 
     freqResults.innerHTML = "";
 
