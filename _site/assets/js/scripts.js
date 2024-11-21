@@ -168,7 +168,7 @@ Array.from(sectionToggles, c => c.addEventListener("click", function() {
 }));
 
 // Enable tooltips
-const tooltipTriggerList = document.querySelectorAll("[data-bs-toggle=\"tooltip\"]");
+const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
 
 // Enable dropdowns

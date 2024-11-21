@@ -57,7 +57,7 @@
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-discord"></i>
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
                         </a>
                     </li>
@@ -65,7 +65,7 @@
                         <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
                             title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-github"></i>
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
@@ -77,29 +77,29 @@
                             <i class="bi my-1 theme-icon-active bi-circle-half"></i>
                             <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">Toggle theme</span>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end position-absolute"" aria-labelledby="bd-theme-text">
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-theme-text">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center" 
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
                                 data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
-                                    <i class="bi me-2 opacity-50 theme-icon bi-sun-fill"></i>
+                                    <i class="bi me-2 opacity-50 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
                                     Light
-                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center" 
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
                                 data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
-                                    <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill"></i>
+                                    <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
                                     Dark
-                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center active" 
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
                                 data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
-                                    <i class="bi me-2 opacity-50 theme-icon bi-circle-half"></i>
+                                    <i class="bi me-2 opacity-50 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
                                     Auto
-                                    <i class="bi ms-auto d-none bi-check2"></i>
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
                                 </button>
                             </li>
                         </ul>
@@ -107,12 +107,13 @@
                 </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navigation" 
                         aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
+                    <span class="visually-hidden">Toggle navigation</span>
                 </button>
             </div>
             <div class="offcanvas offcanvas-end bg-convrtr" id="navigation" tabindex="-1" aria-labelledby="navLabel" data-bs-scroll="true">
                 <div class="offcanvas-header">
-                    <h5 class="offcanvas-title text-light" id="navLabel">Menu</h5>
+                    <h1 class="offcanvas-title h5 text-light" id="navLabel">Menu</h1>
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -312,12 +313,12 @@
 
 </ul>
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Discord" href="https://discord.gg/FhwjhdkTwD">
-                        <i class="bi bi-discord"></i>
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
+                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
                         <span class="mx-2">Join the Discord</span>
                     </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Github" href="https://github.com/stickerboy/convrtrjs">
-                        <i class="bi bi-github"></i>
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
+                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
                         <span class="mx-2">Convrtr on Github</span>
                     </a>
                 </div>
@@ -364,9 +365,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.17.4" 
+                title="Release version: v1.17.5" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v1.17.4</small>
+                <small>v1.17.5</small>
             </a>
         </div>
     </div>
