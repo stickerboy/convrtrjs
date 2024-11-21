@@ -239,7 +239,6 @@ function keywordDecode(string, key) {
 }
 
 
-
 /**
  * Encodes a string using the Rail Fence Cipher.
  *
@@ -399,93 +398,93 @@ function runChaocipher(string, mode, inc_a, del_a, inc_b, del_b) {
 }
 
 
-// ROT Text
-const rotButtons    = document.getElementsByClassName("rot-link");
-const rotPrevious   = document.getElementById("rotPrev");
-const rotNext       = document.getElementById("rotNext");
-const rotKey        = document.getElementById("rotKey");
+// Caesar (ROT) Text
+const caesarButtons    = document.getElementsByClassName("caesar-link");
+const caesarPrevious   = document.getElementById("caesarPrev");
+const caesarNext       = document.getElementById("caesarNext");
+const caesarKey        = document.getElementById("caesarKey");
 
-Array.from(rotButtons, c => c.addEventListener("click", function() {
-    const rotText = document.getElementById("rotText");
-    const rotNumber = c.getAttribute("data-rot-number");
+Array.from(caesarButtons, c => c.addEventListener("click", function() {
+    const caesarText = document.getElementById("caesarText");
+    const caesarNumber = c.getAttribute("data-caesar-number");
     let chainRots = document.getElementById("chainRots");
-    let rR = document.getElementById("rotResults").textContent;
-    let rotResults = chainRots.checked && rR.length > 0 ? rR : rotText.value.trim();
+    let rR = document.getElementById("caesarResults").textContent;
+    let caesarResults = chainRots.checked && rR.length > 0 ? rR : caesarText.value.trim();
 
-    if(!emptyContainerCheck(rotText.value, rotText)) {
-        rotResults = "";
+    if(!emptyContainerCheck(caesarText.value, caesarText)) {
+        caesarResults = "";
         return false;
     }
-    if (!largeDataWarning(rotText.value, rotText)) {
+    if (!largeDataWarning(caesarText.value, caesarText)) {
         return false;
     }
-    if (rotKey.value.length > 0 && /[^A-Za-z]/.test(rotKey.value)) {
-        showToast("Error", "ROT key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+    if (caesarKey.value.length > 0 && /[^A-Za-z]/.test(caesarKey.value)) {
+        showToast("Error", "Caesar key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
         return;
     }
 
-    Array.from(rotButtons, button => {
+    Array.from(caesarButtons, button => {
         button.classList.remove("active");
     });
     c.classList.add("active");
-    if(rotKey.value.length > 0) {
-        document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber), getCustomAlphabet(rotKey.value));
+    if(caesarKey.value.length > 0) {
+        document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber), getCustomAlphabet(caesarKey.value));
     } else {
-        document.getElementById("rotResults").textContent = rot(rotResults, parseInt(rotNumber));
+        document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber));
     }
 }));
 
-// ROT - Go backwards
-rotPrevious.addEventListener("click", function() {
-    const rotText = document.getElementById("rotText");
+// Caesar - Go backwards
+caesarPrevious.addEventListener("click", function() {
+    const caesarText = document.getElementById("caesarText");
 
-    if(!emptyContainerCheck(rotText.value, rotText)) {
+    if (!emptyContainerCheck(caesarText.value, caesarText)) {
         return false;
     }
-    if (!largeDataWarning(rotText.value, rotText)) {
+    if (!largeDataWarning(caesarText.value, caesarText)) {
         return false;
     }
 
     let activeButton;
-    if(document.querySelector(".rot-link.active") !== null) {
-        activeButton = document.querySelector(".rot-link.active");
+    if (document.querySelector(".caesar-link.active") !== null) {
+        activeButton = document.querySelector(".caesar-link.active");
     } else {
-        activeButton = document.querySelector(".rot-link:first-child");
+        activeButton = document.querySelector(".caesar-link:first-child");
     }
-    let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let previousRotNumber = parseInt(activeRotNumber) - 1; 
+    let activeCaesarNumber = activeButton.getAttribute("data-caesar-number");
+    let previousCaesarNumber = parseInt(activeCaesarNumber) - 1; 
 
-    if (activeButton.getAttribute("data-rot-number") === "1") {
-        document.getElementById("rot26").click();
+    if (activeButton.getAttribute("data-caesar-number") === "1") {
+        document.getElementById("caesar26").click();
     } else {
-        document.getElementById(`rot${previousRotNumber}`).click();
+        document.getElementById(`caesar${previousCaesarNumber}`).click();
     }
 });
 
 // TOR - Go forwards
-rotNext.addEventListener("click", function() {
-    const rotText = document.getElementById("rotText");
+caesarNext.addEventListener("click", function() {
+    const caesarText = document.getElementById("caesarText");
 
-    if(!emptyContainerCheck(rotText.value, rotText)) {
+    if (!emptyContainerCheck(caesarText.value, caesarText)) {
         return false;
     }
-    if (!largeDataWarning(rotText.value, rotText)) {
+    if (!largeDataWarning(caesarText.value, caesarText)) {
         return false;
     }
 
     let activeButton;
-    if(document.querySelector(".rot-link.active") !== null) {
-        activeButton = document.querySelector(".rot-link.active");
+    if (document.querySelector(".caesar-link.active") !== null) {
+        activeButton = document.querySelector(".caesar-link.active");
     } else {
-        activeButton = document.querySelector(".rot-link:first-child");
+        activeButton = document.querySelector(".caesar-link:first-child");
     }
-    let activeRotNumber = activeButton.getAttribute("data-rot-number");
-    let nextRotNumber = parseInt(activeRotNumber) + 1;
+    let activeCaesarNumber = activeButton.getAttribute("data-caesar-number");
+    let nextCaesarNumber = parseInt(activeCaesarNumber) + 1;
 
-    if (activeButton.getAttribute("data-rot-number") === "26") {
-        document.getElementById("rot1").click();
+    if (activeButton.getAttribute("data-caesar-number") === "26") {
+        document.getElementById("caesar1").click();
     } else {
-        document.getElementById(`rot${nextRotNumber}`).click();
+        document.getElementById(`caesar${nextCaesarNumber}`).click();
     }
 });
 
