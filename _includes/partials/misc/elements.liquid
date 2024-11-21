@@ -1,11 +1,11 @@
-<section id="elements" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#elementsCollapse" role="button" 
-                aria-expanded="false" aria-controls="elementsCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Elements
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -18,12 +18,12 @@
                 space, comma, colon, semi-colon, and hyphen. You can mix and match delimiters, but they are required.
             </p>
         </div>
-        <div class="collapse" id="elementsCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Periodic elements conversion</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
+                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
@@ -50,7 +50,7 @@
                                             <option value="melt">Melting point</option>
                                             <option value="boil">Boiling point</option>
                                         </select>
-                                        <button class="btn btn-convrtr" type="button" id="elementsChange">Run</button>
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Change">Run</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill mb-2">
