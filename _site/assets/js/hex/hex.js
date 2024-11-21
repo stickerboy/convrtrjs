@@ -159,10 +159,10 @@ shiftButton.addEventListener("click", function() {
 });
 
 // Reverse Hex
-const reverseHexButton = document.getElementById("reverseHexDecode");
+const reverseHexButton = document.getElementById("reversehexDecode");
 reverseHexButton.addEventListener("click", function() {
-    const reverseHexString = document.getElementById("reverseHexText");
-    let reverseHexDelimiter = document.getElementById("reverseHexDelimiter").value;
+    const reverseHexString = document.getElementById("reversehexText");
+    let reverseHexDelimiter = document.getElementById("reversehexDelimiter").value;
     let reverseNibbles = document.getElementById("reverseNibbles");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
@@ -189,7 +189,7 @@ reverseHexButton.addEventListener("click", function() {
     } else {
         revHexContent = reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
     } 
-    document.getElementById("reverseHexResults").textContent = revHexContent;
+    document.getElementById("reversehexResults").textContent = revHexContent;
 });
 
 

@@ -91,7 +91,7 @@
                 "id": "shift",
                 "label": "Shift hex"
             },{
-                "id": "reverseHex",
+                "id": "reversehex",
                 "label": "Reverse hex"
             },{
                 "id": "hexfrequencies",

@@ -261,7 +261,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../hex/#reverseHex">Reverse hex</a>
+                <a class="dropdown-item" href="../hex/#reversehex">Reverse hex</a>
             </li>
             
             <li class="mb-1">
@@ -424,13 +424,12 @@
         </div>
     </div>
 </section>
-
-<section id="reverseHex" class="section">
+<section id="reversehex" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#reverseHexCollapse" role="button" 
-                aria-expanded="false" aria-controls="reverseHexCollapse">
+                data-bs-toggle="collapse" href="#reversehexCollapse" role="button" 
+                aria-expanded="false" aria-controls="reversehexCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Reverse hex
                 </h2>
@@ -446,19 +445,19 @@
                 The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. 
             </p>
         </div>
-        <div class="collapse" id="reverseHexCollapse">
+        <div class="collapse" id="reversehexCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Reverse hex</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reverseHexText" class="form-control reverse-hex" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: 47 56 37 47" title="Reverse hex nibbles" rows="6" id="reversehexText" class="form-control reverse-hex" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="reverseHexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+                                        <label class="input-group-text" for="reversehexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
                                         <select class="form-select hex-delimiter" id="reversehexDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
@@ -468,7 +467,7 @@
     <option value="0x">Zero x</option>
     <option value="">None</option>
 </select>
-                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reverseHexDecode">Reverse</button>
+                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reversehexDecode">Reverse</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
@@ -491,7 +490,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="reverseHexResults" class="data-to-copy active"></div>
+                        <div id="reversehexResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
