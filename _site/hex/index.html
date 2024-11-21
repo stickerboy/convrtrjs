@@ -265,7 +265,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../hex/#shift">Shift hex</a>
+                <a class="dropdown-item" href="../hex/#shifthex">Shift hex</a>
             </li>
             
         </ul>
@@ -497,13 +497,12 @@
         </div>
     </div>
 </section>
-
-<section id="shift" class="section">
+<section id="shifthex" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#shiftHexCollapse" role="button" 
-                aria-expanded="true" aria-controls="shiftHexCollapse">
+                data-bs-toggle="collapse" href="#shifthexCollapse" role="button" 
+                aria-expanded="true" aria-controls="shifthexCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Shift hex
                 </h2>
@@ -519,26 +518,26 @@
                 The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. Negative numbers are allowed.
             </p>
         </div>
-        <div class="collapse show" id="shiftHexCollapse">
+        <div class="collapse show" id="shifthexCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Shift hex string</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shiftText" class="form-control shift-hex" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="shifthexText" class="form-control shift-hex" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto me-2 mb-2">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="shiftValueLabel" for="shiftValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
-                                        <input type="number" class="form-control" id="shiftValue" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="shiftDecode">Shift</button>
+                                        <label class="input-group-text" id="shifthexValueLabel" for="shifthexValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
+                                        <input type="number" class="form-control" id="shifthexValue" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="shifthexDecode">Shift</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <label class="visually-hidden" for="shiftHexDelimiter">Shift Hex Delimiter</label>
-                                    <select class="form-select hex-delimiter" id="shiftDelimiter" autocomplete="off">
+                                    <label class="visually-hidden" for="shifthexDelimiter">Shift Hex Delimiter</label>
+                                    <select class="form-select hex-delimiter" id="shifthexDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
@@ -556,15 +555,15 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="shiftResults" class="d-flex flex-row">
-                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shiftTabs" role="tablist" aria-orientation="vertical">
+                        <div id="shifthexResults" class="d-flex flex-row">
+                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shifthexTabs" role="tablist" aria-orientation="vertical">
                                 <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
                                 <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
                                 <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
                                 <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
                                 <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
                               </div>
-                              <div class="tab-content flex-column flex-fill shift-tabs" id="shiftTabs-content">
+                              <div class="tab-content flex-column flex-fill shift-tabs" id="shifthexTabs-content">
                                 <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
                                 <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
                                 <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>

@@ -123,11 +123,11 @@ function generateHexFrequencies(string, delimiter, chunkSize = 1) {
 }
 
 // Shift Hex
-const shiftButton = document.getElementById("shiftDecode");
+const shiftButton = document.getElementById("shifthexDecode");
 shiftButton.addEventListener("click", function() {
-    const shiftString = document.getElementById("shiftText");
-    let shiftValue = document.getElementById("shiftValue");
-    let shiftHexDelimiter = document.getElementById("shiftHexDelimiter").value;
+    const shiftString = document.getElementById("shifthexText");
+    let shiftValue = document.getElementById("shifthexValue");
+    let shiftHexDelimiter = document.getElementById("shifthexDelimiter").value;
 
     if(!emptyContainerCheck(shiftString.value, shiftString)) {
         document.getElementById("text-tab-pane").textContent = "";

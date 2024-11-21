@@ -88,7 +88,7 @@
         "label": "Hex tools",
         "short-label": "Hex",
         "children":[{
-                "id": "shift",
+                "id": "shifthex",
                 "label": "Shift hex"
             },{
                 "id": "reversehex",
