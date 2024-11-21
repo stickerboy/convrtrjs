@@ -16,7 +16,7 @@
                 "id": "flip",
                 "label": "Flip text"
             }, {
-                "id": "freq",
+                "id": "frequencies",
                 "label": "Character frequencies"
             }
         ]

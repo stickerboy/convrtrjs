@@ -317,10 +317,10 @@ flipButton.addEventListener("click", function() {
 
 
 // Frequencies
-const freqButton = document.getElementById("freqDecode");
+const freqButton = document.getElementById("frequenciesDecode");
 freqButton.addEventListener("click", function() {
-    const freqString = document.getElementById("freqText");
-    let freqResults = document.getElementById("freqResults");
+    const freqString = document.getElementById("frequenciesText");
+    let freqResults = document.getElementById("frequenciesResults");
     freqResults.innerHTML = "";
 
     if(!emptyContainerCheck(freqString.value, freqString)) {

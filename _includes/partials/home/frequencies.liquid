@@ -1,9 +1,9 @@
-<section id="freq" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#freqCollapse" role="button" 
-                aria-expanded="false" aria-controls="freqCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Character frequencies
                 </h2>
@@ -16,22 +16,22 @@
                 For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
         </div>
-        <div class="collapse" id="freqCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Character frequencies</span>
                     <div class="card-body text-center">
-                        <label for="freqText" class="visually-hidden">Characters to check</label>
-                        <textarea placeholder="Example: " rows="6" id="freqText" class="form-control word-freqs" autocomplete="off"></textarea>
+                        <label for="{{ filename }}Text" class="visually-hidden">Characters to check</label>
+                        <textarea placeholder="Example: " rows="6" id="{{ filename }}Text" class="form-control word-freqs" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="freqDecode" title="Generate character frequencies">Generate</button>
+                            <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Generate character frequencies">Generate</button>
                             {% include "components/select-copy-dl" %}
                         </div>
                         <hr />
                         <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active" id="freqResults"></div>
+                            <div class="grid g-4 my-1 data-to-copy active" id="{{ filename }}Results"></div>
                         </div>
                     </div>
                 </div>
