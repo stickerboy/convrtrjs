@@ -2,38 +2,22 @@
  * Applies the ROT (Caesar cipher) encryption or decryption to a given string.
  * @param {string} string - The input string to be encoded or decoded.
  * @param {number} n - The rotation value (positive for encoding, negative for decoding).
- * @param {string} alpha - Custom alphabet (optional, defaults to English alphabet excluding 'a').
+ * @param {string} alpha - Custom alphabet (optional, defaults to English alphabet).
  * @returns {string} - The resulting string after applying the ROT transformation.
  */
-function rot(string, n, alpha) {
-    if (n == null) {
-        // Use ROT-13 by default
-        n = -13;
-    }
-    n = Number(n);
-    string = String(string);
-    if (n === 0) {
-        return string;
-    }
-    if (n < 0) {
-        // Decode instead of encode
-        n += 26;
-    }
-    const ab = alpha ? alpha : alphabet.substring(1); // Custom alphabet (default: English alphabet trimming the initial space)
-    const length = ab.length;
+function rot(string, n = -13, alpha = alphabet.substring(1)) {
+    n = (n % 26 + 26) % 26; // Normalize n to ensure it's positive and within the alphabet range
+    const length = alpha.length;
     let result = "";
 
     for (const char of string) {
         if (isLetter(char)) {
-            const currentPosition = ab.indexOf(char.toUpperCase());
-            let shiftedPosition = (currentPosition + n) % length;
-            let shiftedChar = ab.charAt(shiftedPosition);
-
-            if (isUpperCase(char)) {
-                result += shiftedChar.toUpperCase();
-            } else {
-                result += shiftedChar.toLowerCase();
-            }
+            const isUpper = isUpperCase(char);
+            const baseChar = isUpper ? char.toUpperCase() : char.toLowerCase();
+            const currentPosition = alpha.indexOf(baseChar.toUpperCase());
+            const shiftedChar = alpha[(currentPosition + n) % length];
+            
+            result += isUpper ? shiftedChar.toUpperCase() : shiftedChar.toLowerCase
         } else {
             result += char;
         }

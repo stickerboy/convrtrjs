@@ -34,7 +34,7 @@ const textMorseDict = {
  * @returns {boolean} - True if the input is a letter, otherwise false.
  */
 function isLetter(string) {
-    return string.length === 1 && string.match(/[a-zA-Z]/i);
+    return string.length === 1 && /[a-zA-Z]/.test(string);
 }
 
 /**
@@ -57,11 +57,9 @@ function isUpperCase(string) {
  * @returns {string} - The character with the same case as the input string.
  */
 function matchCase(string, char) {
-    // If the character is uppercase, return the char in uppercase
     if (string === string.toUpperCase()) {
         return char.toUpperCase();
     }
-    // Otherwise, return the char in lowercase
     return char.toLowerCase();
 }
 
