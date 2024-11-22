@@ -168,10 +168,12 @@ function isValidHex(string, delimiter) {
  * @param {string} delimiter - The delimiter to use (e.g., '0x', '\\x').
  * @returns {string} - The hexadecimal representation of the input string.
  */
-function stringToHex(string, delimiter) { // UTF-8
-    let returnValue = Array.from(string).map(c =>
-        c.charCodeAt(0) < 128 ? c.charCodeAt(0).toString(16).padStart(2, '0') :
-        encodeURIComponent(c).replace(/\%/g, "").toLowerCase()
+function stringToHex(string, delimiter) {
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(string);
+
+    let returnValue = Array.from(uint8Array).map(byte =>
+        byte.toString(16).padStart(2, '0')
     ).join(`${delimiter}`);
 
     return (delimiter === "\\x" || delimiter === "0x") ? delimiter + returnValue : returnValue;
@@ -188,20 +190,23 @@ function stringToHex(string, delimiter) { // UTF-8
 function hexToString(string, delimiter) {
     if (isValidHex(string, delimiter)) {
         let hexArray = [];
-        const len = string.length;
         if (delimiter === "") {
-            for (let i = 0; i < len; i += 2) {
+            for (let i = 0; i < string.length; i += 2) {
                 const chunk = string.slice(i, i + 2);
-                hexArray.push(String.fromCharCode(parseInt(chunk, 16)));
+                hexArray.push(parseInt(chunk, 16));
             }
         } else {
-            const hex = Array.from(string.trim().split(delimiter));
-            const len = hex.length;
-            for (let i = 0; i < len; i++) {
-                hexArray.push(String.fromCharCode(parseInt(hex[i], 16)));
+            const hex = string.trim().split(delimiter);
+            for (let i = 0; i < hex.length; i++) {
+                if (hex[i]) { // Check to ensure non-empty string
+                    hexArray.push(parseInt(hex[i], 16));
+                }
             }
         }
-        return hexArray.join("");
+
+        const uint8Array = new Uint8Array(hexArray);
+        const decoder = new TextDecoder();
+        return decoder.decode(uint8Array);
     } else {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
@@ -234,41 +239,14 @@ function rot13(string) {
 }
 
 /**
- * PHP's ord function recreated in JavaScript
- * Returns the Unicode code point value of the first character in the input string.
+ * Returns the number used to represent a character in Unicode
  * @param {string} string - The input string.
- * @returns {number} - The Unicode code point value.
+ * @returns {number} - The Unicode character number.
  */
 function ord(string) {
-    //  discuss at: https://locutus.io/php/ord/
-    // original by: Kevin van Zonneveld (https://kvz.io)
-    // bugfixed by: Onno Marsman (https://twitter.com/onnomarsman)
-    // improved by: Brett Zamir (https://brett-zamir.me)
-    //    input by: incidence
-    //   example 1: ord("K")
-    //   returns 1: 75
-    //   example 2: ord("\uD800\uDC00"); // surrogate pair to create a single Unicode character
-    //   returns 2: 65536
-    const str = string + "";
-    const code = str.charCodeAt(0);
-    if (code >= 0xD800 && code <= 0xDBFF) {
-        // High surrogate (could change last hex to 0xDB7F to treat high private surrogates as single characters)
-        const hi = code;
-        if (str.length === 1) {
-            // This is just a high surrogate with no following low surrogate, so we return its value;
-            return code;
-            // we could also throw an error as it is not a complete character,
-            // but someone may want to know
-        }
-        const low = str.charCodeAt(1);
-        return ((hi - 0xD800) * 0x400) + (low - 0xDC00) + 0x10000;
-    }
-    if (code >= 0xDC00 && code <= 0xDFFF) {
-        // This is just a low surrogate with no preceding high surrogate, so we return its value;
-           return code;
-        // we could also throw an error as it is not a complete character, but someone may want to know
-    }
-    return code;
+    const encoder = new TextEncoder();
+    const encoded = encoder.encode(string);
+    return encoded[0];
 }
 
 /**
