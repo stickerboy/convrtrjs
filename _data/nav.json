@@ -29,7 +29,7 @@
                 "id": "caesar",
                 "label": "Caesar cipher"
             }, {
-                "id": "sub",
+                "id": "substitution",
                 "label": "Substitution cipher"
             }, {
                 "id": "vigenere",
@@ -44,7 +44,7 @@
                 "id": "rail",
                 "label": "Rail fence cipher"
             }, {
-                "id": "chaos",
+                "id": "chaocipher",
                 "label": "Chaocipher"
             }, {
                 "id": "atbash",

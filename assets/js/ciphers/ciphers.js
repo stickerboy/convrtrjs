@@ -490,10 +490,10 @@ caesarNext.addEventListener("click", function() {
 
 
 // Substitution cipher
-const subEncryptButton = document.getElementById("subEncrypt");
+const subEncryptButton = document.getElementById("substitutionEncrypt");
 subEncryptButton.addEventListener("click", function() {
-    const subString = document.getElementById("subText");
-    const subKey = document.getElementById("subKey");
+    const subString = document.getElementById("substitutionText");
+    const subKey = document.getElementById("substitutionKey");
 
     if(!emptyContainerCheck(subString.value, subString)) {
         return false;
@@ -506,7 +506,7 @@ subEncryptButton.addEventListener("click", function() {
     }
 
     let chainSubs = document.getElementById("chainSubs");
-    let sR = document.getElementById("subResults").textContent;
+    let sR = document.getElementById("substitutionResults").textContent;
     let subResults = chainSubs.checked && sR.length > 0 ? sR : subString.value;
 
     if (/[^A-Za-z]/.test(subKey.value)) {
@@ -514,7 +514,7 @@ subEncryptButton.addEventListener("click", function() {
         return;
     }
 
-    document.getElementById("subResults").textContent = substituteChars(subResults, subKey.value);
+    document.getElementById("substitutionResults").textContent = substituteChars(subResults, subKey.value);
 });
 
 

@@ -181,7 +181,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../ciphers/#chaos">Chaocipher</a>
+                <a class="dropdown-item" href="../ciphers/#chaocipher">Chaocipher</a>
             </li>
             
             <li class="mb-1">
@@ -197,7 +197,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../ciphers/#sub">Substitution cipher</a>
+                <a class="dropdown-item" href="../ciphers/#substitution">Substitution cipher</a>
             </li>
             
             <li class="mb-1">
@@ -469,7 +469,7 @@
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="beaufortKeyLabel" for="beaufortKey"><span class="visually-hidden">Beaufort </span>Key</label>
+                                        <label class="input-group-text" id="beaufortKeyLabel" for="beaufortKey"><span class="visually-hidden">beaufort </span>Key</label>
                                         <input type="text" class="form-control" id="beaufortKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="beaufortEncrypt">Encrypt</button>
                                         <button class="btn btn-outline-convrtr" type="button" id="beaufortDecrypt">Decrypt</button>
@@ -1020,12 +1020,12 @@
         </div>
     </div>
 </section>
-<section id="sub" class="section">
+<section id="substitution" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#subCollapse" role="button" 
-                aria-expanded="false" aria-controls="subCollapse">
+                data-bs-toggle="collapse" href="#substitutionCollapse" role="button" 
+                aria-expanded="false" aria-controls="substitutionCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Substitution cipher
                 </h2>
@@ -1077,21 +1077,21 @@
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
             </p>
         </div>
-        <div class="collapse" id="subCollapse">
+        <div class="collapse" id="substitutionCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Substitution cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="substitution-group" for="subKey"><span class="visually-hidden">Substitution </span>Key</label>
-                                        <input type="text" class="form-control" id="subKey" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="subEncrypt">Encrypt</button>
+                                        <label class="input-group-text" id="substitution-group" for="substitutionKey"><span class="visually-hidden">Substitution </span>Key</label>
+                                        <input type="text" class="form-control" id="substitutionKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="substitutionEncrypt">Encrypt</button>
                                         
                                     </div>
                                 </div>
@@ -1115,7 +1115,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="subResults" class="data-to-copy active"></div>
+                        <div id="substitutionResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
@@ -1158,7 +1158,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">

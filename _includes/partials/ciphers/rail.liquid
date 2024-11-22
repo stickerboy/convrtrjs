@@ -1,9 +1,9 @@
-<section id="rail" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#railCollapse" role="button" 
-                aria-expanded="false" aria-controls="railCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Rail fence cipher
                 </h2>
@@ -34,22 +34,22 @@
             </p>
             
         </div>
-        <div class="collapse" id="railCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Rail fence cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" title="Encrypt / Decrypt Rail fence string" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" title="Encrypt / Decrypt Rail fence string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="railAmountLabel" for="railAmount"><span class="visually-hidden">Number of </span>Rails</label>
-                                        <input type="number" class="form-control" id="railAmount" autocomplete="off" min="2" value="2">
-                                        <button class="btn btn-convrtr" type="button" id="railEncrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="railDecrypt">Decrypt</button>
+                                        <label class="input-group-text" id="{{ filename }}AmountLabel" for="{{ filename }}Amount"><span class="visually-hidden">Number of </span>Rails</label>
+                                        <input type="number" class="form-control" id="{{ filename }}Amount" autocomplete="off" min="2" value="2">
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-end">
@@ -58,7 +58,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="railResults" class="data-to-copy active"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
