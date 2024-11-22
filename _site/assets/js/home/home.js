@@ -244,7 +244,10 @@ toolChange.addEventListener("click", function() {
 
     switch (textTools.value) {
         case "stripspaces":
-            document.getElementById("textResults").textContent = stripSpaces(textResults);
+            document.getElementById("textResults").innerHTML = stripSpaces(textResults);
+            break;
+        case "stripallwhitespace":
+            document.getElementById("textResults").innerHTML = stripSpaces(textResults, true);
             break;
         case "reverse":
             document.getElementById("textResults").textContent = reverseString(textResults);

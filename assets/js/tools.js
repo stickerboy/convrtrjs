@@ -1,10 +1,12 @@
 /**
- * Remove spaces
- * @param {string} string - The input string.
- * @returns {string} - The input string with spaces removed.
+ * Strips spaces or all whitespace characters from a string.
+ * @param {string} string - The input string to process.
+ * @param {boolean} [removeAllWhitespace=false] - Flag to indicate if all whitespace should be removed.
+ * @returns {string} - The resulting string after removing the specified characters.
  */
-function stripSpaces(string) {
-    return string.replace(/ /g, "");
+function stripSpaces(string, removeAllWhitespace = false) {
+    const regex = removeAllWhitespace ? /\s+/g : / /g;
+    return string.replace(regex, "");
 }
 
 /**
