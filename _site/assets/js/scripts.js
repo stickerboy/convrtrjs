@@ -141,31 +141,33 @@ function download(filename, text) {
  * @returns {void}
  */
 const sectionToggles = document.getElementsByClassName("section-toggle");
-function restoreOptions() {
-    if (localStorage.length !== 0) {
-        for (const sectionToggle of sectionToggles) {
-            const section = sectionToggle.closest(".section");
-            const sectionID = sectionToggle.closest(".section").id;
-            sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
-            const x = getLocalStorageItem(sectionID);
+if(sectionToggles.length > 0) {
+    function restoreOptions() {
+        if (localStorage.length !== 0) {
+            for (const sectionToggle of sectionToggles) {
+                const section = sectionToggle.closest(".section");
+                const sectionID = sectionToggle.closest(".section").id;
+                sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
+                const x = getLocalStorageItem(sectionID);
 
-            if (x === true) {
-                section.querySelector(".collapse").classList.add("show");
-            } else {
-                section.querySelector(".collapse").classList.remove("show");
+                if (x === true) {
+                    section.querySelector(".collapse").classList.add("show");
+                } else {
+                    section.querySelector(".collapse").classList.remove("show");
+                }
             }
         }
     }
+
+    document.addEventListener("DOMContentLoaded", restoreOptions);
+
+    // Save toggle state
+    Array.from(sectionToggles, c => c.addEventListener("click", function() {
+        let section = c.closest(".section");
+
+        saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
+    }));
 }
-
-document.addEventListener("DOMContentLoaded", restoreOptions);
-
-// Save toggle state
-Array.from(sectionToggles, c => c.addEventListener("click", function() {
-    let section = c.closest(".section");
-
-    saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
-}));
 
 // Enable tooltips
 const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
@@ -181,167 +183,175 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 
 const resetData = document.getElementById("resetData");
-resetData.addEventListener("click", function() {
-    const tooltip = bootstrap.Tooltip.getInstance(resetData);
-    let dtcLength = 0;
+if(resetData) {
+    resetData.addEventListener("click", function() {
+        const tooltip = bootstrap.Tooltip.getInstance(resetData);
+        let dtcLength = 0;
 
-    [...textareas].map(ta => {
-        if(inArray(ta.localName, ["div","tbody"])) {
-            if(ta.innerHTML.length !== 0) {
-                dtcLength += ta.innerHTML.length;
-                ta.innerHTML = "";
+        [...textareas].map(ta => {
+            if(inArray(ta.localName, ["div","tbody"])) {
+                if(ta.innerHTML.length !== 0) {
+                    dtcLength += ta.innerHTML.length;
+                    ta.innerHTML = "";
+                }
+            } else {
+                if(ta.value !== undefined  && ta.value.length !== 0) {
+                    dtcLength += ta.value.length;
+                    ta.value = "";
+                }
             }
-        } else {
-            if(ta.value !== undefined  && ta.value.length !== 0) {
-                dtcLength += ta.value.length;
-                ta.value = "";
-            }
+        });
+        if(dtcLength === 0) {
+            tooltip.hide();
+            showToast("Warning", "No data to clear", "warning", 3000);
+            return;
         }
-    });
-    if(dtcLength === 0) {
-        tooltip.hide();
-        showToast("Warning", "No data to clear", "warning", 3000);
-        return;
-    }
-    clearLocalStorage();
+        clearLocalStorage();
 
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
-    setTimeout(() => {
-        resetData.querySelector(".bi").classList.remove("convrtr-spin");
-        tooltip.hide();
-        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
-    }, 1000);
-});
+        resetData.querySelector(".bi").classList.add("convrtr-spin");
+        setTimeout(() => {
+            resetData.querySelector(".bi").classList.remove("convrtr-spin");
+            tooltip.hide();
+            showToast("Notice", "Data successfully cleared", "convrtr", 3000);
+        }, 1000);
+    });
+}
 
 // Select and focus contents of an element
-const selectButtons = document.getElementsByClassName("btn-select"); 
-Array.from(selectButtons, c => c.addEventListener("click", function() {
-    let card = c.closest(".card");
-    let textarea = card.querySelector(".data-to-copy.active");
-    let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
-    const tooltip = bootstrap.Tooltip.getInstance(c);
+const selectButtons = document.getElementsByClassName("btn-select");
+if(selectButtons.length > 0) {
+    Array.from(selectButtons, c => c.addEventListener("click", function() {
+        let card = c.closest(".card");
+        let textarea = card.querySelector(".data-to-copy.active");
+        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        const tooltip = bootstrap.Tooltip.getInstance(c);
 
-    Array.from(selectButtons, button => {
-        button.classList.remove("btn-convrtr", "btn-danger");
-        button.classList.add("btn-light");
-    });
+        Array.from(selectButtons, button => {
+            button.classList.remove("btn-convrtr", "btn-danger");
+            button.classList.add("btn-light");
+        });
 
-    Array.from(textareas, ta => {
-        ta.classList.remove("is-invalid");
-    });
+        Array.from(textareas, ta => {
+            ta.classList.remove("is-invalid");
+        });
 
-    if(dtc.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to select", "warning");
-        textarea.classList.add("is-invalid");
-        tooltip.setContent({ ".tooltip-inner": "No data to select" });
+        if(dtc.trim() === "") {
+            showToast("Warning", "There is no content in the container you are trying to select", "warning");
+            textarea.classList.add("is-invalid");
+            tooltip.setContent({ ".tooltip-inner": "No data to select" });
+            setTimeout(() => {
+                tooltip.setContent({ ".tooltip-inner": "Select All" });
+            }, 3430);
+            c.classList.replace("btn-light", "btn-danger");
+            return;
+        }
+
+        if(textarea.classList.contains("is-invalid")) {
+            textarea.classList.remove("is-invalid");
+        }
+        c.classList.replace("btn-light", "btn-convrtr");
+        tooltip.setContent({ ".tooltip-inner": "Selected!" });
         setTimeout(() => {
+            c.classList.replace("btn-convrtr", "btn-light");
             tooltip.setContent({ ".tooltip-inner": "Select All" });
         }, 3430);
-        c.classList.replace("btn-light", "btn-danger");
-        return;
-    }
 
-    if(textarea.classList.contains("is-invalid")) {
-        textarea.classList.remove("is-invalid");
-    }
-    c.classList.replace("btn-light", "btn-convrtr");
-    tooltip.setContent({ ".tooltip-inner": "Selected!" });
-    setTimeout(() => {
-        c.classList.replace("btn-convrtr", "btn-light");
-        tooltip.setContent({ ".tooltip-inner": "Select All" });
-    }, 3430);
-
-    selectAllText(textarea);
-}));
+        selectAllText(textarea);
+    }));
+}
 
 // Copy current textarea contents to clipboard
-const copyButtons = document.getElementsByClassName("btn-copy"); 
-Array.from(copyButtons, c => c.addEventListener("click", function() {
-    let card = c.closest(".card");
-    let textarea = card.querySelector(".data-to-copy.active");
-    let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
-    const tooltip = bootstrap.Tooltip.getInstance(c);
+const copyButtons = document.getElementsByClassName("btn-copy");
+if(copyButtons.length > 0) {
+    Array.from(copyButtons, c => c.addEventListener("click", function() {
+        let card = c.closest(".card");
+        let textarea = card.querySelector(".data-to-copy.active");
+        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        const tooltip = bootstrap.Tooltip.getInstance(c);
 
-    Array.from(copyButtons, button => {
-        button.classList.remove("btn-convrtr", "btn-danger");
-        button.classList.add("btn-light");
-    });
+        Array.from(copyButtons, button => {
+            button.classList.remove("btn-convrtr", "btn-danger");
+            button.classList.add("btn-light");
+        });
 
-    Array.from(textareas, ta => {
-        ta.classList.remove("is-invalid");
-    });
+        Array.from(textareas, ta => {
+            ta.classList.remove("is-invalid");
+        });
 
-    if(dtc.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to copy", "warning");
-        textarea.classList.add("is-invalid");
-        tooltip.setContent({ ".tooltip-inner": "No data to copy" });
+        if(dtc.trim() === "") {
+            showToast("Warning", "There is no content in the container you are trying to copy", "warning");
+            textarea.classList.add("is-invalid");
+            tooltip.setContent({ ".tooltip-inner": "No data to copy" });
+            setTimeout(() => {
+                tooltip.setContent({ ".tooltip-inner": "Copy to clipboard" });
+            }, 3430);
+            c.classList.replace("btn-light", "btn-danger");
+            return;
+        }
+
+        if(textarea.classList.contains("is-invalid")) {
+            textarea.classList.remove("is-invalid");
+        }
+        if(!copyToClipboard(dtc, c)) {
+            return false;
+        }
+
+        c.classList.replace("btn-light", "btn-convrtr");
         setTimeout(() => {
+            c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
+            tooltip.setContent({ ".tooltip-inner": "Copied!" });
+        }, 343);
+        setTimeout(() => {
+            c.classList.replace("btn-convrtr", "btn-light");
+            c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
             tooltip.setContent({ ".tooltip-inner": "Copy to clipboard" });
         }, 3430);
-        c.classList.replace("btn-light", "btn-danger");
-        return;
-    }
-
-    if(textarea.classList.contains("is-invalid")) {
-        textarea.classList.remove("is-invalid");
-    }
-    if(!copyToClipboard(dtc, c)) {
-        return false;
-    }
-
-    c.classList.replace("btn-light", "btn-convrtr");
-    setTimeout(() => {
-        c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
-        tooltip.setContent({ ".tooltip-inner": "Copied!" });
-    }, 343);
-    setTimeout(() => {
-        c.classList.replace("btn-convrtr", "btn-light");
-        c.querySelector(".bi-clipboard").classList.toggle("bi-clipboard-check-fill");
-        tooltip.setContent({ ".tooltip-inner": "Copy to clipboard" });
-    }, 3430);
-}));
+    }));
+}
 
 // Download the contents of the closest textarea
-const downloadButtons = document.getElementsByClassName("btn-download"); 
-Array.from(downloadButtons, c => c.addEventListener("click", function() {
-    let card = c.closest(".card");
-    let textarea = card.querySelector(".data-to-copy.active");
-    let dt = card.querySelector(".card-label").textContent;
-    let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
-    const tooltip = bootstrap.Tooltip.getInstance(c);
+const downloadButtons = document.getElementsByClassName("btn-download");
+if(downloadButtons.length > 0) {
+    Array.from(downloadButtons, c => c.addEventListener("click", function() {
+        let card = c.closest(".card");
+        let textarea = card.querySelector(".data-to-copy.active");
+        let dt = card.querySelector(".card-label").textContent;
+        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        const tooltip = bootstrap.Tooltip.getInstance(c);
 
-    Array.from(downloadButtons, button => {
-        button.classList.remove("btn-convrtr", "btn-danger");
-        button.classList.add("btn-light");
-    });
-    
-    Array.from(textareas, ta => {
-        ta.classList.remove("is-invalid");
-    });
+        Array.from(downloadButtons, button => {
+            button.classList.remove("btn-convrtr", "btn-danger");
+            button.classList.add("btn-light");
+        });
+        
+        Array.from(textareas, ta => {
+            ta.classList.remove("is-invalid");
+        });
 
-    if(dtc.trim() === "") {
-        showToast("Warning", "There is no content in the container you are trying to download", "warning");
-        textarea.classList.add("is-invalid");
-        tooltip.setContent({ ".tooltip-inner": "No data to download" });
+        if(dtc.trim() === "") {
+            showToast("Warning", "There is no content in the container you are trying to download", "warning");
+            textarea.classList.add("is-invalid");
+            tooltip.setContent({ ".tooltip-inner": "No data to download" });
+            setTimeout(() => {
+                tooltip.setContent({ ".tooltip-inner": "Download" });
+            }, 3430);
+            c.classList.replace("btn-light", "btn-danger");
+            return;
+        }
+
+        if(textarea.classList.contains("is-invalid")) {
+            textarea.classList.remove("is-invalid");
+        }
+        download(dt, dtc);
+
+        c.classList.replace("btn-light", "btn-convrtr");
+        tooltip.setContent({ ".tooltip-inner": "Downloaded!" });
         setTimeout(() => {
+            c.classList.replace("btn-convrtr", "btn-light");
             tooltip.setContent({ ".tooltip-inner": "Download" });
         }, 3430);
-        c.classList.replace("btn-light", "btn-danger");
-        return;
-    }
-
-    if(textarea.classList.contains("is-invalid")) {
-        textarea.classList.remove("is-invalid");
-    }
-    download(dt, dtc);
-
-    c.classList.replace("btn-light", "btn-convrtr");
-    tooltip.setContent({ ".tooltip-inner": "Downloaded!" });
-    setTimeout(() => {
-        c.classList.replace("btn-convrtr", "btn-light");
-        tooltip.setContent({ ".tooltip-inner": "Download" });
-    }, 3430);
-}));
+    }));
+}
 
 // Toggle aria values for checkboxes
 const customSwitch = document.querySelector('[role="switch"]');
