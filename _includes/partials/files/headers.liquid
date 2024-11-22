@@ -1,9 +1,9 @@
-<section id="headers" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#headersCollapse" role="button" 
-                aria-expanded="true" aria-controls="headersCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     File headers
                 </h2>
@@ -19,7 +19,7 @@
                 More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
             </p>
         </div>
-        <div id="headersCollapse" class="collapse show">
+        <div id="{{ filename }}Collapse" class="collapse show">
             <div class="card">
                 <span class="card-label visually-hidden">File headers in hexadecimal format</span>
                 <div class="card-body py-3">

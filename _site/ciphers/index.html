@@ -145,7 +145,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../#freq">Character frequencies</a>
+                <a class="dropdown-item" href="../#frequencies">Character frequencies</a>
             </li>
             
             <li class="mb-1">
@@ -181,7 +181,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../ciphers/#chaos">Chaocipher</a>
+                <a class="dropdown-item" href="../ciphers/#chaocipher">Chaocipher</a>
             </li>
             
             <li class="mb-1">
@@ -197,7 +197,7 @@
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../ciphers/#sub">Substitution cipher</a>
+                <a class="dropdown-item" href="../ciphers/#substitution">Substitution cipher</a>
             </li>
             
             <li class="mb-1">
@@ -257,15 +257,15 @@
             
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../hex/#hexFreq">Hex Frequencies</a>
+                <a class="dropdown-item" href="../hex/#hexfrequencies">Hex Frequencies</a>
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../hex/#reverseHex">Reverse hex</a>
+                <a class="dropdown-item" href="../hex/#reversehex">Reverse hex</a>
             </li>
             
             <li class="mb-1">
-                <a class="dropdown-item" href="../hex/#shift">Shift hex</a>
+                <a class="dropdown-item" href="../hex/#shifthex">Shift hex</a>
             </li>
             
         </ul>
@@ -359,10 +359,7 @@
         </div>
     </div>
 </section>
-
- 
-
-    <section id="atbash" class="section">
+<section id="atbash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -429,8 +426,7 @@
         </div>
     </div>
 </section>
-
-    <section id="beaufort" class="section">
+<section id="beaufort" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -473,7 +469,7 @@
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="beaufortKeyLabel" for="beaufortKey"><span class="visually-hidden">Beaufort </span>Key</label>
+                                        <label class="input-group-text" id="beaufortKeyLabel" for="beaufortKey"><span class="visually-hidden">beaufort </span>Key</label>
                                         <input type="text" class="form-control" id="beaufortKey" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="beaufortEncrypt">Encrypt</button>
                                         <button class="btn btn-outline-convrtr" type="button" id="beaufortDecrypt">Decrypt</button>
@@ -496,13 +492,12 @@
         </div>
     </div>
 </section>
-
-    <section id="caesar" class="section">
+<section id="caesar" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#rotCollapse" role="button" 
-                aria-expanded="true" aria-controls="rotCollapse">
+                data-bs-toggle="collapse" href="#caesarCollapse" role="button" 
+                aria-expanded="true" aria-controls="caesarCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Caesar cipher
                 </h2>
@@ -524,297 +519,216 @@
                  There is more information available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
             </p>
         </div>
-        <div class="collapse show" id="rotCollapse">
+        <div class="collapse show" id="caesarCollapse">
             <ul class="pagination justify-content-center flex-wrap" id="pagination">
-                
-                    
-                    <li class="page-item">
-                        <button type="button" class="page-link" id="rotPrev" aria-label="Previous" 
+                <li class="page-item">
+                        <button type="button" class="page-link" id="caesarPrev" aria-label="Previous" 
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </button>
                     </li>
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot1" 
-                            aria-label="Letter a - Rot 1" data-rot-number="1" 
+                        <button type="button" class="page-link caesar-link" id="caesar1" 
+                            aria-label="Letter a - Rot 1" data-caesar-number="1" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 1">
                             <span class="visually-hidden">Letter</span> a<span class="visually-hidden"> - Rot 1</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot2" 
-                            aria-label="Letter b - Rot 2" data-rot-number="2" 
+                        <button type="button" class="page-link caesar-link" id="caesar2" 
+                            aria-label="Letter b - Rot 2" data-caesar-number="2" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 2">
                             <span class="visually-hidden">Letter</span> b<span class="visually-hidden"> - Rot 2</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot3" 
-                            aria-label="Letter c - Rot 3" data-rot-number="3" 
+                        <button type="button" class="page-link caesar-link" id="caesar3" 
+                            aria-label="Letter c - Rot 3" data-caesar-number="3" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 3">
                             <span class="visually-hidden">Letter</span> c<span class="visually-hidden"> - Rot 3</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot4" 
-                            aria-label="Letter d - Rot 4" data-rot-number="4" 
+                        <button type="button" class="page-link caesar-link" id="caesar4" 
+                            aria-label="Letter d - Rot 4" data-caesar-number="4" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 4">
                             <span class="visually-hidden">Letter</span> d<span class="visually-hidden"> - Rot 4</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot5" 
-                            aria-label="Letter e - Rot 5" data-rot-number="5" 
+                        <button type="button" class="page-link caesar-link" id="caesar5" 
+                            aria-label="Letter e - Rot 5" data-caesar-number="5" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 5">
                             <span class="visually-hidden">Letter</span> e<span class="visually-hidden"> - Rot 5</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot6" 
-                            aria-label="Letter f - Rot 6" data-rot-number="6" 
+                        <button type="button" class="page-link caesar-link" id="caesar6" 
+                            aria-label="Letter f - Rot 6" data-caesar-number="6" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 6">
                             <span class="visually-hidden">Letter</span> f<span class="visually-hidden"> - Rot 6</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot7" 
-                            aria-label="Letter g - Rot 7" data-rot-number="7" 
+                        <button type="button" class="page-link caesar-link" id="caesar7" 
+                            aria-label="Letter g - Rot 7" data-caesar-number="7" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 7">
                             <span class="visually-hidden">Letter</span> g<span class="visually-hidden"> - Rot 7</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot8" 
-                            aria-label="Letter h - Rot 8" data-rot-number="8" 
+                        <button type="button" class="page-link caesar-link" id="caesar8" 
+                            aria-label="Letter h - Rot 8" data-caesar-number="8" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 8">
                             <span class="visually-hidden">Letter</span> h<span class="visually-hidden"> - Rot 8</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot9" 
-                            aria-label="Letter i - Rot 9" data-rot-number="9" 
+                        <button type="button" class="page-link caesar-link" id="caesar9" 
+                            aria-label="Letter i - Rot 9" data-caesar-number="9" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 9">
                             <span class="visually-hidden">Letter</span> i<span class="visually-hidden"> - Rot 9</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot10" 
-                            aria-label="Letter j - Rot 10" data-rot-number="10" 
+                        <button type="button" class="page-link caesar-link" id="caesar10" 
+                            aria-label="Letter j - Rot 10" data-caesar-number="10" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 10">
                             <span class="visually-hidden">Letter</span> j<span class="visually-hidden"> - Rot 10</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot11" 
-                            aria-label="Letter k - Rot 11" data-rot-number="11" 
+                        <button type="button" class="page-link caesar-link" id="caesar11" 
+                            aria-label="Letter k - Rot 11" data-caesar-number="11" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 11">
                             <span class="visually-hidden">Letter</span> k<span class="visually-hidden"> - Rot 11</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot12" 
-                            aria-label="Letter l - Rot 12" data-rot-number="12" 
+                        <button type="button" class="page-link caesar-link" id="caesar12" 
+                            aria-label="Letter l - Rot 12" data-caesar-number="12" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 12">
                             <span class="visually-hidden">Letter</span> l<span class="visually-hidden"> - Rot 12</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot13" 
-                            aria-label="Letter m - Rot 13" data-rot-number="13" 
+                        <button type="button" class="page-link caesar-link" id="caesar13" 
+                            aria-label="Letter m - Rot 13" data-caesar-number="13" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 13">
                             <span class="visually-hidden">Letter</span> m<span class="visually-hidden"> - Rot 13</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot14" 
-                            aria-label="Letter n - Rot 14" data-rot-number="14" 
+                        <button type="button" class="page-link caesar-link" id="caesar14" 
+                            aria-label="Letter n - Rot 14" data-caesar-number="14" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 14">
                             <span class="visually-hidden">Letter</span> n<span class="visually-hidden"> - Rot 14</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot15" 
-                            aria-label="Letter o - Rot 15" data-rot-number="15" 
+                        <button type="button" class="page-link caesar-link" id="caesar15" 
+                            aria-label="Letter o - Rot 15" data-caesar-number="15" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 15">
                             <span class="visually-hidden">Letter</span> o<span class="visually-hidden"> - Rot 15</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot16" 
-                            aria-label="Letter p - Rot 16" data-rot-number="16" 
+                        <button type="button" class="page-link caesar-link" id="caesar16" 
+                            aria-label="Letter p - Rot 16" data-caesar-number="16" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 16">
                             <span class="visually-hidden">Letter</span> p<span class="visually-hidden"> - Rot 16</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot17" 
-                            aria-label="Letter q - Rot 17" data-rot-number="17" 
+                        <button type="button" class="page-link caesar-link" id="caesar17" 
+                            aria-label="Letter q - Rot 17" data-caesar-number="17" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 17">
                             <span class="visually-hidden">Letter</span> q<span class="visually-hidden"> - Rot 17</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot18" 
-                            aria-label="Letter r - Rot 18" data-rot-number="18" 
+                        <button type="button" class="page-link caesar-link" id="caesar18" 
+                            aria-label="Letter r - Rot 18" data-caesar-number="18" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 18">
                             <span class="visually-hidden">Letter</span> r<span class="visually-hidden"> - Rot 18</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot19" 
-                            aria-label="Letter s - Rot 19" data-rot-number="19" 
+                        <button type="button" class="page-link caesar-link" id="caesar19" 
+                            aria-label="Letter s - Rot 19" data-caesar-number="19" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 19">
                             <span class="visually-hidden">Letter</span> s<span class="visually-hidden"> - Rot 19</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot20" 
-                            aria-label="Letter t - Rot 20" data-rot-number="20" 
+                        <button type="button" class="page-link caesar-link" id="caesar20" 
+                            aria-label="Letter t - Rot 20" data-caesar-number="20" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 20">
                             <span class="visually-hidden">Letter</span> t<span class="visually-hidden"> - Rot 20</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot21" 
-                            aria-label="Letter u - Rot 21" data-rot-number="21" 
+                        <button type="button" class="page-link caesar-link" id="caesar21" 
+                            aria-label="Letter u - Rot 21" data-caesar-number="21" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 21">
                             <span class="visually-hidden">Letter</span> u<span class="visually-hidden"> - Rot 21</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot22" 
-                            aria-label="Letter v - Rot 22" data-rot-number="22" 
+                        <button type="button" class="page-link caesar-link" id="caesar22" 
+                            aria-label="Letter v - Rot 22" data-caesar-number="22" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 22">
                             <span class="visually-hidden">Letter</span> v<span class="visually-hidden"> - Rot 22</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot23" 
-                            aria-label="Letter w - Rot 23" data-rot-number="23" 
+                        <button type="button" class="page-link caesar-link" id="caesar23" 
+                            aria-label="Letter w - Rot 23" data-caesar-number="23" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 23">
                             <span class="visually-hidden">Letter</span> w<span class="visually-hidden"> - Rot 23</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot24" 
-                            aria-label="Letter x - Rot 24" data-rot-number="24" 
+                        <button type="button" class="page-link caesar-link" id="caesar24" 
+                            aria-label="Letter x - Rot 24" data-caesar-number="24" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 24">
                             <span class="visually-hidden">Letter</span> x<span class="visually-hidden"> - Rot 24</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot25" 
-                            aria-label="Letter y - Rot 25" data-rot-number="25" 
+                        <button type="button" class="page-link caesar-link" id="caesar25" 
+                            aria-label="Letter y - Rot 25" data-caesar-number="25" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 25">
                             <span class="visually-hidden">Letter</span> y<span class="visually-hidden"> - Rot 25</span>
                         </button>
                     </li>
-                    
-                
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link rot-link" id="rot26" 
-                            aria-label="Letter z - Rot 26" data-rot-number="26" 
+                        <button type="button" class="page-link caesar-link" id="caesar26" 
+                            aria-label="Letter z - Rot 26" data-caesar-number="26" 
                             data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 26">
                             <span class="visually-hidden">Letter</span> z<span class="visually-hidden"> - Rot 26</span>
                         </button>
                     </li>
-                    
                     <li class="page-item">
-                        <button type="button" class="page-link" id="rotNext" aria-label="Next" 
+                        <button type="button" class="page-link" id="caesarNext" aria-label="Next" 
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </button>
                     </li>
-                    
-                
-            </ul>
+                    </ul>
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">ROT Cipher</span>
+                    <span class="card-label visually-hidden">Caesar cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="ROT Text - text to substitute" rows="6" id="rotText" class="form-control rot-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="Caesar Text - text to substitute" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="rot-group" for="rotKey"><span class="visually-hidden">Caesar Cipher </span>Key</label>
-                                        <input type="text" class="form-control" id="rotKey" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed">
+                                        <label class="input-group-text" id="caesar-group" for="caesarKey"><span class="visually-hidden">Caesar Cipher </span>Key</label>
+                                        <input type="text" class="form-control" id="caesarKey" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
@@ -837,20 +751,19 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="rotResults" class="data-to-copy active"></div>
+                        <div id="caesarResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-    <section id="chaos" class="section">
+<section id="chaocipher" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#chaosCollapse" role="button" 
-                aria-expanded="false" aria-controls="chaosCollapse">
+                data-bs-toggle="collapse" href="#chaocipherCollapse" role="button" 
+                aria-expanded="false" aria-controls="chaocipherCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Chaocipher
                 </h2>
@@ -871,28 +784,28 @@
                 etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page
             </p>
         </div>
-        <div class="collapse" id="chaosCollapse">
+        <div class="collapse" id="chaocipherCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Chaocipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaosText" class="form-control chaos-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <button type="button" class="btn btn-convrtr" id="chaosEncrypt" title="Encrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="chaosDecrypt">Decrypt</button>
+                                        <button type="button" class="btn btn-convrtr" id="chaocipherEncrypt" title="Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="chaocipherDecrypt">Decrypt</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainChaos" aria-checked="false">
-                                                <label class="form-check-label" for="chainChaos">Chain <span class="visually-hidden">chaocipher </span>commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainChaocipher" aria-checked="false">
+                                                <label class="form-check-label" for="chainChaocipher">Chain <span class="visually-hidden">chaocipher </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">
@@ -907,15 +820,14 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="chaosResults" class="data-to-copy active"></div>
+                        <div id="chaocipherResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-    <section id="hash" class="section">
+<section id="hash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -971,8 +883,7 @@
         </div>
     </div>
 </section>
-
-    <section id="keyword" class="section">
+<section id="keyword" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -1038,8 +949,7 @@
         </div>
     </div>
 </section>
-
-    <section id="rail" class="section">
+<section id="rail" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -1110,13 +1020,12 @@
         </div>
     </div>
 </section>
-
-    <section id="sub" class="section">
+<section id="substitution" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#subCollapse" role="button" 
-                aria-expanded="false" aria-controls="subCollapse">
+                data-bs-toggle="collapse" href="#substitutionCollapse" role="button" 
+                aria-expanded="false" aria-controls="substitutionCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Substitution cipher
                 </h2>
@@ -1168,21 +1077,21 @@
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
             </p>
         </div>
-        <div class="collapse" id="subCollapse">
+        <div class="collapse" id="substitutionCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Substitution cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="subText" class="form-control sub-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="substitution-group" for="subKey"><span class="visually-hidden">Substitution </span>Key</label>
-                                        <input type="text" class="form-control" id="subKey" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="subEncrypt">Encrypt</button>
+                                        <label class="input-group-text" id="substitution-group" for="substitutionKey"><span class="visually-hidden">Substitution </span>Key</label>
+                                        <input type="text" class="form-control" id="substitutionKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="substitutionEncrypt">Encrypt</button>
                                         
                                     </div>
                                 </div>
@@ -1206,15 +1115,14 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="subResults" class="data-to-copy active"></div>
+                        <div id="substitutionResults" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-    <section id="vigenere" class="section">
+<section id="vigenere" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
@@ -1250,7 +1158,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -1317,9 +1225,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.17.4" 
+                title="Release version: v1.17.6" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v1.17.4</small>
+                <small>v1.17.6</small>
             </a>
         </div>
     </div>

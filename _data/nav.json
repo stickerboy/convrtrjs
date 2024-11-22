@@ -16,7 +16,7 @@
                 "id": "flip",
                 "label": "Flip text"
             }, {
-                "id": "freq",
+                "id": "frequencies",
                 "label": "Character frequencies"
             }
         ]
@@ -29,7 +29,7 @@
                 "id": "caesar",
                 "label": "Caesar cipher"
             }, {
-                "id": "sub",
+                "id": "substitution",
                 "label": "Substitution cipher"
             }, {
                 "id": "vigenere",
@@ -44,7 +44,7 @@
                 "id": "rail",
                 "label": "Rail fence cipher"
             }, {
-                "id": "chaos",
+                "id": "chaocipher",
                 "label": "Chaocipher"
             }, {
                 "id": "atbash",
@@ -88,13 +88,13 @@
         "label": "Hex tools",
         "short-label": "Hex",
         "children":[{
-                "id": "shift",
+                "id": "shifthex",
                 "label": "Shift hex"
             },{
-                "id": "reverseHex",
+                "id": "reversehex",
                 "label": "Reverse hex"
             },{
-                "id": "hexFreq",
+                "id": "hexfrequencies",
                 "label": "Hex Frequencies"
             }
         ]

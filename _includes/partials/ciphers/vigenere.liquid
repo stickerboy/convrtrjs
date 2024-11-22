@@ -1,9 +1,9 @@
-<section id="vigenere" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#vigenereCollapse" role="button" 
-                aria-expanded="false" aria-controls="vigenereCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Vigenère cipher
                 </h2>
@@ -29,22 +29,22 @@
                 - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
             </p>
         </div>
-        <div class="collapse" id="vigenereCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenere string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenère string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="vigenereKeyLabel" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
-                                        <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
+                                        <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key"><span class="visually-hidden">Vigenère </span>Key</label>
+                                        <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
@@ -63,7 +63,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="vigenereResults" class="data-to-copy active"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>

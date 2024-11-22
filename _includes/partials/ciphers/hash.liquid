@@ -1,11 +1,11 @@
-<section id="hash" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#hashCollapse" role="button" 
-                aria-expanded="false" aria-controls="hashCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Hash
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -16,16 +16,16 @@
                 Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
             </p>
         </div>
-        <div class="collapse" id="hashCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Hash text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → 361fadf1c712e812d198c4cab5712a79" title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: HELLO WORLD → 361fadf1c712e812d198c4cab5712a79" title="Generate hash values for a string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="hashDecode" title="Generate hashes">Generate</button>
+                            <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Generate hashes">Generate</button>
                             {% include "components/select-copy-dl" %}
                         </div>
                         <hr />
@@ -37,7 +37,7 @@
                                         <th scope="col">Value</th>
                                     </tr>
                                 </thead>
-                                <tbody class="data-to-copy active" id="hashResults">
+                                <tbody class="data-to-copy active" id="{{ filename }}Results">
                                     <tr class="visually-hidden">
                                         <td colspan="2" class="text-center">No data available</td>
                                     </tr>

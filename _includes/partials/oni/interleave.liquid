@@ -1,11 +1,11 @@
-<section id="interleave" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#interleaveCollapse" role="button" 
-                aria-expanded="false" aria-controls="interleaveCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Interleave
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -16,12 +16,12 @@
                 Interleaves the characters of two strings, you may optionally pass in a delimiter.
             </p>
         </div>
-        <div class="collapse" id="interleaveCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Interleave</span>
+                    <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">interleave(string1, string2, delimiter = "")</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename }}(string1, string2, delimiter = "")</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">

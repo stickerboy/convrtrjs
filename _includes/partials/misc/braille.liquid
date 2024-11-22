@@ -1,11 +1,11 @@
-<section id="braille" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#brailleCollapse" role="button" 
-                aria-expanded="true" aria-controls="brailleCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Braille
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -19,12 +19,12 @@
                  There is more information available on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Halopedia page. 
             </p>
         </div>
-        <div class="collapse show" id="brailleCollapse">
+        <div class="collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Braille</span>
+                    <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text" autocomplete="off"></textarea>
+                        <textarea placeholder="" title="Braille conversion" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
@@ -32,7 +32,7 @@
                                 <div class="col w-auto me-2 mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="input-group w-auto mb-2">
-                                            <button role="button" class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</button>
+                                            <button role="button" class="btn btn-md btn-convrtr" id="{{ filename }}Convert" title="Create between braille and text">Convert</button>
                                         </div>
                                         <div class="input-group w-auto mb-2">
                                             <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
@@ -42,8 +42,8 @@
                                 <div class="col d-flex flex-fill mb-2">
                                     <div class="me-auto flex-fill">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
-                                            <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Switch" aria-checked="false">
+                                            <label class="form-check-label" for="{{ filename }}Switch">Convert Text to Braille</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
                                             <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
@@ -57,8 +57,8 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="brailleResults" class="data-to-copy active"></div>
-                        <div id="brailleImageResults" class="braille"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
+                        <div id="{{ filename }}ImageResults" class="braille"></div>
                     </div>
                 </div>
             </div>

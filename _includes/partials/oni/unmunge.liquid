@@ -1,11 +1,11 @@
-<section id="unmunge" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#unmungeCollapse" role="button" 
-                aria-expanded="false" aria-controls="unmungeCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Unmunge
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -16,12 +16,12 @@
                 Unmunges a data node using a given key.
             </p>
         </div>
-        <div class="collapse" id="unmungeCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Unmunge node</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unmunge(key, datanode)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename }}(key, datanode)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">

@@ -1,11 +1,11 @@
-<section id="chaos" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#chaosCollapse" role="button" 
-                aria-expanded="false" aria-controls="chaosCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
-                    Chaocipher
+                    {{ filename | upperFirst }}
                 </h2>
                 <span class="text-light px-1 border rounded align-self-end toggle-button">
                     <i class="bi bi-arrow-up lh-base"></i>
@@ -21,31 +21,31 @@
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WAHQZIUETS
                 </code>
-                etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page
+                etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">{{ filename | upperFirst }}</a> Wikipedia page
             </p>
         </div>
-        <div class="collapse" id="chaosCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
-                    <span class="card-label visually-hidden">Chaocipher</span>
+                    <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaosText" class="form-control chaos-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <button type="button" class="btn btn-convrtr" id="chaosEncrypt" title="Encrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="chaosDecrypt">Decrypt</button>
+                                        <button type="button" class="btn btn-convrtr" id="{{ filename }}Encrypt" title="Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-auto flex-fill">
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainChaos" aria-checked="false">
-                                                <label class="form-check-label" for="chainChaos">Chain <span class="visually-hidden">chaocipher </span>commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chain{{ filename | upperFirst }}" aria-checked="false">
+                                                <label class="form-check-label" for="chain{{ filename | upperFirst }}">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">
@@ -56,7 +56,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="chaosResults" class="data-to-copy active"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
                     </div>
                 </div>
             </div>

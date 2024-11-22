@@ -6,7 +6,7 @@ page-id: oni
 ---
 
 {% assign folderPath = "partials/" | append: page-id %}
-{% assign files = folderPath | listFiles %} 
-{% for file in files %}
-    {% include file %}
+{%- assign files = folderPath | listFilesWithInfo -%}
+{% for file in files -%}
+    {% include file.filePath, filename: file.fileName %}
 {% endfor %}

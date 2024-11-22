@@ -1,9 +1,9 @@
-<section id="strings" class="section">
+<section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#stringsCollapse" role="button" 
-                aria-expanded="false" aria-controls="stringsCollapse">
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Extract strings
                 </h2>
@@ -16,14 +16,14 @@
                  Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
             </p>
         </div>
-        <div class="collapse" id="stringsCollapse">
+        <div class="collapse" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Extract strings</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">strings(string, n = 4)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename }}(string, n = 4)</code>
                         {% comment -%}
-                        <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" title="string to extract" rows="6" id="stringsText" class="form-control strings-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" title="string to extract" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                         {%- endcomment -%}
                     </div>
                     <div class="card-footer py-3">
@@ -32,9 +32,9 @@
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-md-auto">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="stringsKeyLabel" for="stringsKey">Min<span class="visually-hidden">imum</span>&nbsp;Chars</label>
-                                        <input type="number" class="form-control" id="stringsKey" autocomplete="off" min="1" value="1">
-                                        <button class="btn btn-convrtr" type="button" id="stringsDecode">Generate</button>
+                                        <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key">Min<span class="visually-hidden">imum</span>&nbsp;Chars</label>
+                                        <input type="number" class="form-control" id="{{ filename }}Key" autocomplete="off" min="1" value="1">
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Decode">Generate</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill justify-content-end">
@@ -43,7 +43,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div id="stringsResults" class="data-to-copy active"></div>
+                        <div id="{{ filename }}Results" class="data-to-copy active"></div>
                     {%- endcomment -%}
                         <div class="text-center mb-4 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">

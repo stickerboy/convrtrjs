@@ -123,11 +123,11 @@ function generateHexFrequencies(string, delimiter, chunkSize = 1) {
 }
 
 // Shift Hex
-const shiftButton = document.getElementById("shiftDecode");
+const shiftButton = document.getElementById("shifthexDecode");
 shiftButton.addEventListener("click", function() {
-    const shiftString = document.getElementById("shiftText");
-    let shiftValue = document.getElementById("shiftValue");
-    let shiftHexDelimiter = document.getElementById("shiftHexDelimiter").value;
+    const shiftString = document.getElementById("shifthexText");
+    let shiftValue = document.getElementById("shifthexValue");
+    let shiftHexDelimiter = document.getElementById("shifthexDelimiter").value;
 
     if(!emptyContainerCheck(shiftString.value, shiftString)) {
         document.getElementById("text-tab-pane").textContent = "";
@@ -159,10 +159,10 @@ shiftButton.addEventListener("click", function() {
 });
 
 // Reverse Hex
-const reverseHexButton = document.getElementById("reverseHexDecode");
+const reverseHexButton = document.getElementById("reversehexDecode");
 reverseHexButton.addEventListener("click", function() {
-    const reverseHexString = document.getElementById("reverseHexText");
-    let reverseHexDelimiter = document.getElementById("reverseHexDelimiter").value;
+    const reverseHexString = document.getElementById("reversehexText");
+    let reverseHexDelimiter = document.getElementById("reversehexDelimiter").value;
     let reverseNibbles = document.getElementById("reverseNibbles");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
@@ -189,16 +189,16 @@ reverseHexButton.addEventListener("click", function() {
     } else {
         revHexContent = reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
     } 
-    document.getElementById("reverseHexResults").textContent = revHexContent;
+    document.getElementById("reversehexResults").textContent = revHexContent;
 });
 
 
 // Hex Frequencies
-const freqButton = document.getElementById("freqDecode");
+const freqButton = document.getElementById("hexfrequenciesDecode");
 freqButton.addEventListener("click", function() {
-    const freqString = document.getElementById("freqText");
-    let freqResults = document.getElementById("freqResults");
-    let hexFrequenciesDelimiter = document.getElementById("hexFrequenciesDelimiter").value;
+    const freqString = document.getElementById("hexfrequenciesText");
+    let freqResults = document.getElementById("hexfrequenciesResults");
+    let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
 
     freqResults.innerHTML = "";
 
