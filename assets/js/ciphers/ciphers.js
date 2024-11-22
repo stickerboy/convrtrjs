@@ -735,10 +735,10 @@ if(railDecryptButton) {
 
 
 // Rail fence cipher
-const chaosEncryptButton = document.getElementById("chaosEncrypt");
+const chaosEncryptButton = document.getElementById("chaocipherEncrypt");
 if(chaosEncryptButton) {
     chaosEncryptButton.addEventListener("click", function () {
-        const chaosString = document.getElementById("chaosText");
+        const chaosString = document.getElementById("chaocipherText");
 
         if (!emptyContainerCheck(chaosString.value, chaosString)) {
             return false;
@@ -747,17 +747,17 @@ if(chaosEncryptButton) {
             return false;
         }
 
-        let chainChaos = document.getElementById("chainChaos");
-        let chR = document.getElementById("chaosResults").textContent;
+        let chainChaos = document.getElementById("chainChaocipher");
+        let chR = document.getElementById("chaocipherResults").textContent;
         let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
 
-        document.getElementById("chaosResults").textContent = chaocipherEncode(chaosResults);
+        document.getElementById("chaocipherResults").textContent = chaocipherEncode(chaosResults);
     });
 }
-const chaosDecryptButton = document.getElementById("chaosDecrypt");
+const chaosDecryptButton = document.getElementById("chaocipherDecrypt");
 if(chaosDecryptButton) {
     chaosDecryptButton.addEventListener("click", function () {
-        const chaosString = document.getElementById("chaosText");
+        const chaosString = document.getElementById("chaocipherText");
     
         if (!emptyContainerCheck(chaosString.value, chaosString)) {
             return false;
@@ -766,11 +766,11 @@ if(chaosDecryptButton) {
             return false;
         }
 
-        let chainChaos = document.getElementById("chainChaos");
-        let chR = document.getElementById("chaosResults").textContent;
+        let chainChaos = document.getElementById("chainChaocipher");
+        let chR = document.getElementById("chaocipherResults").textContent;
         let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
 
-        document.getElementById("chaosResults").textContent = chaocipherDecode(chaosResults);
+        document.getElementById("chaocipherResults").textContent = chaocipherDecode(chaosResults);
     });
 }
 
