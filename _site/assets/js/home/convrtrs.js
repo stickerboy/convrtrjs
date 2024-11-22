@@ -2,7 +2,7 @@
 document.getElementById("encode").addEventListener("click", function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -27,7 +27,7 @@ document.getElementById("binaryDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -59,7 +59,7 @@ document.getElementById("hexDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -91,7 +91,7 @@ document.getElementById("b64Decode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -123,7 +123,7 @@ document.getElementById("decDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -155,7 +155,7 @@ document.getElementById("revDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -187,7 +187,7 @@ document.getElementById("rot13Decode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -219,7 +219,7 @@ document.getElementById("morseDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
@@ -251,7 +251,7 @@ document.getElementById("mrsnryDecode").addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
-    let hexDelimiter = document.getElementById("hexDelimiter").value;
+    let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
 
     if(!emptyContainerCheck(data, container)) {
         return false;
