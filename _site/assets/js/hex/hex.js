@@ -209,6 +209,13 @@ freqButton.addEventListener("click", function() {
         return false;
     }
 
+    try {
+        generateHexFrequencies(freqString.value, hexFrequenciesDelimiter)
+    } catch (e) {
+        showToast("Error", `An error occurred trying to generate frequencies: ${e.message}`, "danger");
+        return;
+    }
+
     freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${freqString.value.replaceAll(hexFrequenciesDelimiter, "").length}</code>&nbsp;<br /></div>`);
     freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 2), "Hex frequencies")}`);
     if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4)) > 0 ) {

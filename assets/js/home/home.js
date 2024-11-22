@@ -205,7 +205,7 @@ function stringStats(string, stat, delimiter) {
 }
 
 // Re-code Hex on delimiter change
-let hexDelimiterSelect = document.getElementById("hexDelimiter");
+let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
 hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
     if(hexData === "") {
