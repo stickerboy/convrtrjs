@@ -136,13 +136,23 @@ function stringToMorsenary(string) {
  * // Output: "hello, world"
  */
 function morsenaryToString(string) {
-    if(/^[ /.-]*$/.test(string)) {
-        let morsenarySetting = document.getElementById("morsenarySetting").value;
-        string = morsenarySetting === "default" ? string.replace(/[.-]/g, (match) => (match === '.' ? '0' : '1')) : string.replace(/[.-]/g, (match) => (match === '.' ? '1' : '0'));
-        return binaryToString(splitString(string, 8));
-    } else {
-       throw new Error("Morsenary contains invalid characters");
+    if (!/^[\s./-]*$/.test(string)) {
+        throw new Error("Morsenary contains invalid characters");
     }
+
+    const morsenarySetting = document.getElementById("morsenarySetting").value;
+
+    // Replace Morsenary code with binary representation
+    const binaryString = string.replace(/[.-]/g, match => {
+        if (morsenarySetting === "default") {
+            return match === '.' ? '0' : '1';
+        } else {
+            return match === '.' ? '1' : '0';
+        }
+    });
+
+    // Convert binary string back to text
+    return binaryToString(binaryString.match(/.{1,8}/g).join(" "));
 }
 
 /**
