@@ -126,7 +126,7 @@ function urlEncode(string) {
  * @returns {string} - The decoded string.
  */
 function urlDecode(string) {
-    return decodeURIComponent(string).replace(/\+/g, " ");
+    return decodeURIComponent(string).replace(/\+/g, "%20");
 }
 
 /**
