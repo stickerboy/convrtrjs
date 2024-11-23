@@ -457,8 +457,12 @@ function createImage(width, height, filename, element, string, options = {}) {
     var url = canvas.toDataURL();
 
     if (download) {
-        element.download = filename;
-        element.href = url;
+        var tempAnchor = document.createElement("a");
+        tempAnchor.download = filename;
+        tempAnchor.href = url;
+        document.body.appendChild(tempAnchor);
+        tempAnchor.click();
+        document.body.removeChild(tempAnchor);
         return null;
     } else {
         var img = new Image();
