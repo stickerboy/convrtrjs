@@ -1,34 +1,38 @@
 /**
  * Checks for a valid binary string length (multiple of 8)
- *
  * @param {string} string - The binary string to validate.
  * @returns {boolean} - `true` if the length is valid, otherwise `false`.
- * @throws {Error} - If the input is not a valid binary string.
  */
 function isValidBinaryLength(string) {
     return string.length % 8 === 0;
 }
 
 /**
- * Converts a valid binary string to its corresponding ASCII string
- *
- * @param {string} string - The binary string to convert.
- * @returns {string} - The resulting ASCII string.
+ * Converts a valid binary string to its corresponding UTF-8 string.
+ * @param {string} binaryString - The binary string to convert.
+ * @returns {string} - The resulting UTF-8 string.
  * @throws {Error} - If the input is not a valid binary string.
  */
-function binaryToString(string) {
-    if(isValidBinaryLength(string)) {
-        string = string.replace(/[^10\s]/g, "");
-
-        let charCodes = string.split(" ").map(bin => {
-            bin = bin.padStart(8, "0");
-            return parseInt(bin, 2);
-        });
-
-        return String.fromCharCode(...charCodes);
-    } else {
-        throw new Error("Not a valid Binary string");
+function binaryToString(binaryString) {
+    if (!/^[01\s]+$/.test(binaryString)) {
+        throw new Error("Input string contains invalid binary characters");
     }
+
+    binaryString = binaryString.replace(/\s+/g, ""); // Remove whitespace characters
+
+    if (!isValidBinaryLength(binaryString)) {
+        throw new Error("Binary string length must be a multiple of 8");
+    }
+
+    const byteArray = [];
+    for (let i = 0; i < binaryString.length; i += 8) {
+        const byte = binaryString.slice(i, i + 8);
+        byteArray.push(parseInt(byte, 2));
+    }
+
+    const uint8Array = new Uint8Array(byteArray);
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(uint8Array);
 }
 
 /**
@@ -206,7 +210,7 @@ function stringStats(string, stat, delimiter) {
 
 // Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
-hexDelimiterSelect.addEventListener("change", function() {
+hexDelimiterSelect && hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
     if(hexData === "") {
         return;
@@ -216,7 +220,7 @@ hexDelimiterSelect.addEventListener("change", function() {
 
 // Re-code Morsenary on delimiter change
 let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect.addEventListener("change", function() {
+morsenarySelect && morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;
     if(morsenaryData === "") {
         return;
@@ -224,10 +228,9 @@ morsenarySelect.addEventListener("change", function() {
     document.getElementById("mrsnryDecode").click();
 });
 
-
 // Text tools
 const toolChange = document.getElementById("toolsChange");
-toolChange.addEventListener("click", function() {
+toolChange && toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
     if(!emptyContainerCheck(toolsString.value, toolsString)) {
@@ -244,7 +247,10 @@ toolChange.addEventListener("click", function() {
 
     switch (textTools.value) {
         case "stripspaces":
-            document.getElementById("textResults").textContent = stripSpaces(textResults);
+            document.getElementById("textResults").innerHTML = stripSpaces(textResults);
+            break;
+        case "stripallwhitespace":
+            document.getElementById("textResults").innerHTML = stripSpaces(textResults, true);
             break;
         case "reverse":
             document.getElementById("textResults").textContent = reverseString(textResults);
@@ -295,10 +301,9 @@ toolChange.addEventListener("click", function() {
     }
 });
 
-
 // Flip text upside down
 const flipButton = document.getElementById("flipDecode");
-flipButton.addEventListener("click", function() {
+flipButton && flipButton.addEventListener("click", function() {
     const flipString = document.getElementById("flipText");
 
     if(!emptyContainerCheck(flipString.value, flipString)) {
@@ -311,14 +316,13 @@ flipButton.addEventListener("click", function() {
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
-                                                         flipText(flipString.value, alphabet, alphaFlip) : 
-                                                         reverseString(flipText(flipString.value, alphabet, alphaFlip));
+                                                        flipText(flipString.value, alphabet, alphaFlip) : 
+                                                        reverseString(flipText(flipString.value, alphabet, alphaFlip));
 });
-
 
 // Frequencies
 const freqButton = document.getElementById("frequenciesDecode");
-freqButton.addEventListener("click", function() {
+freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("frequenciesText");
     let freqResults = document.getElementById("frequenciesResults");
     freqResults.innerHTML = "";
@@ -344,10 +348,9 @@ freqButton.addEventListener("click", function() {
     freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`);
 });
 
-
 // Replace characters
 const replaceButton = document.getElementById("replaceDecode");
-replaceButton.addEventListener("click", function() {
+replaceButton && replaceButton.addEventListener("click", function() {
     const replaceString = document.getElementById("replaceText");
     const replaceOld = document.getElementById("replaceValue");
     const replaceNew = document.getElementById("replacementValue");

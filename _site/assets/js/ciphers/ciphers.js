@@ -166,7 +166,6 @@ function vignereDecrypt(string, key) {
     return result;
 }
 
-
 /**
  * Encrypts or decrypts a string using the Beaufort cipher.
  * The encryption and decryption process is identical.
@@ -188,7 +187,6 @@ function beaufortCipher(string, key) {
 
     return vignereDecrypt(transformedString, transformedKey);
 }
-
 
 /**
  * Encodes a string using a keyword by creating a substitution cipher that supports both uppercase and lowercase keys.
@@ -237,7 +235,6 @@ function keywordDecode(string, key) {
         return alphabet[trans.indexOf(c)];
     });
 }
-
 
 /**
  * Encodes a string using the Rail Fence Cipher.
@@ -314,7 +311,6 @@ function railFenceDecode(string, rails) {
     }
     return decoded;
 }
-
 
 /**
  * Rotates the wheel by a given number of steps.
@@ -404,38 +400,39 @@ const caesarPrevious   = document.getElementById("caesarPrev");
 const caesarNext       = document.getElementById("caesarNext");
 const caesarKey        = document.getElementById("caesarKey");
 
-Array.from(caesarButtons, c => c.addEventListener("click", function() {
-    const caesarText = document.getElementById("caesarText");
-    const caesarNumber = c.getAttribute("data-caesar-number");
-    let chainRots = document.getElementById("chainRots");
-    let rR = document.getElementById("caesarResults").textContent;
-    let caesarResults = chainRots.checked && rR.length > 0 ? rR : caesarText.value.trim();
+if(caesarButtons.length > 0) {
+    Array.from(caesarButtons, c => c.addEventListener("click", function() {
+        const caesarText = document.getElementById("caesarText");
+        const caesarNumber = c.getAttribute("data-caesar-number");
+        let chainRots = document.getElementById("chainRots");
+        let rR = document.getElementById("caesarResults").textContent;
+        let caesarResults = chainRots.checked && rR.length > 0 ? rR : caesarText.value.trim();
 
-    if(!emptyContainerCheck(caesarText.value, caesarText)) {
-        caesarResults = "";
-        return false;
-    }
-    if (!largeDataWarning(caesarText.value, caesarText)) {
-        return false;
-    }
-    if (caesarKey.value.length > 0 && /[^A-Za-z]/.test(caesarKey.value)) {
-        showToast("Error", "Caesar key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
-        return;
-    }
+        if(!emptyContainerCheck(caesarText.value, caesarText)) {
+            caesarResults = "";
+            return false;
+        }
+        if (!largeDataWarning(caesarText.value, caesarText)) {
+            return false;
+        }
+        if (caesarKey.value.length > 0 && /[^A-Za-z]/.test(caesarKey.value)) {
+            showToast("Error", "Caesar key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+            return;
+        }
 
-    Array.from(caesarButtons, button => {
-        button.classList.remove("active");
-    });
-    c.classList.add("active");
-    if(caesarKey.value.length > 0) {
-        document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber), getCustomAlphabet(caesarKey.value));
-    } else {
-        document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber));
-    }
-}));
-
+        Array.from(caesarButtons, button => {
+            button.classList.remove("active");
+        });
+        c.classList.add("active");
+        if(caesarKey.value.length > 0) {
+            document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber), getCustomAlphabet(caesarKey.value));
+        } else {
+            document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber));
+        }
+    }));
+}
 // Caesar - Go backwards
-caesarPrevious.addEventListener("click", function() {
+caesarPrevious && caesarPrevious.addEventListener("click", function() {
     const caesarText = document.getElementById("caesarText");
 
     if (!emptyContainerCheck(caesarText.value, caesarText)) {
@@ -462,7 +459,7 @@ caesarPrevious.addEventListener("click", function() {
 });
 
 // TOR - Go forwards
-caesarNext.addEventListener("click", function() {
+caesarNext && caesarNext.addEventListener("click", function() {
     const caesarText = document.getElementById("caesarText");
 
     if (!emptyContainerCheck(caesarText.value, caesarText)) {
@@ -491,7 +488,7 @@ caesarNext.addEventListener("click", function() {
 
 // Substitution cipher
 const subEncryptButton = document.getElementById("substitutionEncrypt");
-subEncryptButton.addEventListener("click", function() {
+subEncryptButton && subEncryptButton.addEventListener("click", function() {
     const subString = document.getElementById("substitutionText");
     const subKey = document.getElementById("substitutionKey");
 
@@ -520,7 +517,7 @@ subEncryptButton.addEventListener("click", function() {
 
 // Vigenère cipher
 const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
-vigenereEncryptButton.addEventListener("click", function() {
+vigenereEncryptButton && vigenereEncryptButton.addEventListener("click", function() {
     const vigenereString = document.getElementById("vigenereText");
     const vigenereKey = document.getElementById("vigenereKey");
 
@@ -545,7 +542,7 @@ vigenereEncryptButton.addEventListener("click", function() {
     document.getElementById("vigenereResults").textContent = vignereEncrypt(vigResults, vigenereKey.value);
 });
 const vigenereDecryptButton = document.getElementById("vigenereDecrypt");
-vigenereDecryptButton.addEventListener("click", function() {
+vigenereDecryptButton && vigenereDecryptButton.addEventListener("click", function() {
     const vigenereString = document.getElementById("vigenereText");
     const vigenereKey = document.getElementById("vigenereKey");
 
@@ -573,64 +570,60 @@ vigenereDecryptButton.addEventListener("click", function() {
 
 // Keyword cipher
 const keywordEncryptButton = document.getElementById("keywordEncrypt");
-if(keywordEncryptButton) {
-    keywordEncryptButton.addEventListener("click", function () {
-        const keywordString = document.getElementById("keywordText");
-        const keywordKey = document.getElementById("keywordKey");
+keywordEncryptButton && keywordEncryptButton.addEventListener("click", function () {
+    const keywordString = document.getElementById("keywordText");
+    const keywordKey = document.getElementById("keywordKey");
 
-        if (!emptyContainerCheck(keywordString.value, keywordString)) {
-            return false;
-        }
-        if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to encrypt this cipher")) {
-            return false;
-        }
-        if (!largeDataWarning(keywordString.value, keywordString)) {
-            return false;
-        }
+    if (!emptyContainerCheck(keywordString.value, keywordString)) {
+        return false;
+    }
+    if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to encrypt this cipher")) {
+        return false;
+    }
+    if (!largeDataWarning(keywordString.value, keywordString)) {
+        return false;
+    }
 
-        let chainKw = document.getElementById("chainKw");
-        let kR = document.getElementById("keywordResults").textContent;
-        let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
+    let chainKw = document.getElementById("chainKw");
+    let kR = document.getElementById("keywordResults").textContent;
+    let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
 
-        if (/[^A-Za-z]/.test(keywordKey.value)) {
-            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
-            return;
-        }
-        document.getElementById("keywordResults").textContent = keywordEncode(kwResults, keywordKey.value);
-    });
-}
+    if (/[^A-Za-z]/.test(keywordKey.value)) {
+        showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
+    document.getElementById("keywordResults").textContent = keywordEncode(kwResults, keywordKey.value);
+});
 const keywordDecryptButton = document.getElementById("keywordDecrypt");
-if(keywordDecryptButton) {
-    keywordDecryptButton.addEventListener("click", function () {
-        const keywordString = document.getElementById("keywordText");
-        const keywordKey = document.getElementById("keywordKey");
+keywordDecryptButton && keywordDecryptButton.addEventListener("click", function () {
+    const keywordString = document.getElementById("keywordText");
+    const keywordKey = document.getElementById("keywordKey");
 
-        if (!emptyContainerCheck(keywordString.value, keywordString)) {
-            return false;
-        }
-        if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to decrypt this cipher")) {
-            return false;
-        }
-        if (!largeDataWarning(keywordString.value, keywordString)) {
-            return false;
-        }
-    
-        let chainKw = document.getElementById("chainKw");
-        let kR = document.getElementById("keywordResults").textContent;
-        let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
-    
-        if (/[^A-Za-z]/.test(keywordKey.value)) {
-            showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
-            return;
-        }
-        document.getElementById("keywordResults").textContent = keywordDecode(kwResults, keywordKey.value);
-    });
-}
+    if (!emptyContainerCheck(keywordString.value, keywordString)) {
+        return false;
+    }
+    if (!emptyContainerCheck(keywordKey.value, keywordKey, "A key is required to decrypt this cipher")) {
+        return false;
+    }
+    if (!largeDataWarning(keywordString.value, keywordString)) {
+        return false;
+    }
+
+    let chainKw = document.getElementById("chainKw");
+    let kR = document.getElementById("keywordResults").textContent;
+    let kwResults = chainKw.checked && kR.length > 0 ? kR : keywordString.value;
+
+    if (/[^A-Za-z]/.test(keywordKey.value)) {
+        showToast("Error", "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
+    document.getElementById("keywordResults").textContent = keywordDecode(kwResults, keywordKey.value);
+});
 
 
 // Beaufort cipher
-const beaufortEncryptButton = document.getElementById("beaufortEncrypt");
-beaufortEncryptButton.addEventListener("click", function() {
+const beaufortEncryptButton = document.getElementById("beaufortEncrypt");false
+beaufortEncryptButton && beaufortEncryptButton.addEventListener("click", function() {
     const beaufortString = document.getElementById("beaufortText");
     const beaufortKey = document.getElementById("beaufortKey");
 
@@ -651,7 +644,7 @@ beaufortEncryptButton.addEventListener("click", function() {
     document.getElementById("beaufortResults").textContent = beaufortCipher(beaufortString.value, beaufortKey.value);
 });
 const beaufortDecryptButton = document.getElementById("beaufortDecrypt");
-beaufortDecryptButton.addEventListener("click", function() {
+beaufortDecryptButton && beaufortDecryptButton.addEventListener("click", function() {
     const beaufortString = document.getElementById("beaufortText");
     const beaufortKey = document.getElementById("beaufortKey");
 
@@ -675,109 +668,101 @@ beaufortDecryptButton.addEventListener("click", function() {
 
 // Rail fence cipher
 const railEncryptButton = document.getElementById("railEncrypt");
-if(railEncryptButton) {
-    railEncryptButton.addEventListener("click", function () {
-        const railString = document.getElementById("railText");
-        const railAmount = document.getElementById("railAmount");
+railEncryptButton && railEncryptButton.addEventListener("click", function () {
+    const railString = document.getElementById("railText");
+    const railAmount = document.getElementById("railAmount");
 
-        if (!emptyContainerCheck(railString.value, railString)) {
-            return false;
-        }
-        if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to encrypt this cipher text")) {
-            return false;
-        }
-        if (!largeDataWarning(railString.value, railString)) {
-            return false;
-        }
-        if (/[^0-9]/.test(railAmount.value)) {
-            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
-            return;
-        }
+    if (!emptyContainerCheck(railString.value, railString)) {
+        return false;
+    }
+    if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to encrypt this cipher text")) {
+        return false;
+    }
+    if (!largeDataWarning(railString.value, railString)) {
+        return false;
+    }
+    if (/[^0-9]/.test(railAmount.value)) {
+        showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
 
-        try {
-            railFenceEncode(railString.value, railAmount.value)
-        } catch (e) {
-            showToast("Error", `An error occurred trying to encrypt the string: ${e.message}`, "danger");
-            return;
-        }
-        document.getElementById("railResults").textContent = railFenceEncode(railString.value, railAmount.value);
-    });
-}
+    try {
+        railFenceEncode(railString.value, railAmount.value)
+    } catch (e) {
+        showToast("Error", `An error occurred trying to encrypt the string: ${e.message}`, "danger");
+        return;
+    }
+    document.getElementById("railResults").textContent = railFenceEncode(railString.value, railAmount.value);
+});
 const railDecryptButton = document.getElementById("railDecrypt");
-if(railDecryptButton) {
-    railDecryptButton.addEventListener("click", function () {
-        const railString = document.getElementById("railText");
-        const railAmount = document.getElementById("railAmount");
-    
-        if (!emptyContainerCheck(railString.value, railString)) {
-            return false;
-        }
-        if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to decrypt this cipher text")) {
-            return false;
-        }
-        if (!largeDataWarning(railString.value, railString)) {
-            return false;
-        }
-        if (/[^0-9]/.test(railAmount.value)) {
-            showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
-            return;
-        }
+railDecryptButton && railDecryptButton.addEventListener("click", function () {
+    const railString = document.getElementById("railText");
+    const railAmount = document.getElementById("railAmount");
 
-        try {
-            railFenceDecode(railString.value, railAmount.value)
-        } catch (e) {
-            showToast("Error", `An error occurred trying to decrypt the string: ${e.message}`, "danger");
-            return;
-        }
-        document.getElementById("railResults").textContent = railFenceDecode(railString.value, railAmount.value);
-    });
-}
+    if (!emptyContainerCheck(railString.value, railString)) {
+        return false;
+    }
+    if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to decrypt this cipher text")) {
+        return false;
+    }
+    if (!largeDataWarning(railString.value, railString)) {
+        return false;
+    }
+    if (/[^0-9]/.test(railAmount.value)) {
+        showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
+        return;
+    }
+
+    try {
+        railFenceDecode(railString.value, railAmount.value)
+    } catch (e) {
+        showToast("Error", `An error occurred trying to decrypt the string: ${e.message}`, "danger");
+        return;
+    }
+    document.getElementById("railResults").textContent = railFenceDecode(railString.value, railAmount.value);
+});
 
 
-// Rail fence cipher
+// Chaocipher
 const chaosEncryptButton = document.getElementById("chaocipherEncrypt");
-if(chaosEncryptButton) {
-    chaosEncryptButton.addEventListener("click", function () {
-        const chaosString = document.getElementById("chaocipherText");
+chaosEncryptButton && chaosEncryptButton.addEventListener("click", function () {
+    const chaosString = document.getElementById("chaocipherText");
 
-        if (!emptyContainerCheck(chaosString.value, chaosString)) {
-            return false;
-        }
-        if (!largeDataWarning(chaosString.value, chaosString)) {
-            return false;
-        }
+    if (!emptyContainerCheck(chaosString.value, chaosString)) {
+        return false;
+    }
+    if (!largeDataWarning(chaosString.value, chaosString)) {
+        return false;
+    }
 
-        let chainChaos = document.getElementById("chainChaocipher");
-        let chR = document.getElementById("chaocipherResults").textContent;
-        let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
+    let chainChaos = document.getElementById("chainChaocipher");
+    let chR = document.getElementById("chaocipherResults").textContent;
+    let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
 
-        document.getElementById("chaocipherResults").textContent = chaocipherEncode(chaosResults);
-    });
-}
+    document.getElementById("chaocipherResults").textContent = chaocipherEncode(chaosResults);
+});
 const chaosDecryptButton = document.getElementById("chaocipherDecrypt");
-if(chaosDecryptButton) {
-    chaosDecryptButton.addEventListener("click", function () {
-        const chaosString = document.getElementById("chaocipherText");
-    
-        if (!emptyContainerCheck(chaosString.value, chaosString)) {
-            return false;
-        }
-        if (!largeDataWarning(chaosString.value, chaosString)) {
-            return false;
-        }
+chaosDecryptButton && chaosDecryptButton.addEventListener("click", function () {
+    const chaosString = document.getElementById("chaocipherText");
 
-        let chainChaos = document.getElementById("chainChaocipher");
-        let chR = document.getElementById("chaocipherResults").textContent;
-        let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
+    if (!emptyContainerCheck(chaosString.value, chaosString)) {
+        return false;
+    }
+    if (!largeDataWarning(chaosString.value, chaosString)) {
+        return false;
+    }
 
-        document.getElementById("chaocipherResults").textContent = chaocipherDecode(chaosResults);
-    });
-}
+    let chainChaos = document.getElementById("chainChaocipher");
+    let chR = document.getElementById("chaocipherResults").textContent;
+    let chaosResults = chainChaos.checked && chR.length > 0 ? chR : chaosString.value;
+
+    document.getElementById("chaocipherResults").textContent = chaocipherDecode(chaosResults);
+});
 
 
 // Atbash cipher
 const atbashDecodeButton = document.getElementById("atbashDecode");
-atbashDecodeButton.addEventListener("click", function() {
+atbashDecodeButton && atbashDecodeButton.addEventListener("click", function() {
     const atbashString = document.getElementById("atbashText");
 
     if(!emptyContainerCheck(atbashString.value, atbashString)) {
@@ -797,7 +782,7 @@ atbashDecodeButton.addEventListener("click", function() {
 
 // Hash strings
 const hashButton = document.getElementById("hashDecode");
-hashButton.addEventListener("click", function() {
+hashButton && hashButton.addEventListener("click", function() {
     const hashString = document.getElementById("hashText");
     let hashResults = document.getElementById("hashResults");
     hashResults.innerHTML = "";

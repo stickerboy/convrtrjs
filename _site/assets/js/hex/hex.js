@@ -1,23 +1,43 @@
 /**
  * Shifts a hex string left or right by a specified value
- *
- * @param {string} string - The input hexadecimal string.
- * @param {number} shiftValue - The value to shift by (positive for left, negative for right).
- * @param {string} delimiter - The delimiter used in the hexadecimal string.
- * @returns {string} - The resulting shifted hexadecimal string (space delimited).
- *
- * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
- *
+ * @param {string} hexString - The input hex string.
+ * @param {number} shiftValue - The value to shift by.
+ * @param {string} delimiter - The delimiter used in the hex string.
+ * @returns {string} - The shifted hex string.
+ * @throws {Error} - If the input is invalid.
+ * 
  * @example
  * // Input: "74657374" (hex for "test"), shiftValue: 2, delimiter: ""
  * // Output: "76 65 73 74"
  */
-function shiftHexString(string, shiftValue, delimiter) {
-    if(isValidHex(string, delimiter)) {
-        return hexToString(string, delimiter).split("").map(c => (ord(c) + parseInt(shiftValue)).toString(16)).join(delimiter);
-    } else {
+function shiftHexString(hexString, shiftValue, delimiter) {
+    if (!isValidHex(hexString, delimiter)) {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
+
+    // Convert hex string to byte array
+    const hexArray = hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16));
+    const byteArray = new Uint8Array(hexArray);
+
+    // Decode byte array to a string
+    const decoder = new TextDecoder();
+    const decodedString = decoder.decode(byteArray);
+
+    // Shift each character's code point
+    const shiftedString = Array.from(decodedString).map(char => {
+        const codePoint = char.codePointAt(0) + parseInt(shiftValue);
+        return String.fromCodePoint(codePoint);
+    }).join("");
+
+    // Encode the shifted string back to a byte array
+    const encoder = new TextEncoder();
+    const shiftedByteArray = encoder.encode(shiftedString);
+
+    // Convert byte array back to a hex string
+    const shiftedHexArray = Array.from(shiftedByteArray).map(byte => byte.toString(16).padStart(2, "0"));
+    const result = shiftedHexArray.join(delimiter);
+
+    return result;
 }
 
 /**
@@ -124,7 +144,7 @@ function generateHexFrequencies(string, delimiter, chunkSize = 1) {
 
 // Shift Hex
 const shiftButton = document.getElementById("shifthexDecode");
-shiftButton.addEventListener("click", function() {
+shiftButton && shiftButton.addEventListener("click", function() {
     const shiftString = document.getElementById("shifthexText");
     let shiftValue = document.getElementById("shifthexValue");
     let shiftHexDelimiter = document.getElementById("shifthexDelimiter").value;
@@ -143,24 +163,23 @@ shiftButton.addEventListener("click", function() {
     if (!largeDataWarning(shiftString.value, shiftString)) {
         return false;
     }
-
     try {
-        shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter);
+        shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
     } catch (e) {
         showToast("Error", `An error occurred trying to shift the hex string: ${e.message}`, "danger");
         return;
     }
 
-    document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter);
-    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("hex-tab-pane").textContent = shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter);
-    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftHexString(shiftString.value.trim(), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
+    document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter);
+    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
+    document.getElementById("hex-tab-pane").textContent = shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
+    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
+    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
 });
 
 // Reverse Hex
 const reverseHexButton = document.getElementById("reversehexDecode");
-reverseHexButton.addEventListener("click", function() {
+reverseHexButton && reverseHexButton.addEventListener("click", function() {
     const reverseHexString = document.getElementById("reversehexText");
     let reverseHexDelimiter = document.getElementById("reversehexDelimiter").value;
     let reverseNibbles = document.getElementById("reverseNibbles");
@@ -192,10 +211,9 @@ reverseHexButton.addEventListener("click", function() {
     document.getElementById("reversehexResults").textContent = revHexContent;
 });
 
-
 // Hex Frequencies
 const freqButton = document.getElementById("hexfrequenciesDecode");
-freqButton.addEventListener("click", function() {
+freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("hexfrequenciesText");
     let freqResults = document.getElementById("hexfrequenciesResults");
     let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
