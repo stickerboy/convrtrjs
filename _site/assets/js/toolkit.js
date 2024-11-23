@@ -363,7 +363,7 @@ function styledUniqueArrayItems(data) {
 function countArrayFreq(string, chunkSize = 1, delimiter) {
     // Remove the delimiter from the string if it is present
     if (delimiter) {
-        string = string.split(delimiter).join('');
+        string = string.split(delimiter).join("");
     }
 
     // Split the string into substrings of the specified chunk size
@@ -433,44 +433,65 @@ function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
  * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
  */
 function createImage(width, height, filename, element, string, options = {}) {
-    var canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.width = (width * 1.5) + 20;
     canvas.height = height * 1.5;
-    var ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
-    var bgcolor = options.bgcolor || 'white';
-    var textcolor = options.textcolor || 'black';
-    var font = options.font || "5.5rem 'TerminalGlyphs'";
-    var paddingTop = options.paddingTop || 90;
-    var download = options.download !== undefined ? options.download : true;
-    var fontAdjust = options.fontAdjust !== undefined ? options.fontAdjust : false;
+    const {
+        bgcolor = 'white',
+        textcolor = 'black',
+        font = "5.5rem 'TerminalGlyphs'",
+        paddingTop = 90,
+        download = true,
+        fontAdjust = false
+    } = options;
 
+    // Background color
     ctx.fillStyle = bgcolor;
     ctx.fillRect(10, 10, canvas.width, canvas.height);
 
+    // Text settings
     ctx.font = font;
     ctx.fillStyle = textcolor;
 
-    if (fontAdjust) {
-        var textMetrics = ctx.measureText(string);
-        var textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+    // Adjust font position if needed
+    const textY = fontAdjust ? adjustFontPosition(ctx, string, paddingTop, canvas.height) : paddingTop;
+    ctx.fillText(string, 10, textY);
 
-        // Adjust the position so the text is centered vertically
-        var textY = paddingTop + textHeight;
+    const url = canvas.toDataURL();
+    return handleDownload(url, filename, download);
+}
 
-        if (textY + textHeight > canvas.height) {
-            textY = canvas.height - textHeight;
-        }
+/**
+ * Adjusts the font position based on the text metrics.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {string} string - The text to display in the image.
+ * @param {number} paddingTop - The padding from the top of the image to the start of the text.
+ * @param {number} canvasHeight - The height of the canvas.
+ * @returns {number} - The adjusted Y position for the text.
+ */
+function adjustFontPosition(ctx, string, paddingTop, canvasHeight) {
+    const textMetrics = ctx.measureText(string);
+    const textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+    let textY = paddingTop + textHeight;
 
-        ctx.fillText(string, 10, textY);
-    } else {
-        ctx.fillText(string, 10, paddingTop);
+    if (textY + textHeight > canvasHeight) {
+        textY = canvasHeight - textHeight;
     }
+    return textY;
+}
 
-    var url = canvas.toDataURL();
-
+/**
+ * Handles the download of the image or returns an image element.
+ * @param {string} url - The data URL of the image.
+ * @param {string} filename - The suggested filename for downloading the image.
+ * @param {boolean} download - Whether to download the image or return it for injection.
+ * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
+ */
+function handleDownload(url, filename, download) {
     if (download) {
-        var tempAnchor = document.createElement("a");
+        const tempAnchor = document.createElement("a");
         tempAnchor.download = filename;
         tempAnchor.href = url;
         document.body.appendChild(tempAnchor);
@@ -478,7 +499,7 @@ function createImage(width, height, filename, element, string, options = {}) {
         document.body.removeChild(tempAnchor);
         return null;
     } else {
-        var img = new Image();
+        const img = new Image();
         img.src = url;
         return img;
     }
