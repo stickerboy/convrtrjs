@@ -111,9 +111,16 @@ function stringToMorse(string) {
  * // Output: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100"
  */
 function stringToMorsenary(string) {
-    let morsenarySetting = document.getElementById("morsenarySetting").value;
-    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '-' : '.')) :
-    stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '.' : '-'));
+    const morsenarySetting = document.getElementById("morsenarySetting").value;
+    const binaryString = stringToBinary(string).replace(/ /g, '');
+
+    return binaryString.replace(/[01]/g, match => {
+        if (morsenarySetting === "default") {
+            return match === '1' ? '-' : '.';
+        } else {
+            return match === '1' ? '.' : '-';
+        }
+    });
 }
 
 /**
