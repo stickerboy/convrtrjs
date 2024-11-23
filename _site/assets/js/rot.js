@@ -17,7 +17,7 @@ function rot(string, n = -13, alpha = alphabet.substring(1)) {
             const currentPosition = alpha.indexOf(baseChar.toUpperCase());
             const shiftedChar = alpha[(currentPosition + n) % length];
             
-            result += isUpper ? shiftedChar.toUpperCase() : shiftedChar.toLowerCase
+            result += isUpper ? shiftedChar.toUpperCase() : shiftedChar.toLowerCase();
         } else {
             result += char;
         }
