@@ -25,7 +25,7 @@ const textMorseDict = {
  * @returns {string} The trimmed string. 
  **/
  function cleanString(string) { 
-    return string.trimStart().trim(); 
+    return string.trim(); 
 }
 
 /**
