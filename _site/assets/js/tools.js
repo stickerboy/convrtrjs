@@ -135,10 +135,12 @@ function urlDecode(string) {
  * @returns {string} - A space-separated string of alphabet numbers.
  */
 function lettersToNumbers(string) {
-    string = lettersOnly(string);
-    const numbers = [];
-    string.split("").forEach((s) => { 
-        numbers.push(s.toLowerCase().charCodeAt(0) - 97 + 1);
-    });
-    return numbers.join(" ");
+    // Ensure only letters are processed
+    const lettersOnlyString = lettersOnly(string);
+    // Map letters to their corresponding numbers and join with spaces
+    return lettersOnlyString
+        .toLowerCase()
+        .split("")
+        .map(char => char.charCodeAt(0) - 97 + 1)
+        .join(" ");
 }
