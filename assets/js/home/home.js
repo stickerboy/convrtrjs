@@ -167,8 +167,8 @@ function morsenaryToString(string) {
  * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement string "z...a"
  * // Output: "pןɹoʍ oןןǝɥ"
  */
-function flipText(string, alphabet = alphabet, replacement = alphaFlip) {
-    const flipMap = Object.fromEntries([...alphabet].map((char, index) => [char, replacement[index]]));
+function flipText(string, originalAlphabet = alphabet, replacement = alphaFlip) {
+    const flipMap = Object.fromEntries([...originalAlphabet].map((char, index) => [char, replacement[index]]));
     return [...string].map(c => flipMap[c] || c).reverse().join('');
 }
 
@@ -327,8 +327,8 @@ flipButton.addEventListener("click", function() {
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
-                                                         flipText(flipString.value, alphabet, alphaFlip) : 
-                                                         reverseString(flipText(flipString.value, alphabet, alphaFlip));
+                                                         flipText(flipString.value) : 
+                                                         reverseString(flipText(flipString.value));
 });
 
 
