@@ -1,34 +1,38 @@
 /**
  * Checks for a valid binary string length (multiple of 8)
- *
  * @param {string} string - The binary string to validate.
  * @returns {boolean} - `true` if the length is valid, otherwise `false`.
- * @throws {Error} - If the input is not a valid binary string.
  */
 function isValidBinaryLength(string) {
     return string.length % 8 === 0;
 }
 
 /**
- * Converts a valid binary string to its corresponding ASCII string
- *
- * @param {string} string - The binary string to convert.
- * @returns {string} - The resulting ASCII string.
+ * Converts a valid binary string to its corresponding UTF-8 string.
+ * @param {string} binaryString - The binary string to convert.
+ * @returns {string} - The resulting UTF-8 string.
  * @throws {Error} - If the input is not a valid binary string.
  */
-function binaryToString(string) {
-    if(isValidBinaryLength(string)) {
-        string = string.replace(/[^10\s]/g, "");
-
-        let charCodes = string.split(" ").map(bin => {
-            bin = bin.padStart(8, "0");
-            return parseInt(bin, 2);
-        });
-
-        return String.fromCharCode(...charCodes);
-    } else {
-        throw new Error("Not a valid Binary string");
+function binaryToString(binaryString) {
+    if (!/^[01\s]+$/.test(binaryString)) {
+        throw new Error("Input string contains invalid binary characters");
     }
+
+    binaryString = binaryString.replace(/\s+/g, ""); // Remove whitespace characters
+
+    if (!isValidBinaryLength(binaryString)) {
+        throw new Error("Binary string length must be a multiple of 8");
+    }
+
+    const byteArray = [];
+    for (let i = 0; i < binaryString.length; i += 8) {
+        const byte = binaryString.slice(i, i + 8);
+        byteArray.push(parseInt(byte, 2));
+    }
+
+    const uint8Array = new Uint8Array(byteArray);
+    const decoder = new TextDecoder("utf-8");
+    return decoder.decode(uint8Array);
 }
 
 /**

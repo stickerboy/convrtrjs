@@ -143,8 +143,13 @@ function stringToArray(string, number) {
  * @returns {string} - The binary representation of the input string.
  */
 function stringToBinary(string) {
-    return Array.from(string).map(c => c.charCodeAt().toString(2).padStart(8, 0)).join(" ");
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(string);
+    return Array.from(uint8Array)
+        .map(byte => byte.toString(2).padStart(8, "0"))
+        .join(" ");
 }
+
 
 /**
  * Validate hexadecimal characters
@@ -359,7 +364,7 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
     for (let i = 0; i <= string.length - chunkSize; i += chunkSize) {
         const chunk = string.substring(i, i + chunkSize);
         // Check if all characters in the chunk are the same
-        if (chunk.split('').every(char => char === chunk[0])) {
+        if (chunk.split("").every(char => char === chunk[0])) {
             split.push(chunk);
         }
     }
