@@ -60,20 +60,19 @@ function base64ToString(base64) {
  * @throws {Error} - If the input contains invalid Morse code characters.
  */
 function morseToString(string) {
-    if(/^[ /.-]*$/.test(string)){
-        return string // test valid morse
-            .replaceAll(" / "," ")
-            .split(" ")
-            .map(word => word
-                        .split(" ") // get character code,
-                        .map(character => morseTextDict[character])
-                        .join("")
-            )
-            .join(" ")
-            .trim();
-    } else {
+    if (!/^[\s./-]*$/.test(string)) {
         throw new Error("Morse code contains invalid characters");
     }
+
+    return string
+        .split(" / ")
+        .map(word => word
+            .split(" ")
+            .map(character => morseTextDict[character])
+            .join("")
+        )
+        .join(" ")
+        .trim();
 }
 
 /**
@@ -81,22 +80,22 @@ function morseToString(string) {
  *
  * @param {string} string - The input string to be converted.
  * @returns {string} - The Morse code representation of the input string.
- *
+ * 
  * @example
  * // Input: "hello world"
  * // Output: ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
  */
 function stringToMorse(string) {
     return string
-            .toLocaleUpperCase()
-            .split(" ")
-            .map(word => word
-                        .split("") // get character code,
-                        .map(character => textMorseDict[character])
-                        .join(" ")
-            )
-            .join(" / ")
-            .trim();
+        .toUpperCase()
+        .split(" ")
+        .map(word => word
+            .split("")
+            .map(character => textMorseDict[character] || "")
+            .join(" ")
+        )
+        .join(" / ")
+        .trim();
 }
 
 /**
