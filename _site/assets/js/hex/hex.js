@@ -1,41 +1,25 @@
 /**
- * Shifts a hex string left or right by a specified value
- * @param {string} hexString - The input hex string.
- * @param {number} shiftValue - The value to shift by.
+ * Shifts the hex values in a hexadecimal string by a given shift value.
+ * @param {string} hexString - The input hexadecimal string.
+ * @param {number} shiftValue - The value by which to shift each byte.
  * @param {string} delimiter - The delimiter used in the hex string.
- * @returns {string} - The shifted hex string.
- * @throws {Error} - If the input is invalid.
- * 
- * @example
- * // Input: "74657374" (hex for "test"), shiftValue: 2, delimiter: ""
- * // Output: "76 65 73 74"
+ * @returns {string} - The shifted hexadecimal string.
+ * @throws {Error} - If the input hex string contains invalid characters.
  */
 function shiftHexString(hexString, shiftValue, delimiter) {
     if (!isValidHex(hexString, delimiter)) {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
+    hexString = cleanString(hexString);
 
     // Convert hex string to byte array
-    const hexArray = hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16));
-    const byteArray = new Uint8Array(hexArray);
+    const hexArray = hexString.split(delimiter).map(byte => parseInt(byte, 16));
 
-    // Decode byte array to a string
-    const decoder = new TextDecoder();
-    const decodedString = decoder.decode(byteArray);
-
-    // Shift each character's code point
-    const shiftedString = Array.from(decodedString).map(char => {
-        const codePoint = char.codePointAt(0) + parseInt(shiftValue);
-        return String.fromCodePoint(codePoint);
-    }).join("");
-
-    // Encode the shifted string back to a byte array
-    const encoder = new TextEncoder();
-    const shiftedByteArray = encoder.encode(shiftedString);
+    // Shift each byte value
+    const shiftedHexArray = hexArray.map(byte => (byte + parseInt(shiftValue)) & 0xFF);
 
     // Convert byte array back to a hex string
-    const shiftedHexArray = Array.from(shiftedByteArray).map(byte => byte.toString(16).padStart(2, "0"));
-    const result = shiftedHexArray.join(delimiter);
+    const result = shiftedHexArray.map(byte => byte.toString(16).padStart(2, '0')).join(delimiter);
 
     return result;
 }
@@ -164,17 +148,17 @@ shiftButton && shiftButton.addEventListener("click", function() {
         return false;
     }
     try {
-        shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
+        var shiftedHexString = shiftHexString(shiftString.value, shiftValue.value, shiftHexDelimiter);
     } catch (e) {
         showToast("Error", `An error occurred trying to shift the hex string: ${e.message}`, "danger");
         return;
     }
 
-    document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter);
-    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("hex-tab-pane").textContent = shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
-    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
+    document.getElementById("text-tab-pane").textContent = hexToString(shiftedHexString, shiftHexDelimiter);
+    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("hex-tab-pane").textContent = shiftedHexString;
+    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftedHexString, shiftHexDelimiter));
 });
 
 // Reverse Hex
