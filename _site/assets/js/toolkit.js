@@ -277,7 +277,7 @@ function string2Dec(string) {
  * @returns {string} - The decoded string.
  */
 function decimalToString(string) {
-    return string.trim().split(" ").map(c => String.fromCharCode(c)).join("");
+    return string.trim().split(/\s+/).map(c => String.fromCharCode(c)).join("");
 }
 
 /**
