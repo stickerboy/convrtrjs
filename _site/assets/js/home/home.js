@@ -156,21 +156,20 @@ function morsenaryToString(string) {
 }
 
 /**
- * Flips text upside down (custom alphabet mapping)
+ * Flips text upside down (custom alphabet mapping).
  *
  * @param {string} string - The input string to be flipped.
- * @param {string} alphabet - The original alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
- * @param {string[]} replacement - An array of replacement characters corresponding to each character in the alphabet.
+ * @param {string} [alphabet=alphabet] - The original alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
+ * @param {string} [replacement=alphaFlip] - A string of replacement characters corresponding to each character in the alphabet.
  * @returns {string} - The flipped string.
  *
  * @example
- * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement array ["z", "y", "x", ...]
+ * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement string "z...a"
  * // Output: "pןɹoʍ oןןǝɥ"
  */
-function flipText(string, alphabet, replacement) {
-	return Array.from(string).map(c => 
-        typeof replacement[alphabet.search(c)] == "undefined" ? " " : replacement[alphabet.search(c)]
-    ).join("");
+function flipText(string, alphabet = alphabet, replacement = alphaFlip) {
+    const flipMap = Object.fromEntries([...alphabet].map((char, index) => [char, replacement[index]]));
+    return [...string].map(c => flipMap[c] || c).reverse().join('');
 }
 
 /**
