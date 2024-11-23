@@ -328,15 +328,21 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * // Output: "<div class="g-col-12"> ..."
  */
 function styledUniqueArrayItems(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique characters</p>
-    <div class="grid mt-2 grid-auto" id="unique-chars">`;
-    data.forEach(char => {
-        result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
-                ${char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;")}
-            </code>`;
-    });
-    result += `</div></div>`;
-    return result;
+    const uniqueCharsHTML = data.map(char => {
+        const sanitizedChar = char.replace(/ /g, "Space").replace(/\t/g, "Tab");
+        const displayChar = char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;");
+        return `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${sanitizedChar}" title="${sanitizedChar}">
+                    ${displayChar}
+                </code>`;
+    }).join("");
+
+    return `
+        <div class="g-col-12">
+            <p class="display-5 fs-5 mt-4">Unique characters</p>
+            <div class="grid mt-2 grid-auto" id="unique-chars">
+                ${uniqueCharsHTML}
+            </div>
+        </div>`;
 }
 
 /**
@@ -390,22 +396,23 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
  * // Output: "<div class="g-col-12"> ..."
  */
 function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
-    // Initialize the result string with the opening div and title
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">${title}</p>
-    <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">`;
-
-    // Iterate over the data object to generate HTML for each key-value pair
-    for (let [key, value] of Object.entries(data)) {
-        result += `<div>
+    // Generate HTML for each key-value pair
+    const itemsHTML = Object.entries(data).map(([key, value]) => {
+        return `<div>
                     <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
                         ${key} - ${value}
                     </code>
-                   </div>`;
-    }
+                </div>`;
+    }).join("");
 
-    // Close the div tags and return the result string
-    result += `</div></div>`;
-    return result;
+    // Construct the final HTML structure
+    return `
+        <div class="g-col-12">
+            <p class="display-5 fs-5 mt-4">${title}</p>
+            <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">
+                ${itemsHTML}
+            </div>
+        </div>`;
 }
 
 /**
