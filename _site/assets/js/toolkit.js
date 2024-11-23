@@ -235,13 +235,11 @@ function stringToBase64(string) {
 
 /**
  * Applies the Rot13 algorithm to the string
- * https://stackoverflow.com/a/28490254/3172872
  * @param {string} string - The input string.
  * @returns {string} - The Rot13-transformed string.
  */
 function rot13(string) {
-    // Non-letter characters will not be replaced, preserving the string
-    return /^[a-zA-Z]/.test(string) ? string.replace(/[A-Z]/gi, c => alphaRot[alphabet.indexOf(c)]) : "";
+    return string.replace(/[A-Za-z]/g, c => alphaRot[alphabet.indexOf(c)]);
 }
 
 /**
