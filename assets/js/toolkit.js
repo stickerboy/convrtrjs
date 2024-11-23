@@ -216,18 +216,21 @@ function hexToString(string, delimiter) {
 }
 
 /**
- * Convert to Base64
- * https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
- * @param {string} string - The input string.
+ * Converts a string to Base64 encoding.
+ * @param {string} string - The input string to encode.
  * @returns {string} - The Base64-encoded string.
  */
 function stringToBase64(string) {
-    // First, use encodeURIComponent to get percent-encoded UTF-8,
-    // then convert the percent encodings into raw bytes which can be fed into btoa.
-    return btoa(encodeURIComponent(string).replace(/%([0-9A-F]{2})/g,
-        function toSolidBytes(match, p1) {
-            return String.fromCharCode("0x" + p1);
-        }));
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(string);
+
+    let binaryString = "";
+    for (let i = 0; i < uint8Array.length; i++) {
+        binaryString += String.fromCharCode(uint8Array[i]);
+    }
+
+    // Encode the binary string to Base64
+    return btoa(binaryString);
 }
 
 /**
