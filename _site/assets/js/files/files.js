@@ -46,7 +46,7 @@ function getFileHeader(file) {
 }
 
 const fileInput = document.getElementById("fileInput");
-fileInput.addEventListener("change", function(event) {
+fileInput && fileInput.addEventListener("change", function(event) {
     const selectedFile = event.target.files[0];
     if (selectedFile) {
         getFileHeader(selectedFile);

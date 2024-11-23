@@ -206,7 +206,7 @@ function stringStats(string, stat, delimiter) {
 
 // Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
-hexDelimiterSelect.addEventListener("change", function() {
+hexDelimiterSelect && hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
     if(hexData === "") {
         return;
@@ -216,7 +216,7 @@ hexDelimiterSelect.addEventListener("change", function() {
 
 // Re-code Morsenary on delimiter change
 let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect.addEventListener("change", function() {
+morsenarySelect && morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;
     if(morsenaryData === "") {
         return;
@@ -224,10 +224,9 @@ morsenarySelect.addEventListener("change", function() {
     document.getElementById("mrsnryDecode").click();
 });
 
-
 // Text tools
 const toolChange = document.getElementById("toolsChange");
-toolChange.addEventListener("click", function() {
+toolChange && toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
     if(!emptyContainerCheck(toolsString.value, toolsString)) {
@@ -298,10 +297,9 @@ toolChange.addEventListener("click", function() {
     }
 });
 
-
 // Flip text upside down
 const flipButton = document.getElementById("flipDecode");
-flipButton.addEventListener("click", function() {
+flipButton && flipButton.addEventListener("click", function() {
     const flipString = document.getElementById("flipText");
 
     if(!emptyContainerCheck(flipString.value, flipString)) {
@@ -314,14 +312,13 @@ flipButton.addEventListener("click", function() {
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
-                                                         flipText(flipString.value, alphabet, alphaFlip) : 
-                                                         reverseString(flipText(flipString.value, alphabet, alphaFlip));
+                                                        flipText(flipString.value, alphabet, alphaFlip) : 
+                                                        reverseString(flipText(flipString.value, alphabet, alphaFlip));
 });
-
 
 // Frequencies
 const freqButton = document.getElementById("frequenciesDecode");
-freqButton.addEventListener("click", function() {
+freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("frequenciesText");
     let freqResults = document.getElementById("frequenciesResults");
     freqResults.innerHTML = "";
@@ -347,10 +344,9 @@ freqButton.addEventListener("click", function() {
     freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`);
 });
 
-
 // Replace characters
 const replaceButton = document.getElementById("replaceDecode");
-replaceButton.addEventListener("click", function() {
+replaceButton && replaceButton.addEventListener("click", function() {
     const replaceString = document.getElementById("replaceText");
     const replaceOld = document.getElementById("replaceValue");
     const replaceNew = document.getElementById("replacementValue");

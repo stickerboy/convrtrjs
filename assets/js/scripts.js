@@ -183,39 +183,37 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 
 const resetData = document.getElementById("resetData");
-if(resetData) {
-    resetData.addEventListener("click", function() {
-        const tooltip = bootstrap.Tooltip.getInstance(resetData);
-        let dtcLength = 0;
+resetData && resetData.addEventListener("click", function() {
+    const tooltip = bootstrap.Tooltip.getInstance(resetData);
+    let dtcLength = 0;
 
-        [...textareas].map(ta => {
-            if(inArray(ta.localName, ["div","tbody"])) {
-                if(ta.innerHTML.length !== 0) {
-                    dtcLength += ta.innerHTML.length;
-                    ta.innerHTML = "";
-                }
-            } else {
-                if(ta.value !== undefined  && ta.value.length !== 0) {
-                    dtcLength += ta.value.length;
-                    ta.value = "";
-                }
+    [...textareas].map(ta => {
+        if(inArray(ta.localName, ["div","tbody"])) {
+            if(ta.innerHTML.length !== 0) {
+                dtcLength += ta.innerHTML.length;
+                ta.innerHTML = "";
             }
-        });
-        if(dtcLength === 0) {
-            tooltip.hide();
-            showToast("Warning", "No data to clear", "warning", 3000);
-            return;
+        } else {
+            if(ta.value !== undefined  && ta.value.length !== 0) {
+                dtcLength += ta.value.length;
+                ta.value = "";
+            }
         }
-        clearLocalStorage();
-
-        resetData.querySelector(".bi").classList.add("convrtr-spin");
-        setTimeout(() => {
-            resetData.querySelector(".bi").classList.remove("convrtr-spin");
-            tooltip.hide();
-            showToast("Notice", "Data successfully cleared", "convrtr", 3000);
-        }, 1000);
     });
-}
+    if(dtcLength === 0) {
+        tooltip.hide();
+        showToast("Warning", "No data to clear", "warning", 3000);
+        return;
+    }
+    clearLocalStorage();
+
+    resetData.querySelector(".bi").classList.add("convrtr-spin");
+    setTimeout(() => {
+        resetData.querySelector(".bi").classList.remove("convrtr-spin");
+        tooltip.hide();
+        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
+    }, 1000);
+});
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");
@@ -355,9 +353,7 @@ if(downloadButtons.length > 0) {
 
 // Toggle aria values for checkboxes
 const customSwitch = document.querySelector('[role="switch"]');
-if(customSwitch) {
-    customSwitch.addEventListener('click', () => {
-        const isChecked = customSwitch.getAttribute('aria-checked') === 'true';
-        customSwitch.setAttribute('aria-checked', !isChecked);
-    });
-}
+customSwitch && customSwitch.addEventListener('click', () => {
+    const isChecked = customSwitch.getAttribute('aria-checked') === 'true';
+    customSwitch.setAttribute('aria-checked', !isChecked);
+});

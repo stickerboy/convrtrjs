@@ -76,7 +76,7 @@ function convertElements(string, sourceProp, targetProp, removeDelimiters) {
 
 // Periodic element conversion
 const elementsChange = document.getElementById("elementsChange");
-elementsChange.addEventListener("click", function() {
+elementsChange && elementsChange.addEventListener("click", function() {
     let elementsString = document.getElementById("elementsTextarea");
 
     if(!emptyContainerCheck(elementsString.value, elementsString)) {
@@ -108,7 +108,7 @@ let brailleImage = document.getElementById("generateBrailleImage");
 let brailleSwitch = document.getElementById("brailleSwitch");
 
 const brailleButton = document.getElementById("brailleConvert");
-brailleButton.addEventListener("click", function() {
+brailleButton && brailleButton.addEventListener("click", function() {
     const brailleString = document.getElementById("brailleTextarea");
 
     if(!emptyContainerCheck(brailleString.value, brailleString)) {
@@ -126,7 +126,7 @@ brailleButton.addEventListener("click", function() {
     }
 });
 
-brailleSwitch.addEventListener("click", function() {
+brailleSwitch && brailleSwitch.addEventListener("click", function() {
     if(brailleSwitch.checked) {
         this.nextElementSibling.innerText = "Convert Braille to Text";
     } else {
@@ -134,7 +134,7 @@ brailleSwitch.addEventListener("click", function() {
     }
 });
 
-brailleImage.addEventListener("click", function() {
+brailleImage && brailleImage.addEventListener("click", function() {
     if(!emptyContainerCheck(bIR.innerHTML, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
         return false;
     }
@@ -153,17 +153,19 @@ const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
 let fIR = document.getElementById("forerunnerImageResults");
 let fIT = document.getElementById("frImageTransparency");
-Array.from(forerunnerButtons, c => c.addEventListener("click", function() {
-    Array.from(forerunnerButtons, button => {
-        button.classList.remove("active");
-    });
-    c.classList.add("active");
-    fR.textContent += getKeyValue(c.innerHTML, fralphabet);
-    fIR.textContent += c.innerHTML;
-}));
+if(forerunnerButtons.length > 0) {
+    Array.from(forerunnerButtons, c => c.addEventListener("click", function() {
+        Array.from(forerunnerButtons, button => {
+            button.classList.remove("active");
+        });
+        c.classList.add("active");
+        fR.textContent += getKeyValue(c.innerHTML, fralphabet);
+        fIR.textContent += c.innerHTML;
+    }));
+}
 
-let forerunnerImage = document.getElementById("generateForerunnerImage");
-forerunnerImage.addEventListener("click", function() {
+const forerunnerImage = document.getElementById("generateForerunnerImage");
+forerunnerImage && forerunnerImage.addEventListener("click", function() {
     if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at least one glyph to generate an image")) {
         return false;
     }
@@ -179,17 +181,19 @@ const covenantButtons    = document.getElementsByClassName("cov-glyph");
 let cR = document.getElementById("covenantResults");
 let cIR = document.getElementById("covenantImageResults");
 let cIT = document.getElementById("covImageTransparency");
-Array.from(covenantButtons, c => c.addEventListener("click", function() {
-    Array.from(covenantButtons, button => {
-        button.classList.remove("active");
-    });
-    c.classList.add("active");
-    cR.textContent += c.textContent;
-    cIR.textContent += c.innerHTML;
-}));
+if(covenantButtons.length > 0) {
+    Array.from(covenantButtons, c => c.addEventListener("click", function() {
+        Array.from(covenantButtons, button => {
+            button.classList.remove("active");
+        });
+        c.classList.add("active");
+        cR.textContent += c.textContent;
+        cIR.textContent += c.innerHTML;
+    }));
+}
 
-let covenantImage = document.getElementById("generateCovenantImage");
-covenantImage.addEventListener("click", function() {
+const covenantImage = document.getElementById("generateCovenantImage");
+covenantImage && covenantImage.addEventListener("click", function() {
     if(!emptyContainerCheck(cIR.innerHTML, cIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
         return false;
     }

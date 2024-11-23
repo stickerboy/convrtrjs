@@ -1,5 +1,6 @@
 // Make it so
-document.getElementById("encode").addEventListener("click", function() {
+const encodeButton = document.getElementById("encode");
+encodeButton && encodeButton.addEventListener("click", function() {
     const container = this.closest(".card-body").querySelector("textarea");
     const data = container.value;
     let hexDelimiter = document.getElementById("convrtrsDelimiter").value;
@@ -23,7 +24,8 @@ document.getElementById("encode").addEventListener("click", function() {
 
 
 // Convert from Binary
-document.getElementById("binaryDecode").addEventListener("click", function() {
+const binaryDecodeButton = document.getElementById("binaryDecode");
+binaryDecodeButton && binaryDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -55,7 +57,8 @@ document.getElementById("binaryDecode").addEventListener("click", function() {
 
 
 // Convert from Hex
-document.getElementById("hexDecode").addEventListener("click", function() {
+const hexDecodeButton = document.getElementById("hexDecode");
+hexDecodeButton && hexDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -87,7 +90,8 @@ document.getElementById("hexDecode").addEventListener("click", function() {
 
 
 // Convert from Base64
-document.getElementById("b64Decode").addEventListener("click", function() {
+const b64DecodeButton = document.getElementById("b64Decode");
+b64DecodeButton && b64DecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -119,7 +123,8 @@ document.getElementById("b64Decode").addEventListener("click", function() {
 
 
 // Convert from Decimal
-document.getElementById("decDecode").addEventListener("click", function() {
+const decDecodeButton = document.getElementById("decDecode");
+decDecodeButton && decDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -151,7 +156,8 @@ document.getElementById("decDecode").addEventListener("click", function() {
 
 
 // Reverse
-document.getElementById("revDecode").addEventListener("click", function() {
+const revDecodeButton = document.getElementById("revDecode");
+revDecodeButton && revDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -183,7 +189,8 @@ document.getElementById("revDecode").addEventListener("click", function() {
 
 
 // Convert from Rot13
-document.getElementById("rot13Decode").addEventListener("click", function() {
+const rot13DecodeButton = document.getElementById("rot13Decode");
+rot13DecodeButton && rot13DecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -215,7 +222,8 @@ document.getElementById("rot13Decode").addEventListener("click", function() {
 
 
 // Convert from Morse
-document.getElementById("morseDecode").addEventListener("click", function() {
+const morseDecodeButton = document.getElementById("morseDecode");
+morseDecodeButton && morseDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;
@@ -247,7 +255,8 @@ document.getElementById("morseDecode").addEventListener("click", function() {
 
 
 // Convert from Morsenary
-document.getElementById("mrsnryDecode").addEventListener("click", function() {
+const mrsnryDecodeButton = document.getElementById("mrsnryDecode");
+mrsnryDecodeButton && mrsnryDecodeButton.addEventListener("click", function() {
     const chainDecoders = document.getElementById("chainDecoders");
     const container = chainDecoders.checked ? document.getElementById("form-text") : this.closest(".card-body").querySelector("textarea");
     const data = container.value;

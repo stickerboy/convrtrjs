@@ -144,7 +144,7 @@ function generateHexFrequencies(string, delimiter, chunkSize = 1) {
 
 // Shift Hex
 const shiftButton = document.getElementById("shifthexDecode");
-shiftButton.addEventListener("click", function() {
+shiftButton && shiftButton.addEventListener("click", function() {
     const shiftString = document.getElementById("shifthexText");
     let shiftValue = document.getElementById("shifthexValue");
     let shiftHexDelimiter = document.getElementById("shifthexDelimiter").value;
@@ -179,7 +179,7 @@ shiftButton.addEventListener("click", function() {
 
 // Reverse Hex
 const reverseHexButton = document.getElementById("reversehexDecode");
-reverseHexButton.addEventListener("click", function() {
+reverseHexButton && reverseHexButton.addEventListener("click", function() {
     const reverseHexString = document.getElementById("reversehexText");
     let reverseHexDelimiter = document.getElementById("reversehexDelimiter").value;
     let reverseNibbles = document.getElementById("reverseNibbles");
@@ -211,10 +211,9 @@ reverseHexButton.addEventListener("click", function() {
     document.getElementById("reversehexResults").textContent = revHexContent;
 });
 
-
 // Hex Frequencies
 const freqButton = document.getElementById("hexfrequenciesDecode");
-freqButton.addEventListener("click", function() {
+freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("hexfrequenciesText");
     let freqResults = document.getElementById("hexfrequenciesResults");
     let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
