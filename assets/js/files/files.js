@@ -1,39 +1,19 @@
 /**
- * Pulls the first 16 bytes from a file and tries to match the header
+ * Pulls the first 16 bytes from a file and tries to match the header.
  *
  * @param {File} file - The file to analyze.
  * @returns {void} - Displays the file header information in the specified format.
- *
- * @example
- * // Input: A file with specific content
- * // Output: Displays whether the file header matches any predefined headers.
  */
 function getFileHeader(file) {
     const reader = new FileReader();
     reader.onload = function (event) {
         const arrayBuffer = event.target.result;
         const uint8Array = new Uint8Array(arrayBuffer.slice(0, 16));
-
-        // Convert the bytes to a hexadecimal string
-        const hexString = Array.from(uint8Array, (byte) => byte.toString(16).padStart(2, "0")).join(" ");
+        const hexString = convertToHexString(uint8Array);
         const textString = new Option(String.fromCharCode(...uint8Array)).innerHTML;
-        let fileInfo;
 
-        HEADERS.forEach((header) => {
-            header.hex.forEach((item) => {
-                if(hexString.toUpperCase().includes(item)) {
-                    fileInfo = `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">File match</code>
-<br />${hexString}
-<br /><strong>${header.label}</strong>
-<br /><code>${textString}</code>`;
-                }
-            });
-        });
+        const fileInfo = matchFileHeader(hexString, textString) || generateNoMatchInfo(hexString, textString);
 
-        fileInfo = fileInfo ? fileInfo : `<code class="d-inline-flex px-2 bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">No match</code>
-<br />This file header is not on our list:
-<br />${hexString}
-<br /><code>${textString}</code>`;
         document.getElementById("filecheckResults").innerHTML = fileInfo;
     };
 
@@ -44,6 +24,52 @@ function getFileHeader(file) {
 
     reader.readAsArrayBuffer(file);
 }
+
+/**
+ * Converts a Uint8Array to a hexadecimal string.
+ *
+ * @param {Uint8Array} uint8Array - The Uint8Array to convert.
+ * @returns {string} - The hexadecimal string representation.
+ */
+function convertToHexString(uint8Array) {
+    return Array.from(uint8Array, byte => byte.toString(16).padStart(2, "0")).join(" ");
+}
+
+/**
+ * Matches the file header with known headers.
+ *
+ * @param {string} hexString - The hexadecimal string representation of the file header.
+ * @param {string} textString - The text string representation of the file header.
+ * @returns {string|null} - The matched file info or null if no match is found.
+ */
+function matchFileHeader(hexString, textString) {
+    for (const header of HEADERS) {
+        for (const item of header.hex) {
+            if (hexString.toUpperCase().includes(item)) {
+                return `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">File match</code>
+<br />${hexString}
+<br /><strong>${header.label}</strong>
+<br /><code>${textString}</code>`;
+            }
+        }
+    }
+    return null;
+}
+
+/**
+ * Generates the no-match information.
+ *
+ * @param {string} hexString - The hexadecimal string representation of the file header.
+ * @param {string} textString - The text string representation of the file header.
+ * @returns {string} - The no-match info HTML string.
+ */
+function generateNoMatchInfo(hexString, textString) {
+    return `<code class="d-inline-flex px-2 bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">No match</code>
+<br />This file header is not on our list:
+<br />${hexString}
+<br /><code>${textString}</code>`;
+}
+
 
 const fileInput = document.getElementById("fileInput");
 fileInput && fileInput.addEventListener("change", function(event) {
