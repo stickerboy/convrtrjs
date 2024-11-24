@@ -176,49 +176,33 @@ function flipText(string, originalAlphabet = alphabet, replacement = alphaFlip) 
  * Provides various information about a given string based on the specified stat
  *
  * @param {string} string - The input string to analyze.
- * @param {string} stat - The type of information to retrieve (e.g., "word-count", "char-count", etc.).
+ * @param {string} stat - The type of information to retrieve / statistic to calculate (e.g., "word-count", "char-count", etc.).
  * @param {string} delimiter - Optional delimiter used for splitting words or characters.
- * @returns {number|string} - The requested statistic or an error message if the stat is not available.
+ * @returns {number|string} - The calculated statistic or an error message if the stat is not available.
  *
  * @example
  * // Input: "Hello, world!", stat: "word-count", delimiter: " "
  * // Output: 2
  */
-function stringStats(string, stat, delimiter) {
-    let split = delimiter ? delimiter : " ";
+function stringStats(string, stat, delimiter = " ") {
+    // Mapping object for statistic functions
+    const statFunctions = {
+        "word-count": str => str.split(delimiter).length,
+        "char-count": str => str.length,
+        "char-count-ns": str => stripSpaces(str).length,
+        "letter-count": str => lettersOnly(str).length,
+        "letter-count-caps": str => lettersOnlyCap(str, true).length,
+        "letter-count-low": str => lettersOnlyLow(str).length,
+        "number-count": str => numbersOnly(str).length,
+        "special-count": str => specialCharsOnly(str, true).length,
+        "special-count-ns": str => specialCharsOnly(str).length
+    };
 
-    switch (stat) {
-        case "word-count":
-            return string.split(split).length;
-        break;
-        case "char-count":
-            return string.length;
-        break;
-        case "char-count-ns":
-            return stripSpaces(string).length;
-        break;
-        case "letter-count":
-            return lettersOnly(string).length;
-        break;
-        case "letter-count-caps":
-            return lettersOnlyCap(string, true).length;
-        break;
-        case "letter-count-low":
-            return lettersOnlyLow(string).length;
-        break;
-        case "number-count":
-            return numbersOnly(string).length;
-        break;
-        case "special-count":
-            return specialCharsOnly(string, true).length;
-        break;
-        case "special-count-ns":
-            return specialCharsOnly(string).length;
-        break;
-        default:
-            return "No stat specified or stat is not available";
-    }
+    // Get the selected stat function
+    const selectedStatFunction = statFunctions[stat];
+    return selectedStatFunction ? selectedStatFunction(string) : "No statistic specified or statistic is not available";
 }
+
 
 // Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
