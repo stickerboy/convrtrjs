@@ -199,12 +199,12 @@ reverseHexButton && reverseHexButton.addEventListener("click", function() {
 const freqButton = document.getElementById("hexfrequenciesDecode");
 freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("hexfrequenciesText");
-    let freqResults = document.getElementById("hexfrequenciesResults");
-    let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
+    const freqResults = document.getElementById("hexfrequenciesResults");
+    const hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
 
     freqResults.innerHTML = "";
 
-    if(!emptyContainerCheck(freqString.value, freqString)) {
+    if (!emptyContainerCheck(freqString.value, freqString)) {
         return false;
     }
     if (!largeDataWarning(freqString.value, freqString)) {
@@ -212,24 +212,46 @@ freqButton && freqButton.addEventListener("click", function() {
     }
 
     try {
-        generateHexFrequencies(freqString.value, hexFrequenciesDelimiter)
+        generateHexFrequencies(freqString.value, hexFrequenciesDelimiter);
     } catch (e) {
         showToast("Error", `An error occurred trying to generate frequencies: ${e.message}`, "danger");
         return;
     }
 
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${freqString.value.replaceAll(hexFrequenciesDelimiter, "").length}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 2), "Hex frequencies")}`);
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4), "Hex frequencies [double]", 8)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6), "Hex frequencies [triple]", 9)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 8)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 7), "Hex frequencies [quad]", 10)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10), "Hex frequencies [quint]", 12)}`);
-    }
+    // Stats to display
+    const stats = [
+        { label: "Character count", value: freqString.value.replaceAll(hexFrequenciesDelimiter, "").length }
+    ];
+
+    // Insert each stat result
+    stats.forEach(({ label, value }) => {
+        freqResults.insertAdjacentHTML(
+            "beforeend",
+            `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
+                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
+                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    ${value}
+                </code>&nbsp;<br />
+            </div>`
+        );
+    });
+
+    // Insert hex frequency results
+    const hexFrequencies = [
+        { delimiterLength: 2, label: "Hex frequencies" },
+        { delimiterLength: 4, label: "Hex frequencies [double]", minSize: 8 },
+        { delimiterLength: 6, label: "Hex frequencies [triple]", minSize: 9 },
+        { delimiterLength: 7, label: "Hex frequencies [quad]", minSize: 10 },
+        { delimiterLength: 10, label: "Hex frequencies [quint]", minSize: 12 }
+    ];
+
+    hexFrequencies.forEach(({ delimiterLength, label, minSize = 0 }) => {
+        const frequencies = generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, delimiterLength);
+        if (objectSize(frequencies) > 0) {
+            freqResults.insertAdjacentHTML(
+                "beforeend",
+                `${styledArrayFrequencies(frequencies, label, minSize)}`
+            );
+        }
+    });
 });
