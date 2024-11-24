@@ -294,29 +294,52 @@ flipButton.addEventListener("click", function() {
 const freqButton = document.getElementById("frequenciesDecode");
 freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("frequenciesText");
-    let freqResults = document.getElementById("frequenciesResults");
+    const freqResults = document.getElementById("frequenciesResults");
     freqResults.innerHTML = "";
 
-    if(!emptyContainerCheck(freqString.value, freqString)) {
+    if (!emptyContainerCheck(freqString.value, freqString)) {
         return false;
     }
     if (!largeDataWarning(freqString.value, freqString)) {
         return false;
     }
 
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
-    
-    freqResults.insertAdjacentHTML("beforeend", `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
-    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`);
+    // Stats to display
+    const stats = [
+        { label: "Word count", stat: "word-count" },
+        { label: "Character count", stat: "char-count" },
+        { label: "Character count (no spaces)", stat: "char-count-ns" },
+        { label: "Letter count", stat: "letter-count" },
+        { label: "Letter count (only capitals)", stat: "letter-count-caps" },
+        { label: "Letter count (only lowercase)", stat: "letter-count-low" },
+        { label: "Number count", stat: "number-count" },
+        { label: "Special character count", stat: "special-count" },
+        { label: "Special character count (no spaces)", stat: "special-count-ns" }
+    ];
+
+    // Insert each stat result
+    stats.forEach(({ label, stat }) => {
+        freqResults.insertAdjacentHTML(
+            "beforeend",
+            `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
+                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
+                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    ${stringStats(freqString.value, stat)}
+                </code>&nbsp;<br />
+            </div>`
+        );
+    });
+
+    freqResults.insertAdjacentHTML(
+        "beforeend",
+        `${styledUniqueArrayItems(uniqueArray(freqString.value))}`
+    );
+    freqResults.insertAdjacentHTML(
+        "beforeend",
+        `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`
+    );
 });
+
 
 
 // Replace characters
