@@ -246,7 +246,7 @@ const toolChange = document.getElementById("toolsChange");
 toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
-    if(!emptyContainerCheck(toolsString.value, toolsString)) {
+    if (!emptyContainerCheck(toolsString.value, toolsString)) {
         return false;
     }
     if (!largeDataWarning(toolsString.value, toolsString)) {
@@ -255,59 +255,33 @@ toolChange.addEventListener("click", function() {
 
     let textTools = document.getElementById("toolsSelect");
     let chainCommands = document.getElementById("chainCommands");
-    let tR = document.getElementById("textResults").textContent
+    let tR = document.getElementById("textResults").textContent;
     let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
 
-    switch (textTools.value) {
-        case "stripspaces":
-            document.getElementById("textResults").textContent = stripSpaces(textResults);
-            break;
-        case "reverse":
-            document.getElementById("textResults").textContent = reverseString(textResults);
-            break;
-        case "uppercase":
-            document.getElementById("textResults").textContent = uppercase(textResults);
-            break;
-        case "lowercase":
-            document.getElementById("textResults").textContent = lowercase(textResults);
-            break;
-        case "numbersonly":
-            document.getElementById("textResults").textContent = numbersOnly(textResults);
-            break;
-        case "lettersonly":
-            document.getElementById("textResults").textContent = lettersOnly(textResults);
-            break;
-        case "stripspecialchars":
-            document.getElementById("textResults").textContent = stripSpecialChars(textResults);
-            break;
-        case "removenumbers":
-            document.getElementById("textResults").textContent = stripNumbers(textResults);
-            break;
-        case "removeletters":
-            document.getElementById("textResults").textContent = stripLetters(textResults);
-            break;
-        case "alphabet":
-            document.getElementById("textResults").textContent = lettersToNumbers(textResults);
-            break;
-        case "uppercaseonly":
-            document.getElementById("textResults").textContent = lettersOnlyCap(textResults);
-            break;
-        case "lowercaseonly":
-            document.getElementById("textResults").textContent = lettersOnlyLow(textResults);
-            break;
-        case "specialcharsonly":
-            document.getElementById("textResults").textContent = specialCharsOnly(textResults);
-            break;
-        case "unique":
-            document.getElementById("textResults").textContent = uniqueArray(textResults).join("");
-            break;
-        case "urlencode":
-            document.getElementById("textResults").textContent = urlEncode(textResults);
-            break;
-        case "urldecode":
-            document.getElementById("textResults").textContent = urlDecode(textResults);
-            break;
-            default:
+    // Mapping object for tool functions
+    const toolFunctions = {
+        stripspaces: stripSpaces,
+        reverse: reverseString,
+        uppercase: uppercase,
+        lowercase: lowercase,
+        numbersonly: numbersOnly,
+        lettersonly: lettersOnly,
+        stripspecialchars: stripSpecialChars,
+        removenumbers: stripNumbers,
+        removeletters: stripLetters,
+        alphabet: lettersToNumbers,
+        uppercaseonly: lettersOnlyCap,
+        lowercaseonly: lettersOnlyLow,
+        specialcharsonly: specialCharsOnly,
+        unique: text => uniqueArray(text).join(""),
+        urlencode: urlEncode,
+        urldecode: urlDecode
+    };
+
+    // Get the selected tool function
+    const selectedTool = toolFunctions[textTools.value];
+    if (selectedTool) {
+        document.getElementById("textResults").textContent = selectedTool(textResults);
     }
 });
 
