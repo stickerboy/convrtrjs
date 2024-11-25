@@ -241,31 +241,33 @@ toolChange.addEventListener("click", function() {
     let chainCommands = document.getElementById("chainCommands");
     let tR = document.getElementById("textResults").textContent;
     let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
+    let preserveWhitespace = document.getElementById("preserveWhitespace")?.checked;
 
     // Mapping object for tool functions
     const toolFunctions = {
-        stripspaces: stripSpaces,
-        reverse: reverseString,
-        uppercase: uppercase,
-        lowercase: lowercase,
-        numbersonly: numbersOnly,
-        lettersonly: lettersOnly,
-        stripspecialchars: stripSpecialChars,
-        removenumbers: stripNumbers,
-        removeletters: stripLetters,
-        alphabet: lettersToNumbers,
-        uppercaseonly: lettersOnlyCap,
-        lowercaseonly: lettersOnlyLow,
-        specialcharsonly: specialCharsOnly,
-        unique: text => uniqueArray(text).join(""),
-        urlencode: urlEncode,
-        urldecode: urlDecode
+        stripspaces: (text) => stripSpaces(text),
+        stripallwhitespace: (text) => stripSpaces(text, true),
+        reverse: (text) => reverseString(text),
+        uppercase: (text) => uppercase(text),
+        lowercase: (text) => lowercase(text),
+        numbersonly: (text, preserveWhitespace) => numbersOnly(text, preserveWhitespace),
+        lettersonly: (text, preserveWhitespace) => lettersOnly(text, preserveWhitespace),
+        uppercaseonly: (text, preserveWhitespace) => lettersOnlyCap(text, preserveWhitespace),
+        lowercaseonly: (text, preserveWhitespace) => lettersOnlyLow(text, preserveWhitespace),
+        stripspecialchars: (text, preserveWhitespace) => stripSpecialChars(text, preserveWhitespace),
+        removenumbers: (text) => stripNumbers(text),
+        removeletters: (text) => stripLetters(text),
+        alphabet: (text) => lettersToNumbers(text),
+        specialcharsonly: (text, preserveWhitespace) => specialCharsOnly(text, preserveWhitespace),
+        unique: (text) => uniqueArray(text).join(""),
+        urlencode: (text) => urlEncode(text),
+        urldecode: (text) => urlDecode(text)
     };
 
     // Get the selected tool function
     const selectedTool = toolFunctions[textTools.value];
     if (selectedTool) {
-        document.getElementById("textResults").textContent = selectedTool(textResults);
+        document.getElementById("textResults").textContent = selectedTool(textResults, preserveWhitespace);
     }
 });
 
