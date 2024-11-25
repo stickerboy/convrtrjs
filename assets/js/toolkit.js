@@ -3,21 +3,17 @@ const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥ�
 const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 // Morse map
-const morseTextDict = {  
-    "-----":"0", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", 
-    "---..":"8", "----.":"9", ".-":"A", "-...":"B", "-.-.":"C", "-..":"D", ".":"E", "..-.":"F", "--.":"G", 
-    "....":"H", "..":"I", ".---":"J", "-.-":"K", ".-..":"L", "--":"M", "-.":"N", "---":"O", ".--.":"P", 
-    "--.-":"Q", ".-.":"R", "...":"S", "-":"T", "..-":"U", "...-":"V", ".--":"W", "-..-":"X", "-.--":"Y", 
-    "--..":"Z", "-.-.--":"!", ".-.-.-":".", "--..--":",", "-..-.": "/", "..--..": "?", "-.--.-": ")", "-.--.": "(", ".-...": "&", "---...": ":", "-.-.-.": ";", "-...-": "=", ".-.-.": "+", "-....-": "-", "..--.-": "_", "...-..-": "$", ".--.-.": "@"
+const morseTextDict = {
+    "-----": "0", ".----": "1", "..---": "2", "...--": "3", "....-": "4", ".....": "5", "-....": "6", "--...": "7", 
+    "---..": "8", "----.": "9", ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E", "..-.": "F", "--.": "G", 
+    "....": "H", "..": "I", ".---": "J", "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O", ".--.": "P", 
+    "--.-": "Q", ".-.": "R", "...": "S", "-": "T", "..-": "U", "...-": "V", ".--": "W", "-..-": "X", "-.--": "Y", 
+    "--..": "Z", "-.-.--": "!", ".-.-.-": ".", "--..--": ",", "-..-.": "/", "..--..": "?", "-.--.-": ")", "-.--.": "(", 
+    ".-...": "&", "---...": ":", "-.-.-.": ";", "-...-": "=", ".-.-.": "+", "-....-": "-", "..--.-": "_", "...-..-": "$", 
+    ".--.-.": "@"
+};
+const textMorseDict = Object.fromEntries(Object.entries(morseTextDict).map(([k, v]) => [v, k]));
 
-}
-const textMorseDict = {
-    "0": "-----", "1": ".----", "2": "..---", "3": "...--", "4": "....-", "5": ".....", "6": "-....", "7": "--...",
-    "8": "---..", "9": "----.", "A": ".-", "B": "-...", "C": "-.-.", "D": "-..", "E": ".", "F": "..-.", "G": "--.", 
-    "H": "....", "I": "..", "J": ".---", "K": "-.-", "L": ".-..", "M": "--", "N": "-.", "O": "---", "P": ".--.", 
-    "Q": "--.-", "R": ".-.", "S": "...", "T": "-", "U": "..-", "V": "...-", "W": ".--", "X": "-..-", "Y": "-.--", 
-    "Z": "--..", "!": "-.-.--", ".": ".-.-.-", ",": "--..--", "/": "-..-.", "?": "..--..", ")": "-.--.-", "(": "-.--.", "&": ".-...", ":": "---...", ";": "-.-.-.", "=": "-...-", "+": ".-.-.", "-": "-....-", "_": "..--.-", "$": "...-..-", "@": ".--.-."
-}
 
 /**
  * Trims whitespace from the start and end of a string. 
@@ -25,7 +21,7 @@ const textMorseDict = {
  * @returns {string} The trimmed string. 
  **/
  function cleanString(string) { 
-    return string.trimStart().trim(); 
+    return string.trim(); 
 }
 
 /**
@@ -216,29 +212,30 @@ function hexToString(string, delimiter) {
 }
 
 /**
- * Convert to Base64
- * https://stackoverflow.com/questions/30106476/using-javascripts-atob-to-decode-base64-doesnt-properly-decode-utf-8-strings
- * @param {string} string - The input string.
+ * Converts a string to Base64 encoding.
+ * @param {string} string - The input string to encode.
  * @returns {string} - The Base64-encoded string.
  */
 function stringToBase64(string) {
-    // First, use encodeURIComponent to get percent-encoded UTF-8,
-    // then convert the percent encodings into raw bytes which can be fed into btoa.
-    return btoa(encodeURIComponent(string).replace(/%([0-9A-F]{2})/g,
-        function toSolidBytes(match, p1) {
-            return String.fromCharCode("0x" + p1);
-        }));
+    const encoder = new TextEncoder();
+    const uint8Array = encoder.encode(string);
+
+    let binaryString = "";
+    for (let i = 0; i < uint8Array.length; i++) {
+        binaryString += String.fromCharCode(uint8Array[i]);
+    }
+
+    // Encode the binary string to Base64
+    return btoa(binaryString);
 }
 
 /**
  * Applies the Rot13 algorithm to the string
- * https://stackoverflow.com/a/28490254/3172872
  * @param {string} string - The input string.
  * @returns {string} - The Rot13-transformed string.
  */
 function rot13(string) {
-    // Non-letter characters will not be replaced, preserving the string
-    return /^[a-zA-Z]/.test(string) ? string.replace(/[A-Z]/gi, c => alphaRot[alphabet.indexOf(c)]) : "";
+    return string.replace(/[A-Za-z]/g, c => alphaRot[alphabet.indexOf(c)]);
 }
 
 /**
@@ -276,7 +273,7 @@ function string2Dec(string) {
  * @returns {string} - The decoded string.
  */
 function decimalToString(string) {
-    return string.trim().split(" ").map(c => String.fromCharCode(c)).join("");
+    return string.trim().split(/\s+/).map(c => String.fromCharCode(c)).join("");
 }
 
 /**
@@ -327,15 +324,21 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * // Output: "<div class="g-col-12"> ..."
  */
 function styledUniqueArrayItems(data) {
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">Unique characters</p>
-    <div class="grid mt-2 grid-auto" id="unique-chars">`;
-    data.forEach(char => {
-        result += `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}" title="${char.replace(/ /g, "Space").replace(/\t/g, "Tab")}">
-                ${char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;")}
-            </code>`;
-    });
-    result += `</div></div>`;
-    return result;
+    const uniqueCharsHTML = data.map(char => {
+        const sanitizedChar = char.replace(/ /g, "Space").replace(/\t/g, "Tab");
+        const displayChar = char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;");
+        return `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${sanitizedChar}" title="${sanitizedChar}">
+                    ${displayChar}
+                </code>`;
+    }).join("");
+
+    return `
+        <div class="g-col-12">
+            <p class="display-5 fs-5 mt-4">Unique characters</p>
+            <div class="grid mt-2 grid-auto" id="unique-chars">
+                ${uniqueCharsHTML}
+            </div>
+        </div>`;
 }
 
 /**
@@ -356,7 +359,7 @@ function styledUniqueArrayItems(data) {
 function countArrayFreq(string, chunkSize = 1, delimiter) {
     // Remove the delimiter from the string if it is present
     if (delimiter) {
-        string = string.split(delimiter).join('');
+        string = string.split(delimiter).join("");
     }
 
     // Split the string into substrings of the specified chunk size
@@ -389,22 +392,23 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
  * // Output: "<div class="g-col-12"> ..."
  */
 function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
-    // Initialize the result string with the opening div and title
-    let result = `<div class="g-col-12"><p class="display-5 fs-5 mt-4">${title}</p>
-    <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">`;
-
-    // Iterate over the data object to generate HTML for each key-value pair
-    for (let [key, value] of Object.entries(data)) {
-        result += `<div>
+    // Generate HTML for each key-value pair
+    const itemsHTML = Object.entries(data).map(([key, value]) => {
+        return `<div>
                     <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
                         ${key} - ${value}
                     </code>
-                   </div>`;
-    }
+                </div>`;
+    }).join("");
 
-    // Close the div tags and return the result string
-    result += `</div></div>`;
-    return result;
+    // Construct the final HTML structure
+    return `
+        <div class="g-col-12">
+            <p class="display-5 fs-5 mt-4">${title}</p>
+            <div class="grid grid--fill mt-2" style="--bs-column-fill: ${minColWidth}rem">
+                ${itemsHTML}
+            </div>
+        </div>`;
 }
 
 /**
@@ -425,44 +429,65 @@ function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
  * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
  */
 function createImage(width, height, filename, element, string, options = {}) {
-    var canvas = document.createElement("canvas");
+    const canvas = document.createElement("canvas");
     canvas.width = (width * 1.5) + 20;
     canvas.height = height * 1.5;
-    var ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
 
-    var bgcolor = options.bgcolor || 'white';
-    var textcolor = options.textcolor || 'black';
-    var font = options.font || "5.5rem 'TerminalGlyphs'";
-    var paddingTop = options.paddingTop || 90;
-    var download = options.download !== undefined ? options.download : true;
-    var fontAdjust = options.fontAdjust !== undefined ? options.fontAdjust : false;
+    const {
+        bgcolor = 'white',
+        textcolor = 'black',
+        font = "5.5rem 'TerminalGlyphs'",
+        paddingTop = 90,
+        download = true,
+        fontAdjust = false
+    } = options;
 
+    // Background color
     ctx.fillStyle = bgcolor;
     ctx.fillRect(10, 10, canvas.width, canvas.height);
 
+    // Text settings
     ctx.font = font;
     ctx.fillStyle = textcolor;
 
-    if (fontAdjust) {
-        var textMetrics = ctx.measureText(string);
-        var textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+    // Adjust font position if needed
+    const textY = fontAdjust ? adjustFontPosition(ctx, string, paddingTop, canvas.height) : paddingTop;
+    ctx.fillText(string, 10, textY);
 
-        // Adjust the position so the text is centered vertically
-        var textY = paddingTop + textHeight;
+    const url = canvas.toDataURL();
+    return handleDownload(url, filename, download);
+}
 
-        if (textY + textHeight > canvas.height) {
-            textY = canvas.height - textHeight;
-        }
+/**
+ * Adjusts the font position based on the text metrics.
+ * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+ * @param {string} string - The text to display in the image.
+ * @param {number} paddingTop - The padding from the top of the image to the start of the text.
+ * @param {number} canvasHeight - The height of the canvas.
+ * @returns {number} - The adjusted Y position for the text.
+ */
+function adjustFontPosition(ctx, string, paddingTop, canvasHeight) {
+    const textMetrics = ctx.measureText(string);
+    const textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
+    let textY = paddingTop + textHeight;
 
-        ctx.fillText(string, 10, textY);
-    } else {
-        ctx.fillText(string, 10, paddingTop);
+    if (textY + textHeight > canvasHeight) {
+        textY = canvasHeight - textHeight;
     }
+    return textY;
+}
 
-    var url = canvas.toDataURL();
-
+/**
+ * Handles the download of the image or returns an image element.
+ * @param {string} url - The data URL of the image.
+ * @param {string} filename - The suggested filename for downloading the image.
+ * @param {boolean} download - Whether to download the image or return it for injection.
+ * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
+ */
+function handleDownload(url, filename, download) {
     if (download) {
-        var tempAnchor = document.createElement("a");
+        const tempAnchor = document.createElement("a");
         tempAnchor.download = filename;
         tempAnchor.href = url;
         document.body.appendChild(tempAnchor);
@@ -470,7 +495,7 @@ function createImage(width, height, filename, element, string, options = {}) {
         document.body.removeChild(tempAnchor);
         return null;
     } else {
-        var img = new Image();
+        const img = new Image();
         img.src = url;
         return img;
     }

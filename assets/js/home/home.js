@@ -1,55 +1,52 @@
 /**
  * Checks for a valid binary string length (multiple of 8)
+ *
  * @param {string} string - The binary string to validate.
  * @returns {boolean} - `true` if the length is valid, otherwise `false`.
+ * @throws {Error} - If the input is not a valid binary string.
  */
 function isValidBinaryLength(string) {
     return string.length % 8 === 0;
 }
 
 /**
- * Converts a valid binary string to its corresponding UTF-8 string.
- * @param {string} binaryString - The binary string to convert.
- * @returns {string} - The resulting UTF-8 string.
+ * Converts a valid binary string to its corresponding ASCII string
+ *
+ * @param {string} string - The binary string to convert.
+ * @returns {string} - The resulting ASCII string.
  * @throws {Error} - If the input is not a valid binary string.
  */
-function binaryToString(binaryString) {
-    if (!/^[01\s]+$/.test(binaryString)) {
-        throw new Error("Input string contains invalid binary characters");
+function binaryToString(string) {
+    if(isValidBinaryLength(string)) {
+        string = string.replace(/[^10\s]/g, "");
+
+        let charCodes = string.split(" ").map(bin => {
+            bin = bin.padStart(8, "0");
+            return parseInt(bin, 2);
+        });
+
+        return String.fromCharCode(...charCodes);
+    } else {
+        throw new Error("Not a valid Binary string");
     }
-
-    binaryString = binaryString.replace(/\s+/g, ""); // Remove whitespace characters
-
-    if (!isValidBinaryLength(binaryString)) {
-        throw new Error("Binary string length must be a multiple of 8");
-    }
-
-    const byteArray = [];
-    for (let i = 0; i < binaryString.length; i += 8) {
-        const byte = binaryString.slice(i, i + 8);
-        byteArray.push(parseInt(byte, 2));
-    }
-
-    const uint8Array = new Uint8Array(byteArray);
-    const decoder = new TextDecoder("utf-8");
-    return decoder.decode(uint8Array);
 }
 
 /**
- * Converts a Base64-encoded string to its original decoded string
- * Going backwards: from bytestream, to percent-encoding, to original string
- * // https://stackoverflow.com/a/30106551/3172872
- *
- * @param {string} string - The Base64-encoded string.
- * @returns {string} - The decoded original string.
+ * Converts a Base64 encoded string to a regular string.
+ * @param {string} base64 - The Base64 encoded string.
+ * @returns {string} - The decoded string.
  * @throws {Error} - If the input is not a valid Base64 string.
  */
-function base64ToString(string) {
-    // 
+function base64ToString(base64) {
     try {
-        return decodeURIComponent(atob(string).split("").map(function(c) {
-            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        }).join(""));
+        const binaryString = atob(base64);
+        const bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+        }
+
+        const decoder = new TextDecoder();
+        return decoder.decode(bytes);
     } catch (e) {
         throw new Error("Not a valid Base64 string");
     }
@@ -63,20 +60,19 @@ function base64ToString(string) {
  * @throws {Error} - If the input contains invalid Morse code characters.
  */
 function morseToString(string) {
-    if(/^[ /.-]*$/.test(string)){
-        return string // test valid morse
-            .replaceAll(" / "," ")
-            .split(" ")
-            .map(word => word
-                        .split(" ") // get character code,
-                        .map(character => morseTextDict[character])
-                        .join("")
-            )
-            .join(" ")
-            .trim();
-    } else {
+    if (!/^[\s./-]*$/.test(string)) {
         throw new Error("Morse code contains invalid characters");
     }
+
+    return string
+        .split(" / ")
+        .map(word => word
+            .split(" ")
+            .map(character => morseTextDict[character])
+            .join("")
+        )
+        .join(" ")
+        .trim();
 }
 
 /**
@@ -84,22 +80,22 @@ function morseToString(string) {
  *
  * @param {string} string - The input string to be converted.
  * @returns {string} - The Morse code representation of the input string.
- *
+ * 
  * @example
  * // Input: "hello world"
  * // Output: ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
  */
 function stringToMorse(string) {
     return string
-            .toLocaleUpperCase()
-            .split(" ")
-            .map(word => word
-                        .split("") // get character code,
-                        .map(character => textMorseDict[character])
-                        .join(" ")
-            )
-            .join(" / ")
-            .trim();
+        .toUpperCase()
+        .split(" ")
+        .map(word => word
+            .split("")
+            .map(character => textMorseDict[character] || "")
+            .join(" ")
+        )
+        .join(" / ")
+        .trim();
 }
 
 /**
@@ -115,9 +111,16 @@ function stringToMorse(string) {
  * // Output: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100"
  */
 function stringToMorsenary(string) {
-    let morsenarySetting = document.getElementById("morsenarySetting").value;
-    return morsenarySetting === "default" ? stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '-' : '.')) :
-    stringToBinary(string).replace(/ /g, '').replace(/[01]/g, (match) => (match === '1' ? '.' : '-'));
+    const morsenarySetting = document.getElementById("morsenarySetting").value;
+    const binaryString = stringToBinary(string).replace(/ /g, '');
+
+    return binaryString.replace(/[01]/g, match => {
+        if (morsenarySetting === "default") {
+            return match === '1' ? '-' : '.';
+        } else {
+            return match === '1' ? '.' : '-';
+        }
+    });
 }
 
 /**
@@ -133,84 +136,77 @@ function stringToMorsenary(string) {
  * // Output: "hello, world"
  */
 function morsenaryToString(string) {
-    if(/^[ /.-]*$/.test(string)) {
-        let morsenarySetting = document.getElementById("morsenarySetting").value;
-        string = morsenarySetting === "default" ? string.replace(/[.-]/g, (match) => (match === '.' ? '0' : '1')) : string.replace(/[.-]/g, (match) => (match === '.' ? '1' : '0'));
-        return binaryToString(splitString(string, 8));
-    } else {
-       throw new Error("Morsenary contains invalid characters");
+    if (!/^[\s./-]*$/.test(string)) {
+        throw new Error("Morsenary contains invalid characters");
     }
+
+    const morsenarySetting = document.getElementById("morsenarySetting").value;
+
+    // Replace Morsenary code with binary representation
+    const binaryString = string.replace(/[.-]/g, match => {
+        if (morsenarySetting === "default") {
+            return match === '.' ? '0' : '1';
+        } else {
+            return match === '.' ? '1' : '0';
+        }
+    });
+
+    // Convert binary string back to text
+    return binaryToString(binaryString.match(/.{1,8}/g).join(" "));
 }
 
 /**
- * Flips text upside down (custom alphabet mapping)
+ * Flips text upside down (custom alphabet mapping).
  *
  * @param {string} string - The input string to be flipped.
- * @param {string} alphabet - The original alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
- * @param {string[]} replacement - An array of replacement characters corresponding to each character in the alphabet.
+ * @param {string} [alphabet=alphabet] - The original alphabet (e.g., "abcdefghijklmnopqrstuvwxyz").
+ * @param {string} [replacement=alphaFlip] - A string of replacement characters corresponding to each character in the alphabet.
  * @returns {string} - The flipped string.
  *
  * @example
- * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement array ["z", "y", "x", ...]
+ * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement string "z...a"
  * // Output: "pןɹoʍ oןןǝɥ"
  */
-function flipText(string, alphabet, replacement) {
-	return Array.from(string).map(c => 
-        typeof replacement[alphabet.search(c)] == "undefined" ? " " : replacement[alphabet.search(c)]
-    ).join("");
+function flipText(string, originalAlphabet = alphabet, replacement = alphaFlip) {
+    const flipMap = Object.fromEntries([...originalAlphabet].map((char, index) => [char, replacement[index]]));
+    return [...string].map(c => flipMap[c] || c).reverse().join('');
 }
 
 /**
  * Provides various information about a given string based on the specified stat
  *
  * @param {string} string - The input string to analyze.
- * @param {string} stat - The type of information to retrieve (e.g., "word-count", "char-count", etc.).
+ * @param {string} stat - The type of information to retrieve / statistic to calculate (e.g., "word-count", "char-count", etc.).
  * @param {string} delimiter - Optional delimiter used for splitting words or characters.
- * @returns {number|string} - The requested statistic or an error message if the stat is not available.
+ * @returns {number|string} - The calculated statistic or an error message if the stat is not available.
  *
  * @example
  * // Input: "Hello, world!", stat: "word-count", delimiter: " "
  * // Output: 2
  */
-function stringStats(string, stat, delimiter) {
-    let split = delimiter ? delimiter : " ";
+function stringStats(string, stat, delimiter = " ") {
+    // Mapping object for statistic functions
+    const statFunctions = {
+        "word-count": str => str.split(delimiter).length,
+        "char-count": str => str.length,
+        "char-count-ns": str => stripSpaces(str).length,
+        "letter-count": str => lettersOnly(str).length,
+        "letter-count-caps": str => lettersOnlyCap(str, true).length,
+        "letter-count-low": str => lettersOnlyLow(str).length,
+        "number-count": str => numbersOnly(str).length,
+        "special-count": str => specialCharsOnly(str, true).length,
+        "special-count-ns": str => specialCharsOnly(str).length
+    };
 
-    switch (stat) {
-        case "word-count":
-            return string.split(split).length;
-        break;
-        case "char-count":
-            return string.length;
-        break;
-        case "char-count-ns":
-            return stripSpaces(string).length;
-        break;
-        case "letter-count":
-            return lettersOnly(string).length;
-        break;
-        case "letter-count-caps":
-            return lettersOnlyCap(string, true).length;
-        break;
-        case "letter-count-low":
-            return lettersOnlyLow(string).length;
-        break;
-        case "number-count":
-            return numbersOnly(string).length;
-        break;
-        case "special-count":
-            return specialCharsOnly(string, true).length;
-        break;
-        case "special-count-ns":
-            return specialCharsOnly(string).length;
-        break;
-        default:
-            return "No stat specified or stat is not available";
-    }
+    // Get the selected stat function
+    const selectedStatFunction = statFunctions[stat];
+    return selectedStatFunction ? selectedStatFunction(string) : "No statistic specified or statistic is not available";
 }
+
 
 // Re-code Hex on delimiter change
 let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
-hexDelimiterSelect && hexDelimiterSelect.addEventListener("change", function() {
+hexDelimiterSelect.addEventListener("change", function() {
     let hexData = document.getElementById("form-hex").value;
     if(hexData === "") {
         return;
@@ -220,7 +216,7 @@ hexDelimiterSelect && hexDelimiterSelect.addEventListener("change", function() {
 
 // Re-code Morsenary on delimiter change
 let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect && morsenarySelect.addEventListener("change", function() {
+morsenarySelect.addEventListener("change", function() {
     let morsenaryData = document.getElementById("form-morsenary").value;
     if(morsenaryData === "") {
         return;
@@ -228,12 +224,13 @@ morsenarySelect && morsenarySelect.addEventListener("change", function() {
     document.getElementById("mrsnryDecode").click();
 });
 
+
 // Text tools
 const toolChange = document.getElementById("toolsChange");
-toolChange && toolChange.addEventListener("click", function() {
+toolChange.addEventListener("click", function() {
     let toolsString = document.getElementById("toolsTextarea");
 
-    if(!emptyContainerCheck(toolsString.value, toolsString)) {
+    if (!emptyContainerCheck(toolsString.value, toolsString)) {
         return false;
     }
     if (!largeDataWarning(toolsString.value, toolsString)) {
@@ -242,68 +239,40 @@ toolChange && toolChange.addEventListener("click", function() {
 
     let textTools = document.getElementById("toolsSelect");
     let chainCommands = document.getElementById("chainCommands");
-    let tR = document.getElementById("textResults").textContent
+    let tR = document.getElementById("textResults").textContent;
     let textResults = chainCommands.checked && tR.length > 0 ? tR : toolsString.value;
 
-    switch (textTools.value) {
-        case "stripspaces":
-            document.getElementById("textResults").innerHTML = stripSpaces(textResults);
-            break;
-        case "stripallwhitespace":
-            document.getElementById("textResults").innerHTML = stripSpaces(textResults, true);
-            break;
-        case "reverse":
-            document.getElementById("textResults").textContent = reverseString(textResults);
-            break;
-        case "uppercase":
-            document.getElementById("textResults").textContent = uppercase(textResults);
-            break;
-        case "lowercase":
-            document.getElementById("textResults").textContent = lowercase(textResults);
-            break;
-        case "numbersonly":
-            document.getElementById("textResults").textContent = numbersOnly(textResults);
-            break;
-        case "lettersonly":
-            document.getElementById("textResults").textContent = lettersOnly(textResults);
-            break;
-        case "stripspecialchars":
-            document.getElementById("textResults").textContent = stripSpecialChars(textResults);
-            break;
-        case "removenumbers":
-            document.getElementById("textResults").textContent = stripNumbers(textResults);
-            break;
-        case "removeletters":
-            document.getElementById("textResults").textContent = stripLetters(textResults);
-            break;
-        case "alphabet":
-            document.getElementById("textResults").textContent = lettersToNumbers(textResults);
-            break;
-        case "uppercaseonly":
-            document.getElementById("textResults").textContent = lettersOnlyCap(textResults);
-            break;
-        case "lowercaseonly":
-            document.getElementById("textResults").textContent = lettersOnlyLow(textResults);
-            break;
-        case "specialcharsonly":
-            document.getElementById("textResults").textContent = specialCharsOnly(textResults);
-            break;
-        case "unique":
-            document.getElementById("textResults").textContent = uniqueArray(textResults).join("");
-            break;
-        case "urlencode":
-            document.getElementById("textResults").textContent = urlEncode(textResults);
-            break;
-        case "urldecode":
-            document.getElementById("textResults").textContent = urlDecode(textResults);
-            break;
-            default:
+    // Mapping object for tool functions
+    const toolFunctions = {
+        stripspaces: stripSpaces,
+        reverse: reverseString,
+        uppercase: uppercase,
+        lowercase: lowercase,
+        numbersonly: numbersOnly,
+        lettersonly: lettersOnly,
+        stripspecialchars: stripSpecialChars,
+        removenumbers: stripNumbers,
+        removeletters: stripLetters,
+        alphabet: lettersToNumbers,
+        uppercaseonly: lettersOnlyCap,
+        lowercaseonly: lettersOnlyLow,
+        specialcharsonly: specialCharsOnly,
+        unique: text => uniqueArray(text).join(""),
+        urlencode: urlEncode,
+        urldecode: urlDecode
+    };
+
+    // Get the selected tool function
+    const selectedTool = toolFunctions[textTools.value];
+    if (selectedTool) {
+        document.getElementById("textResults").textContent = selectedTool(textResults);
     }
 });
 
+
 // Flip text upside down
 const flipButton = document.getElementById("flipDecode");
-flipButton && flipButton.addEventListener("click", function() {
+flipButton.addEventListener("click", function() {
     const flipString = document.getElementById("flipText");
 
     if(!emptyContainerCheck(flipString.value, flipString)) {
@@ -316,41 +285,66 @@ flipButton && flipButton.addEventListener("click", function() {
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
-                                                        flipText(flipString.value, alphabet, alphaFlip) : 
-                                                        reverseString(flipText(flipString.value, alphabet, alphaFlip));
+                                                         flipText(flipString.value) : 
+                                                         reverseString(flipText(flipString.value));
 });
+
 
 // Frequencies
 const freqButton = document.getElementById("frequenciesDecode");
-freqButton && freqButton.addEventListener("click", function() {
+freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("frequenciesText");
-    let freqResults = document.getElementById("frequenciesResults");
+    const freqResults = document.getElementById("frequenciesResults");
     freqResults.innerHTML = "";
 
-    if(!emptyContainerCheck(freqString.value, freqString)) {
+    if (!emptyContainerCheck(freqString.value, freqString)) {
         return false;
     }
     if (!largeDataWarning(freqString.value, freqString)) {
         return false;
     }
 
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Word count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "word-count")}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count (no spaces)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "char-count-ns")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only capitals)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-caps")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Letter count (only lowercase)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "letter-count-low")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Number count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "number-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count")}</code>&nbsp;</div>`);
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Special character count (no spaces)</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${stringStats(freqString.value, "special-count-ns")}</code>&nbsp;</div>`);
-    
-    freqResults.insertAdjacentHTML("beforeend", `${styledUniqueArrayItems(uniqueArray(freqString.value))}`);
-    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`);
+    // Stats to display
+    const stats = [
+        { label: "Word count", stat: "word-count" },
+        { label: "Character count", stat: "char-count" },
+        { label: "Character count (no spaces)", stat: "char-count-ns" },
+        { label: "Letter count", stat: "letter-count" },
+        { label: "Letter count (only capitals)", stat: "letter-count-caps" },
+        { label: "Letter count (only lowercase)", stat: "letter-count-low" },
+        { label: "Number count", stat: "number-count" },
+        { label: "Special character count", stat: "special-count" },
+        { label: "Special character count (no spaces)", stat: "special-count-ns" }
+    ];
+
+    // Insert each stat result
+    stats.forEach(({ label, stat }) => {
+        freqResults.insertAdjacentHTML(
+            "beforeend",
+            `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
+                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
+                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    ${stringStats(freqString.value, stat)}
+                </code>&nbsp;<br />
+            </div>`
+        );
+    });
+
+    freqResults.insertAdjacentHTML(
+        "beforeend",
+        `${styledUniqueArrayItems(uniqueArray(freqString.value))}`
+    );
+    freqResults.insertAdjacentHTML(
+        "beforeend",
+        `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`
+    );
 });
+
+
 
 // Replace characters
 const replaceButton = document.getElementById("replaceDecode");
-replaceButton && replaceButton.addEventListener("click", function() {
+replaceButton.addEventListener("click", function() {
     const replaceString = document.getElementById("replaceText");
     const replaceOld = document.getElementById("replaceValue");
     const replaceNew = document.getElementById("replacementValue");

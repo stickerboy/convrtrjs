@@ -1,41 +1,25 @@
 /**
- * Shifts a hex string left or right by a specified value
- * @param {string} hexString - The input hex string.
- * @param {number} shiftValue - The value to shift by.
+ * Shifts the hex values in a hexadecimal string by a given shift value.
+ * @param {string} hexString - The input hexadecimal string.
+ * @param {number} shiftValue - The value by which to shift each byte.
  * @param {string} delimiter - The delimiter used in the hex string.
- * @returns {string} - The shifted hex string.
- * @throws {Error} - If the input is invalid.
- * 
- * @example
- * // Input: "74657374" (hex for "test"), shiftValue: 2, delimiter: ""
- * // Output: "76 65 73 74"
+ * @returns {string} - The shifted hexadecimal string.
+ * @throws {Error} - If the input hex string contains invalid characters.
  */
 function shiftHexString(hexString, shiftValue, delimiter) {
     if (!isValidHex(hexString, delimiter)) {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
+    hexString = cleanString(hexString);
 
     // Convert hex string to byte array
-    const hexArray = hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16));
-    const byteArray = new Uint8Array(hexArray);
+    const hexArray = hexString.split(delimiter).map(byte => parseInt(byte, 16));
 
-    // Decode byte array to a string
-    const decoder = new TextDecoder();
-    const decodedString = decoder.decode(byteArray);
-
-    // Shift each character's code point
-    const shiftedString = Array.from(decodedString).map(char => {
-        const codePoint = char.codePointAt(0) + parseInt(shiftValue);
-        return String.fromCodePoint(codePoint);
-    }).join("");
-
-    // Encode the shifted string back to a byte array
-    const encoder = new TextEncoder();
-    const shiftedByteArray = encoder.encode(shiftedString);
+    // Shift each byte value
+    const shiftedHexArray = hexArray.map(byte => (byte + parseInt(shiftValue)) & 0xFF);
 
     // Convert byte array back to a hex string
-    const shiftedHexArray = Array.from(shiftedByteArray).map(byte => byte.toString(16).padStart(2, "0"));
-    const result = shiftedHexArray.join(delimiter);
+    const result = shiftedHexArray.map(byte => byte.toString(16).padStart(2, '0')).join(delimiter);
 
     return result;
 }
@@ -164,17 +148,17 @@ shiftButton && shiftButton.addEventListener("click", function() {
         return false;
     }
     try {
-        shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
+        var shiftedHexString = shiftHexString(shiftString.value, shiftValue.value, shiftHexDelimiter);
     } catch (e) {
         showToast("Error", `An error occurred trying to shift the hex string: ${e.message}`, "danger");
         return;
     }
 
-    document.getElementById("text-tab-pane").textContent = hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter);
-    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("hex-tab-pane").textContent = shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter);
-    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
-    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftHexString(cleanString(shiftString.value), shiftValue.value, shiftHexDelimiter), shiftHexDelimiter));
+    document.getElementById("text-tab-pane").textContent = hexToString(shiftedHexString, shiftHexDelimiter);
+    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("hex-tab-pane").textContent = shiftedHexString;
+    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftedHexString, shiftHexDelimiter));
 });
 
 // Reverse Hex
@@ -215,12 +199,12 @@ reverseHexButton && reverseHexButton.addEventListener("click", function() {
 const freqButton = document.getElementById("hexfrequenciesDecode");
 freqButton && freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("hexfrequenciesText");
-    let freqResults = document.getElementById("hexfrequenciesResults");
-    let hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
+    const freqResults = document.getElementById("hexfrequenciesResults");
+    const hexFrequenciesDelimiter = document.getElementById("hexfrequenciesDelimiter").value;
 
     freqResults.innerHTML = "";
 
-    if(!emptyContainerCheck(freqString.value, freqString)) {
+    if (!emptyContainerCheck(freqString.value, freqString)) {
         return false;
     }
     if (!largeDataWarning(freqString.value, freqString)) {
@@ -228,24 +212,46 @@ freqButton && freqButton.addEventListener("click", function() {
     }
 
     try {
-        generateHexFrequencies(freqString.value, hexFrequenciesDelimiter)
+        generateHexFrequencies(freqString.value, hexFrequenciesDelimiter);
     } catch (e) {
         showToast("Error", `An error occurred trying to generate frequencies: ${e.message}`, "danger");
         return;
     }
 
-    freqResults.insertAdjacentHTML("beforeend", `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3"><span class="display-6 fs-5">Character count</span>&nbsp;<br /><code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">${freqString.value.replaceAll(hexFrequenciesDelimiter, "").length}</code>&nbsp;<br /></div>`);
-    freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 2), "Hex frequencies")}`);
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 4), "Hex frequencies [double]", 8)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 6), "Hex frequencies [triple]", 9)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 8)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 7), "Hex frequencies [quad]", 10)}`);
-    }
-    if(objectSize(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10)) > 0 ) {
-        freqResults.insertAdjacentHTML("beforeend", `${styledArrayFrequencies(generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, 10), "Hex frequencies [quint]", 12)}`);
-    }
+    // Stats to display
+    const stats = [
+        { label: "Character count", value: freqString.value.replaceAll(hexFrequenciesDelimiter, "").length }
+    ];
+
+    // Insert each stat result
+    stats.forEach(({ label, value }) => {
+        freqResults.insertAdjacentHTML(
+            "beforeend",
+            `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
+                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
+                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    ${value}
+                </code>&nbsp;<br />
+            </div>`
+        );
+    });
+
+    // Insert hex frequency results
+    const hexFrequencies = [
+        { delimiterLength: 2, label: "Hex frequencies" },
+        { delimiterLength: 4, label: "Hex frequencies [double]", minSize: 8 },
+        { delimiterLength: 6, label: "Hex frequencies [triple]", minSize: 9 },
+        { delimiterLength: 7, label: "Hex frequencies [quad]", minSize: 10 },
+        { delimiterLength: 10, label: "Hex frequencies [quint]", minSize: 12 }
+    ];
+
+    hexFrequencies.forEach(({ delimiterLength, label, minSize = 0 }) => {
+        const frequencies = generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, delimiterLength);
+        if (objectSize(frequencies) > 0) {
+            freqResults.insertAdjacentHTML(
+                "beforeend",
+                `${styledArrayFrequencies(frequencies, label, minSize)}`
+            );
+        }
+    });
 });

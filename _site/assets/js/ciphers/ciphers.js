@@ -62,46 +62,30 @@ function substituteChars(string, key) {
 }
 
 /**
- * Generates hash values using various hash algorithms
+ * Generates a hash for the given string based on the specified hash method.
  *
  * @param {string} string - The input string to be hashed.
- * @param {string} hash - The hash method (e.g., "MD5", "SHA1", etc.).
- * @param {string} key - Optional key (if applicable for the hash method).
- * @returns {string} - The hash value or an error message if the method is invalid or not supported.
+ * @param {string} hash - The hash method to be used (e.g., "MD5", "SHA1", etc.).
+ * @returns {string} - The generated hash value or an error message if the method is invalid or not supported.
  *
  * @example
  * // Input: "Hello, World!" with hash method "MD5"
  * // Output: "65a8e27d8879283831b664bd8b7f0ad4"
  */
-function generateHashes(string, hash, key) {
-    switch (hash) {
-        case "MD5": 
-            return CryptoJS.MD5(string);
-        break;
-        case "SHA1":
-            return CryptoJS.SHA1(string);
-        break;
-        case "SHA256":
-            return CryptoJS.SHA256(string);
-        break;
-        case "SHA512":
-            return CryptoJS.SHA512(string);
-        break;
-        case "SHA3512":
-            return CryptoJS.SHA3(string, { outputLength: 512 });
-        break;
-        case "SHA3384":
-            return CryptoJS.SHA3(string, { outputLength: 384 });
-        break;
-        case "SHA3256":
-            return CryptoJS.SHA3(string, { outputLength: 256 });
-        break;
-        case "SHA3224":
-            return CryptoJS.SHA3(string, { outputLength: 224 });
-        break;
-        default:
-            return "Invalid hash method provided or not supported";
-    }
+function generateHashes(string, hash) {
+    const hashFunctions = {
+        MD5: CryptoJS.MD5,
+        SHA1: CryptoJS.SHA1,
+        SHA256: CryptoJS.SHA256,
+        SHA512: CryptoJS.SHA512,
+        SHA3512: string => CryptoJS.SHA3(string, { outputLength: 512 }),
+        SHA3384: string => CryptoJS.SHA3(string, { outputLength: 384 }),
+        SHA3256: string => CryptoJS.SHA3(string, { outputLength: 256 }),
+        SHA3224: string => CryptoJS.SHA3(string, { outputLength: 224 })
+    };
+
+    const selectedHashFunction = hashFunctions[hash];
+    return selectedHashFunction ? selectedHashFunction(string).toString() : "Invalid hash method provided or not supported";
 }
 
 /**
@@ -779,27 +763,40 @@ atbashDecodeButton && atbashDecodeButton.addEventListener("click", function() {
     document.getElementById("atbashResults").textContent = atbashCipher(atbashResults);
 });
 
-
 // Hash strings
 const hashButton = document.getElementById("hashDecode");
 hashButton && hashButton.addEventListener("click", function() {
     const hashString = document.getElementById("hashText");
-    let hashResults = document.getElementById("hashResults");
+    const hashResults = document.getElementById("hashResults");
     hashResults.innerHTML = "";
 
-    if(!emptyContainerCheck(hashString.value, hashString)) {
+    if (!emptyContainerCheck(hashString.value, hashString)) {
         return false;
     }
     if (!largeDataWarning(hashString.value, hashString)) {
         return false;
     }
 
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">MD5</span>&nbsp;</th><td>${generateHashes(hashString.value, "MD5")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-1</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA1")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-256</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-512</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA512")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [224]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3224")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [256]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3256")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [384]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3384")}&nbsp;</td></tr>`);
-    hashResults.insertAdjacentHTML("beforeend", `<tr><th scope="row"><span class="display-6 fs-6 fw-normal">SHA-3 [512]</span>&nbsp;</th><td>${generateHashes(hashString.value, "SHA3512")}&nbsp;</td></tr>`);
+    // Mapping object for hash types and their labels
+    const hashTypes = [
+        { label: "MD5", type: "MD5" },
+        { label: "SHA-1", type: "SHA1" },
+        { label: "SHA-256", type: "SHA256" },
+        { label: "SHA-512", type: "SHA512" },
+        { label: "SHA-3 [224]", type: "SHA3224" },
+        { label: "SHA-3 [256]", type: "SHA3256" },
+        { label: "SHA-3 [384]", type: "SHA3384" },
+        { label: "SHA-3 [512]", type: "SHA3512" }
+    ];
+
+    // Insert each hash result
+    hashTypes.forEach(({ label, type }) => {
+        hashResults.insertAdjacentHTML(
+            "beforeend",
+            `<tr>
+                <th scope="row"><span class="display-6 fs-6 fw-normal">${label}</span>&nbsp;</th>
+                <td>${generateHashes(hashString.value, type)}&nbsp;</td>
+            </tr>`
+        );
+    });
 });
