@@ -458,6 +458,12 @@ code {
     }
 }
 
+.convrtr-results {
+    overflow: hidden auto;
+    max-height: 24rem;
+    text-align: justify;
+}
+
 .nav-pills {
     .nav-link {
     --bs-nav-link-padding-y: 0.625rem;

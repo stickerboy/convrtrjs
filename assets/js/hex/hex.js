@@ -238,7 +238,7 @@ freqButton && freqButton.addEventListener("click", function() {
 
     // Insert hex frequency results
     const hexFrequencies = [
-        { delimiterLength: 2, label: "Hex frequencies" },
+        { delimiterLength: 2, label: "Hex frequencies" , minSize: 6 },
         { delimiterLength: 4, label: "Hex frequencies [double]", minSize: 8 },
         { delimiterLength: 6, label: "Hex frequencies [triple]", minSize: 9 },
         { delimiterLength: 7, label: "Hex frequencies [quad]", minSize: 10 },
