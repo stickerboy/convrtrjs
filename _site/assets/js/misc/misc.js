@@ -1,8 +1,8 @@
 // Braille
-var braille = [[" "," "],["⠀"," "],["⠸","_"],["⠤","-"],["⠠",","],["⠰",";"],["⠱",":"],["⠮","!"],["⠹","?"],["⠨","."],["⠷","("],["⠪","["],["⠈","@"],["⠡","*"],["⠌","/"],["⠄","'"],["⠐","\""],["⠳","\\"],["⠯","&"],["⠩","%"],["⠘","^"],["⠬","+"],["⠣","<"],["⠜",">"],["⠫","$"],["⠴","0"],["⠂","1"],["⠆","2"],["⠒","3"],["⠲","4"],["⠢","5"],["⠖","6"],["⠶","7"],["⠦","8"],["⠔","9"],["⠁","A"],["⠃","B"],["⠉","C"],["⠙","D"],["⠑","E"],["⠋","F"],["⠛","G"],["⠓","H"],["⠊","I"],["⠚","J"],["⠅","K"],["⠇","L"],["⠍","M"],["⠝","N"],["⠕","O"],["⠏","P"],["⠟","Q"],["⠗","R"],["⠎","S"],["⠞","T"],["⠥","U"],["⠧","V"],["⠺","W"],["⠭","X"],["⠵","Z"],["⠻","]"],["⠼","#"],["⠽","Y"],["⠾",")"],["⠿","="]];
+var braille = [[" ", " "], ["⠀", " "], ["⠸", "_"], ["⠤", "-"], ["⠠", ","], ["⠰", ";"], ["⠱", ":"], ["⠮", "!"], ["⠹", "?"], ["⠨", "."], ["⠷", "("], ["⠪", "["], ["⠈", "@"], ["⠡", "*"], ["⠌", "/"], ["⠄", "'"], ["⠐", "\""], ["⠳", "\\"], ["⠯", "&"], ["⠩", "%"], ["⠘", "^"], ["⠬", "+"], ["⠣", "<"], ["⠜", ">"], ["⠫", "$"], ["⠴", "0"], ["⠂", "1"], ["⠆", "2"], ["⠒", "3"], ["⠲", "4"], ["⠢", "5"], ["⠖", "6"], ["⠶", "7"], ["⠦", "8"], ["⠔", "9"], ["⠁", "A"], ["⠃", "B"], ["⠉", "C"], ["⠙", "D"], ["⠑", "E"], ["⠋", "F"], ["⠛", "G"], ["⠓", "H"], ["⠊", "I"], ["⠚", "J"], ["⠅", "K"], ["⠇", "L"], ["⠍", "M"], ["⠝", "N"], ["⠕", "O"], ["⠏", "P"], ["⠟", "Q"], ["⠗", "R"], ["⠎", "S"], ["⠞", "T"], ["⠥", "U"], ["⠧", "V"], ["⠺", "W"], ["⠭", "X"], ["⠵", "Z"], ["⠻", "]"], ["⠼", "#"], ["⠽", "Y"], ["⠾", ")"], ["⠿", "="]];
 
 // Forerunner
-const fralphabet = [[" "," "],["…","0"],["†","1"],["‡","2"],["ˆ","3"],["Š","4"],["Œ","5"],["Ž","6"],["‘","7"],["’","8"],["“","9"],["™","A"],["š","B"],["œ","C"],["ž","D"],["Ÿ","E"],["¡","F"],["¤","G"],["¥","H"],["¦","I"],["§","J"],["«","K"],["¬","L"],["®","M"],["¯","N"],["±","O"],["²","P"],["´","Q"],["µ","R"],["º","S"],["»","T"],["½","U"],["¾","V"],["¿","W"],["À","X"],["Â","Y"],["Ã","Z"],["Å","Æ"]
+const fralphabet = [[" ", " "], ["…", "0"], ["†", "1"], ["‡", "2"], ["ˆ", "3"], ["Š", "4"], ["Œ", "5"], ["Ž", "6"], ["‘", "7"], ["’", "8"], ["“", "9"], ["™", "A"], ["š", "B"], ["œ", "C"], ["ž", "D"], ["Ÿ", "E"], ["¡", "F"], ["¤", "G"], ["¥", "H"], ["¦", "I"], ["§", "J"], ["«", "K"], ["¬", "L"], ["®", "M"], ["¯", "N"], ["±", "O"], ["²", "P"], ["´", "Q"], ["µ", "R"], ["º", "S"], ["»", "T"], ["½", "U"], ["¾", "V"], ["¿", "W"], ["À", "X"], ["Â", "Y"], ["Ã", "Z"], ["Å", "Æ"]
 ];
 
 /**
@@ -76,10 +76,10 @@ function convertElements(string, sourceProp, targetProp, removeDelimiters) {
 
 // Periodic element conversion
 const elementsChange = document.getElementById("elementsChange");
-elementsChange && elementsChange.addEventListener("click", function() {
+elementsChange && elementsChange.addEventListener("click", function () {
     let elementsString = document.getElementById("elementsTextarea");
 
-    if(!emptyContainerCheck(elementsString.value, elementsString)) {
+    if (!emptyContainerCheck(elementsString.value, elementsString)) {
         return false;
     }
     if (!largeDataWarning(elementsString.value, elementsString)) {
@@ -92,7 +92,7 @@ elementsChange && elementsChange.addEventListener("click", function() {
 
     try {
         convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value);
-    } catch(e) {
+    } catch (e) {
         showToast("Error", `An error occurred trying to map elements: ${e.message}`, "danger");
         return;
     }
@@ -108,34 +108,34 @@ let brailleImage = document.getElementById("generateBrailleImage");
 let brailleSwitch = document.getElementById("brailleSwitch");
 
 const brailleButton = document.getElementById("brailleConvert");
-brailleButton && brailleButton.addEventListener("click", function() {
+brailleButton && brailleButton.addEventListener("click", function () {
     const brailleString = document.getElementById("brailleTextarea");
 
-    if(!emptyContainerCheck(brailleString.value, brailleString)) {
+    if (!emptyContainerCheck(brailleString.value, brailleString)) {
         bR.textContent = "";
         return false;
     }
     if (!largeDataWarning(brailleString.value, brailleString)) {
         return false;
     }
-    
-    if(brailleSwitch.checked) {
+
+    if (brailleSwitch.checked) {
         bR.textContent = convertBraille(brailleString.value, 'braille');
     } else {
         bIR.textContent = convertBraille(brailleString.value, 'text');
     }
 });
 
-brailleSwitch && brailleSwitch.addEventListener("click", function() {
-    if(brailleSwitch.checked) {
+brailleSwitch && brailleSwitch.addEventListener("click", function () {
+    if (brailleSwitch.checked) {
         this.nextElementSibling.innerText = "Convert Braille to Text";
     } else {
         this.nextElementSibling.innerText = "Convert Text to Braille";
     }
 });
 
-brailleImage && brailleImage.addEventListener("click", function() {
-    if(!emptyContainerCheck(bIR.innerHTML, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
+brailleImage && brailleImage.addEventListener("click", function () {
+    if (!emptyContainerCheck(bIR.innerHTML, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
         return false;
     }
     let bOptions = {};
@@ -148,13 +148,80 @@ brailleImage && brailleImage.addEventListener("click", function() {
     createImage(bIR.offsetWidth, bIR.offsetHeight, "braille.png", brailleImage, bIR.innerText, bOptions);
 });
 
+// Periodic elements
+const elementInfo = document.getElementById("elementstableResults");
+document.querySelectorAll(".p-element").forEach(item => {
+    item.addEventListener("click", event => {
+        const elementNumber = parseInt(event.currentTarget.getAttribute("data-element"), 10);
+        const element = ELEMENTS.find(el => el.number === elementNumber);
+        document.querySelectorAll(".p-element").forEach(button => button.classList.remove("active"));
+        event.currentTarget.classList.add("active");
+
+        if (element) {
+            const rows = [
+                { label: "Atomic number", value: element.number },
+                { label: "Atomic symbol", value: element.symbol },
+                { label: "Discovered by", value: element.discovered_by },
+                { label: "Named by", value: element.named_by },
+                { label: "Category", value: element.category },
+                { label: "Phase", value: element.phase },
+                { label: "Group", value: element.group },
+                { label: "Period", value: element.period },
+                { label: "Block", value: element.block },
+                { label: "Density", value: element.density },
+                { label: "Further information", value: element.source ? `<a href="${element.source}" title="${element.name} wikipedia page" class="text-convrtr">${element.source}</a>` : null },
+                { label: "Electron configuration", value: `${element.electron_configuration} / ${element.electron_configuration_semantic}` }
+            ];
+
+            let content = "";
+            for (let i = 0; i < rows.length; i += 2) {
+                const row1 = rows[i];
+                const row2 = rows[i + 1];
+
+                content += `
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mb-2">
+                        <div class="col fw-bold">${row1.label}</div>
+                        <div class="col">${row1.value}</div>`;
+
+                if (row2 && row2.value !== null && row2.value !== undefined) {
+                    content += `
+                        <div class="col fw-bold">${row2.label}</div>
+                        <div class="col">${row2.value}</div>`;
+                }
+
+                content += `</div>`;
+            }
+
+            const elementContent = `
+                <div class="container elements-table">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <h3>${element.name}</h3>
+                            <p>${element.summary}</p>
+                        </div>
+                    </div>
+                    ${content}
+                </div>`;
+
+            elementInfo.innerHTML = elementContent;
+
+            // Scroll to the relevant parts of the page
+            event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            elementInfo.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        }
+    });
+});
+
+
+
+
 // Forerunner glyphs
-const forerunnerButtons    = document.getElementsByClassName("fr-glyph");
+const forerunnerButtons = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
 let fIR = document.getElementById("forerunnerImageResults");
 let fIT = document.getElementById("frImageTransparency");
-if(forerunnerButtons.length > 0) {
-    Array.from(forerunnerButtons, c => c.addEventListener("click", function() {
+if (forerunnerButtons.length > 0) {
+    Array.from(forerunnerButtons, c => c.addEventListener("click", function () {
         Array.from(forerunnerButtons, button => {
             button.classList.remove("active");
         });
@@ -165,24 +232,24 @@ if(forerunnerButtons.length > 0) {
 }
 
 const forerunnerImage = document.getElementById("generateForerunnerImage");
-forerunnerImage && forerunnerImage.addEventListener("click", function() {
-    if(!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at least one glyph to generate an image")) {
+forerunnerImage && forerunnerImage.addEventListener("click", function () {
+    if (!emptyContainerCheck(fIR.innerHTML, fIR, "There are no glyphs present, please select at least one glyph to generate an image")) {
         return false;
     }
     let fOptions = {};
     if (fIT.checked) {
         fOptions.bgcolor = "rgba(0, 0, 0, 0)";
-    } 
+    }
     createImage(fIR.offsetWidth, fIR.offsetHeight, "forerunner-glyphs.png", forerunnerImage, fIR.innerText, fOptions);
 });
 
 // Covenant glyphs
-const covenantButtons    = document.getElementsByClassName("cov-glyph");
+const covenantButtons = document.getElementsByClassName("cov-glyph");
 let cR = document.getElementById("covenantResults");
 let cIR = document.getElementById("covenantImageResults");
 let cIT = document.getElementById("covImageTransparency");
-if(covenantButtons.length > 0) {
-    Array.from(covenantButtons, c => c.addEventListener("click", function() {
+if (covenantButtons.length > 0) {
+    Array.from(covenantButtons, c => c.addEventListener("click", function () {
         Array.from(covenantButtons, button => {
             button.classList.remove("active");
         });
@@ -193,8 +260,8 @@ if(covenantButtons.length > 0) {
 }
 
 const covenantImage = document.getElementById("generateCovenantImage");
-covenantImage && covenantImage.addEventListener("click", function() {
-    if(!emptyContainerCheck(cIR.innerHTML, cIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
+covenantImage && covenantImage.addEventListener("click", function () {
+    if (!emptyContainerCheck(cIR.innerHTML, cIR, "There are no glyphs present, please select at lease one glyph to generate an image")) {
         return false;
     }
     let cOptions = {};
@@ -202,6 +269,6 @@ covenantImage && covenantImage.addEventListener("click", function() {
     cOptions.paddingTop = 108;
     if (cIT.checked) {
         cOptions.bgcolor = "rgba(0, 0, 0, 0)";
-    } 
+    }
     createImage(cIR.offsetWidth, cIR.offsetHeight, "covenant-glyphs.png", covenantImage, cIR.innerText, cOptions);
 });

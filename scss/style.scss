@@ -464,6 +464,16 @@ code {
     text-align: justify;
 }
 
+.elements-grid {
+    overflow: hidden auto;
+    max-height: 20rem;
+}
+.p-element {
+    flex: 1 1 calc(10% - 0.5rem);
+    min-width: 8rem;
+    max-width: 12rem;
+}
+
 .nav-pills {
     .nav-link {
     --bs-nav-link-padding-y: 0.625rem;
@@ -579,6 +589,12 @@ code {
 .hash-table {
     td {
         word-break: break-all;
+    }
+}
+
+.elements-table {
+    & .row:nth-child(2n) {
+        background-color: #dee2e6;
     }
 }
 
