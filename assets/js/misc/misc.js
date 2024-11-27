@@ -199,9 +199,13 @@ document.querySelectorAll(".p-element").forEach(item => {
 
             const elementContent = `
                 <div class="elements-table">
-                    <div class="row mb-2">
-                        <div class="col-12">
-                            <h3>${element.name}</h3>
+                    <div class="row g-0 border-1 border-bottom border-dark-subtle">
+                        <div class="col p-2 bg-success-subtle">
+                            <p class="fs-3 mb-0">${element.name}</p>
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col p-2" style="background-color: inherit;">
                             <p>${element.summary}</p>
                         </div>
                     </div>
