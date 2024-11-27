@@ -161,16 +161,20 @@ document.querySelectorAll(".p-element").forEach(item => {
             const rows = [
                 { label: "Atomic number", value: element.number },
                 { label: "Atomic symbol", value: element.symbol },
-                { label: "Discovered by", value: element.discovered_by },
-                { label: "Named by", value: element.named_by },
                 { label: "Category", value: element.category },
                 { label: "Phase", value: element.phase },
                 { label: "Group", value: element.group },
                 { label: "Period", value: element.period },
                 { label: "Block", value: element.block },
                 { label: "Density", value: element.density },
+                { label: "Boiling point", value: element.boil ? `${element.boil} K` : "Currently unavailable" },
+                { label: "Melting point", value:element.melt ? `${element.melt} K` : "Currently unavailable" },
+                { label: "Electron configuration", value: element.electron_configuration },
+                { label: "Electron configuration (semantic)", value: element.electron_configuration_semantic },
                 { label: "Further information", value: element.source ? `<a href="${element.source}" title="${element.name} wikipedia page" class="text-convrtr">${element.source}</a>` : null },
-                { label: "Electron configuration", value: `${element.electron_configuration} / ${element.electron_configuration_semantic}` }
+                { label: "Appearance", value: element.appearance ? element.appearance : "Not available" },
+                { label: "Discovered by", value: element.discovered_by },
+                { label: "Named by", value: element.named_by }
             ];
 
             let content = "";
@@ -179,28 +183,31 @@ document.querySelectorAll(".p-element").forEach(item => {
                 const row2 = rows[i + 1];
 
                 content += `
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 mb-2">
-                        <div class="col fw-bold">${row1.label}</div>
-                        <div class="col">${row1.value}</div>`;
+                        <div class="col fw-bold p-2">${row1.label}</div>
+                        <div class="col p-2">${row1.value}</div>`;
 
                 if (row2 && row2.value !== null && row2.value !== undefined) {
                     content += `
-                        <div class="col fw-bold">${row2.label}</div>
-                        <div class="col">${row2.value}</div>`;
+                        <div class="col fw-bold p-2">${row2.label}</div>
+                        <div class="col p-2">${row2.value}</div>`;
+                } else {
+                    content += `
+                        <div class="col fw-bold p-2"></div>
+                        <div class="col p-2"></div>`;
                 }
-
-                content += `</div>`;
             }
 
             const elementContent = `
-                <div class="container elements-table">
+                <div class="elements-table">
                     <div class="row mb-2">
                         <div class="col-12">
                             <h3>${element.name}</h3>
                             <p>${element.summary}</p>
                         </div>
                     </div>
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-0">
                     ${content}
+                    </div>
                 </div>`;
 
             elementInfo.innerHTML = elementContent;

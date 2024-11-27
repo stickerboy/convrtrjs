@@ -593,8 +593,43 @@ code {
 }
 
 .elements-table {
-    & .row:nth-child(2n) {
-        background-color: #dee2e6;
+    $row-highlight-color: #dee2e6;
+    & .col {
+        min-height: 2.5rem;
+
+        @media (max-width: 575px) {
+            padding-top: calc(var(--bs-gutter-x)* .5);
+            padding-bottom: calc(var(--bs-gutter-x)* .5);
+
+            &:nth-child(2n + 2) {
+                background-color: $row-highlight-color;
+            }
+        }
+        @media (min-width: 576px) and (max-width: 767px) {
+            padding-top: calc(var(--bs-gutter-x)* .5);
+            padding-bottom: calc(var(--bs-gutter-x)* .5);
+            
+            &:nth-of-type(4n-1),
+            &:nth-of-type(4n) {
+                background-color:  $row-highlight-color;
+            }
+        }
+        @media (max-width: 767px) {
+            &:empty {
+                display: none;
+            }
+        }
+        @media (min-width: 767px) {
+            // Highlight first 4, skip 4, highlight next 4
+            @for $i from 0 through 8 { // Large range to cover expected number of columns
+                &:nth-of-type(8n + #{$i * 8 + 1}),
+                &:nth-of-type(8n + #{$i * 8 + 2}),
+                &:nth-of-type(8n + #{$i * 8 + 3}),
+                &:nth-of-type(8n + #{$i * 8 + 4}) {
+                    background-color: $row-highlight-color;
+                }
+            }
+        }
     }
 }
 
