@@ -15,10 +15,10 @@ const fralphabet = [[" ", " "], ["…", "0"], ["†", "1"], ["‡", "2"], ["ˆ",
  * @returns {string} - The converted string.
  */
 function convertBraille(string, mode, map = braille) {
-    if (mode === 'braille') {
+    if (mode === "braille") {
         return string.split("").map(b => getKeyValue(b.toUpperCase(), map)).join("");
-    } else if (mode === 'text') {
-        return string.split("").map(b => getKeyValue(b.toUpperCase(), map, 'value')).join("");
+    } else if (mode === "text") {
+        return string.split("").map(b => getKeyValue(b.toUpperCase(), map, "value")).join("");
     } else {
         throw new Error(`Invalid mode "${mode}". Use "braille" or "text".`);
     }
@@ -120,9 +120,9 @@ brailleButton && brailleButton.addEventListener("click", function () {
     }
 
     if (brailleSwitch.checked) {
-        bR.textContent = convertBraille(brailleString.value, 'braille');
+        bR.textContent = convertBraille(brailleString.value, "braille");
     } else {
-        bIR.textContent = convertBraille(brailleString.value, 'text');
+        bIR.textContent = convertBraille(brailleString.value, "text");
     }
 });
 
@@ -213,13 +213,52 @@ document.querySelectorAll(".p-element").forEach(item => {
             elementInfo.innerHTML = elementContent;
 
             // Scroll to the relevant parts of the page
-            event.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            elementInfo.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            event.currentTarget.scrollIntoView({ behavior: "smooth", block: "center" });
+            elementInfo.scrollIntoView({ behavior: "smooth", block: "end" });
         }
     });
 });
 
+const elementstableFilter = document.getElementById("elementstableFilter");
+if (elementstableFilter) {
+    elementstableFilter.addEventListener("change", function () {
+        const filter = this.value;
+        const buttons = document.querySelectorAll(".p-element");
 
+        buttons.forEach(button => {
+            // Reset all buttons to be visible
+            button.classList.remove("d-none");
+            button.classList.add("d-block");
+
+            const phase = button.getAttribute("data-phase");
+            const group = button.getAttribute("data-group");
+            const period = button.getAttribute("data-period");
+            const block = button.getAttribute("data-block");
+
+            if (filter === "all") {
+                // Show all elements
+                button.classList.remove("d-none");
+                button.classList.add("d-block");
+            } else if (filter.startsWith("phase-") && phase !== filter.split("-")[1]) {
+                // Filter by phase
+                button.classList.remove("d-block");
+                button.classList.add("d-none");
+            } else if (filter.startsWith("group-") && group !== filter.split("-")[1]) {
+                // Filter by group
+                button.classList.remove("d-block");
+                button.classList.add("d-none");
+            } else if (filter.startsWith("period-") && period !== filter.split("-")[1]) {
+                // Filter by period
+                button.classList.remove("d-block");
+                button.classList.add("d-none");
+            } else if (filter.startsWith("block-") && block !== filter.split("-")[1]) {
+                // Filter by block
+                button.classList.remove("d-block");
+                button.classList.add("d-none");
+            }
+        });
+    });
+}
 
 
 // Forerunner glyphs

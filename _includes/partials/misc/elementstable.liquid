@@ -33,7 +33,7 @@
                     <div class="card-body text-center">
                         <div class="d-flex flex-wrap elements-grid" style="gap:0.5rem;">
                             {% for el in elements %}
-                                <button type="button" class="p-element g-col-1 position-relative p-1 btn btn-outline-convrtr border border-3 border-convrtr rounded-2" data-element="{{el.number}}">
+                                <button type="button" class="p-element g-col-1 position-relative p-1 btn btn-outline-convrtr border border-3 border-convrtr rounded-2" data-element="{{el.number}}" data-phase="{{el.phase}}" data-group="{{el.group}}" data-period="{{el.period}}" data-block="{{el.block}}">
                                     <div class="p-element__number fs-6 position-absolute top-0 end-0 px-2 py-1" aria-hidden="true">{{ el.number }}</div>
                                     <div class="p-element__symbol display-6" aria-hidden="true">{{ el.symbol }}</div>
                                     <div class="p-element__name">{{ el.name }}</div>
@@ -42,8 +42,51 @@
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="col d-flex flex-fill">
-                            {% include "components/select-copy-dl" %}
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-lg-auto me-2 mb-2">
+                                <div class="input-group w-auto mb-2">
+                                    <label class="input-group-text" for="{{ filename }}Filter">Filter by <span class="visually-hidden">element properties</span></label>
+                                    <select class="form-select" id="{{ filename }}Filter" autocomplete="off">
+                                        <option value="all">All</option>
+                                        <option value="phase-Solid">Solid</option>
+                                        <option value="phase-Liquid">Liquid</option>
+                                        <option value="phase-Gas">Gas</option>
+                                        <option value="block-s">Block s</option>
+                                        <option value="block-p">Block p</option>
+                                        <option value="block-d">Block d</option>
+                                        <option value="block-f">Block f</option>
+                                        <option value="period-1">Period 1</option>
+                                        <option value="period-2">Period 2</option>
+                                        <option value="period-3">Period 3</option>
+                                        <option value="period-4">Period 4</option>
+                                        <option value="period-5">Period 5</option>
+                                        <option value="period-6">Period 6</option>
+                                        <option value="period-7">Period 7</option>
+                                        <option value="period-8">Period 8</option>
+                                        <option value="group-1">Group 1</option>
+                                        <option value="group-2">Group 2</option>
+                                        <option value="group-3">Group 3</option>
+                                        <option value="group-4">Group 4</option>
+                                        <option value="group-5">Group 5</option>
+                                        <option value="group-6">Group 6</option>
+                                        <option value="group-7">Group 7</option>
+                                        <option value="group-8">Group 8</option>
+                                        <option value="group-9">Group 9</option>
+                                        <option value="group-10">Group 10</option>
+                                        <option value="group-11">Group 11</option>
+                                        <option value="group-12">Group 12</option>
+                                        <option value="group-13">Group 13</option>
+                                        <option value="group-14">Group 14</option>
+                                        <option value="group-15">Group 15</option>
+                                        <option value="group-16">Group 16</option>
+                                        <option value="group-17">Group 17</option>
+                                        <option value="group-18">Group 18</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col d-flex flex-fill">
+                                {% include "components/select-copy-dl" %}
+                            </div>
                         </div>
                         <hr />
                         <div id="{{ filename }}Results" class="data-to-copy active convrtr-results p-2"></div>
