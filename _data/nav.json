@@ -121,6 +121,9 @@
                 "label": "Braille"
             },{
                 "id": "elements",
+                "label": "Elements"
+            },{
+                "id": "elementstable",
                 "label": "Periodic elements"
             }, {
                 "id": "forerunner",
