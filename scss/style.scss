@@ -47,7 +47,13 @@
     --convrtr-bg-color-75rbg: 77, 160, 143;
     --convrtr-color-link: 150, 209, 197;
     --convrtr-base-color: #212529;
+    --convrtr-link-color: #084f41;
+    --convrtr-link-color-dark: #a3cfc6;
+    --convrtr-table-header: rgb(209, 231, 220.8);
+    --convrtr-row-bg: #212529;
     --convrtr-textarea: rgba(0,0,0,.03);
+    --convrtr-row-highlight-color: #dee2e6;
+    --convrtr-row-highlight-dark: #212529;
     --convrtr-switch-thumb: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2388c0b5'/%3e%3c/svg%3e");
     --convrtr-switch-checked: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
     --convrtr-nav-link-padding-x: 0.25rem;
@@ -84,6 +90,14 @@ body {
     .text-convrtr {
         --bs-btn-color: var(--bs-white);
         color: rgba(var(--convrtr-color-link), var(--bs-text-opacity)) !important;
+    }
+}
+.text-convrtr-link {
+    color: var(--convrtr-link-color) !important;
+}
+@include color-mode(dark) {
+    .text-convrtr-link {
+        color: var(--convrtr-link-color-dark) !important;
     }
 }
 .bg-convrtr {
@@ -556,7 +570,7 @@ code {
     background-color: var(--bs-white);
     border: 1px solid;
     border-color: var(--convrtr-nav-tabs-border-color);
-    border-radius: var(--convrtr-nav-tabs-border-radius);    
+    border-radius: var(--convrtr-nav-tabs-border-radius);
 }
 @include color-mode(dark) {
     .tab-content {
@@ -586,6 +600,10 @@ code {
     }
 }
 
+.convrtr-table-header {
+    background-color: var(--convrtr-table-header) !important;
+}
+
 .hash-table {
     td {
         word-break: break-all;
@@ -593,7 +611,6 @@ code {
 }
 
 .elements-table {
-    $row-highlight-color: #dee2e6;
     & .col {
         min-height: 2.5rem;
 
@@ -602,7 +619,7 @@ code {
             padding-bottom: calc(var(--bs-gutter-x)* .5);
 
             &:nth-child(2n + 2) {
-                background-color: $row-highlight-color;
+                background-color: var(--convrtr-row-highlight-color);
             }
         }
         @media (min-width: 576px) and (max-width: 767px) {
@@ -611,7 +628,7 @@ code {
             
             &:nth-of-type(4n-1),
             &:nth-of-type(4n) {
-                background-color:  $row-highlight-color;
+                background-color:  var(--convrtr-row-highlight-color);
             }
         }
         @media (max-width: 767px) {
@@ -626,7 +643,36 @@ code {
                 &:nth-of-type(8n + #{$i * 8 + 2}),
                 &:nth-of-type(8n + #{$i * 8 + 3}),
                 &:nth-of-type(8n + #{$i * 8 + 4}) {
-                    background-color: $row-highlight-color;
+                    background-color: var(--convrtr-row-highlight-color);
+                }
+            }
+        }
+    }
+}
+
+@include color-mode(dark) {
+    .elements-table {
+        & .col {
+            @media (max-width: 575px) {
+                &:nth-child(2n + 2) {
+                    background-color: var(--convrtr-row-highlight-dark);
+                }
+            }
+            @media (min-width: 576px) and (max-width: 767px) {
+                &:nth-of-type(4n-1),
+                &:nth-of-type(4n) {
+                    background-color:  var(--convrtr-row-highlight-dark);
+                }
+            }
+            @media (min-width: 767px) {
+                // Highlight first 4, skip 4, highlight next 4
+                @for $i from 0 through 8 { // Large range to cover expected number of columns
+                    &:nth-of-type(8n + #{$i * 8 + 1}),
+                    &:nth-of-type(8n + #{$i * 8 + 2}),
+                    &:nth-of-type(8n + #{$i * 8 + 3}),
+                    &:nth-of-type(8n + #{$i * 8 + 4}) {
+                        background-color: var(--convrtr-row-highlight-dark);
+                    }
                 }
             }
         }

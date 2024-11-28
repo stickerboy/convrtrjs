@@ -171,7 +171,7 @@ document.querySelectorAll(".p-element").forEach(item => {
                 { label: "Melting point", value:element.melt ? `${element.melt} K` : "Currently unavailable" },
                 { label: "Electron configuration", value: element.electron_configuration },
                 { label: "Electron configuration (semantic)", value: element.electron_configuration_semantic },
-                { label: "Further information", value: element.source ? `<a href="${element.source}" title="${element.name} wikipedia page" class="text-convrtr">${element.source}</a>` : null },
+                { label: "Further information", value: element.source ? `<a href="${element.source}" title="${element.name} wikipedia page" class="text-convrtr-link">${element.source}</a>` : null },
                 { label: "Appearance", value: element.appearance ? element.appearance : "Not available" },
                 { label: "Discovered by", value: element.discovered_by },
                 { label: "Named by", value: element.named_by }
@@ -200,8 +200,8 @@ document.querySelectorAll(".p-element").forEach(item => {
             const elementContent = `
                 <div class="elements-table">
                     <div class="row g-0 border-1 border-bottom border-dark-subtle">
-                        <div class="col p-2 bg-success-subtle">
-                            <p class="fs-3 mb-0">${element.name}</p>
+                        <div class="col p-2 convrtr-table-header">
+                            <p class="fs-3 mb-0 text-black">${element.name}</p>
                         </div>
                     </div>
                     <div class="row g-0">
