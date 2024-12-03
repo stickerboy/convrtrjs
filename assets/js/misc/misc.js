@@ -48,7 +48,7 @@ function hexToChunks(hex, chunkSize, paddingChar = "F") {
         let chunk = hex.slice(i, i + chunkSize);
         // Pad chunk with the specified padding character if it's less than chunk size
         chunk = chunk.padEnd(chunkSize, paddingChar);
-        chunks.push(`<div class="color-block" style="background-color:#${chunk}">
+        chunks.push(`<div class="color-block" style="background-color:#${chunk}" title="#${chunk}">
                         <span class="visually-hidden">#${chunk}</span>
                      </div>`);
     }
