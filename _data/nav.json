@@ -120,6 +120,9 @@
                 "id": "braille",
                 "label": "Braille"
             },{
+                "id": "colorgenerator",
+                "label": "Color generator"
+            },{
                 "id": "elements",
                 "label": "Elements"
             },{
