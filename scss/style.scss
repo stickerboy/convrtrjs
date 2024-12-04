@@ -679,6 +679,12 @@ code {
     }
 }
 
+.color-block {
+    width: 1.75rem;
+    height: 1.75rem;
+    overflow: hidden;
+}
+
 .toast {
     border-radius: var(--bs-toast-border-radius);
     &-header {

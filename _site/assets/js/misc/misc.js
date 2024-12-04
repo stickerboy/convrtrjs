@@ -7,11 +7,11 @@ const fralphabet = [[" ", " "], ["…", "0"], ["†", "1"], ["‡", "2"], ["ˆ",
 
 /**
  * Converts between Braille and text using a specified map.
- * If `mode` is 'braille', converts from Braille to text.
- * If `mode` is 'text', converts from text to Braille.
+ * If `mode` is "braille", converts from Braille to text.
+ * If `mode` is "text", converts from text to Braille.
  * @param {string} string - The string to convert.
- * @param {string} mode - The mode of conversion, either 'braille' or 'text'.
- * @param {Array<Array<string>>} [map=braille] - The custom map to use for conversion. Defaults to the 'braille' map.
+ * @param {string} mode - The mode of conversion, either "braille" or "text".
+ * @param {Array<Array<string>>} [map=braille] - The custom map to use for conversion. Defaults to the "braille" map.
  * @returns {string} - The converted string.
  */
 function convertBraille(string, mode, map = braille) {
@@ -24,6 +24,36 @@ function convertBraille(string, mode, map = braille) {
     }
 }
 
+/**
+ * Splits a hex string into chunks of a specified size and pads each chunk if necessary.
+ * 
+ * This function takes a hexadecimal string and splits it into chunks of the specified size.
+ * If a chunk has fewer characters than the specified size, it pads the chunk with the specified padding character
+ * (either "0" or "F") to reach the desired length. Each chunk is then prefixed with "#" to form valid hex color codes.
+ * 
+ * @param {string} hex - The hexadecimal string to be split into chunks.
+ * @param {number} chunkSize - The size of each chunk.
+ * @param {string} [paddingChar="F"] - The character to pad chunks with, default is "F".
+ * @returns {string[]} An array of hex color codes, each prefixed with "#".
+ * @throws {Error} Throws an error if the padding character is not "0" or "F".
+ */
+function hexToChunks(hex, chunkSize, paddingChar = "F") {
+    // Validate the padding character
+    if (paddingChar !== "0" && paddingChar !== "F") {
+        throw new Error(`Invalid padding character. Only "0" or "F" are allowed.`);
+    }
+
+    let chunks = [];
+    for (let i = 0; i < hex.length; i += chunkSize) {
+        let chunk = hex.slice(i, i + chunkSize);
+        // Pad chunk with the specified padding character if it's less than chunk size
+        chunk = chunk.padEnd(chunkSize, paddingChar);
+        chunks.push(`<div class="color-block" style="background-color:#${chunk}" title="#${chunk}">
+                        <span class="visually-hidden">#${chunk}</span>
+                     </div>`);
+    }
+    return chunks.join("");
+}
 
 /**
  * Converts periodic elements from a string representation to their corresponding target property values.
@@ -263,6 +293,24 @@ if (elementstableFilter) {
         });
     });
 }
+
+
+// Color generator
+const colorgeneratorButton = document.getElementById("colorgeneratorDecode");
+colorgeneratorButton.addEventListener("click", function () {
+    const colorgeneratorString = document.getElementById("colorgeneratorText");
+
+    if (!emptyContainerCheck(colorgeneratorString.value, colorgeneratorString)) {
+        document.getElementById("colorgeneratorResults").textContent = "";
+        return false;
+    }
+    if (!largeDataWarning(colorgeneratorString.value, colorgeneratorString)) {
+        return false;
+    }
+
+    let colorgeneratorPadding = document.getElementById("colorgeneratorPadding");
+    document.getElementById("colorgeneratorResults").innerHTML = hexToChunks(stringToHex(colorgeneratorString.value, ""), 6, colorgeneratorPadding.value);
+});
 
 
 // Forerunner glyphs

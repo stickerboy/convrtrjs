@@ -204,7 +204,7 @@ function hexToString(string, delimiter) {
         }
 
         const uint8Array = new Uint8Array(hexArray);
-        const decoder = new TextDecoder();
+        const decoder = new TextDecoder("utf-8", { fatal: false });
         return decoder.decode(uint8Array);
     } else {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
