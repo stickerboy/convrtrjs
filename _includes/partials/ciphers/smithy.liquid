@@ -13,9 +13,14 @@
             </a>
             <hr>
             <p class="px-2">
-                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: 
+                Smithy is interesting cipher, built using the fibonacci sequence as part of the process. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WORD</code> would shift like: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TBST SBLTBLDB</code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">DGYM UKGDGTVO</code> 
+
+            </p>
+            <p class="px-2">
+                There is more information available on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">{{
+                    filename | upperFirst }}</a> Wikipedia page
             </p>
         </div>
         <div class="collapse" id="{{ filename }}Collapse">
@@ -23,7 +28,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → TBST SBLTBLDB
+                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → DGYM UKGDGTVO
                         " title="{{ filename | upperFirst }} encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
@@ -41,8 +46,8 @@
                                     <div class="row row-cols-auto g-0">
                                         <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                             <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainKw" aria-checked="false">
-                                                <label class="form-check-label" for="chainKw">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSm" aria-checked="false">
+                                                <label class="form-check-label" for="chainSm">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
                                             </div>
                                         </div>
                                         <div class="col d-flex flex-fill justify-content-end">
