@@ -47,6 +47,9 @@
                 "id": "chaocipher",
                 "label": "Chaocipher"
             }, {
+                "id": "smithy",
+                "label": "Smithy cipher"
+            }, {
                 "id": "atbash",
                 "label": "Atbash cipher"
             }, {

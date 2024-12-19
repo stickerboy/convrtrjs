@@ -1,7 +1,7 @@
-const fs = require("node:fs");
-const path = require("node:path");
+import fs from "fs";
+import path from "path";
 
-module.exports = function(eleventyConfig) {
+export default function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
     eleventyConfig.setWatchThrottleWaitTime(100);
     eleventyConfig.addPassthroughCopy("assets/css/*.css");
@@ -10,7 +10,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets/fonts/*");
     eleventyConfig.addPassthroughCopy("assets/js/**/*.js");
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
-    eleventyConfig.addFilter("fileExists", function(filePath) {
+    eleventyConfig.addFilter("fileExists", (filePath) => {
         const fullPath = path.join("_includes", filePath);
         return fs.existsSync(fullPath);
     });
@@ -22,14 +22,14 @@ module.exports = function(eleventyConfig) {
         const fullPath = path.join("_includes", folderPath);
         return fs.readdirSync(fullPath).map(file => path.join(folderPath, file));
     });
-    eleventyConfig.addFilter("listFilesWithInfo", function (folderPath) {
+    eleventyConfig.addFilter("listFilesWithInfo", function(folderPath) {
         const fullPath = path.join("_includes", folderPath);
         return fs.readdirSync(fullPath).map(file => {
             const fileNoExtension = path.parse(file).name;
             return {
                 filePath: path.join(folderPath, file),
                 fileName: fileNoExtension
-            }
+            };
         });
     });
     eleventyConfig.addFilter("upperFirst", (filename) => `${filename.charAt(0).toUpperCase() + filename.slice(1)}`);
