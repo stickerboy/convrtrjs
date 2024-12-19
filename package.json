@@ -4,6 +4,7 @@
   "description": "A simple JavaScript based tool to quickly convert text between different formats",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
+  "type": "module",
   "scripts": {
     "sass:dev": "sass --watch --update --style=expanded scss:assets/devcss",
     "sass:prod": "sass --no-source-map --style=compressed scss:assets/css",
