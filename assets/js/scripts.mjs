@@ -1,3 +1,5 @@
+import copyToClipboard from '../js/clip.mjs';
+
 /**
  * Saves a value to local storage
  * @param {string} key - The key under which to store the value.
@@ -34,7 +36,7 @@ function clearLocalStorage() {
  * @param {number} delay - The delay in milliseconds before the toast disappears (optional, default is 5000 milliseconds).
  * @returns {void}
  */
-function showToast(heading, content, color, delay) {
+export function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById("toast");
     const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
 
@@ -58,7 +60,7 @@ function showToast(heading, content, color, delay) {
  * @param {HTMLElement} container - The container element associated with the data (optional).
  * @returns {boolean} - Returns true if the data length is within acceptable limits, otherwise false.
  */
-function largeDataWarning(data, container) {
+export function largeDataWarning(data, container) {
     if(container) {
         container.classList.remove("is-invalid", "ld-warning");
     }
@@ -83,7 +85,7 @@ function largeDataWarning(data, container) {
  * @param {string} error - Custom error message (optional).
  * @returns {boolean} - Returns true if the data is not empty, otherwise false.
  */
-function emptyContainerCheck(data, container, error) {
+export function emptyContainerCheck(data, container, error) {
     let allElements = Array.from(document.querySelectorAll(".data-to-copy"));
     for (let element of allElements) {
         element.classList.remove("is-invalid");

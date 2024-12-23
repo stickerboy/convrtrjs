@@ -4,7 +4,7 @@
  * @param {boolean} [removeAllWhitespace=false] - Flag to indicate if all whitespace should be removed.
  * @returns {string} - The resulting string after removing the specified characters.
  */
-function stripSpaces(string, removeAllWhitespace = false) {
+export function stripSpaces(string, removeAllWhitespace = false) {
     const regex = removeAllWhitespace ? /\s+/g : / /g;
     return string.replace(regex, "");
 }
@@ -14,7 +14,7 @@ function stripSpaces(string, removeAllWhitespace = false) {
  * @param {string} string - The input string.
  * @returns {string} - The input string in uppercase.
  */
-function uppercase(string) {
+export function uppercase(string) {
     return string.toLocaleUpperCase();
 }
 
@@ -23,7 +23,7 @@ function uppercase(string) {
  * @param {string} string - The input string.
  * @returns {string} - The input string in lowercase.
  */
-function lowercase(string) {
+export function lowercase(string) {
     return string.toLocaleLowerCase();
 }
 
@@ -33,7 +33,7 @@ function lowercase(string) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with numbers.
  * @returns {string} - The input string with non-numeric characters removed.
  */
-function numbersOnly(string, preserveSpaces) {
+export function numbersOnly(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^0-9 ]/g : /[^0-9]/g;
     return string.replace(regex, "");
 }
@@ -44,7 +44,7 @@ function numbersOnly(string, preserveSpaces) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with letters.
  * @returns {string} - The input string with non-letter characters removed.
  */
-function lettersOnly(string, preserveSpaces) {
+export function lettersOnly(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^A-Za-z ]/g : /[^A-Za-z]/g;
     return string.replace(regex, "");
 }
@@ -55,7 +55,7 @@ function lettersOnly(string, preserveSpaces) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with uppercase letters.
  * @returns {string} - The input string with non-uppercase letter characters removed.
  */
-function lettersOnlyCap(string, preserveSpaces) {
+export function lettersOnlyCap(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^A-Z ]/g : /[^A-Z]/g;
     return string.replace(regex, "");
 }
@@ -66,7 +66,7 @@ function lettersOnlyCap(string, preserveSpaces) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with lowercase letters.
  * @returns {string} - The input string with non-lowercase letter characters removed.
  */
-function lettersOnlyLow(string, preserveSpaces) {
+export function lettersOnlyLow(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^a-z ]/g : /[^a-z]/g;
     return string.replace(regex, "");
 }
@@ -77,7 +77,7 @@ function lettersOnlyLow(string, preserveSpaces) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with alphanumeric characters.
  * @returns {string} - The input string with special characters removed.
  */
-function stripSpecialChars(string, preserveSpaces) {
+export function stripSpecialChars(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[^0-9A-Za-z ]/g : /[^0-9A-Za-z]/g;
     return string.replace(regex, "");
 }
@@ -87,7 +87,7 @@ function stripSpecialChars(string, preserveSpaces) {
  * @param {string} string - The input string.
  * @returns {string} - The input string with all letters removed.
  */
-function stripLetters(string) {
+export function stripLetters(string) {
     return string.replace(/[A-Za-z]/g, "");
 }
 
@@ -96,7 +96,7 @@ function stripLetters(string) {
  * @param {string} string - The input string.
  * @returns {string} - The input string with all numbers removed.
  */
-function stripNumbers(string) {
+export function stripNumbers(string) {
     return string.replace(/[0-9]/g, "");
 }
 
@@ -106,7 +106,7 @@ function stripNumbers(string) {
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with special characters.
  * @returns {string} - The input string containing only special characters.
  */
-function specialCharsOnly(string, preserveSpaces) {
+export function specialCharsOnly(string, preserveSpaces) {
     let regex = preserveSpaces === true ? /[0-9A-Za-z]/g : /[0-9A-Za-z ]/g;
     return string.replace(regex, "");
 }
@@ -116,7 +116,7 @@ function specialCharsOnly(string, preserveSpaces) {
  * @param {string} string - The input string.
  * @returns {string} - The URL-encoded string.
  */
-function urlEncode(string) {
+export function urlEncode(string) {
     return encodeURIComponent(string).replace(/%20/g, "+");
 }
 
@@ -125,7 +125,7 @@ function urlEncode(string) {
  * @param {string} string - The URL-encoded string.
  * @returns {string} - The decoded string.
  */
-function urlDecode(string) {
+export function urlDecode(string) {
     return decodeURIComponent(string).replace(/\+/g, "%20");
 }
 
@@ -134,7 +134,7 @@ function urlDecode(string) {
  * @param {string} string - The input string.
  * @returns {string} - A space-separated string of alphabet numbers.
  */
-function lettersToNumbers(string) {
+export function lettersToNumbers(string) {
     // Ensure only letters are processed
     const lettersOnlyString = lettersOnly(string);
     // Map letters to their corresponding numbers and join with spaces

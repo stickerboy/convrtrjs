@@ -1,4 +1,7 @@
-import rot from './../rot.mjs';
+import rot from '../rot.mjs';
+import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
+import { alphabet, isUpperCase, isLetter, matchCase } from '../toolkit.mjs';
+import { lettersOnly } from '../tools.mjs';
 
 /**
  * Builds a custom alphabet using a given key.
@@ -9,7 +12,7 @@ import rot from './../rot.mjs';
  * // Input: "TEST"
  * // Output: "TESABCDFGHIJKLMNOPQRUVWXYZ"
  */
-function getCustomAlphabet(string) {
+export function getCustomAlphabet(string) {
     let stringArr = [...new Set(string.trim())];
     let alphaArr = [...new Set(alphabet.trim())];
     return [...new Set(stringArr.concat(alphaArr))].join("");
@@ -74,7 +77,7 @@ function substituteChars(string, key) {
  * // Input: "Hello, World!" with hash method "MD5"
  * // Output: "65a8e27d8879283831b664bd8b7f0ad4"
  */
-function generateHashes(string, hash) {
+export function generateHashes(string, hash) {
     const hashFunctions = {
         MD5: CryptoJS.MD5,
         SHA1: CryptoJS.SHA1,
@@ -180,7 +183,7 @@ function beaufortCipher(string, key) {
  * @param {number} length - The length of the Fibonacci sequence to generate.
  * @returns {number[]} An array containing the Fibonacci sequence up to the specified length.
  */
-function fibonacci(length) {
+export function fibonacci(length) {
     const fib = [1, 1];
     for (let i = 2; i < length; i++) {
         fib[i] = fib[i - 1] + fib[i - 2];
@@ -823,8 +826,6 @@ chaosDecryptButton && chaosDecryptButton.addEventListener("click", function () {
 
     document.getElementById("chaocipherResults").textContent = chaocipherDecode(chaosResults);
 });
-
-
 
 
 // Smithy cipher

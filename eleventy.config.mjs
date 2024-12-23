@@ -9,6 +9,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPassthroughCopy("assets/img/*");
     eleventyConfig.addPassthroughCopy("assets/fonts/*");
     eleventyConfig.addPassthroughCopy("assets/js/**/*.js");
+    eleventyConfig.addPassthroughCopy("assets/js/**/*.mjs");
     eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
     eleventyConfig.addFilter("fileExists", (filePath) => {
         const fullPath = path.join("_includes", filePath);

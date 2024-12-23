@@ -37,7 +37,7 @@ function copyToClipboardLegacy(text, el) {
  * @param {HTMLElement} el - The element triggering the copy action (usually a button or link).
  * @returns {boolean} - Returns true if the copy operation was successful, otherwise false.
  */
-function copyToClipboard(text, el) {
+export default function copyToClipboard(text, el) {
 	if (!navigator.clipboard) {
 		console.log("Fell back to legacy clipboard");
 		copyToClipboardLegacy(text, el);

@@ -1,3 +1,6 @@
+import { emptyContainerCheck, largeDataWarning, showToast }  from '../scripts.mjs';
+import { getKeyValue, createImage, stringToHex } from '../toolkit.mjs';
+
 // Braille
 var braille = [[" ", " "], ["⠀", " "], ["⠸", "_"], ["⠤", "-"], ["⠠", ","], ["⠰", ";"], ["⠱", ":"], ["⠮", "!"], ["⠹", "?"], ["⠨", "."], ["⠷", "("], ["⠪", "["], ["⠈", "@"], ["⠡", "*"], ["⠌", "/"], ["⠄", "'"], ["⠐", "\""], ["⠳", "\\"], ["⠯", "&"], ["⠩", "%"], ["⠘", "^"], ["⠬", "+"], ["⠣", "<"], ["⠜", ">"], ["⠫", "$"], ["⠴", "0"], ["⠂", "1"], ["⠆", "2"], ["⠒", "3"], ["⠲", "4"], ["⠢", "5"], ["⠖", "6"], ["⠶", "7"], ["⠦", "8"], ["⠔", "9"], ["⠁", "A"], ["⠃", "B"], ["⠉", "C"], ["⠙", "D"], ["⠑", "E"], ["⠋", "F"], ["⠛", "G"], ["⠓", "H"], ["⠊", "I"], ["⠚", "J"], ["⠅", "K"], ["⠇", "L"], ["⠍", "M"], ["⠝", "N"], ["⠕", "O"], ["⠏", "P"], ["⠟", "Q"], ["⠗", "R"], ["⠎", "S"], ["⠞", "T"], ["⠥", "U"], ["⠧", "V"], ["⠺", "W"], ["⠭", "X"], ["⠵", "Z"], ["⠻", "]"], ["⠼", "#"], ["⠽", "Y"], ["⠾", ")"], ["⠿", "="]];
 
@@ -37,7 +40,7 @@ function convertBraille(string, mode, map = braille) {
  * @returns {string[]} An array of hex color codes, each prefixed with "#".
  * @throws {Error} Throws an error if the padding character is not "0" or "F".
  */
-function hexToChunks(hex, chunkSize, paddingChar = "F") {
+export function hexToChunks(hex, chunkSize, paddingChar = "F") {
     // Validate the padding character
     if (paddingChar !== "0" && paddingChar !== "F") {
         throw new Error(`Invalid padding character. Only "0" or "F" are allowed.`);
@@ -65,7 +68,7 @@ function hexToChunks(hex, chunkSize, paddingChar = "F") {
  * @throws {Error} - Throws an error if an element with the specified source property is not found,
  * or if the target property does not exist for a matched element.
  */
-function convertElements(string, sourceProp, targetProp, removeDelimiters) {
+export function convertElements(string, sourceProp, targetProp, removeDelimiters) {
     const strings = string.trim().split(/[ ,:;\-]+/);
     const results = [];
 

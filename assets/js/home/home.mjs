@@ -1,3 +1,7 @@
+import * as tools from '../tools.mjs';
+import * as toolkit from '../toolkit.mjs';
+import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
+
 /**
  * Checks for a valid binary string length (multiple of 8)
  *
@@ -5,7 +9,7 @@
  * @returns {boolean} - `true` if the length is valid, otherwise `false`.
  * @throws {Error} - If the input is not a valid binary string.
  */
-function isValidBinaryLength(string) {
+export function isValidBinaryLength(string) {
     return string.length % 8 === 0;
 }
 
@@ -16,7 +20,7 @@ function isValidBinaryLength(string) {
  * @returns {string} - The resulting ASCII string.
  * @throws {Error} - If the input is not a valid binary string.
  */
-function binaryToString(string) {
+export function binaryToString(string) {
     if(isValidBinaryLength(string)) {
         string = string.replace(/[^10\s]/g, "");
 
@@ -37,7 +41,7 @@ function binaryToString(string) {
  * @returns {string} - The decoded string.
  * @throws {Error} - If the input is not a valid Base64 string.
  */
-function base64ToString(base64) {
+export function base64ToString(base64) {
     try {
         const binaryString = atob(base64);
         const bytes = new Uint8Array(binaryString.length);
@@ -59,7 +63,7 @@ function base64ToString(base64) {
  * @returns {string} - The resulting plain text string.
  * @throws {Error} - If the input contains invalid Morse code characters.
  */
-function morseToString(string) {
+export function morseToString(string) {
     if (!/^[\s./-]*$/.test(string)) {
         throw new Error("Morse code contains invalid characters");
     }
@@ -68,7 +72,7 @@ function morseToString(string) {
         .split(" / ")
         .map(word => word
             .split(" ")
-            .map(character => morseTextDict[character])
+            .map(character => toolkit.morseTextDict[character])
             .join("")
         )
         .join(" ")
@@ -85,13 +89,13 @@ function morseToString(string) {
  * // Input: "hello world"
  * // Output: ".... . .-.. .-.. --- / .-- --- .-. .-.. -.."
  */
-function stringToMorse(string) {
+export function stringToMorse(string) {
     return string
         .toUpperCase()
         .split(" ")
         .map(word => word
             .split("")
-            .map(character => textMorseDict[character] || "")
+            .map(character => toolkit.textMorseDict[character] || "")
             .join(" ")
         )
         .join(" / ")
@@ -110,9 +114,9 @@ function stringToMorse(string) {
  * // Input: "hello world" with custom setting (e.g., "default" or "reverse")
  * // Output: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100"
  */
-function stringToMorsenary(string) {
+export function stringToMorsenary(string) {
     const morsenarySetting = document.getElementById("morsenarySetting").value;
-    const binaryString = stringToBinary(string).replace(/ /g, '');
+    const binaryString = toolkit.stringToBinary(string).replace(/ /g, '');
 
     return binaryString.replace(/[01]/g, match => {
         if (morsenarySetting === "default") {
@@ -135,7 +139,7 @@ function stringToMorsenary(string) {
  * // Input: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100" with default setting
  * // Output: "hello, world"
  */
-function morsenaryToString(string) {
+export function morsenaryToString(string) {
     if (!/^[\s./-]*$/.test(string)) {
         throw new Error("Morsenary contains invalid characters");
     }
@@ -167,7 +171,7 @@ function morsenaryToString(string) {
  * // Input: "hello, world" with custom alphabet "abcdefghijklmnopqrstuvwxyz" and replacement string "z...a"
  * // Output: "pןɹoʍ oןןǝɥ"
  */
-function flipText(string, originalAlphabet = alphabet, replacement = alphaFlip) {
+export function flipText(string, originalAlphabet = toolkit.alphabet, replacement = toolkit.alphaFlip) {
     const flipMap = Object.fromEntries([...originalAlphabet].map((char, index) => [char, replacement[index]]));
     return [...string].map(c => flipMap[c] || c).reverse().join('');
 }
@@ -189,13 +193,13 @@ function stringStats(string, stat, delimiter = " ") {
     const statFunctions = {
         "word-count": str => str.split(delimiter).length,
         "char-count": str => str.length,
-        "char-count-ns": str => stripSpaces(str).length,
-        "letter-count": str => lettersOnly(str).length,
-        "letter-count-caps": str => lettersOnlyCap(str, true).length,
-        "letter-count-low": str => lettersOnlyLow(str).length,
-        "number-count": str => numbersOnly(str).length,
-        "special-count": str => specialCharsOnly(str, true).length,
-        "special-count-ns": str => specialCharsOnly(str).length
+        "char-count-ns": str => tools.stripSpaces(str).length,
+        "letter-count": str => tools.lettersOnly(str).length,
+        "letter-count-caps": str => tools.lettersOnlyCap(str, true).length,
+        "letter-count-low": str => tools.lettersOnlyLow(str).length,
+        "number-count": str => tools.numbersOnly(str).length,
+        "special-count": str => tools.specialCharsOnly(str, true).length,
+        "special-count-ns": str => tools.specialCharsOnly(str).length
     };
 
     // Get the selected stat function
@@ -245,23 +249,23 @@ toolChange.addEventListener("click", function() {
 
     // Mapping object for tool functions
     const toolFunctions = {
-        stripspaces: (text) => stripSpaces(text),
-        stripallwhitespace: (text) => stripSpaces(text, true),
-        reverse: (text) => reverseString(text),
-        uppercase: (text) => uppercase(text),
-        lowercase: (text) => lowercase(text),
-        numbersonly: (text, preserveWhitespace) => numbersOnly(text, preserveWhitespace),
-        lettersonly: (text, preserveWhitespace) => lettersOnly(text, preserveWhitespace),
-        uppercaseonly: (text, preserveWhitespace) => lettersOnlyCap(text, preserveWhitespace),
-        lowercaseonly: (text, preserveWhitespace) => lettersOnlyLow(text, preserveWhitespace),
-        stripspecialchars: (text, preserveWhitespace) => stripSpecialChars(text, preserveWhitespace),
-        removenumbers: (text) => stripNumbers(text),
-        removeletters: (text) => stripLetters(text),
-        alphabet: (text) => lettersToNumbers(text),
-        specialcharsonly: (text, preserveWhitespace) => specialCharsOnly(text, preserveWhitespace),
-        unique: (text) => uniqueArray(text).join(""),
-        urlencode: (text) => urlEncode(text),
-        urldecode: (text) => urlDecode(text)
+        stripspaces: (text) => tools.stripSpaces(text),
+        stripallwhitespace: (text) => tools.stripSpaces(text, true),
+        reverse: (text) => toolkit.reverseString(text),
+        uppercase: (text) => tools.uppercase(text),
+        lowercase: (text) => tools.lowercase(text),
+        numbersonly: (text, preserveWhitespace) => tools.numbersOnly(text, preserveWhitespace),
+        lettersonly: (text, preserveWhitespace) => tools.lettersOnly(text, preserveWhitespace),
+        uppercaseonly: (text, preserveWhitespace) => tools.lettersOnlyCap(text, preserveWhitespace),
+        lowercaseonly: (text, preserveWhitespace) => tools.lettersOnlyLow(text, preserveWhitespace),
+        stripspecialchars: (text, preserveWhitespace) => tools.stripSpecialChars(text, preserveWhitespace),
+        removenumbers: (text) => tools.stripNumbers(text),
+        removeletters: (text) => tools.stripLetters(text),
+        alphabet: (text) => tools.lettersToNumbers(text),
+        specialcharsonly: (text, preserveWhitespace) => tools.specialCharsOnly(text, preserveWhitespace),
+        unique: (text) => toolkit.uniqueArray(text).join(""),
+        urlencode: (text) => tools.urlEncode(text),
+        urldecode: (text) => tools.urlDecode(text)
     };
 
     // Get the selected tool function
@@ -288,7 +292,7 @@ flipButton.addEventListener("click", function() {
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
                                                          flipText(flipString.value) : 
-                                                         reverseString(flipText(flipString.value));
+                                                         toolkit.reverseString(flipText(flipString.value));
 });
 
 
@@ -334,11 +338,11 @@ freqButton.addEventListener("click", function() {
 
     freqResults.insertAdjacentHTML(
         "beforeend",
-        `${styledUniqueArrayItems(uniqueArray(freqString.value))}`
+        `${toolkit.styledUniqueArrayItems(toolkit.uniqueArray(freqString.value))}`
     );
     freqResults.insertAdjacentHTML(
         "beforeend",
-        `${styledArrayFrequencies(countArrayFreq(freqString.value), "Unique character frequencies")}`
+        `${toolkit.styledArrayFrequencies(toolkit.countArrayFreq(freqString.value), "Unique character frequencies")}`
     );
 });
 
@@ -370,19 +374,19 @@ replaceButton.addEventListener("click", function() {
 
     if(chainReplacements.checked && replaceResults.textContent.length > 0) {
         try {
-            replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase)
+            toolkit.replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase)
         } catch (e) {
             showToast("Error", `An error occurred trying to replace characters: ${e.message}`, "danger");
             return;
         }
-        replaceResults.textContent = replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase);
+        replaceResults.textContent = toolkit.replaceChars(replaceResults.textContent, replaceOld.value, replaceNew.value, replaceCase);
     } else {
         try {
-            replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase)
+            toolkit.replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase)
         } catch (e) {
             showToast("Error", `An error occurred trying to replace characters: ${e.message}`, "danger");
             return;
         }
-        replaceResults.textContent = replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase);
+        replaceResults.textContent = toolkit.replaceChars(replaceString.value, replaceOld.value, replaceNew.value, replaceCase);
     }
 });

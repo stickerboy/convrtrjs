@@ -4,7 +4,7 @@
  * @param {...string} args - The input strings to merge.
  * @returns {string} - The merged string.
  */
-function mergeBase64(...args) {
+export function mergeBase64(...args) {
     // Convert each string to an array of characters
     let charArrays = args.map(string => string.split(""));
 

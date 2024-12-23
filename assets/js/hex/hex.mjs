@@ -1,3 +1,6 @@
+import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
+import * as toolkit from '../toolkit.mjs';
+
 /**
  * Shifts the hex values in a hexadecimal string by a given shift value.
  * @param {string} hexString - The input hexadecimal string.
@@ -6,11 +9,11 @@
  * @returns {string} - The shifted hexadecimal string.
  * @throws {Error} - If the input hex string contains invalid characters.
  */
-function shiftHexString(hexString, shiftValue, delimiter) {
-    if (!isValidHex(hexString, delimiter)) {
+export function shiftHexString(hexString, shiftValue, delimiter) {
+    if (!toolkit.isValidHex(hexString, delimiter)) {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
     }
-    hexString = cleanString(hexString);
+    hexString = toolkit.cleanString(hexString);
 
     // Convert hex string to byte array
     const hexArray = hexString.split(delimiter).map(byte => parseInt(byte, 16));
@@ -30,7 +33,7 @@ function shiftHexString(hexString, shiftValue, delimiter) {
  * @param {Uint8Array} keyBytes - The key bytes.
  * @returns {string} - The shifted string.
  */
-function shiftHexPattern(string, keyBytes) {
+export function shiftHexPattern(string, keyBytes) {
     const inputBytes = new TextEncoder().encode(string);
     const shiftedBytes = inputBytes.map((byte, i) => (byte - keyBytes[i % keyBytes.length]) & 0xFF);
     return new TextDecoder().decode(new Uint8Array(shiftedBytes));
@@ -42,7 +45,7 @@ function shiftHexPattern(string, keyBytes) {
  * @param {string} key - The key string.
  * @returns {string} - The shifted string.
  */
-function shiftHexKey(string, key) {
+export function shiftHexKey(string, key) {
     const keyBytes = new TextEncoder().encode(key);
     return shiftHexPattern(string, keyBytes);
 }
@@ -60,13 +63,13 @@ function shiftHexKey(string, key) {
  * // Input: "74657374" (hex for "test"), delimiter: ""
  * // Output: "47 56 37 47"
  */
-function reverseHex(string, delimiter) {
+export function reverseHex(string, delimiter) {
     let reversedString;
-    if(isValidHex(string, delimiter)) {
+    if(toolkit.isValidHex(string, delimiter)) {
         if(delimiter === "") {
-            reversedString = stringToArray(string, 2).map((c) => reverseString(c)).join(delimiter);
+            reversedString = toolkit.stringToArray(string, 2).map((c) => toolkit.reverseString(c)).join(delimiter);
         } else {
-            reversedString = string.split(delimiter).map((c) => reverseString(c)).join(delimiter);
+            reversedString = string.split(delimiter).map((c) => toolkit.reverseString(c)).join(delimiter);
         }
         return reversedString;
     } else {
@@ -87,8 +90,8 @@ function reverseHex(string, delimiter) {
  * // Input: "74657374" (hex for "test"), delimiter: ""
  * // Output: "74 73 65 74"
  */
-function reverseHexNibbles(string, delimiter) {
-    if(isValidHex(string, delimiter)) {
+export function reverseHexNibbles(string, delimiter) {
+    if(toolkit.isValidHex(string, delimiter)) {
         return string.split(delimiter).reverse().join(delimiter);
     } else {
         throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
@@ -104,9 +107,9 @@ function reverseHexNibbles(string, delimiter) {
  * @throws {Error} Throws an error if the hexadecimal contains invalid characters. 
  **/
 function generateHexFrequencies(string, delimiter, chunkSize = 1) {
-    if (isValidHex(string, delimiter)) {
+    if (toolkit.isValidHex(string, delimiter)) {
         const hexFrequencies = {};
-        let cleanStr = cleanString(string);
+        let cleanStr = toolkit.cleanString(string);
 
         // Remove delimiters and convert input to uppercase for case insensitivity
         const upperInput = cleanStr.replace(new RegExp(delimiter, 'g'), '').toUpperCase();
@@ -154,11 +157,11 @@ shiftButton && shiftButton.addEventListener("click", function() {
         return;
     }
 
-    document.getElementById("text-tab-pane").textContent = hexToString(shiftedHexString, shiftHexDelimiter);
-    document.getElementById("binary-tab-pane").textContent = stringToBinary(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("text-tab-pane").textContent = toolkit.hexToString(shiftedHexString, shiftHexDelimiter);
+    document.getElementById("binary-tab-pane").textContent = toolkit.stringToBinary(toolkit.hexToString(shiftedHexString, shiftHexDelimiter));
     document.getElementById("hex-tab-pane").textContent = shiftedHexString;
-    document.getElementById("base64-tab-pane").textContent = stringToBase64(hexToString(shiftedHexString, shiftHexDelimiter));
-    document.getElementById("decimal-tab-pane").textContent =  stringToDecimal(hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("base64-tab-pane").textContent = toolkit.stringToBase64(toolkit.hexToString(shiftedHexString, shiftHexDelimiter));
+    document.getElementById("decimal-tab-pane").textContent =  toolkit.stringToDecimal(toolkit.hexToString(shiftedHexString, shiftHexDelimiter));
 });
 
 // Reverse Hex
@@ -247,10 +250,10 @@ freqButton && freqButton.addEventListener("click", function() {
 
     hexFrequencies.forEach(({ delimiterLength, label, minSize = 0 }) => {
         const frequencies = generateHexFrequencies(freqString.value, hexFrequenciesDelimiter, delimiterLength);
-        if (objectSize(frequencies) > 0) {
+        if (toolkit.objectSize(frequencies) > 0) {
             freqResults.insertAdjacentHTML(
                 "beforeend",
-                `${styledArrayFrequencies(frequencies, label, minSize)}`
+                `${toolkit.styledArrayFrequencies(frequencies, label, minSize)}`
             );
         }
     });

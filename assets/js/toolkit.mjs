@@ -1,9 +1,9 @@
-const alphabet	= " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz";
-const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+export const alphabet	= " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+export const alphaFlip	= " ⱯQƆPƎℲפHIſʞ˥WNOԀQɹS┴∩ΛMX⅄Zɐqɔpǝɟƃɥıɾʞןɯuodbɹsʇnʌʍxʎz";
+export const alphaRot  = " NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 // Morse map
-const morseTextDict = {
+export const morseTextDict = {
     "-----": "0", ".----": "1", "..---": "2", "...--": "3", "....-": "4", ".....": "5", "-....": "6", "--...": "7", 
     "---..": "8", "----.": "9", ".-": "A", "-...": "B", "-.-.": "C", "-..": "D", ".": "E", "..-.": "F", "--.": "G", 
     "....": "H", "..": "I", ".---": "J", "-.-": "K", ".-..": "L", "--": "M", "-.": "N", "---": "O", ".--.": "P", 
@@ -12,7 +12,7 @@ const morseTextDict = {
     ".-...": "&", "---...": ":", "-.-.-.": ";", "-...-": "=", ".-.-.": "+", "-....-": "-", "..--.-": "_", "...-..-": "$", 
     ".--.-.": "@"
 };
-const textMorseDict = Object.fromEntries(Object.entries(morseTextDict).map(([k, v]) => [v, k]));
+export const textMorseDict = Object.fromEntries(Object.entries(morseTextDict).map(([k, v]) => [v, k]));
 
 
 /**
@@ -20,7 +20,7 @@ const textMorseDict = Object.fromEntries(Object.entries(morseTextDict).map(([k, 
  * @param {string} input - The input string to be trimmed. 
  * @returns {string} The trimmed string. 
  **/
- function cleanString(string) { 
+ export function cleanString(string) { 
     return string.trim(); 
 }
 
@@ -29,7 +29,7 @@ const textMorseDict = Object.fromEntries(Object.entries(morseTextDict).map(([k, 
  * @param {string} string - The input character or string.
  * @returns {boolean} - True if the input is a letter, otherwise false.
  */
-function isLetter(string) {
+export function isLetter(string) {
     return string.length === 1 && /[a-zA-Z]/.test(string);
 }
 
@@ -38,7 +38,7 @@ function isLetter(string) {
  * @param {string} string - The input character or string.
  * @returns {boolean} - True if the input is in uppercase, otherwise false.
  */
-function isUpperCase(string) {
+export function isUpperCase(string) {
     if (typeof string !== 'string' || string.length === 0) {
         // Handle non-string or empty input
         return false;
@@ -52,7 +52,7 @@ function isUpperCase(string) {
  * @param {string} char - The character to match the case for.
  * @returns {string} - The character with the same case as the input string.
  */
-function matchCase(string, char) {
+export function matchCase(string, char) {
     if (string === string.toUpperCase()) {
         return char.toUpperCase();
     }
@@ -66,7 +66,7 @@ function matchCase(string, char) {
  * @param {string} [searchBy='key'] - Specify 'key' to search by key or 'value' to search by value.
  * @returns {string|null} - The corresponding key or value, or null if not found.
  */
-function getKeyValue(searchString, array, searchBy = 'key') {
+export function getKeyValue(searchString, array, searchBy = 'key') {
     for (const pair of array) {
         if (searchBy === 'key' && pair[0] === searchString) {
             return pair[1];
@@ -84,7 +84,7 @@ function getKeyValue(searchString, array, searchBy = 'key') {
  * @returns {number} The number of keys in the object.
  * @throws {Error} Throws an error if the provided input is not an object.
  */
-function objectSize(input) {
+export function objectSize(input) {
     if (typeof input === 'object' && !Array.isArray(input) && input !== null) {
         return Object.keys(input).length;
     }
@@ -98,7 +98,7 @@ function objectSize(input) {
  * @param {Array} array - The array to search within.
  * @returns {boolean} - Returns true if the string is found in the array, otherwise false.
  */
-function inArray(string, array) {
+export function inArray(string, array) {
     return array.includes(string);
 }
 
@@ -107,7 +107,7 @@ function inArray(string, array) {
  * @param {string} string - The input string.
  * @returns {string} - The reversed string.
  */
-function reverseString(string) {
+export function reverseString(string) {
     return Array.from(string).reverse().join("");
 }
 
@@ -118,7 +118,7 @@ function reverseString(string) {
  * @param {number} number - The desired chunk length.
  * @returns {string} - The input string split into chunks.
  */
-function splitString(string, number) {
+export function splitString(string, number) {
     return string.match(new RegExp(".{1," + number + "}", "g")).join(" ");
 }
 
@@ -129,7 +129,7 @@ function splitString(string, number) {
  * @param {number} number - The desired chunk length.
  * @returns {Array<string>} - An array of chunks from the input string.
  */
-function stringToArray(string, number) {
+export function stringToArray(string, number) {
     return string.match(new RegExp(".{1," + number + "}", "g"));
 }
 
@@ -138,7 +138,7 @@ function stringToArray(string, number) {
  * @param {string} string - The input string.
  * @returns {string} - The binary representation of the input string.
  */
-function stringToBinary(string) {
+export function stringToBinary(string) {
     const encoder = new TextEncoder();
     const uint8Array = encoder.encode(string);
     return Array.from(uint8Array)
@@ -154,7 +154,7 @@ function stringToBinary(string) {
  * @param {string} delimiter - The delimiter used to separate hex characters in the input string (e.g., '0x', '\\x').
  * @returns {boolean} True if the input string is valid hexadecimal, otherwise false.
  */
-function isValidHex(string, delimiter) {
+export function isValidHex(string, delimiter) {
     const validHex = new RegExp(`^[0-9a-fA-F${delimiter}]+$`);
     let cleanStr = cleanString(string);
     return validHex.test(cleanStr);
@@ -167,7 +167,7 @@ function isValidHex(string, delimiter) {
  * @param {string} delimiter - The delimiter to use (e.g., '0x', '\\x').
  * @returns {string} - The hexadecimal representation of the input string.
  */
-function stringToHex(string, delimiter) {
+export function stringToHex(string, delimiter) {
     const encoder = new TextEncoder();
     const uint8Array = encoder.encode(string);
 
@@ -186,7 +186,7 @@ function stringToHex(string, delimiter) {
  * @returns {string} - The decoded string.
  * @throws {Error} - If the hexadecimal contains invalid characters.
  */
-function hexToString(string, delimiter) {
+export function hexToString(string, delimiter) {
     if (isValidHex(string, delimiter)) {
         let hexArray = [];
         if (delimiter === "") {
@@ -216,7 +216,7 @@ function hexToString(string, delimiter) {
  * @param {string} string - The input string to encode.
  * @returns {string} - The Base64-encoded string.
  */
-function stringToBase64(string) {
+export function stringToBase64(string) {
     const encoder = new TextEncoder();
     const uint8Array = encoder.encode(string);
 
@@ -234,7 +234,7 @@ function stringToBase64(string) {
  * @param {string} string - The input string.
  * @returns {string} - The Rot13-transformed string.
  */
-function rot13(string) {
+export function rot13(string) {
     return string.replace(/[A-Za-z]/g, c => alphaRot[alphabet.indexOf(c)]);
 }
 
@@ -243,7 +243,7 @@ function rot13(string) {
  * @param {string} string - The input string.
  * @returns {number} - The Unicode character number.
  */
-function ord(string) {
+export function ord(string) {
     const encoder = new TextEncoder();
     const encoded = encoder.encode(string);
     return encoded[0];
@@ -254,7 +254,7 @@ function ord(string) {
  * @param {string} string - The input string.
  * @returns {string} - A space-separated string of decimal code point values.
  */
-function stringToDecimal(string) {
+export function stringToDecimal(string) {
     return Array.from(string).map(c => ord(c)).join(" ");
 }
 
@@ -263,7 +263,7 @@ function stringToDecimal(string) {
  * @param {string} string - The input character.
  * @returns {number} - The decimal Unicode code point value.
  */
-function string2Dec(string) {
+export function string2Dec(string) {
     return ord(string);
 }
 
@@ -272,7 +272,7 @@ function string2Dec(string) {
  * @param {string} string - The input string containing decimal code point values.
  * @returns {string} - The decoded string.
  */
-function decimalToString(string) {
+export function decimalToString(string) {
     return string.trim().split(/\s+/).map(c => String.fromCharCode(c)).join("");
 }
 
@@ -282,7 +282,7 @@ function decimalToString(string) {
  * @param {Number} [chunkSize=1] - The size of each chunk. Default is 1.
  * @returns {Array} - An array of unique character groups for each chunk.
  */
-function uniqueArray(str, chunkSize = 1) {
+export function uniqueArray(str, chunkSize = 1) {
     if (chunkSize <= 0) {
         throw new Error("Invalid chunk size");
     }
@@ -305,7 +305,7 @@ function uniqueArray(str, chunkSize = 1) {
  * @param {boolean} [caseSensitive=false] - If true, performs case-sensitive replacements.
  * @returns {string} - The modified string with replacements.
  */
-function replaceChars(string, toReplace, replacement, caseSensitive) {
+export function replaceChars(string, toReplace, replacement, caseSensitive) {
     const regex = new RegExp(toReplace, `g${caseSensitive ? "" : "i"}`);
     if (!regex.test(string)) {
         throw new Error(`"${toReplace}" was not found within the original string.`);
@@ -323,7 +323,7 @@ function replaceChars(string, toReplace, replacement, caseSensitive) {
  * // Input: ["a", "b", "c"]
  * // Output: "<div class="g-col-12"> ..."
  */
-function styledUniqueArrayItems(data) {
+export function styledUniqueArrayItems(data) {
     const uniqueCharsHTML = data.map(char => {
         const sanitizedChar = char.replace(/ /g, "Space").replace(/\t/g, "Tab");
         const displayChar = char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;");
@@ -356,7 +356,7 @@ function styledUniqueArrayItems(data) {
  * // Input: "he:ll:oh:el:lo", 2, ":"
  * // Output: { he: 1, ll: 1, oh: 1, el: 1, lo: 1 }
  */
-function countArrayFreq(string, chunkSize = 1, delimiter) {
+export function countArrayFreq(string, chunkSize = 1, delimiter) {
     // Remove the delimiter from the string if it is present
     if (delimiter) {
         string = string.split(delimiter).join("");
@@ -391,7 +391,7 @@ function countArrayFreq(string, chunkSize = 1, delimiter) {
  * // Input: { h: 1, e: 1, l: 3, o: 2, ',': 1, ' ': 1, w: 1, r: 1, d: 1, '!': 1 }, "Character Frequencies"
  * // Output: "<div class="g-col-12"> ..."
  */
-function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
+export function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
     // Generate HTML for each key-value pair
     const itemsHTML = Object.entries(data).map(([key, value]) => {
         return `<div>
@@ -428,7 +428,7 @@ function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
  * @param {boolean} [options.fontAdjust=false] - Whether to adjust the font position based on its metrics.
  * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
  */
-function createImage(width, height, filename, element, string, options = {}) {
+export function createImage(width, height, filename, element, string, options = {}) {
     const canvas = document.createElement("canvas");
     canvas.width = (width * 1.5) + 20;
     canvas.height = height * 1.5;
@@ -467,7 +467,7 @@ function createImage(width, height, filename, element, string, options = {}) {
  * @param {number} canvasHeight - The height of the canvas.
  * @returns {number} - The adjusted Y position for the text.
  */
-function adjustFontPosition(ctx, string, paddingTop, canvasHeight) {
+export function adjustFontPosition(ctx, string, paddingTop, canvasHeight) {
     const textMetrics = ctx.measureText(string);
     const textHeight = textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
     let textY = paddingTop + textHeight;
@@ -485,7 +485,7 @@ function adjustFontPosition(ctx, string, paddingTop, canvasHeight) {
  * @param {boolean} download - Whether to download the image or return it for injection.
  * @returns {HTMLImageElement|null} - The generated image element if download is false, otherwise null.
  */
-function handleDownload(url, filename, download) {
+export function handleDownload(url, filename, download) {
     if (download) {
         const tempAnchor = document.createElement("a");
         tempAnchor.download = filename;

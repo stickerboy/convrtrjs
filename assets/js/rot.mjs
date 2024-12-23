@@ -1,3 +1,5 @@
+import { alphabet, isUpperCase, isLetter } from "./toolkit.mjs"; 
+
 /**
  * Applies the ROT (Caesar cipher) encryption or decryption to a given string.
  * @param {string} string - The input string to be encoded or decoded.
@@ -5,7 +7,7 @@
  * @param {string} alpha - Custom alphabet (optional, defaults to English alphabet).
  * @returns {string} - The resulting string after applying the ROT transformation.
  */
-function rot(string, n = -13, alpha = alphabet.substring(1)) {
+export default function rot(string, n = -13, alpha = alphabet.substring(1)) {
     n = (n % 26 + 26) % 26; // Normalize n to ensure it's positive and within the alphabet range
     const length = alpha.length;
     let result = "";
