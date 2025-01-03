@@ -144,7 +144,7 @@ decDecodeButton && decDecodeButton.addEventListener("click", function() {
     try {
         toolkit.decimalToString(data);
     } catch (e) {
-        showToast("Error", "An error occurred trying to decode the data.", "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -177,7 +177,7 @@ revDecodeButton && revDecodeButton.addEventListener("click", function() {
     try {
         toolkit.reverseString(data);
     } catch (e) {
-        showToast("Error", "An error occurred trying to decode the data.", "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
@@ -210,7 +210,7 @@ rot13DecodeButton && rot13DecodeButton.addEventListener("click", function() {
     try {
         toolkit.rot13(data);
     } catch (e) {
-        showToast("Error", "An error occurred trying to decode the data.", "danger");
+        showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
