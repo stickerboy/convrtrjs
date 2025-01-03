@@ -45,7 +45,6 @@ binaryDecodeButton && binaryDecodeButton.addEventListener("click", function() {
     try {
         home.binaryToString(data);
     } catch (e) {
-        console.log(data);
         showToast("Error", `An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
