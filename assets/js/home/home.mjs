@@ -10,7 +10,7 @@ import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs
  * @throws {Error} - If the input is not a valid binary string.
  */
 export function isValidBinaryLength(string) {
-    return string.length % 8 === 0;
+    return tools.numbersOnly(string).length % 8 === 0;
 }
 
 /**
@@ -31,7 +31,7 @@ export function binaryToString(string) {
 
         return String.fromCharCode(...charCodes);
     } else {
-        throw new Error("Not a valid Binary string");
+        throw new Error("Not a valid Binary string, length is not divisible by 8");
     }
 }
 
