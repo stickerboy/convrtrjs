@@ -142,20 +142,20 @@ decDecodeButton && decDecodeButton.addEventListener("click", function() {
     }
 
     try {
-        home.decimalToString(data);
+        toolkit.decimalToString(data);
     } catch (e) {
         showToast("Error", "An error occurred trying to decode the data.", "danger");
         return;
     }
 
-    document.getElementById("convrtrs-text").querySelector("textarea").value = home.decimalToString(data);
-    document.getElementById("convrtrs-binary").querySelector("textarea").value = toolkit.stringToBinary(home.decimalToString(data));
-    document.getElementById("convrtrs-hex").querySelector("textarea").value = toolkit.stringToHex(home.decimalToString(data), hexDelimiter);
-    document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(home.decimalToString(data));
+    document.getElementById("convrtrs-text").querySelector("textarea").value = toolkit.decimalToString(data);
+    document.getElementById("convrtrs-binary").querySelector("textarea").value = toolkit.stringToBinary(toolkit.decimalToString(data));
+    document.getElementById("convrtrs-hex").querySelector("textarea").value = toolkit.stringToHex(toolkit.decimalToString(data), hexDelimiter);
+    document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(toolkit.decimalToString(data));
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(data);
-    document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(home.decimalToString(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(home.decimalToString(data));
+    document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(toolkit.decimalToString(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(toolkit.decimalToString(data));
 });
 
 
