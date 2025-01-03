@@ -19,9 +19,8 @@ function copyToClipboardLegacy(text, el) {
 			var successful = document.execCommand("copy"); // legacy support test
 			var msg = successful ? "Copied!" : "Whoops, not copied!";
 			tooltip.setContent({ ".tooltip-inner": msg });
-		} catch (err) {
-			console.log(err);
-			console.log("Oops, unable to copy");
+		} catch (e) {
+			console.log(`Oops, unable to copy: ${e.message}`);
 		}
 		document.body.removeChild(copyTextArea);
 		tooltip.setContent({ ".tooltip-inner": elOriginalText });

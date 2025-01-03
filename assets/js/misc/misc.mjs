@@ -81,7 +81,6 @@ export function convertElements(string, sourceProp, targetProp, removeDelimiters
                 if (el[sourceProp] === str || el["number"] === Number(str)) {
                     if (el.hasOwnProperty(targetProp)) {
                         const targetValue = el[targetProp];
-                        // console.log(`Converted ${sourceProp} (${str}) to ${targetProp} (${targetValue})`);
                         results.push(targetValue);
                         found = true;
                         break;
