@@ -87,7 +87,7 @@ hexDecodeButton && hexDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(toolkit.hexToString(data, hexDelimiter));
     document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(toolkit.hexToString(data, hexDelimiter));
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
-    document.getElementById("convrtrs-rot13").querySelector("textarea").value = rot13(data);
+    document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(data);
     document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(toolkit.hexToString(data, hexDelimiter));
     document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(toolkit.hexToString(data, hexDelimiter));
 });
