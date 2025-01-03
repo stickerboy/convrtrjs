@@ -285,7 +285,7 @@ mrsnryDecodeButton && mrsnryDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-hex").querySelector("textarea").value = toolkit.stringToHex(home.morsenaryToString(data), hexDelimiter);
     document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(home.morsenaryToString(data));
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
-    document.getElementById("convrtrs-rot13").querySelector("textarea").value = "";
+    document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(home.morsenaryToString(data));
     document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(home.morsenaryToString(data));
     document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(home.morsenaryToString(data));
 });
