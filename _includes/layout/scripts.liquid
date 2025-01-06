@@ -8,6 +8,6 @@
 <script type="module" src="../assets/js/rot.mjs"></script>
 <script type="module" src="../assets/js/scripts.mjs"></script>
 {% assign dynamicJSPath = "../assets/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
-{% if page-id == "home" -%}<script type="module" src="../assets/js/home/convrtrs.mjs"></script>{%- endif %}
 {% if dynamicJSPath | assetExists -%}<script type="module" src="{{ dynamicJSPath }}"></script>{%- endif %}
+{% if page-id == "home" -%}<script type="module" src="../assets/js/home/convrtrs.mjs"></script>{%- endif %}
 {%- endif -%}

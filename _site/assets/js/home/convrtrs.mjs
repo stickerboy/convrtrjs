@@ -1,6 +1,6 @@
 import * as toolkit from '../toolkit.mjs';
 import { emptyContainerCheck, largeDataWarning, showToast }  from '../scripts.mjs';
-import * as home from '../home/home.mjs';
+import * as home from '../home/home-fn.mjs';
 
 // Make it so
 const encodeButton = document.getElementById("encode");
