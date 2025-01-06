@@ -21,7 +21,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename }}(key, datanode)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename | prepend: "window." }}(key, datanode)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
