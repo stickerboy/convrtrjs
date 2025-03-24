@@ -13,18 +13,18 @@
             </a>
             <hr>
             <p class="px-2">
-                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    S → T → B
+                    H → T → M
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    E → E → A
+                    e → e → a
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    N → S → F
+                    l → s → h
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    T → T → A
+                    l → t → i
                 </code>
                 - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
             </p>
@@ -34,7 +34,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → BAFAPRQP" title="Beaufort encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → Test [key] → Mahif" title="Beaufort encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">

@@ -14,8 +14,8 @@
             <hr>
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WORD</code> would shift like: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TBST SBLTBLDB</code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello World</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Faiil Wloit</code> 
             </p>
         </div>
         <div class="collapse" id="{{ filename }}Collapse">
@@ -23,7 +23,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → TBST SBLTBLDB
+                        <textarea placeholder="Example: Hello World → Test [key] → Faiil Wloit
                         " title="{{ filename | upperFirst }} encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
