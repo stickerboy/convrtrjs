@@ -535,6 +535,10 @@ code {
     width: 5.82rem;
     padding: 0.66rem 0.5rem;
     font-size: 1rem;
+
+    &--large {
+        width: 10rem;
+    }
 }
 .form-control,
 .form-select {

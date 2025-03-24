@@ -40,9 +40,12 @@ shiftButton && shiftButton.addEventListener("click", function() {
 // Reverse Hex
 const reverseHexButton = document.getElementById("reversehexDecode");
 reverseHexButton && reverseHexButton.addEventListener("click", function() {
+    const chainReverse = document.getElementById("reversehexChain");
+
     const reverseHexString = document.getElementById("reversehexText");
     let reverseHexDelimiter = document.getElementById("reversehexDelimiter").value;
-    let reverseNibbles = document.getElementById("reverseNibbles");
+    let reverseType = document.getElementById("reversehexType");
+    let reverseResults = document.getElementById("reversehexResults");
 
     if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
         return false;
@@ -51,23 +54,39 @@ reverseHexButton && reverseHexButton.addEventListener("click", function() {
         return false;
     }
 
+    let revHexContent;
+    
     try {
-        if(reverseNibbles.checked) {
-            hex.reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter)
-        } else {
-            hex.reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
-        } 
+        switch (reverseType.value) { 
+            case "bytes":
+                if (chainReverse.checked && reverseResults.textContent.length > 0) {
+                    revHexContent = hex.reverseHexBytes(reverseResults.textContent.trim(), reverseHexDelimiter);
+                } else {
+                    revHexContent = hex.reverseHexBytes(reverseHexString.value.trim(), reverseHexDelimiter);
+                }
+            break;
+            case "byte-order": 
+                if (chainReverse.checked && reverseResults.textContent.length > 0) {
+                    revHexContent = hex.reverseHexByteOrder(reverseResults.textContent.trim(), reverseHexDelimiter);
+                } else {
+                    revHexContent = hex.reverseHexByteOrder(reverseHexString.value.trim(), reverseHexDelimiter);
+                }
+            break;
+            case "nibbles":
+                if (chainReverse.checked && reverseResults.textContent.length > 0) {
+                    revHexContent = hex.reverseHexNibbles(reverseResults.textContent.trim(), reverseHexDelimiter);
+                } else {
+                    revHexContent = hex.reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter);
+                }
+            break;
+            default:
+                throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
+        }
     } catch (e) {
         showToast("Error", `An error occurred trying to reverse the hex string: ${e.message}`, "danger");
         return;
     }
 
-    let revHexContent;
-    if(reverseNibbles.checked) {
-        revHexContent = hex.reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter)
-    } else {
-        revHexContent = hex.reverseHex(reverseHexString.value.trim(), reverseHexDelimiter);
-    } 
     document.getElementById("reversehexResults").textContent = revHexContent;
 });
 
