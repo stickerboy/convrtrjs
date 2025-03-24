@@ -1,4 +1,5 @@
 import copyToClipboard from '../js/clip.mjs';
+import { inArray } from './toolkit.mjs';
 
 /**
  * Saves a value to local storage
