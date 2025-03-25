@@ -2,6 +2,10 @@ import * as toolkit from '../toolkit.mjs';
 import { emptyContainerCheck, largeDataWarning, showToast }  from '../scripts.mjs';
 import * as home from '../home/home-fn.mjs';
 
+Object.keys(home).forEach(functionName => {
+    window[functionName] = home[functionName];
+});
+
 // Make it so
 const encodeButton = document.getElementById("encode");
 encodeButton && encodeButton.addEventListener("click", function() {

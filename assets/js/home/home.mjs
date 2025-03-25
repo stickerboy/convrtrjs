@@ -3,6 +3,13 @@ import * as toolkit from '../toolkit.mjs';
 import { flipText, stringStats } from './home-fn.mjs';
 import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
 
+Object.keys(tools).forEach(functionName => {
+    window[functionName] = tools[functionName];
+});
+Object.keys(toolkit).forEach(functionName => {
+    window[functionName] = toolkit[functionName];
+});
+
 // Text tools
 const toolChange = document.getElementById("toolsChange");
 toolChange.addEventListener("click", function() {

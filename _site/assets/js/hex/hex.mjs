@@ -2,6 +2,10 @@ import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs
 import * as toolkit from '../toolkit.mjs';
 import * as hex from './hex-fn.mjs';
 
+Object.keys(hex).forEach(functionName => {
+    window[functionName] = hex[functionName];
+});
+
 // Shift Hex
 const shiftButton = document.getElementById("shifthexDecode");
 shiftButton && shiftButton.addEventListener("click", function() {

@@ -2,6 +2,10 @@ import { emptyContainerCheck, largeDataWarning, showToast }  from '../scripts.mj
 import { getKeyValue, createImage, stringToHex } from '../toolkit.mjs';
 import * as misc from './misc-fn.mjs';
 
+Object.keys(misc).forEach(functionName => {
+    window[functionName] = misc[functionName];
+});
+
 // Periodic element conversion
 const elementsChange = document.getElementById("elementsChange");
 elementsChange && elementsChange.addEventListener("click", function () {
