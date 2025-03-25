@@ -150,9 +150,10 @@ if(sectionToggles.length > 0) {
             for (const sectionToggle of sectionToggles) {
                 const section = sectionToggle.closest(".section");
                 const sectionID = sectionToggle.closest(".section").id;
-                sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
                 const x = getLocalStorageItem(sectionID);
-
+                if(x !== null) {
+                    sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
+                }
                 if (x === true) {
                     section.querySelector(".collapse").classList.add("show");
                 } else {
@@ -167,7 +168,6 @@ if(sectionToggles.length > 0) {
     // Save toggle state
     Array.from(sectionToggles, c => c.addEventListener("click", function() {
         let section = c.closest(".section");
-
         saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
     }));
 }
