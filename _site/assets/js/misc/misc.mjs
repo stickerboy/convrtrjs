@@ -222,7 +222,6 @@ if (forerunnerButtons.length > 0) {
             button.classList.remove("active");
         });
         c.classList.add("active");
-        console.log(c.dataset.glyph);
         fR.textContent += getKeyValue(c.dataset.glyph, misc.fralphabet);
         fIR.textContent += c.dataset.glyph;
     }));
