@@ -757,3 +757,73 @@ textarea.form-control.is-invalid.ld-warning {
     line-height: 1;
     font-weight: normal;
 }
+
+.changelog {
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+        border-bottom-color: var(--bs-border-color-translucent);
+        border-style: none;
+        border-bottom-style: solid;
+        border-bottom-width: var(--bs-border-width);
+    }
+    @for $i from 1 through 6 {
+        h#{$i} {
+            font-weight: 300;
+        }
+    }
+    h3 {
+        @extend .h4 !optional;
+        font-weight: 400;
+    }
+    h4 {@extend .h5 !optional;
+        font-weight: 400;
+    }
+
+}
+.version-list {
+    >:not(caption)>*>* {
+        padding: 1rem;
+    }
+}
+
+.git-badge {
+    color: var(--bs-black);
+    background-color: var(--bs-light-rgb);
+}
+.badge {
+    &-release {
+        color: var(--bs-white);
+        background-color: var(--convrtr-bg-color);
+    }
+    &-bug-fixes {
+        color: var(--bs-danger-text-emphasis);
+        background-color: var(--bs-danger-bg-subtle);
+    }
+    &-new-features {
+        color: var(--bs-success-text-emphasis);
+        background-color: var(--bs-success-bg-subtle);
+    }
+    &-improvements {
+        color: var(--bs-primary-text-emphasis);
+        background-color: var(--bs-primary-bg-subtle);
+    }
+    &-a11y {
+        color: var(--bs-info-text-emphasis);
+        background-color: var(--bs-info-bg-subtle);
+    }
+    &-major {
+        background-color: $gray-200;
+    }
+    &-minor {
+        background-color: $gray-400;
+    }
+    &-patch {
+        color: var(--bs-white);
+        background-color: $gray-600;
+    }
+}

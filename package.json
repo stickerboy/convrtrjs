@@ -8,7 +8,7 @@
   "scripts": {
     "sass:dev": "sass --watch --update --style=expanded scss:assets/devcss",
     "sass:prod": "sass --no-source-map --style=compressed scss:assets/css",
-    "build": "npx @11ty/eleventy --formats=html"
+    "build": "npx @11ty/eleventy --formats=html,md"
   },
   "repository": {
     "name": "stickerboy",

@@ -38,4 +38,44 @@ export default function (eleventyConfig) {
         dynamicPartials: true,
         strict_filters: true,
     });
+
+    eleventyConfig.addCollection("changelog", (collectionApi) => {
+        return collectionApi.getFilteredByTag("changelog").sort((a, b) => {
+            const parseVersion = (version) => version.split('.').map(Number);
+            const [aMajor, aMinor, aPatch] = parseVersion(a.data.title);
+            const [bMajor, bMinor, bPatch] = parseVersion(b.data.title);
+            
+            console.log(aMajor);
+            // Compare major, then minor, then patch
+            if (aMajor !== bMajor) {
+                return bMajor - aMajor; // Sort by major version (descending)
+            }
+            if (aMinor !== bMinor) {
+                return bMinor - aMinor; // Sort by minor version (descending)
+            }
+            return bPatch - aPatch; // Sort by patch version (descending)
+        });
+    });
+
+    // Automatically set permalink for changelog items
+    eleventyConfig.addGlobalData("eleventyComputed", {
+        permalink: (data) => {
+            if (data.page.inputPath.includes("changelog/versions")) {
+                const versionSlug = data.page.fileSlug; // Use the file name (e.g., "2.0.0")
+                return `/changelog/${versionSlug}/`; // Set the desired permalink
+            }
+            return data.permalink; // Keep existing permalink for other files
+        },
+        description: (data) => {
+            if (data.page.inputPath.includes("changelog/versions")) {
+                const date = new Date(data.date);
+                return `Released on ${date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })}`;
+            }
+            return data.description; // Keep existing description for other pages
+        },
+    });
 }

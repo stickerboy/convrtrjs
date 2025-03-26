@@ -1,0 +1,54 @@
+---
+layout: layout.liquid
+title: Changelog
+description: History of feature releases, changes and bug fixes
+page-id: changelog  
+eleventyExcludeFromCollections: true
+---
+
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <table class="table table-hover version-list">
+                <thead>
+                    <tr>
+                        <th scope="col">Version</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Tags</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                
+                    {% for version in collections.changelog %}
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <a href="{{ version.url }}"
+                                class="stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                {{ version.data.title }}
+                            </a>
+                        </th>
+                        <td>{{ version.date | date: "%B %d, %Y" }}</td>
+                        <td>
+                        {% if version.data.tags %}
+                            {% for tag in version.data.tags %}
+                            {% if tag != "changelog" %}
+                            <span class="badge git-badge badge-{{ tag | replace: ' ', '-' }}">{{ tag }}</span>
+                            {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% else -%}
+                    <tr>
+                        <td colspan="3">
+                            There are no changelogs currently available<br />
+                            For full list of changes please see <a href="{{ pkg.releases.url }}" class="text-convrtr">Github Releases</a>.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
