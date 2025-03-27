@@ -16,7 +16,7 @@
                 {%- endfor -%}
             </div>
             {%- endif -%}
-            {%- if page-id != "sitemap" and page.inputPath contains "changelog" -%}
+            {%- if page-id == "sitemap" or page-id != "sitemap" and page.inputPath contains "changelog" -%}
             {%- else -%}
             {% render "components/data-limits" %}
             {% endif %}
