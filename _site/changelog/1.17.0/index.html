@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
+        <meta name="author" content="Kenny Cameron">
+        <meta name="generator" content="Eleventy v3.0.0">
+        <title>Convrtr - 1.17.0</title>
+
+        <link rel="canonical" href="https://www.convrtr.xyz">
+
+                <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Core theme and Bootstrap CSS -->
+        <link href="/assets/css/main.css" rel="stylesheet">
+        <!-- Favicons -->
+        <meta name="theme-color" content="#11806a">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="Convrtr"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="/assets/favicons/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="/assets/favicons/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="/assets/favicons/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
+    </head>
+    <body id="IOOBI9O4IEIEOIO4O4IB" 
+          >
+          <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+
+        <header>
+    <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
+        <div class="container-fluid mw justify-content-start">
+            <a href="/" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3 d-flex" title="Home">
+                <span>Convrtr</span>
+            </a>
+            <div class="d-flex ms-auto">
+                <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
+                    For everlost and Grollow!
+                </span>
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row">
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
+                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                        </a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
+                                aria-label="Clear all data inside textareas" title="Clear data"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-recycle" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Clear all data</span>
+                        </button>
+                    </li>
+                
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                        aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
+                        data-current-icon="bi-circle-half">
+                            <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">Toggle theme</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-theme-text">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
+                                data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
+                                    Light
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
+                                data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
+                                    Dark
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
+                                data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
+                                    Auto
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navigation" 
+                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
+                    <span class="visually-hidden">Toggle navigation</span>
+                </button>
+            </div>
+            <div class="offcanvas offcanvas-end bg-convrtr" id="navigation" tabindex="-1" aria-labelledby="navLabel" data-bs-scroll="true">
+                <div class="offcanvas-header">
+                    <h1 class="offcanvas-title h5 text-light" id="navLabel">Menu</h1>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav me-auto mb-2">
+
+    <li class="nav-item dropdown" data-link-id="home" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">Text tools</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../#convrtrs">Convrtrs</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../#flip">Flip text</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../#frequencies">Character frequencies</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../#replace">Replace characters</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../#tools">Text tools</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+    <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">Cipher tools</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#atbash">Atbash cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#beaufort">Beaufort cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#caesar">Caesar cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#chaocipher">Chaocipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#hash">Hash algorithms</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#keyword">Keyword cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#rail">Rail fence cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#smithy">Smithy cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#substitution">Substitution cipher</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../ciphers/#vigenere">Vigenère cipher</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+    <li class="nav-item dropdown" data-link-id="oni" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">ONI tools</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#calendar">Calendar</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#interleave">Interleave</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#lookahead">Lookahead</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#mergeb64">Merge Base64</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#strings">Extract strings</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#unmunge">Unmunge</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../oni/#unscramble">Unscramble</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+    <li class="nav-item dropdown" data-link-id="hex" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">Hex tools</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../hex/#hexfrequencies">Hex Frequencies</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../hex/#reversehex">Reverse hex</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../hex/#shifthex">Shift hex</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+    <li class="nav-item dropdown" data-link-id="files" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">File tools</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../files/#filecheck">Check file type</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../files/#headers">File headers</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+    <li class="nav-item dropdown" data-link-id="misc" data-page-id="">
+        
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span class="d-inline-flex ms-1 me-auto fs-5">Misc</span>
+        </a>
+        <ul class="dropdown-menu">
+            
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#braille">Braille</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#colorgenerator">Color generator</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#covenant">Covenant glyphs</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#elements">Elements</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#elementstable">Periodic elements</a>
+            </li>
+            
+            <li class="mb-1">
+                <a class="dropdown-item" href="../misc/#forerunner">Forerunner glyphs</a>
+            </li>
+            
+        </ul>
+        
+    </li>
+
+</ul>
+
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
+                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                        <span class="mx-2">Join the Discord</span>
+                    </a>
+                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
+                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                        <span class="mx-2">Convrtr on Github</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+        <main class="mt-5 ms-auto me-auto mw"
+            data-bs-spy="scroll" 
+            data-bs-target="#navbarText" 
+            data-bs-smooth-scroll="true"
+            data-bs-threshold="0,1"
+            data-bs-root-margin="10% 0% -90%"
+            id="content">
+            <section class="section">
+    <div class="py-5 pb-4 px-2 px-sm-4">
+        
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-end mb-0">
+        <li class="breadcrumb-item">
+            
+            <a href="/" class="text-convrtr">Home</a>
+            
+        </li>
+        
+        <li class="breadcrumb-item">
+            <a href="/changelog" class="text-convrtr">changelog</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            v1.17.0
+        </li>
+        
+    </ol>
+</nav>
+
+        <div class="section-heading">
+            <h1 class="display-6">v1.17.0</h1>
+            <hr>
+            <p class="px-2">
+                Released on November 16, 2024
+            </p><div class="px-2">
+                <span class="badge git-badge badge-minor">minor</span>
+                
+                <span class="badge git-badge badge-new-features">new features</span>
+                
+                <span class="badge git-badge badge-improvements">improvements</span>
+                
+                <span class="badge git-badge badge-bug-fixes">bug fixes</span>
+                </div>
+        </div>
+    </div>
+</section>
+<section class="section changelog">
+    <article class="py-4 px-2 px-sm-4">
+        <h2>New features</h2>
+<p>Many, many, many new features in this release - so many that I'm opting not to include screenshots this time round.</p>
+<h3>Ciphers</h3>
+<ul>
+<li><strong>Beaufort cipher</strong><br>
+Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet.</li>
+<li><strong>Rail fence cipher</strong><br>
+Also known as the Zig Zag cipher, Rail fence takes its name from how the encryption is performed - in analogy to a fence built with horizontal rails</li>
+<li><strong>Chaocipher</strong><br>
+Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time.</li>
+<li><strong>Atbash cipher</strong><br>
+A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: A ⇆ Z B ⇆ Y etc.</li>
+</ul>
+<h3>ONI tools</h3>
+<p>While not exposed in the UI right now, several tools from the Section 3 ruby Toolkit have been ported over to Convrtr. These can be accessed using the web console. Most will require specifically encoded data sets to work correctly</p>
+<ul>
+<li><strong>Unmunge</strong><br>
+Unmunges a data node using a given key.</li>
+<li><strong>Lookahead</strong><br>
+Performs a lookahead operation on the data node using the given key.</li>
+<li><strong>Interleave</strong><br>
+Interleaves the characters of two strings, you may optionally pass in a delimiter.</li>
+<li><strong>Merge Base64</strong><br>
+Merges multiple Base64 strings by selecting the most frequent character at each position.</li>
+<li><strong>Unscramble</strong><br>
+Unscrambles a string by interleaving its characters. For example: abcdef → badcfe</li>
+<li><strong>Extract strings</strong><br>
+Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.</li>
+<li><strong>Calendar</strong><br>
+Extracts characters from the data string at specific positions based on calendar-like offsets.</li>
+</ul>
+<h3>Hex tools</h3>
+<p>Similar to ONI tools, these are not yet exposed in the UI but are available via the web console to try.</p>
+<ul>
+<li><strong>Shift Hex Pattern</strong><br>
+Shifts the bytes of the input string based on the provided key bytes.</li>
+<li><strong>Shift Hex Key</strong><br>
+Shifts the bytes of the input string based on the provided key.</li>
+</ul>
+<h2>Changes</h2>
+<ul>
+<li>Improved description and example text for various decoders</li>
+</ul>
+<h2>Bug fixes</h2>
+<ul>
+<li>Fixed bug with Vigenère cipher, where the shift values were slightly off</li>
+<li>Fixed various typos and grammatical issues</li>
+<li>Fixed copyright year being incorrectly generated at build time on certain platforms</li>
+</ul>
+
+
+        <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v1.17.0-Release">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
+                viewBox="0 0 16 16">
+                <path
+                    d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+            </svg>
+            View on Github
+        </a>
+    </article>
+</section>
+        </main>
+
+        <footer class="section footer">
+    <div class="mw me-auto ms-auto">
+        <div class="p-4 pb-2">
+            
+            <p class="float-end mb-1">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
+                    <i class="bi bi-arrow-up-square"></i>
+                    <span class="visually-hidden" focusable="false" aria-hidden="true">
+                        Back to top
+                    </span>
+                </a>
+            </p>
+            
+            <p class="mb-1">
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2025. All Rights Reserved.<br />
+                Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
+            </p>
+            <p class="mb-1">
+                <a href="/sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
+            </p>
+        </div>
+        <div class="p-4 pt-2">
+            <a href="/changelog"" 
+                title="Release version: v2.0.0" 
+                class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
+                <small>v2.0.0</small>
+            </a>
+        </div>
+    </div>
+</footer>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+<script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/assets/js/theme.js></script>
+<script type="module" src="/assets/js/clip.mjs"></script>
+<script type="module" src="/assets/js/toolkit.mjs"></script>
+<script type="module" src="/assets/js/tools.mjs"></script>
+<script type="module" src="/assets/js/rot.mjs"></script>
+<script type="module" src="/assets/js/scripts.mjs"></script>
+
+
+
+        <div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
+        <div class="toast-header text-bg-convrtr">
+            <strong class="me-auto"></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-bg-light"></div>
+    </div>
+</div>
+    </body>
+</html>
+
+
+<!--
+//START FILE/ IETY JNM URER
+/Packet detected..
+/Processing......
+/Packet found:
+/UoneFVQVJFUoneFVQVJFUoneFVQVJFUEVOVEFTUVVBUkVFTEVQRUfiveUQUNBVFBFTlRBQzerolSQzeroxFUoneFVQVJFRknineYUEVOVEFDSVJDTEVTUVVBUkVOTzerofiveBUEVOVEFEVUFM==
+/END FILE ../
+MMMMMMMWKc;.                 ;cXWMMMMMMM
+MMMMMMWNK:.  .'''.......''.. .:NWMMMMMMM
+MMMMWWxo,. ,xKXKKK0000KKKXKd, .';oMWMMMM
+MMMWXNl'..ckKKOdl:;,,,;:lkKXOc. .:xXWMMM
+MMW0o;. 'dKX0o::lxOKXKOo,'lOXKd' .'lxWMM
+MWdo,..:kKKxc:xXXNNNNXXX0c.cOKKk:..,:oNM
+Kk'. .c0XXKc:OXXNNWWWNNXXO:.:KXX0c. ..KN
+kc. .cKXXXXKKNNWWWNNNNXX0d::dKXXXKc. .lO
+c.  ;kXNNNNNNNNNNNNNNKkl;;o0XXXXXKx;  .c
+0d. .c0XXNNWWWWWNNKOd;':dd:dKXXXX0c. .d0
+NKl, .:ONNNNNNNNNXo'.;ooxO0KXXXXO:. ',0N
+WWNx;. ,dKXNNNNNXK; ,;.;xKXXXXKx, .;okWM
+WWWOo:. .l0XXNNNNX:  .cOXXXXX0l. .:oxMMM
+WWWWWWo,..;kXXXXXKl':kKXXXXKx;..;oWWMMWW
+WWWWWWkl:. .l0KKKKK0KKKKKK0o. .:lkMMMMNN
+MWWWWWWWXl,  ..............  ,lNWMMMMMNN
+MWWWWWWWNd:.                .:oNWMMMMMWW
+-->

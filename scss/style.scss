@@ -33,6 +33,7 @@
 
 :root {
     --convrtr-bg-color: rgb(21, 96, 82);
+    --convrtr-txt-color: rgb(17, 77, 66);
     --bs-bg-success: 21, 96, 82;
     --convrtr-bg-color-rgb: 21, 96, 82;
     --convrtr-bg-color-10: #0f735f;
@@ -792,6 +793,15 @@ textarea.form-control.is-invalid.ld-warning {
     }
     article img {
         max-width: 100%;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            max-width: 95%;
+        }
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+            max-width: 85%;
+        }
+        @media (min-width: map-get($grid-breakpoints, xl)) {
+            max-width: 75%;
+        }
         height: auto;
     }
 }
@@ -844,13 +854,21 @@ textarea.form-control.is-invalid.ld-warning {
         background-color: var(--bs-info-bg-subtle);
     }
     &-major {
-        background-color: $gray-200;
+        color: var(--bs-white);
+        background-color: var(--convrtr-bg-color);
     }
     &-minor {
-        background-color: $gray-400;
+        color: var(--convrtr-txt-color);
+           background-color: $gray-200;
+        border: 1px solid var(--convrtr-bg-color-25);
     }
     &-patch {
+        color: var(--convrtr-link-color);
+        background-color: var(--bs-white);
+        border: 1px solid var(--convrtr-bg-color-25);
+    }
+    &-security {
         color: var(--bs-white);
-        background-color: $gray-600;
+        background-color: $indigo-500;
     }
 }
