@@ -20,7 +20,7 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="{{ pkg.releases.url }}" 
+            <a href="{{ '/changelog' | url }}"" 
                 title="Release version: v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
                 <small>v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}</small>

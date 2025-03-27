@@ -1,5 +1,6 @@
 <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
+        {% include "layout/breadcrumbs" %}
         <div class="section-heading">
             <h1 class="display-6">{%- if page-id != "sitemap" and page-id != "changelog" and page.inputPath contains "changelog" -%}v{% endif %}{{ title }}</h1>
             <hr>

@@ -39,13 +39,12 @@ export default function (eleventyConfig) {
         strict_filters: true,
     });
 
-    eleventyConfig.addCollection("changelog", (collectionApi) => {
-        return collectionApi.getFilteredByTag("changelog").sort((a, b) => {
+    eleventyConfig.addCollection("versions", (collectionApi) => {
+        return collectionApi.getFilteredByGlob("./changelog/*.md").sort((a, b) => {
             const parseVersion = (version) => version.split('.').map(Number);
             const [aMajor, aMinor, aPatch] = parseVersion(a.data.title);
             const [bMajor, bMinor, bPatch] = parseVersion(b.data.title);
-            
-            console.log(aMajor);
+
             // Compare major, then minor, then patch
             if (aMajor !== bMajor) {
                 return bMajor - aMajor; // Sort by major version (descending)
@@ -60,14 +59,14 @@ export default function (eleventyConfig) {
     // Automatically set permalink for changelog items
     eleventyConfig.addGlobalData("eleventyComputed", {
         permalink: (data) => {
-            if (data.page.inputPath.includes("changelog/versions")) {
+            if (data.page.inputPath.includes("changelog/")) {
                 const versionSlug = data.page.fileSlug; // Use the file name (e.g., "2.0.0")
                 return `/changelog/${versionSlug}/`; // Set the desired permalink
             }
             return data.permalink; // Keep existing permalink for other files
         },
         description: (data) => {
-            if (data.page.inputPath.includes("changelog/versions")) {
+            if (data.page.inputPath.includes("changelog/")) {
                 const date = new Date(data.date);
                 return `Released on ${date.toLocaleDateString("en-US", {
                     year: "numeric",

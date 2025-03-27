@@ -1,0 +1,25 @@
+{% if page.url != "/" %}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-end mb-0">
+        <li class="breadcrumb-item">
+            {% if page.url == "/" %}
+            Home
+            {% else %}
+            <a href="{{ '/' | url }}" class="text-convrtr">Home</a>
+            {% endif %}
+        </li>
+        {% if page.inputPath contains "changelog/" %}
+        <li class="breadcrumb-item">
+            <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">
+            v{{ page.fileSlug }}
+        </li>
+        {% else %}
+        <li class="breadcrumb-item active" aria-current="page">
+            {{ page-id }}
+        </li>
+        {% endif %}
+    </ol>
+</nav>
+{% endif %}
