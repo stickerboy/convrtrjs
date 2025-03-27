@@ -51,5 +51,34 @@ $grid-breakpoints: map-merge($grid-breakpoints, $large-grid-breakpoints);
 // Helpers
 @import "../node_modules/bootstrap-scss/helpers";
 
+// Convert the existing list of display values into a map
+$display-values-list: map-get(map-get($utilities, "display"), "values");
+$display-values-map: ();
+
+@each $value in $display-values-list {
+  $display-values-map: map-merge($display-values-map, ($value: $value));
+}
+
+// Add your custom value
+$custom-display-values: (
+  table-header-group: table-header-group
+);
+
+// Merge the custom value into the existing map
+$updated-display-values: map-merge($display-values-map, $custom-display-values);
+
+// Update the display utility in the $utilities map
+$utilities: map-merge(
+  $utilities,
+  (
+    "display": map-merge(
+      map-get($utilities, "display"),
+      (
+        values: $updated-display-values
+      )
+    )
+  )
+);
+
 // Utilities
 @import "../node_modules/bootstrap-scss/utilities/api";
