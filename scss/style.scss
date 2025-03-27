@@ -787,7 +787,24 @@ textarea.form-control.is-invalid.ld-warning {
 }
 .version-list {
     >:not(caption)>*>* {
-        padding: 1rem;
+        border-bottom-width: 0;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            padding: 1rem;
+            border-bottom-width: var(--bs-border-width);
+        }
+    }
+
+    tbody tr {
+        display: grid;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            display: table-row;
+        }
+
+        td:last-child {
+            @media (max-width: map-get($grid-breakpoints, md)) {
+                border-bottom-width: var(--bs-border-width);
+            }
+        }
     }
 }
 
