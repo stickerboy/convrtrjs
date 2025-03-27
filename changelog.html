@@ -4,6 +4,8 @@ title: Changelog
 description: History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.
 page-id: changelog
 eleventyExcludeFromCollections: true
+eleventyComputed:
+  description: "{{ description }}<br />You can also view the full list of changes on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
 ---
 
 <section id="{{ filename }}" class="section">

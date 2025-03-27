@@ -6,7 +6,7 @@
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
-        <title>Convrtr - 2.0.0</title>
+        <title>Convrtr - 1.17.8</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
@@ -366,31 +366,26 @@
             
         </li>
         
-        <li class="breadcrumb-item">
-            <a href="/changelog" class="text-convrtr">changelog</a>
-        </li>
         <li class="breadcrumb-item active" aria-current="page">
-            v2.0.0
+            
         </li>
         
     </ol>
 </nav>
 
         <div class="section-heading">
-            <h1 class="display-6">v2.0.0</h1>
+            <h1 class="display-6">v1.17.8</h1>
             <hr>
             <p class="px-2">
-                Released on March 25, 2025
+                
             </p><div class="px-2">
                 <span class="badge git-badge badge-release">release</span>
                 
-                <span class="badge git-badge badge-major">major</span>
+                <span class="badge git-badge badge-minor">minor</span>
                 
                 <span class="badge git-badge badge-new-features">new features</span>
                 
                 <span class="badge git-badge badge-improvements">improvements</span>
-                
-                <span class="badge git-badge badge-a11y">a11y</span>
                 
                 <span class="badge git-badge badge-bug-fixes">bug fixes</span>
                 </div>
@@ -400,38 +395,24 @@
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4">
         <h2>New features</h2>
-<h3>Hex reversing</h3>
 <ul>
-<li>Added correct functionality for reversing Hex nibbles</li>
-<li>Added ability to chain reverse commands together</li>
-<li>Added delimiter support to all reverse functions</li>
+<li>Added additional Text tool to strip all whitespace from a string (this will include things like tabs and newlines)</li>
 </ul>
 <h2>Changes</h2>
-<h3>Platform</h3>
 <ul>
-<li>Migrated the codebase to ESM to (hopefully) make it easier to maintain and improve going forward</li>
-<li>Split front-end JS functionality into its own file, separate from main functions</li>
-<li>Assigned some functions [ONI] to the global window object, so they can still be accessed from the web console</li>
-<li>Updated/improved various JS Doc comments</li>
-</ul>
-<h3>Frontend</h3>
-<ul>
-<li>Improved/unified various tool descriptions and examples</li>
-</ul>
-<h3>A11y</h3>
-<ul>
-<li>Remove italicised fonts and replaced with prefixed dash</li>
-<li>Improved labels/titles on Forerunner buttons</li>
+<li>Added better support for multibyte conversions when converting to and from hex, and when shifting hex strings</li>
+<li>Added better support for multibyte conversions when converting to and from binary strings</li>
+<li>Replaced ord() function with a much simpler solution using TextEncoder</li>
+<li>Improvements and simplifications to various functions</li>
+<li>Adding some checks around event listeners to make sure events only fire when they have something to fire on</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li>Fixed issue with binary conversion, ensuring that spaces are not counted when checking if Binary is valid</li>
-<li>Correctly handle times when local storage won't have a stored value for a section toggle</li>
-<li>[A11y] Fixed incorrect hex delimiter label on Convrtrs</li>
+<li>Fixed an issue where image generation would generate an embeddable image tag, but no longer generate a downloadable image file</li>
 </ul>
 
 
-        <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v2.0.0-Release">
+        <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v1.17.8-Release">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
                 viewBox="0 0 16 16">
                 <path

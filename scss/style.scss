@@ -204,6 +204,13 @@ body {
     vertical-align: -.125em;
     fill: currentcolor;
 }
+.icon-link {
+    text-decoration-color: rgba(var(--convrtr-color-link), var(--bs-link-opacity, 0.5));
+    transition: text-decoration-color 0.25s ease;
+    &:hover {
+        text-decoration-color: rgba(var(--convrtr-color-link), var(--bs-link-opacity, 1));
+    }
+}
 
 .dropdown .bi::before, 
 .dropdown [class^="bi-"]::before, 
@@ -783,7 +790,10 @@ textarea.form-control.is-invalid.ld-warning {
     h4 {@extend .h5 !optional;
         font-weight: 400;
     }
-
+    article img {
+        max-width: 100%;
+        height: auto;
+    }
 }
 .version-list {
     >:not(caption)>*>* {
