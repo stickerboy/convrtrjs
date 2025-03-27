@@ -1,5 +1,9 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "url";
+import matter from "gray-matter";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
@@ -37,6 +41,31 @@ export default function (eleventyConfig) {
     eleventyConfig.setLiquidOptions({
         dynamicPartials: true,
         strict_filters: true,
+    });
+
+    // Only allow certian tags within changelogs
+    const allowedTags = ["changelog", "release", "major", "minor", "patch", "a11y", "new features", "improvements", "bug fixes", "security", "deprecated"];
+
+    eleventyConfig.on("beforeBuild", () => {
+        const changelogDir = path.join(__dirname, "changelog");
+        const files = fs.readdirSync(changelogDir).filter((file) => file.endsWith(".md"));
+
+        files.forEach((file) => {
+            const filePath = path.join(changelogDir, file);
+            const content = fs.readFileSync(filePath, "utf-8");
+
+            // Extract front matter using gray-matter
+            const frontMatter = matter(content).data;
+
+            if (frontMatter.tags) {
+                const invalidTags = frontMatter.tags.filter((tag) => !allowedTags.includes(tag));
+                if (invalidTags.length > 0) {
+                    // Throw a warning instead of an error, if desired
+                    // console.warn(`Warning: File "${file}" contains invalid tags: ${invalidTags.join(", ")}`);
+                    throw new Error(`Invalid tags found in "${file}": ${invalidTags.join(", ")}`);
+                }
+            }
+        });
     });
 
     eleventyConfig.addCollection("versions", (collectionApi) => {
