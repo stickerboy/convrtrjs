@@ -6,7 +6,7 @@
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
-        <title>Convrtr - Hexadecimal tools</title>
+        <title>Convrtr - Changelog</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
@@ -128,7 +128,7 @@
                 <div class="offcanvas-body">
                     <ul class="navbar-nav me-auto mb-2">
 
-    <li class="nav-item dropdown" data-link-id="home" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="home" data-page-id="changelog">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Text tools</span>
@@ -160,7 +160,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="changelog">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Cipher tools</span>
@@ -212,7 +212,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="oni" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="oni" data-page-id="changelog">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">ONI tools</span>
@@ -252,12 +252,12 @@
         
     </li>
 
-    <li class="nav-item dropdown active" data-link-id="hex" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="hex" data-page-id="changelog">
         
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Hex tools</span>
         </a>
-        <ul class="dropdown-menu show">
+        <ul class="dropdown-menu">
             
             
             <li class="mb-1">
@@ -276,7 +276,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="files" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="files" data-page-id="changelog">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">File tools</span>
@@ -296,7 +296,7 @@
         
     </li>
 
-    <li class="nav-item dropdown" data-link-id="misc" data-page-id="hex">
+    <li class="nav-item dropdown" data-link-id="misc" data-page-id="changelog">
         
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <span class="d-inline-flex ms-1 me-auto fs-5">Misc</span>
@@ -367,259 +367,79 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            hex
+            changelog
         </li>
         
     </ol>
 </nav>
 
         <div class="section-heading">
-            <h1 class="display-6">Hexadecimal tools</h1>
+            <h1 class="display-6">Changelog</h1>
             <hr>
             <p class="px-2">
-                Various tools for working with hexadecimal strings.
-            </p><p class="px-2 m-0">
-    Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
-</p>
-            
+                History of feature releases, changes and bug fixes
+            </p>
         </div>
     </div>
 </section>
-<section id="hexfrequencies" class="section">
+<section id="" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#hexfrequenciesCollapse" role="button" 
-                aria-expanded="false" aria-controls="hexfrequenciesCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Hex frequencies
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
-            </p>
-            <p class="px-2">
-                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
-            </p>
-        </div>
-        <div class="collapse" id="hexfrequenciesCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Hex frequencies</span>
-                    <div class="card-body text-center">
-                        <label for="hexfrequenciesText" class="visually-hidden">Hex characters to check</label>
-                        <textarea placeholder="Enter some hex characters and click the 'Generate' button below" rows="6" id="hexfrequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="hexfrequenciesDelimiter">Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="hexfrequenciesDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr" id="hexfrequenciesDecode" title="Generate hex frequencies">Generate</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="hexfrequenciesResults"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="table table-hover version-list">
+                <thead>
+                    <tr>
+                        <th scope="col">Version</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Tags</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <a href="/changelog/2.0.0/" class="stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                2.0.0
+                            </a>
+                        </th>
+                        <td>March 25, 2025</td>
+                        <td>
+                            
+                            
+                            
+                            
+                            
+                            <span class="badge git-badge badge-release">release</span>
+                            
+                            
+                            
+                            <span class="badge git-badge badge-major">major</span>
+                            
+                            
+                            
+                            <span class="badge git-badge badge-new-features">new features</span>
+                            
+                            
+                            
+                            <span class="badge git-badge badge-improvements">improvements</span>
+                            
+                            
+                            
+                            <span class="badge git-badge badge-a11y">a11y</span>
+                            
+                            
+                            
+                            <span class="badge git-badge badge-bug-fixes">bug fixes</span>
+                            
+                            
+                            
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
         </div>
     </div>
 </section>
-<section id="reversehex" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#reversehexCollapse" role="button" 
-                aria-expanded="false" aria-controls="reversehexCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Reverse hex
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, here we have some unique ways to reverse hex strings.</p>
-            <dl class="row g-0 px-2">
-                <dt>Reverse bytes</dt>
-                <dd>This reverses the order of bits within each byte. <code
-                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code></dd>
-                <dt>Reverse byte order</dt>
-                <dd>While it sounds similar, byte order is a little different. This reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code></dd>
-                <dt>Reverse nibbles</dt>
-                <dd>This reverses the bits within each nibble (4 bits) of every byte in a hexadecimal string, which is equivalent to: converting the hex string to binary, reversing the bits in each nibble, then converting it back to hexadecimal. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">21 6A 36 36 F6</code></dd>
-            </dl>
-
-            </p>
-            <p class="px-2">
-                The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters.
-            </p>
-        </div>
-        <div class="collapse" id="reversehexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Reverse hex</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 48 65 6c 6c 6f" title="Reverse hex nibbles" rows="6" id="reversehexText" class="form-control reverse-hex" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto me-auto mb-2">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="reversehexDelimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="reversehexDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="reversehexDecode">Reverse</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <label class="visually-hidden" for="reversehexType">Reverse hex properties</label>
-                                    <select class="form-select form-select--large" id="reversehexType" autocomplete="off">
-                                        <option value="bytes" selected="">Reverse bytes</option>
-                                        <option value="byte-order">Reverse byte order</option>
-                                        <option value="nibbles">Reverse nibbles</option>
-                                    </select>
-                                    <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                </div>
-                            </div>
-                            <div class="row g-md-0 gx-0 gy-2">
-                                <div class="form-check form-switch mx-lg-2 d-flex">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="reversehexChain" aria-checked="false">
-                                    <label class="form-check-label" for="reversehexChain">Chain <span class="visually-hidden" aria-hidden="true"
-                                            focusable="true">reversehex</span> commands</label>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="reversehexResults" class="data-to-copy active convrtr-results"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="shifthex" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
-                data-bs-toggle="collapse" href="#shifthexCollapse" role="button" 
-                aria-expanded="true" aria-controls="shifthexCollapse">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Shift hex
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr>
-            <p class="px-2">
-                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">49 66 6d 6d 70</code> [Ifmmp] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 64 6b 6b 6e</code> [Gdkkn] when shifted 1 to the left. 
-            </p>
-            <p class="px-2">
-                The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
-            </p>
-        </div>
-        <div class="collapse show" id="shifthexCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Shift hex string</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: 48 65 6c 6c 6f" title="Shift hex string" rows="6" id="shifthexText" class="form-control shift-hex" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-2 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto me-2 mb-2">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="shifthexValueLabel" for="shifthexValue"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
-                                        <input type="number" class="form-control" id="shifthexValue" autocomplete="off" value="1">
-                                        <button class="btn btn-convrtr" type="button" id="shifthexDecode">Shift</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-start mb-2">
-                                    <label class="visually-hidden" for="shifthexDelimiter">Shift Hex Delimiter</label>
-                                    <select class="form-select hex-delimiter" id="shifthexDelimiter" autocomplete="off">
-    <option value=" " selected="">Space</option>
-    <option value="-">Hyphen</option>
-    <option value=":">Colon</option>
-    <option value=",">Comma</option>
-    <option value="\x">Slash x </option>
-    <option value="0x">Zero x</option>
-    <option value="">None</option>
-</select>
-                                    <div class="btn-group ms-auto align-items-start">
-    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
-    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
-</div>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="shifthexResults" class="d-flex flex-row">
-                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="shifthexTabs" role="tablist" aria-orientation="vertical">
-                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
-                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
-                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
-                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
-                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
-                              </div>
-                              <div class="tab-content flex-column flex-fill shift-tabs" id="shifthexTabs-content">
-                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
-                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
-                              </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
         </main>
 
         <footer class="section footer">
