@@ -1,0 +1,59 @@
+{
+    "labels": [
+        {
+            "key": "changelog",
+            "friendlyName": "Changelog",
+            "description": "General changelog updates."
+        },
+        {
+            "key": "release",
+            "friendlyName": "Release",
+            "description": "Major release updates."
+        },
+        {
+            "key": "major",
+            "friendlyName": "Major Update",
+            "description": "Major feature updates."
+        },
+        {
+            "key": "minor",
+            "friendlyName": "Minor Update",
+            "description": "Minor feature updates."
+        },
+        {
+            "key": "patch",
+            "friendlyName": "Patch",
+            "description": "Bug fixes and patches."
+        },
+        {
+            "key": "a11y",
+            "friendlyName": "Accessibility",
+            "description": "Accessibility improvements."
+        },
+        {
+            "key": "new features",
+            "friendlyName": "New Features",
+            "description": "Introduction of new features."
+        },
+        {
+            "key": "improvements",
+            "friendlyName": "Improvements",
+            "description": "General improvements."
+        },
+        {
+            "key": "bug fixes",
+            "friendlyName": "Bug Fixes",
+            "description": "Fixes for reported bugs."
+        },
+        {
+            "key": "security",
+            "friendlyName": "Security",
+            "description": "Security-related updates."
+        },
+        {
+            "key": "deprecated",
+            "friendlyName": "Deprecated",
+            "description": "Deprecated features or functionality."
+        }
+    ]
+}

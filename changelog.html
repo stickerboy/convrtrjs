@@ -53,10 +53,8 @@ eleventyComputed:
                                 <div class="col">
                                     {% if version.data.tags -%}
                                     {%- for tag in version.data.tags -%}
-                                    {% if tag != "changelog" -%}
                                     <span class="badge git-badge badge-{{ tag | replace: ' ', '-' }}">{{ tag }}</span>
-                                    {% endif -%}
-                                    {%- endfor -%}
+                                    {% endfor -%}
                                     {%- endif %}
                                 </div>
                             </div>

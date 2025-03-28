@@ -5,8 +5,13 @@ import matter from "gray-matter";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
+// Load allowed tags from JSON file
+const allowedTagsPath = path.join(__dirname, "_data", "labels.json");
+const allowedTagsData = JSON.parse(fs.readFileSync(allowedTagsPath, "utf-8"));
+
 export default function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
+    eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
     eleventyConfig.addPassthroughCopy("assets/css/*.css");
     eleventyConfig.addPassthroughCopy("assets/favicons/*");
@@ -44,9 +49,34 @@ export default function (eleventyConfig) {
     });
 
     // Only allow certian tags within changelogs
-    const allowedTags = ["changelog", "release", "major", "minor", "patch", "a11y", "new features", "improvements", "bug fixes", "security", "deprecated"];
+    const allowedTags = allowedTagsData.labels;
+    const allowedTagKeys = allowedTags.map((tag) => tag.key); 
 
     eleventyConfig.on("beforeBuild", () => {
+        const outputDir = path.join(process.cwd(), "_site");
+
+        // Check if the _site directory exists
+        if (fs.existsSync(outputDir)) {
+            // Read all files and subdirectories inside _site
+            const files = fs.readdirSync(outputDir);
+
+            // Iterate over each file/subdirectory and remove it
+            files.forEach((file) => {
+                const filePath = path.join(outputDir, file);
+                if (fs.lstatSync(filePath).isDirectory()) {
+                    // Remove subdirectory recursively
+                    fs.rmSync(filePath, { recursive: true, force: true });
+                    // Recreate the subdirectory
+                    fs.mkdirSync(filePath);
+                } else {
+                    // Remove file
+                    fs.unlinkSync(filePath);
+                }
+            });
+
+            console.log("Cleaned and recreated contents of _site directory.");
+        }
+
         const changelogDir = path.join(__dirname, "changelog");
         const files = fs.readdirSync(changelogDir).filter((file) => file.endsWith(".md"));
 
@@ -58,10 +88,8 @@ export default function (eleventyConfig) {
             const frontMatter = matter(content).data;
 
             if (frontMatter.tags) {
-                const invalidTags = frontMatter.tags.filter((tag) => !allowedTags.includes(tag));
+                const invalidTags = frontMatter.tags.filter((tag) => !allowedTagKeys.includes(tag));
                 if (invalidTags.length > 0) {
-                    // Throw a warning instead of an error, if desired
-                    // console.warn(`Warning: File "${file}" contains invalid tags: ${invalidTags.join(", ")}`);
                     throw new Error(`Invalid tags found in "${file}": ${invalidTags.join(", ")}`);
                 }
             }
