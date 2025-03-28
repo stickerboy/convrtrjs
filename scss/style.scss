@@ -431,6 +431,15 @@ textarea {
                 border-color: var(--convrtr-bg-color-20);
             }
         }
+        .active > & {
+            background-color: var(--convrtr-bg-color);
+            border-color: var(--convrtr-bg-color-20);
+            &:hover,
+            &:focus {
+                color: var(--bs-white);
+                border-color: var(--convrtr-bg-color-20);
+            }
+        }
     }
 }
 
