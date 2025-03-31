@@ -6,6 +6,7 @@ page-id: changelog
 pagination:
   data: collections.versions
   size: 10
+  alias: versions
 permalink: "changelog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber | plus: 1 }}/{% endif %}index.html"
 eleventyExcludeFromCollections: true
 eleventyComputed:
@@ -23,7 +24,7 @@ eleventyComputed:
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    {% for version in pagination.items %}
+                    {% for version in versions %}
                     <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
