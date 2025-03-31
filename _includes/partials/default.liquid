@@ -7,13 +7,15 @@
             <p class="px-2">
                 {{ description }}
             </p>
-            {%- if tags -%}
+            {%- if tags %}
             <div class="px-2">
                 {%- for tag in tags -%}
-                {% if tag != "changelog" %}
-                <span class="badge git-badge badge-{{ tag | replace: ' ', '-'}}">{{ tag }}</span>
-                {% endif %}
-                {%- endfor -%}
+                {% assign normalizedTag = tag | downcase -%}
+                {% assign label = labels.labels | where: "key", normalizedTag | first -%}
+                {% if label %}
+                <span class="badge git-badge badge-{{ label.key | replace: ' ', '-'}}" title="{{ label.description }}">{{ label.key }}</span>
+                {%- endif -%}
+                {%- endfor %}
             </div>
             {%- endif -%}
             {%- if page-id == "sitemap" or page-id != "sitemap" and page.inputPath contains "changelog" -%}

@@ -85,14 +85,24 @@
                 <div class="offcanvas-body">
                     {% include 'layout/nav' %}
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="{{ pkg.support }}">
-                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Join the Discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="{{ pkg.repository.site }}">
-                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Convrtr on Github</span>
-                    </a>
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="View the sitemap" href="{{ '/sitemap' | url }}">
+                            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Sitemap</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Latest site updates" href="{{ '/changelog' | url }}">
+                            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Changelog</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Join the Discord" href="{{ pkg.support }}">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Join the Discord</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Convrtr on Github" href="{{ pkg.repository.site }}">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Convrtr on Github</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
