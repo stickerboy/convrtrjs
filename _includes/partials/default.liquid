@@ -2,7 +2,7 @@
     <div class="py-5 pb-4 px-2 px-sm-4">
         {% include "layout/breadcrumbs" %}
         <div class="section-heading">
-            <h1 class="display-6">{%- if page-id != "sitemap" and page-id != "changelog" and page.inputPath contains "changelog" -%}v{% endif %}{{ title }}</h1>
+            <h1 class="display-6">{%- if page-id != "sitemap" and page-id != "changelog" and page.inputPath contains "changelog" -%}v{% endif %}{{ title }}{% if page.url contains "tag/" %}{% assign tag = page.url | split: '/' | last %} <span class="h5"><span class="badge git-badge badge-{{ tag }}">{{ tag }}</span></span>{% endif %}</h1>
             <hr>
             <p class="px-2">
                 {{ description }}
