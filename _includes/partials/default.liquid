@@ -13,7 +13,7 @@
                 {% assign normalizedTag = tag | downcase -%}
                 {% assign label = labels.labels | where: "key", normalizedTag | first -%}
                 {% if label %}
-                <span class="badge git-badge badge-{{ label.key | replace: ' ', '-'}}" title="{{ label.description }}">{{ label.key }}</span>
+                <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ label.key }}" title="{{ label.description }}">{{ label.key }}</a>
                 {%- endif -%}
                 {%- endfor %}
             </div>
