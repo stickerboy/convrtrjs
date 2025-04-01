@@ -489,6 +489,9 @@ code {
     }
 }
 
+.breadcrumb-item.active {
+    --bs-breadcrumb-item-active-color: var(--convrtr-base-color);
+}
 .convrtr-results {
     overflow: hidden auto;
     max-height: 24rem;
@@ -842,6 +845,7 @@ textarea.form-control.is-invalid.ld-warning {
     background-color: var(--bs-light-rgb);
     position: relative;
     z-index: 3;
+    padding: 0.35rem 0.85rem;
 }
 .badge {
     &-release {
