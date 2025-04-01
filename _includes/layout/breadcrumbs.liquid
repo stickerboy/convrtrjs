@@ -15,6 +15,14 @@
         <li class="breadcrumb-item active" aria-current="page">
             v{{ page.fileSlug }}
         </li>
+        {% elsif page.url contains "/tag" %}
+        <li class="breadcrumb-item">
+            <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
+        </li>
+        {%- assign tag = page.url | split: '/' | last -%}
+        <li class="breadcrumb-item active" aria-current="page">
+            {{ tag }}
+        </li>
         {% else %}
         <li class="breadcrumb-item active" aria-current="page">
             {{ page-id }}
