@@ -840,6 +840,8 @@ textarea.form-control.is-invalid.ld-warning {
 .git-badge {
     color: var(--bs-black);
     background-color: var(--bs-light-rgb);
+    position: relative;
+    z-index: 3;
 }
 .badge {
     &-release {

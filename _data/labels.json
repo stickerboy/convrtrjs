@@ -31,7 +31,7 @@
             "description": "Accessibility improvements"
         },
         {
-            "key": "new features",
+            "key": "new-features",
             "friendlyName": "New Features",
             "description": "Introduction of new features"
         },
@@ -41,7 +41,7 @@
             "description": "General improvements"
         },
         {
-            "key": "bug fixes",
+            "key": "bug-fixes",
             "friendlyName": "Bug Fixes",
             "description": "Fixes for reported bugs"
         },

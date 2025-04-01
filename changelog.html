@@ -57,7 +57,9 @@ eleventyComputed:
                                 <div class="col">
                                     {% if version.data.tags -%}
                                     {%- for tag in version.data.tags -%}
-                                    <span class="badge git-badge badge-{{ tag | replace: ' ', '-' }}">{{ tag }}</span>
+                                    {% assign normalizedTag = tag | downcase | strip %}
+                                    {% assign label = labels.labels | where: "key", normalizedTag | first %}
+                                    <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{ tag }}</a>
                                     {% endfor -%}
                                     {%- endif %}
                                 </div>

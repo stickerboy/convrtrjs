@@ -132,6 +132,6 @@ export default function (eleventyConfig) {
                 })}`;
             }
             return data.description; // Keep existing description for other pages
-        },
+        }
     });
 }
