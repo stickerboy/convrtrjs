@@ -51,7 +51,7 @@ permalink: '/tags/'
                                 </div>
                                 <div class="col">
                                     {% if tagCount == 0 -%}
-                                        <span class="fw-medium">{{ tag.key }}</span> 
+                                        <span class="fw-normal">{{ tag.key }}</span> 
                                     {% else -%}
                                     <a href="{{ '/changelog/tag/' | append: tag.key | url }}"
                                         class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
