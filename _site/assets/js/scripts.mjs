@@ -205,7 +205,7 @@ resetData && resetData.addEventListener("click", function() {
     });
     if(dtcLength === 0) {
         tooltip.hide();
-        showToast("Warning", "No data to clear", "warning", 3000);
+        showToast("Information", "No data to clear", "info", 3000);
         return;
     }
     clearLocalStorage();
