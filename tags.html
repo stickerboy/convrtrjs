@@ -1,77 +1,89 @@
 ---
-title: Changelog
 layout: layout.liquid
+title: Tags
+description: List of tags used on issues, pull requests and releases. Matches up with Github
+page-id: tags
 pagination:
-  data: collections
-  size: 1
-  alias: tag
-  filter: labels.labels
-permalink: '/changelog/tag/{{ tag }}/'
-eleventyComputed:
-  description: "{{ description }}<br />You can also view the full list of changes on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
+  data: labels.labels
+  size: 50
+permalink: '/tags/'
 ---
-
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <table class="table table-hover version-list">
                 <thead class="d-none d-md-table-header-group">
                     <tr>
-                        <th scope="col">Version</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Tags</th>
+                        <th scope="col">Tag</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                {% if tag %}
-                {% assign postListItems = collections[tag] %}
-                {% for version in postListItems %}
-                
+                {%- for tag in labels.labels -%}
+                    {%- assign tagKey = tag.key | downcase | strip -%}
+                    {%- assign tagCount = 0 -%}
+
+                    {%- for version in collections.versions -%}
+                        {%- for versionTag in version.data.tags -%}
+                            {%- assign normalizedTag = versionTag | downcase | strip -%}
+                            {%- if normalizedTag == tagKey -%}
+                                {%- assign tagCount = tagCount | plus: 1 -%}
+                            {%- endif %}
+                        {%- endfor -%}
+                    {%- endfor -%}
                     <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
-                                    <span class="fs-6 fw-medium">Version</span>
+                                    <span class="fs-6 fw-medium">Tag</span>
                                 </div>
                                 <div class="col">
-                                    <a href="{{ version.url }}"
-                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
-                                        {{ version.data.title }}
-                                    </a>
+                                    <span class="badge git-badge badge-{{ tag.key }}">{{ tag.key }}</span>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
-                                    Date
+                                    <span class="fs-6 fw-medium">Link</span>
                                 </div>
                                 <div class="col">
-                                    {{ version.date | date: "%B %d, %Y" }}
+                                    {% if tagCount == 0 -%}
+                                        <span class="fw-medium">{{ tag.key }}</span> 
+                                    {% else -%}
+                                    <a href="{{ '/changelog/tag/' | append: tag.key | url }}"
+                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        {{ tag.key }}
+                                    </a>
+                                    {% endif -%} ({{ tagCount }})
+                                </div>
+                    
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Name
+                                </div>
+                                <div class="col">
+                                    {{ tag.friendlyName }}
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
-                                    Tags
+                                    Description
                                 </div>
                                 <div class="col">
-                                    {% if version.data.tags -%}
-                                    {%- for tag in version.data.tags -%}
-                                    {% assign normalizedTag = tag | downcase | strip %}
-                                    {% assign label = labels.labels | where: "key", normalizedTag | first %}
-                                    <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{
-                                        tag }}</a>
-                                    {% endfor -%}
-                                    {%- endif %}
+                                    {{ tag.description }}
                                 </div>
                             </div>
                         </td>
                     </tr>
-                {% endfor %}
-                {% endif %}
+                {% endfor -%}
                 </tbody>
             </table>
         </div>

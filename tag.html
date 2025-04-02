@@ -1,0 +1,80 @@
+---
+title: Changelog
+layout: layout.liquid
+pagination:
+  data: collections
+  size: 1
+  alias: tag
+  filter: labels.labels
+permalink: '/changelog/tag/{{ tag }}/'
+eleventyComputed:
+  description: "{{ description }}<br />You can also view the full list of changes on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
+---
+
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <table class="table table-hover version-list">
+                <thead class="d-none d-md-table-header-group">
+                    <tr>
+                        <th scope="col">Version</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Tags</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {% if tag %}
+                {% assign postListItems = collections[tag] %}
+                {% for version in postListItems %}
+                
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Version</span>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ version.url }}"
+                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        {{ version.data.title }}
+                                    </a>
+                                </div>
+                    
+                            </div>
+                        </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Date
+                                </div>
+                                <div class="col">
+                                    {{ version.date | date: "%B %d, %Y" }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Tags
+                                </div>
+                                <div class="col">
+                                    {% if version.data.tags -%}
+                                    {%- for tag in version.data.tags -%}
+                                    {% assign normalizedTag = tag | downcase | strip %}
+                                    {% assign label = labels.labels | where: "key", normalizedTag | first %}
+                                    <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{
+                                        tag }}</a>
+                                    {% endfor -%}
+                                    {%- endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
