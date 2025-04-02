@@ -1,7 +1,7 @@
 ---
 layout: layout.liquid
 title: Tags
-description: List of tags used on issues, pull requests and releases. Matches up with Github
+description: List of tags used on issues, pull requests and releases, linked to a list of changelog items they are contained in (if any). Matches up with Github labels
 page-id: tags
 pagination:
   data: labels.labels
@@ -54,7 +54,8 @@ permalink: '/tags/'
                                         <span class="fw-normal">{{ tag.key }}</span> 
                                     {% else -%}
                                     <a href="{{ '/changelog/tag/' | append: tag.key | url }}"
-                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr"
+                                        title="Changelog items tagged with {{ tag.key }}">
                                         {{ tag.key }}
                                     </a>
                                     {% endif -%} ({{ tagCount }})
