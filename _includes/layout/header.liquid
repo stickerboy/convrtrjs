@@ -26,7 +26,8 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
-                {% if page-id != "fourohfour" %}
+                    {% assign excludedPages = "fourohfour,sitemap,tags,changelog" | split: "," %}
+                {% if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
