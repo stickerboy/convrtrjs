@@ -13,10 +13,10 @@
             </a>
             <hr>
             <p class="px-2">
-                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">54 65 73 74</code> [test] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">55 66 74 75</code> [uftu] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">53 64 72 73</code> [Sdrs] when shifted 1 to the left. 
+                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">49 66 6d 6d 70</code> [Ifmmp] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 64 6b 6b 6e</code> [Gdkkn] when shifted 1 to the left. 
             </p>
             <p class="px-2">
-                The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. Negative numbers are allowed.
+                The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
             </p>
         </div>
         <div class="collapse show" id="{{ filename }}Collapse">
@@ -24,7 +24,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Shift hex string</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: 55 66 74 75" title="Shift hex string" rows="6" id="{{ filename }}Text" class="form-control shift-hex" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: 48 65 6c 6c 6f" title="Shift hex string" rows="6" id="{{ filename }}Text" class="form-control shift-hex" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">

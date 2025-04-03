@@ -3,9 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
+        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding, decryption, and cryptography techqniques">
+        <meta name="keywords" content="decode, encode, decoding, encoding, converters, data convert, javascript, data, puzzles, puzzle solving, puzzle solving tools, data driven puzzles, base64, binary, hexadecimal, ciphers, morse code, rot13, morsenary, code solving, file tools, hexadecimal tools, text tools, flip text, replace characters, atbash cipher, beaufort cipher, caesar cipher, chaicipher, hash algorithms, rail fence cipher, smithy cipher, substitution cipher, regex substitution, strip all whitespace, letters to alphabet number, vigenère cipher, interleave, unscramble, extract string, merge base64, reverse hexadecimal, shift hexadecimal, hexadecimal frequencies, character frequencies, file headers, check file type, braille to text, text to braille, generate braille text, color generator, covenant glyphs, halo covenant glyphs, forerunner glyphs, halo forerunner glyphs, periodic element conversion, convert periodic elements, convert periodic element properties">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.convrtr.xyz" />
+        <meta property="og:title" content="For everlost and Grollow!" />
+        <meta property="og:description"
+                content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding, decryption, and cryptography techqniques" />
+        <meta property="og:image" content="https://www.convrtr.xyz/assets/img/convrtr.jpeg" />
+
+        
         <title>Convrtr - ONI tools</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
@@ -13,29 +23,29 @@
                 <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Core theme and Bootstrap CSS -->
-        <link href="../assets/css/main.css" rel="stylesheet">
+        <link href="/assets/css/main.css" rel="stylesheet">
         <!-- Favicons -->
         <meta name="theme-color" content="#11806a">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/apple-touch-icon-152x152.png" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-196x196.png" sizes="196x196" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-16x16.png" sizes="16x16" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-128.png" sizes="128x128" />
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-128.png" sizes="128x128" />
         <meta name="application-name" content="Convrtr"/>
         <meta name="msapplication-TileColor" content="#FFFFFF" />
-        <meta name="msapplication-TileImage" content="../assets/favicons/mstile-144x144.png" />
-        <meta name="msapplication-square70x70logo" content="../assets/favicons/mstile-70x70.png" />
-        <meta name="msapplication-square150x150logo" content="../assets/favicons/mstile-150x150.png" />
-        <meta name="msapplication-wide310x150logo" content="../assets/favicons/mstile-310x150.png" />
-        <meta name="msapplication-square310x310logo" content="../assets/favicons/mstile-310x310.png" />
+        <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="/assets/favicons/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="/assets/favicons/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="/assets/favicons/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
     <body id="IOOBI9O4IEIEOIO4O4IB" 
           >
@@ -44,9 +54,9 @@
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
-            <a href="https://www.convrtr.xyz" 
-               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
-                Convrtr
+            <a href="/" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3 d-flex" title="Home">
+                <span>Convrtr</span>
             </a>
             <div class="d-flex ms-auto">
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
@@ -69,6 +79,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
+                    
                 
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -334,14 +345,24 @@
 
 </ul>
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
-                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Join the Discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
-                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Convrtr on Github</span>
-                    </a>
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="View the sitemap" href="/sitemap">
+                            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Sitemap</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Latest site updates" href="/changelog">
+                            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Changelog</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Join the Discord</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Convrtr on Github</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -357,14 +378,28 @@
             id="content">
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
+        
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-end mb-0">
+        <li class="breadcrumb-item">
+            
+            <a href="/" class="text-convrtr">Home</a>
+            
+        </li>
+        
+        <li class="breadcrumb-item active" aria-current="page">
+            oni
+        </li>
+        
+    </ol>
+</nav>
+
         <div class="section-heading">
             <h1 class="display-6">ONI tools</h1>
             <hr>
             <p class="px-2">
                 A collection of custom decoding tools for encrypting and decrypting data, built primarily for use in data-drive ARG puzzles (specifically the <a href="https://www.halopedia.org/Section_3_ARG" class="text-convrtr">Halo 4 Section 3 ARG</a>). These tools are a JavaScript port or a Toolkit originally written in ruby, which can be found here - <a href="https://github.com/Sepheus/ONI-Tools/tree/master/Toolkit" class="text-convrtr">https://github.com/Sepheus/ONI-Tools/tree/master/Toolkit</a></p><p class="px-2"><strong>This section is still a work in progress</strong>, and tools are currently only available via the web console until a UI can be built for them. Most require specifically crafted data packets that were built for the ARG, there may still be some floating around out in space somewhere!</p>
-            </p>
-            
-            <p class="px-2 m-0">
+            </p><p class="px-2 m-0">
     Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
 </p>
             
@@ -394,7 +429,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Calendar</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">calendar(string)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.calendar(string)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -441,7 +476,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Interleave</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">interleave(string1, string2, delimiter = "")</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.interleave(string1, string2, delimiter = "")</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -488,7 +523,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Lookahead</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">lookahead(key, datanode)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.lookahead(key, datanode)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -535,7 +570,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Merge Base64</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">mergeb64(...args)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.mergeb64(...args)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -582,7 +617,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Extract strings</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">strings(string, n = 4)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.strings(string, n = 4)</code>
                         </div>
                     <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -629,7 +664,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Unmunge node</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unmunge(key, datanode)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.unmunge(key, datanode)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -676,7 +711,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Unscramble</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">unscramble(string)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">window.unscramble(string)</code>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -717,33 +752,33 @@
             </p>
             
             <p class="mb-1">
-                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2024. All Rights Reserved.<br />
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2025. All Rights Reserved.<br />
                 Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
             </p>
             <p class="mb-1">
-                <a href="../sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
+                <a href="/sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.20.0" 
+            <a href="/changelog"" 
+                title="Release version: v2.0.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v1.20.0</small>
+                <small>v2.0.0</small>
             </a>
         </div>
     </div>
 </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-<script src="../assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="../assets/js/theme.js"></script>
-<script src="../assets/js/clip.js"></script>
-<script src="../assets/js/toolkit.js"></script>
-<script src="../assets/js/tools.js"></script>
-<script src="../assets/js/rot.js"></script>
-<script src="../assets/js/scripts.js"></script>
+<script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/assets/js/theme.js></script>
+<script type="module" src="/assets/js/clip.mjs"></script>
+<script type="module" src="/assets/js/toolkit.mjs"></script>
+<script type="module" src="/assets/js/tools.mjs"></script>
+<script type="module" src="/assets/js/rot.mjs"></script>
+<script type="module" src="/assets/js/scripts.mjs"></script>
 
 
-<script src="../assets/js/oni/oni.js"></script>
+
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
         <div class="toast-header text-bg-convrtr">

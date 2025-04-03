@@ -21,7 +21,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Extract strings</span>
                     <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename }}(string, n = 4)</code>
+                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename | prepend: "window." }}(string, n = 4)</code>
                         {% comment -%}
                         <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" title="string to extract" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                         {%- endcomment -%}

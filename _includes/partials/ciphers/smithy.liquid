@@ -14,8 +14,8 @@
             <hr>
             <p class="px-2">
                 Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WORD</code> would shift like: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">DGYM UKGDGTVO</code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Rmxsp</code> 
 
             </p>
             <p class="px-2">
@@ -28,7 +28,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → DGYM UKGDGTVO
+                        <textarea placeholder="Example: Hello → World [key] → Rmxsp
                         " title="{{ filename | upperFirst }} encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">

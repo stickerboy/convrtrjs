@@ -1,9 +1,9 @@
 <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
-            <a href="{% if data.environment == 'development' %}http://localhost:8088/{% else %}{{ pkg.homepage }}{% endif %}" 
-               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
-                {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk"></i> {% endif %}{{ pkg.sitename }}
+            <a href="{{ '/' | url }}" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3 d-flex" title="Home">
+                {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk me-2"></i>{% endif %}<span{% if data.environment == 'development' %} class="d-none d-sm-block"{% endif %}>{{ pkg.sitename }}</span>
             </a>
             <div class="d-flex ms-auto">
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
@@ -26,7 +26,8 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
-                {% if page-id != "fourohfour" %}
+                    {% assign excludedPages = "fourohfour,sitemap,tags,changelog" | split: "," %}
+                {% if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
@@ -85,14 +86,24 @@
                 <div class="offcanvas-body">
                     {% include 'layout/nav' %}
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="{{ pkg.support }}">
-                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Join the Discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="{{ pkg.repository.site }}">
-                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Convrtr on Github</span>
-                    </a>
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="View the sitemap" href="{{ '/sitemap' | url }}">
+                            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Sitemap</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Latest site updates" href="{{ '/changelog' | url }}">
+                            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Changelog</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Join the Discord" href="{{ pkg.support }}">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Join the Discord</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Convrtr on Github" href="{{ pkg.repository.site }}">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Convrtr on Github</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

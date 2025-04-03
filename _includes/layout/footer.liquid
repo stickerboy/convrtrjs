@@ -16,11 +16,11 @@
                 Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
             </p>
             <p class="mb-1">
-                <a href="../sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
+                <a href="{{ '/sitemap' | url }}" title="Sitemap" class="text-convrtr">Sitemap</a>
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="{{ pkg.releases.url }}" 
+            <a href="{{ '/changelog' | url }}"" 
                 title="Release version: v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
                 <small>v{{ pkg.version }}{% if data.environment == 'development' %}-dev{% endif %}</small>

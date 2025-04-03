@@ -33,6 +33,7 @@
 
 :root {
     --convrtr-bg-color: rgb(21, 96, 82);
+    --convrtr-txt-color: rgb(17, 77, 66);
     --bs-bg-success: 21, 96, 82;
     --convrtr-bg-color-rgb: 21, 96, 82;
     --convrtr-bg-color-10: #0f735f;
@@ -203,6 +204,13 @@ body {
     height: 1em;
     vertical-align: -.125em;
     fill: currentcolor;
+}
+.icon-link {
+    text-decoration-color: rgba(var(--convrtr-color-link), var(--bs-link-opacity, 0.5));
+    transition: text-decoration-color 0.25s ease;
+    &:hover {
+        text-decoration-color: rgba(var(--convrtr-color-link), var(--bs-link-opacity, 1));
+    }
 }
 
 .dropdown .bi::before, 
@@ -423,6 +431,15 @@ textarea {
                 border-color: var(--convrtr-bg-color-20);
             }
         }
+        .active > & {
+            background-color: var(--convrtr-bg-color);
+            border-color: var(--convrtr-bg-color-20);
+            &:hover,
+            &:focus {
+                color: var(--bs-white);
+                border-color: var(--convrtr-bg-color-20);
+            }
+        }
     }
 }
 
@@ -472,6 +489,9 @@ code {
     }
 }
 
+.breadcrumb-item.active {
+    --bs-breadcrumb-item-active-color: var(--convrtr-base-color);
+}
 .convrtr-results {
     overflow: hidden auto;
     max-height: 24rem;
@@ -535,6 +555,10 @@ code {
     width: 5.82rem;
     padding: 0.66rem 0.5rem;
     font-size: 1rem;
+
+    &--large {
+        width: 10rem;
+    }
 }
 .form-control,
 .form-select {
@@ -752,4 +776,142 @@ textarea.form-control.is-invalid.ld-warning {
     font-size: 2.5rem;
     line-height: 1;
     font-weight: normal;
+}
+
+.changelog {
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+        border-bottom-color: var(--bs-border-color-translucent);
+        border-style: none;
+        border-bottom-style: solid;
+        border-bottom-width: var(--bs-border-width);
+    }
+    @for $i from 1 through 6 {
+        h#{$i} {
+            font-weight: 300;
+        }
+    }
+    h3 {
+        @extend .h4 !optional;
+        font-weight: 400;
+    }
+    h4 {@extend .h5 !optional;
+        font-weight: 400;
+    }
+    article img {
+        max-width: 100%;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            max-width: 95%;
+        }
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+            max-width: 85%;
+        }
+        @media (min-width: map-get($grid-breakpoints, xl)) {
+            max-width: 75%;
+        }
+        height: auto;
+    }
+}
+.version-list {
+    >:not(caption)>*>* {
+        border-bottom-width: 0;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            padding: 1rem;
+            border-bottom-width: var(--bs-border-width);
+        }
+    }
+
+    tbody tr {
+        display: grid;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            display: table-row;
+        }
+
+        td:last-child {
+            @media (max-width: map-get($grid-breakpoints, md)) {
+                border-bottom-width: var(--bs-border-width);
+            }
+        }
+    }
+}
+
+.git-badge {
+    color: var(--bs-black);
+    background-color: var(--bs-light-rgb);
+    position: relative;
+    z-index: 3;
+    padding: 0.35rem 0.85rem;
+}
+.badge {
+    &-improvements {
+        color: var(--bs-primary-text-emphasis);
+        background-color: var(--bs-primary-bg-subtle);
+    }
+    &-a11y {
+        color: var(--bs-info-text-emphasis);
+        background-color: var(--bs-info-bg-subtle);
+    }
+    &-bug-fixes {
+        color: var(--bs-danger-text-emphasis);
+        background-color: var(--bs-danger-bg-subtle);
+    }
+    &-bug {
+        color: var(--bs-white);
+        background-color: var(--bs-danger);
+    }
+    &-documentation {
+        color: var(--bs-white);
+        background-color: var(--bs-primary);
+    }
+    &-duplicate {
+        color: var(--bs-black);
+        background-color: $gray-400;
+    }
+    &-feature-request {
+        color: var(--bs-black);
+        background-color: $indigo-200;
+    }
+    &-hotfix {
+        color: var(--bs-black);
+        background-color: var(--bs-warning);
+    }
+    &-major {
+        color: var(--bs-white);
+        background-color: var(--convrtr-bg-color);
+    }
+    &-minor {
+        color: var(--convrtr-txt-color);
+        background-color: $gray-200;
+        border: 1px solid var(--convrtr-bg-color-25);
+    }
+    &-new-features {
+        color: var(--bs-success-text-emphasis);
+        background-color: var(--bs-success-bg-subtle);
+    }
+    &-patch {
+        color: var(--convrtr-link-color);
+        background-color: var(--bs-white);
+        border: 1px solid var(--convrtr-bg-color-25);
+    }
+    &-question {
+        color: var(--bs-white);
+        background-color: var(--bs-black);
+    }
+    &-release {
+        color: var(--bs-white);
+        background-color: var(--convrtr-bg-color);
+    }
+    &-security {
+        color: var(--bs-white);
+        background-color: $purple;
+    }
+    &-wontfix {
+        color: var(--bs-white);
+        background-color: $pink-600;
+    }
 }

@@ -13,20 +13,23 @@
             </a>
             <hr>
             <p class="px-2">
-                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    S → T → L
+                    H → W → D
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    E → E → I
+                    e → o → s
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    N → S → F
-                </code> 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    T → T → M
+                    l → r → c
                 </code>
-                - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → l → w
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    o → d → r
+                </code>
+                - for the next letters, the key would loop back and start from the W in World again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
             </p>
         </div>
         <div class="collapse" id="{{ filename }}Collapse">
@@ -34,7 +37,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenère string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → World [key] → Dscwr" title="Vigenère string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">

@@ -1,0 +1,95 @@
+---
+layout: layout.liquid
+title: Tags
+description: List of tags used on issues, pull requests and releases, linked to a list of changelog items they are contained in (if any). Matches up with Github labels
+page-id: tags
+pagination:
+  data: labels.labels
+  size: 50
+permalink: '/tags/'
+eleventyComputed: 
+  description: "{{ description }}<br />See the <a href='{{ '/changelog' | url }}' class='text-convrtr'>Changelog</a> for the full list of releases"
+---
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <table class="table table-hover version-list">
+                <thead class="d-none d-md-table-header-group">
+                    <tr>
+                        <th scope="col">Tag</th>
+                        <th scope="col">Link</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                {%- for tag in labels.labels -%}
+                    {%- assign tagKey = tag.key | downcase | strip -%}
+                    {%- assign tagCount = 0 -%}
+
+                    {%- for version in collections.versions -%}
+                        {%- for versionTag in version.data.tags -%}
+                            {%- assign normalizedTag = versionTag | downcase | strip -%}
+                            {%- if normalizedTag == tagKey -%}
+                                {%- assign tagCount = tagCount | plus: 1 -%}
+                            {%- endif %}
+                        {%- endfor -%}
+                    {%- endfor -%}
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Tag</span>
+                                </div>
+                                <div class="col">
+                                    <span class="badge git-badge badge-{{ tag.key }}">{{ tag.key }}</span>
+                                </div>
+                            </div>
+                        </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Link</span>
+                                </div>
+                                <div class="col">
+                                    {% if tagCount == 0 -%}
+                                        <span class="fw-normal">{{ tag.key }}</span> 
+                                    {% else -%}
+                                    <a href="{{ '/changelog/tag/' | append: tag.key | url }}"
+                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr"
+                                        title="Changelog items tagged with {{ tag.key }}">
+                                        {{ tag.key }}
+                                    </a>
+                                    {% endif -%} ({{ tagCount }})
+                                </div>
+                    
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Name
+                                </div>
+                                <div class="col">
+                                    {{ tag.friendlyName }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Description
+                                </div>
+                                <div class="col">
+                                    {{ tag.description }}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor -%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+

@@ -1,5 +1,15 @@
 <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="{{ pkg.description }}">
+        <meta name="keywords" content="{{ pkg.keywords | join: ', ' }}">
         <meta name="author" content="{{ pkg.author }}">
         <meta name="generator" content="{{ eleventy.generator }}">
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="{{ pkg.homepage }}" />
+        <meta property="og:title" content="{{ pkg.tagline }}" />
+        <meta property="og:description"
+                content="{{ pkg.description }}" />
+        <meta property="og:image" content="{% if data.environment == 'development' %}http://localhost:8088{% else %}{{ pkg.homepage }}{% endif %}{{ '/assets/img/convrtr.jpeg' | url }}" />
+
+        {{ environment }}

@@ -1,0 +1,84 @@
+{
+    "labels": [
+        {
+            "key": "improvements",
+            "friendlyName": "Improvements",
+            "description": "General improvements"
+        },
+        {
+            "key": "a11y",
+            "friendlyName": "Accessibility",
+            "description": "Accessibility improvements"
+        },
+        {
+            "key": "bug-fixes",
+            "friendlyName": "Bug Fixes",
+            "description": "Fixed something that wasn't working"
+        },
+        {
+            "key": "bug",
+            "friendlyName": "Bug",
+            "description": "Something isn't working"
+        },
+        {
+            "key": "documentation",
+            "friendlyName": "Documentation",
+            "description": "Improvements or additions to documentation"
+        },
+        {
+            "key": "duplicate",
+            "friendlyName": "Duplicate",
+            "description": "This issue or pull request already exists"
+        },
+        {
+            "key": "feature-request",
+            "friendlyName": "Feature request",
+            "description": "New feature or request"
+        },
+        {
+            "key": "hotfix",
+            "friendlyName": "Hotfix",
+            "description": "Quick fix to resolve a bug or minor issue"
+        },
+        {
+            "key": "major",
+            "friendlyName": "Major Update",
+            "description": "Major feature updates"
+        },
+        {
+            "key": "minor",
+            "friendlyName": "Minor Update",
+            "description": "Minor feature updates"
+        },
+        {
+            "key": "new-features",
+            "friendlyName": "New Features",
+            "description": "Introduction of new features"
+        },
+        {
+            "key": "patch",
+            "friendlyName": "Patch",
+            "description": "Bug fixes and patches"
+        },
+        {
+            "key": "question",
+            "friendlyName": "Question",
+            "description": "A query about the repo, tools, code, etc"
+        },
+        {
+            "key": "release",
+            "friendlyName": "Release",
+            "description": "Major release updates"
+        },
+        {
+            "key": "security",
+            "friendlyName": "Security",
+            "description": "Security/vulnerability/CVE related updates"
+        },
+        {
+            "key": "wontfix",
+            "friendlyName": "Won't fix",
+            "description": "This will not be worked on or fixed"
+        }
+    ]
+}

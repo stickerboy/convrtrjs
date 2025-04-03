@@ -1,0 +1,121 @@
+---
+layout: layout.liquid
+title: Changelog
+description: History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.
+page-id: changelog
+pagination:
+  data: collections.versions
+  size: 10
+  alias: versions
+permalink: "changelog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber | plus: 1 }}/{% endif %}index.html"
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  description: "{{ description }}<br />You can also view the full list of releases on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
+---
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <table class="table table-hover version-list">
+                <thead class="d-none d-md-table-header-group">
+                    <tr>
+                        <th scope="col">Version</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Tags</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    {% for version in versions %}
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Version</span>
+                                </div>
+                                <div class="col">
+                                    <a href="{{ version.url }}" class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        {{ version.data.title }}
+                                    </a>
+                                </div>
+
+                            </div>
+                        </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Date
+                                </div>
+                                <div class="col">
+                                    {{ version.date | date: "%B %d, %Y" }}
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Tags
+                                </div>
+                                <div class="col">
+                                    {% if version.data.tags -%}
+                                    {%- for tag in version.data.tags -%}
+                                    {% assign normalizedTag = tag | downcase | strip %}
+                                    {% assign label = labels.labels | where: "key", normalizedTag | first %}
+                                    <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{ tag }}</a>
+                                    {% endfor -%}
+                                    {%- endif %}
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <a href="{{ '/tags' | url }}" class="text-convrtr">See the full list of tags</a>
+        </p>
+
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <!-- Previous Link -->
+                {% if pagination.previousPageHref %}
+                <li class="page-item">
+                    <a href="{{ pagination.previousPageHref }}" class="page-link">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+                {% endif %}
+
+                <!-- Page Number Links -->
+                {% assign currentPage = pagination.pageNumber %}
+                {% assign startPage = currentPage | minus: 2 %}
+                {% assign endPage = currentPage | plus: 2 %}
+                {% for pageNumber in pagination.pages %}
+                {% assign pageIndex = forloop.index0 %}
+                {% if pageIndex >= startPage and pageIndex <= endPage %} <li
+                    class="page-item {% if pageIndex == currentPage %}active{% endif %}">
+                    {% if pageIndex == currentPage %}
+                    <span class="page-link">{{ pageIndex | plus: 1 }}</span>
+                    {% else %}
+                    <a href="{{ pagination.hrefs[pageIndex] }}" class="page-link">{{ pageIndex | plus: 1 }}</a>
+                    {% endif %}
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+
+                    <!-- Next Link -->
+                    {% if pagination.nextPageHref %}
+                    <li class="page-item">
+                        <a href="{{ pagination.nextPageHref }}" class="page-link">Next</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item disabled">
+                        <span class="page-link">Next</span>
+                    </li>
+                    {% endif %}
+            </ul>
+        </nav>
+    </div>
+</section>

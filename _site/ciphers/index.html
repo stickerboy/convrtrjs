@@ -3,9 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats">
+        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding, decryption, and cryptography techqniques">
+        <meta name="keywords" content="decode, encode, decoding, encoding, converters, data convert, javascript, data, puzzles, puzzle solving, puzzle solving tools, data driven puzzles, base64, binary, hexadecimal, ciphers, morse code, rot13, morsenary, code solving, file tools, hexadecimal tools, text tools, flip text, replace characters, atbash cipher, beaufort cipher, caesar cipher, chaicipher, hash algorithms, rail fence cipher, smithy cipher, substitution cipher, regex substitution, strip all whitespace, letters to alphabet number, vigenère cipher, interleave, unscramble, extract string, merge base64, reverse hexadecimal, shift hexadecimal, hexadecimal frequencies, character frequencies, file headers, check file type, braille to text, text to braille, generate braille text, color generator, covenant glyphs, halo covenant glyphs, forerunner glyphs, halo forerunner glyphs, periodic element conversion, convert periodic elements, convert periodic element properties">
         <meta name="author" content="Kenny Cameron">
         <meta name="generator" content="Eleventy v3.0.0">
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.convrtr.xyz" />
+        <meta property="og:title" content="For everlost and Grollow!" />
+        <meta property="og:description"
+                content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding, decryption, and cryptography techqniques" />
+        <meta property="og:image" content="https://www.convrtr.xyz/assets/img/convrtr.jpeg" />
+
+        
         <title>Convrtr - Cipher tools</title>
 
         <link rel="canonical" href="https://www.convrtr.xyz">
@@ -13,29 +23,29 @@
                 <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Core theme and Bootstrap CSS -->
-        <link href="../assets/css/main.css" rel="stylesheet">
+        <link href="/assets/css/main.css" rel="stylesheet">
         <!-- Favicons -->
         <meta name="theme-color" content="#11806a">
-        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="../assets/favicons/apple-touch-icon-57x57.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/favicons/apple-touch-icon-114x114.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/favicons/apple-touch-icon-72x72.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/favicons/apple-touch-icon-144x144.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="../assets/favicons/apple-touch-icon-60x60.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="../assets/favicons/apple-touch-icon-120x120.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="../assets/favicons/apple-touch-icon-76x76.png" />
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../assets/favicons/apple-touch-icon-152x152.png" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-196x196.png" sizes="196x196" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-32x32.png" sizes="32x32" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-16x16.png" sizes="16x16" />
-        <link rel="icon" type="image/png" href="../assets/favicons/favicon-128.png" sizes="128x128" />
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-128.png" sizes="128x128" />
         <meta name="application-name" content="Convrtr"/>
         <meta name="msapplication-TileColor" content="#FFFFFF" />
-        <meta name="msapplication-TileImage" content="../assets/favicons/mstile-144x144.png" />
-        <meta name="msapplication-square70x70logo" content="../assets/favicons/mstile-70x70.png" />
-        <meta name="msapplication-square150x150logo" content="../assets/favicons/mstile-150x150.png" />
-        <meta name="msapplication-wide310x150logo" content="../assets/favicons/mstile-310x150.png" />
-        <meta name="msapplication-square310x310logo" content="../assets/favicons/mstile-310x310.png" />
+        <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="/assets/favicons/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="/assets/favicons/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="/assets/favicons/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
     <body id="IOOBI9O4IEIEOIO4O4IB" 
           >
@@ -44,9 +54,9 @@
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
-            <a href="https://www.convrtr.xyz" 
-               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3" title="Home">
-                Convrtr
+            <a href="/" 
+               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3 d-flex" title="Home">
+                <span>Convrtr</span>
             </a>
             <div class="d-flex ms-auto">
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
@@ -69,6 +79,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
+                    
                 
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -334,14 +345,24 @@
 
 </ul>
 
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
-                        <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Join the Discord</span>
-                    </a>
-                    <a class="btn btn-md btn-link text-light text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
-                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                        <span class="mx-2">Convrtr on Github</span>
-                    </a>
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="View the sitemap" href="/sitemap">
+                            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Sitemap</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Latest site updates" href="/changelog">
+                            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Changelog</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Join the Discord</span>
+                        </a>
+                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="mx-2">Convrtr on Github</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -357,14 +378,28 @@
             id="content">
             <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
+        
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-end mb-0">
+        <li class="breadcrumb-item">
+            
+            <a href="/" class="text-convrtr">Home</a>
+            
+        </li>
+        
+        <li class="breadcrumb-item active" aria-current="page">
+            ciphers
+        </li>
+        
+    </ol>
+</nav>
+
         <div class="section-heading">
             <h1 class="display-6">Cipher tools</h1>
             <hr>
             <p class="px-2">
                 A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
-            </p>
-            
-            <p class="px-2 m-0">
+            </p><p class="px-2 m-0">
     Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
 </p>
             
@@ -401,7 +436,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Atbash</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: (A ⇆ Z) (B ⇆ Y)" title="Atbash encrypt a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: (Hello ⇆ Svool)" title="Atbash encrypt a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -453,18 +488,18 @@
             </a>
             <hr>
             <p class="px-2">
-                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    S → T → B
+                    H → T → M
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    E → E → A
+                    e → e → a
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    N → S → F
+                    l → s → h
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    T → T → A
+                    l → t → i
                 </code>
                 - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
             </p>
@@ -474,7 +509,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Beaufort cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → BAFAPRQP" title="Beaufort encrypt/decrypt string" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → Test [key] → Mahif" title="Beaufort encrypt/decrypt string" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -732,7 +767,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Caesar cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST → YJXY (Rot 5)" title="Caesar Text - text to substitute" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → Mjqqt (Rot 5)" title="Caesar Text - text to substitute" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -787,11 +822,11 @@
             <p class="px-2">
                 Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time. Only someone with the correct settings can decode the scrambled message back to its original form. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    HELLO WORLD
+                    Hello World
                 </code>
                 →
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    WAHQZIUETS
+                    WahqzIuets
                 </code>
                 etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page
             </p>
@@ -801,7 +836,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Chaocipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → WAHQZIUETS" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello World → WahqzIuets" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -862,7 +897,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Hash text</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: HELLO WORLD → 361fadf1c712e812d198c4cab5712a79" title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello World → b10a8db164e0754105b7a99be72e3fe5" title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="d-flex justify-content-start align-items-center">
@@ -911,8 +946,8 @@
             <hr>
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WORD</code> would shift like: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TBST SBLTBLDB</code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello World</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Faiil Wloit</code> 
             </p>
         </div>
         <div class="collapse" id="keywordCollapse">
@@ -920,7 +955,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Keyword cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → TBST SBLTBLDB
+                        <textarea placeholder="Example: Hello World → Test [key] → Faiil Wloit
                         " title="Keyword encrypt/decrypt string" rows="6" id="keywordText" class="form-control keyword-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
@@ -1048,8 +1083,8 @@
             <hr>
             <p class="px-2">
                 Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WORD</code> would shift like: 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">DGYM UKGDGTVO</code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Rmxsp</code> 
 
             </p>
             <p class="px-2">
@@ -1061,7 +1096,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Smithy cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → DGYM UKGDGTVO
+                        <textarea placeholder="Example: Hello → World [key] → Rmxsp
                         " title="Smithy encrypt/decrypt string" rows="6" id="smithyText" class="form-control smithy-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
@@ -1122,40 +1157,40 @@
             <p class="px-2">
                 A quick example substitution: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    SENTENCE
+                    WORLD
                 </code> → 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    TEST
+                    HELLO
                 </code>
                 → 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    QBLRBLSB
+                    WNRJO
                 </code> 
                 - The full alphabet would look like 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    TESABCDFGHIJKLMNOPQRUVWXYZ
-                </code> &ndash; notice that T, E and S have moved to the start, the second T in TEST isn't present again as it has already been used and placed. 
+                    HELOABCDFGIJKMNPQRSTUVWXYZ
+                </code> &ndash; notice that H, E, L and O have moved to the start, the second L in HELLO isn't present again as it has already been used and placed. 
                 Mixed case strings and keys are supported here, for example:
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    SENTence
+                    WOrld
                 </code> →
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    TEST
+                    HELLO
                 </code>
                 →
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    QBLRblsb
+                    WNrjo
                 </code>
                 or 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    SENTence
+                    WOrld
                 </code> →
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    TEst
+                    HEllo
                 </code>
                 →
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    PAKQaksa
+                    UMpjo
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
             </p>
         </div>
@@ -1164,7 +1199,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Substitution cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: SENTENCE → TEST [key] → QBLRBLSB" title="Substitution string" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → World [key] → Cdggj" title="Substitution string" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -1219,20 +1254,23 @@
             </a>
             <hr>
             <p class="px-2">
-                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">SENTENCE</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TEST</code> would shift like: 
+                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    S → T → L
+                    H → W → D
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    E → E → I
+                    e → o → s
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    N → S → F
-                </code> 
-                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    T → T → M
+                    l → r → c
                 </code>
-                - for the next letters, the key would loop back and start from the first T in TEST again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → l → w
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    o → d → r
+                </code>
+                - for the next letters, the key would loop back and start from the W in World again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
             </p>
         </div>
         <div class="collapse" id="vigenereCollapse">
@@ -1240,7 +1278,7 @@
                 <div class="card">
                     <span class="card-label visually-hidden">Vigenère cipher</span>
                     <div class="card-body text-center">
-                        <textarea placeholder="Example: TEST SENTENCE → WORD [key] → PSJW OSEWABTH" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                        <textarea placeholder="Example: Hello → World [key] → Dscwr" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
@@ -1298,33 +1336,33 @@
             </p>
             
             <p class="mb-1">
-                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2024. All Rights Reserved.<br />
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2025. All Rights Reserved.<br />
                 Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
             </p>
             <p class="mb-1">
-                <a href="../sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
+                <a href="/sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="https://github.com/stickerboy/convrtrjs/releases" 
-                title="Release version: v1.20.0" 
+            <a href="/changelog"" 
+                title="Release version: v2.0.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v1.20.0</small>
+                <small>v2.0.0</small>
             </a>
         </div>
     </div>
 </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-<script src="../assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="../assets/js/theme.js"></script>
-<script src="../assets/js/clip.js"></script>
-<script src="../assets/js/toolkit.js"></script>
-<script src="../assets/js/tools.js"></script>
-<script src="../assets/js/rot.js"></script>
-<script src="../assets/js/scripts.js"></script>
+<script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/assets/js/theme.js></script>
+<script type="module" src="/assets/js/clip.mjs"></script>
+<script type="module" src="/assets/js/toolkit.mjs"></script>
+<script type="module" src="/assets/js/tools.mjs"></script>
+<script type="module" src="/assets/js/rot.mjs"></script>
+<script type="module" src="/assets/js/scripts.mjs"></script>
 
 
-<script src="../assets/js/ciphers/ciphers.js"></script>
+
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
         <div class="toast-header text-bg-convrtr">
