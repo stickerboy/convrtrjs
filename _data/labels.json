@@ -68,7 +68,7 @@
         {
             "key": "release",
             "friendlyName": "Release",
-            "description": "Major release updates"
+            "description": "Officially tagged and released version"
         },
         {
             "key": "security",

@@ -11,5 +11,3 @@
         <meta property="og:description"
                 content="{{ pkg.description }}" />
         <meta property="og:image" content="{% if data.environment == 'development' %}http://localhost:8088{% else %}{{ pkg.homepage }}{% endif %}{{ '/assets/img/convrtr.jpeg' | url }}" />
-
-        {{ environment }}

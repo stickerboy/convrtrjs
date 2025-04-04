@@ -1,4 +1,3 @@
-<title>{{ pkg.sitename }} - {% if page-id != "sitemap" and page-id != "changelog" and page.inputPath contains "changelog"
--%}Changelog: v{% endif %}{{ title }}{% if page.url contains "tag/" -%}{%- assign tag = page.url | split: '/' | last %}: {{ tag }}{%- endif %}</title>
+<title>{{ pkg.sitename }} - {% if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md" -%}Changelog: v{% endif %}{{ title }}{% if page.url contains "tag/" -%}{%- assign tag = page.url | split: '/' | last %}: {{ tag }}{%- endif %}</title>
 
         <link rel="canonical" href="{{ pkg.homepage }}">
