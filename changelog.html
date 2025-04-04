@@ -7,6 +7,7 @@ pagination:
   data: collections.versions
   size: 10
   alias: versions
+  label: Changelog navigation
 permalink: "changelog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber | plus: 1 }}/{% endif %}index.html"
 eleventyExcludeFromCollections: true
 eleventyComputed:
@@ -75,47 +76,6 @@ eleventyComputed:
             <a href="{{ '/tags' | url }}" class="text-convrtr">See the full list of tags</a>
         </p>
 
-        <nav aria-label="Page navigation">
-            <ul class="pagination">
-                <!-- Previous Link -->
-                {% if pagination.previousPageHref %}
-                <li class="page-item">
-                    <a href="{{ pagination.previousPageHref }}" class="page-link">Previous</a>
-                </li>
-                {% else %}
-                <li class="page-item disabled">
-                    <span class="page-link">Previous</span>
-                </li>
-                {% endif %}
-
-                <!-- Page Number Links -->
-                {% assign currentPage = pagination.pageNumber %}
-                {% assign startPage = currentPage | minus: 2 %}
-                {% assign endPage = currentPage | plus: 2 %}
-                {% for pageNumber in pagination.pages %}
-                {% assign pageIndex = forloop.index0 %}
-                {% if pageIndex >= startPage and pageIndex <= endPage %} <li
-                    class="page-item {% if pageIndex == currentPage %}active{% endif %}">
-                    {% if pageIndex == currentPage %}
-                    <span class="page-link">{{ pageIndex | plus: 1 }}</span>
-                    {% else %}
-                    <a href="{{ pagination.hrefs[pageIndex] }}" class="page-link">{{ pageIndex | plus: 1 }}</a>
-                    {% endif %}
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-
-                    <!-- Next Link -->
-                    {% if pagination.nextPageHref %}
-                    <li class="page-item">
-                        <a href="{{ pagination.nextPageHref }}" class="page-link">Next</a>
-                    </li>
-                    {% else %}
-                    <li class="page-item disabled">
-                        <span class="page-link">Next</span>
-                    </li>
-                    {% endif %}
-            </ul>
-        </nav>
+        {% include "components/pagination" %}
     </div>
 </section>
