@@ -23,7 +23,8 @@ eleventyComputed:
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                {%- for tag in labels.labels -%}
+                {% assign visible_labels = labels.labels | where: "visible", true %}
+                {%- for tag in visible_labels -%}
                     {%- assign tagKey = tag.key | downcase | strip -%}
                     {%- assign tagCount = 0 -%}
 
