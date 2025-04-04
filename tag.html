@@ -27,7 +27,7 @@ eleventyComputed:
                 <tbody class="table-group-divider">
                 {% if tag %}
                 {% assign postListItems = collections[tag] %}
-                {% for version in postListItems %}
+                {% for version in postListItems reversed %}
                 
                     <tr class="position-relative">
                         <th scope="row">
