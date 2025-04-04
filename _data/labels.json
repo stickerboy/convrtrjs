@@ -1,51 +1,9 @@
 {
     "labels": [
         {
-            "key": "improvements",
-            "friendlyName": "Improvements",
-            "description": "General improvements",
-            "visible": true
-        },
-        {
-            "key": "a11y",
-            "friendlyName": "Accessibility",
-            "description": "Accessibility improvements",
-            "visible": true
-        },
-        {
-            "key": "bug-fixes",
-            "friendlyName": "Bug Fixes",
-            "description": "Fixed something that wasn't working",
-            "visible": true
-        },
-        {
-            "key": "bug",
-            "friendlyName": "Bug",
-            "description": "Something isn't working",
-            "visible": false
-        },
-        {
-            "key": "documentation",
-            "friendlyName": "Documentation",
-            "description": "Improvements or additions to documentation",
-            "visible": true
-        },
-        {
-            "key": "duplicate",
-            "friendlyName": "Duplicate",
-            "description": "This issue or pull request already exists",
-            "visible": false
-        },
-        {
-            "key": "feature-request",
-            "friendlyName": "Feature request",
-            "description": "New feature or request",
-            "visible": true
-        },
-        {
-            "key": "hotfix",
-            "friendlyName": "Hotfix",
-            "description": "Quick fix to resolve a bug or minor issue",
+            "key": "release",
+            "friendlyName": "Release",
+            "description": "Officially tagged and released version",
             "visible": true
         },
         {
@@ -61,27 +19,33 @@
             "visible": true
         },
         {
-            "key": "new-features",
-            "friendlyName": "New Features",
-            "description": "Introduction of new features",
-            "visible": true
-        },
-        {
             "key": "patch",
             "friendlyName": "Patch",
             "description": "Bug fixes and patches",
             "visible": true
         },
         {
-            "key": "question",
-            "friendlyName": "Question",
-            "description": "A query about the repo, tools, code, etc",
-            "visible": false
+            "key": "hotfix",
+            "friendlyName": "Hotfix",
+            "description": "Quick fix to resolve a bug or minor issue",
+            "visible": true
         },
         {
-            "key": "release",
-            "friendlyName": "Release",
-            "description": "Officially tagged and released version",
+            "key": "new-features",
+            "friendlyName": "New Features",
+            "description": "Introduction of new features",
+            "visible": true
+        },
+        {
+            "key": "improvements",
+            "friendlyName": "Improvements",
+            "description": "General improvements",
+            "visible": true
+        },
+        {
+            "key": "bug-fixes",
+            "friendlyName": "Bug Fixes",
+            "description": "Fixed something that wasn't working",
             "visible": true
         },
         {
@@ -89,6 +53,42 @@
             "friendlyName": "Security",
             "description": "Security/vulnerability/CVE related updates",
             "visible": true
+        },
+        {
+            "key": "a11y",
+            "friendlyName": "Accessibility",
+            "description": "Accessibility improvements",
+            "visible": true
+        },
+        {
+            "key": "documentation",
+            "friendlyName": "Documentation",
+            "description": "Improvements or additions to documentation",
+            "visible": true
+        },
+        {
+            "key": "feature-request",
+            "friendlyName": "Feature request",
+            "description": "New feature or request",
+            "visible": true
+        },
+        {
+            "key": "bug",
+            "friendlyName": "Bug",
+            "description": "Something isn't working",
+            "visible": false
+        },
+        {
+            "key": "duplicate",
+            "friendlyName": "Duplicate",
+            "description": "This issue or pull request already exists",
+            "visible": false
+        },
+        {
+            "key": "question",
+            "friendlyName": "Question",
+            "description": "A query about the repo, tools, code, etc",
+            "visible": false
         },
         {
             "key": "wontfix",
