@@ -412,6 +412,7 @@
 </ul>
 <h2>Bug fixes</h2>
 <ul>
+<li>Correctly handle navigation urls by adding the | url filter. Main nav urls were broken due to <code>../</code>, when in a sub-directory, not pointing to the root of the site</li>
 <li>Fixed missing 'v' prefix on the title of Changelog pages<br>
 Using <code>templateSyntax</code> is a weird but decent enough workaround to only target the changelog item itself</li>
 </ul>
