@@ -3,7 +3,10 @@
     <!-- Previous Link -->
     {% if pagination.previousPageHref %}
         <li class="page-item">
-            <a href="{{ pagination.previousPageHref }}" class="page-link">Previous</a>
+            <a href="{{ pagination.previousPageHref }}" class="page-link">
+                <span class="d-none d-sm-block">Previous</span>
+                <span class="d-block d-sm-none" aria-label="Previous">&#8678;</span>
+            </a>
         </li>
         <li class="page-item">
             <a class="page-link" href="{{ pagination.href.first }}" aria-label="Jump to first page">
@@ -12,13 +15,14 @@
         </li>
     {% else %}
         <li class="page-item disabled">
-            <span class="page-link">Previous</span>
+            <span class="d-none d-sm-block">Previous</span>
+            <span class="d-block d-sm-none" aria-label="Previous">&#8678;</span>
         </li>
     {% endif %}
 
     <!-- Page Number Links -->
     {% assign currentPage = pagination.pageNumber %}
-    {% assign startPage = currentPage | minus: 2 %}
+    {% assign startPage = currentPage | minus: 1 %}
     {% assign endPage = currentPage | plus: 2 %}
     {% for pageNumber in pagination.pages %}
         {% assign pageIndex = forloop.index0 %}
@@ -41,11 +45,15 @@
             </a>
         </li>
         <li class="page-item">
-            <a href="{{ pagination.nextPageHref }}" class="page-link">Next</a>
+            <a href="{{ pagination.nextPageHref }}" class="page-link">
+                <span class="d-none d-sm-block">Next</span>
+                <span class="d-block d-sm-none" aria-label="Next">&#8680;</span>
+            </a>
         </li>
     {% else %}
         <li class="page-item disabled">
-            <span class="page-link">Next</span>
+            <span class="d-none d-sm-block">Next</span>
+            <span class="d-block d-sm-none" aria-label="Next">&#8680;</span>
         </li>
     {% endif %}
     </ul>
