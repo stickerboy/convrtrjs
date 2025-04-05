@@ -5,6 +5,11 @@
         <li class="page-item">
             <a href="{{ pagination.previousPageHref }}" class="page-link">Previous</a>
         </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ pagination.href.first }}" aria-label="Jump to first page">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
     {% else %}
         <li class="page-item disabled">
             <span class="page-link">Previous</span>
@@ -30,6 +35,11 @@
 
     <!-- Next Link -->
     {% if pagination.nextPageHref %}
+        <li class="page-item">
+            <a class="page-link" href="{{ pagination.href.last }}" aria-label=" Jump to last page">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
         <li class="page-item">
             <a href="{{ pagination.nextPageHref }}" class="page-link">Next</a>
         </li>
