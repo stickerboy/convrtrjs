@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" {% if page-id=="fourohfour" %} class="h-100" {% endif %}>
+<html lang="en" class="overflow-y-hidden {% if page-id=="fourohfour" %} h-100{% endif %}"">
 
     <head>
         {% include "layout/meta" %}
@@ -18,7 +18,7 @@
             <div class="nav-bar p-0 position-sticky overflow-y-auto overflow-x-hidden">
                 {% include "layout/sidebar" %}
             </div>
-            <main class="page-wrap p-0 mw{% if page-id == "fourohfour" %} flex-shrink-0 g-start-2 d-flex flex-column{% endif %}"
+            <main class="page-wrap overflow-y-auto p-0 mw{% if page-id == "fourohfour" %} flex-shrink-0 g-start-2 d-flex flex-column{% endif %}"
                  data-bs-smooth-scroll="true" data-bs-threshold="0,1" data-bs-root-margin="10% 0% -90%" id="content">
                 {% if page-id != "fourohfour" -%}
                 {% include "partials/default" %}

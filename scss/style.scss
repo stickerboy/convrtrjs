@@ -75,6 +75,7 @@ body {
 }
 .page-wrap {
     margin-top: 4rem;
+    height: calc(100vh - 4rem);
 }
 .sidebar-grid {
     grid-template-columns: 1fr;
