@@ -397,7 +397,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap p-0 mw g-start-3 ms-auto mw"
+            <main class="page-wrap p-0 mw"
                  data-bs-smooth-scroll="true" data-bs-threshold="0,1" data-bs-root-margin="10% 0% -90%" id="content">
                 <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
@@ -437,19 +437,32 @@
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4">
         <h2>New features</h2>
+<h3>Sidebar / Navigation</h3>
+<p>Technically a change, but also a new feature so highlighting it here</p>
+<ul>
+<li>Overhauled the primary navigation across the site, replacing the bootstrap offcanvas flyout menu with a left hand expanding sidebar</li>
+<li>Sidebar can be expanded by clicking on the hamburger icon next to the sitename, or by cliking on a menu tab</li>
+<li>Clicking a tab will auto-expand to reveal a list of all the child pages</li>
+<li>Closing the menu will close all open tabs</li>
+<li>Added new icons for each of the primary sections (these will be improved upon in future)</li>
+<li>Re-arranged order of items in the menu</li>
+</ul>
 <h3>Pagingation</h3>
 <ul>
 <li>Added &quot;Jump to first page&quot; and &quot;Jump to last page&quot; pagination links</li>
 </ul>
 <h2>Changes</h2>
 <ul>
+<li>Moved the footer inside the main content area</li>
+<li>Minor improvement to the 404 message text</li>
 <li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
 <li>Reduced the previous page number count down to 1, so there's more space and hopefully helps prevent pagination from breaking out of page boundaries</li>
 <li>On mobile, hide the Next/Previous text in favor of simple ASCII arrows ⇦ <code>&amp;#8678;</code> and ⇨ <code>&amp;#8680;</code></li>
+<li>Updated Bootstrap core js to 5.3.3</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li></li>
+<li>Fixed some sass compiler warnings</li>
 </ul>
 
 
@@ -457,10 +470,7 @@
 
     </article>
 </section>
-            </main>
-        </div>
-
-        <footer class="section footer z-1 position-relative">
+                <footer class="section footer ">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">
             
@@ -490,6 +500,9 @@
         </div>
     </div>
 </footer>
+            </main>
+        </div>
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/assets/js/theme.js"></script>
