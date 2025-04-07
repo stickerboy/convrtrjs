@@ -144,20 +144,35 @@ function download(filename, text) {
  * @returns {void}
  */
 const sectionToggles = document.getElementsByClassName("section-toggle");
-if(sectionToggles.length > 0) {
+if (sectionToggles.length > 0) {
     function restoreOptions() {
         if (localStorage.length !== 0) {
             for (const sectionToggle of sectionToggles) {
                 const section = sectionToggle.closest(".section");
-                const sectionID = sectionToggle.closest(".section").id;
-                const x = getLocalStorageItem(sectionID);
-                if(x !== null) {
-                    sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
+                if (!section) {
+                    console.warn("No parent section found for:", sectionToggle);
+                    continue; // Skip this iteration if no parent section exists
                 }
-                if (x === true) {
-                    section.querySelector(".collapse").classList.add("show");
+
+                const sectionID = section.id;
+                const x = getLocalStorageItem(sectionID);
+
+                if (x !== null) {
+                    sectionToggle.setAttribute("aria-expanded", x);
+                }
+
+                // Use the href attribute to locate the collapse element
+                const collapseID = sectionToggle.getAttribute("href");
+                const collapseElement = document.querySelector(collapseID);
+
+                if (collapseElement) {
+                    if (x === true) {
+                        collapseElement.classList.add("show");
+                    } else {
+                        collapseElement.classList.remove("show");
+                    }
                 } else {
-                    section.querySelector(".collapse").classList.remove("show");
+                    console.warn("No collapse element found for ID:", collapseID);
                 }
             }
         }
@@ -166,7 +181,7 @@ if(sectionToggles.length > 0) {
     document.addEventListener("DOMContentLoaded", restoreOptions);
 
     // Save toggle state
-    Array.from(sectionToggles, c => c.addEventListener("click", function() {
+    Array.from(sectionToggles, c => c.addEventListener("click", function () {
         let section = c.closest(".section");
         saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
     }));
@@ -184,6 +199,10 @@ const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootst
 const popoverTriggerList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
+
+// Enable collapse
+// const collapseElementList = document.querySelectorAll('.collapse');
+// const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
 
 const resetData = document.getElementById("resetData");
 resetData && resetData.addEventListener("click", function() {
@@ -360,3 +379,68 @@ customSwitch && customSwitch.addEventListener('click', () => {
     const isChecked = customSwitch.getAttribute('aria-checked') === 'true';
     customSwitch.setAttribute('aria-checked', !isChecked);
 });
+
+const navToggle = document.querySelector("#navbar-toggler");
+const navGrid = document.querySelector(".sidebar-grid");
+
+if (navToggle && navGrid) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = navGrid.classList.contains("open");
+        navGrid.setAttribute('aria-expanded', isOpen ? "false" : "true");
+
+        if (!isOpen) {
+            navGrid.classList.add("open");
+            setTimeout(() => {
+                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
+                    label.classList.remove("visually-hidden");
+                });
+            }, 300);
+        } else {
+            // Close all open sidebar collapse sections
+            const openCollapses = navGrid.querySelectorAll(".collapse.show");
+            openCollapses.forEach(collapse => {
+                const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            });
+
+            navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
+                label.classList.add("visually-hidden");
+            });
+            setTimeout(() => {
+                navGrid.classList.remove("open");
+            }, 100);
+        }
+    });
+}
+
+if (navGrid) {
+    const sidebarLinks = document.querySelectorAll(".sidebar-item__link");
+
+    sidebarLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            const collapseTarget = document.querySelector(link.getAttribute("href"));
+
+            // Add the 'open' class immediately when the link is clicked
+            if (!navGrid.classList.contains("open")) {
+                navGrid.classList.add("open");
+            }
+
+            setTimeout(() => {
+                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
+                    label.classList.remove("visually-hidden");
+                });
+            }, 300);
+
+            if (collapseTarget) {
+                collapseTarget.addEventListener("shown.bs.collapse", () => {
+                    // Ensure the 'open' class is still present after the collapse is shown
+                    if (!navGrid.classList.contains("open")) {
+                        navGrid.classList.add("open");
+                    }
+                });
+            }
+        });
+    });
+}

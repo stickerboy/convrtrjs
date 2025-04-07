@@ -3,6 +3,7 @@
         "id": "home",
         "label": "Text tools",
         "short-label": "Text",
+        "icon": "code-square",
         "children": [{
                 "id": "convrtrs",
                 "label": "Convrtrs"
@@ -25,6 +26,7 @@
         "id": "ciphers",
         "label": "Cipher tools",
         "short-label": "Ciphers",
+        "icon": "puzzle",
         "children":[{
                 "id": "caesar",
                 "label": "Caesar cipher"
@@ -59,37 +61,10 @@
         ]
     },
     {
-        "id": "oni",
-        "label": "ONI tools",
-        "short-label": "ONI",
-        "children": [{
-                "id": "unmunge",
-                "label": "Unmunge"
-            }, {
-                "id": "lookahead",
-                "label": "Lookahead"
-            }, {
-                "id": "mergeb64",
-                "label": "Merge Base64"
-            }, {
-                "id": "unscramble",
-                "label": "Unscramble"
-            }, {
-                "id": "interleave",
-                "label": "Interleave"
-            }, {
-                "id": "strings",
-                "label": "Extract strings"
-            }, {
-                "id": "calendar",
-                "label": "Calendar"
-            }
-        ]
-    },
-    {
         "id": "hex",
         "label": "Hex tools",
         "short-label": "Hex",
+        "icon": "nut",
         "children":[{
                 "id": "shifthex",
                 "label": "Shift hex"
@@ -106,6 +81,7 @@
         "id": "files",
         "label": "File tools",
         "short-label": "Files",
+        "icon": "journal-code",
         "children":[{
                 "id": "filecheck",
                 "label": "Check file type"
@@ -119,6 +95,7 @@
         "id": "misc",
         "label": "Misc",
         "short-label": "Misc",
+        "icon": "braces-asterisk",
         "children":[{
                 "id": "braille",
                 "label": "Braille"
@@ -137,6 +114,35 @@
             }, {
                 "id": "covenant",
                 "label": "Covenant glyphs"
+            }
+        ]
+    },
+    {
+        "id": "oni",
+        "label": "ONI tools",
+        "short-label": "ONI",
+        "icon": "question-octagon",
+        "children": [{
+                "id": "unmunge",
+                "label": "Unmunge"
+            },{
+                "id": "lookahead",
+                "label": "Lookahead"
+            },{
+                "id": "mergeb64",
+                "label": "Merge Base64"
+            },{
+                "id": "unscramble",
+                "label": "Unscramble"
+            },{
+                "id": "interleave",
+                "label": "Interleave"
+            },{
+                "id": "strings",
+                "label": "Extract strings"
+            },{
+                "id": "calendar",
+                "label": "Calendar"
             }
         ]
     }

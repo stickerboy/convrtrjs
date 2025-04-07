@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
+
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,15 +46,20 @@
         <meta name="msapplication-wide310x150logo" content="/assets/favicons/mstile-310x150.png" />
         <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
-    <body id="IOOBI9O4IEIEOIO4O4IB" 
-          >
-          <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+
+    <body id="IOOBI9O4IEIEOIO4O4IB" >
+        <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
 
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
+            <button class="navbar-toggler" id="navbar-toggler" type="button"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+            </button>
             <a href="/" 
-               class="navbar-brand text-white mb-0 h1 fw-light me-auto me-md-3 d-flex" title="Home">
+               class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
             </a>
             <div class="d-flex ms-auto">
@@ -123,258 +129,286 @@
                         </ul>
                     </li>
                 </ul>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navigation" 
-                        aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
-                    <span class="visually-hidden">Toggle navigation</span>
-                </button>
-            </div>
-            <div class="offcanvas offcanvas-end bg-convrtr" id="navigation" tabindex="-1" aria-labelledby="navLabel" data-bs-scroll="true">
-                <div class="offcanvas-header">
-                    <h1 class="offcanvas-title h5 text-light" id="navLabel">Menu</h1>
-                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                </div>
-                <div class="offcanvas-body">
-                    <ul class="navbar-nav me-auto mb-2">
-    
-        <li class="nav-item dropdown" data-link-id="home" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-inline-flex ms-1 me-auto fs-5">Text tools</span>
-            </a>
-            <ul class="dropdown-menu">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/#convrtrs">Convrtrs</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/#flip">Flip text</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/#frequencies">Character frequencies</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/#replace">Replace characters</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/#tools">Text tools</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-        <li class="nav-item dropdown" data-link-id="ciphers" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-inline-flex ms-1 me-auto fs-5">Cipher tools</span>
-            </a>
-            <ul class="dropdown-menu">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#atbash">Atbash cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#beaufort">Beaufort cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#caesar">Caesar cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#chaocipher">Chaocipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#hash">Hash algorithms</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#keyword">Keyword cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#rail">Rail fence cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#smithy">Smithy cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#substitution">Substitution cipher</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/ciphers/#vigenere">Vigenère cipher</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-        <li class="nav-item dropdown" data-link-id="oni" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-inline-flex ms-1 me-auto fs-5">ONI tools</span>
-            </a>
-            <ul class="dropdown-menu">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#calendar">Calendar</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#interleave">Interleave</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#lookahead">Lookahead</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#mergeb64">Merge Base64</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#strings">Extract strings</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#unmunge">Unmunge</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/oni/#unscramble">Unscramble</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-        <li class="nav-item dropdown" data-link-id="hex" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-inline-flex ms-1 me-auto fs-5">Hex tools</span>
-            </a>
-            <ul class="dropdown-menu">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/hex/#hexfrequencies">Hex Frequencies</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/hex/#reversehex">Reverse hex</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/hex/#shifthex">Shift hex</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-        <li class="nav-item dropdown active" data-link-id="files" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                <span class="d-inline-flex ms-1 me-auto fs-5">File tools</span>
-            </a>
-            <ul class="dropdown-menu show">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/files/#filecheck">Check file type</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/files/#headers">File headers</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-        <li class="nav-item dropdown" data-link-id="misc" data-page-id="files">
-            
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="d-inline-flex ms-1 me-auto fs-5">Misc</span>
-            </a>
-            <ul class="dropdown-menu">
-                
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#braille">Braille</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#colorgenerator">Color generator</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#covenant">Covenant glyphs</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#elements">Elements</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#elementstable">Periodic elements</a>
-                </li>
-                
-                <li class="mb-1">
-                    <a class="dropdown-item" href="/misc/#forerunner">Forerunner glyphs</a>
-                </li>
-                
-            </ul>
-            
-        </li>
-    
-    </ul>
-
-                    <div class="d-grid gap-2">
-                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="View the sitemap" href="/sitemap">
-                            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
-                            <span class="mx-2">Sitemap</span>
-                        </a>
-                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Latest site updates" href="/changelog">
-                            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
-                            <span class="mx-2">Changelog</span>
-                        </a>
-                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Join the Discord" href="https://discord.gg/FhwjhdkTwD">
-                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
-                            <span class="mx-2">Join the Discord</span>
-                        </a>
-                        <a class="btn btn-md btn-link text-light text-start text-decoration-none" aria-label="Convrtr on Github" href="https://github.com/stickerboy/convrtrjs">
-                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                            <span class="mx-2">Convrtr on Github</span>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
     </nav>
 </header>
 
-        <main class="mt-5 ms-auto me-auto mw"
-            data-bs-spy="scroll" 
-            data-bs-target="#navbarText" 
-            data-bs-smooth-scroll="true"
-            data-bs-threshold="0,1"
-            data-bs-root-margin="10% 0% -90%"
-            id="content">
-            <section class="section">
+        <div class="grid sidebar-grid gap-0 p-0">
+            <div class="nav-bar p-0 position-sticky overflow-y-auto overflow-x-hidden">
+                <nav class="sidebar px-2 py-lg-3">
+    <div class="sidebar-dropdown d-grid gap-2" id="nav-dropdown">
+    
+        <div class="sidebar-item d-grid gap-2" data-link-id="home" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsehome"
+                aria-expanded="false" aria-controls="collapsehome">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-code-square"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    Text tools
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapsehome">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/#convrtrs">Convrtrs</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/#flip">Flip text</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/#frequencies">Character frequencies</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/#replace">Replace characters</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/#tools">Text tools</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="sidebar-item d-grid gap-2" data-link-id="ciphers" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapseciphers"
+                aria-expanded="false" aria-controls="collapseciphers">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-puzzle"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    Cipher tools
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapseciphers">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#atbash">Atbash cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#beaufort">Beaufort cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#caesar">Caesar cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#chaocipher">Chaocipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#hash">Hash algorithms</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#keyword">Keyword cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#rail">Rail fence cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#smithy">Smithy cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#substitution">Substitution cipher</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/ciphers/#vigenere">Vigenère cipher</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="sidebar-item d-grid gap-2" data-link-id="hex" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsehex"
+                aria-expanded="false" aria-controls="collapsehex">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-nut"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    Hex tools
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapsehex">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/hex/#hexfrequencies">Hex Frequencies</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/hex/#reversehex">Reverse hex</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/hex/#shifthex">Shift hex</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="sidebar-item d-grid gap-2 active" data-link-id="files" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsefiles"
+                aria-expanded="false" aria-controls="collapsefiles">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-journal-code"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    File tools
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapsefiles">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/files/#filecheck">Check file type</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/files/#headers">File headers</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="sidebar-item d-grid gap-2" data-link-id="misc" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsemisc"
+                aria-expanded="false" aria-controls="collapsemisc">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-braces-asterisk"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    Misc
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapsemisc">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#braille">Braille</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#colorgenerator">Color generator</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#covenant">Covenant glyphs</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#elements">Elements</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#elementstable">Periodic elements</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/misc/#forerunner">Forerunner glyphs</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+        <div class="sidebar-item d-grid gap-2" data-link-id="oni" data-page-id="files">
+            
+            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapseoni"
+                aria-expanded="false" aria-controls="collapseoni">
+                <span class="sidebar-item__icon ms-2 me-3 fs-4">
+                    <i class="bi bi-question-octagon"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 visually-hidden">
+                    ONI tools
+                </span>
+            </a>
+            <div class="collapse multi-collapse" id="collapseoni">
+                <div class="ac-body">
+                    <ul class="menu">
+                        
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#calendar">Calendar</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#interleave">Interleave</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#lookahead">Lookahead</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#mergeb64">Merge Base64</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#strings">Extract strings</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#unmunge">Unmunge</a>
+                        </li>
+                        
+                        <li class="mb-1">
+                            <a class="dropdown-item" href="/oni/#unscramble">Unscramble</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    
+</div>
+</nav>
+            </div>
+            <main class="page-wrap p-0 mw g-start-3 ms-auto mw"
+                 data-bs-smooth-scroll="true" data-bs-threshold="0,1" data-bs-root-margin="10% 0% -90%" id="content">
+                <section class="section">
     <div class="py-5 pb-4 px-2 px-sm-4">
         
 <nav aria-label="breadcrumb">
@@ -975,9 +1009,10 @@
 <script>
     const HEADERS = [{"extensions":"bmp, dib","label":"BMP file, a bitmap format used mostly in the Windows world","hex":["42 4D"]},{"extensions":"doc, xls, ppt, msi, msg, vsd, wps, db","label":"Compound File Binary Format, a container format defined by Microsoft COM. It can contain the equivalent of files and directories. It is used by Windows Installer and for documents in older versions of Microsoft Office. It can be used by other programs as well that rely on the COM and OLE API's.","hex":["D0 CF 11 E0 A1 B1 1A E1"]},{"extensions":"exe, dll, mui, sys, scr, cpl, ocx, ax, iec, ime, rs, tsp, fon, efi","label":"DOS MZ executable and its descendants (including NE and PE)","hex":["4D 5A"]},{"extensions":"gif","label":"Image file encoded in the Graphics Interchange Format (GIF)","hex":["49 44 33 03 37","49 44 33 03 39"]},{"extensions":"gif","label":"GIF87a","hex":["47 49 46 38 37 61"]},{"extensions":"gif","label":"GIF89a","hex":["47 49 46 38 39 61"]},{"extensions":"jpg, jpeg","label":"JPEG raw or in the JFIF or Exif file format","hex":["FF D8 FF DB","FF D8 FF E0 00 10 4A 46 49 46 00 01","FF D8 FF E0","FF D8 FF EE","FF D8 FF E1 ?? ?? 45 78 69 66 00 00","FF D8 FF E1","FF D8 FF E0"]},{"extensions":"jp2, j2k, jpf, jpm, jpg2, j2c, jpc, jpx, mj2","label":"JPEG 2000","hex":["FF 4F FF 51","00 00 00 0C 6A 50 20 20 0D 0A 87 0A"]},{"extensions":"midi","label":"MIDI sound file","hex":["4D 54 68 64"]},{"extensions":"mp3","label":"MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag (which is appended at the end of the file)","hex":["FF FB","FF F3","FF F2"]},{"extensions":"mp3","label":"MP3 file with an ID3v2 container","hex":["49 44 33 03","49 44 33 04"]},{"extensions":"mp4","label":"ISO Base Media file (MPEG-4)","hex":["66 74 79 70 69 73 6F 6D"]},{"extensions":"mp4","label":"MPEG-4 video file","hex":["66 74 79 70 6D 70 34 32","66 74 79 70 4D 53 4E 56"]},{"extensions":"mp4","label":"MPEG-4 video file v2","hex":["00 00 00 18 66 74 79 70 6d 70 34 32"]},{"extensions":"ogg, oga, ogv","label":"Ogg, an open source media container format","hex":["4F 67 67 53"]},{"extensions":"pdf","label":"PDF document","hex":["25 50 44 46"]},{"extensions":"png","label":"Image encoded in the Portable Network Graphics format","hex":["89 50 4E 47 0D 0A 1A 0A","89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52"]},{"extensions":"psd","label":"Photoshop Document file, Adobe Photoshop's native file format","hex":["38 42 50 53"]},{"extensions":"rtf","label":"Rich Text Format","hex":["7B 5C 72 74 66 31"]},{"extensions":"","label":"OpenSSH private key file","hex":["2D 2D 2D 2D 2D 42 45 47 49 4E 20 4F 50 45 4E 53 53 48 20 50 52 49 56 41 54 45 20 4B 45 59 2D 2D 2D 2D 2D"]},{"extensions":"pub","label":"OpenSSH public key file","hex":["2D 2D 2D 2D 2D 42 45 47 49 4E 20 53 53 48 32 20 4B 45 59 2D 2D 2D 2D 2D"]},{"extensions":"txt, others","label":"UTF-8 byte order mark, commonly seen in text files","hex":["EF BB BF"]},{"extensions":"txt, others","label":"UTF-16LE byte order mark, commonly seen in text files","hex":["FF FE"]},{"extensions":"txt, others","label":"UTF-16BE byte order mark, commonly seen in text files","hex":["FE FF"]},{"extensions":"txt, others","label":"UTF-32LE byte order mark for text","hex":["FF FE 00 00"]},{"extensions":"txt, others","label":"UTF-32BE byte order mark for text","hex":["00 00 FE FF"]},{"extensions":"txt, others","label":"UTF-16BE byte order mark, commonly seen in text files","hex":["EF BB BF"]},{"extensions":"wav","label":"Waveform Audio File Format","hex":["52 49 46 46"]},{"extensions":"gz, tar.gz","label":"GZIP compressed file","hex":["1F 8B"]},{"extensions":"7z","label":"7-Zip File Format","hex":["37 7A BC AF 27 1C"]},{"extensions":"xz, tar.xz","label":"XZ compression utility using LZMA2 compression","hex":["FD 37 7A 58 5A 00"]},{"extensions":"zip, aar, apk, docx, epub, ipa, jar, kmz, maff, msix, odp, ods, odt, pk3, pk4, pptx, usdz, vsdx, xlsx, xpi","label":"Zip file format and formats based on it, such as EPUB, JAR, ODF, OOXML","hex":["50 4B 03 04","50 4B 05 06","50 4B 07 08"]}];
 </script>
-        </main>
+            </main>
+        </div>
 
-        <footer class="section footer">
+        <footer class="section footer z-1 position-relative">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">
             
@@ -1009,7 +1044,7 @@
 </footer>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/assets/js/theme.js></script>
+<script src="/assets/js/theme.js"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/toolkit.mjs"></script>
 <script type="module" src="/assets/js/tools.mjs"></script>
@@ -1028,6 +1063,7 @@
     </div>
 </div>
     </body>
+
 </html>
 
 

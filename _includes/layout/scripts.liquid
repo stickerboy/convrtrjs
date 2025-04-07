@@ -1,12 +1,14 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="{{ '/assets/js/core/bootstrap.bundle.min.js' | url }}" crossorigin="anonymous"></script>
-<script src="{{ '/assets/js/theme.js' | url }}></script>
+<script src="{{ '/assets/js/theme.js' | url }}"></script>
 {%- if page-id != "fourohfour" %}
 <script type="module" src="{{ '/assets/js/clip.mjs' | url }}"></script>
 <script type="module" src="{{ '/assets/js/toolkit.mjs' | url }}"></script>
 <script type="module" src="{{ '/assets/js/tools.mjs' | url }}"></script>
 <script type="module" src="{{ '/assets/js/rot.mjs' | url }}"></script>
+{%- endif %}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
+{%- if page-id != "fourohfour" %}
 {% assign dynamicJSPath = "/assets/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
 {% if dynamicJSPath | assetExists -%}<script type="module" src="{{ dynamicJSPath | url }}"></script>{%- endif %}
 {% if page-id == "home" -%}<script type="module" src="{{ '/assets/js/home/convrtrs.mjs' | url }}"></script>{%- endif %}

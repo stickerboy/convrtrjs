@@ -35,6 +35,8 @@
     --convrtr-bg-color: rgb(21, 96, 82);
     --convrtr-txt-color: rgb(17, 77, 66);
     --bs-bg-success: 21, 96, 82;
+    --bs-bg-success-10: #e8f3ee;
+    --bs-bg-success-darken-10: #c9e3d7;
     --convrtr-bg-color-rgb: 21, 96, 82;
     --convrtr-bg-color-10: #0f735f;
     --convrtr-bg-color-20: #0e6655;
@@ -70,6 +72,54 @@
 body {
     color: var(--convrtr-base-color);
     position: relative;
+}
+.page-wrap {
+    margin-top: 4rem;
+}
+.sidebar-grid {
+    grid-template-columns: 1fr;
+    transition: all ease 0.3s;
+    @media (min-width: 576px) {
+        grid-template-columns: 4.5rem 1fr;
+    }
+    &.open {
+        grid-template-columns: 15rem 1fr;
+    }
+}
+.nav-bar {
+    top: 4rem;
+    margin-top: 4rem;
+    height: calc(100vh - 4rem);
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
+    scrollbar-width: none;
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+}
+.sidebar {
+    height: 100%;
+    .bi {
+        vertical-align: 0;
+    }
+    &-item {
+        &__link {
+            background-color: var(--bs-white);
+            &:hover,
+            &:active,
+            &:focus {
+                background-color: var(--bs-bg-success-10);
+            }
+            &.active {
+                background-color: var(--bs-bg-success-10);
+                &:hover,
+                &:active,
+                &:focus {
+                    background-color: var(--bs-bg-success-darken-10);
+                }
+            }
+        }
+    }
 }
 
 :target::before { 
@@ -804,6 +854,7 @@ textarea.form-control.is-invalid.ld-warning {
         font-weight: 400;
     }
     article img {
+        height: auto;
         max-width: 100%;
         @media (min-width: map-get($grid-breakpoints, md)) {
             max-width: 95%;
@@ -814,7 +865,6 @@ textarea.form-control.is-invalid.ld-warning {
         @media (min-width: map-get($grid-breakpoints, xl)) {
             max-width: 75%;
         }
-        height: auto;
     }
 }
 .version-list {
@@ -831,7 +881,6 @@ textarea.form-control.is-invalid.ld-warning {
         @media (min-width: map-get($grid-breakpoints, md)) {
             display: table-row;
         }
-
         td:last-child {
             @media (max-width: map-get($grid-breakpoints, md)) {
                 border-bottom-width: var(--bs-border-width);
