@@ -39,7 +39,7 @@ function clearLocalStorage() {
  */
 export function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay ? delay : 5000 });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
@@ -62,16 +62,16 @@ export function showToast(heading, content, color, delay) {
  * @returns {boolean} - Returns true if the data length is within acceptable limits, otherwise false.
  */
 export function largeDataWarning(data, container) {
-    if(container) {
+    if (container) {
         container.classList.remove("is-invalid", "ld-warning");
     }
-    if(data.length > 200000 && data.length < 1000000) {
+    if (data.length > 200000 && data.length < 1000000) {
         showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
     }
-    if(data.length > 1000000) {
+    if (data.length > 1000000) {
         showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
 
-        if(container) {
+        if (container) {
             container.classList.add("is-invalid", "ld-warning");
         }
         return false;
@@ -92,13 +92,13 @@ export function emptyContainerCheck(data, container, error) {
         element.classList.remove("is-invalid");
     }
 
-    if(data.trim() === "") {
+    if (data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
         return false;
     }
 
-    if(container.classList.contains("is-invalid")) {
+    if (container.classList.contains("is-invalid")) {
         container.classList.remove("is-invalid");
     }
     return true;
@@ -118,7 +118,7 @@ function selectAllText(element) {
         window.getSelection()
             .selectAllChildren(
                 element
-        );
+            );
     }
 }
 
@@ -205,24 +205,24 @@ const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 // const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
 
 const resetData = document.getElementById("resetData");
-resetData && resetData.addEventListener("click", function() {
+resetData && resetData.addEventListener("click", function () {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        if(inArray(ta.localName, ["div","tbody"])) {
-            if(ta.innerHTML.length !== 0) {
+        if (inArray(ta.localName, ["div", "tbody"])) {
+            if (ta.innerHTML.length !== 0) {
                 dtcLength += ta.innerHTML.length;
                 ta.innerHTML = "";
             }
         } else {
-            if(ta.value !== undefined  && ta.value.length !== 0) {
+            if (ta.value !== undefined && ta.value.length !== 0) {
                 dtcLength += ta.value.length;
                 ta.value = "";
             }
         }
     });
-    if(dtcLength === 0) {
+    if (dtcLength === 0) {
         tooltip.hide();
         showToast("Information", "No data to clear", "info", 3000);
         return;
@@ -239,8 +239,8 @@ resetData && resetData.addEventListener("click", function() {
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");
-if(selectButtons.length > 0) {
-    Array.from(selectButtons, c => c.addEventListener("click", function() {
+if (selectButtons.length > 0) {
+    Array.from(selectButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
@@ -255,7 +255,7 @@ if(selectButtons.length > 0) {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to select", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to select" });
@@ -266,7 +266,7 @@ if(selectButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
         c.classList.replace("btn-light", "btn-convrtr");
@@ -282,8 +282,8 @@ if(selectButtons.length > 0) {
 
 // Copy current textarea contents to clipboard
 const copyButtons = document.getElementsByClassName("btn-copy");
-if(copyButtons.length > 0) {
-    Array.from(copyButtons, c => c.addEventListener("click", function() {
+if (copyButtons.length > 0) {
+    Array.from(copyButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
@@ -298,7 +298,7 @@ if(copyButtons.length > 0) {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to copy", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to copy" });
@@ -309,10 +309,10 @@ if(copyButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
-        if(!copyToClipboard(dtc, c)) {
+        if (!copyToClipboard(dtc, c)) {
             return false;
         }
 
@@ -331,8 +331,8 @@ if(copyButtons.length > 0) {
 
 // Download the contents of the closest textarea
 const downloadButtons = document.getElementsByClassName("btn-download");
-if(downloadButtons.length > 0) {
-    Array.from(downloadButtons, c => c.addEventListener("click", function() {
+if (downloadButtons.length > 0) {
+    Array.from(downloadButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dt = card.querySelector(".card-label").textContent;
@@ -343,12 +343,12 @@ if(downloadButtons.length > 0) {
             button.classList.remove("btn-convrtr", "btn-danger");
             button.classList.add("btn-light");
         });
-        
+
         Array.from(textareas, ta => {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to download", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to download" });
@@ -359,7 +359,7 @@ if(downloadButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
         download(dt, dtc);
@@ -392,7 +392,7 @@ if (navToggle && navGrid) {
             navGrid.classList.add("open");
             setTimeout(() => {
                 navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                    label.classList.remove("visually-hidden");
+                    label.classList.remove("d-none");
                 });
             }, 300);
         } else {
@@ -405,12 +405,12 @@ if (navToggle && navGrid) {
                 }
             });
 
-            navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                label.classList.add("visually-hidden");
-            });
+            navGrid.classList.remove("open");
             setTimeout(() => {
-                navGrid.classList.remove("open");
-            }, 100);
+                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
+                    label.classList.add("d-none");
+                });
+            }, 150);
         }
     });
 }
@@ -428,7 +428,7 @@ if (navGrid) {
 
             setTimeout(() => {
                 navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                    label.classList.remove("visually-hidden");
+                    label.classList.remove("d-none");
                 });
             }, 300);
 
