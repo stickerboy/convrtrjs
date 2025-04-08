@@ -1,23 +1,38 @@
-<ul class="navbar-nav me-auto mb-2">
+<div class="sidebar-dropdown d-grid gap-2" id="nav-dropdown">
     {% for link in nav %}
-        <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
-            {% if link.children %}
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="{% if page-id ==  link.id %}true{% else %}false{% endif %}">
-                <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
-            </a>
-            <ul class="dropdown-menu{% if page-id ==  link.id %} show{% endif %}">
-                {% assign sortedItems = link.children | sort: 'id' %}
-                {% for child in sortedItems %}
-                <li class="mb-1">
-                    <a class="dropdown-item" href="{% if link.id != 'home'%}{{ '/' | append: link.id | url }}{% endif %}/#{{ child.id }}">{{ child.label }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <a class="nav-link" href="{{ '/' | append: link.id | url }}" role="button">
-                <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
-            </a>
-            {% endif %}
-        </li>
+    <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}"
+        data-page-id="{{ page-id }}">
+        {% if link.children %}
+        <button
+            class="btn sidebar-item__link border border-success {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-2 text-convrtr text-start"
+            type="button" data-bs-toggle="collapse" data-href="#collapse{{ link.id }}" href="#collapse{{ link.id }}"
+            aria-expanded="false" aria-controls="collapse{{ link.id }}">
+            <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                <i class="bi bi-{{ link.icon }}"></i>
+            </span>
+            <span class="sidebar-item__label fs-5 d-none">
+                {{ link.label }}
+            </span>
+        </button>
+        <div class="collapse multi-collapse" id="collapse{{ link.id }}">
+            <div class="ac-body">
+                <ul class="menu">
+                    {% assign sortedItems = link.children | sort: 'id' %}
+                    {% for child in sortedItems %}
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="{% if link.id != 'home'%}{{ '/' | append: link.id | url }}{% endif %}/#{{ child.id }}"
+                            data-target="#{{ link.id }}">{{ child.label }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <a class="nav-link" href="{{ '/' | append: link.id | url }}" role="button">
+            <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
+        </a>
+        {% endif %}
+    </div>
     {% endfor %}
-    </ul>
+</div>
