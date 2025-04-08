@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="overflow-y-hidden {% if page-id=="fourohfour" %} h-100{% endif %}"">
+<html lang="en" class="overflow-y-hidden{% if page-id=="fourohfour" %} h-100{% endif %}">
 
     <head>
         {% include "layout/meta" %}
@@ -9,17 +9,17 @@
         {% include "layout/favicons" %}
     </head>
 
-    <body id="IOOBI9O4IEIEOIO4O4IB" {% if page-id=="fourohfour" %}class="d-flex flex-column h-100 top-0" {% endif %}>
+    <body{% if page-id=="fourohfour" %} class="d-flex flex-column h-100 top-0"{% endif %}>
         <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
 
         {% include "layout/header" %}
 
         <div class="grid sidebar-grid gap-0 p-0">
-            <div class="nav-bar p-0 position-sticky overflow-y-auto overflow-x-hidden">
+            <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                 {% include "layout/sidebar" %}
             </div>
-            <main class="page-wrap overflow-y-auto p-0 mw{% if page-id == "fourohfour" %} flex-shrink-0 g-start-md-2 d-flex flex-column{% endif %}"
-                 data-bs-smooth-scroll="true" data-bs-threshold="0,1" data-bs-root-margin="10% 0% -90%" id="content">
+            <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "fourohfour" %} g-start-1 g-start-md-2{% endif %}"
+                data-bs-smooth-scroll="true" id="content">
                 {% if page-id != "fourohfour" -%}
                 {% include "partials/default" %}
                 {%- endif -%}

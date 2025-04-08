@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="overflow-y-hidden "">
+<html lang="en" class="overflow-y-hidden">
 
     <head>
         <meta charset="utf-8">
@@ -47,7 +47,7 @@
         <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
 
-    <body id="IOOBI9O4IEIEOIO4O4IB" >
+    <body>
         <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
 
         <header>
@@ -126,13 +126,13 @@
 </header>
 
         <div class="grid sidebar-grid gap-0 p-0">
-            <div class="nav-bar p-0 position-sticky overflow-y-auto overflow-x-hidden">
+            <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                 <nav class="sidebar px-3 ps-sm-0 py-3">
     <div class="sidebar-dropdown d-grid gap-2" id="nav-dropdown">
     
         <div class="sidebar-item d-grid gap-2" data-link-id="home" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsehome"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapsehome" href="#collapsehome"
                 aria-expanded="false" aria-controls="collapsehome">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-code-square"></i>
@@ -140,30 +140,30 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     Text tools
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapsehome">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/#convrtrs">Convrtrs</a>
+                            <a class="dropdown-item" href="/#convrtrs" data-target="#home">Convrtrs</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/#flip">Flip text</a>
+                            <a class="dropdown-item" href="/#flip" data-target="#home">Flip text</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/#frequencies">Character frequencies</a>
+                            <a class="dropdown-item" href="/#frequencies" data-target="#home">Character frequencies</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/#replace">Replace characters</a>
+                            <a class="dropdown-item" href="/#replace" data-target="#home">Replace characters</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/#tools">Text tools</a>
+                            <a class="dropdown-item" href="/#tools" data-target="#home">Text tools</a>
                         </li>
                         
                     </ul>
@@ -174,7 +174,7 @@
     
         <div class="sidebar-item d-grid gap-2" data-link-id="ciphers" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapseciphers"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapseciphers" href="#collapseciphers"
                 aria-expanded="false" aria-controls="collapseciphers">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-puzzle"></i>
@@ -182,50 +182,50 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     Cipher tools
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapseciphers">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#atbash">Atbash cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#atbash" data-target="#ciphers">Atbash cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#beaufort">Beaufort cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#beaufort" data-target="#ciphers">Beaufort cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#caesar">Caesar cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#caesar" data-target="#ciphers">Caesar cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#chaocipher">Chaocipher</a>
+                            <a class="dropdown-item" href="/ciphers/#chaocipher" data-target="#ciphers">Chaocipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#hash">Hash algorithms</a>
+                            <a class="dropdown-item" href="/ciphers/#hash" data-target="#ciphers">Hash algorithms</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#keyword">Keyword cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#keyword" data-target="#ciphers">Keyword cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#rail">Rail fence cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#rail" data-target="#ciphers">Rail fence cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#smithy">Smithy cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#smithy" data-target="#ciphers">Smithy cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#substitution">Substitution cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#substitution" data-target="#ciphers">Substitution cipher</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/ciphers/#vigenere">Vigenère cipher</a>
+                            <a class="dropdown-item" href="/ciphers/#vigenere" data-target="#ciphers">Vigenère cipher</a>
                         </li>
                         
                     </ul>
@@ -236,7 +236,7 @@
     
         <div class="sidebar-item d-grid gap-2" data-link-id="hex" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsehex"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapsehex" href="#collapsehex"
                 aria-expanded="false" aria-controls="collapsehex">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-nut"></i>
@@ -244,22 +244,22 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     Hex tools
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapsehex">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/hex/#hexfrequencies">Hex Frequencies</a>
+                            <a class="dropdown-item" href="/hex/#hexfrequencies" data-target="#hex">Hex Frequencies</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/hex/#reversehex">Reverse hex</a>
+                            <a class="dropdown-item" href="/hex/#reversehex" data-target="#hex">Reverse hex</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/hex/#shifthex">Shift hex</a>
+                            <a class="dropdown-item" href="/hex/#shifthex" data-target="#hex">Shift hex</a>
                         </li>
                         
                     </ul>
@@ -270,7 +270,7 @@
     
         <div class="sidebar-item d-grid gap-2" data-link-id="files" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsefiles"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapsefiles" href="#collapsefiles"
                 aria-expanded="false" aria-controls="collapsefiles">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-journal-code"></i>
@@ -278,18 +278,18 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     File tools
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapsefiles">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/files/#filecheck">Check file type</a>
+                            <a class="dropdown-item" href="/files/#filecheck" data-target="#files">Check file type</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/files/#headers">File headers</a>
+                            <a class="dropdown-item" href="/files/#headers" data-target="#files">File headers</a>
                         </li>
                         
                     </ul>
@@ -300,7 +300,7 @@
     
         <div class="sidebar-item d-grid gap-2" data-link-id="misc" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapsemisc"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapsemisc" href="#collapsemisc"
                 aria-expanded="false" aria-controls="collapsemisc">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-braces-asterisk"></i>
@@ -308,34 +308,34 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     Misc
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapsemisc">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#braille">Braille</a>
+                            <a class="dropdown-item" href="/misc/#braille" data-target="#misc">Braille</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#colorgenerator">Color generator</a>
+                            <a class="dropdown-item" href="/misc/#colorgenerator" data-target="#misc">Color generator</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#covenant">Covenant glyphs</a>
+                            <a class="dropdown-item" href="/misc/#covenant" data-target="#misc">Covenant glyphs</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#elements">Elements</a>
+                            <a class="dropdown-item" href="/misc/#elements" data-target="#misc">Elements</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#elementstable">Periodic elements</a>
+                            <a class="dropdown-item" href="/misc/#elementstable" data-target="#misc">Periodic elements</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/misc/#forerunner">Forerunner glyphs</a>
+                            <a class="dropdown-item" href="/misc/#forerunner" data-target="#misc">Forerunner glyphs</a>
                         </li>
                         
                     </ul>
@@ -346,7 +346,7 @@
     
         <div class="sidebar-item d-grid gap-2" data-link-id="oni" data-page-id="changelog">
             
-            <a class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" href="#collapseoni"
+            <button class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-convrtr text-start" type="button" data-bs-toggle="collapse" data-href="#collapseoni" href="#collapseoni"
                 aria-expanded="false" aria-controls="collapseoni">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-question-octagon"></i>
@@ -354,38 +354,38 @@
                 <span class="sidebar-item__label fs-5 visually-hidden">
                     ONI tools
                 </span>
-            </a>
+            </button>
             <div class="collapse multi-collapse" id="collapseoni">
                 <div class="ac-body">
                     <ul class="menu">
                         
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#calendar">Calendar</a>
+                            <a class="dropdown-item" href="/oni/#calendar" data-target="#oni">Calendar</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#interleave">Interleave</a>
+                            <a class="dropdown-item" href="/oni/#interleave" data-target="#oni">Interleave</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#lookahead">Lookahead</a>
+                            <a class="dropdown-item" href="/oni/#lookahead" data-target="#oni">Lookahead</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#mergeb64">Merge Base64</a>
+                            <a class="dropdown-item" href="/oni/#mergeb64" data-target="#oni">Merge Base64</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#strings">Extract strings</a>
+                            <a class="dropdown-item" href="/oni/#strings" data-target="#oni">Extract strings</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#unmunge">Unmunge</a>
+                            <a class="dropdown-item" href="/oni/#unmunge" data-target="#oni">Unmunge</a>
                         </li>
                         
                         <li class="mb-1">
-                            <a class="dropdown-item" href="/oni/#unscramble">Unscramble</a>
+                            <a class="dropdown-item" href="/oni/#unscramble" data-target="#oni">Unscramble</a>
                         </li>
                         
                     </ul>
@@ -397,9 +397,9 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap overflow-y-auto p-0 mw"
-                 data-bs-smooth-scroll="true" data-bs-threshold="0,1" data-bs-root-margin="10% 0% -90%" id="content">
-                <section class="section">
+            <main class="page-wrap page-wrap-changelog overflow-y-auto p-0 mw"
+                data-bs-smooth-scroll="true" id="content">
+                <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
         
 <nav aria-label="breadcrumb">
@@ -460,7 +460,7 @@
 
     </article>
 </section>
-                <footer class="section footer ">
+                <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">
             

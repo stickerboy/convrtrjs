@@ -420,8 +420,7 @@ if (navGrid) {
 
     sidebarLinks.forEach(link => {
         link.addEventListener("click", function () {
-            const collapseTarget = document.querySelector(link.getAttribute("href"));
-
+            const collapseTarget = document.querySelector(link.getAttribute("data-href"));
             // Add the 'open' class immediately when the link is clicked
             if (!navGrid.classList.contains("open")) {
                 navGrid.classList.add("open");
