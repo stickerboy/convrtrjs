@@ -4,9 +4,9 @@
         data-page-id="{{ page-id }}">
         {% if link.children %}
         <button
-            class="btn sidebar-item__link border border-success {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-2 text-convrtr text-start"
+            class="btn sidebar-item__link border border-success {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapse{{ link.id }}" href="#collapse{{ link.id }}"
-            aria-expanded="false" aria-controls="collapse{{ link.id }}">
+            aria-expanded="false" aria-controls="collapse{{ link.id }}" aria-label="{{ link.label }}">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
                 <i class="bi bi-{{ link.icon }}"></i>
             </span>
