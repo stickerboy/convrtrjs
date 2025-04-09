@@ -128,7 +128,7 @@
         <div class="grid sidebar-grid gap-0 p-0">
             <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                 <nav class="sidebar px-3 ps-sm-0 py-3">
-    <div class="sidebar-dropdown d-grid gap-2" id="nav-dropdown">
+    <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="home"
         data-page-id="changelog">
@@ -478,6 +478,22 @@
         
     </div>
     
+    <div class="d-grid gap-2 mt-3">
+        <a class="btn btn-md sidebar-item__link text-start p-1" aria-label="View the sitemap"
+            href="/sitemap" data-href="/sitemap">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-1 d-none">Sitemap</span>
+        </a>
+        <a class="btn btn-md sidebar-item__link text-start p-1" aria-label="Latest site updates"
+            href="/changelog" data-href="/changelog">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-1 d-none">Changelog</span>
+        </a>
+    </div>
 </div>
 </nav>
             </div>
@@ -571,6 +587,9 @@ Remove bg-light class in favor of a new section class, which auto-alternates the
 
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
 <script src="/assets/js/theme.js"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/toolkit.mjs"></script>
