@@ -134,4 +134,14 @@ export default function (eleventyConfig) {
             return data.description; // Keep existing description for other pages
         }
     });
+
+    eleventyConfig.addCollection("filteredTags", (collectionApi) => {
+        // Get all items and extract their tags
+        const allTags = collectionApi.getAll().flatMap((item) => item.data.tags || []);
+
+        // Filter tags to include only those in allowedTagKeys and remove duplicates
+        const uniqueFilteredTags = [...new Set(allTags.filter((tag) => allowedTagKeys.includes(tag)))];
+
+        return uniqueFilteredTags;
+    });
 }
