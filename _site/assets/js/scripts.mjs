@@ -397,7 +397,7 @@ if (navToggle && navGrid) {
             }, 300);
         } else {
             // Close all open sidebar collapse sections
-            const openCollapses = navGrid.querySelectorAll(".collapse.show");
+            const openCollapses = navGrid.querySelectorAll(".sidebar-dropdown .collapse.show");
             openCollapses.forEach(collapse => {
                 const bsCollapse = bootstrap.Collapse.getInstance(collapse);
                 if (bsCollapse) {
