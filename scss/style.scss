@@ -90,6 +90,11 @@ body {
         margin-top: auto;
     }
 
+    &-home {
+        .section:first-of-type {
+            padding-top: 1.5rem;
+        }
+    }
     &-fourohfour {
         background-color: var(--bs-white);
     }
