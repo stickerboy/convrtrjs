@@ -140,7 +140,7 @@
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="home"
-        data-page-id="files">
+        data-page-id="">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -195,7 +195,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="files">
+        data-page-id="">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -280,7 +280,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="files">
+        data-page-id="">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -322,11 +322,11 @@
         
     </div>
     
-    <div class="sidebar-item d-grid gap-2 active" data-link-id="files"
-        data-page-id="files">
+    <div class="sidebar-item d-grid gap-2" data-link-id="files"
+        data-page-id="">
         
         <button
-            class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-start"
+            class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapsefiles" href="#collapsefiles"
             aria-expanded="false" aria-controls="collapsefiles" aria-label="File tools">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
@@ -360,7 +360,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="files">
+        data-page-id="">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -421,7 +421,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="files">
+        data-page-id="">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -506,7 +506,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-files overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap- overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -520,7 +520,7 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            files
+            
         </li>
         
     </ol>
@@ -530,7 +530,7 @@
             <h1 class="display-6">File tools</h1>
             <hr>
             <p class="px-2">
-                Various tools for working with files and file formats.
+                
             </p><p class="px-2 m-0">
     Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
 </p>
@@ -538,6 +538,7 @@
         </div>
     </div>
 </section>
+    
 <section id="filecheck" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -583,6 +584,8 @@
         </div>
     </div>
 </section>
+
+    
 <section id="headers" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1105,10 +1108,6 @@
     </div>
 </section>
 
-
-<script>
-    const HEADERS = [{"extensions":"bmp, dib","label":"BMP file, a bitmap format used mostly in the Windows world","hex":["42 4D"]},{"extensions":"doc, xls, ppt, msi, msg, vsd, wps, db","label":"Compound File Binary Format, a container format defined by Microsoft COM. It can contain the equivalent of files and directories. It is used by Windows Installer and for documents in older versions of Microsoft Office. It can be used by other programs as well that rely on the COM and OLE API's.","hex":["D0 CF 11 E0 A1 B1 1A E1"]},{"extensions":"exe, dll, mui, sys, scr, cpl, ocx, ax, iec, ime, rs, tsp, fon, efi","label":"DOS MZ executable and its descendants (including NE and PE)","hex":["4D 5A"]},{"extensions":"gif","label":"Image file encoded in the Graphics Interchange Format (GIF)","hex":["49 44 33 03 37","49 44 33 03 39"]},{"extensions":"gif","label":"GIF87a","hex":["47 49 46 38 37 61"]},{"extensions":"gif","label":"GIF89a","hex":["47 49 46 38 39 61"]},{"extensions":"jpg, jpeg","label":"JPEG raw or in the JFIF or Exif file format","hex":["FF D8 FF DB","FF D8 FF E0 00 10 4A 46 49 46 00 01","FF D8 FF E0","FF D8 FF EE","FF D8 FF E1 ?? ?? 45 78 69 66 00 00","FF D8 FF E1","FF D8 FF E0"]},{"extensions":"jp2, j2k, jpf, jpm, jpg2, j2c, jpc, jpx, mj2","label":"JPEG 2000","hex":["FF 4F FF 51","00 00 00 0C 6A 50 20 20 0D 0A 87 0A"]},{"extensions":"midi","label":"MIDI sound file","hex":["4D 54 68 64"]},{"extensions":"mp3","label":"MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag (which is appended at the end of the file)","hex":["FF FB","FF F3","FF F2"]},{"extensions":"mp3","label":"MP3 file with an ID3v2 container","hex":["49 44 33 03","49 44 33 04"]},{"extensions":"mp4","label":"ISO Base Media file (MPEG-4)","hex":["66 74 79 70 69 73 6F 6D"]},{"extensions":"mp4","label":"MPEG-4 video file","hex":["66 74 79 70 6D 70 34 32","66 74 79 70 4D 53 4E 56"]},{"extensions":"mp4","label":"MPEG-4 video file v2","hex":["00 00 00 18 66 74 79 70 6d 70 34 32"]},{"extensions":"ogg, oga, ogv","label":"Ogg, an open source media container format","hex":["4F 67 67 53"]},{"extensions":"pdf","label":"PDF document","hex":["25 50 44 46"]},{"extensions":"png","label":"Image encoded in the Portable Network Graphics format","hex":["89 50 4E 47 0D 0A 1A 0A","89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52"]},{"extensions":"psd","label":"Photoshop Document file, Adobe Photoshop's native file format","hex":["38 42 50 53"]},{"extensions":"rtf","label":"Rich Text Format","hex":["7B 5C 72 74 66 31"]},{"extensions":"","label":"OpenSSH private key file","hex":["2D 2D 2D 2D 2D 42 45 47 49 4E 20 4F 50 45 4E 53 53 48 20 50 52 49 56 41 54 45 20 4B 45 59 2D 2D 2D 2D 2D"]},{"extensions":"pub","label":"OpenSSH public key file","hex":["2D 2D 2D 2D 2D 42 45 47 49 4E 20 53 53 48 32 20 4B 45 59 2D 2D 2D 2D 2D"]},{"extensions":"txt, others","label":"UTF-8 byte order mark, commonly seen in text files","hex":["EF BB BF"]},{"extensions":"txt, others","label":"UTF-16LE byte order mark, commonly seen in text files","hex":["FF FE"]},{"extensions":"txt, others","label":"UTF-16BE byte order mark, commonly seen in text files","hex":["FE FF"]},{"extensions":"txt, others","label":"UTF-32LE byte order mark for text","hex":["FF FE 00 00"]},{"extensions":"txt, others","label":"UTF-32BE byte order mark for text","hex":["00 00 FE FF"]},{"extensions":"txt, others","label":"UTF-16BE byte order mark, commonly seen in text files","hex":["EF BB BF"]},{"extensions":"wav","label":"Waveform Audio File Format","hex":["52 49 46 46"]},{"extensions":"gz, tar.gz","label":"GZIP compressed file","hex":["1F 8B"]},{"extensions":"7z","label":"7-Zip File Format","hex":["37 7A BC AF 27 1C"]},{"extensions":"xz, tar.xz","label":"XZ compression utility using LZMA2 compression","hex":["FD 37 7A 58 5A 00"]},{"extensions":"zip, aar, apk, docx, epub, ipa, jar, kmz, maff, msix, odp, ods, odt, pk3, pk4, pptx, usdz, vsdx, xlsx, xpi","label":"Zip file format and formats based on it, such as EPUB, JAR, ODF, OOXML","hex":["50 4B 03 04","50 4B 05 06","50 4B 07 08"]}];
-</script>
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">

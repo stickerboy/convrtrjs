@@ -3,6 +3,7 @@ layout: layout.liquid
 title: Cipher tools
 description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
 page-id: ciphers
+permalink: '/ciphers/'
 ---
 
 {% assign folderPath = "partials/" | append: page-id %}
@@ -10,3 +11,4 @@ page-id: ciphers
 {% for file in files -%}
     {% include file.filePath, filename: file.fileName %}
 {% endfor %}
+<br />

@@ -8,6 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Load allowed tags from JSON file
 const allowedTagsPath = path.join(__dirname, "_data", "labels.json");
 const allowedTagsData = JSON.parse(fs.readFileSync(allowedTagsPath, "utf-8"));
+const navData = JSON.parse(fs.readFileSync(path.join(__dirname, "_data", "nav.json"), "utf-8"));
 
 export default function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
@@ -94,6 +95,72 @@ export default function (eleventyConfig) {
                 }
             }
         });
+    });
+
+    eleventyConfig.addCollection("groupPages", (collectionApi) => {
+        const allPages = collectionApi.getFilteredByGlob("pages/**/*.liquid");
+
+        const groups = {};
+        allPages.forEach((item) => {
+            const filePathParts = item.inputPath.replace("pages/", "").split(path.sep);
+            const groupFolder = filePathParts.slice(0, -1).join("/");
+            const groupKey = groupFolder || "root";
+
+            if (!groups[groupKey]) {
+                groups[groupKey] = [];
+            }
+            groups[groupKey].push(item);
+        });
+
+        const result = Object.entries(groups).map(([groupFolder, items]) => ({
+            groupFolder,
+            items,
+        }));
+
+        return result;
+    });
+
+    eleventyConfig.addCollection("groupIndexPages", (collectionApi) => {
+        const baseDir = path.join(__dirname, "pages");
+        const allPages = collectionApi.getFilteredByGlob("pages/**/*.liquid");
+
+        // Flatten nav.json into a map of id -> label
+        const navMap = {};
+        const flattenNav = (items) => {
+            items.forEach((item) => {
+        console.log(item);
+                if (item.id) {
+                    navMap[item.id] = item["label"] || item.label; // Use short-label if available, fallback to label
+                }
+                if (item.children) {
+                    flattenNav(item.children);
+                }
+            });
+        };
+        flattenNav(navData);
+
+        // Group pages by folder
+        const groups = {};
+        allPages.forEach((item) => {
+            const relativePath = path.relative(baseDir, item.inputPath);
+            const filePathParts = relativePath.split(path.sep);
+            const groupFolder = filePathParts.slice(0, -1).join("/"); // Get folder path
+            const groupKey = groupFolder || "root";
+
+            if (!groups[groupKey]) {
+                groups[groupKey] = [];
+            }
+            groups[groupKey].push(item);
+        });
+
+        // Enrich groups with labels from nav.json
+        const result = Object.entries(groups).map(([groupFolder, items]) => ({
+            groupFolder,
+            items,
+            label: navMap[groupFolder] || groupFolder, // Use label from nav.json or fallback to groupFolder
+        }));
+
+        return result;
     });
 
     eleventyConfig.addCollection("versions", (collectionApi) => {

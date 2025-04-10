@@ -13,6 +13,7 @@ eleventyExcludeFromCollections: true
 eleventyComputed:
   description: "{{ description }}<br />You can also view the full list of releases on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
 ---
+{% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">

@@ -1,0 +1,13 @@
+---
+layout: layout.liquid
+pagination:
+  data: collections.groupIndexPages
+  size: 1
+  alias: group
+eleventyComputed:
+  permalink: "/{{ group.groupFolder | default: 'root-group' }}/"
+  title: "{{ group.label | capitalize }}"
+---
+{% for item in group.items %}
+    {{ item.templateContent  }}
+{% endfor %}

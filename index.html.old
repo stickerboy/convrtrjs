@@ -1,0 +1,12 @@
+---
+layout: layout.liquid
+title: For everlost and Grollow!
+description: Convrtr is a simple JavaScript based tool to quickly convert text between different formats and to help create or solve data driven puzzles and ciphers.
+page-id: home
+---
+
+{% assign folderPath = "partials/" | append: page-id %}
+{%- assign files = folderPath | listFilesWithInfo -%}
+    {% for file in files -%}
+{% include file.filePath, filename: file.fileName %}
+{% endfor %}
