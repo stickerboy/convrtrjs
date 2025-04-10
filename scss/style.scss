@@ -76,30 +76,22 @@ body {
 .page-wrap {
     grid-column-start: 2;
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 4rem);
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
     @media screen and (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
     }
     .section {
         position: relative;
-        top: 4rem;
+    }
+    .section.footer {
+        margin-top: auto;
     }
 
-    &-home {
-        margin-top: 0;
-    }
     &-fourohfour {
-        display: grid;
-        bottom: -1rem;
-        height: 100vh;
         background-color: var(--bs-white);
-        
-        .section {
-            top: 0;
-        }
-        .section.footer {
-            height: fit-content;
-        }
     }
 }
 .sidebar-grid {
