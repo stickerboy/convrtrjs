@@ -1,9 +1,10 @@
 [
     {
-        "id": "home",
+        "id": "text",
         "label": "Text tools",
         "short-label": "Text",
         "icon": "code-square",
+        "description": "Convrtr is a simple JavaScript based tool to quickly convert text between different formats and to help create or solve data driven puzzles and ciphers.",
         "children": [{
                 "id": "convrtrs",
                 "label": "Convrtrs"
@@ -27,6 +28,7 @@
         "label": "Cipher tools",
         "short-label": "Ciphers",
         "icon": "puzzle",
+        "description": "A collection of tools for encrypting and decrypting data, using some commonly known ciphers.",
         "children":[{
                 "id": "caesar",
                 "label": "Caesar cipher"
@@ -65,14 +67,15 @@
         "label": "Hex tools",
         "short-label": "Hex",
         "icon": "nut",
+        "description": "Various tools for working with hexadecimal strings.",
         "children":[{
-                "id": "shifthex",
+                "id": "shift",
                 "label": "Shift hex"
             },{
-                "id": "reversehex",
+                "id": "reverse",
                 "label": "Reverse hex"
             },{
-                "id": "hexfrequencies",
+                "id": "frequencies",
                 "label": "Hex Frequencies"
             }
         ]
@@ -82,8 +85,9 @@
         "label": "File tools",
         "short-label": "Files",
         "icon": "journal-code",
+        "description": "Various tools for working with files and file formats.",
         "children":[{
-                "id": "filecheck",
+                "id": "check",
                 "label": "Check file type"
             }, {
                 "id": "headers",
@@ -96,6 +100,7 @@
         "label": "Misc",
         "short-label": "Misc",
         "icon": "braces-asterisk",
+        "description": "A collection of miscellaneous tools for use in puzzle solving.",
         "children":[{
                 "id": "braille",
                 "label": "Braille"
@@ -122,6 +127,7 @@
         "label": "ONI tools",
         "short-label": "ONI",
         "icon": "question-octagon",
+        "description": "A collection of custom decoding tools for encrypting and decrypting data, built primarily for use in data-drive ARG puzzles (specifically the <a href=\"https: //www.halopedia.org/Section_3_ARG\" class=\"text-convrtr\">Halo 4 Section 3 ARG</a>). These tools are a JavaScript port or a Toolkit originally written in ruby, which can be found here - <a href=\"https://github.com/Sepheus/ONI-Tools/tree/master/Toolkit\" class=\"text-convrtr\">https://github.com/Sepheus/ONI-Tools/tree/master/Toolkit</a></p><p class=\"px-2\"><strong>This section is still a work in progress</strong>, and tools are currently only available via the web console until a UI can be built for them. Most require specifically crafted data packets that were built for the ARG, there may still be some floating around out in space somewhere!</p>",
         "children": [{
                 "id": "unmunge",
                 "label": "Unmunge"

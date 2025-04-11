@@ -98,69 +98,30 @@ export default function (eleventyConfig) {
     });
 
     eleventyConfig.addCollection("groupPages", (collectionApi) => {
-        const allPages = collectionApi.getFilteredByGlob("pages/**/*.liquid");
-
-        const groups = {};
-        allPages.forEach((item) => {
-            const filePathParts = item.inputPath.replace("pages/", "").split(path.sep);
-            const groupFolder = filePathParts.slice(0, -1).join("/");
-            const groupKey = groupFolder || "root";
-
-            if (!groups[groupKey]) {
-                groups[groupKey] = [];
-            }
-            groups[groupKey].push(item);
+        const pagesDir = path.join(process.cwd(), "pages");
+        const folders = fs.readdirSync(pagesDir).filter((file) => {
+            return fs.lstatSync(path.join(pagesDir, file)).isDirectory();
         });
 
-        const result = Object.entries(groups).map(([groupFolder, items]) => ({
-            groupFolder,
-            items,
-        }));
-
-        return result;
+        return folders.map((folder) => {
+            const folderItems = collectionApi.getFilteredByGlob(`./pages/${folder}/**/*.*`);
+            return {
+                folderName: folder,
+                folderItems: folderItems,
+                permalink: `/${folder}/`,
+            };
+        });
     });
 
-    eleventyConfig.addCollection("groupIndexPages", (collectionApi) => {
-        const baseDir = path.join(__dirname, "pages");
-        const allPages = collectionApi.getFilteredByGlob("pages/**/*.liquid");
+    const pagesDir = path.join(process.cwd(), "pages");
+    const folders = fs.readdirSync(pagesDir).filter((file) => {
+        return fs.lstatSync(path.join(pagesDir, file)).isDirectory();
+    });
 
-        // Flatten nav.json into a map of id -> label
-        const navMap = {};
-        const flattenNav = (items) => {
-            items.forEach((item) => {
-        console.log(item);
-                if (item.id) {
-                    navMap[item.id] = item["label"] || item.label; // Use short-label if available, fallback to label
-                }
-                if (item.children) {
-                    flattenNav(item.children);
-                }
-            });
-        };
-        flattenNav(navData);
-
-        // Group pages by folder
-        const groups = {};
-        allPages.forEach((item) => {
-            const relativePath = path.relative(baseDir, item.inputPath);
-            const filePathParts = relativePath.split(path.sep);
-            const groupFolder = filePathParts.slice(0, -1).join("/"); // Get folder path
-            const groupKey = groupFolder || "root";
-
-            if (!groups[groupKey]) {
-                groups[groupKey] = [];
-            }
-            groups[groupKey].push(item);
+    folders.forEach((folder) => {
+        eleventyConfig.addCollection(folder, (collectionApi) => {
+            return collectionApi.getFilteredByGlob(`./pages/${folder}/*.liquid`);
         });
-
-        // Enrich groups with labels from nav.json
-        const result = Object.entries(groups).map(([groupFolder, items]) => ({
-            groupFolder,
-            items,
-            label: navMap[groupFolder] || groupFolder, // Use label from nav.json or fallback to groupFolder
-        }));
-
-        return result;
     });
 
     eleventyConfig.addCollection("versions", (collectionApi) => {
@@ -183,6 +144,15 @@ export default function (eleventyConfig) {
     // Automatically set permalink for changelog items
     eleventyConfig.addGlobalData("eleventyComputed", {
         permalink: (data) => {
+            if (data.customPermalink) {
+                return data.customPermalink; // Use custom permalink if provided
+            }
+            if (data.page.inputPath.includes("pages/")) {
+                // Remove 'pages/' from the input path and construct the permalink
+                const relativePath = data.page.inputPath.replace(/^.*\/pages\//, "");
+                const permalinkPath = relativePath.replace(/\.[^/.]+$/, ""); // Remove file extension
+                return `/${permalinkPath}/`; // Ensure it ends with a trailing slash
+            } 
             if (data.page.inputPath.includes("changelog/")) {
                 const versionSlug = data.page.fileSlug; // Use the file name (e.g., "2.0.0")
                 return `/changelog/${versionSlug}/`; // Set the desired permalink
@@ -199,7 +169,29 @@ export default function (eleventyConfig) {
                 })}`;
             }
             return data.description; // Keep existing description for other pages
-        }
+        },
+        folderName: (data) => {
+            if (data.page.inputPath.includes("pages/")) {
+                const folderPath = data.page.inputPath.split("/").slice(-2, -1)[0];
+                return folderPath;
+            }
+            if (data.page.fileSlug && data.collections && data.collections.groupPages) {
+                const groupPage = data.collections.groupPages.find(
+                    (group) => group.folderName === data.page.fileSlug
+                );
+                return groupPage ? groupPage.folderName : null;
+            }
+            return data.folderName;
+        },
+        folderItems: (data) => {
+            if (data.folderName && data.collections && data.collections.groupPages) {
+                const groupPage = data.collections.groupPages.find(
+                    (group) => group.folderName === data.folderName
+                );
+                return groupPage ? groupPage.folderItems : [];
+            }
+            return [];
+        },
     });
 
     eleventyConfig.addCollection("filteredTags", (collectionApi) => {

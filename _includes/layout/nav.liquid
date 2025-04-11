@@ -21,7 +21,7 @@
                     {% for child in sortedItems %}
                     <li class="mb-1">
                         <a class="dropdown-item"
-                            href="{% if link.id != 'home'%}{{ '/' | append: link.id | url }}{% endif %}/#{{ child.id }}"
+                            href="{% if child.id != 'convrtrs'%}{{ '/' | append: link.id | url }}{% endif %}/{{ child.id }}"
                             data-target="#{{ link.id }}">{{ child.label }}</a>
                     </li>
                     {% endfor %}
