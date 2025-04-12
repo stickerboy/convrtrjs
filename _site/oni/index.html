@@ -140,7 +140,7 @@
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="oni">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -195,7 +195,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="oni">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -280,7 +280,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="oni">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -323,7 +323,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="oni">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -360,7 +360,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="oni">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -420,11 +420,11 @@
         
     </div>
     
-    <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="{{ page.fileSlug }}">
+    <div class="sidebar-item d-grid gap-2 active" data-link-id="oni"
+        data-page-id="oni">
         
         <button
-            class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
+            class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapseoni" href="#collapseoni"
             aria-expanded="false" aria-controls="collapseoni" aria-label="ONI tools">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
@@ -506,7 +506,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-{{ page.fileSlug }} overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap-oni overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -520,7 +520,7 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            {{ page.fileSlug }}
+            oni
         </li>
         
     </ol>
@@ -539,7 +539,9 @@
         </div>
     </div>
 </section>
+
     
+        
 <section id="calendar" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -553,7 +555,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Extracts characters from the data string at specific positions based on calendar-like offsets.
             </p>
@@ -587,8 +589,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="interleave" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -602,7 +606,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Interleaves the characters of two strings, you may optionally pass in a delimiter.
             </p>
@@ -636,8 +640,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="lookahead" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -651,7 +657,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Performs a lookahead operation on the data node using the given key.
             </p>
@@ -685,8 +691,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="mergeb64" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -700,7 +708,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Merges multiple Base64 strings by selecting the most frequent character at each position.
             </p>
@@ -734,8 +742,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="strings" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -749,7 +759,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                  Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
             </p>
@@ -783,8 +793,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="unmunge" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -798,7 +810,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Unmunges a data node using a given key.
             </p>
@@ -832,8 +844,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="unscramble" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -847,7 +861,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">abcdef</code> → <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
             </p>
@@ -881,6 +895,7 @@
         </div>
     </div>
 </section>
+    
 
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">
@@ -944,11 +959,11 @@
 
 
 <!--
-//START FILE/ IETY JNM URER
+//START FILE/ ???????
 /Packet detected..
 /Processing......
 /Packet found:
-/UoneFVQVJFUoneFVQVJFUoneFVQVJFUEVOVEFTUVVBUkVFTEVQRUfiveUQUNBVFBFTlRBQzerolSQzeroxFUoneFVQVJFRknineYUEVOVEFDSVJDTEVTUVVBUkVOTzerofiveBUEVOVEFEVUFM==
+/???????
 /END FILE ../
 MMMMMMMWKc;.                 ;cXWMMMMMMM
 MMMMMMWNK:.  .'''.......''.. .:NWMMMMMMM

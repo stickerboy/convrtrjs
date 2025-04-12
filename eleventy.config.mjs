@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
+import { Liquid } from "liquidjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -47,6 +48,10 @@ export default function (eleventyConfig) {
     eleventyConfig.setLiquidOptions({
         dynamicPartials: true,
         strict_filters: true,
+    });
+
+    eleventyConfig.addFilter("safe", function (content) {
+        return content; // Return the content as-is
     });
 
     // Only allow certian tags within changelogs
@@ -192,6 +197,24 @@ export default function (eleventyConfig) {
             }
             return [];
         },
+        "page-id": (data) => {
+            if (data.page && data.page.fileSlug) {
+                return data.page.fileSlug;
+            }
+            return null;
+        },
+    });
+
+    eleventyConfig.addFilter("removeHiddenClass", (content, isLandingPage) => {
+        if (isLandingPage) {
+            // Remove the "hidden" class from section-toggle links and <hr> tags
+            return content
+                .replace(/class="([^"]*d-none[^"]*)"/g, (match, classes) => {
+                    // Remove "hidden" from the class list
+                    return `class="${classes.replace(/\bd-none\b/g, "").trim()}"`;
+                });
+        }
+        return content; // Return content unchanged if not part of the landing page
     });
 
     eleventyConfig.addCollection("filteredTags", (collectionApi) => {

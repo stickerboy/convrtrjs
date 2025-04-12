@@ -6,7 +6,7 @@ title: Vigenèrecipher
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -16,7 +16,7 @@ title: Vigenèrecipher
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="d-none">
             <p class="px-2">
                 One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">

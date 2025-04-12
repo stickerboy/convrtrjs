@@ -140,7 +140,7 @@
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="ciphers">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -194,11 +194,11 @@
         
     </div>
     
-    <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="{{ page.fileSlug }}">
+    <div class="sidebar-item d-grid gap-2 active" data-link-id="ciphers"
+        data-page-id="ciphers">
         
         <button
-            class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
+            class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapseciphers" href="#collapseciphers"
             aria-expanded="false" aria-controls="collapseciphers" aria-label="Cipher tools">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
@@ -280,7 +280,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="ciphers">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -323,7 +323,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="ciphers">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -360,7 +360,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="ciphers">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -421,7 +421,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="ciphers">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -506,7 +506,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-{{ page.fileSlug }} overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap-ciphers overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -520,7 +520,7 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            {{ page.fileSlug }}
+            ciphers
         </li>
         
     </ol>
@@ -540,6 +540,8 @@
 </section>
 
     
+        
+
 <section id="atbash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -553,7 +555,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -607,8 +609,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="beaufort" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -622,7 +626,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -675,8 +679,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="caesar" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -690,7 +696,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 A very simple method of encryption, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.
                 The most common Caesar cipher is Rot 13, where 
@@ -943,8 +949,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="chaocipher" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -958,7 +966,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time. Only someone with the correct settings can decode the scrambled message back to its original form. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -1014,8 +1022,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="hash" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1029,7 +1039,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
             </p>
@@ -1072,8 +1082,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="keyword" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1087,7 +1099,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello World</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
@@ -1140,8 +1152,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="rail" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1155,7 +1169,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
@@ -1213,8 +1227,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="smithy" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1228,7 +1244,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
@@ -1285,8 +1301,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="substitution" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1300,7 +1318,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 A substitution cipher uses a key or a phrase to make a new alphabet, with the end result potentially being a completely jumbled up alphabet. 
             </p>
@@ -1389,8 +1407,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="vigenere" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1404,7 +1424,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -1470,7 +1490,7 @@
         </div>
     </div>
 </section>
-
+    
 
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">

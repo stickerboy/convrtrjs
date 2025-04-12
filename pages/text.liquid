@@ -7,6 +7,11 @@ description: >
 page-id: "{{ page.fileSlug }}"
 customPermalink: /
 ---
+
 {% for page in collections.text %}
-    {{ page.templateContent }}
+    {% if page-id == "text" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
 {% endfor %}

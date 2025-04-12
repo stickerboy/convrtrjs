@@ -12,6 +12,11 @@ description: >
   the ARG, there may still be some floating around out in space somewhere!</p>
 page-id: "{{ page.fileSlug }}"
 ---
+
 {% for page in collections.oni %}
-    {{ page.templateContent }}
+    {% if page-id == "oni" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
 {% endfor %}

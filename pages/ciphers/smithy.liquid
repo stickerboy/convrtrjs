@@ -6,7 +6,7 @@ title: Smithy cipher
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -16,7 +16,7 @@ title: Smithy cipher
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="d-none">
             <p class="px-2">
                 Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 

@@ -6,7 +6,7 @@ title: Color generator
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -16,7 +16,7 @@ title: Color generator
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="d-none">
             <p class="px-2">
                 Generates hex colors from a given string of data, displayed as both a list of hex colors and visually as blocks of colors. Padding is used to add extra characters, in the event the hex colors can't make up to 6 characters. 
             </p>

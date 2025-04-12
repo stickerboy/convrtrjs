@@ -4,3 +4,12 @@ title: Miscellaneous tools
 description: A collection of miscellaneous tools for use in puzzle solving.
 page-id: "{{ page.fileSlug }}"
 ---
+
+
+{% for page in collections.misc %}
+    {% if page-id == "misc" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
+{% endfor %}

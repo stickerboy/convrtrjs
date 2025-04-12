@@ -143,7 +143,8 @@ function download(filename, text) {
  * Restores toggle states from local storage
  * @returns {void}
  */
-const sectionToggles = document.getElementsByClassName("section-toggle");
+const sectionToggles = Array.from(document.getElementsByClassName("section-toggle"))
+    .filter(sectionToggle => !sectionToggle.classList.contains("d-none"));
 if (sectionToggles.length > 0) {
     function restoreOptions() {
         if (localStorage.length !== 0) {

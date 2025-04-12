@@ -6,7 +6,7 @@ title: Text replace
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse">
                 <h2 class="display-6 w-100 d-flex m-0">
@@ -16,7 +16,7 @@ title: Text replace
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="d-none">
             <p class="px-2">
                 Replace characters in a string &ndash; allows replacing any characters or phrases in a string with any character or phrase. 
                 Supports <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> so you can run your own custom advanced replacements.

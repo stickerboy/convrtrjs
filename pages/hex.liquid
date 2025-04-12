@@ -4,3 +4,12 @@ title: Hexadecimal tools
 description: Various tools for working with hexadecimal strings.
 page-id: "{{ page.fileSlug }}"
 ---
+
+
+{% for page in collections.hex %}
+    {% if page-id == "hex" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
+{% endfor %}

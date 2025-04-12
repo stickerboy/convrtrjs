@@ -140,7 +140,7 @@
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="files">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -195,7 +195,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="files">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -280,7 +280,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="files">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -322,11 +322,11 @@
         
     </div>
     
-    <div class="sidebar-item d-grid gap-2" data-link-id="files"
-        data-page-id="{{ page.fileSlug }}">
+    <div class="sidebar-item d-grid gap-2 active" data-link-id="files"
+        data-page-id="files">
         
         <button
-            class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
+            class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapsefiles" href="#collapsefiles"
             aria-expanded="false" aria-controls="collapsefiles" aria-label="File tools">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
@@ -360,7 +360,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="files">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -421,7 +421,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="files">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -506,7 +506,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-{{ page.fileSlug }} overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap-files overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -520,7 +520,7 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            {{ page.fileSlug }}
+            files
         </li>
         
     </ol>
@@ -538,6 +538,582 @@
         </div>
     </div>
 </section>
+
+
+    
+        
+<section id="check" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#checkCollapse" role="button" 
+                aria-expanded="true" aria-controls="checkCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Check file type
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Select a file to check its file type / header. Only the first 16 bytes of each file are read and then discarded, no files are actually uploaded or stored anywhere.
+                Files are matches against the File headers table below and won't catch everything. Feel free to reach out if there's a header missing or one you think would be worth adding.
+            </p>
+        </div>
+        <div id="checkCollapse" class="collapse show">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Check file headers</span>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="fileInput">
+                          </div>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                        </div>
+                        <hr />
+                        <div id="checkResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
+    
+        
+<section id="headers" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#headersCollapse" role="button" 
+                aria-expanded="true" aria-controls="headersCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    File headers
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                A list of common file headers in hexadecimal format, useful if you have a chunk of data so you can quickly match it with a potential file type.
+            </p>
+            <p class="px-2">
+                More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
+            </p>
+        </div>
+        <div id="headersCollapse" class="collapse show">
+            <div class="card">
+                <span class="card-label visually-hidden">File headers in hexadecimal format</span>
+                <div class="card-body py-3">
+                    <hr />
+                </div>
+                <div class="card-footer py-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped hash-table">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col" class="col-4 col-md-4 col-lg-4">Description</th>
+                                    <th scope="col">Header</th>
+                                    <th scope="col">Extensions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="active" id="fileResults">
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">BMP file, a bitmap format used mostly in the Windows world</span>
+                                            </th>
+                                            <td>42 4D</td>
+                                            <td rowspan="1">bmp, dib</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">Compound File Binary Format, a container format defined by Microsoft COM. It can contain the equivalent of files and directories. It is used by Windows Installer and for documents in older versions of Microsoft Office. It can be used by other programs as well that rely on the COM and OLE API's.</span>
+                                            </th>
+                                            <td>D0 CF 11 E0 A1 B1 1A E1</td>
+                                            <td rowspan="1">doc, xls, ppt, msi, msg, vsd, wps, db</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">DOS MZ executable and its descendants (including NE and PE)</span>
+                                            </th>
+                                            <td>4D 5A</td>
+                                            <td rowspan="1">exe, dll, mui, sys, scr, cpl, ocx, ax, iec, ime, rs, tsp, fon, efi</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="2">
+                                                <span class="display-6 fs-6 fw-normal">Image file encoded in the Graphics Interchange Format (GIF)</span>
+                                            </th>
+                                            <td>49 44 33 03 37</td>
+                                            <td rowspan="2">gif</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>49 44 33 03 39</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">GIF87a</span>
+                                            </th>
+                                            <td>47 49 46 38 37 61</td>
+                                            <td rowspan="1">gif</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">GIF89a</span>
+                                            </th>
+                                            <td>47 49 46 38 39 61</td>
+                                            <td rowspan="1">gif</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="7">
+                                                <span class="display-6 fs-6 fw-normal">JPEG raw or in the JFIF or Exif file format</span>
+                                            </th>
+                                            <td>FF D8 FF DB</td>
+                                            <td rowspan="7">jpg, jpeg</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF E0 00 10 4A 46 49 46 00 01</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF E0</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF EE</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF E1 ?? ?? 45 78 69 66 00 00</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF E1</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF D8 FF E0</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="2">
+                                                <span class="display-6 fs-6 fw-normal">JPEG 2000</span>
+                                            </th>
+                                            <td>FF 4F FF 51</td>
+                                            <td rowspan="2">jp2, j2k, jpf, jpm, jpg2, j2c, jpc, jpx, mj2</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>00 00 00 0C 6A 50 20 20 0D 0A 87 0A</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">MIDI sound file</span>
+                                            </th>
+                                            <td>4D 54 68 64</td>
+                                            <td rowspan="1">midi</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="3">
+                                                <span class="display-6 fs-6 fw-normal">MPEG-1 Layer 3 file without an ID3 tag or with an ID3v1 tag (which is appended at the end of the file)</span>
+                                            </th>
+                                            <td>FF FB</td>
+                                            <td rowspan="3">mp3</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF F3</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>FF F2</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="2">
+                                                <span class="display-6 fs-6 fw-normal">MP3 file with an ID3v2 container</span>
+                                            </th>
+                                            <td>49 44 33 03</td>
+                                            <td rowspan="2">mp3</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>49 44 33 04</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">ISO Base Media file (MPEG-4)</span>
+                                            </th>
+                                            <td>66 74 79 70 69 73 6F 6D</td>
+                                            <td rowspan="1">mp4</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="2">
+                                                <span class="display-6 fs-6 fw-normal">MPEG-4 video file</span>
+                                            </th>
+                                            <td>66 74 79 70 6D 70 34 32</td>
+                                            <td rowspan="2">mp4</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>66 74 79 70 4D 53 4E 56</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">MPEG-4 video file v2</span>
+                                            </th>
+                                            <td>00 00 00 18 66 74 79 70 6d 70 34 32</td>
+                                            <td rowspan="1">mp4</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">Ogg, an open source media container format</span>
+                                            </th>
+                                            <td>4F 67 67 53</td>
+                                            <td rowspan="1">ogg, oga, ogv</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">PDF document</span>
+                                            </th>
+                                            <td>25 50 44 46</td>
+                                            <td rowspan="1">pdf</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="2">
+                                                <span class="display-6 fs-6 fw-normal">Image encoded in the Portable Network Graphics format</span>
+                                            </th>
+                                            <td>89 50 4E 47 0D 0A 1A 0A</td>
+                                            <td rowspan="2">png</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 52</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">Photoshop Document file, Adobe Photoshop's native file format</span>
+                                            </th>
+                                            <td>38 42 50 53</td>
+                                            <td rowspan="1">psd</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">Rich Text Format</span>
+                                            </th>
+                                            <td>7B 5C 72 74 66 31</td>
+                                            <td rowspan="1">rtf</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">OpenSSH private key file</span>
+                                            </th>
+                                            <td>2D 2D 2D 2D 2D 42 45 47 49 4E 20 4F 50 45 4E 53 53 48 20 50 52 49 56 41 54 45 20 4B 45 59 2D 2D 2D 2D 2D</td>
+                                            <td rowspan="1"></td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">OpenSSH public key file</span>
+                                            </th>
+                                            <td>2D 2D 2D 2D 2D 42 45 47 49 4E 20 53 53 48 32 20 4B 45 59 2D 2D 2D 2D 2D</td>
+                                            <td rowspan="1">pub</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-8 byte order mark, commonly seen in text files</span>
+                                            </th>
+                                            <td>EF BB BF</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-16LE byte order mark, commonly seen in text files</span>
+                                            </th>
+                                            <td>FF FE</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-16BE byte order mark, commonly seen in text files</span>
+                                            </th>
+                                            <td>FE FF</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-32LE byte order mark for text</span>
+                                            </th>
+                                            <td>FF FE 00 00</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-32BE byte order mark for text</span>
+                                            </th>
+                                            <td>00 00 FE FF</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">UTF-16BE byte order mark, commonly seen in text files</span>
+                                            </th>
+                                            <td>EF BB BF</td>
+                                            <td rowspan="1">txt, others</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">Waveform Audio File Format</span>
+                                            </th>
+                                            <td>52 49 46 46</td>
+                                            <td rowspan="1">wav</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">GZIP compressed file</span>
+                                            </th>
+                                            <td>1F 8B</td>
+                                            <td rowspan="1">gz, tar.gz</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">7-Zip File Format</span>
+                                            </th>
+                                            <td>37 7A BC AF 27 1C</td>
+                                            <td rowspan="1">7z</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">XZ compression utility using LZMA2 compression</span>
+                                            </th>
+                                            <td>FD 37 7A 58 5A 00</td>
+                                            <td rowspan="1">xz, tar.xz</td>
+                                        </tr>
+                                        
+                                    
+                                
+                                    
+                                        
+                                        <tr>
+                                            <th scope="row" rowspan="3">
+                                                <span class="display-6 fs-6 fw-normal">Zip file format and formats based on it, such as EPUB, JAR, ODF, OOXML</span>
+                                            </th>
+                                            <td>50 4B 03 04</td>
+                                            <td rowspan="3">zip, aar, apk, docx, epub, ipa, jar, kmz, maff, msix, odp, ods, odt, pk3, pk4, pptx, usdz, vsdx, xlsx, xpi</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>50 4B 05 06</td>
+                                        </tr>
+                                        
+                                    
+                                        
+                                        <tr>
+                                            <td>50 4B 07 08</td>
+                                        </tr>
+                                        
+                                    
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">

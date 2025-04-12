@@ -139,11 +139,11 @@
                 <nav class="sidebar px-3 ps-sm-0 py-3">
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
-    <div class="sidebar-item d-grid gap-2" data-link-id="text"
-        data-page-id="{{ page.fileSlug }}">
+    <div class="sidebar-item d-grid gap-2 active" data-link-id="text"
+        data-page-id="text">
         
         <button
-            class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
+            class="btn sidebar-item__link border border-success  border-opacity-25 active rounded-2 text-start"
             type="button" data-bs-toggle="collapse" data-href="#collapsetext" href="#collapsetext"
             aria-expanded="false" aria-controls="collapsetext" aria-label="Text tools">
             <span class="sidebar-item__icon ms-1 me-1 fs-4">
@@ -195,7 +195,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="text">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -280,7 +280,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="text">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -323,7 +323,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="text">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -360,7 +360,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="text">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -421,7 +421,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="{{ page.fileSlug }}">
+        data-page-id="text">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -506,7 +506,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-{{ page.fileSlug }} overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap-text overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -524,7 +524,9 @@
         </div>
     </div>
 </section>
+
     
+        
 <section id="convrtrs" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading">
@@ -538,7 +540,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 A description of each decoder and link to more information is available using the info button in the top-right of each decoder, you can also copy the contents on individual decoders and download the contents to a text file. By selecting the "chain decoders" option, the "decode" button under each decode switches its target to the Text decoder.
             </p>
@@ -675,7 +677,7 @@
                                 
                                 
                                 <label class="visually-hidden" for="convrtrsDelimiter">Hex Delimiter</label>
-                                <select class="form-select hex-delimiter" id="convrtrsDelimiter" autocomplete="off">
+                                <select class="form-select form-select-sm mx-2 ms-auto hex-delimiter" id="convrtrsDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
@@ -998,8 +1000,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="flip" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1013,7 +1017,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Flip text upside down - allows you to turn <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">this</code> into <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">ʇɥıs</code>
             </p>
@@ -1047,8 +1051,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="frequencies" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1062,7 +1068,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
@@ -1094,8 +1100,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="replace" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1109,7 +1117,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Replace characters in a string &ndash; allows replacing any characters or phrases in a string with any character or phrase. 
                 Supports <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> so you can run your own custom advanced replacements.
@@ -1128,11 +1136,11 @@
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
                                     <div class="input-group w-auto mb-2">
-                                        <label class="input-group-text" for="replaceValue">Old<span class="d-none d-md-block">&nbsp;characters</span></label>
+                                        <label class="input-group-text" for="replaceValue">Old<span class="d-md-block">&nbsp;characters</span></label>
                                         <input type="text" class="form-control" id="replaceValue" autocomplete="off">
                                     </div>
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" id="newCharacters" for="replacementValue">New<span class="d-none d-md-block">&nbsp;characters</span></label>
+                                        <label class="input-group-text" id="newCharacters" for="replacementValue">New<span class="d-md-block">&nbsp;characters</span></label>
                                         <input type="text" class="form-control" id="replacementValue" autocomplete="off">
                                         <button class="btn btn-convrtr" type="button" id="replaceDecode">Replace</button>
                                     </div>
@@ -1164,8 +1172,10 @@
         </div>
     </div>
 </section>
+    
 
     
+        
 <section id="tools" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
@@ -1179,7 +1189,7 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr>
+            <hr class="">
             <p class="px-2">
                 Various operations that can be performed on any kind of text string. By default all changes are based on what you enter into the textarea. By selecting "Chain commands" this shifts to the results section at the bottom, you can then perform actions in succession. E.g. Strip spaces from a string, then select Remove all numbers and both will be performed. Preserve spaces will only work on tools marked with an asterisk [*].
             </p>
@@ -1253,6 +1263,7 @@
         </div>
     </div>
 </section>
+    
 
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">
@@ -1300,7 +1311,7 @@
 <script type="module" src="/assets/js/scripts.mjs"></script>
 
 
-
+<script type="module" src="/assets/js/home/convrtrs.mjs"></script>
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
         <div class="toast-header text-bg-convrtr">
