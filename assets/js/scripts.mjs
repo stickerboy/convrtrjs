@@ -1,5 +1,10 @@
 import copyToClipboard from '../js/clip.mjs';
 import { inArray } from './toolkit.mjs';
+import * as ciphers from './ciphers/ciphers-fn.mjs';
+
+Object.entries(ciphers).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});
 
 /**
  * Saves a value to local storage

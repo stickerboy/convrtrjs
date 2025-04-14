@@ -13,9 +13,15 @@
 <script type="module" src="{{ '/assets/js/rot.mjs' | url }}"></script>
 {%- endif %}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
-{%- if page-id != "404" %}
-{% assign dynamicJSPath = "/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
-<h1>{{ page-id }}</h1>
-<h1>{{ dynamicJSPath }}</h1>
-{% if dynamicJSPath | assetExists -%}<script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>{%- endif %}
+{% assign excludedPages = "fourohfour,404,sitemap,tags,changelog" | split: "," %}
+{% if not excludedPages contains page-id  %}
+    {% assign trimmedUrl = page.url | slice: 0, -1 %}
+    {% if page-id == "convrtrs" %}
+        {% assign dynamicJSPath = "/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
+    {% else %}
+        {% assign dynamicJSPath = "/js" | append: trimmedUrl | append: ".mjs" %}
+    {%- endif %}
+    {% if dynamicJSPath | assetExists -%}
+        <script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>
+    {%- endif %}
 {%- endif -%}

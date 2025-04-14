@@ -2,7 +2,6 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
-import { Liquid } from "liquidjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 

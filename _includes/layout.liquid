@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en" class="overflow-y-hidden">
-
     <head>
         {% include "layout/meta" %}
         {% include "layout/title" %}
@@ -8,12 +7,9 @@
         {% render "layout/css" %}
         {% include "layout/favicons" %}
     </head>
-
     <body>
         <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
-
         {% include "layout/header" %}
-
         <div class="grid sidebar-grid gap-0 p-0">
             <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                 {% include "layout/sidebar" %}
@@ -27,15 +23,13 @@
                 {% include "layout/footer" %}
             </main>
         </div>
-
         {% include "layout/scripts" %}
         {% render "layout/toast" %}
     </body>
-
 </html>
 {% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
 {% if dynamicPartialPath | fileExists %}
-{% render dynamicPartialPath %}
+    {% render dynamicPartialPath %}
 {% else %}
-{% render "partials/routes/home" %}
+    {% render "partials/routes/home" %}
 {% endif %}
