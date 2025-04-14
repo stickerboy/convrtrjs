@@ -25,3 +25,6 @@
         <script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>
     {%- endif %}
 {%- endif -%}
+{% if page-id == "check" -%}
+<script>const HEADERS = {{ headers | json }};</script>
+{% endif -%}
