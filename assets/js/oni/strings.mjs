@@ -10,7 +10,7 @@ const stringsDecodeButton = document.getElementById("stringsDecode");
 if(stringsDecodeButton) {
     stringsDecodeButton.addEventListener("click", function () {
         const stringsString = document.getElementById("stringsText");
-        const stringsKey = document.getElementById("stringsKey");
+        // const stringsKey = document.getElementById("stringsKey");
 
         if (!emptyContainerCheck(stringsString.value, stringsString)) {
             return false;

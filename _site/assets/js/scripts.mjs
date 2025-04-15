@@ -1,8 +1,11 @@
 import copyToClipboard from '../js/clip.mjs';
-import { inArray } from './toolkit.mjs';
-import * as ciphers from './ciphers/ciphers-fn.mjs';
+import * as tools from './tools.mjs';
+import * as toolkit from './toolkit.mjs';
 
-Object.entries(ciphers).forEach(([functionName, functionRef]) => {
+Object.entries(tools).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});
+Object.entries(toolkit).forEach(([functionName, functionRef]) => {
     window[functionName] = functionRef;
 });
 
@@ -216,7 +219,7 @@ resetData && resetData.addEventListener("click", function () {
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        if (inArray(ta.localName, ["div", "tbody"])) {
+        if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
             if (ta.innerHTML.length !== 0) {
                 dtcLength += ta.innerHTML.length;
                 ta.innerHTML = "";

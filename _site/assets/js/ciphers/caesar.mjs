@@ -1,11 +1,8 @@
 import rot from '../rot.mjs';
 import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
 import { getCustomAlphabet } from "./ciphers-fn.mjs";
-// import * as caesar from './caesar-fn.mjs';
 
 Object.entries(rot).forEach(([functionName, functionRef]) => {
-    console.log(`Function name: ${functionName}`);
-    console.log(`Function ref: ${functionRef}`);
     window[functionName] = functionRef;
 });
 
@@ -46,6 +43,7 @@ if(caesarButtons.length > 0) {
         }
     }));
 }
+
 // Caesar - Go backwards
 caesarPrevious && caesarPrevious.addEventListener("click", function() {
     const caesarText = document.getElementById("caesarText");
