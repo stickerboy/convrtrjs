@@ -1,3 +1,5 @@
+import * as toolkit from '../toolkit.mjs';
+
 /**
  * Checks for a valid binary string length (multiple of 8)
  *
