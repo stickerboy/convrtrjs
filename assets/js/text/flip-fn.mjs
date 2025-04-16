@@ -1,3 +1,5 @@
+import * as toolkit from '../toolkit.mjs';
+
 /**
  * Flips text upside down (custom alphabet mapping).
  *
