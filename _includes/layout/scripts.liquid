@@ -24,7 +24,14 @@
         <script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>
     {%- endif %}
 {%- endif -%}
+
+{%- assign sectionJS = page-id | prepend: '/js/' | append: "/" | append: page-id | append: ".mjs" %}
+{%- if sectionJS | assetExists -%}
+    <script type="module" src="{{ sectionJS | prepend: "/assets" | url }}"></script>
+    {%- else -%}
+    <!-- Debugging: File does not exist at {{ sectionJS }} -->
+{%- endif %}
+
 {% if page-id == "check" -%}
 <script>const HEADERS = {{ headers | json }};</script>
 {% endif -%}
-{{ page.inputPath }}
