@@ -1,4 +1,3 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="{{ '/assets/js/core/bootstrap.bundle.min.js' | url }}" crossorigin="anonymous"></script>
 {%- if page-id == "sitemap" %}
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
@@ -8,22 +7,24 @@
 <script src="{{ '/assets/js/theme.js' | url }}"></script>
 {%- if page-id != "404" %}
 <script type="module" src="{{ '/assets/js/clip.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/toolkit.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/tools.mjs' | url }}"></script>
 {%- endif %}
+{% if page-id == "ciphers" or page-id == "hash" %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+{%- endif -%}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
 {% assign excludedPages = "fourohfour,404,sitemap,tags,changelog" | split: "," %}
-{% if not excludedPages contains page-id  %}
-    {% assign trimmedUrl = page.url | slice: 0, -1 %}
-    {% if page-id == "convrtrs" %}
+{%- if not excludedPages contains page-id  %}
+    {%- assign trimmedUrl = page.url | slice: 0, -1 %}
+    {%- if page-id == "convrtrs" %}
         {% assign dynamicJSPath = "/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
-    {% else %}
+    {%- else %}
         {% assign dynamicJSPath = "/js" | append: trimmedUrl | append: ".mjs" %}
     {%- endif %}
-    {% if dynamicJSPath | assetExists -%}
+    {%- if dynamicJSPath | assetExists -%}
         <script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>
     {%- endif %}
 {%- endif -%}
 {% if page-id == "check" -%}
 <script>const HEADERS = {{ headers | json }};</script>
 {% endif -%}
+{{ page.inputPath }}
