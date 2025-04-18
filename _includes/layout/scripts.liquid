@@ -12,26 +12,6 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 {%- endif -%}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
-{% assign excludedPages = "fourohfour,404,sitemap,tags,changelog" | split: "," %}
-{%- if not excludedPages contains page-id  %}
-    {%- assign trimmedUrl = page.url | slice: 0, -1 %}
-    {%- if page-id == "convrtrs" %}
-        {% assign dynamicJSPath = "/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
-    {%- else %}
-        {% assign dynamicJSPath = "/js" | append: trimmedUrl | append: ".mjs" %}
-    {%- endif %}
-    {%- if dynamicJSPath | assetExists -%}
-        <script type="module" src="{{ dynamicJSPath | prepend: '/assets' | url }}"></script>
-    {%- endif %}
-{%- endif -%}
-
-{%- assign sectionJS = page-id | prepend: '/js/' | append: "/" | append: page-id | append: ".mjs" %}
-{%- if sectionJS | assetExists -%}
-    <script type="module" src="{{ sectionJS | prepend: "/assets" | url }}"></script>
-    {%- else -%}
-    <!-- Debugging: File does not exist at {{ sectionJS }} -->
-{%- endif %}
-
 {% if page-id == "check" -%}
 <script>const HEADERS = {{ headers | json }};</script>
 {% endif -%}
