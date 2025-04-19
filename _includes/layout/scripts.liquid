@@ -12,9 +12,9 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 {%- endif -%}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
-{% if page-id == "check" -%}
+{% if page-id == "check" or page-id == "files" -%}
 <script>const HEADERS = {{ headers | json }};</script>
 {% endif -%}
-{% if page-id == "elementstable" -%}
+{% if page-id == "elementstable" or page-id == "misc" -%}
 <script>const ELEMENTS = {{ elements | json }};</script>
 {% endif -%}
