@@ -15,3 +15,6 @@
 {% if page-id == "check" -%}
 <script>const HEADERS = {{ headers | json }};</script>
 {% endif -%}
+{% if page-id == "elementstable" -%}
+<script>const ELEMENTS = {{ elements | json }};</script>
+{% endif -%}

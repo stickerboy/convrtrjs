@@ -1,6 +1,6 @@
 import * as tools from '../tools.mjs';
 import * as toolkit from '../toolkit.mjs';
-import { emptyContainerCheck, largeDataWarning }  from '../scripts.mjs';
+import { emptyContainerCheck, largeDataWarning } from '../scripts.mjs';
 
 const toolChange = document.getElementById("toolsChange");
 toolChange.addEventListener("click", function() {

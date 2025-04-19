@@ -1,9 +1,13 @@
-import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
+import * as tools from '../tools.mjs';
 import * as toolkit from '../toolkit.mjs';
+import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
 import * as hex from './hex-fn.mjs';
 
-Object.keys(hex).forEach(functionName => {
-    window[functionName] = hex[functionName];
+Object.entries(tools).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});
+Object.entries(toolkit).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
 });
 
 // Shift Hex

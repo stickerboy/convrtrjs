@@ -136,7 +136,7 @@
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -191,7 +191,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -276,7 +276,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -319,7 +319,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -356,7 +356,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -382,7 +382,7 @@
                     
                     <li class="mb-1">
                         <a class="dropdown-item"
-                            href="/misc/colorgenerator"
+                            href="/misc/colors"
                             data-target="#misc">Color generator</a>
                     </li>
                     
@@ -417,7 +417,7 @@
     </div>
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
-        data-page-id="colorgenerator">
+        data-page-id="colors">
         
         <button
             class="btn sidebar-item__link border border-success  border-opacity-10 rounded-2 text-start"
@@ -502,7 +502,7 @@
 </div>
 </nav>
             </div>
-            <main class="page-wrap page-wrap-colorgenerator overflow-y-auto p-0 mw"
+            <main class="page-wrap page-wrap-colors overflow-y-auto p-0 mw"
                 data-bs-smooth-scroll="true" id="content">
                 <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -516,7 +516,7 @@
         </li>
         
         <li class="breadcrumb-item active" aria-current="page">
-            colorgenerator
+            colors
         </li>
         
     </ol>
@@ -534,12 +534,12 @@
         </div>
     </div>
 </section>
-<section id="colorgenerator" class="section">
+<section id="colors" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
             <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
-                data-bs-toggle="collapse" href="#colorgeneratorCollapse" role="button" 
-                aria-expanded="false" aria-controls="colorgeneratorCollapse">
+                data-bs-toggle="collapse" href="#colorsCollapse" role="button" 
+                aria-expanded="false" aria-controls="colorsCollapse">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Color generator
                 </h2>
@@ -552,25 +552,25 @@
                 Generates hex colors from a given string of data, displayed as both a list of hex colors and visually as blocks of colors. Padding is used to add extra characters, in the event the hex colors can't make up to 6 characters. 
             </p>
         </div>
-        <div class="collapse show" id="colorgeneratorCollapse">
+        <div class="collapse show" id="colorsCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Color generator</span>
                     <div class="card-body text-center">
-                        <label for="colorgeneratorText" class="visually-hidden">Data to convert</label>
-                        <textarea placeholder="Enter some text and click the 'Generate' button below" rows="6" id="colorgeneratorText" class="form-control word-freqs" autocomplete="off"></textarea>
+                        <label for="colorsText" class="visually-hidden">Data to convert</label>
+                        <textarea placeholder="Enter some text and click the 'Generate' button below" rows="6" id="colorsText" class="form-control word-freqs" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                                 <div class="col col-12 col-lg-auto me-2 mb-2">
                                     <div class="input-group w-auto">
-                                        <label class="input-group-text" for="colorgeneratorPadding">Padding</label>
-                                        <select class="form-select" id="colorgeneratorPadding" autocomplete="off">
+                                        <label class="input-group-text" for="colorsPadding">Padding</label>
+                                        <select class="form-select" id="colorsPadding" autocomplete="off">
                                             <option value="F" selected="">F padding</option>
                                             <option value="0">0 padding</option>
                                         </select>
-                                        <button class="btn btn-convrtr" type="button" id="colorgeneratorDecode">Generate</button>
+                                        <button class="btn btn-convrtr" type="button" id="colorsDecode">Generate</button>
                                     </div>
                                 </div>
                                 <div class="col d-flex flex-fill mb-2">
@@ -583,7 +583,7 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="data-to-copy active convrtr-results d-flex flex-wrap p-2" id="colorgeneratorResults"></div>
+                        <div class="data-to-copy active convrtr-results d-flex flex-wrap p-2" id="colorsResults"></div>
                     </div>
                 </div>
             </div>
@@ -591,7 +591,7 @@
     </div>
 </section>
 
-<script type="module" src="/assets/js/misc/colorgenerator.mjs"></script>
+<script type="module" src="/assets/js/misc/colors.mjs"></script>
                 <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="p-4 pb-2">

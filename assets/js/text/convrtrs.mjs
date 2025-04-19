@@ -1,6 +1,6 @@
 import * as tools from '../tools.mjs';
 import * as toolkit from '../toolkit.mjs';
-import { emptyContainerCheck, largeDataWarning, showToast }  from '../scripts.mjs';
+import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
 import * as home from './text-fn.mjs';
 
 Object.entries(home).forEach(([functionName, functionRef]) => {
