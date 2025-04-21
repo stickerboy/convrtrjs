@@ -3,17 +3,22 @@
     <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}"
         data-page-id="{{ page-id }}">
         {% if link.children %}
-        <button
-            class="btn sidebar-item__link border border-success {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-2 text-start"
-            type="button" data-bs-toggle="collapse" data-href="#collapse{{ link.id }}" href="#collapse{{ link.id }}"
-            aria-expanded="false" aria-controls="collapse{{ link.id }}" aria-label="{{ link.label }}">
-            <span class="sidebar-item__icon ms-1 me-1 fs-4">
-                <i class="bi bi-{{ link.icon }}"></i>
-            </span>
-            <span class="sidebar-item__label fs-5 d-none">
-                {{ link.label }}
-            </span>
-        </button>
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2 {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-0 text-start"
+                href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-{{ link.icon }}"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    {{ link.label }}
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2 {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ link.id }}"
+                aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
         <div class="collapse multi-collapse" id="collapse{{ link.id }}">
             <div class="ac-body">
                 <ul class="menu">
@@ -29,7 +34,7 @@
             </div>
         </div>
         {% else %}
-        <a class="nav-link" href="{{ '/' | append: link.id | url }}" role="button">
+        <a class="nav-link" href="{{ '/' | append: link.id | replace: 'text', '' | url }}" role="button">
             <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
         </a>
         {% endif %}

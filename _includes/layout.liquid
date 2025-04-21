@@ -10,18 +10,20 @@
     <body>
         <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
         {% include "layout/header" %}
-        <div class="grid sidebar-grid gap-0 p-0">
-            <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
-                {% include "layout/sidebar" %}
+        <div class="mw d-flex mx-auto">
+            <div class="grid sidebar-grid gap-0 p-0 w-100">
+                <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
+                    {% include "layout/sidebar" %}
+                </div>
+                <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
+                    data-bs-smooth-scroll="true" id="content">
+                    {% if page-id != "404" -%}
+                    {% include "partials/default" %}
+                    {%- endif -%}
+                    {{ content }}
+                    {% include "layout/footer" %}
+                </main>
             </div>
-            <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
-                data-bs-smooth-scroll="true" id="content">
-                {% if page-id != "404" -%}
-                {% include "partials/default" %}
-                {%- endif -%}
-                {{ content }}
-                {% include "layout/footer" %}
-            </main>
         </div>
         {% include "layout/scripts" %}
         {% render "layout/toast" %}

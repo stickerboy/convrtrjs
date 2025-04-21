@@ -403,6 +403,12 @@ if (navToggle && navGrid) {
                 navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
                     label.classList.remove("d-none");
                 });
+                navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
+                    link.classList.remove("rounded-2");
+                });
+                navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+                    toggle.classList.remove("d-none");
+                });
             }, 300);
         } else {
             // Close all open sidebar collapse sections
@@ -419,36 +425,13 @@ if (navToggle && navGrid) {
                 navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
                     label.classList.add("d-none");
                 });
+                navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
+                    link.classList.add("rounded-2");
+                });
+                navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+                    toggle.classList.add("d-none");
+                });
             }, 150);
         }
-    });
-}
-
-if (navGrid) {
-    const sidebarLinks = document.querySelectorAll(".sidebar-item__link");
-
-    sidebarLinks.forEach(link => {
-        link.addEventListener("click", function () {
-            const collapseTarget = document.querySelector(link.getAttribute("data-href"));
-            // Add the 'open' class immediately when the link is clicked
-            if (!navGrid.classList.contains("open")) {
-                navGrid.classList.add("open");
-            }
-
-            setTimeout(() => {
-                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                    label.classList.remove("d-none");
-                });
-            }, 300);
-
-            if (collapseTarget) {
-                collapseTarget.addEventListener("shown.bs.collapse", () => {
-                    // Ensure the 'open' class is still present after the collapse is shown
-                    if (!navGrid.classList.contains("open")) {
-                        navGrid.classList.add("open");
-                    }
-                });
-            }
-        });
     });
 }

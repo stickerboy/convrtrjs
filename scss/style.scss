@@ -198,6 +198,10 @@ body {
             text-decoration: underline;
         }
     }
+    .dropdown-toggle {
+        max-width: 2.5rem !important;
+    }
+    
 }
 @include color-mode(dark) {
     .sidebar-item__label {
