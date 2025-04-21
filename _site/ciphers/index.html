@@ -1,0 +1,1618 @@
+<!doctype html>
+<html lang="en" class="overflow-y-hidden">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques">
+        <meta name="keywords" content="decode, encode, decoding, encoding, converters, data convert, javascript, data, puzzles, puzzle solving, puzzle solving tools, data driven puzzles, base64, binary, hexadecimal, ciphers, morse code, rot13, morsenary, code solving, file tools, hexadecimal tools, text tools, flip text, replace characters, atbash cipher, beaufort cipher, caesar cipher, chaicipher, hash algorithms, rail fence cipher, smithy cipher, substitution cipher, regex substitution, strip all whitespace, letters to alphabet number, vigenère cipher, interleave, unscramble, extract string, merge base64, reverse hexadecimal, shift hexadecimal, hexadecimal frequencies, character frequencies, file headers, check file type, braille to text, text to braille, generate braille text, color generator, covenant glyphs, halo covenant glyphs, forerunner glyphs, halo forerunner glyphs, periodic element conversion, convert periodic elements, convert periodic element properties">
+        <meta name="author" content="Kenny Cameron">
+        <meta name="generator" content="Eleventy v3.0.0">
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.convrtr.xyz" />
+        <meta property="og:title" content="For everlost and Grollow!" />
+        <meta property="og:description"
+                content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques" />
+        <meta property="og:image" content="https://www.convrtr.xyz/assets/img/convrtr.jpeg" />
+        <title>Convrtr - Cipher tools</title>
+
+        <link rel="canonical" href="https://www.convrtr.xyz">
+
+                <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Core theme and Bootstrap CSS -->
+        <link href="/assets/css/main.css" rel="stylesheet">
+        <!-- Favicons -->
+        <meta name="theme-color" content="#11806a">
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/favicons/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/favicons/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/favicons/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/assets/favicons/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/assets/favicons/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/assets/favicons/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/assets/favicons/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="/assets/favicons/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="Convrtr"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="/assets/favicons/mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="/assets/favicons/mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="/assets/favicons/mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="/assets/favicons/mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
+    </head>
+    <body>
+        <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+        <header>
+    <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
+        <div class="container-fluid mw justify-content-start">
+            <button class="navbar-toggler" id="navbar-toggler" type="button"
+                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
+                <span class="visually-hidden">Toggle navigation</span>
+            </button>
+            <a href="/" 
+               class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
+                <span>Convrtr</span>
+            </a>
+            <div class="d-flex ms-auto">
+                <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
+                    For everlost and Grollow!
+                </span>
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row">
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
+                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                        </a>
+                    </li>
+                    
+                
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
+                                aria-label="Clear all data inside textareas" title="Clear data"
+                                data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-recycle" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Clear all data</span>
+                        </button>
+                    </li>
+                
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
+                        aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
+                        data-current-icon="bi-circle-half">
+                            <i class="bi my-1 theme-icon-active bi-circle-half"></i>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">Toggle theme</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-theme-text">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
+                                data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
+                                    Light
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
+                                data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
+                                    Dark
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
+                                data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                                    <i class="bi me-2 opacity-50 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
+                                    Auto
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+        <div class="mw d-flex mx-auto">
+            <div class="grid sidebar-grid gap-0 p-0 w-100">
+                <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
+                    <nav class="sidebar px-3 ps-sm-0 py-3">
+    <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
+    
+    <div class="sidebar-item d-grid gap-2" data-link-id="text"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-10 rounded-0 text-start"
+                href="/" aria-label="Text tools">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-code-square"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    Text tools
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-10"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapsetext"
+                aria-controls="collapsetext" aria-expanded="false" aria-label="Text tools">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapsetext">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/convrtrs"
+                            data-target="#text">Convrtrs</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/text/flip"
+                            data-target="#text">Flip text</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/text/frequencies"
+                            data-target="#text">Character frequencies</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/text/replace"
+                            data-target="#text">Replace characters</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/text/tools"
+                            data-target="#text">Text tools</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="sidebar-item d-grid gap-2 active" data-link-id="ciphers"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-25 active rounded-0 text-start"
+                href="/ciphers" aria-label="Cipher tools">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-puzzle"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    Cipher tools
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-25 active"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseciphers"
+                aria-controls="collapseciphers" aria-expanded="false" aria-label="Cipher tools">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapseciphers">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/atbash"
+                            data-target="#ciphers">Atbash cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/beaufort"
+                            data-target="#ciphers">Beaufort cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/caesar"
+                            data-target="#ciphers">Caesar cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/chaocipher"
+                            data-target="#ciphers">Chaocipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/hash"
+                            data-target="#ciphers">Hash algorithms</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/keyword"
+                            data-target="#ciphers">Keyword cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/rail"
+                            data-target="#ciphers">Rail fence cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/smithy"
+                            data-target="#ciphers">Smithy cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/substitution"
+                            data-target="#ciphers">Substitution cipher</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/ciphers/vigenere"
+                            data-target="#ciphers">Vigenère cipher</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="sidebar-item d-grid gap-2" data-link-id="hex"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-10 rounded-0 text-start"
+                href="/hex" aria-label="Hex tools">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-nut"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    Hex tools
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-10"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapsehex"
+                aria-controls="collapsehex" aria-expanded="false" aria-label="Hex tools">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapsehex">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/hex/frequencies"
+                            data-target="#hex">Hex Frequencies</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/hex/reverse"
+                            data-target="#hex">Reverse hex</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/hex/shift"
+                            data-target="#hex">Shift hex</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="sidebar-item d-grid gap-2" data-link-id="files"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-10 rounded-0 text-start"
+                href="/files" aria-label="File tools">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-journal-code"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    File tools
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-10"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapsefiles"
+                aria-controls="collapsefiles" aria-expanded="false" aria-label="File tools">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapsefiles">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/files/check"
+                            data-target="#files">Check file type</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/files/headers"
+                            data-target="#files">File headers</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="sidebar-item d-grid gap-2" data-link-id="misc"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-10 rounded-0 text-start"
+                href="/misc" aria-label="Misc">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-braces-asterisk"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    Misc
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-10"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapsemisc"
+                aria-controls="collapsemisc" aria-expanded="false" aria-label="Misc">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapsemisc">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/braille"
+                            data-target="#misc">Braille</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/colors"
+                            data-target="#misc">Color generator</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/covenant"
+                            data-target="#misc">Covenant glyphs</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/elements"
+                            data-target="#misc">Elements</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/elementstable"
+                            data-target="#misc">Periodic elements</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/forerunner"
+                            data-target="#misc">Forerunner glyphs</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="sidebar-item d-grid gap-2" data-link-id="oni"
+        data-page-id="ciphers">
+        
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-2  border-opacity-10 rounded-0 text-start"
+                href="/oni" aria-label="ONI tools">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-question-octagon"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 d-none">
+                    ONI tools
+                </span>
+            </a>
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2  border-opacity-10"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapseoni"
+                aria-controls="collapseoni" aria-expanded="false" aria-label="ONI tools">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapseoni">
+            <div class="ac-body">
+                <ul class="menu">
+                    
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/calendar"
+                            data-target="#oni">Calendar</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/interleave"
+                            data-target="#oni">Interleave</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/lookahead"
+                            data-target="#oni">Lookahead</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/mergeb64"
+                            data-target="#oni">Merge Base64</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/strings"
+                            data-target="#oni">Extract strings</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/unmunge"
+                            data-target="#oni">Unmunge</a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/oni/unscramble"
+                            data-target="#oni">Unscramble</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="d-grid gap-2 mt-3">
+        <a class="btn btn-md sidebar-item__link text-start p-1" aria-label="View the sitemap"
+            href="/sitemap" data-href="/sitemap">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-1 d-none">Sitemap</span>
+        </a>
+        <a class="btn btn-md sidebar-item__link text-start p-1" aria-label="Latest site updates"
+            href="/changelog" data-href="/changelog">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-1 d-none">Changelog</span>
+        </a>
+    </div>
+</div>
+</nav>
+                </div>
+                <main class="page-wrap page-wrap-ciphers overflow-y-auto p-0 mw"
+                    data-bs-smooth-scroll="true" id="content">
+                    <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
+    <div class="py-3 pb-4 px-2 px-sm-4">
+        
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb justify-content-end mb-0">
+        <li class="breadcrumb-item">
+            
+            <a href="/" class="text-convrtr">Home</a>
+            
+        </li>
+        
+        <li class="breadcrumb-item active" aria-current="page">
+            ciphers
+        </li>
+        
+    </ol>
+</nav>
+
+        <div class="section-heading">
+            <h1 class="display-6">Cipher tools</h1>
+            <hr>
+            <p class="px-2">
+                A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
+            </p><p class="px-2 m-0">
+    Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
+</p>
+            
+        </div>
+    </div>
+</section>
+
+    
+        
+
+<section id="atbash" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#atbashCollapse" role="button" 
+                aria-expanded="false" aria-controls="atbashCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Atbash cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    A ⇆ Z
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    B ⇆ Y
+                </code>
+                etc.
+            </p>
+        </div>
+        <div class="collapse show" id="atbashCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Atbash</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: (Hello ⇆ Svool)" title="Atbash encrypt a string" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <button type="button" class="btn btn-md btn-convrtr" id="atbashDecode" title="Encrypt">Encrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainAb" aria-checked="false">
+                                                <label class="form-check-label" for="chainAb">Chain <span class="visually-hidden">atbash </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="atbashResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/atbash.mjs"></script>
+    
+
+    
+        
+<section id="beaufort" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#beaufortCollapse" role="button" 
+                aria-expanded="false" aria-controls="beaufortCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Beaufort cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    H → T → M
+                </code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    e → e → a
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → s → h
+                </code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → t → i
+                </code>
+                - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <div class="collapse show" id="beaufortCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Beaufort cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello → Test [key] → Mahif" title="Beaufort encrypt/decrypt string" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="beaufortKeyLabel" for="beaufortKey"><span class="visually-hidden">beaufort </span>Key</label>
+                                        <input type="text" class="form-control" id="beaufortKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="beaufortEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="beaufortDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="beaufortResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/beaufort.mjs"></script>
+    
+
+    
+        
+<section id="caesar" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#caesarCollapse" role="button" 
+                aria-expanded="true" aria-controls="caesarCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Caesar cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                A very simple method of encryption, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.
+                The most common Caesar cipher is Rot 13, where 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">A</code> 
+                becomes 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">N</code> 
+                and so forth. You can optionally add a key to the cipher to further encrypt your results, this will create a custom alphabet to rotate through &ndash;
+                 see the <a href="#sub" class="text-convrtr">Substitution Cipher</a> below for more information.
+            </p>
+            <p class="px-2">
+                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <div class="collapse show" id="caesarCollapse">
+            <ul class="pagination justify-content-center flex-wrap" id="pagination">
+                <li class="page-item">
+                        <button type="button" class="page-link" id="caesarPrev" aria-label="Previous" 
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar1" 
+                            aria-label="Letter a - Rot 1" data-caesar-number="1" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 1">
+                            <span class="visually-hidden">Letter</span> a<span class="visually-hidden"> - Rot 1</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar2" 
+                            aria-label="Letter b - Rot 2" data-caesar-number="2" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 2">
+                            <span class="visually-hidden">Letter</span> b<span class="visually-hidden"> - Rot 2</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar3" 
+                            aria-label="Letter c - Rot 3" data-caesar-number="3" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 3">
+                            <span class="visually-hidden">Letter</span> c<span class="visually-hidden"> - Rot 3</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar4" 
+                            aria-label="Letter d - Rot 4" data-caesar-number="4" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 4">
+                            <span class="visually-hidden">Letter</span> d<span class="visually-hidden"> - Rot 4</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar5" 
+                            aria-label="Letter e - Rot 5" data-caesar-number="5" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 5">
+                            <span class="visually-hidden">Letter</span> e<span class="visually-hidden"> - Rot 5</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar6" 
+                            aria-label="Letter f - Rot 6" data-caesar-number="6" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 6">
+                            <span class="visually-hidden">Letter</span> f<span class="visually-hidden"> - Rot 6</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar7" 
+                            aria-label="Letter g - Rot 7" data-caesar-number="7" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 7">
+                            <span class="visually-hidden">Letter</span> g<span class="visually-hidden"> - Rot 7</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar8" 
+                            aria-label="Letter h - Rot 8" data-caesar-number="8" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 8">
+                            <span class="visually-hidden">Letter</span> h<span class="visually-hidden"> - Rot 8</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar9" 
+                            aria-label="Letter i - Rot 9" data-caesar-number="9" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 9">
+                            <span class="visually-hidden">Letter</span> i<span class="visually-hidden"> - Rot 9</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar10" 
+                            aria-label="Letter j - Rot 10" data-caesar-number="10" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 10">
+                            <span class="visually-hidden">Letter</span> j<span class="visually-hidden"> - Rot 10</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar11" 
+                            aria-label="Letter k - Rot 11" data-caesar-number="11" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 11">
+                            <span class="visually-hidden">Letter</span> k<span class="visually-hidden"> - Rot 11</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar12" 
+                            aria-label="Letter l - Rot 12" data-caesar-number="12" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 12">
+                            <span class="visually-hidden">Letter</span> l<span class="visually-hidden"> - Rot 12</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar13" 
+                            aria-label="Letter m - Rot 13" data-caesar-number="13" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 13">
+                            <span class="visually-hidden">Letter</span> m<span class="visually-hidden"> - Rot 13</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar14" 
+                            aria-label="Letter n - Rot 14" data-caesar-number="14" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 14">
+                            <span class="visually-hidden">Letter</span> n<span class="visually-hidden"> - Rot 14</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar15" 
+                            aria-label="Letter o - Rot 15" data-caesar-number="15" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 15">
+                            <span class="visually-hidden">Letter</span> o<span class="visually-hidden"> - Rot 15</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar16" 
+                            aria-label="Letter p - Rot 16" data-caesar-number="16" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 16">
+                            <span class="visually-hidden">Letter</span> p<span class="visually-hidden"> - Rot 16</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar17" 
+                            aria-label="Letter q - Rot 17" data-caesar-number="17" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 17">
+                            <span class="visually-hidden">Letter</span> q<span class="visually-hidden"> - Rot 17</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar18" 
+                            aria-label="Letter r - Rot 18" data-caesar-number="18" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 18">
+                            <span class="visually-hidden">Letter</span> r<span class="visually-hidden"> - Rot 18</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar19" 
+                            aria-label="Letter s - Rot 19" data-caesar-number="19" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 19">
+                            <span class="visually-hidden">Letter</span> s<span class="visually-hidden"> - Rot 19</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar20" 
+                            aria-label="Letter t - Rot 20" data-caesar-number="20" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 20">
+                            <span class="visually-hidden">Letter</span> t<span class="visually-hidden"> - Rot 20</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar21" 
+                            aria-label="Letter u - Rot 21" data-caesar-number="21" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 21">
+                            <span class="visually-hidden">Letter</span> u<span class="visually-hidden"> - Rot 21</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar22" 
+                            aria-label="Letter v - Rot 22" data-caesar-number="22" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 22">
+                            <span class="visually-hidden">Letter</span> v<span class="visually-hidden"> - Rot 22</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar23" 
+                            aria-label="Letter w - Rot 23" data-caesar-number="23" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 23">
+                            <span class="visually-hidden">Letter</span> w<span class="visually-hidden"> - Rot 23</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar24" 
+                            aria-label="Letter x - Rot 24" data-caesar-number="24" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 24">
+                            <span class="visually-hidden">Letter</span> x<span class="visually-hidden"> - Rot 24</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar25" 
+                            aria-label="Letter y - Rot 25" data-caesar-number="25" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 25">
+                            <span class="visually-hidden">Letter</span> y<span class="visually-hidden"> - Rot 25</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link caesar-link" id="caesar26" 
+                            aria-label="Letter z - Rot 26" data-caesar-number="26" 
+                            data-bs-toggle="tooltip" data-bs-placement="top" title="Rot 26">
+                            <span class="visually-hidden">Letter</span> z<span class="visually-hidden"> - Rot 26</span>
+                        </button>
+                    </li>
+                    <li class="page-item">
+                        <button type="button" class="page-link" id="caesarNext" aria-label="Next" 
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </button>
+                    </li>
+                    </ul>
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Caesar cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello → Mjqqt (Rot 5)" title="Caesar Text - text to substitute" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="caesar-group" for="caesarKey"><span class="visually-hidden">Caesar Cipher </span>Key</label>
+                                        <input type="text" class="form-control" id="caesarKey" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed">
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainRots" aria-checked="false">
+                                                <label class="form-check-label" for="chainRots">Chain <span class="visually-hidden">rotation </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="caesarResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/caesar.mjs"></script>
+    
+
+    
+        
+<section id="chaocipher" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#chaocipherCollapse" role="button" 
+                aria-expanded="false" aria-controls="chaocipherCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Chaocipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time. Only someone with the correct settings can decode the scrambled message back to its original form. For example: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    Hello World
+                </code>
+                →
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WahqzIuets
+                </code>
+                etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page
+            </p>
+        </div>
+        <div class="collapse show" id="chaocipherCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Chaocipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello World → WahqzIuets" title="Encrypt or decrypt Chaocipher string" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <button type="button" class="btn btn-convrtr" id="chaocipherEncrypt" title="Encrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="chaocipherDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainChaocipher" aria-checked="false">
+                                                <label class="form-check-label" for="chainChaocipher">Chain <span class="visually-hidden">chaocipher </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="chaocipherResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/chaocipher.mjs"></script>
+    
+
+    
+        
+<section id="hash" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#hashCollapse" role="button" 
+                aria-expanded="false" aria-controls="hashCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Hash
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
+            </p>
+        </div>
+        <div class="collapse show" id="hashCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Hash text</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello World → b10a8db164e0754105b7a99be72e3fe5" title="Generate hash values for a string" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <button type="button" class="btn btn-md btn-convrtr" id="hashDecode" title="Generate hashes">Generate</button>
+                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                        </div>
+                        <hr />
+                        <div class="table-responsive">
+                            <table class="table table-striped hash-table">
+                                <thead class="table-success">
+                                    <tr>
+                                        <th scope="col" class="col-3 col-md-2 col-lg-2">Hash Type</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="data-to-copy active convrtr-results" id="hashResults">
+                                    <tr class="visually-hidden">
+                                        <td colspan="2" class="text-center">No data available</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/hash.mjs"></script>
+    
+
+    
+        
+<section id="keyword" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#keywordCollapse" role="button" 
+                aria-expanded="false" aria-controls="keywordCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Keyword cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello World</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Eckkn Unqkb</code> 
+            </p>
+        </div>
+        <div class="collapse show" id="keywordCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Keyword cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello World → Test [key] → Eckkn Unqkb
+                        " title="Keyword encrypt/decrypt string" rows="6" id="keywordText" class="form-control keyword-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="keywordKeyLabel" for="keywordKey"><span class="visually-hidden">Keyword </span>Key</label>
+                                        <input type="text" class="form-control" id="keywordKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="keywordEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="keywordDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainKw" aria-checked="false">
+                                                <label class="form-check-label" for="chainKw">Chain <span class="visually-hidden">keyword </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="keywordResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/keyword.mjs"></script>
+    
+
+    
+        
+<section id="rail" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#railCollapse" role="button" 
+                aria-expanded="false" aria-controls="railCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Rail fence cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
+                There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
+            </p>
+            <p class="px-2">
+                <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WE ARE DISCOVERED. RUN AT ONCE.
+                </code>
+                <code class="d-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2" style="
+            white-space: pre-wrap;
+            ">
+    W . . . E . . . C . . . R . . . U . . . O . . . 
+    . E . R . D . S . O . E . E . R . N . T . N . E 
+    . . A . . . I . . . V . . . D . . . A . . . C . 
+            </code>
+            <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                WECRUO ERDSOEERNTNE AIVDAC
+            </code>
+
+            </p>
+            
+        </div>
+        <div class="collapse show" id="railCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Rail fence cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" title="Encrypt / Decrypt Rail fence string" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="railAmountLabel" for="railAmount"><span class="visually-hidden">Number of </span>Rails</label>
+                                        <input type="number" class="form-control" id="railAmount" autocomplete="off" min="2" value="2">
+                                        <button class="btn btn-convrtr" type="button" id="railEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="railDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-end">
+                                    <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="railResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/rail.mjs"></script>
+    
+
+    
+        
+<section id="smithy" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#smithyCollapse" role="button" 
+                aria-expanded="false" aria-controls="smithyCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Smithy cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Rmxsp</code> 
+
+            </p>
+            <p class="px-2">
+                There is more information available on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">Smithy</a> Wikipedia page
+            </p>
+        </div>
+        <div class="collapse show" id="smithyCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Smithy cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello → World [key] → Rmxsp
+                        " title="Smithy encrypt/decrypt string" rows="6" id="smithyText" class="form-control smithy-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="smithyKeyLabel" for="smithyKey"><span class="visually-hidden">Smithy </span>Key</label>
+                                        <input type="text" class="form-control" id="smithyKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="smithyEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="smithyDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSm" aria-checked="false">
+                                                <label class="form-check-label" for="chainSm">Chain <span class="visually-hidden">smithy </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="smithyResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/smithy.mjs"></script>
+    
+
+    
+        
+<section id="substitution" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#substitutionCollapse" role="button" 
+                aria-expanded="false" aria-controls="substitutionCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Substitution cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                A substitution cipher uses a key or a phrase to make a new alphabet, with the end result potentially being a completely jumbled up alphabet. 
+            </p>
+            <p class="px-2">
+                A quick example substitution: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WORLD
+                </code> → 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    HELLO
+                </code>
+                → 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WNRJO
+                </code> 
+                - The full alphabet would look like 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    HELOABCDFGIJKMNPQRSTUVWXYZ
+                </code> &ndash; notice that H, E, L and O have moved to the start, the second L in HELLO isn't present again as it has already been used and placed. 
+                Mixed case strings and keys are supported here, for example:
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WOrld
+                </code> →
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    HELLO
+                </code>
+                →
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WNrjo
+                </code>
+                or 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    WOrld
+                </code> →
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    HEllo
+                </code>
+                →
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    UMpjo
+                </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <div class="collapse show" id="substitutionCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Substitution cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello → World [key] → Cdggj" title="Substitution string" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="substitution-group" for="substitutionKey"><span class="visually-hidden">Substitution </span>Key</label>
+                                        <input type="text" class="form-control" id="substitutionKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="substitutionEncrypt">Encrypt</button>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainSubs" aria-checked="false">
+                                                <label class="form-check-label" for="chainSubs">Chain <span class="visually-hidden">substitution </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="substitutionResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/substitution.mjs"></script>
+    
+
+    
+        
+<section id="vigenere" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none"
+                data-bs-toggle="collapse" href="#vigenereCollapse" role="button" 
+                aria-expanded="false" aria-controls="vigenereCollapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Vigenère cipher
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="">
+            <p class="px-2">
+                One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    H → W → D
+                </code> 
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    e → o → s
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → r → c
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    l → l → w
+                </code>
+                <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                    o → d → r
+                </code>
+                - for the next letters, the key would loop back and start from the W in World again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
+            </p>
+        </div>
+        <div class="collapse show" id="vigenereCollapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Vigenère cipher</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: Hello → World [key] → Dscwr" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="vigenereKeyLabel" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
+                                        <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
+                                        <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
+                                        <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                            <div class="form-check form-switch text-start">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="chainVig" aria-checked="false">
+                                                <label class="form-check-label" for="chainVig">Chain <span class="visually-hidden">vigenère </span>commands</label>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="vigenereResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/ciphers/vigenere.mjs"></script>
+    
+
+                    <footer class="section footer">
+    <div class="mw me-auto ms-auto">
+        <div class="p-4 pb-2">
+            
+            <p class="float-end mb-1">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
+                    <i class="bi bi-arrow-up-square"></i>
+                    <span class="visually-hidden" focusable="false" aria-hidden="true">
+                        Back to top
+                    </span>
+                </a>
+            </p>
+            
+            <p class="mb-1">
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2025. All Rights Reserved.<br />
+                Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
+            </p>
+            <p class="mb-1">
+                <a href="/sitemap" title="Sitemap" class="text-convrtr">Sitemap</a>
+            </p>
+        </div>
+        <div class="p-4 pt-2">
+            <a href="/changelog"" 
+                title="Release version: v2.1.0" 
+                class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
+                <small>v2.1.0</small>
+            </a>
+        </div>
+    </div>
+</footer>
+                </main>
+            </div>
+        </div>
+        <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/assets/js/theme.js"></script>
+<script type="module" src="/assets/js/clip.mjs"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script><script type="module" src="/assets/js/scripts.mjs"></script>
+
+        <div class="toast-container position-fixed top-0 end-0 p-5">
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
+        <div class="toast-header text-bg-convrtr">
+            <strong class="me-auto"></strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body text-bg-light"></div>
+    </div>
+</div>
+    </body>
+</html>
+
+
+    <!--
+//START FILE/ IETY JNM URER
+/Packet detected..
+/Processing......
+/Packet found:
+/UoneFVQVJFUoneFVQVJFUoneFVQVJFUEVOVEFTUVVBUkVFTEVQRUfiveUQUNBVFBFTlRBQzerolSQzeroxFUoneFVQVJFRknineYUEVOVEFDSVJDTEVTUVVBUkVOTzerofiveBUEVOVEFEVUFM==
+/END FILE ../
+MMMMMMMWKc;.                 ;cXWMMMMMMM
+MMMMMMWNK:.  .'''.......''.. .:NWMMMMMMM
+MMMMWWxo,. ,xKXKKK0000KKKXKd, .';oMWMMMM
+MMMWXNl'..ckKKOdl:;,,,;:lkKXOc. .:xXWMMM
+MMW0o;. 'dKX0o::lxOKXKOo,'lOXKd' .'lxWMM
+MWdo,..:kKKxc:xXXNNNNXXX0c.cOKKk:..,:oNM
+Kk'. .c0XXKc:OXXNNWWWNNXXO:.:KXX0c. ..KN
+kc. .cKXXXXKKNNWWWNNNNXX0d::dKXXXKc. .lO
+c.  ;kXNNNNNNNNNNNNNNKkl;;o0XXXXXKx;  .c
+0d. .c0XXNNWWWWWNNKOd;':dd:dKXXXX0c. .d0
+NKl, .:ONNNNNNNNNXo'.;ooxO0KXXXXO:. ',0N
+WWNx;. ,dKXNNNNNXK; ,;.;xKXXXXKx, .;okWM
+WWWOo:. .l0XXNNNNX:  .cOXXXXX0l. .:oxMMM
+WWWWWWo,..;kXXXXXKl':kKXXXXKx;..;oWWMMWW
+WWWWWWkl:. .l0KKKKK0KKKKKK0o. .:lkMMMMNN
+MWWWWWWWXl,  ..............  ,lNWMMMMMNN
+MWWWWWWWNd:.                .:oNWMMMMMWW
+-->
