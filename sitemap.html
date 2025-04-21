@@ -14,7 +14,9 @@ page-id: sitemap
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title h5 mb-0 mt-2">
-                                {{ nav-item.label }}
+                                <a class="link-body-emphasis link-underline link-underline-opacity-0" href="{{ '/' | append: nav-item.id | replace: 'text', '' | url }}">
+                                    {{ nav-item.label }}
+                                </a>
                             </h2>
                         </div>
                         <div class="list-group list-group-flush">
