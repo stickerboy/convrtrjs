@@ -411,18 +411,6 @@ if (navToggle && navGrid) {
                     }, 500);
                 }
             }
-
-            setTimeout(() => {
-                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                    label.classList.remove("d-none");
-                });
-                navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
-                    link.classList.remove("rounded-2");
-                });
-                navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-                    toggle.classList.remove("d-none");
-                });
-            }, 400);
         } else {
             // Close all open sidebar collapse sections
             const openCollapses = navGrid.querySelectorAll(".sidebar-dropdown .collapse.show");
@@ -432,19 +420,9 @@ if (navToggle && navGrid) {
                     bsCollapse.hide();
                 }
             });
-
-            navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                label.classList.add("d-none");
-            });
-            navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
-                link.classList.add("rounded-2");
-            });
-            navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-                toggle.classList.add("d-none");
-            });
             setTimeout(() => {
                 navGrid.classList.remove("open");
-            }, 300);
+            }, 500);
         }
     });
 }
