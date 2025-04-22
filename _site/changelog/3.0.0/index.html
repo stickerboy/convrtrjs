@@ -575,7 +575,8 @@
 </section>
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4">
-        <h2>New features</h2>
+        <p>Originally going to be just a minor 2.1.0 release, as a new menu design and some bug fixes to recently added features, v3 took on a life of its own. It made sense to do an additional overhaul of the internal structure to better support the new design, and to also make it a little more modular and easier to maintain going forward.</p>
+<h2>New features</h2>
 <h3>Individual tool pages</h3>
 <p>Each tool, along with remaining available on each main/top-level page, is also now available on their own dedicated page.</p>
 <h3>Sidebar / Navigation</h3>
@@ -588,7 +589,7 @@
 <li>Added new icons for each of the primary sections (these will be improved upon in future)</li>
 <li>Re-arranged order of items in the menu</li>
 </ul>
-<p><a href="/assets/img/changelog/v3.png"><img src="/assets/img/changelog/v3.png" alt="image"></a></p>
+<p><a href="/assets/img/changelog/v3.png"><img src="/assets/img/changelog/v3.png" alt="Screenshot of the Convrtrs tool page, showcasing the new sidebar design"></a></p>
 <h3>Pagingation</h3>
 <ul>
 <li>Added &quot;Jump to first page&quot; and &quot;Jump to last page&quot; pagination links</li>
@@ -612,11 +613,11 @@
 <h2>Behind the scenes changes</h2>
 <details>
 <summary>This is a list of more technical and non-front facing changes made to the site  </summary>
-<h4>New features</h4>
+<h3>New features</h3>
 <ul>
 <li>Added dynamic(-ish) import for JS files on all Pages, this way when the pages are included in the main landing page, they'll all come with the necessary functionality</li>
 </ul>
-<h4>Changes</h4>
+<h3>Changes</h3>
 <ul>
 <li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
 <li>Updated Bootstrap core js to 5.3.3</li>
@@ -624,7 +625,7 @@
 <li>Reduced the number of scripts loaded on a each page, additionally only loading in the scripts and functions necessary for that tool</li>
 <li>Updated all scripts to output functions to the window object, making them web console accessible/usable</li>
 </ul>
-<h4>Bug fixes</h4>
+<h3>Bug fixes</h3>
 </details>
 
         
