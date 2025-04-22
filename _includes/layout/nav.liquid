@@ -1,11 +1,11 @@
 <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     {% for link in nav %}
-    <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}"
+    <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id or folderName == link.id %} active{% endif %}" data-link-id="{{ link.id }}"
         data-page-id="{{ page-id }}">
         {% if link.children %}
         <div class="btn-group">
             <a
-                class="btn sidebar-item__link border border-success rounded-2 {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-0 text-start"
+                class="btn sidebar-item__link border border-success rounded-2 {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} rounded-0 text-start"
                 href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
                 <span class="sidebar-item__icon ms-1 me-1 fs-4">
                     <i class="bi bi-{{ link.icon }}"></i>
@@ -14,7 +14,7 @@
                     {{ link.label }}
                 </span>
             </a>
-            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2 {% if page-id ==  link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
+            <button class="d-none btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-2 {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
                 type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ link.id }}"
                 aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}">
                 <span class="visually-hidden">Toggle Dropdown</span>
@@ -25,7 +25,7 @@
                     {% assign sortedItems = link.children | sort: 'id' %}
                     {% for child in sortedItems %}
                     <li class="mb-1">
-                        <a class="dropdown-item"
+                        <a class="dropdown-item{% if page-id == child.id %} fw-bold link-underline-success{% endif %}"
                             href="{% if child.id != 'convrtrs'%}{{ '/' | append: link.id | url }}{% endif %}/{{ child.id }}"
                             data-target="#{{ link.id }}">{{ child.label }}</a>
                     </li>

@@ -393,12 +393,25 @@ const navToggle = document.querySelector("#navbar-toggler");
 const navGrid = document.querySelector(".sidebar-grid");
 
 if (navToggle && navGrid) {
-    navToggle.addEventListener('click', () => {
+    navToggle.addEventListener("click", () => {
         const isOpen = navGrid.classList.contains("open");
-        navGrid.setAttribute('aria-expanded', isOpen ? "false" : "true");
+        navGrid.setAttribute("aria-expanded", isOpen ? "false" : "true");
 
         if (!isOpen) {
             navGrid.classList.add("open");
+
+            // Find the active page and its associated dropdown
+            const activeItem = navGrid.querySelector(".sidebar-item.active");
+            if (activeItem) {
+                const dropdown = activeItem.querySelector(".collapse");
+                if (dropdown) {
+                    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(dropdown);
+                    setTimeout(() => {
+                        bsCollapse.show(); // Show the dropdown
+                    }, 500);
+                }
+            }
+
             setTimeout(() => {
                 navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
                     label.classList.remove("d-none");
@@ -409,7 +422,7 @@ if (navToggle && navGrid) {
                 navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
                     toggle.classList.remove("d-none");
                 });
-            }, 300);
+            }, 400);
         } else {
             // Close all open sidebar collapse sections
             const openCollapses = navGrid.querySelectorAll(".sidebar-dropdown .collapse.show");
@@ -420,18 +433,18 @@ if (navToggle && navGrid) {
                 }
             });
 
-            navGrid.classList.remove("open");
+            navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
+                label.classList.add("d-none");
+            });
+            navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
+                link.classList.add("rounded-2");
+            });
+            navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
+                toggle.classList.add("d-none");
+            });
             setTimeout(() => {
-                navGrid.querySelectorAll(".sidebar-item__label").forEach(label => {
-                    label.classList.add("d-none");
-                });
-                navGrid.querySelectorAll(".sidebar-item__link").forEach(link => {
-                    link.classList.add("rounded-2");
-                });
-                navGrid.querySelectorAll(".dropdown-toggle").forEach(toggle => {
-                    toggle.classList.add("d-none");
-                });
-            }, 150);
+                navGrid.classList.remove("open");
+            }, 300);
         }
     });
 }
