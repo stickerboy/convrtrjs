@@ -109,7 +109,7 @@ body {
         transition: all ease 0.3s;
         grid-template-columns: 4.5rem 1fr;
         &.open {
-            grid-template-columns: 15rem 1fr;
+            grid-template-columns: 18rem 1fr;
         }
     }
 }
@@ -118,7 +118,7 @@ body {
         width: 100%;
     }
     @media (min-width: 576px) and (max-width: 768px) {
-        width: 15rem;
+        width: 18rem;
     }
     @media (max-width: 768px) {
         position: fixed !important;
@@ -150,7 +150,7 @@ body {
     }
 }
 .sidebar-grid.open .nav-bar {
-    width: 15rem;
+    width: 18rem;
     @media (max-width: 576px) {
         width: 100%;
     }
@@ -385,9 +385,13 @@ body {
 }
 
 .navbar {
-    --bs-gutter-x: 2rem;
     color: var(--bs-white);
-
+    .container-fluid {
+        --bs-gutter-x: 1rem;
+        @media (min-width: 576px){
+            --bs-gutter-x: 2rem;
+        }
+    }
     &-brand {
         --convrtr-navbar-brand-font-size: 2rem;
         font-size: var(--convrtr-navbar-brand-font-size);
