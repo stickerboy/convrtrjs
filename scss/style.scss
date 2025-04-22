@@ -976,6 +976,20 @@ textarea.form-control.is-invalid.ld-warning {
             max-width: 75%;
         }
     }
+    a > img {
+        max-width: 100%;
+        padding: 0.5rem;
+        outline-width: 3px;
+        outline-style: solid;
+        outline-color: var(--convrtr-bg-color);
+        transition: outline-color ease 0.3s;
+
+        &:hover,
+        &:active,
+        &:focus {
+            outline-color: var(--convrtr-bg-color-75)
+        }
+    }
 }
 .version-list {
     >:not(caption)>*>* {
