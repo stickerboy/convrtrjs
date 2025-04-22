@@ -8,6 +8,11 @@
             <a href="{{ '/' | url }}" class="text-convrtr">Home</a>
             {% endif %}
         </li>
+        {% if folderName and folderName != "pages" %}
+        <li class="breadcrumb-item">
+            <a href="{{ folderName | prepend: '/' | url }}" class="text-convrtr">{{ folderName }}</a>
+        </li>
+        {% endif %}
         {% if page.inputPath contains "changelog/" %}
         <li class="breadcrumb-item">
             <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
