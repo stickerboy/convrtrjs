@@ -9,9 +9,11 @@
             {% endif %}
         </li>
         {% if folderName and folderName != "pages" %}
+        {% if folderName != "text" %}
         <li class="breadcrumb-item">
             <a href="{{ folderName | prepend: '/' | url }}" class="text-convrtr">{{ folderName }}</a>
         </li>
+        {% endif %}
         {% endif %}
         {% if page.inputPath contains "changelog/" %}
         <li class="breadcrumb-item">
