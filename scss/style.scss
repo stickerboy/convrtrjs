@@ -202,7 +202,6 @@ body {
     .dropdown-toggle {
         max-width: 2.5rem !important;
     }
-    
 }
 @include color-mode(dark) {
     .sidebar-item__label {
@@ -214,18 +213,18 @@ body {
         background-color: var(--convrtr-bg-color);
 
         &:hover,
-        &:item,
+        &:active,
         &:focus {
-            background-color: var(--convrtr-bg-color-10);
+            background-color: var(--convrtr-bg-color-25);
             .sidebar-item__label {
                 color: var(--bs-white);
             }
         }
 
         &.active {
-            background-color: var(--convrtr-bg-color-75);
+            background-color: var(--convrtr-txt-color);
             &:hover,
-            &:item,
+            &:active,
             &:focus {
                 background-color: var(--convrtr-link-color);
             }
@@ -251,15 +250,15 @@ body {
 @include color-mode(dark) {
     .text-convrtr {
         --bs-btn-color: var(--bs-white);
-        color: rgba(var(--convrtr-color-link), var(--bs-text-opacity)) !important;
+        color: var(--convrtr-table-header) !important;
     }
-}
+}   
 .text-convrtr-link {
     color: var(--convrtr-link-color) !important;
 }
 @include color-mode(dark) {
     .text-convrtr-link {
-        color: var(--convrtr-link-color-dark) !important;
+        color: var(--convrtr-table-header) !important;
     }
 }
 .bg-convrtr {
