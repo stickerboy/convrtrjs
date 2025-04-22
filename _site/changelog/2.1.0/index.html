@@ -566,6 +566,7 @@
                 <a href="/changelog/tag/minor" class="badge git-badge badge-minor" title="Minor feature updates">minor</a>
                 <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
                 <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
+                <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
             </div>
         </div>
     </div>
@@ -573,12 +574,14 @@
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4">
         <h2>New features</h2>
+<h3>Individual tool pages</h3>
+<p>Each tool, along with remaining available on each main/top-level page, is also now available on their own dedicated page.</p>
 <h3>Sidebar / Navigation</h3>
-<p>Technically a change, but also a new feature so highlighting it here</p>
 <ul>
 <li>Overhauled the primary navigation across the site, replacing the bootstrap offcanvas flyout menu with a left hand expanding sidebar (though a customised offcanvas version of the menu exists for smaller screen devices)</li>
-<li>Sidebar can be expanded by clicking on the hamburger icon next to the sitename, or by cliking on a menu tab</li>
-<li>Clicking a tab will auto-expand to reveal a list of all the child pages</li>
+<li>Sidebar can be expanded by clicking on the hamburger icon next to the sitename</li>
+<li>Clicking the dropdown toggle on a tab will auto-expand to reveal a list of all the child pages</li>
+<li>Child pages now link through to that tool's dedicated page, instead of scrolling to its position (goodbye scroll issues)</li>
 <li>Closing the menu will close all open tabs</li>
 <li>Added new icons for each of the primary sections (these will be improved upon in future)</li>
 <li>Re-arranged order of items in the menu</li>
@@ -591,18 +594,35 @@
 <ul>
 <li>Moved the footer inside the main content area</li>
 <li>Minor improvement to the 404 message text</li>
-<li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
 <li>Reduced the previous page number count down to 1, so there's more space and hopefully helps prevent pagination from breaking out of page boundaries</li>
 <li>On mobile, hide the Next/Previous text in favor of simple ASCII arrows ⇦ <code>&amp;#8678;</code> and ⇨ <code>&amp;#8680;</code></li>
-<li>Updated Bootstrap core js to 5.3.3</li>
 <li>Removed scrolling from the root HTML element and focused it on the <main> content area</li>
 <li>Switched Sitemap to a masonary layout, to neaten it up a little</li>
+<li>Add page links to sitemap headers</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
+<li>Fixed issue with tag filter where it had the potential to expose other site assets/pages</li>
+<li>Fixed some issues with keyword encode/decode, where the custom generated alphabet wouldn't always be reliable and provide inaccurate results</li>
 <li>Fixed some sass compiler warnings</li>
 </ul>
-
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front facing changes made to the site  </summary>
+<h4>New features</h4>
+<ul>
+<li>Added dynamic(-ish) import for JS files on all Pages, this way when the pages are included in the main landing page, they'll all come with the necessary functionality</li>
+</ul>
+<h4>Changes</h4>
+<ul>
+<li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
+<li>Updated Bootstrap core js to 5.3.3</li>
+<li>Created individual mjs files for each tool event and functions</li>
+<li>Reduced the number of scripts loaded on a each page, additionally only loading in the scripts and functions necessary for that tool</li>
+<li>Updated all scripts to output functions to the window object, making them web console accessible/usable</li>
+</ul>
+<h4>Bug fixes</h4>
+</details>
 
         
 
