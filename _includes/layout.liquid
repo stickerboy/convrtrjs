@@ -4,6 +4,13 @@
         {% include "layout/meta" %}
         {% include "layout/title" %}
 
+        <script>
+            (function () {
+                const theme = localStorage.getItem("theme") || "light";
+                document.documentElement.setAttribute("data-bs-theme", theme);
+            })();
+        </script>
+
         {% render "layout/css" %}
         {% include "layout/favicons" %}
     </head>

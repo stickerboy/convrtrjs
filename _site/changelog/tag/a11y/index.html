@@ -18,6 +18,13 @@
 
         <link rel="canonical" href="https://www.convrtr.xyz">
 
+        <script>
+            (function () {
+                const theme = localStorage.getItem("theme") || "light";
+                document.documentElement.setAttribute("data-bs-theme", theme);
+            })();
+        </script>
+
                 <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Core theme and Bootstrap CSS -->
@@ -587,6 +594,62 @@
                 <tbody class="table-group-divider">
                 
                 
+                
+                
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Version</span>
+                                </div>
+                                <div class="col">
+                                    <a href="/changelog/3.0.0/"
+                                        class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        3.0.0
+                                    </a>
+                                </div>
+                    
+                            </div>
+                        </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Date
+                                </div>
+                                <div class="col">
+                                    April 22, 2025
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Tags
+                                </div>
+                                <div class="col">
+                                    
+                                    
+                                    <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/major" class="badge git-badge badge-major" title="Major feature updates">major</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
+                                    
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                 
                 
                     <tr class="position-relative">
