@@ -118,11 +118,17 @@ export function emptyContainerCheck(data, container, error) {
  * @param {HTMLElement} element - The element containing the text to be selected.
  * @returns {void}
  */
-function selectAllText(element) {
+function selectAllText(element, trim = false) {
     if (element.localName === "textarea") {
         element.focus();
+        if(trim) {
+            element.value = element.value.trim(); // Trim the value if needed
+        }
         element.setSelectionRange(0, element.value.length);
     } else {
+        if (trim) {
+            element.textContent = element.textContent.trim(); // Trim the text content if needed
+        }
         window.getSelection()
             .selectAllChildren(
                 element
@@ -285,7 +291,7 @@ if (selectButtons.length > 0) {
             tooltip.setContent({ ".tooltip-inner": "Select All" });
         }, 3430);
 
-        selectAllText(textarea);
+        selectAllText(textarea, true);
     }));
 }
 

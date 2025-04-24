@@ -10,12 +10,13 @@ var braille = [[" ", " "], ["⠀", " "], ["⠸", "_"], ["⠤", "-"], ["⠠", ","
  * @param {Array<Array<string>>} [map=braille] - The custom map to use for conversion. Defaults to the "braille" map.
  * @returns {string} - The converted string.
  */
-export function convertBraille(string, mode, map = braille) {
-    if (mode === "braille") {
-        return string.split("").map(b => getKeyValue(b.toUpperCase(), map)).join("");
-    } else if (mode === "text") {
-        return string.split("").map(b => getKeyValue(b.toUpperCase(), map, "value")).join("");
-    } else {
-        throw new Error(`Invalid mode "${mode}". Use "braille" or "text".`);
+export function convertBraille(string, mode = "braille", map = braille) {
+    switch (mode) {
+        case "braille":
+            return string.split("").map(b => getKeyValue(b.toUpperCase(), map)).join("");
+        case "text":
+            return string.split("").map(b => getKeyValue(b.toUpperCase(), map, "value")).join("");
+        default:
+            throw new Error(`Invalid mode "${mode}". Use "braille" or "text".`);
     }
 }

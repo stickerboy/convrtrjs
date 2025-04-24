@@ -21,18 +21,19 @@ brailleButton && brailleButton.addEventListener("click", function () {
     }
 
     if (brailleSwitch.checked) {
-        bR.textContent = braille.convertBraille(brailleString.value, "braille");
+        bR.textContent = braille.convertBraille(brailleString.value);
     } else {
-        bIR.textContent = braille.convertBraille(brailleString.value, "text");
+        bR.textContent = braille.convertBraille(brailleString.value, "text");
     }
 });
 
 brailleSwitch && brailleSwitch.addEventListener("click", function () {
+    this.nextElementSibling.innerText = brailleSwitch.checked ? "Convert Braille to Text" : "Convert Text to Braille";
     if (brailleSwitch.checked) {
-        this.nextElementSibling.innerText = "Convert Braille to Text";
-    } else {
-        this.nextElementSibling.innerText = "Convert Text to Braille";
+        document.getElementById("brailleResults").classList.add("fs-6");
+        return false;
     }
+    document.getElementById("brailleResults").classList.remove("fs-6");
 });
 
 brailleImage && brailleImage.addEventListener("click", function () {
@@ -46,5 +47,5 @@ brailleImage && brailleImage.addEventListener("click", function () {
     if (bIT.checked) {
         bOptions.bgcolor = "rgba(0, 0, 0, 0)";
     }
-    createImage(bIR.offsetWidth, bIR.offsetHeight, "braille.png", brailleImage, bIR.innerText, bOptions);
+    createImage(bR.offsetWidth, bR.offsetHeight, "braille.png", brailleImage, bR.innerText, bOptions);
 });
