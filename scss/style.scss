@@ -103,6 +103,13 @@ body {
         background-color: var(--bs-white);
     }
 }
+@include color-mode(dark) {
+    .page-wrap {
+        &-404 {
+            background-color: var(--convrtr-bg-dark) !important;
+        }
+    }
+}
 .sidebar-grid {
     grid-template-columns: 1fr;
     @media (min-width: 768px) {
