@@ -614,18 +614,22 @@
 <ul>
 <li>Moved the footer inside the main content area</li>
 <li>Minor improvement to the 404 message text</li>
+<li>On element conversion, changed the default &quot;Convert from&quot; to Atomic number, matching the example in the description</li>
 <li>Reduced the previous page number count down to 1, so there's more space and hopefully helps prevent pagination from breaking out of page boundaries</li>
 <li>On mobile, hide the Next/Previous text in favor of simple ASCII arrows ⇦ <code>&amp;#8678;</code> and ⇨ <code>&amp;#8680;</code></li>
 <li>Removed scrolling from the root HTML element and focused it on the <main> content area</li>
 <li>Switched Sitemap to a masonary layout, to neaten it up a little</li>
 <li>Add page links to sitemap headers</li>
+<li>Removed sitemap link from the footer, as it's now visually accessible from the sidebar</li>
 <li>Various changes and improvements made to text, link and button colors for accessibility</li>
+<li>Added an extra setting to Select All function to allow trimming values before copying, so we get rid of extra white space at the start and end</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li>Fixed issue with tag filter where it had the potential to expose other site assets/pages</li>
 <li>Fixed some issues with keyword encode/decode, where the custom generated alphabet wouldn't always be reliable and provide inaccurate results</li>
-<li>Fixed some sass compiler warnings</li>
+<li>Fixed the potential for screen clickering to occur in Dark mode when moving between pages</li>
+<li>Fixed issue with various results areas, where long text strings could break out of the page</li>
+<li>Added a font size class when toggling between Braille conversion modes, so that braille to text doesn't change to huge text</li>
 </ul>
 <h2>Behind the scenes changes</h2>
 <details>
@@ -641,6 +645,13 @@
 <li>Created individual mjs files for each tool event and functions</li>
 <li>Reduced the number of scripts loaded on a each page, additionally only loading in the scripts and functions necessary for that tool</li>
 <li>Updated all scripts to output functions to the window object, making them web console accessible/usable</li>
+<li>Cleaned up Braille conversion function with some tidier code changes</li>
+<li>Set &quot;braille&quot; to be the default mode so it doesn't need to be explicitly passed</li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
+<li>Fixed issue with tag filter where it had the potential to expose other site assets/pages</li>
+<li>Fixed some sass compiler warnings</li>
 </ul>
 </details>
 
