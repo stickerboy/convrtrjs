@@ -1253,10 +1253,10 @@
                         <textarea rows="6" id="toolsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
+                        <div class="text-center mb-2 g-0">
                             <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
+                                <div class="col col-12 col-lg-auto me-2 mb-2">
+                                    <div class="input-group w-auto mb-2">
                                         <label class="input-group-text visually-hidden" for="toolsSelect">Select a tool</label>
                                         <select class="form-select rounded-start-3" id="toolsSelect" autocomplete="off">
                                             <option value="stripspaces" selected="">Strip spaces</option>
@@ -1277,35 +1277,29 @@
                                             <option value="urlencode">URL Encode</option>
                                             <option value="urldecode">URL Decode</option>
                                         </select>
-                                    <button class="btn btn-convrtr" type="button" id="toolsChange">Run</button>
+                                        <button class="btn btn-convrtr" type="button" id="toolsChange">Run</button>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainCommands" aria-checked="false">
-                                                <label class="form-check-label" for="chainCommands">Chain commands</label>
-                                            </div>
+                                <div class="col d-flex flex-fill mb-2">
+                                    <div class="me-auto flex-fill">
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="chainCommands" aria-checked="false">
+                                            <label class="form-check-label" for="chainCommands">Chain commands</label>
                                         </div>
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="preserveWhitespace" aria-checked="false">
-                                                <label class="form-check-label" for="preserveWhitespace">Preserve spaces</label>
-                                            </div>
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="preserveWhitespace" aria-checked="false">
+                                            <label class="form-check-label" for="preserveWhitespace">Preserve spaces</label>
                                         </div>
-                                        <div class="col d-flex flex-fill justify-content-end">
-                                            <div class="btn-group ms-auto align-items-start">
+                                    </div>
+                                    <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <hr>
+                        <hr />
                         <div id="textResults" class="data-to-copy active convrtr-results"></div>
                     </div>
                 </div>
