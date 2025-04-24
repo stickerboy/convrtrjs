@@ -129,7 +129,7 @@ export default function (eleventyConfig) {
     });
 
     eleventyConfig.addCollection("versions", (collectionApi) => {
-        return collectionApi.getFilteredByGlob("./changelog/*.md").sort((a, b) => {
+        return collectionApi.getFilteredByGlob("./changelog/**/*.md").sort((a, b) => {
             const parseVersion = (version) => version.split('.').map(Number);
             const [aMajor, aMinor, aPatch] = parseVersion(a.data.title);
             const [bMajor, bMinor, bPatch] = parseVersion(b.data.title);
