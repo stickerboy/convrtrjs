@@ -58,9 +58,9 @@
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
-                aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="nav-dropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
-                <span class="visually-hidden">Toggle navigation</span>
+                <label for="navbar-toggler" class="visually-hidden">Toggle navigation</label>
             </button>
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
@@ -617,7 +617,7 @@
 <li>On element conversion, changed the default &quot;Convert from&quot; to Atomic number, matching the example in the description</li>
 <li>Reduced the previous page number count down to 1, so there's more space and hopefully helps prevent pagination from breaking out of page boundaries</li>
 <li>On mobile, hide the Next/Previous text in favor of simple ASCII arrows ⇦ <code>&amp;#8678;</code> and ⇨ <code>&amp;#8680;</code></li>
-<li>Removed scrolling from the root HTML element and focused it on the <main> content area</li>
+<li>Removed scrolling from the root HTML element and focused it on the <code>&lt;main&gt;</code> content area</li>
 <li>Switched Sitemap to a masonary layout, to neaten it up a little</li>
 <li>Add page links to sitemap headers</li>
 <li>Removed sitemap link from the footer, as it's now visually accessible from the sidebar</li>
@@ -627,7 +627,7 @@
 <h2>Bug fixes</h2>
 <ul>
 <li>Fixed some issues with keyword encode/decode, where the custom generated alphabet wouldn't always be reliable and provide inaccurate results</li>
-<li>Fixed the potential for screen clickering to occur in Dark mode when moving between pages</li>
+<li>Fixed the potential for screen flickering to occur in Dark mode when moving between pages</li>
 <li>Fixed issue with various results areas, where long text strings could break out of the page</li>
 <li>Fixed alignments / spacing on Text tools options for mobile</li>
 <li>Added a font size class when toggling between Braille conversion modes, so that braille to text doesn't change to huge text</li>
@@ -635,11 +635,11 @@
 <h2>Behind the scenes changes</h2>
 <details>
 <summary>This is a list of more technical and non-front facing changes made to the site  </summary>
-<h3>New features</h3>
+<h3>BTS - New features</h3>
 <ul>
 <li>Added dynamic(-ish) import for JS files on all Pages, this way when the pages are included in the main landing page, they'll all come with the necessary functionality</li>
 </ul>
-<h3>Changes</h3>
+<h3>BTS - Changes</h3>
 <ul>
 <li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
 <li>Updated Bootstrap core js to 5.3.3</li>
@@ -650,7 +650,7 @@
 <li>Set &quot;braille&quot; to be the default mode so it doesn't need to be explicitly passed</li>
 <li>Moved Changelog files to sub-folder</li>
 </ul>
-<h3>Bug fixes</h3>
+<h3>BTS - Bug fixes</h3>
 <ul>
 <li>Fixed issue with tag filter where it had the potential to expose other site assets/pages</li>
 <li>Fixed some sass compiler warnings</li>
@@ -661,7 +661,8 @@
         <div class="mt-4">
             <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v3.0.0-Release">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
-                    viewBox="0 0 16 16">
+                    viewBox="0 0 16 16" role="img">
+                    <title>Github logo</title>
                     <path
                     d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
                 </svg>  

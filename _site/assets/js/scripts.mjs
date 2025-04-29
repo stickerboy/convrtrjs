@@ -401,7 +401,6 @@ const navGrid = document.querySelector(".sidebar-grid");
 if (navToggle && navGrid) {
     navToggle.addEventListener("click", () => {
         const isOpen = navGrid.classList.contains("open");
-        navGrid.setAttribute("aria-expanded", isOpen ? "false" : "true");
 
         if (!isOpen) {
             navGrid.classList.add("open");
