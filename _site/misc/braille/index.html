@@ -616,36 +616,34 @@
                         <textarea placeholder="Enter some text and click the 'Convert' button below" title="Braille conversion" rows="6" id="brailleTextarea" class="form-control flip-text" autocomplete="off"></textarea>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="text-center mb-2 g-0">
-                            <div class="row row-cols-3 g-md-0 gx-0 gy-2">
-                                <div class="col w-auto me-2 mb-2">
-                                    <div class="me-auto flex-fill">
-                                        <div class="input-group w-auto mb-2">
-                                            <button role="button" class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</button>
-                                        </div>
-                                        <div class="input-group w-auto mb-2">
-                                            <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
-                                        </div>
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto">
+                                    <div class="w-auto text-start">
+                                        <button role="button" class="btn btn-md btn-convrtr" id="brailleConvert" title="Create between braille and text">Convert</button>
+                                        <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill mb-2">
-                                    <div class="me-auto flex-fill">
-                                        <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
-                                            <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
+                                <div class="col-12 col-md-auto flex-fill">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col col-sm-8 col-md-auto ms-0 mx-sm-2 me-md-auto">
+                                            <div class="form-check form-switch mx-lg-2 d-flex">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
+                                                <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
+                                            </div>
+                                            <div class="form-check form-switch mx-lg-2 d-flex">
+                                                <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
+                                                <label class="form-check-label" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
+                                            </div>
                                         </div>
-                                        <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
-                                            <label class="form-check-label" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col col-12 col-md-auto me-2 mb-2 d-flex justify-content-end">
-                                    <div class="btn-group ms-auto align-items-start">
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

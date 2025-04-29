@@ -70,16 +70,26 @@ title: Forerunner glyphs
                         </div>
                     </div>
                     <div class="card-footer py-3">
-                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                            <div class="col col-12 col-md-auto me-2 mb-2">
-                                <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
-                            </div>
-                            <div class="col d-flex flex-fill">
-                                <div class="form-check form-switch mx-2">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
-                                    <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-sm-0 gx-0 gy-2">
+                                <div class="col col-12 col-sm-auto flex-fill">
+                                    <div class="row row-cols-auto g-1">
+                                        <div class="input-group w-auto">
+                                            <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
+                                        </div>
+                                        <div class="form-check form-switch mx-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
+                                            <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                                        </div>
+                                    </div>
                                 </div>
-                                {% include "components/select-copy-dl" %}
+                                <div class="col-12 col-sm-auto">
+                                    <div class="row row-cols-auto g-0">
+                                        <div class="col d-flex flex-fill justify-content-end">
+                                            {% include "components/select-copy-dl" %}
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <hr />

@@ -38,20 +38,20 @@ title: Atbash cipher
                     </div>
                     <div class="card-footer py-3">
                         <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Encrypt">Encrypt</button>
+                            <div class="row row-cols-2 g-sm-0 gx-0 gy-2">
+                                <div class="col col-12 col-sm-auto flex-fill">
+                                    <div class="row row-cols-auto g-1">
+                                        <div class="input-group w-auto">
+                                            <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Encrypt">Encrypt</button>
+                                        </div>
+                                        <div class="form-check form-switch text-start ms-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="chainAb" aria-checked="false">
+                                            <label class="form-check-label" for="chainAb">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-auto flex-fill">
+                                <div class="col-12 col-sm-auto">
                                     <div class="row row-cols-auto g-0">
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainAb" aria-checked="false">
-                                                <label class="form-check-label" for="chainAb">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
-                                            </div>
-                                        </div>
                                         <div class="col d-flex flex-fill justify-content-end">
                                             {% include "components/select-copy-dl" %}
                                         </div>
