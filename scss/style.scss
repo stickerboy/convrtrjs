@@ -175,6 +175,8 @@ body {
     &-item {
         &__link {
             --bs-text-opacity: 1;
+            --bs-navbar-toggler-focus-width: 0.25rem;
+            --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
             color: rgba(var(--bs-bg-success), var(--bs-text-opacity));
             background-color: var(--bs-white);
             @media (min-width: 576px) {
@@ -184,6 +186,7 @@ body {
             &:active,
             &:focus {
                 background-color: var(--bs-bg-success-10);
+                box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgba(255,255,255,0.8);
             }
             &.active {
                 background-color: var(--bs-bg-success-10);
@@ -191,6 +194,7 @@ body {
                 &:active,
                 &:focus {
                     background-color: var(--bs-bg-success-darken-10);
+                    box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgba(255,255,255,0.8);
                 }
             }
         }
@@ -459,50 +463,6 @@ body {
     .navbar {
         .show > .nav-link,
         .nav-link.active {
-            color: var(--bs-dropdown-color);
-            background-color: var(--bs-body-bg);
-            border-color: var(--bs-dropdown-border-color);
-        }
-    }
-}
-
-.offcanvas {
-    .navbar-nav {
-        align-items: flex-start;
-        display: grid;
-    }
-    .btn-close {
-        filter: var(--bs-btn-close-white-filter);
-    }
-
-    .dropdown-menu {
-        --bs-dropdown-color: #ffffff;
-        list-style-type: circle;
-        margin: 0 0 0 2rem;
-        background-color: transparent !important;
-        color: var(--bs-dropdown-color);
-        border: none;
-    }
-    .navbar-nav {
-        .dropdown-item {
-            --bs-dropdown-color: #ffffff;
-            color: var(--bs-dropdown-color);
-        }
-        .dropdown-item:hover, 
-        .dropdown-item:focus {
-            color: var(--bs-dropdown-link-hover-color);
-        }
-        .dropdown-item:active,
-        .dropdown-item.active {
-            color: var(--bs-body-color);
-        }
-    }
-}
-
-@include color-mode(dark) {
-    .offcanvas .navbar-nav {
-        .dropdown-item:active, 
-        .dropdown-item.active {
             color: var(--bs-dropdown-color);
             background-color: var(--bs-body-bg);
             border-color: var(--bs-dropdown-border-color);

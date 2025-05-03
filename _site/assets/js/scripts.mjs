@@ -401,7 +401,6 @@ const navGrid = document.querySelector(".sidebar-grid");
 if (navToggle && navGrid) {
     navToggle.addEventListener("click", () => {
         const isOpen = navGrid.classList.contains("open");
-        // navGrid.setAttribute("aria-expanded", isOpen ? "false" : "true");
 
         if (!isOpen) {
             navGrid.classList.add("open");
@@ -417,6 +416,9 @@ if (navToggle && navGrid) {
                     }, 500);
                 }
             }
+            navGrid.querySelectorAll(".dropdown-toggle").forEach(dropdownToggle => {
+                dropdownToggle.setAttribute("tabindex", 0);
+            });
         } else {
             // Close all open sidebar collapse sections
             const openCollapses = navGrid.querySelectorAll(".sidebar-dropdown .collapse.show");
@@ -425,6 +427,9 @@ if (navToggle && navGrid) {
                 if (bsCollapse) {
                     bsCollapse.hide();
                 }
+            });
+            navGrid.querySelectorAll(".dropdown-toggle").forEach(dropdownToggle => {
+                dropdownToggle.setAttribute("tabindex", -1);
             });
             setTimeout(() => {
                 navGrid.classList.remove("open");

@@ -15,9 +15,9 @@
                 </span>
             </a>
             <button class="btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-end-2 
-            {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
+            {% if page-id ==  link.id or folderName == link.id -%} border-opacity-25{% else -%} border-opacity-10{% endif -%}"
                 type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ link.id }}"
-                aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}">
+                aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}" tabindex="-1">
                 <span class="visually-hidden">Toggle Dropdown</span>
         </div>
         <div class="collapse multi-collapse" id="collapse{{ link.id }}">
