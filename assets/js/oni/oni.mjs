@@ -1,24 +1,9 @@
-import { emptyContainerCheck, largeDataWarning, showToast } from '../scripts.mjs';
-import * as oni from './oni-fn.mjs';
+import * as tools from '../tools.mjs';
+import * as toolkit from '../toolkit.mjs';
 
-Object.keys(oni).forEach(functionName => {
-    window[functionName] = oni[functionName];
+Object.entries(tools).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
 });
-
-// Extract strings
-const stringsDecodeButton = document.getElementById("stringsDecode");
-if(stringsDecodeButton) {
-    stringsDecodeButton.addEventListener("click", function () {
-        const stringsString = document.getElementById("stringsText");
-        const stringsKey = document.getElementById("stringsKey");
-
-        if (!emptyContainerCheck(stringsString.value, stringsString)) {
-            return false;
-        }
-        if (!largeDataWarning(stringsString.value, stringsString)) {
-            return false;
-        }
-
-        document.getElementById("stringsResults").textContent = oni.strings(stringsString.value);
-    });
-}
+Object.entries(toolkit).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});

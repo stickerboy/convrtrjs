@@ -1,0 +1,80 @@
+---
+layout: layout.liquid
+title: Hex reverse
+---
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Reverse hex
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="d-none">
+            <p class="px-2">
+                Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, here we have some unique ways to reverse hex strings.</p>
+            <dl class="row g-0 px-2">
+                <dt>Reverse bytes</dt>
+                <dd>This reverses the order of bits within each byte. <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">84 56 c6 c6 f6</code></dd>
+                <dt>Reverse byte order</dt>
+                <dd>While it sounds similar, byte order is a little different. This reverses the order of each hex byte in the string, so <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">6f 6c 6c 65 48</code></dd>
+                <dt>Reverse nibbles</dt>
+                <dd>This reverses the bits within each nibble (4 bits) of every byte in a hexadecimal string, which is equivalent to: converting the hex string to binary, reversing the bits in each nibble, then converting it back to hexadecimal. <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">21 6A 36 36 F6</code></dd>
+            </dl>
+
+            </p>
+            <p class="px-2">
+                The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters.
+            </p>
+        </div>
+        <div class="collapse show" id="{{ filename }}Collapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Reverse hex</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 48 65 6c 6c 6f" title="Reverse hex nibbles" rows="6" id="{{ filename }}Text" class="form-control reverse-hex" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-4 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto me-auto mb-2">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+                                        {% include "components/delimiter" %}
+                                        <button type="button" class="btn btn-md btn-convrtr me-2" id="{{ filename }}Decode">Reverse</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-start mb-2">
+                                    <label class="visually-hidden" for="{{ filename }}Type">Reverse hex properties</label>
+                                    <select class="form-select form-select--large" id="{{ filename }}Type" autocomplete="off">
+                                        <option value="bytes" selected="">Reverse bytes</option>
+                                        <option value="byte-order">Reverse byte order</option>
+                                        <option value="nibbles">Reverse nibbles</option>
+                                    </select>
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                            <div class="row g-md-0 gx-0 gy-2">
+                                <div class="form-check form-switch mx-lg-2 d-flex">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Chain" aria-checked="false">
+                                    <label class="form-check-label" for="{{ filename }}Chain">Chain <span class="visually-hidden" aria-hidden="true"
+                                            focusable="true">{{ filename }}</span> commands</label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% render "dynamic-script", page: page %}

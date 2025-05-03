@@ -1,0 +1,74 @@
+---
+layout: layout.liquid
+title: Hex shift
+---
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Shift hex
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="d-none">
+            <p class="px-2">
+                Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">49 66 6d 6d 70</code> [Ifmmp] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 64 6b 6b 6e</code> [Gdkkn] when shifted 1 to the left. 
+            </p>
+            <p class="px-2">
+                The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
+            </p>
+        </div>
+        <div class="collapse show" id="{{ filename }}Collapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Shift hex string</span>
+                    <div class="card-body text-center">
+                        <textarea placeholder="Example: 48 65 6c 6c 6f" title="Shift hex string" rows="6" id="{{ filename }}Text" class="form-control shift-hex" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-2 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-md-auto me-2 mb-2">
+                                    <div class="input-group w-auto">
+                                        <label class="input-group-text" id="{{ filename }}ValueLabel" for="{{ filename }}Value"><span class="d-none d-md-block">Shift&nbsp;</span>Value</label>
+                                        <input type="number" class="form-control" id="{{ filename }}Value" autocomplete="off" value="1">
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Decode">Shift</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill justify-content-start mb-2">
+                                    <label class="visually-hidden" for="{{ filename }}Delimiter">Shift Hex Delimiter</label>
+                                    {% include "components/delimiter" %}
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="{{ filename }}Results" class="d-flex flex-row">
+                            <div class="nav flex-column nav-pills me-3 shift-tabs" id="{{ filename }}Tabs" role="tablist" aria-orientation="vertical">
+                                <button class="nav-link active" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-tab-pane" type="button" role="tab" aria-controls="text-tab-pane" aria-selected="true">Text</button>
+                                <button class="nav-link" id="binary-tab" data-bs-toggle="tab" data-bs-target="#binary-tab-pane" type="button" role="tab" aria-controls="binary-tab-pane" aria-selected="false" tabindex="-1">Binary</button>
+                                <button class="nav-link" id="hex-tab" data-bs-toggle="tab" data-bs-target="#hex-tab-pane" type="button" role="tab" aria-controls="hex-tab-pane" aria-selected="false" tabindex="-1">Hex</button>
+                                <button class="nav-link" id="base64-tab" data-bs-toggle="tab" data-bs-target="#base64-tab-pane" type="button" role="tab" aria-controls="base64-tab-pane" aria-selected="false" tabindex="-1">Base64</button>
+                                <button class="nav-link" id="decimal-tab" data-bs-toggle="tab" data-bs-target="#decimal-tab-pane" type="button" role="tab" aria-controls="decimal-tab-pane" aria-selected="false" tabindex="-1">Decimal</button>
+                              </div>
+                              <div class="tab-content flex-column flex-fill shift-tabs convrtr-results" id="{{ filename }}Tabs-content">
+                                <div class="tab-pane h-100 fade show active data-to-copy" id="text-tab-pane" role="tabpanel" aria-labelledby="text-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="binary-tab-pane" role="tabpanel" aria-labelledby="binary-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="hex-tab-pane" role="tabpanel" aria-labelledby="hex-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="base64-tab-pane" role="tabpanel" aria-labelledby="base64-tab" tabindex="0"></div>
+                                <div class="tab-pane h-100 fade data-to-copy" id="decimal-tab-pane" role="tabpanel" aria-labelledby="decimal-tab" tabindex="0"></div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% render "dynamic-script", page: page %}

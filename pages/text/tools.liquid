@@ -1,0 +1,83 @@
+---
+layout: layout.liquid
+title: Text tools
+---
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="false" aria-controls="{{ filename }}Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Tools
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="d-none">
+            <p class="px-2">
+                Various operations that can be performed on any kind of text string. By default all changes are based on what you enter into the textarea. By selecting "Chain commands" this shifts to the results section at the bottom, you can then perform actions in succession. E.g. Strip spaces from a string, then select Remove all numbers and both will be performed. Preserve spaces will only work on tools marked with an asterisk [*].
+            </p>
+        </div>
+        <div class="collapse show" id="{{ filename }}Collapse">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Text tools</span>
+                    <div class="card-body text-center">
+                        <label class="visually-hidden" for="{{ filename }}Textarea">Text tools</label>
+                        <textarea rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="text-center mb-2 g-0">
+                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                                <div class="col col-12 col-lg-auto me-2 mb-2">
+                                    <div class="input-group w-auto mb-2">
+                                        <label class="input-group-text visually-hidden" for="{{ filename }}Select">Select a tool</label>
+                                        <select class="form-select rounded-start-3" id="{{ filename }}Select" autocomplete="off">
+                                            <option value="stripspaces" selected="">Strip spaces</option>
+                                            <option value="stripallwhitespace">Strip all whitespace</option>
+                                            <option value="reverse">Reverse</option>
+                                            <option value="uppercase">Uppercase</option>
+                                            <option value="lowercase">Lowercase</option>
+                                            <option value="uppercaseonly">Uppercase only *</option>
+                                            <option value="lowercaseonly">Lowercase only *</option>
+                                            <option value="numbersonly">Numbers only *</option>
+                                            <option value="lettersonly">Letters only *</option>
+                                            <option value="specialcharsonly">Special characters only *</option>
+                                            <option value="removenumbers">Remove all numbers</option>
+                                            <option value="removeletters">Remove all letters</option>
+                                            <option value="stripspecialchars">Remove all special characters *</option>
+                                            <option value="alphabet">Letters to alphabet number</option>
+                                            <option value="unique">Unique characters</option>
+                                            <option value="urlencode">URL Encode</option>
+                                            <option value="urldecode">URL Decode</option>
+                                        </select>
+                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Change">Run</button>
+                                    </div>
+                                </div>
+                                <div class="col d-flex flex-fill mb-2">
+                                    <div class="me-auto flex-fill">
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="chainCommands" aria-checked="false">
+                                            <label class="form-check-label" for="chainCommands">Chain commands</label>
+                                        </div>
+                                        <div class="form-check form-switch mx-lg-2 d-flex">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="preserveWhitespace" aria-checked="false">
+                                            <label class="form-check-label" for="preserveWhitespace">Preserve spaces</label>
+                                        </div>
+                                    </div>
+                                    {% include "components/select-copy-dl" %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div id="textResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% render "dynamic-script", page: page %}

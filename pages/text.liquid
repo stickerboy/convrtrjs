@@ -1,0 +1,17 @@
+---
+layout: layout.liquid
+title: For everlost and Grollow!
+description: >
+  Convrtr is a simple JavaScript based tool to quickly convert text between different formats and to help
+  create or solve data driven puzzles and ciphers.
+page-id: "{{ page.fileSlug }}"
+customPermalink: /
+---
+
+{% for page in collections.text %}
+    {% if page-id == "text" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
+{% endfor %}

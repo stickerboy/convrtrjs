@@ -1,0 +1,68 @@
+---
+layout: layout.liquid
+title: File headers
+---
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    File headers
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="d-none">
+            <p class="px-2">
+                A list of common file headers in hexadecimal format, useful if you have a chunk of data so you can quickly match it with a potential file type.
+            </p>
+            <p class="px-2">
+                More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
+            </p>
+        </div>
+        <div id="{{ filename }}Collapse" class="collapse show">
+            <div class="card">
+                <span class="card-label visually-hidden">File headers in hexadecimal format</span>
+                <div class="card-body py-3">
+                    <hr />
+                </div>
+                <div class="card-footer py-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped hash-table">
+                            <thead class="table-success">
+                                <tr>
+                                    <th scope="col" class="col-4 col-md-4 col-lg-4">Description</th>
+                                    <th scope="col">Header</th>
+                                    <th scope="col">Extensions</th>
+                                </tr>
+                            </thead>
+                            <tbody class="active" id="fileResults">
+                                {% for header in headers %}
+                                    {% for item in header.hex %}
+                                        {% if forloop.first %}
+                                        <tr>
+                                            <th scope="row" rowspan="{{ header.hex.size }}">
+                                                <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
+                                            </th>
+                                            <td>{{ item }}</td>
+                                            <td rowspan="{{ header.hex.size }}">{{ header.extensions }}</td>
+                                        </tr>
+                                        {% else %}
+                                        <tr>
+                                            <td>{{ item }}</td>
+                                        </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

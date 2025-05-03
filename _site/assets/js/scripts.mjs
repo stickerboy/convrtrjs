@@ -1,5 +1,13 @@
 import copyToClipboard from '../js/clip.mjs';
-import { inArray } from './toolkit.mjs';
+import * as tools from './tools.mjs';
+import * as toolkit from './toolkit.mjs';
+
+Object.entries(tools).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});
+Object.entries(toolkit).forEach(([functionName, functionRef]) => {
+    window[functionName] = functionRef;
+});
 
 /**
  * Saves a value to local storage
@@ -39,7 +47,7 @@ function clearLocalStorage() {
  */
 export function showToast(heading, content, color, delay) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, {delay: delay? delay : 5000});
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay ? delay : 5000 });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
@@ -62,16 +70,16 @@ export function showToast(heading, content, color, delay) {
  * @returns {boolean} - Returns true if the data length is within acceptable limits, otherwise false.
  */
 export function largeDataWarning(data, container) {
-    if(container) {
+    if (container) {
         container.classList.remove("is-invalid", "ld-warning");
     }
-    if(data.length > 200000 && data.length < 1000000) {
+    if (data.length > 200000 && data.length < 1000000) {
         showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");
     }
-    if(data.length > 1000000) {
+    if (data.length > 1000000) {
         showToast("Large data warning", "For performance reasons, operations above 1 million characters have been prevented.", "danger");
 
-        if(container) {
+        if (container) {
             container.classList.add("is-invalid", "ld-warning");
         }
         return false;
@@ -92,13 +100,13 @@ export function emptyContainerCheck(data, container, error) {
         element.classList.remove("is-invalid");
     }
 
-    if(data.trim() === "") {
+    if (data.trim() === "") {
         container.classList.add("is-invalid");
         showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
         return false;
     }
 
-    if(container.classList.contains("is-invalid")) {
+    if (container.classList.contains("is-invalid")) {
         container.classList.remove("is-invalid");
     }
     return true;
@@ -110,15 +118,21 @@ export function emptyContainerCheck(data, container, error) {
  * @param {HTMLElement} element - The element containing the text to be selected.
  * @returns {void}
  */
-function selectAllText(element) {
+function selectAllText(element, trim = false) {
     if (element.localName === "textarea") {
         element.focus();
+        if(trim) {
+            element.value = element.value.trim(); // Trim the value if needed
+        }
         element.setSelectionRange(0, element.value.length);
     } else {
+        if (trim) {
+            element.textContent = element.textContent.trim(); // Trim the text content if needed
+        }
         window.getSelection()
             .selectAllChildren(
                 element
-        );
+            );
     }
 }
 
@@ -143,21 +157,37 @@ function download(filename, text) {
  * Restores toggle states from local storage
  * @returns {void}
  */
-const sectionToggles = document.getElementsByClassName("section-toggle");
-if(sectionToggles.length > 0) {
+const sectionToggles = Array.from(document.getElementsByClassName("section-toggle"))
+    .filter(sectionToggle => !sectionToggle.classList.contains("d-none"));
+if (sectionToggles.length > 0) {
     function restoreOptions() {
         if (localStorage.length !== 0) {
             for (const sectionToggle of sectionToggles) {
                 const section = sectionToggle.closest(".section");
-                const sectionID = sectionToggle.closest(".section").id;
-                const x = getLocalStorageItem(sectionID);
-                if(x !== null) {
-                    sectionToggle.setAttribute("aria-expanded", getLocalStorageItem(sectionID));
+                if (!section) {
+                    console.warn("No parent section found for:", sectionToggle);
+                    continue; // Skip this iteration if no parent section exists
                 }
-                if (x === true) {
-                    section.querySelector(".collapse").classList.add("show");
+
+                const sectionID = section.id;
+                const x = getLocalStorageItem(sectionID);
+
+                if (x !== null) {
+                    sectionToggle.setAttribute("aria-expanded", x);
+                }
+
+                // Use the href attribute to locate the collapse element
+                const collapseID = sectionToggle.getAttribute("href");
+                const collapseElement = document.querySelector(collapseID);
+
+                if (collapseElement) {
+                    if (x === true) {
+                        collapseElement.classList.add("show");
+                    } else {
+                        collapseElement.classList.remove("show");
+                    }
                 } else {
-                    section.querySelector(".collapse").classList.remove("show");
+                    console.warn("No collapse element found for ID:", collapseID);
                 }
             }
         }
@@ -166,7 +196,7 @@ if(sectionToggles.length > 0) {
     document.addEventListener("DOMContentLoaded", restoreOptions);
 
     // Save toggle state
-    Array.from(sectionToggles, c => c.addEventListener("click", function() {
+    Array.from(sectionToggles, c => c.addEventListener("click", function () {
         let section = c.closest(".section");
         saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
     }));
@@ -185,25 +215,29 @@ const popoverTriggerList = document.querySelectorAll("[data-bs-toggle=\"popover\
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 
+// Enable collapse
+// const collapseElementList = document.querySelectorAll('.collapse');
+// const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
+
 const resetData = document.getElementById("resetData");
-resetData && resetData.addEventListener("click", function() {
+resetData && resetData.addEventListener("click", function () {
     const tooltip = bootstrap.Tooltip.getInstance(resetData);
     let dtcLength = 0;
 
     [...textareas].map(ta => {
-        if(inArray(ta.localName, ["div","tbody"])) {
-            if(ta.innerHTML.length !== 0) {
+        if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
+            if (ta.innerHTML.length !== 0) {
                 dtcLength += ta.innerHTML.length;
                 ta.innerHTML = "";
             }
         } else {
-            if(ta.value !== undefined  && ta.value.length !== 0) {
+            if (ta.value !== undefined && ta.value.length !== 0) {
                 dtcLength += ta.value.length;
                 ta.value = "";
             }
         }
     });
-    if(dtcLength === 0) {
+    if (dtcLength === 0) {
         tooltip.hide();
         showToast("Information", "No data to clear", "info", 3000);
         return;
@@ -220,8 +254,8 @@ resetData && resetData.addEventListener("click", function() {
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");
-if(selectButtons.length > 0) {
-    Array.from(selectButtons, c => c.addEventListener("click", function() {
+if (selectButtons.length > 0) {
+    Array.from(selectButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
@@ -236,7 +270,7 @@ if(selectButtons.length > 0) {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to select", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to select" });
@@ -247,7 +281,7 @@ if(selectButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
         c.classList.replace("btn-light", "btn-convrtr");
@@ -257,14 +291,14 @@ if(selectButtons.length > 0) {
             tooltip.setContent({ ".tooltip-inner": "Select All" });
         }, 3430);
 
-        selectAllText(textarea);
+        selectAllText(textarea, true);
     }));
 }
 
 // Copy current textarea contents to clipboard
 const copyButtons = document.getElementsByClassName("btn-copy");
-if(copyButtons.length > 0) {
-    Array.from(copyButtons, c => c.addEventListener("click", function() {
+if (copyButtons.length > 0) {
+    Array.from(copyButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
@@ -279,7 +313,7 @@ if(copyButtons.length > 0) {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to copy", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to copy" });
@@ -290,10 +324,10 @@ if(copyButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
-        if(!copyToClipboard(dtc, c)) {
+        if (!copyToClipboard(dtc, c)) {
             return false;
         }
 
@@ -312,8 +346,8 @@ if(copyButtons.length > 0) {
 
 // Download the contents of the closest textarea
 const downloadButtons = document.getElementsByClassName("btn-download");
-if(downloadButtons.length > 0) {
-    Array.from(downloadButtons, c => c.addEventListener("click", function() {
+if (downloadButtons.length > 0) {
+    Array.from(downloadButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dt = card.querySelector(".card-label").textContent;
@@ -324,12 +358,12 @@ if(downloadButtons.length > 0) {
             button.classList.remove("btn-convrtr", "btn-danger");
             button.classList.add("btn-light");
         });
-        
+
         Array.from(textareas, ta => {
             ta.classList.remove("is-invalid");
         });
 
-        if(dtc.trim() === "") {
+        if (dtc.trim() === "") {
             showToast("Warning", "There is no content in the container you are trying to download", "warning");
             textarea.classList.add("is-invalid");
             tooltip.setContent({ ".tooltip-inner": "No data to download" });
@@ -340,7 +374,7 @@ if(downloadButtons.length > 0) {
             return;
         }
 
-        if(textarea.classList.contains("is-invalid")) {
+        if (textarea.classList.contains("is-invalid")) {
             textarea.classList.remove("is-invalid");
         }
         download(dt, dtc);
@@ -360,3 +394,46 @@ customSwitch && customSwitch.addEventListener('click', () => {
     const isChecked = customSwitch.getAttribute('aria-checked') === 'true';
     customSwitch.setAttribute('aria-checked', !isChecked);
 });
+
+const navToggle = document.querySelector("#navbar-toggler");
+const navGrid = document.querySelector(".sidebar-grid");
+
+if (navToggle && navGrid) {
+    navToggle.addEventListener("click", () => {
+        const isOpen = navGrid.classList.contains("open");
+
+        if (!isOpen) {
+            navGrid.classList.add("open");
+
+            // Find the active page and its associated dropdown
+            const activeItem = navGrid.querySelector(".sidebar-item.active");
+            if (activeItem) {
+                const dropdown = activeItem.querySelector(".collapse");
+                if (dropdown) {
+                    const bsCollapse = bootstrap.Collapse.getOrCreateInstance(dropdown);
+                    setTimeout(() => {
+                        bsCollapse.show(); // Show the dropdown
+                    }, 500);
+                }
+            }
+            navGrid.querySelectorAll(".dropdown-toggle").forEach(dropdownToggle => {
+                dropdownToggle.setAttribute("tabindex", 0);
+            });
+        } else {
+            // Close all open sidebar collapse sections
+            const openCollapses = navGrid.querySelectorAll(".sidebar-dropdown .collapse.show");
+            openCollapses.forEach(collapse => {
+                const bsCollapse = bootstrap.Collapse.getInstance(collapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            });
+            navGrid.querySelectorAll(".dropdown-toggle").forEach(dropdownToggle => {
+                dropdownToggle.setAttribute("tabindex", -1);
+            });
+            setTimeout(() => {
+                navGrid.classList.remove("open");
+            }, 500);
+        }
+    });
+}

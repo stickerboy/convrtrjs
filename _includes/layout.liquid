@@ -1,39 +1,44 @@
 <!doctype html>
-<html lang="en"{% if page-id == "fourohfour" %} class="h-100"{% endif %}>
+<html lang="en" class="overflow-y-hidden">
     <head>
         {% include "layout/meta" %}
         {% include "layout/title" %}
 
+        <script>
+            (function () {
+                const theme = localStorage.getItem("theme") || "light";
+                document.documentElement.setAttribute("data-bs-theme", theme);
+            })();
+        </script>
+
         {% render "layout/css" %}
         {% include "layout/favicons" %}
     </head>
-    <body id="IOOBI9O4IEIEOIO4O4IB" 
-          {% if page-id == "fourohfour" %}class="d-flex flex-column h-100 top-0"{% endif %}>
-          <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
-
+    <body>
+        <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
         {% include "layout/header" %}
-
-        <main class="{% if page-id == "fourohfour" %}flex-shrink-0 {% endif %}mt-5 ms-auto me-auto mw"
-            data-bs-spy="scroll" 
-            data-bs-target="#navbarText" 
-            data-bs-smooth-scroll="true"
-            data-bs-threshold="0,1"
-            data-bs-root-margin="10% 0% -90%"
-            id="content">
-            {% if page-id != "fourohfour" -%}
-            {% include "partials/default" %}
-            {%- endif -%}
-            {{ content }}
-        </main>
-
-        {% include "layout/footer" %}
+        <div class="mw d-flex mx-auto">
+            <div class="grid sidebar-grid gap-0 p-0 w-100">
+                <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
+                    {% include "layout/sidebar" %}
+                </div>
+                <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
+                    data-bs-smooth-scroll="true" id="content">
+                    {% if page-id != "404" -%}
+                    {% include "partials/default" %}
+                    {%- endif -%}
+                    {{ content }}
+                    {% include "layout/footer" %}
+                </main>
+            </div>
+        </div>
         {% include "layout/scripts" %}
         {% render "layout/toast" %}
     </body>
 </html>
 {% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
 {% if dynamicPartialPath | fileExists %}
-{% render dynamicPartialPath %}
+    {% render dynamicPartialPath %}
 {% else %}
-{% render "partials/routes/home" %}
+    {% render "partials/routes/home" %}
 {% endif %}
