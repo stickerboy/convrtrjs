@@ -151,5 +151,27 @@
                 "label": "Calendar"
             }
         ]
+    },
+    {
+        "id": "sitemap",
+        "label": "Sitemap",
+        "short-label": "Sitemap",
+        "icon": "diagram-3",
+        "description": "An overview of all pages available across the site",
+        "label_1": "View the ",
+        "label_2": "Sitemap",
+        "aria-label": "View the Sitemap",
+        "switch-label": false
+    },
+    {
+        "id": "changelog",
+        "label": "Changelog",
+        "short-label": "Changelog",
+        "icon": "calendar2-week",
+        "description": "History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.",
+        "label_1": "Changelog",
+        "label_2": ": latest site updates",
+        "aria-label": "Changelog: latest site updates",
+        "switch-label": true
     }
 ]
