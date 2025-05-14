@@ -1,13 +1,20 @@
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 <script src="{{ '/assets/js/core/bootstrap.bundle.min.js' | url }}" crossorigin="anonymous"></script>
-<script src="{{ '/assets/js/theme.js' | url }}></script>
-{%- if page-id != "fourohfour" %}
+{%- if page-id == "sitemap" %}
+<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
+    async></script>
+{%- endif %}
+<script src="{{ '/assets/js/theme.js' | url }}"></script>
+{%- if page-id != "404" %}
 <script type="module" src="{{ '/assets/js/clip.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/toolkit.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/tools.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/rot.mjs' | url }}"></script>
-<script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
-{% assign dynamicJSPath = "/assets/js/" | append: page-id | append: "/" | append: page-id | append: ".mjs" %}
-{% if dynamicJSPath | assetExists -%}<script type="module" src="{{ dynamicJSPath | url }}"></script>{%- endif %}
-{% if page-id == "home" -%}<script type="module" src="{{ '/assets/js/home/convrtrs.mjs' | url }}"></script>{%- endif %}
+{%- endif %}
+{% if page-id == "ciphers" or page-id == "hash" %}
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 {%- endif -%}
+<script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
+{% if page-id == "check" or page-id == "files" -%}
+<script>const HEADERS = {{ headers | json }};</script>
+{% endif -%}
+{% if page-id == "elementstable" or page-id == "misc" -%}
+<script>const ELEMENTS = {{ elements | json }};</script>
+{% endif -%}

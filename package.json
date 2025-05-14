@@ -1,6 +1,6 @@
 {
   "name": "convrtrjs",
-  "version": "2.0.3",
+  "version": "3.0.0",
   "description": "A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
@@ -90,7 +90,7 @@
     "convert periodic element properties"
   ],
   "dependencies": {
-    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy": "^3.1.0",
     "bootstrap-scss": "^5.3.3",
     "sass": "^1.81.0"
   }
