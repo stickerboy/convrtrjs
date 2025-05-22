@@ -4,10 +4,9 @@ layout: layout.liquid
 description: History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.
 page-id: changelog
 pagination:
-  data: collections
+  data: collections.filteredTags
   size: 1
   alias: tag
-  filter: labels.labels
 permalink: '/changelog/tag/{{ tag }}/'
 eleventyComputed:
   description: "{{ description }}<br />You can also view the full list of releases on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"

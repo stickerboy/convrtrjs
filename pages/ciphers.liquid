@@ -1,0 +1,14 @@
+---
+layout: layout.liquid
+title: Cipher tools
+description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
+page-id: "{{ page.fileSlug }}"
+---
+
+{% for page in collections.ciphers %}
+    {% if page-id == "ciphers" %}
+        {{ page.templateContent | removeHiddenClass: true | safe }}
+    {% else %}
+        {% include "wrapper.liquid" with page %}
+    {% endif %}
+{% endfor %}

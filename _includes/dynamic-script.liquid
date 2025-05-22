@@ -1,0 +1,2 @@
+{% assign dynamicJSPath = page.filePathStem | replace: "/pages", "/assets/js" | append: ".mjs" %}
+<script type="module" src="{{ dynamicJSPath | url }}"></script>

@@ -1,0 +1,60 @@
+<nav aria-label="{{ pagination.label}}">
+    <ul class="pagination">
+    <!-- Previous Link -->
+    {% if pagination.previousPageHref %}
+        <li class="page-item">
+            <a href="{{ pagination.previousPageHref }}" class="page-link">
+                <span class="d-none d-sm-block">Previous</span>
+                <span class="d-block d-sm-none" aria-label="Previous">&#8678;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a class="page-link" href="{{ pagination.href.first }}" aria-label="Jump to first page">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <span class="page-link d-none d-sm-block">Previous</span>
+            <span class="d-block d-sm-none" aria-label="Previous">&#8678;</span>
+        </li>
+    {% endif %}
+
+    <!-- Page Number Links -->
+    {% assign currentPage = pagination.pageNumber %}
+    {% assign startPage = currentPage | minus: 1 %}
+    {% assign endPage = currentPage | plus: 2 %}
+    {% for pageNumber in pagination.pages %}
+        {% assign pageIndex = forloop.index0 %}
+        {% if pageIndex >= startPage and pageIndex <= endPage -%}
+        <li class="page-item {% if pageIndex == currentPage %}active{% endif %}">
+        {% if pageIndex == currentPage %}
+            <span class="page-link">{{ pageIndex | plus: 1 }}</span>
+        {% else %}
+            <a href="{{ pagination.hrefs[pageIndex] }}" class="page-link">{{ pageIndex | plus: 1 }}</a>
+        {% endif %}
+        </li>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Next Link -->
+    {% if pagination.nextPageHref %}
+        <li class="page-item">
+            <a class="page-link" href="{{ pagination.href.last }}" aria-label=" Jump to last page">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <li class="page-item">
+            <a href="{{ pagination.nextPageHref }}" class="page-link">
+                <span class="d-none d-sm-block">Next</span>
+                <span class="d-block d-sm-none" aria-label="Next">&#8680;</span>
+            </a>
+        </li>
+    {% else %}
+        <li class="page-item disabled">
+            <span class="page-link d-none d-sm-block">Next</span>
+            <span class="d-block d-sm-none" aria-label="Next">&#8680;</span>
+        </li>
+    {% endif %}
+    </ul>
+</nav>

@@ -1,23 +1,55 @@
-<ul class="navbar-nav me-auto mb-2">
+<div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     {% for link in nav %}
-        <li class="nav-item dropdown{% if page-id ==  link.id %} active{% endif %}" data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
-            {% if link.children %}
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="{% if page-id ==  link.id %}true{% else %}false{% endif %}">
-                <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
+    <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id or folderName == link.id %} active{% endif %}" data-link-id="{{ link.id }}"
+        data-page-id="{{ page-id }}">
+        {% if link.children %}
+        <div class="btn-group">
+            <a
+                class="btn sidebar-item__link border border-success rounded-start-2 {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start"
+                href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
+                <span class="sidebar-item__icon ms-1 me-1 fs-4">
+                    <i class="bi bi-{{ link.icon }}"></i>
+                </span>
+                <span class="sidebar-item__label fs-5 ms-2">
+                    {{ link.label }}
+                </span>
             </a>
-            <ul class="dropdown-menu{% if page-id ==  link.id %} show{% endif %}">
-                {% assign sortedItems = link.children | sort: 'id' %}
-                {% for child in sortedItems %}
-                <li class="mb-1">
-                    <a class="dropdown-item" href="{% if link.id != 'home'%}{{ '/' | append: link.id | url }}{% endif %}/#{{ child.id }}">{{ child.label }}</a>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <a class="nav-link" href="{{ '/' | append: link.id | url }}" role="button">
-                <span class="d-inline-flex ms-1 me-auto fs-5">{{ link.label }}</span>
-            </a>
-            {% endif %}
-        </li>
+            <button class="btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-end-2 
+            {% if page-id ==  link.id or folderName == link.id -%} border-opacity-25{% else -%} border-opacity-10{% endif -%}"
+                type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ link.id }}"
+                aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}" tabindex="-1">
+                <span class="visually-hidden">Toggle Dropdown</span>
+        </div>
+        <div class="collapse multi-collapse" id="collapse{{ link.id }}">
+            <div class="ac-body">
+                <ul class="menu">
+                    {% assign sortedItems = link.children | sort: 'id' %}
+                    {% for child in sortedItems %}
+                    <li class="mb-1">
+                        <a class="dropdown-item{% if page-id == child.id %} fw-bold link-underline-success{% endif %}"
+                            href="{% if child.id != 'convrtrs'%}{{ '/' | append: link.id | url }}{% endif %}/{{ child.id }}"
+                            data-target="#{{ link.id }}">{{ child.label }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
+        {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}" aria-label="{{ link.aria-label }}"
+            href="{{ '/' | append: link.id | replace: 'text', '' | url }}" data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-3">
+                {%- if link.switch-label %}
+                {{ link.label_1 }}<span class="visually-hidden">{{ link.label_2 }}</span>
+                {%- else %}
+                <span class="visually-hidden">{{ link.label_1 }}</span>{{ link.label_2 }}
+                {%- endif %}
+            </span>
+        </a>
+        {% endif %}
+    </div>
     {% endfor %}
-    </ul>
+</div>

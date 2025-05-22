@@ -1,0 +1,47 @@
+---
+layout: layout.liquid
+title: File check
+---
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <div class="section-heading mb-4">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+                aria-expanded="true" aria-controls="{{ filename }}Collapse">
+                <h2 class="display-6 w-100 d-flex m-0">
+                    Check file type
+                </h2>
+                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                    <i class="bi bi-arrow-up lh-base"></i>
+                </span>
+            </a>
+            <hr class="d-none">
+            <p class="px-2">
+                Select a file to check its file type / header. Only the first 16 bytes of each file are read and then discarded, no files are actually uploaded or stored anywhere.
+                Files are matches against the File headers table below and won't catch everything. Feel free to reach out if there's a header missing or one you think would be worth adding.
+            </p>
+        </div>
+        <div id="{{ filename }}Collapse" class="collapse show">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Check file headers</span>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="fileInput">
+                          </div>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            {% include "components/select-copy-dl" %}
+                        </div>
+                        <hr />
+                        <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% render "dynamic-script", page: page %}

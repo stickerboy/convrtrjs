@@ -11,7 +11,6 @@ export default function rot(string, n = -13, alpha = alphabet.substring(1)) {
     n = (n % 26 + 26) % 26; // Normalize n to ensure it's positive and within the alphabet range
     const length = alpha.length;
     let result = "";
-
     for (const char of string) {
         if (isLetter(char)) {
             const isUpper = isUpperCase(char);
