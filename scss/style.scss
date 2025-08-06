@@ -975,6 +975,23 @@ textarea.form-control.is-invalid.ld-warning {
             outline-color: var(--convrtr-bg-color-75)
         }
     }
+    code {
+        --bs-bg-opacity: 0.1;
+        --bs-border-opacity: 0.1;
+        display: inline-flex !important;
+        border-radius: var(--bs-border-radius) !important;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+        border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+        border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+        padding-right: .5rem !important;
+        padding-left: .5rem !important;
+        color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+        font-size: 0.875em;
+        color: var(--bs-code-color);
+        word-wrap: break-word;
+        font-family: var(--bs-font-monospace);
+    }
 }
 .version-list {
     >:not(caption)>*>* {
