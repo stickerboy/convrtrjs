@@ -86,6 +86,7 @@ body {
     margin-top: 4rem;
     display: flex;
     flex-direction: column;
+    background-color: var(--bs-white);
     @media screen and (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
     }
@@ -929,7 +930,6 @@ textarea.form-control.is-invalid.ld-warning {
 }
 
 .changelog {
-    height: 100vh;
     h1,h2 {
         padding-bottom: 0.75rem;
         margin-bottom: 1.25rem;
