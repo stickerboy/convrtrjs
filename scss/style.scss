@@ -949,9 +949,11 @@ textarea.form-control.is-invalid.ld-warning {
     }
     h3 {
         @extend .h4 !optional;
+        font-size: 1.5rem;
         font-weight: 400;
     }
-    h4 {@extend .h5 !optional;
+    h4 {
+        @extend .h5 !optional;
         font-weight: 400;
     }
     article img {
@@ -1090,6 +1092,11 @@ textarea.form-control.is-invalid.ld-warning {
     &-security {
         color: var(--bs-white);
         background-color: $purple;
+    }
+    &-privacy {
+        color: $gray-900;
+        background-color: var(--bs-white);
+        border: 1px solid $gray-600;
     }
     &-wontfix {
         color: var(--bs-white);

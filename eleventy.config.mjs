@@ -202,6 +202,13 @@ export default function (eleventyConfig) {
             }
             return null;
         },
+        "lastmod": (data) => {
+            if (data.page && data.page.inputPath) {
+                const filePath = path.join(process.cwd(), data.page.inputPath);
+                const stats = fs.statSync(filePath);
+                return stats.mtime; // Return the last modified time of the file
+            }
+        },
     });
 
     eleventyConfig.addFilter("removeHiddenClass", (content, isLandingPage) => {
