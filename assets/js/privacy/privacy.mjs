@@ -1,0 +1,40 @@
+let locStore = [];
+
+if(localStorage.length > 0) {
+    locStore.push(`<div class="table-responsive">`);
+    locStore.push(`     <table class="table table-striped hash-table">
+        <thead class="table-success">
+            <tr>
+                <th scope="col" class="col-4 col-md-4 col-lg-4">Storage item</th>
+                <th scope="col">Value</th>
+            </tr>
+        </thead>
+        <tbody class="active" id="fileResults">`);
+    Object.entries(localStorage).forEach(([key, value]) => {
+        locStore.push(`<tr>
+                                            <th scope="row" rowspan="1">
+                                                <span class="display-6 fs-6 fw-normal">${key}</span>
+                                            </th>
+                                            <td>${value}</td>
+                                        </tr>`)
+    });
+    locStore.push(`        </tbody>
+                        </table>
+                    </div>`);
+} else {
+    locStore.push(`<div class="alert alert-info" role="alert">
+        You have no local storage items stored for our site at this time.
+    </div>`);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const locStorageContainer = document.querySelector(".privacy-localstorage");
+    if (locStorageContainer) {
+        locStorageContainer.innerHTML = locStore.join("");
+    }
+});
+
+// Ensure the localStorage variable is initialized
+if (!locStore) {
+    locStore = [];
+}

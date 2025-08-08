@@ -8,8 +8,6 @@ eleventyComputed:
   description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
 ---
 
-
-
 We care about your privacy and want to be transparent about how your data is handled when you use **Convrtr**.
 
 ### What We Collect
@@ -45,6 +43,12 @@ Under GDPR and the ePrivacy Directive, local storage is treated similarly to coo
 - **Strictly necessary** for providing a service the user has requested (e.g., remembering tool visibility or theme preferences).
 
 We ensure that local storage is used only for functionality that improves your experience and does not track or profile you.
+
+Here are the current items stored in your local storage:
+
+<div class="privacy-localstorage col-sm-12 col-md-10 col-lg-8"></div>
+
+You can clear your local storage at any time to reset your preferences.
 
 ### Your Choices
 
