@@ -64,4 +64,6 @@ You can additionally filter down to just privacy related changes using the [Priv
 
 If you have any questions about this policy, feel free to reach out:
 
-- By email: [privacy@kenny.cx](mailto:privacy@kenny.cx "Send me an email")
+- By email: [privacy@convrtr.xyz](mailto:privacy@convrtr.xyz "Send me an email")
+
+<script type="module" src="{{ '/assets/js/privacy/privacy.mjs' | url }}"></script>
