@@ -22,10 +22,10 @@ We do **not** collect or store any personal information on our servers. The only
 
 To comply with the **General Data Protection Regulation (GDPR)**:
 
-- We have **enabled IP anonymization** in Google Analytics to prevent storing identifiable user data[1](https://gdprlocal.com/google-analytics-gdpr-compliance/).
-- We use **Google Consent Mode**, which respects your cookie preferences and only tracks data if you’ve given consent[1](https://gdprlocal.com/google-analytics-gdpr-compliance/).
+- We have **enabled IP anonymization** in Google Analytics to prevent storing identifiable user data.
+- We use **Google Consent Mode**, which respects your cookie preferences and only tracks data if you’ve given consent.
 - We provide a **cookie banner** that allows you to opt in or out of analytics tracking.
-- We have signed Google’s **Data Processing Agreement (DPA)** as required by GDPR[2](https://www.cookieyes.com/blog/google-analytics-gdpr/).
+- We have signed Google’s **Data Processing Agreement (DPA)** as required by GDPR.
 
 You can learn more about how Google uses data here.
 
@@ -42,18 +42,19 @@ This data stays on your device and is **not shared** with us or any third partie
 
 Under GDPR and the ePrivacy Directive, local storage is treated similarly to cookies. However, consent is **not required** when the data stored is:
 
-- **Strictly necessary** for providing a service the user has requested (e.g., remembering tool visibility or theme preferences) [3](https://law.stackexchange.com/questions/30739/do-the-gdpr-and-cookie-law-regulations-apply-to-localstorage).
+- **Strictly necessary** for providing a service the user has requested (e.g., remembering tool visibility or theme preferences).
 
 We ensure that local storage is used only for functionality that improves your experience and does not track or profile you.
 
 ### Your Choices
 
 - You can **clear your browser’s local storage** at any time to reset your preferences.
-- You can **opt out of Google Analytics tracking** using browser extensions like Google Analytics Opt-out.
+- You can **[opt out of Google Analytics tracking](https://support.google.com/analytics/answer/181881)** using browser extensions like Google Analytics Opt-out.
 
 ### Changes to this Privacy Policy
 
-We may update our policy from time to time, any changes will be marked on this page and available on our [Changelog](/changelog). You can additionally filter down to just privacy related changes using the [Privacy tag](/changelog/tag/privacy/ "Changelog filter for privacy related updates") search.
+We may update our policy from time to time, any changes will be marked on this page and available on our [Changelog](/changelog).  
+You can additionally filter down to just privacy related changes using the [Privacy tag](/changelog/tag/privacy/ "Changelog filter for privacy related updates") search.
 
 ### Contact
 
