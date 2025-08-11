@@ -2,6 +2,12 @@
     charset="UTF-8"></script>
 <script type="text/javascript" charset="UTF-8">
     document.addEventListener('DOMContentLoaded', function () {
-        cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "light", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_privacy_policy_url": "{{ pkg.homepage }}/privacy" });
+        let siteTheme = document.documentElement.getAttribute("data-bs-theme");
+        if (siteTheme === "dark") {
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "dark", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_privacy_policy_url": "{{ pkg.homepage }}/privacy" });
+
+        } else {
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "light", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_privacy_policy_url": "{{ pkg.homepage }}/privacy" });
+        }
     });
 </script>
