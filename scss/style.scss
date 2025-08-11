@@ -1113,6 +1113,8 @@ textarea.form-control.is-invalid.ld-warning {
 .termsfeed-com---nb-headline {
     position: absolute !important;
     background-color: transparent !important;
+    max-width: 1920px !important;
+    margin: 0 auto !important;
 }
 .termsfeed-com---palette-light .cc-nb-main-container {
     background-color: var(--bs-gray-100) !important;
