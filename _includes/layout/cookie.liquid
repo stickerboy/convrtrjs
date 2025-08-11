@@ -4,10 +4,10 @@
     document.addEventListener('DOMContentLoaded', function () {
         let siteTheme = document.documentElement.getAttribute("data-bs-theme");
         if (siteTheme === "dark") {
-            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "dark", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_privacy_policy_url": "{{ pkg.homepage }}/privacy" });
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "dark",  "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_name": "{{ pkg.sitename }}", "website_privacy_policy_url": "{{ pkg.homepage }}/privacy", "page_load_consent_levels": ["strictly-necessary", "functionality", "tracking"], "notice_banner_purposes_levels": ["strictly-necessary", "functionality", "tracking"] });
 
         } else {
-            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "light", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_privacy_policy_url": "{{ pkg.homepage }}/privacy" });
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "light", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_name": "{{ pkg.sitename }}", "website_privacy_policy_url": "{{ pkg.homepage }}/privacy",  "page_load_consent_levels": ["strictly-necessary", "functionality", "tracking"], "notice_banner_purposes_levels": ["strictly-necessary", "functionality", "tracking"] });
         }
     });
 </script>
