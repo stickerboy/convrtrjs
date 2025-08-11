@@ -57,6 +57,21 @@ const showActiveTheme = (theme, focus = false) => {
     if (focus) {
         themeSwitcher.focus();
     }
+
+    const cookieTheme = document.querySelector("#termsfeed-com---nb");
+    if (cookieTheme) {
+        if (theme === 'auto') {
+            cookieTheme.classList.remove("termsfeed-com---palette-dark", "termsfeed-com---palette-light");
+            cookieTheme.classList.add(`termsfeed-com---palette-${(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') }`);
+        }
+        else if (theme === 'dark') {
+            cookieTheme.classList.remove("termsfeed-com---palette-light");
+            cookieTheme.classList.add(`termsfeed-com---palette-dark`);
+        } else if (theme === 'light') {
+            cookieTheme.classList.remove("termsfeed-com---palette-dark");
+            cookieTheme.classList.add(`termsfeed-com---palette-light`);
+        }
+    }
 }
 
 window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
