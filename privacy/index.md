@@ -61,14 +61,14 @@ You can clear your local storage at any time to reset your preferences.
 ### Your Choices
 
 - You can **clear your browser’s local storage** at any time to reset your preferences.
-- You can **[opt out of Google Analytics tracking](https://support.google.com/analytics/answer/181881)** using browser extensions like Google Analytics Opt-out.
-- You can view and change **<a href="#" id="open_preferences_center" class="text-convrtr">your cookies preferences</a>**.
+- You can **[opt out of Google Analytics tracking<i class="bi bi-box-arrow-up-right opacity-75 ms-1" focusable="false" aria-hidden="false"></i>](https://support.google.com/analytics/answer/181881)** using browser extensions like Google Analytics Opt-out.
+- You can view and change **<a href="#" id="open_preferences_center" class="text-convrtr">your cookies preferences</a>** (this opens in a modal pop-up).
 
 
 ### Changes to this Privacy Policy
 
-We may update our policy from time to time, any changes will be marked on this page and available on our [Changelog](/changelog).  
-You can additionally filter down to just privacy related changes using the [Privacy tag](/changelog/tag/privacy/ "Changelog filter for privacy related updates") search.
+We may update our policy from time to time, any changes will be marked on this page and available on our **[Changelog](/changelog)**.  
+You can additionally filter down to just privacy related changes using the **[Privacy tag](/changelog/tag/privacy/ "Changelog filter for privacy related updates")** search.
 
 ### Contact
 
