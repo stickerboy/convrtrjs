@@ -404,6 +404,10 @@ body {
     vertical-align: top;
 }
 
+.bi-box-arrow-up-right::before {
+    transform: scale(0.75);
+}
+
 .mw {
     max-width: var(--bs-breakpoint-fhd);
 }

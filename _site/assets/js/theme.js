@@ -38,20 +38,22 @@ const showActiveTheme = (theme, focus = false) => {
 
     const themeSwitcherText = document.querySelector("#bd-theme-text");
     const activeThemeIcon = document.querySelector("[data-current-icon]");
-    const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`);
-    const svgOfActiveBtn = btnToActive.getAttribute("data-theme-icon");
+    const btnToActive = document.querySelectorAll(`[data-bs-theme-value="${theme}"]`);
+    const svgOfActiveBtn = btnToActive[1].getAttribute("data-theme-icon");
 
     document.querySelectorAll("[data-bs-theme-value]").forEach(element => {
         element.classList.remove("active");
         element.setAttribute("aria-pressed", "false");
     });
 
-    btnToActive.classList.add("active");
-    btnToActive.setAttribute("aria-pressed", "true");
+    btnToActive.forEach(btn => {
+        btn.classList.add("active");
+        btn.setAttribute("aria-pressed", true);
+    });
     activeThemeIcon.querySelector("i").classList.remove(activeThemeIcon.getAttribute("data-current-icon"));
     activeThemeIcon.querySelector("i").classList.add(svgOfActiveBtn);
     activeThemeIcon.setAttribute("data-current-icon", svgOfActiveBtn);
-    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive.dataset.bsThemeValue})`;
+    const themeSwitcherLabel = `${themeSwitcherText.textContent} (${btnToActive[1].dataset.bsThemeValue})`;
     themeSwitcher.setAttribute("aria-label", themeSwitcherLabel);
 
     if (focus) {
