@@ -22,7 +22,7 @@ if(localStorage.length > 0) {
                         </table>
                     </div>`);
 } else {
-    locStore.push(`<div class="alert alert-info" role="alert">
+    locStore.push(`<div class="alert alert-info mb-0" role="alert">
         You have no local storage items stored for our site at this time.
     </div>`);
 }
