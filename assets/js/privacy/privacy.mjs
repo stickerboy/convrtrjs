@@ -1,6 +1,8 @@
+import { isJSON } from "../tools.mjs";
+
 let locStore = [];
 
-if(localStorage.length > 0) {
+if (localStorage.length > 0) {
     locStore.push(`<div class="table-responsive">`);
     locStore.push(`     <table class="table table-striped hash-table">
         <thead class="table-success">
@@ -10,15 +12,27 @@ if(localStorage.length > 0) {
             </tr>
         </thead>
         <tbody class="active" id="fileResults">`);
-    Object.entries(localStorage).forEach(([key, value]) => {
-        locStore.push(`<tr>
-                                            <th scope="row" rowspan="1">
-                                                <span class="display-6 fs-6 fw-normal">${key}</span>
-                                            </th>
-                                            <td>${value}</td>
-                                        </tr>`)
-    });
-    locStore.push(`        </tbody>
+            Object.entries(localStorage).forEach(([key, value]) => {
+                if (isJSON(value)) {
+                    value = JSON.parse(value);
+                    locStore.push(`<tr>
+                                                    <th scope="row" rowspan="1">
+                                                        <span class="display-6 fs-6 fw-normal">${key.charAt(0).toUpperCase() + key.slice(1)}</span>
+                                                    </th>
+                                                    <td>
+                                                        ${value.name ?? value.name}${value.description ? ` — ${value.description}` : ""}
+                                                    </td>
+                                                </tr>`);
+                } else {
+                    locStore.push(`<tr>
+                                                    <th scope="row" rowspan="1">
+                                                        <span class="display-6 fs-6 fw-normal">${key}</span>
+                                                    </th>
+                                                    <td>${value}</td>
+                                                </tr>`);
+                }
+            });
+            locStore.push(`        </tbody>
                         </table>
                     </div>`);
 } else {

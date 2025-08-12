@@ -1007,6 +1007,9 @@ textarea.form-control.is-invalid.ld-warning {
         word-wrap: break-word;
         font-family: var(--bs-font-monospace);
     }
+    summary {
+        margin-bottom: 0.5rem;
+    }
 }
 .privacy {
     a {
