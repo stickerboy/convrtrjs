@@ -46,9 +46,15 @@ Under GDPR and the ePrivacy Directive, local storage is treated similarly to coo
 
 We ensure that local storage is used only for functionality that improves your experience and does not track or profile you.
 
-Here are the current items stored in your local storage:
-
-<div class="privacy-localstorage col-sm-12 col-md-10 col-lg-8"></div>
+<button class="btn btn-outline-convrtr" type="button" data-bs-toggle="collapse" 
+        data-bs-target="#collapsePrivacy" aria-expanded="false" aria-controls="collapsePrivacy">
+    View items stored in local storage
+</button>
+<div class="collapse col-sm-12 col-md-10 col-lg-8" id="collapsePrivacy">
+    <div class="card card-body">
+        <div class="privacy-localstorage"></div>
+    </div>
+</div>
 
 You can clear your local storage at any time to reset your preferences.
 
