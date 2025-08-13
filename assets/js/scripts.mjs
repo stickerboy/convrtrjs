@@ -219,37 +219,45 @@ const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 // const collapseElementList = document.querySelectorAll('.collapse');
 // const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
 
-const resetData = document.getElementById("resetData");
-resetData && resetData.addEventListener("click", function () {
-    const tooltip = bootstrap.Tooltip.getInstance(resetData);
-    let dtcLength = 0;
+const resetButtons = document.querySelectorAll(".btn-reset-data");
 
-    [...textareas].map(ta => {
-        if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
-            if (ta.innerHTML.length !== 0) {
-                dtcLength += ta.innerHTML.length;
-                ta.innerHTML = "";
-            }
-        } else {
-            if (ta.value !== undefined && ta.value.length !== 0) {
-                dtcLength += ta.value.length;
-                ta.value = "";
-            }
-        }
+if (resetButtons.length > 0) {
+    resetButtons.forEach(resetBtn => {
+        resetBtn.addEventListener("click", function () {
+            const tooltip = bootstrap.Tooltip.getInstance(resetBtn);
+            let dtcLength = 0;
+
+            [...textareas].forEach(ta => {
+                if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
+                    if (ta.innerHTML.length !== 0) {
+                        dtcLength += ta.innerHTML.length;
+                        ta.innerHTML = "";
+                    }
+                } else {
+                    if (ta.value !== undefined && ta.value.length !== 0) {
+                        dtcLength += ta.value.length;
+                        ta.value = "";
+                    }
+                }
+            });
+
+            resetBtn.querySelector(".bi").classList.add("convrtr-spin");
+            clearLocalStorage();
+
+            setTimeout(() => {
+                resetBtn.querySelector(".bi").classList.remove("convrtr-spin");
+                tooltip?.hide();
+
+                if (dtcLength === 0) {
+                    showToast("Information", "Local storage successfully cleared", "info", 3000);
+                } else {
+                    showToast("Notice", "All data successfully cleared", "convrtr", 3000);
+                }
+            }, 1000);
+        });
     });
+}
 
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
-    clearLocalStorage();
-    setTimeout(() => {
-        resetData.querySelector(".bi").classList.remove("convrtr-spin");
-        tooltip.hide();
-        if (dtcLength === 0) {
-            showToast("Information", "Local storage successfully cleared", "info", 3000);
-        } else {
-            showToast("Notice", "All data successfully cleared", "convrtr", 3000);
-        }
-    }, 1000);
-});
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");

@@ -31,7 +31,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
-                    {% assign excludedPages = "fourohfour,404,sitemap,tags,changelog" | split: "," %}
+                    {% assign excludedPages = "fourohfour,404" | split: "," %}
                 {% if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -84,7 +84,7 @@
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover"
                         data-bs-title="View settings">
                         <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
-                            type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings">
+                            type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
                             <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
                             <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
                         </button>
@@ -106,7 +106,7 @@
                             {% if not excludedPages contains page-id %}
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
-                                    id="resetData" aria-label="Clear all data inside textareas" title="Clear data">
+                                    id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">
                                     <i class="bi me-2 opacity-75 theme-icon bi-recycle" aria-hidden="true" focusable="false"></i>
                                     Clear data <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">inside
                                         textareas</span>
