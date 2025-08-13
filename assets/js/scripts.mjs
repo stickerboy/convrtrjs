@@ -237,18 +237,17 @@ resetData && resetData.addEventListener("click", function () {
             }
         }
     });
-    if (dtcLength === 0) {
-        tooltip.hide();
-        showToast("Information", "No data to clear", "info", 3000);
-        return;
-    }
-    clearLocalStorage();
 
     resetData.querySelector(".bi").classList.add("convrtr-spin");
+    clearLocalStorage();
     setTimeout(() => {
         resetData.querySelector(".bi").classList.remove("convrtr-spin");
         tooltip.hide();
-        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
+        if (dtcLength === 0) {
+            showToast("Information", "Local storage successfully cleared", "info", 3000);
+        } else {
+            showToast("Notice", "All data successfully cleared", "convrtr", 3000);
+        }
     }, 1000);
 });
 
