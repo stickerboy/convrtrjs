@@ -2,62 +2,21 @@
 * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
 * Refactored to support complex theme objects in localStorage
 */
+import { showToast } from "./scripts.mjs";
 
 (() => {
     "use strict";
 
-    const migrateLegacyTheme = () => {
-        const raw = localStorage.getItem("theme");
-        if (!raw) return;
-
-        try {
-            const parsed = JSON.parse(raw);
-
-            // Already in new format — do nothing
-            if (typeof parsed === "object" && parsed !== null && "value" in parsed) {
-                return;
-            }
-
-            // If it's a string inside JSON
-            if (typeof parsed === "string") {
-                migrateFromLegacyValue(parsed);
-            }
-        } catch {
-            // If it's a raw string (not JSON), migrate it
-            migrateFromLegacyValue(raw);
+    const migrateLegacyOptions = () => {
+        const legacyFlag = localStorage.getItem("legacy");
+        const theme = localStorage.getItem("theme");
+        if (!legacyFlag && !theme && localStorage.length > 0) {
+            localStorage.clear();
+            localStorage.setItem("legacy", JSON.stringify({"id": "legacy", "name": "Legacy flag", "value": "", "description": "A flag to assist in a migration from legacy theme settings."}));
+            showToast("Legacy migration", "Legacy settings stored in local storage have been cleared, migrating to new functionality. Theme preferences and tool states will need to be reset.", "convrtr", 7500, false);
+        } else {
+            return;
         }
-    };
-
-    const migrateFromLegacyValue = (legacyValue) => {
-        const themeMap = {
-            light: {
-                id: "theme",
-                name: "Light Mode",
-                value: "light",
-                description: "A bright light theme"
-            },
-            dark: {
-                id: "theme",
-                name: "Dark Mode",
-                value: "dark",
-                description: "A sleek dark theme"
-            },
-            auto: {
-                id: "theme",
-                name: "Auto Mode",
-                value: "auto",
-                description: "Follows system preference"
-            }
-        };
-
-        const migrated = themeMap[legacyValue] || {
-            id: "theme",
-            name: "Legacy Theme",
-            value: legacyValue,
-            description: "Migrated from legacy format"
-        };
-
-        localStorage.setItem("theme", JSON.stringify(migrated));
     };
 
     // Retrieve theme object from localStorage
@@ -146,7 +105,7 @@
 
     // Initialize on DOM ready
     window.addEventListener("DOMContentLoaded", () => {
-        migrateLegacyTheme();
+        migrateLegacyOptions();
 
         const preferredTheme = getPreferredTheme();
         setTheme(preferredTheme);

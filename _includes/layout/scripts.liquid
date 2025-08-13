@@ -4,7 +4,7 @@
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
     async></script>
 {%- endif %}
-<script src="{{ '/assets/js/theme.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/theme.mjs' | url }}"></script>
 {%- if page-id != "404" %}
 <script type="module" src="{{ '/assets/js/clip.mjs' | url }}"></script>
 {%- endif %}

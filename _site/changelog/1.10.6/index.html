@@ -90,7 +90,7 @@
 
         <script>
             (function () {
-                const theme = localStorage.getItem("theme") || "light";
+                const theme = localStorage.getItem("theme") || "auto";
                 document.documentElement.setAttribute("data-bs-theme", theme);
             })();
         </script>
@@ -831,7 +831,7 @@
             </div>
         </div>
         <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/assets/js/theme.js"></script>
+<script type="module" src="/assets/js/theme.mjs"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
 

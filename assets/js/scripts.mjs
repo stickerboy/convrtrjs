@@ -45,9 +45,9 @@ function clearLocalStorage() {
  * @param {number} delay - The delay in milliseconds before the toast disappears (optional, default is 5000 milliseconds).
  * @returns {void}
  */
-export function showToast(heading, content, color, delay) {
+export function showToast(heading, content, color, delay = 5000, autohide = true) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay ? delay : 5000 });
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay, autohide: autohide });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
