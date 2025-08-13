@@ -4,14 +4,14 @@ let locStore = [];
 
 if (localStorage.length > 0) {
     locStore.push(`<div class="table-responsive">`);
-    locStore.push(`     <table class="table table-striped hash-table">
+    locStore.push(`     <table class="table table-striped hash-table mb-0">
         <thead class="table-success">
             <tr>
                 <th scope="col" class="col-4 col-md-4 col-lg-4">Storage item</th>
                 <th scope="col">Value</th>
             </tr>
         </thead>
-        <tbody class="active" id="fileResults">`);
+        <tbody class="active" id="lsResults">`);
             Object.entries(localStorage).forEach(([key, value]) => {
                 if (isJSON(value)) {
                     value = JSON.parse(value);
