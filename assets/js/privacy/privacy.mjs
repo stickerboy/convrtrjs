@@ -1,4 +1,4 @@
-import { isJSON } from "../tools.mjs";
+import { isLikelyJSON } from "../tools.mjs";
 
 let locStore = [];
 
@@ -13,7 +13,7 @@ if (localStorage.length > 0) {
         </thead>
         <tbody class="active" id="lsResults">`);
             Object.entries(localStorage).forEach(([key, value]) => {
-                if (isJSON(value)) {
+                if (isLikelyJSON(value)) {
                     value = JSON.parse(value);
                     locStore.push(`<tr>
                                                     <th scope="row" rowspan="1">
@@ -26,7 +26,7 @@ if (localStorage.length > 0) {
                 } else {
                     locStore.push(`<tr>
                                                     <th scope="row" rowspan="1">
-                                                        <span class="display-6 fs-6 fw-normal">${key}</span>
+                                                        <span class="display-6 fs-6 fw-normal">${key.charAt(0).toUpperCase() + key.slice(1)}</span>
                                                     </th>
                                                     <td>${value}</td>
                                                 </tr>`);
