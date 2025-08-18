@@ -1211,3 +1211,10 @@ button.cc-nb-changep {
 .termsfeed-com---palette-dark button.cc-nb-changep {
     color: var(--convrtr-txt-color) !important;
 }
+
+@media (hover: none) {
+    /* Hover is not supported */
+    .tooltip {
+        display: none;
+    }
+}
