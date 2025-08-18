@@ -189,13 +189,32 @@ if (sectionToggles.length > 0) {
 
                 const collapseID = sectionToggle.getAttribute("href");
                 const collapseElement = document.querySelector(collapseID);
+                const collapseToggle = sectionToggle.querySelector(".toggle-button");
+                const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
 
                 if (collapseElement) {
                     // collapseElement.classList.toggle("show", isExpanded === true);
                     if (isExpanded === true) {
                         collapseElement.classList.add("show");
+
+                        if (tooltipInstance) {
+                            collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
+                            tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
+                        } else {
+                            // If tooltip hasn't been initialized yet, initialize it
+                            new bootstrap.Tooltip(collapseToggle);
+                        }
+
                     } else {
                         collapseElement.classList.remove("show");
+
+                        if (tooltipInstance) {
+                            collapseToggle.setAttribute("data-bs-original-title", "Expand section");
+                            tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
+                        } else {
+                            // If tooltip hasn't been initialized yet, initialize it
+                            new bootstrap.Tooltip(collapseToggle);
+                        }
                     }
                 } else {
                     console.warn("No collapse element found for ID: ", collapseID);
@@ -214,6 +233,25 @@ if (sectionToggles.length > 0) {
         const name = c.getAttribute("data-section-name").charAt(0).toUpperCase() + c.getAttribute("data-section-name").slice(1) || `${sectionID.charAt(0).toUpperCase() + sectionID.slice(1)}`;
         const description = c.getAttribute("data-section-description") || "Stores expanded/collapsed state of a section";
 
+        const collapseToggle = c.querySelector(".toggle-button");
+        const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
+        if (isExpanded === "true") {
+            if (tooltipInstance) {
+                collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
+                tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
+            } else {
+                // If tooltip hasn't been initialized yet, initialize it
+                new bootstrap.Tooltip(collapseToggle);
+            }
+        } else {
+            if (tooltipInstance) {
+                collapseToggle.setAttribute("data-bs-original-title", "Expand section");
+                tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
+            } else {
+                // If tooltip hasn't been initialized yet, initialize it
+                new bootstrap.Tooltip(collapseToggle);
+            }
+        }
         saveLocalStorage(sectionID, name, isExpanded, description);
     }));
 }
@@ -230,10 +268,6 @@ const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootst
 const popoverTriggerList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
-
-// Enable collapse
-// const collapseElementList = document.querySelectorAll('.collapse');
-// const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
 
 const resetButtons = document.querySelectorAll(".btn-reset-data");
 
