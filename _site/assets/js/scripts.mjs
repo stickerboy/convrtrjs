@@ -225,6 +225,20 @@ if (sectionToggles.length > 0) {
 
     document.addEventListener("DOMContentLoaded", restoreOptions);
 
+    sectionToggles.forEach(c => {
+        const collapseToggle = c.querySelector(".toggle-button");
+
+        // Ensure tooltip is initialized
+        const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle) || new bootstrap.Tooltip(collapseToggle);
+
+        // Show tooltip when hovering/focusing on the section-toggle
+        c.addEventListener("mouseenter", () => tooltipInstance.show());
+        c.addEventListener("mouseleave", () => tooltipInstance.hide());
+        c.addEventListener("focus", () => tooltipInstance.show());
+        c.addEventListener("blur", () => tooltipInstance.hide());
+    });
+
+
     // Save toggle state
     Array.from(sectionToggles, c => c.addEventListener("click", function () {
         const section = c.closest(".section");
@@ -252,6 +266,7 @@ if (sectionToggles.length > 0) {
                 new bootstrap.Tooltip(collapseToggle);
             }
         }
+
         saveLocalStorage(sectionID, name, isExpanded, description);
     }));
 }
