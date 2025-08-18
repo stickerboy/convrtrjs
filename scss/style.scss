@@ -1215,6 +1215,11 @@ button.cc-nb-changep {
 @media (hover: none) {
     /* Hover is not supported */
     .tooltip {
-        display: none;
+        display: none !important;
     }
 }
+ @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+     .tooltip {
+         display: none !important;
+     }
+ }
