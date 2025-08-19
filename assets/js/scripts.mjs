@@ -9,6 +9,19 @@ Object.entries(toolkit).forEach(([functionName, functionRef]) => {
     window[functionName] = functionRef;
 });
 
+// Enable tooltips
+const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+// Enable dropdowns
+const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+
+// Enable popovers
+const popoverTriggerList = document.querySelectorAll(`[data-bs-toggle="popover"]`);
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+
 /**
  * Saves a value to local storage
  * @param {string} key - The key under which to store the value.
@@ -63,7 +76,7 @@ function clearLocalStorage() {
  */
 export function showToast(heading, content, color, delay = 5000, autohide = true) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay, autohide: autohide });
+    const toast = bootstrap.Toast.getInstance(toastEL, { delay: delay, autohide: autohide });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
@@ -193,27 +206,19 @@ if (sectionToggles.length > 0) {
                 const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
 
                 if (collapseElement) {
-                    // collapseElement.classList.toggle("show", isExpanded === true);
                     if (isExpanded === true) {
                         collapseElement.classList.add("show");
 
                         if (tooltipInstance) {
                             collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
                             tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
-                        } else {
-                            // If tooltip hasn't been initialized yet, initialize it
-                            new bootstrap.Tooltip(collapseToggle);
                         }
-
                     } else {
                         collapseElement.classList.remove("show");
 
                         if (tooltipInstance) {
                             collapseToggle.setAttribute("data-bs-original-title", "Expand section");
                             tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
-                        } else {
-                            // If tooltip hasn't been initialized yet, initialize it
-                            new bootstrap.Tooltip(collapseToggle);
                         }
                     }
                 } else {
@@ -225,20 +230,6 @@ if (sectionToggles.length > 0) {
 
     document.addEventListener("DOMContentLoaded", restoreOptions);
 
-    sectionToggles.forEach(c => {
-        const collapseToggle = c.querySelector(".toggle-button");
-
-        // Ensure tooltip is initialized
-        const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle) || new bootstrap.Tooltip(collapseToggle);
-
-        // Show tooltip when hovering/focusing on the section-toggle
-        c.addEventListener("mouseenter", () => tooltipInstance.show());
-        c.addEventListener("mouseleave", () => tooltipInstance.hide());
-        c.addEventListener("focus", () => tooltipInstance.show());
-        c.addEventListener("blur", () => tooltipInstance.hide());
-    });
-
-
     // Save toggle state
     Array.from(sectionToggles, c => c.addEventListener("click", function () {
         const section = c.closest(".section");
@@ -248,22 +239,16 @@ if (sectionToggles.length > 0) {
         const description = c.getAttribute("data-section-description") || "Stores expanded/collapsed state of a section";
 
         const collapseToggle = c.querySelector(".toggle-button");
-        const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
+        const tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(collapseToggle);
         if (isExpanded === "true") {
             if (tooltipInstance) {
                 collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
                 tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
-            } else {
-                // If tooltip hasn't been initialized yet, initialize it
-                new bootstrap.Tooltip(collapseToggle);
             }
         } else {
             if (tooltipInstance) {
                 collapseToggle.setAttribute("data-bs-original-title", "Expand section");
                 tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
-            } else {
-                // If tooltip hasn't been initialized yet, initialize it
-                new bootstrap.Tooltip(collapseToggle);
             }
         }
 
@@ -271,19 +256,7 @@ if (sectionToggles.length > 0) {
     }));
 }
 
-// Enable tooltips
-const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
-
-// Enable dropdowns
-const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
-const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
-
-// Enable popovers
-const popoverTriggerList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
-const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
-
 const resetButtons = document.querySelectorAll(".btn-reset-data");
 
 if (resetButtons.length > 0) {
