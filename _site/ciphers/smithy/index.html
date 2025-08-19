@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="smithy" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#smithyCollapse" role="button" 
                 aria-expanded="false" aria-controls="smithyCollapse"
                 data-section-name="smithy" data-section-description="Toggle visibility of smithy section">
@@ -775,8 +774,8 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Rmxsp</code> 
@@ -786,7 +785,8 @@
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">Smithy</a> Wikipedia page
             </p>
         </div>
-        <div class="collapse show" id="smithyCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="smithyCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Smithy cipher</span>
@@ -830,7 +830,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/ciphers/smithy.mjs"></script>

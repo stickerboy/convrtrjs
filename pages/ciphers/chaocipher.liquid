@@ -4,9 +4,8 @@ title: Chaocipher
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse"
                 data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
@@ -17,8 +16,8 @@ title: Chaocipher
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time. Only someone with the correct settings can decode the scrambled message back to its original form. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     Hello World
@@ -30,7 +29,8 @@ title: Chaocipher
                 etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">{{ filename | upperFirst }}</a> Wikipedia page
             </p>
         </div>
-        <div class="collapse show" id="{{ filename }}Collapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
@@ -67,6 +67,5 @@ title: Chaocipher
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

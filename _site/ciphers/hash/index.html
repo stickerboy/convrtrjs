@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="hash" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#hashCollapse" role="button" 
                 aria-expanded="false" aria-controls="hashCollapse"
                 data-section-name="hash" data-section-description="Toggle visibility of hash section">
@@ -775,12 +774,13 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Generate various hash values for a given text string. More information about hashes and the libraries used here, can be found on the <a href="https://cryptojs.gitbook.io/docs/" class="text-convrtr"">CryptoJS Gitbook</a> documentation site.
             </p>
         </div>
-        <div class="collapse show" id="hashCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="hashCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Hash text</span>
@@ -816,7 +816,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/ciphers/hash.mjs"></script>

@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="caesar" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#caesarCollapse" role="button" 
                 aria-expanded="true" aria-controls="caesarCollapse"
                 data-section-name="caesar" data-section-description="Toggle visibility of caesar section">
@@ -775,8 +774,8 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 A very simple method of encryption, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.
                 The most common Caesar cipher is Rot 13, where 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">A</code> 
@@ -789,7 +788,8 @@
                  There is more information available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
             </p>
         </div>
-        <div class="collapse show" id="caesarCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="caesarCollapse">
             <ul class="pagination justify-content-center flex-wrap" id="pagination">
                 <li class="page-item">
                         <button type="button" class="page-link" id="caesarPrev" aria-label="Previous" 
@@ -1026,7 +1026,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/ciphers/caesar.mjs"></script>

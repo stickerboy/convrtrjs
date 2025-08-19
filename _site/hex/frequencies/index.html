@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="frequencies" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#frequenciesCollapse" role="button" 
                 aria-expanded="false" aria-controls="frequenciesCollapse"
                 data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
@@ -775,15 +774,16 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
             <p class="px-2">
                 The dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
             </p>
         </div>
-        <div class="collapse show" id="frequenciesCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="frequenciesCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Hex frequencies</span>
@@ -828,7 +828,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/hex/frequencies.mjs"></script>

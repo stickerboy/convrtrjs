@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="shift" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#shiftCollapse" role="button" 
                 aria-expanded="true" aria-controls="shiftCollapse"
                 data-section-name="shift" data-section-description="Toggle visibility of shift section">
@@ -775,15 +774,16 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">49 66 6d 6d 70</code> [Ifmmp] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 64 6b 6b 6e</code> [Gdkkn] when shifted 1 to the left. 
             </p>
             <p class="px-2">
                 The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters. Negative numbers are allowed.
             </p>
         </div>
-        <div class="collapse show" id="shiftCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="shiftCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Shift hex string</span>
@@ -840,7 +840,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/hex/shift.mjs"></script>

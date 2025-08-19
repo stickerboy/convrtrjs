@@ -4,9 +4,8 @@ title: File check
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="true" aria-controls="{{ filename }}Collapse"
                 data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
@@ -17,8 +16,8 @@ title: File check
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Select a file to check its file type / header. Only the first 16 bytes of each file are read and then discarded, no files are actually uploaded or stored anywhere.
                 Files are matches against the File headers table below and won't catch everything. Feel free to reach out if there's a header missing or one you think would be worth adding.
             </p>
@@ -43,6 +42,5 @@ title: File check
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

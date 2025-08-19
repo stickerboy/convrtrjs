@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="strings" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#stringsCollapse" role="button" 
                 aria-expanded="false" aria-controls="stringsCollapse"
                 data-section-name="strings" data-section-description="Toggle visibility of strings section">
@@ -775,12 +774,13 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                  Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
             </p>
         </div>
-        <div class="collapse show" id="stringsCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="stringsCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Extract strings</span>
@@ -807,7 +807,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/oni/strings.mjs"></script>

@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="calendar" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#calendarCollapse" role="button" 
                 aria-expanded="false" aria-controls="calendarCollapse"
                 data-section-name="calendar" data-section-description="Toggle visibility of calendar section">
@@ -775,12 +774,13 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Extracts characters from the data string at specific positions based on calendar-like offsets.
             </p>
         </div>
-        <div class="collapse show" id="calendarCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="calendarCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Calendar</span>
@@ -807,7 +807,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/oni/calendar.mjs"></script>

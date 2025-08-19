@@ -4,9 +4,8 @@ title: Hex reverse
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse"
                 data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
@@ -17,8 +16,8 @@ title: Hex reverse
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Unlike reversing the entire string where <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">f6 c6 c6 56 84</code>, here we have some unique ways to reverse hex strings.</p>
             <dl class="row g-0 px-2">
                 <dt>Reverse bytes</dt>
@@ -35,7 +34,8 @@ title: Hex reverse
                 The delimiter dropdown allows you to select a delimiter, which is how your hex values are split up and joined together. The default is a space, you can select no delimiter if your hex contains no spaces. This will default the split to every 2 characters.
             </p>
         </div>
-        <div class="collapse show" id="{{ filename }}Collapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Reverse hex</span>
@@ -76,6 +76,5 @@ title: Hex reverse
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

@@ -4,9 +4,8 @@ title: Text tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
                 aria-expanded="false" aria-controls="{{ filename }}Collapse"
                 data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
@@ -17,12 +16,13 @@ title: Text tools
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Various operations that can be performed on any kind of text string. By default all changes are based on what you enter into the textarea. By selecting "Chain commands" this shifts to the results section at the bottom, you can then perform actions in succession. E.g. Strip spaces from a string, then select Remove all numbers and both will be performed. Preserve spaces will only work on tools marked with an asterisk [*].
             </p>
         </div>
-        <div class="collapse show" id="{{ filename }}Collapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Text tools</span>
@@ -79,6 +79,5 @@ title: Text tools
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

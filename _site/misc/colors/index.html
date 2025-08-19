@@ -762,9 +762,8 @@
     </div>
 </section>
 <section id="colors" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#colorsCollapse" role="button" 
                 aria-expanded="false" aria-controls="colorsCollapse"
                 data-section-name="colors" data-section-description="Toggle visibility of colors section">
@@ -775,12 +774,13 @@
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Generates hex colors from a given string of data, displayed as both a list of hex colors and visually as blocks of colors. Padding is used to add extra characters, in the event the hex colors can't make up to 6 characters. 
             </p>
         </div>
-        <div class="collapse show" id="colorsCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="colorsCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Color generator</span>
@@ -816,7 +816,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/misc/colors.mjs"></script>

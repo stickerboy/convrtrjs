@@ -758,50 +758,48 @@
     </div>
 </section>
 <section id="frequencies" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
-                data-bs-toggle="collapse" href="#frequenciesCollapse" role="button" 
-                aria-expanded="false" aria-controls="frequenciesCollapse"
-                data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Character frequencies
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button"data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none">
-            <p class="px-2">
+    <div class="section-heading">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#frequenciesCollapse" role="button" 
+            aria-expanded="false" aria-controls="frequenciesCollapse"
+            data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Character frequencies
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button"data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
         </div>
-        <div class="collapse show" id="frequenciesCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Character frequencies</span>
-                    <div class="card-body text-center">
-                        <label for="frequenciesText" class="visually-hidden">Characters to check</label>
-                        <textarea placeholder="Enter some text and click the 'Generate' button below" rows="6" id="frequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="d-flex justify-content-start align-items-center">
-                            <button type="button" class="btn btn-md btn-convrtr" id="frequenciesDecode" title="Generate character frequencies">Generate</button>
-                            <div class="btn-group ms-auto align-items-start">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="frequenciesCollapse">
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Character frequencies</span>
+                <div class="card-body text-center">
+                    <label for="frequenciesText" class="visually-hidden">Characters to check</label>
+                    <textarea placeholder="Enter some text and click the 'Generate' button below" rows="6" id="frequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="d-flex justify-content-start align-items-center">
+                        <button type="button" class="btn btn-md btn-convrtr" id="frequenciesDecode" title="Generate character frequencies">Generate</button>
+                        <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
-                        </div>
-                        <hr />
-                        <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="frequenciesResults"></div>
-                        </div>
+                    </div>
+                    <hr />
+                    <div class="">
+                        <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="frequenciesResults"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/text/frequencies.mjs"></script>
