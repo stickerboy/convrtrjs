@@ -76,7 +76,7 @@ function clearLocalStorage() {
  */
 export function showToast(heading, content, color, delay = 5000, autohide = true) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getInstance(toastEL, { delay: delay, autohide: autohide });
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay, autohide: autohide });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
@@ -182,6 +182,10 @@ function download(filename, text) {
     document.body.removeChild(e);
 }
 
+function isTooltipVisible(instance) {
+    const tip = instance?.tip;
+    return tip && tip.classList.contains("show");
+}
 
 const sectionToggles = Array.from(document.getElementsByClassName("section-toggle"))
     .filter(sectionToggle => !sectionToggle.classList.contains("d-none"));
@@ -255,6 +259,39 @@ if (sectionToggles.length > 0) {
         saveLocalStorage(sectionID, name, isExpanded, description);
     }));
 }
+
+sectionToggles.forEach(c => {
+    const collapseToggle = c.querySelector(".toggle-button");
+    const tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(collapseToggle);
+
+    let suppressTooltip = false;
+
+    // Suppress tooltip briefly on click
+    c.addEventListener("click", () => {
+        suppressTooltip = true;
+        setTimeout(() => suppressTooltip = false, 1000); // adjust delay as needed
+    });
+
+    c.addEventListener("mouseenter", () => {
+        if (!suppressTooltip && !isTooltipVisible(tooltipInstance)) {
+            tooltipInstance.show();
+        }
+    });
+
+    c.addEventListener("mouseleave", () => {
+        tooltipInstance.hide();
+    });
+
+    c.addEventListener("focus", () => {
+        if (!suppressTooltip && !isTooltipVisible(tooltipInstance)) {
+            tooltipInstance.show();
+        }
+    });
+
+    c.addEventListener("blur", () => {
+        tooltipInstance.hide();
+    });
+});
 
 const textareas = document.querySelectorAll(".form-control, .data-to-copy");
 const resetButtons = document.querySelectorAll(".btn-reset-data");
