@@ -55,6 +55,12 @@
             "visible": true
         },
         {
+            "key": "privacy",
+            "friendlyName": "Privacy",
+            "description": "Anything related to privacy policy and cookies",
+            "visible": true
+        },
+        {
             "key": "a11y",
             "friendlyName": "Accessibility",
             "description": "Accessibility improvements",

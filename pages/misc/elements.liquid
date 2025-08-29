@@ -4,20 +4,20 @@ title: Periodic elements
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse">
+                aria-expanded="false" aria-controls="{{ filename }}Collapse"
+                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
                 <h2 class="display-6 w-100 d-flex m-0">
                     {{ filename | upperFirst }}
                 </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Convert periodic element property values to different property values, for example atomic numbers to element names or symbols.
                 Only a subset of element properties are available for conversion. Strings can be separated using a number of different delimiters: 
                 space, comma, colon, semi-colon, and hyphen. You can mix and match delimiters, but they are required.
@@ -28,7 +28,8 @@ title: Periodic elements
                         License</a>.</p>
             </blockquote>
         </div>
-        <div class="collapse show" id="{{ filename }}Collapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Periodic elements conversion</span>
@@ -80,6 +81,5 @@ title: Periodic elements
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

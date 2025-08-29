@@ -9,14 +9,33 @@ Object.entries(toolkit).forEach(([functionName, functionRef]) => {
     window[functionName] = functionRef;
 });
 
+// Enable tooltips
+const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+// Enable dropdowns
+const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
+const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+
+// Enable popovers
+const popoverTriggerList = document.querySelectorAll(`[data-bs-toggle="popover"]`);
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+
 /**
  * Saves a value to local storage
  * @param {string} key - The key under which to store the value.
  * @param {string} value - The value to be stored.
  * @returns {void}
  */
-function saveLocalStorage(key, value) {
-    return localStorage.setItem(key, value);
+function saveLocalStorage(id, name, value, description) {
+    const sectionObj = {
+        id,
+        name,
+        value,
+        description
+    };
+    localStorage.setItem(id, JSON.stringify(sectionObj));
 }
 
 /**
@@ -24,9 +43,19 @@ function saveLocalStorage(key, value) {
  * @param {string} string - The key of the item to retrieve.
  * @returns {any} - The parsed value retrieved from local storage.
  */
-function getLocalStorageItem(string) {
-    string = string.replace("\"", ""); // Remove any double quotes
-    return JSON.parse(localStorage.getItem(string));
+function getLocalStorageItem(id) {
+    const raw = localStorage.getItem(id);
+    if (!raw) { return false };
+
+    try {
+        const parsed = JSON.parse(raw);
+        if (typeof parsed === "object" && parsed !== null && "value" in parsed) {
+            return parsed.value;
+        }
+        return false;
+    } catch {
+        return false;
+    }
 }
 
 /**
@@ -45,9 +74,9 @@ function clearLocalStorage() {
  * @param {number} delay - The delay in milliseconds before the toast disappears (optional, default is 5000 milliseconds).
  * @returns {void}
  */
-export function showToast(heading, content, color, delay) {
+export function showToast(heading, content, color, delay = 5000, autohide = true) {
     let toastEL = document.getElementById("toast");
-    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay ? delay : 5000 });
+    const toast = bootstrap.Toast.getOrCreateInstance(toastEL, { delay: delay, autohide: autohide });
 
     toastEL.addEventListener("hidden.bs.toast", () => {
         toastEL.querySelector(".toast-header").classList.remove("text-bg-warning", "text-bg-danger");
@@ -153,10 +182,11 @@ function download(filename, text) {
     document.body.removeChild(e);
 }
 
-/**
- * Restores toggle states from local storage
- * @returns {void}
- */
+function isTooltipVisible(instance) {
+    const tip = instance?.tip;
+    return tip && tip.classList.contains("show");
+}
+
 const sectionToggles = Array.from(document.getElementsByClassName("section-toggle"))
     .filter(sectionToggle => !sectionToggle.classList.contains("d-none"));
 if (sectionToggles.length > 0) {
@@ -165,29 +195,38 @@ if (sectionToggles.length > 0) {
             for (const sectionToggle of sectionToggles) {
                 const section = sectionToggle.closest(".section");
                 if (!section) {
-                    console.warn("No parent section found for:", sectionToggle);
+                    console.warn("No parent section found for: ", sectionToggle);
                     continue; // Skip this iteration if no parent section exists
                 }
 
                 const sectionID = section.id;
-                const x = getLocalStorageItem(sectionID);
+                const isExpanded = getLocalStorageItem(sectionID) === "true";
 
-                if (x !== null) {
-                    sectionToggle.setAttribute("aria-expanded", x);
-                }
+                sectionToggle.setAttribute("aria-expanded", isExpanded);
 
-                // Use the href attribute to locate the collapse element
                 const collapseID = sectionToggle.getAttribute("href");
                 const collapseElement = document.querySelector(collapseID);
+                const collapseToggle = sectionToggle.querySelector(".toggle-button");
+                const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
 
                 if (collapseElement) {
-                    if (x === true) {
+                    if (isExpanded === true) {
                         collapseElement.classList.add("show");
+
+                        if (tooltipInstance) {
+                            collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
+                            tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
+                        }
                     } else {
                         collapseElement.classList.remove("show");
+
+                        if (tooltipInstance) {
+                            collapseToggle.setAttribute("data-bs-original-title", "Expand section");
+                            tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
+                        }
                     }
                 } else {
-                    console.warn("No collapse element found for ID:", collapseID);
+                    console.warn("No collapse element found for ID: ", collapseID);
                 }
             }
         }
@@ -197,60 +236,103 @@ if (sectionToggles.length > 0) {
 
     // Save toggle state
     Array.from(sectionToggles, c => c.addEventListener("click", function () {
-        let section = c.closest(".section");
-        saveLocalStorage(section.id, c.getAttribute("aria-expanded"));
+        const section = c.closest(".section");
+        const sectionID = section.id;
+        const isExpanded = c.getAttribute("aria-expanded");
+        const name = c.getAttribute("data-section-name").charAt(0).toUpperCase() + c.getAttribute("data-section-name").slice(1) || `${sectionID.charAt(0).toUpperCase() + sectionID.slice(1)}`;
+        const description = c.getAttribute("data-section-description") || "Stores expanded/collapsed state of a section";
+
+        const collapseToggle = c.querySelector(".toggle-button");
+        const tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(collapseToggle);
+        if (isExpanded === "true") {
+            if (tooltipInstance) {
+                collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
+                tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
+            }
+        } else {
+            if (tooltipInstance) {
+                collapseToggle.setAttribute("data-bs-original-title", "Expand section");
+                tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
+            }
+        }
+
+        saveLocalStorage(sectionID, name, isExpanded, description);
     }));
 }
 
-// Enable tooltips
-const tooltipTriggerList = document.querySelectorAll(`[data-bs-toggle="tooltip"]`);
-const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+sectionToggles.forEach(c => {
+    const collapseToggle = c.querySelector(".toggle-button");
+    const tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(collapseToggle);
 
-// Enable dropdowns
-const dropdownElementList = document.querySelectorAll(".dropdown-toggle");
-const dropdownList = [...dropdownElementList].map(dropdownToggleEl => new bootstrap.Dropdown(dropdownToggleEl));
+    let suppressTooltip = false;
 
-// Enable popovers
-const popoverTriggerList = document.querySelectorAll("[data-bs-toggle=\"popover\"]");
-const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
-const textareas = document.querySelectorAll(".form-control, .data-to-copy");
+    // Suppress tooltip briefly on click
+    c.addEventListener("click", () => {
+        suppressTooltip = true;
+        setTimeout(() => suppressTooltip = false, 1000); // adjust delay as needed
+    });
 
-// Enable collapse
-// const collapseElementList = document.querySelectorAll('.collapse');
-// const collapseList = [...collapseElementList].map(collapseEl => new bootstrap.Collapse(collapseEl));
-
-const resetData = document.getElementById("resetData");
-resetData && resetData.addEventListener("click", function () {
-    const tooltip = bootstrap.Tooltip.getInstance(resetData);
-    let dtcLength = 0;
-
-    [...textareas].map(ta => {
-        if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
-            if (ta.innerHTML.length !== 0) {
-                dtcLength += ta.innerHTML.length;
-                ta.innerHTML = "";
-            }
-        } else {
-            if (ta.value !== undefined && ta.value.length !== 0) {
-                dtcLength += ta.value.length;
-                ta.value = "";
-            }
+    c.addEventListener("mouseenter", () => {
+        if (!suppressTooltip && !isTooltipVisible(tooltipInstance)) {
+            tooltipInstance.show();
         }
     });
-    if (dtcLength === 0) {
-        tooltip.hide();
-        showToast("Information", "No data to clear", "info", 3000);
-        return;
-    }
-    clearLocalStorage();
 
-    resetData.querySelector(".bi").classList.add("convrtr-spin");
-    setTimeout(() => {
-        resetData.querySelector(".bi").classList.remove("convrtr-spin");
-        tooltip.hide();
-        showToast("Notice", "Data successfully cleared", "convrtr", 3000);
-    }, 1000);
+    c.addEventListener("mouseleave", () => {
+        tooltipInstance.hide();
+    });
+
+    c.addEventListener("focus", () => {
+        if (!suppressTooltip && !isTooltipVisible(tooltipInstance)) {
+            tooltipInstance.show();
+        }
+    });
+
+    c.addEventListener("blur", () => {
+        tooltipInstance.hide();
+    });
 });
+
+const textareas = document.querySelectorAll(".form-control, .data-to-copy");
+const resetButtons = document.querySelectorAll(".btn-reset-data");
+
+if (resetButtons.length > 0) {
+    resetButtons.forEach(resetBtn => {
+        resetBtn.addEventListener("click", function () {
+            const tooltip = bootstrap.Tooltip.getInstance(resetBtn);
+            let dtcLength = 0;
+
+            [...textareas].forEach(ta => {
+                if (toolkit.inArray(ta.localName, ["div", "tbody"])) {
+                    if (ta.innerHTML.length !== 0) {
+                        dtcLength += ta.innerHTML.length;
+                        ta.innerHTML = "";
+                    }
+                } else {
+                    if (ta.value !== undefined && ta.value.length !== 0) {
+                        dtcLength += ta.value.length;
+                        ta.value = "";
+                    }
+                }
+            });
+
+            resetBtn.querySelector(".bi").classList.add("convrtr-spin");
+            clearLocalStorage();
+
+            setTimeout(() => {
+                resetBtn.querySelector(".bi").classList.remove("convrtr-spin");
+                tooltip?.hide();
+
+                if (dtcLength === 0) {
+                    showToast("Information", "Local storage successfully cleared", "info", 3000);
+                } else {
+                    showToast("Notice", "All data successfully cleared", "convrtr", 3000);
+                }
+            }, 1000);
+        });
+    });
+}
+
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");

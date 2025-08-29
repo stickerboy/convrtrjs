@@ -144,3 +144,22 @@ export function lettersToNumbers(string) {
         .map(char => char.charCodeAt(0) - 97 + 1)
         .join(" ");
 }
+
+/**
+ * Checks if a given string is valid JSON.
+ *
+ * @param {string} string - The string to test for JSON validity.
+ * @returns {boolean} Returns true if the string is valid JSON, otherwise false.
+ */
+export const isLikelyJSON = (string) => {
+    if (typeof string !== "string") return false;
+
+        try {
+            const parsed = JSON.parse(string);
+
+            // Only treat as JSON if it's an object or array
+            return typeof parsed === "object" && parsed !== null;
+        } catch {
+            return false;
+        }
+    };

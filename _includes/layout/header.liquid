@@ -14,7 +14,7 @@
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
                     {{ pkg.tagline }}
                 </span>
-                <ul class="navbar-nav mx-0 mx-md-2 flex-row">
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row d-none d-sm-flex">
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="{{ pkg.support }}" title="Discord"
@@ -31,7 +31,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
-                    {% assign excludedPages = "fourohfour,404,sitemap,tags,changelog" | split: "," %}
+                    {% assign excludedPages = "fourohfour,404" | split: "," %}
                 {% if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -52,7 +52,8 @@
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-theme-text">
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
-                                data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                data-bs-theme-value="light" data-theme-name="Light Mode" data-theme-description="A bright light theme" 
+                                aria-pressed="false" data-theme-icon="bi-sun-fill">
                                     <i class="bi me-2 opacity-50 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
                                     Light
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
@@ -60,7 +61,8 @@
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
-                                data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                data-bs-theme-value="dark" data-theme-name="Dark Mode" data-theme-description="A sleek dark theme"
+                                aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
                                     <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
                                     Dark
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
@@ -68,8 +70,78 @@
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
-                                data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                                data-bs-theme-value="auto" data-theme-name="Auto Mode" data-theme-description="Follows system preference"
+                                aria-pressed="true" data-theme-icon="bi-circle-half">
                                     <i class="bi me-2 opacity-50 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
+                                    Auto
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row d-sm-none">
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover"
+                        data-bs-title="View settings">
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
+                            type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
+                            <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
+                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
+                                    Github
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </button>
+                            </li>
+                            {% if not excludedPages contains page-id %}
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
+                                    id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-recycle" aria-hidden="true" focusable="false"></i>
+                                    Clear data <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">inside
+                                        textareas</span>
+                                </button>
+                            </li>
+                            {% endif %}
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <h6 class="dropdown-header">Change site theme</h6>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0"
+                                        data-bs-theme-value="light" data-theme-name="Light Mode" data-theme-description="A bright light theme"
+                                        aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
+                                    Light
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0"
+                                        data-bs-theme-value="dark" data-theme-name="Dark Mode" data-theme-description="A sleek dark theme"
+                                        aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
+                                    Dark
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
+                                        data-bs-theme-value="auto" data-theme-name="Auto Mode" data-theme-description="Follows system preference"
+                                        aria-pressed="true" data-theme-icon="bi-circle-half">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
                                     Auto
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
                                 </button>

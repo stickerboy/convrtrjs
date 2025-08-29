@@ -4,20 +4,20 @@ title: Railfence cipher
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse">
+                aria-expanded="false" aria-controls="{{ filename }}Collapse"
+                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Rail fence cipher
                 </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
             </p>
@@ -39,7 +39,8 @@ title: Railfence cipher
             </p>
             
         </div>
-        <div class="collapse show" id="{{ filename }}Collapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Rail fence cipher</span>
@@ -68,6 +69,5 @@ title: Railfence cipher
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

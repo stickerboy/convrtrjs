@@ -1,6 +1,76 @@
 <!doctype html>
 <html lang="en" class="overflow-y-hidden">
     <head>
+        <!-- Google tag (gtag.js) -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied'
+    });
+</script>
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7P9LT5PVBK"  data-cookie-consent="tracking"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+
+    gtag('js', new Date());
+    gtag('config', 'G-7P9LT5PVBK');
+</script>
+        <script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js"
+    charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+    document.addEventListener('DOMContentLoaded', function () {
+        let siteTheme = document.documentElement.getAttribute("data-bs-theme");
+        if (siteTheme === "dark") {
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "dark",  "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_name": "Convrtr", "website_privacy_policy_url": "https://www.convrtr.xyz/privacy", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_purposes_levels": ["strictly-necessary", "functionality", "tracking"],  "callbacks": {
+                    "scripts_specific_loaded": (level) => {
+                        switch (level) {
+                            case 'tracking':
+                                gtag('consent', 'update', {
+                                    'analytics_storage': 'granted'
+                                });
+                                break;
+                            case 'targeting':
+                                gtag('consent', 'update', {
+                                    'ad_storage': 'granted',
+                                    'ad_user_data': 'granted',
+                                    'ad_personalization': 'granted'
+                                });
+                                break;
+                        }
+                    }
+                },
+                "callbacks_force": true });
+
+        } else {
+            cookieconsent.run({ "notice_banner_type": "headline", "consent_type": "express", "palette": "light", "language": "en", "page_load_consent_levels": ["strictly-necessary"], "notice_banner_reject_button_hide": false, "preferences_center_close_button_hide": false, "page_refresh_confirmation_buttons": false, "website_name": "Convrtr", "website_privacy_policy_url": "https://www.convrtr.xyz/privacy",  "page_load_consent_levels": ["strictly-necessary"], "notice_banner_purposes_levels": ["strictly-necessary", "functionality", "tracking"], "callbacks": {
+                    "scripts_specific_loaded": (level) => {
+                        switch (level) {
+                            case 'tracking':
+                                gtag('consent', 'update', {
+                                    'analytics_storage': 'granted'
+                                });
+                                break;
+                            case 'targeting':
+                                gtag('consent', 'update', {
+                                    'ad_storage': 'granted',
+                                    'ad_user_data': 'granted',
+                                    'ad_personalization': 'granted'
+                                });
+                                break;
+                        }
+                    }
+                },
+                "callbacks_force": true
+             });
+        }
+    });
+</script>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques">
@@ -20,7 +90,7 @@
 
         <script>
             (function () {
-                const theme = localStorage.getItem("theme") || "light";
+                const theme = localStorage.getItem("theme") || "auto";
                 document.documentElement.setAttribute("data-bs-theme", theme);
             })();
         </script>
@@ -70,7 +140,7 @@
                 <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
                     For everlost and Grollow!
                 </span>
-                <ul class="navbar-nav mx-0 mx-md-2 flex-row">
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row d-none d-sm-flex">
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
                             title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
@@ -108,7 +178,8 @@
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-theme-text">
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
-                                data-bs-theme-value="light" aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                data-bs-theme-value="light" data-theme-name="Light Mode" data-theme-description="A bright light theme" 
+                                aria-pressed="false" data-theme-icon="bi-sun-fill">
                                     <i class="bi me-2 opacity-50 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
                                     Light
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
@@ -116,7 +187,8 @@
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0" 
-                                data-bs-theme-value="dark" aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                data-bs-theme-value="dark" data-theme-name="Dark Mode" data-theme-description="A sleek dark theme"
+                                aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
                                     <i class="bi me-2 opacity-50 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
                                     Dark
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
@@ -124,8 +196,78 @@
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
-                                data-bs-theme-value="auto" aria-pressed="true" data-theme-icon="bi-circle-half">
+                                data-bs-theme-value="auto" data-theme-name="Auto Mode" data-theme-description="Follows system preference"
+                                aria-pressed="true" data-theme-icon="bi-circle-half">
                                     <i class="bi me-2 opacity-50 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
+                                    Auto
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mx-0 mx-md-2 flex-row d-sm-none">
+                    <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover"
+                        data-bs-title="View settings">
+                        <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
+                            type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
+                            <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
+                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
+                                    Github
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </button>
+                            </li>
+                            
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
+                                    id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-recycle" aria-hidden="true" focusable="false"></i>
+                                    Clear data <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">inside
+                                        textareas</span>
+                                </button>
+                            </li>
+                            
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <h6 class="dropdown-header">Change site theme</h6>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0"
+                                        data-bs-theme-value="light" data-theme-name="Light Mode" data-theme-description="A bright light theme"
+                                        aria-pressed="false" data-theme-icon="bi-sun-fill">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-sun-fill" aria-hidden="true" focusable="false"></i>
+                                    Light
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0"
+                                        data-bs-theme-value="dark" data-theme-name="Dark Mode" data-theme-description="A sleek dark theme"
+                                        aria-pressed="false" data-theme-icon="bi-moon-stars-fill">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-moon-stars-fill" aria-hidden="true" focusable="false"></i>
+                                    Dark
+                                    <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0 active" 
+                                        data-bs-theme-value="auto" data-theme-name="Auto Mode" data-theme-description="Follows system preference"
+                                        aria-pressed="true" data-theme-icon="bi-circle-half">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-circle-half" aria-hidden="true" focusable="false"></i>
                                     Auto
                                     <i class="bi ms-auto d-none bi-check2" aria-hidden="true" focusable="false"></i>
                                 </button>
@@ -559,6 +701,22 @@
         
     </div>
     
+    <div class="sidebar-item d-grid gap-2" data-link-id="privacy"
+        data-page-id="rail">
+        
+        <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
+         border-opacity-10" aria-label="View the Privacy policy"
+            href="/privacy" data-href="/privacy">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+                <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
+            </span>
+            <span class="sidebar-item__label fs-6 ms-3">
+                <span class="visually-hidden">View the </span>Privacy policy
+            </span>
+        </a>
+        
+    </div>
+    
 </div>
 </nav>
                 </div>
@@ -571,7 +729,9 @@
     <ol class="breadcrumb justify-content-end mb-0">
         <li class="breadcrumb-item">
             
-            <a href="/" class="text-convrtr">Home</a>
+            <a href="/" class="text-convrtr">
+                <i class="bi bi-house-fill me-1" aria-hidden="true" focusable="false"></i>Home
+            </a>
             
         </li>
         
@@ -602,20 +762,20 @@
     </div>
 </section>
 <section id="rail" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#railCollapse" role="button" 
-                aria-expanded="false" aria-controls="railCollapse">
+                aria-expanded="false" aria-controls="railCollapse"
+                data-section-name="rail" data-section-description="Toggle visibility of rail section">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Rail fence cipher
                 </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
             </p>
@@ -637,7 +797,8 @@
             </p>
             
         </div>
-        <div class="collapse show" id="railCollapse">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="railCollapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Rail fence cipher</span>
@@ -670,7 +831,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 <script type="module" src="/assets/js/ciphers/rail.mjs"></script>
@@ -688,15 +848,15 @@
             </p>
             
             <p class="mb-1">
-                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2025. All Rights Reserved.<br />
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2013 &mdash; 2025. All Rights Reserved.<br />
                 Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="Github pages - websites hosted directly from your GitHub repository" class="text-convrtr">Github Pages</a>
             </p>
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"" 
-                title="Release version: v3.0.0" 
+                title="Release version: v3.1.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.0.0</small>
+                <small>v3.1.0</small>
             </a>
         </div>
     </div>
@@ -705,7 +865,7 @@
             </div>
         </div>
         <script src="/assets/js/core/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-<script src="/assets/js/theme.js"></script>
+<script type="module" src="/assets/js/theme.mjs"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
 

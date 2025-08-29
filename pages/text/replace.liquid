@@ -4,25 +4,26 @@ title: Text replace
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
-    <div class="py-4 px-2 px-sm-4">
-        <div class="section-heading mb-4">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none"
+<div class="section-heading">
+            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
                 data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse">
+                aria-expanded="false" aria-controls="{{ filename }}Collapse"
+                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
                 <h2 class="display-6 w-100 d-flex m-0">
                     Replace characters
                 </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button">
+                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                     <i class="bi bi-arrow-up lh-base"></i>
                 </span>
             </a>
-            <hr class="d-none">
-            <p class="px-2">
+            <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
                 Replace characters in a string &ndash; allows replacing any characters or phrases in a string with any character or phrase. 
                 Supports <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> so you can run your own custom advanced replacements.
             </p>
         </div>
-        <div id="{{ filename }}Collapse" class="collapse show">
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
             <div class="col">
                 <div class="card">
                     <span class="card-label visually-hidden">Replace characters</span>
@@ -65,6 +66,5 @@ title: Text replace
                 </div>
             </div>
         </div>
-    </div>
 </section>
 {% render "dynamic-script", page: page %}

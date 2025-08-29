@@ -173,5 +173,16 @@
         "label_2": ": latest site updates",
         "aria-label": "Changelog: latest site updates",
         "switch-label": true
+    },
+    {
+        "id": "privacy",
+        "label": "Privacy policy",
+        "short-label": "Privacy",
+        "icon": "shield-check",
+        "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.",
+        "label_1": "View the ",
+        "label_2": "Privacy policy",
+        "aria-label": "View the Privacy policy",
+        "switch-label": false
     }
 ]
