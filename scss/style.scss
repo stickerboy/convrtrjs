@@ -183,6 +183,7 @@ body {
             --bs-text-opacity: 1;
             --bs-navbar-toggler-focus-width: 0.25rem;
             --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
+            min-height: 44px;
             color: rgba(var(--bs-bg-success), var(--bs-text-opacity));
             background-color: var(--bs-white);
             @media (min-width: 576px) {
