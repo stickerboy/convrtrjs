@@ -38,7 +38,7 @@ freqButton.addEventListener("click", function() {
             "beforeend",
             `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
                 <span class="display-6 fs-5">${label}</span>&nbsp;<br />
-                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
+                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2" role="note">
                     ${frequencies.stringStats(freqString.value, stat)}
                 </code>&nbsp;<br />
             </div>`
