@@ -765,19 +765,20 @@
 </section>
 <section id="elements" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#elementsCollapse" role="button" 
-                aria-expanded="false" aria-controls="elementsCollapse"
-                data-section-name="elements" data-section-description="Toggle visibility of elements section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Elements
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#elementsCollapse" role="button" 
+            aria-expanded="false" aria-controls="elementsCollapse"
+            data-section-name="elements" data-section-description="Toggle visibility of elements section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Elements
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
                 Convert periodic element property values to different property values, for example atomic numbers to element names or symbols.
                 Only a subset of element properties are available for conversion. Strings can be separated using a number of different delimiters: 
                 space, comma, colon, semi-colon, and hyphen. You can mix and match delimiters, but they are required.
@@ -790,61 +791,62 @@
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="elementsCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Periodic elements conversion</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" title="Periodic element conversion" rows="6" id="elementsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="mb-2 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-lg-auto me-2 mb-2">
-                                    <div class="input-group w-auto mb-2">
-                                        <label class="input-group-text" for="elementPropFrom">Convert from <span class="visually-hidden">element properties</span></label>
-                                        <select class="form-select" id="elementPropFrom" autocomplete="off">
-                                            <option value="symbol">Element symbol</option>
-                                            <option value="name">Element name</option>
-                                            <option value="number" selected="">Atomic number</option>
-                                            <option value="atomic_mass">Atomic mass</option>
-                                            <option value="melt">Melting point</option>
-                                            <option value="boil">Boiling point</option>
-                                        </select>
-                                    </div>
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="elementPropTo">Convert to <span class="visually-hidden">element properties</span></label>
-                                        <select class="form-select" id="elementPropTo" autocomplete="off">
-                                            <option value="symbol" selected="">Element symbol</option>
-                                            <option value="name">Element name</option>
-                                            <option value="number">Atomic number</option>
-                                            <option value="atomic_mass">Atomic mass</option>
-                                            <option value="melt">Melting point</option>
-                                            <option value="boil">Boiling point</option>
-                                        </select>
-                                        <button class="btn btn-convrtr" type="button" id="elementsChange">Run</button>
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Periodic elements conversion</span>
+                <div class="card-body text-center">
+                    <label for="elementsTextarea" class="visually-hidden">Periodic element conversion</label>
+                    <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" rows="6" id="elementsTextarea" class="form-control flip-text" autocomplete="off"></textarea>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="mb-2 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-lg-auto me-2 mb-2">
+                                <div class="input-group w-auto mb-2">
+                                    <label class="input-group-text" for="elementPropFrom">Convert from <span class="visually-hidden">element properties</span></label>
+                                    <select class="form-select" id="elementPropFrom" autocomplete="off">
+                                        <option value="symbol">Element symbol</option>
+                                        <option value="name">Element name</option>
+                                        <option value="number" selected="">Atomic number</option>
+                                        <option value="atomic_mass">Atomic mass</option>
+                                        <option value="melt">Melting point</option>
+                                        <option value="boil">Boiling point</option>
+                                    </select>
+                                </div>
+                                <div class="input-group w-auto">
+                                    <label class="input-group-text" for="elementPropTo">Convert to <span class="visually-hidden">element properties</span></label>
+                                    <select class="form-select" id="elementPropTo" autocomplete="off">
+                                        <option value="symbol" selected="">Element symbol</option>
+                                        <option value="name">Element name</option>
+                                        <option value="number">Atomic number</option>
+                                        <option value="atomic_mass">Atomic mass</option>
+                                        <option value="melt">Melting point</option>
+                                        <option value="boil">Boiling point</option>
+                                    </select>
+                                    <button class="btn btn-convrtr" type="button" id="elementsChange">Run</button>
+                                </div>
+                            </div>
+                            <div class="col d-flex flex-fill mb-2">
+                                <div class="me-auto flex-fill">
+                                    <div class="form-check form-switch mx-lg-2 d-flex">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false">
+                                        <label class="form-check-label" for="removeDelimiters">Remove delimiters</label>
                                     </div>
                                 </div>
-                                <div class="col d-flex flex-fill mb-2">
-                                    <div class="me-auto flex-fill">
-                                        <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false">
-                                            <label class="form-check-label" for="removeDelimiters">Remove delimiters</label>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group ms-auto align-items-start">
+                                <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
-                                </div>
                             </div>
                         </div>
-                        <hr>
-                        <div id="elementResults" class="data-to-copy active convrtr-results"></div>
                     </div>
+                    <hr>
+                    <div id="elementResults" class="data-to-copy active convrtr-results"></div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <script type="module" src="/assets/js/misc/elements.mjs"></script>
