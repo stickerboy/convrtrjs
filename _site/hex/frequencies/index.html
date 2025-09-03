@@ -765,19 +765,20 @@
 </section>
 <section id="frequencies" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#frequenciesCollapse" role="button" 
-                aria-expanded="false" aria-controls="frequenciesCollapse"
-                data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Hex frequencies
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#frequenciesCollapse" role="button" 
+            aria-expanded="false" aria-controls="frequenciesCollapse"
+            data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Hex frequencies
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
                 For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
             </p>
             <p class="px-2">
@@ -786,20 +787,20 @@
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="frequenciesCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Hex frequencies</span>
-                    <div class="card-body text-center">
-                        <label for="frequenciesText" class="visually-hidden">Hex characters to check</label>
-                        <textarea placeholder="Enter some hex characters and click the 'Generate' button below" rows="6" id="frequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" for="frequenciesDelimiter">Delimiter</label>
-                                        <select class="form-select hex-delimiter" id="frequenciesDelimiter" autocomplete="off">
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Hex frequencies</span>
+                <div class="card-body text-center">
+                    <label for="frequenciesText" class="visually-hidden">Hex characters to check</label>
+                    <textarea placeholder="Enter some hex characters and click the 'Generate' button below" rows="6" id="frequenciesText" class="form-control word-freqs" autocomplete="off"></textarea>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                                <div class="input-group w-auto">
+                                    <label class="input-group-text" for="frequenciesDelimiter">Delimiter</label>
+                                    <select class="form-select hex-delimiter" id="frequenciesDelimiter" autocomplete="off">
     <option value=" " selected="">Space</option>
     <option value="-">Hyphen</option>
     <option value=":">Colon</option>
@@ -808,28 +809,28 @@
     <option value="0x">Zero x</option>
     <option value="">None</option>
 </select>
-                                        <button type="button" class="btn btn-md btn-convrtr" id="frequenciesDecode" title="Generate hex frequencies">Generate</button>
-                                    </div>
+                                    <button type="button" class="btn btn-md btn-convrtr" id="frequenciesDecode" title="Generate hex frequencies">Generate</button>
                                 </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="btn-group ms-auto align-items-start">
+                            </div>
+                            <div class="col-12 col-md-auto flex-fill">
+                                <div class="row row-cols-auto g-0">
+                                    <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div class="">
-                            <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="frequenciesResults"></div>
-                        </div>
+                    </div>
+                    <hr />
+                    <div class="">
+                        <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="frequenciesResults"></div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <script type="module" src="/assets/js/hex/frequencies.mjs"></script>
