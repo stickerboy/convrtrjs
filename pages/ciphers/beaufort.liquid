@@ -5,18 +5,18 @@ title: Beaufort cipher
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse"
-                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    {{ filename | upperFirst }} cipher
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+            aria-expanded="false" aria-controls="{{ filename }}Collapse"
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                {{ filename | upperFirst }} cipher
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -36,33 +36,34 @@ title: Beaufort cipher
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: Hello → Test [key] → Mahif" title="Beaufort encrypt/decrypt string" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key"><span class="visually-hidden">{{ filename }} </span>Key</label>
-                                        <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    {% include "components/select-copy-dl" %}
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
+                <div class="card-body text-center">
+                    <label for="{{ filename }}Text" class="visually-hidden">Beaufort encrypt/decrypt string</label>
+                    <textarea placeholder="Example: Hello → Test [key] → Mahif" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                                <div class="input-group w-auto">
+                                    <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key"><span class="visually-hidden">{{ filename }} </span>Key</label>
+                                    <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off">
+                                    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
+                                    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
                                 </div>
                             </div>
+                            <div class="col d-flex flex-fill justify-content-end">
+                                {% include "components/select-copy-dl" %}
+                            </div>
                         </div>
-                        <hr />
-                        <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
                     </div>
+                    <hr />
+                    <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 {% render "dynamic-script", page: page %}
