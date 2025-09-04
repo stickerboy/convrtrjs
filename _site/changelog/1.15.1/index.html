@@ -128,10 +128,12 @@
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
-                aria-controls="nav-dropdown" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
+            >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
-                <label for="navbar-toggler" class="visually-hidden">Toggle navigation</label>
+                <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
+
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
@@ -212,7 +214,7 @@
                         <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
                             type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
                             <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
-                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-nested-theme-text">View settings</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
@@ -675,7 +677,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Sitemap"
             href="/sitemap" data-href="/sitemap">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -691,7 +693,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="Changelog: latest site updates"
             href="/changelog" data-href="/changelog">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -707,7 +709,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Privacy policy"
             href="/privacy" data-href="/privacy">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -806,7 +808,7 @@ Primary color for Convrtr has now changed to a slightly darker share of green</l
         <div class="p-4 pb-2">
             
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt">
                     <i class="bi bi-arrow-up-square"></i>
                     <span class="visually-hidden" focusable="false" aria-hidden="true">
                         Back to top
@@ -820,10 +822,10 @@ Primary color for Convrtr has now changed to a slightly darker share of green</l
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="/changelog"" 
-                title="Release version: v3.1.0" 
+            <a href="/changelog"
+                title="Release version: v3.1.1" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.1.0</small>
+                <small>v3.1.1</small>
             </a>
         </div>
     </div>

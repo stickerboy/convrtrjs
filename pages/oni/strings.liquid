@@ -5,66 +5,68 @@ title: ONI strings
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse"
-                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Extract strings
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+            aria-expanded="false" aria-controls="{{ filename }}Collapse"
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Extract strings
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
                  Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
             </p>
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Extract strings</span>
-                    <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename | prepend: "window." }}(string, n = 4)</code>
-                        {% comment -%}
-                        <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" title="string to extract" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
-                        {%- endcomment -%}
-                    </div>
-                    <div class="card-footer py-3">
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Extract strings</span>
+                <div class="card-body text-left">
+                    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename | prepend: "window." }}(string, n = 4)</code>
                     {% comment -%}
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key">Min<span class="visually-hidden">imum</span>&nbsp;Chars</label>
-                                        <input type="number" class="form-control" id="{{ filename }}Key" autocomplete="off" min="1" value="1">
-                                        <button class="btn btn-convrtr" type="button" id="{{ filename }}Decode">Generate</button>
-                                    </div>
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    {% include "components/select-copy-dl" %}
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
+                    <label for="{{ filename }}Text" class="visually-hidden">String to extract</label>
+                    <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     {%- endcomment -%}
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    {% include "components/select-copy-dl" %}
+                </div>
+                <div class="card-footer py-3">
+                {% comment -%}
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                                <div class="input-group w-auto">
+                                    <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key">Min<span class="visually-hidden">imum</span>&nbsp;Chars</label>
+                                    <input type="number" class="form-control" id="{{ filename }}Key" autocomplete="off" min="1" value="1">
+                                    <button class="btn btn-convrtr" type="button" id="{{ filename }}Decode">Generate</button>
                                 </div>
                             </div>
+                            <div class="col d-flex flex-fill justify-content-end">
+                                {% include "components/select-copy-dl" %}
+                            </div>
                         </div>
-                        <hr />
-                        <div class="data-to-copy active convrtr-results"></div>
                     </div>
+                    <hr />
+                    <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
+                {%- endcomment -%}
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                            </div>
+                            <div class="col d-flex flex-fill justify-content-end">
+                                {% include "components/select-copy-dl" %}
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="data-to-copy active convrtr-results"></div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 {% render "dynamic-script", page: page %}

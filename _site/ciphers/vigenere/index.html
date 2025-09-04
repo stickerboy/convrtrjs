@@ -128,10 +128,12 @@
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
-                aria-controls="nav-dropdown" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
+            >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
-                <label for="navbar-toggler" class="visually-hidden">Toggle navigation</label>
+                <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
+
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
@@ -212,7 +214,7 @@
                         <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
                             type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
                             <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
-                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-nested-theme-text">View settings</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
@@ -675,7 +677,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Sitemap"
             href="/sitemap" data-href="/sitemap">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -691,7 +693,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="Changelog: latest site updates"
             href="/changelog" data-href="/changelog">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -707,7 +709,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Privacy policy"
             href="/privacy" data-href="/privacy">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -763,19 +765,20 @@
 </section>
 <section id="vigenere" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#vigenereCollapse" role="button" 
-                aria-expanded="false" aria-controls="vigenereCollapse"
-                data-section-name="vigenere" data-section-description="Toggle visibility of vigenere section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    Vigenère cipher
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#vigenereCollapse" role="button" 
+            aria-expanded="false" aria-controls="vigenereCollapse"
+            data-section-name="vigenere" data-section-description="Toggle visibility of vigenere section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Vigenère cipher
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
                 One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     H → W → D
@@ -797,48 +800,49 @@
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="vigenereCollapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Vigenère cipher</span>
-                    <div class="card-body text-center">
-                        <textarea placeholder="Example: Hello → World [key] → Dscwr" title="Vigenère string" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                    <div class="input-group w-auto">
-                                        <label class="input-group-text" id="vigenereKeyLabel" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
-                                        <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
-                                        <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
-                                        <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
-                                    </div>
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Vigenère cipher</span>
+                <div class="card-body text-center">
+                    <label for="vigenereText" class="visually-hidden">Vigenère string</label>
+                    <textarea placeholder="Example: Hello → World [key] → Dscwr" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                                <div class="input-group w-auto">
+                                    <label class="input-group-text" id="vigenereKeyLabel" for="vigenereKey"><span class="visually-hidden">Vigenère </span>Key</label>
+                                    <input type="text" class="form-control" id="vigenereKey" autocomplete="off">
+                                    <button class="btn btn-convrtr" type="button" id="vigenereEncrypt">Encrypt</button>
+                                    <button class="btn btn-outline-convrtr" type="button" id="vigenereDecrypt">Decrypt</button>
                                 </div>
-                                <div class="col-12 col-md-auto flex-fill">
-                                    <div class="row row-cols-auto g-0">
-                                        <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                            <div class="form-check form-switch text-start">
-                                                <input class="form-check-input" type="checkbox" role="switch" id="chainVig" aria-checked="false">
-                                                <label class="form-check-label" for="chainVig">Chain <span class="visually-hidden">vigenère </span>commands</label>
-                                            </div>
+                            </div>
+                            <div class="col-12 col-md-auto flex-fill">
+                                <div class="row row-cols-auto g-0">
+                                    <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
+                                        <div class="form-check form-switch text-start">
+                                            <input class="form-check-input" type="checkbox" role="switch" id="chainVig" aria-checked="false">
+                                            <label class="form-check-label" for="chainVig">Chain <span class="visually-hidden">vigenère </span>commands</label>
                                         </div>
-                                        <div class="col d-flex flex-fill justify-content-end">
-                                            <div class="btn-group ms-auto align-items-start">
+                                    </div>
+                                    <div class="col d-flex flex-fill justify-content-end">
+                                        <div class="btn-group ms-auto align-items-start">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
 </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <hr />
-                        <div id="vigenereResults" class="data-to-copy active convrtr-results"></div>
                     </div>
+                    <hr />
+                    <div id="vigenereResults" class="data-to-copy active convrtr-results"></div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 
 <script type="module" src="/assets/js/ciphers/vigenere.mjs"></script>
@@ -847,7 +851,7 @@
         <div class="p-4 pb-2">
             
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt">
                     <i class="bi bi-arrow-up-square"></i>
                     <span class="visually-hidden" focusable="false" aria-hidden="true">
                         Back to top
@@ -861,10 +865,10 @@
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="/changelog"" 
-                title="Release version: v3.1.0" 
+            <a href="/changelog"
+                title="Release version: v3.1.1" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.1.0</small>
+                <small>v3.1.1</small>
             </a>
         </div>
     </div>

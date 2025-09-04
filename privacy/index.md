@@ -12,13 +12,13 @@ eleventyComputed:
 
 We care about your privacy and want to be transparent about how your data is handled when you use **Convrtr**.
 
-### What We Collect
+## What We Collect
 
 We do **not** collect or store any personal information on our servers. The only data we collect is through:
 
 - **Google Analytics**: Used to understand how people use the site (e.g., which pages are visited). This data is anonymized and does not include personally identifiable information.
 
-### GDPR Compliance
+## GDPR Compliance
 
 To comply with the **General Data Protection Regulation (GDPR)**:
 
@@ -29,7 +29,7 @@ To comply with the **General Data Protection Regulation (GDPR)**:
 
 You can learn more about how Google uses data here.
 
-### What We Store Locally
+## What We Store Locally
 
 We use **local storage** in your browser to remember:
 
@@ -38,7 +38,7 @@ We use **local storage** in your browser to remember:
 
 This data stays on your device and is **not shared** with us or any third parties.
 
-#### Local Storage and GDPR
+### Local Storage and GDPR
 
 Under GDPR and the ePrivacy Directive, local storage is treated similarly to cookies. However, consent is **not required** when the data stored is:
 
@@ -58,19 +58,19 @@ We ensure that local storage is used only for functionality that improves your e
 
 You can clear your local storage at any time to reset your preferences.
 
-### Your Choices
+## Your Choices
 
 - You can **clear your browser’s local storage** at any time to reset your preferences.
 - You can **[opt out of Google Analytics tracking<i class="bi bi-box-arrow-up-right opacity-75 ms-1" focusable="false" aria-hidden="false"></i>](https://support.google.com/analytics/answer/181881)** using browser extensions like Google Analytics Opt-out.
 - You can view and change **<a href="#" id="open_preferences_center" class="text-convrtr">your cookies preferences</a>** (this opens in a modal pop-up).
 
 
-### Changes to this Privacy Policy
+## Changes to this Privacy Policy
 
 We may update our policy from time to time, any changes will be marked on this page and available on our **[Changelog](/changelog)**.  
 You can additionally filter down to just privacy related changes using the **[Privacy tag](/changelog/tag/privacy/ "Changelog filter for privacy related updates")** search.
 
-### Contact
+## Contact
 
 If you have any questions about this policy, feel free to reach out:
 

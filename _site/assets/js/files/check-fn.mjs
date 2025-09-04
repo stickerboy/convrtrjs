@@ -49,7 +49,7 @@ function matchFileHeader(hexString, textString) {
                 return `<code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">File match</code>
 <br />${hexString}
 <br /><strong>${header.label}</strong>
-<br /><code>${textString}</code>`;
+<br /><code class="d-inline-flex px-2 bg-dark bg-opacity-10 border border-dark border-opacity-10 rounded-2">${textString}</code>`;
             }
         }
     }
@@ -67,5 +67,5 @@ function generateNoMatchInfo(hexString, textString) {
     return `<code class="d-inline-flex px-2 bg-danger bg-opacity-10 border border-danger border-opacity-10 rounded-2">No match</code>
 <br />This file header is not on our list:
 <br />${hexString}
-<br /><code>${textString}</code>`;
+<br /><code class="d-inline-flex px-2 bg-dark bg-opacity-10 border border-dark border-opacity-10 rounded-2">${textString}</code>`;
 }

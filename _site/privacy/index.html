@@ -128,10 +128,12 @@
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
-                aria-controls="nav-dropdown" aria-expanded="false" aria-label="Toggle navigation">
+                aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
+            >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
-                <label for="navbar-toggler" class="visually-hidden">Toggle navigation</label>
+                <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
+
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
@@ -212,7 +214,7 @@
                         <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-settings"
                             type="button" aria-haspopup="true" aria-expanded="false" data-bs-toggle="dropdown" aria-label="View settings" data-bs-auto-close="false">
                             <i class="bi my-1 theme-icon-active bi-gear-fill"></i>
-                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-theme-text">View settings</span>
+                            <span class="visually-hidden ms-2" focusable="false" aria-hidden="false" id="bd-nested-theme-text">View settings</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
@@ -675,7 +677,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Sitemap"
             href="/sitemap" data-href="/sitemap">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -691,7 +693,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="Changelog: latest site updates"
             href="/changelog" data-href="/changelog">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -707,7 +709,7 @@
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-25 active" aria-label="View the Privacy policy"
             href="/privacy" data-href="/privacy">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;">
+            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
                 <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6 ms-3">
@@ -747,19 +749,19 @@
             <h1 class="display-6">Privacy policy</h1>
             <hr>
             <p class="px-2">
-                This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">August 13, 2025</code>
+                This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">September 01, 2025</code>
             </p>
         </div>
     </div>
 </section><section class="section changelog privacy">
     <article class="py-4 px-2 px-sm-4">
 <p>We care about your privacy and want to be transparent about how your data is handled when you use <strong>Convrtr</strong>.</p>
-<h3>What We Collect</h3>
+<h2>What We Collect</h2>
 <p>We do <strong>not</strong> collect or store any personal information on our servers. The only data we collect is through:</p>
 <ul>
 <li><strong>Google Analytics</strong>: Used to understand how people use the site (e.g., which pages are visited). This data is anonymized and does not include personally identifiable information.</li>
 </ul>
-<h3>GDPR Compliance</h3>
+<h2>GDPR Compliance</h2>
 <p>To comply with the <strong>General Data Protection Regulation (GDPR)</strong>:</p>
 <ul>
 <li>We have <strong>enabled IP anonymization</strong> in Google Analytics to prevent storing identifiable user data.</li>
@@ -768,14 +770,14 @@
 <li>We have signed Google’s <strong>Data Processing Agreement (DPA)</strong> as required by GDPR.</li>
 </ul>
 <p>You can learn more about how Google uses data here.</p>
-<h3>What We Store Locally</h3>
+<h2>What We Store Locally</h2>
 <p>We use <strong>local storage</strong> in your browser to remember:</p>
 <ul>
 <li>Your <strong>theme preferences</strong> (light or dark mode)</li>
 <li>The <strong>visibility state</strong> of tools (which ones you’ve hidden or shown)</li>
 </ul>
 <p>This data stays on your device and is <strong>not shared</strong> with us or any third parties.</p>
-<h4>Local Storage and GDPR</h4>
+<h3>Local Storage and GDPR</h3>
 <p>Under GDPR and the ePrivacy Directive, local storage is treated similarly to cookies. However, consent is <strong>not required</strong> when the data stored is:</p>
 <ul>
 <li><strong>Strictly necessary</strong> for providing a service the user has requested (e.g., remembering tool visibility or theme preferences).</li>
@@ -791,16 +793,16 @@ View items stored in local storage
     </div>
 </div>
 <p>You can clear your local storage at any time to reset your preferences.</p>
-<h3>Your Choices</h3>
+<h2>Your Choices</h2>
 <ul>
 <li>You can <strong>clear your browser’s local storage</strong> at any time to reset your preferences.</li>
 <li>You can <strong><a href="https://support.google.com/analytics/answer/181881">opt out of Google Analytics tracking<i class="bi bi-box-arrow-up-right opacity-75 ms-1" focusable="false" aria-hidden="false"></i></a></strong> using browser extensions like Google Analytics Opt-out.</li>
 <li>You can view and change <strong><a href="#" id="open_preferences_center" class="text-convrtr">your cookies preferences</a></strong> (this opens in a modal pop-up).</li>
 </ul>
-<h3>Changes to this Privacy Policy</h3>
+<h2>Changes to this Privacy Policy</h2>
 <p>We may update our policy from time to time, any changes will be marked on this page and available on our <strong><a href="/changelog">Changelog</a></strong>.<br>
 You can additionally filter down to just privacy related changes using the <strong><a href="/changelog/tag/privacy/" title="Changelog filter for privacy related updates">Privacy tag</a></strong> search.</p>
-<h3>Contact</h3>
+<h2>Contact</h2>
 <p>If you have any questions about this policy, feel free to reach out:</p>
 <ul>
 <li>By email: <a href="mailto:privacy@convrtr.xyz" title="Send me an email">privacy@convrtr.xyz</a></li>
@@ -814,7 +816,7 @@ You can additionally filter down to just privacy related changes using the <stro
         <div class="p-4 pb-2">
             
             <p class="float-end mb-1">
-                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt" title="Back to top">
+                <a href="#IOOBI9O4IEIEOIO4O4IB" class="btn btn-secondary btn-btt">
                     <i class="bi bi-arrow-up-square"></i>
                     <span class="visually-hidden" focusable="false" aria-hidden="true">
                         Back to top
@@ -828,10 +830,10 @@ You can additionally filter down to just privacy related changes using the <stro
             </p>
         </div>
         <div class="p-4 pt-2">
-            <a href="/changelog"" 
-                title="Release version: v3.1.0" 
+            <a href="/changelog"
+                title="Release version: v3.1.1" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.1.0</small>
+                <small>v3.1.1</small>
             </a>
         </div>
     </div>

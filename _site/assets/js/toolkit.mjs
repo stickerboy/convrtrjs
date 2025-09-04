@@ -327,7 +327,7 @@ export function styledUniqueArrayItems(data) {
     const uniqueCharsHTML = data.map(char => {
         const sanitizedChar = char.replace(/ /g, "Space").replace(/\t/g, "Tab");
         const displayChar = char.replace(/ /g, "&nbsp;").replace(/\t/g, "&nbsp;");
-        return `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="${sanitizedChar}" title="${sanitizedChar}">
+        return `<code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" title="${sanitizedChar}" role="note">
                     ${displayChar}
                 </code>`;
     }).join("");
@@ -392,10 +392,15 @@ export function countArrayFreq(string, chunkSize = 1, delimiter) {
  * // Output: "<div class="g-col-12"> ..."
  */
 export function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
+    // Bail out early if data is falsy or has no entries
+    if (!data || Object.keys(data).length === 0) {
+        return "";
+    }
+
     // Generate HTML for each key-value pair
     const itemsHTML = Object.entries(data).map(([key, value]) => {
         return `<div>
-                    <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" aria-label="Frequency of ${key}" title="Frequency of ${key}">
+                    <code tabindex="0" class="w-auto d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 me-2" style="width: max-content;" title="Frequency of ${key}" role="note">
                         ${key} - ${value}
                     </code>
                 </div>`;

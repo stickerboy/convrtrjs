@@ -5,45 +5,46 @@ title: ONI unscramble
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
-            <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
-                data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
-                aria-expanded="false" aria-controls="{{ filename }}Collapse"
-                data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-                <h2 class="display-6 w-100 d-flex m-0">
-                    {{ filename | upperFirst }}
-                </h2>
-                <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
-                    <i class="bi bi-arrow-up lh-base"></i>
-                </span>
-            </a>
-            <hr class="d-none my-0 mx-4">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+            aria-expanded="false" aria-controls="{{ filename }}Collapse"
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            <h2 class="display-6 w-100 d-flex m-0">
+                {{ filename | upperFirst }}
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
                 Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">abcdef</code> → <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
             </p>
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
-            <div class="col">
-                <div class="card">
-                    <span class="card-label visually-hidden">Unscramble</span>
-                    <div class="card-body text-left">
-                        <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename| prepend: "window." }}(string)</code>
-                    </div>
-                    <div class="card-footer py-3">
-                        <div class="text-center mb-4 g-0">
-                            <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                                <div class="col col-12 col-md-auto">
-                                </div>
-                                <div class="col d-flex flex-fill justify-content-end">
-                                    {% include "components/select-copy-dl" %}
-                                </div>
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden">Unscramble</span>
+                <div class="card-body text-left">
+                    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename| prepend: "window." }}(string)</code>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-md-0 gx-0 gy-2">
+                            <div class="col col-12 col-md-auto">
+                            </div>
+                            <div class="col d-flex flex-fill justify-content-end">
+                                {% include "components/select-copy-dl" %}
                             </div>
                         </div>
-                        <hr />
-                        <div class="data-to-copy active"></div>
                     </div>
+                    <hr />
+                    <div class="data-to-copy active"></div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
 {% render "dynamic-script", page: page %}
