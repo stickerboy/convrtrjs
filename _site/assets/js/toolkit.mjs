@@ -392,6 +392,11 @@ export function countArrayFreq(string, chunkSize = 1, delimiter) {
  * // Output: "<div class="g-col-12"> ..."
  */
 export function styledArrayFrequencies(data, title = "Frequencies", minColWidth = 6) {
+    // Bail out early if data is falsy or has no entries
+    if (!data || Object.keys(data).length === 0) {
+        return "";
+    }
+
     // Generate HTML for each key-value pair
     const itemsHTML = Object.entries(data).map(([key, value]) => {
         return `<div>
