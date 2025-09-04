@@ -18,10 +18,23 @@
                 {%- endfor %}
             </div>
             {%- endif -%}
-            {%- if page-id == "privacy" or page-id == "sitemap" or page.inputPath contains "tag" or page.inputPath contains "tags" or page-id != "sitemap" and page.inputPath contains "changelog" -%}
+            {%- assign excluded_ids = "privacy,accessibility,sitemap" | split: "," -%}
+            {%- assign excluded_fragments = "tag,tags,changelog" | split: "," -%}
+
+            {%- assign id_excluded = excluded_ids contains page-id -%}
+            {%- assign path_excluded = false -%}
+
+            {%- for fragment in excluded_fragments -%}
+            {%- if page.inputPath contains fragment -%}
+                {%- assign path_excluded = true -%}
+            {%- endif %}
+            {%- endfor -%}
+
+            {%- if id_excluded or path_excluded -%}
+                {%- comment -%} Do nothing {%- endcomment -%}
             {%- else -%}
-            {% render "components/data-limits" %}
-            {% endif %}
+                {% render "components/data-limits" %}
+            {%- endif %}
         </div>
     </div>
 </section>
