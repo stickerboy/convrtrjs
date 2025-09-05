@@ -1012,7 +1012,8 @@ textarea.form-control.is-invalid.ld-warning {
         margin-bottom: 0.5rem;
     }
 }
-.privacy {
+.privacy,
+.accessibility {
     a {
         --bs-text-opacity: 1;
         color: rgba(var(--bs-bg-success), var(--bs-text-opacity)) !important;
