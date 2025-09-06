@@ -1012,14 +1012,24 @@ textarea.form-control.is-invalid.ld-warning {
         margin-bottom: 0.5rem;
     }
 }
+
 .changelog,
 .privacy,
-.accessibility {
+.accessibility  {
     a:not(.btn) {
-        --bs-text-opacity: 1;
-        color: rgba(var(--bs-bg-success), var(--bs-text-opacity)) !important;
+        color: var(--convrtr-link-color) !important;
     }
 }
+@include color-mode(dark) {
+    .changelog,
+    .privacy,
+    .accessibility  {
+        a:not(.btn) {
+            color: var(--convrtr-table-header) !important;
+        }
+    }
+}
+
 .version-list {
     >:not(caption)>*>* {
         border-bottom-width: 0;
