@@ -1012,9 +1012,10 @@ textarea.form-control.is-invalid.ld-warning {
         margin-bottom: 0.5rem;
     }
 }
+.changelog,
 .privacy,
 .accessibility {
-    a {
+    a:not(.btn) {
         --bs-text-opacity: 1;
         color: rgba(var(--bs-bg-success), var(--bs-text-opacity)) !important;
     }
