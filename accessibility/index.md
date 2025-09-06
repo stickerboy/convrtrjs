@@ -46,7 +46,5 @@ In the UK, that’s:
 **Equality Advisory and Support Service (EASS)**  
 [https://www.equalityadvisoryservice.com](https://www.equalityadvisoryservice.com)
 
-    <script type="module" src="{{ '/assets/js/accessibility/accessibility.mjs' | url }}"></script>
-
   </article>
 </section>
