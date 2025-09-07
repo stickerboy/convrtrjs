@@ -184,5 +184,16 @@
         "label_2": "Privacy policy",
         "aria-label": "View the Privacy policy",
         "switch-label": false
+    },
+    {
+        "id": "accessibility",
+        "label": "Accessibility statement",
+        "short-label": "Accessibility",
+        "icon": "universal-access-circle",
+        "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working.",
+        "label_1": "View the ",
+        "label_2": "Accessibility statement",
+        "aria-label": "View the Accessibility statement",
+        "switch-label": false
     }
 ]
