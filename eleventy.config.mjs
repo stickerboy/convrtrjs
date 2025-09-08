@@ -53,7 +53,11 @@ export default function (eleventyConfig) {
         return content; // Return the content as-is
     });
 
-    // Only allow certian tags within changelogs
+    eleventyConfig.addFilter('dateISO', function (date) {
+        return new Date(date).toISOString();
+    });
+
+    // Only allow certain tags within changelogs
     const allowedTags = allowedTagsData.labels;
     const allowedTagKeys = allowedTags.map((tag) => tag.key); 
 

@@ -1,0 +1,33 @@
+---
+layout: null 
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all %}
+  {%- unless item.url contains "assets" %}
+    <url>
+      <loc>{{ pkg.homepage }}{{ item.url }}</loc>
+      {%- if item.data.date %}
+        <lastmod>{{ item.data.date | dateISO }}</lastmod>
+      {%- else %}
+        <lastmod>{{ lastmod | dateISO }}</lastmod>
+      {%- endif %}
+        <changefreq>monthly</changefreq>
+    </url>
+  {%- endunless %}
+{%- endfor %}
+{%- for tag in labels.labels %}
+  {%- if tag.visible %}
+    {%- assign tagItems = collections[tag.key] | sort: "date" | reverse %}
+    {%- if tagItems.size > 0 %}
+    <url>
+        <loc>{{ pkg.homepage }}/tags/{{ tag.key }}/</loc>
+        <lastmod>{{ tagItems[0].date | dateISO }}</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    {%- endif %}
+  {%- endif %}
+{%- endfor %}
+</urlset>
