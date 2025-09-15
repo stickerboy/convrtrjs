@@ -35,8 +35,8 @@ title: Flip text
                     <div class="d-flex justify-content-start align-items-center">
                         <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Flip text upside down">{{ filename | upperFirst }}</button>
                         <div class="form-check form-switch mx-2">
-                            <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Direction" aria-checked="false">
-                            <label class="form-check-label" for="{{ filename }}Direction">Reverse</label>
+                            <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Direction" aria-checked="false" aria-labelledby="{{ filename }}DirectionLabel">
+                            <label class="form-check-label" id="{{ filename }}DirectionLabel" for="{{ filename }}Direction">Reverse</label>
                         </div>
                         {% include "components/select-copy-dl" %}
                     </div>
