@@ -49,12 +49,12 @@ title: Text replace
                             <div class="col d-flex flex-fill mb-2">
                                 <div class="me-auto flex-fill">
                                     <div class="form-check form-switch mx-lg-2 d-flex">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Case" aria-checked="false">
-                                        <label class="form-check-label" for="{{ filename }}Case">Case sensitive</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Case" aria-checked="false" aria-labelledby="{{ filename }}CaseLabel">
+                                        <label class="form-check-label" id="{{ filename }}CaseLabel" for="{{ filename }}Case">Case sensitive</label>
                                     </div>
                                     <div class="form-check form-switch mx-lg-2 d-flex">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Chain" aria-checked="false">
-                                        <label class="form-check-label" for="{{ filename }}Chain">Chain <span class="visually-hidden" aria-hidden="true" focusable="true">{{ filename }}</span> commands</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Chain" aria-checked="false" aria-labelledby="{{ filename }}ChainLabel">
+                                        <label class="form-check-label" id="{{ filename }}ChainLabel" for="{{ filename }}Chain">Chain <span class="visually-hidden" aria-hidden="true" focusable="true">{{ filename }}</span> commands</label>
                                     </div>
                                 </div>
                                 {% include "components/select-copy-dl" %}

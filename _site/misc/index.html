@@ -820,12 +820,12 @@
                                 <div class="row row-cols-auto g-0">
                                     <div class="col col-sm-8 col-md-auto ms-0 mx-sm-2 me-md-auto">
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false">
-                                            <label class="form-check-label" for="brailleSwitch">Convert Text to Braille</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brailleSwitch" aria-checked="false" aria-labelledby="brailleSwitch">
+                                            <label class="form-check-label" id="brailleSwitchLabel" for="brailleSwitch">Convert Text to Braille</label>
                                         </div>
                                         <div class="form-check form-switch mx-lg-2 d-flex">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false">
-                                            <label class="form-check-label" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false" aria-labelledby="brImageTransparencyLabel">
+                                            <label class="form-check-label" id="brImageTransparencyLabel" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
@@ -991,8 +991,8 @@
                                         <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
                                     </div>
                                     <div class="form-check form-switch mx-2">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false">
-                                        <label class="form-check-label" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false" aria-labelledby="covImageTransparencyLabel">
+                                        <label class="form-check-label" id="covImageTransparencyLabel" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -1089,8 +1089,8 @@
                             <div class="col d-flex flex-fill mb-2">
                                 <div class="me-auto flex-fill">
                                     <div class="form-check form-switch mx-lg-2 d-flex">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false">
-                                        <label class="form-check-label" for="removeDelimiters">Remove delimiters</label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters" aria-checked="false" aria-labelledby="removeDelimitersLabel">
+                                        <label class="form-check-label" id="removeDelimitersLabel" for="removeDelimiters">Remove delimiters</label>
                                     </div>
                                 </div>
                                 <div class="btn-group ms-auto align-items-start">
@@ -2008,8 +2008,8 @@
                                         <button role="button" class="btn btn-md btn-convrtr" id="generateForerunnerImage" title="Create an image from Forerunner glyphs">Create image</button>
                                     </div>
                                     <div class="form-check form-switch mx-2">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false">
-                                        <label class="form-check-label" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
+                                        <input class="form-check-input" type="checkbox" role="switch" id="frImageTransparency" aria-checked="false" aria-labelledby="frImageTransparencyLabel">
+                                        <label class="form-check-label" id="frImageTransparencyLabel" for="frImageTransparency">Transparent background <span class="visually-hidden">for Forerunner image</span></label>
                                     </div>
                                 </div>
                             </div>
@@ -2048,9 +2048,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.2.1" 
+                title="Release version: v3.2.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.2.1</small>
+                <small>v3.2.2</small>
             </a>
             
             <p class="float-end mb-1">
