@@ -13,7 +13,7 @@
             })();
         </script>
 
-        {% render "layout/css" %}
+        {% include "layout/css" %}
         {% include "layout/favicons" %}
     </head>
     <body>
@@ -24,8 +24,9 @@
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     {% include "layout/sidebar" %}
                 </div>
+                {% assign excludedPages = "fourohfour,404,search,sitemap" | split: "," %}
                 <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
-                    data-bs-smooth-scroll="true" id="content">
+                    data-bs-smooth-scroll="true" id="content"{% if not excludedPages contains page-id %} data-pagefind-body{% endif %}>
                     {% if page-id != "404" -%}
                     {% include "partials/default" %}
                     {%- endif -%}

@@ -10,6 +10,7 @@
 @import "../node_modules/bootstrap-scss/mixins";
 @import "../node_modules/bootstrap-scss/utilities";
 @import "../node_modules/bootstrap-scss/root";
+@import "../node_modules/bootstrap-scss/list-group";
 
 // Utilities
 @import "../node_modules/bootstrap-scss/utilities/api";
@@ -66,6 +67,15 @@
     --convrtr-nav-tabs-border-color: #dee2e6;
     --convrtr-code-opacity: 0.2;
     --bs-bg-dark-opacity: 0.08;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --pagefind-ui-primary: #eeeeee;
+        --pagefind-ui-text: #eeeeee;
+        --pagefind-ui-background: #152028;
+        --pagefind-ui-border: #152028;
+        --pagefind-ui-tag: #152028;
+    }
 }
 [data-bs-theme="dark"] {
     --convrtr-base-color: #dee2e6;
@@ -1223,4 +1233,48 @@ button.cc-nb-changep {
 }
 .termsfeed-com---palette-dark button.cc-nb-changep {
     color: var(--convrtr-txt-color) !important;
+}
+
+.pagefind-ui__form {
+    @extend .input-group;
+    @extend .mb-3;
+
+    .pagefind-ui__search-input {
+        @extend .form-control;
+    }
+
+    .pagefind-ui__search-clear {
+        @extend .btn;
+        @extend .btn-convrtr !optional;
+        --bs-btn-border-radius: .5rem;
+        border-top-right-radius: var(--bs-btn-border-radius) !important;
+        border-bottom-right-radius: var(--bs-btn-border-radius) !important;
+    }
+}
+.pagefind-ui__drawer {
+    @extend .w-100;
+    margin-top: 1rem;
+}
+.pagefind-ui__message {
+    @extend .px-2;
+}
+.pagefind-ui__results {
+    @extend .list-group;
+    @extend .list-group-flush;
+}
+.pagefind-ui__result {
+    @extend .list-group-item;
+    @extend .list-group-item-action;
+}
+.pagefind-ui__result-link {
+    --bs-link-underline-opacity: 0;
+    @extend .text-convrtr-link;
+    font-weight: 500 !important;
+    text-decoration-color: rgba(var(--bs-link-color-rgb), var(--bs-link-underline-opacity, 1)) !important;
+    @extend .stretched-link;
+}
+.pagefind-ui__button {
+    margin-top: 1rem;
+    @extend .btn;
+    @extend .btn-outline-convrtr;
 }

@@ -33,7 +33,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
                         </a>
                     </li>
-                    {% assign excludedPages = "fourohfour,404" | split: "," %}
+                    {% assign excludedPages = "fourohfour,404,search" | split: "," %}
                 {% if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
