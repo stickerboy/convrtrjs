@@ -1,8 +1,10 @@
 ---
 layout: layout.liquid
 title: Convenant glyphs
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
+<span class="hidden" data-pagefind-filter="Tags">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
@@ -30,7 +32,7 @@ title: Convenant glyphs
         <div class="col">
             <div class="card">
                 <span class="card-label visually-hidden">Covenant glyphs</span>
-                <div class="card-body text-center">
+                <div class="card-body text-center" data-pagefind-ignore="all">
                     <div class="mb-2">
                         <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-0" aria-label="Glyph: 0" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 0">0</button>
                         <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-1" aria-label="Glyph: 1" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 1">1</button>

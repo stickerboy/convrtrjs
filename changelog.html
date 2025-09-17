@@ -16,7 +16,7 @@ eleventyComputed:
   changelog-title: "{% if pagination.pageNumber > 0 %} | Page {{ pagination.pageNumber | plus: 1 }}{% endif %}"
 ---
 {% assign filename = page.fileSlug %}
-<span class="d-none" data-pagefind-filter="Tags">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Tags">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">

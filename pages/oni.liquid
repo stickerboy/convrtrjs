@@ -11,8 +11,9 @@ description: >
   the web console until a UI can be built for them. Most require specifically crafted data packets that were built for
   the ARG, there may still be some floating around out in space somewhere!</p>
 page-id: "{{ page.fileSlug }}"
+tags: landing-page
 ---
-
+<span class="hidden" data-pagefind-filter="Tags">{{ tags }}</span>
 {% for page in collections.oni %}
     {% if page-id == "oni" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}
