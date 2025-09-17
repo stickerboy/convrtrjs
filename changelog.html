@@ -3,6 +3,7 @@ layout: layout.liquid
 title: Changelog
 description: History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.
 page-id: changelog
+tags: changelog
 pagination:
   data: collections.versions
   size: 15
@@ -15,6 +16,7 @@ eleventyComputed:
   changelog-title: "{% if pagination.pageNumber > 0 %} | Page {{ pagination.pageNumber | plus: 1 }}{% endif %}"
 ---
 {% assign filename = page.fileSlug %}
+<span class="d-none" data-pagefind-filter="Tags">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">

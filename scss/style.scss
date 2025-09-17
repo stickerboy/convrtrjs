@@ -10,7 +10,11 @@
 @import "../node_modules/bootstrap-scss/mixins";
 @import "../node_modules/bootstrap-scss/utilities";
 @import "../node_modules/bootstrap-scss/root";
+@import "../node_modules/bootstrap-scss/grid";
 @import "../node_modules/bootstrap-scss/list-group";
+
+// Helpers
+@import "../node_modules/bootstrap-scss/helpers";
 
 // Utilities
 @import "../node_modules/bootstrap-scss/utilities/api";
@@ -1253,6 +1257,7 @@ button.cc-nb-changep {
 }
 .pagefind-ui__drawer {
     @extend .w-100;
+    @extend .row;
     margin-top: 1rem;
 }
 .pagefind-ui__message {
@@ -1277,4 +1282,44 @@ button.cc-nb-changep {
     margin-top: 1rem;
     @extend .btn;
     @extend .btn-outline-convrtr;
+}
+.pagefind-ui__filter-panel,
+.pagefind-ui__results-area {
+    @extend .col-12;
+    padding: 0 !important;
+}
+@media (min-width:869px) {
+    .pagefind-ui__filter-panel {
+        flex: 0 0 auto;
+        width: 25%;
+    }
+    .pagefind-ui__results-area {
+        flex: 0 0 auto;
+        width: 75%;
+        padding-left: 1rem !important;
+    }
+}
+@media (min-width:1201px) {
+    .pagefind-ui__filter-panel {
+        flex: 0 0 auto;
+        width: 16.66666667%;
+    }
+    .pagefind-ui__results-area {
+        flex: 0 0 auto;
+        width: 83.33333333%;
+    }
+}
+.pagefind-ui__filter-group {
+    @extend .list-group;
+}
+.pagefind-ui__filter-value {
+    @extend .list-group-item;
+}
+.pagefind-ui__filter-name,
+.pagefind-ui__filter-group-label {
+    display: none;
+}
+.pagefind-ui__message {
+    @extend .lead !optional;
+    margin-top: 2rem;
 }
