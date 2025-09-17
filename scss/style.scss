@@ -1279,6 +1279,7 @@ button.cc-nb-changep {
     --bs-link-underline-opacity: 0;
     @extend .text-convrtr-link;
     font-weight: 500 !important;
+    font-size: 1.15rem;
     text-decoration-color: rgba(var(--bs-link-color-rgb), var(--bs-link-underline-opacity, 1)) !important;
     @extend .stretched-link;
 }
@@ -1344,4 +1345,8 @@ button.cc-nb-changep {
     height: 100%;
     padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
     cursor: pointer;
+}
+.pagefind-ui__filter-checkbox:checked+.pagefind-ui__filter-label {
+    --bs-bg-opacity: 0.1;
+    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
 }
