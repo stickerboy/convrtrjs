@@ -1,6 +1,6 @@
 window.addEventListener('DOMContentLoaded', (event) => {
     new PagefindUI({ 
-        element: "#search", 
+        element: "#page-search", 
         showSubResults: true, 
         showImages: false, 
         resetStyles: false,
