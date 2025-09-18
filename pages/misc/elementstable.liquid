@@ -4,14 +4,13 @@ title: Periodic elements table
 tags: tools
 ---
 {% assign filename = page.fileSlug %}
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="true" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-            <h2 class="display-6 w-100 d-flex m-0">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
                 Periodic elements
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">

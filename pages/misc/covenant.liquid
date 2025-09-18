@@ -4,14 +4,13 @@ title: Convenant glyphs
 tags: tools
 ---
 {% assign filename = page.fileSlug %}
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="true" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-            <h2 class="display-6 w-100 d-flex m-0">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
                 Covenant glyphs
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
@@ -31,7 +30,7 @@ tags: tools
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">Covenant glyphs</span>
+                <span class="card-label visually-hidden" data-pagefind-ignore="all">Covenant glyphs</span>
                 <div class="card-body text-center" data-pagefind-ignore="all">
                     <div class="mb-2">
                         <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-0" aria-label="Glyph: 0" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 0">0</button>

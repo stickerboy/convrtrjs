@@ -15,8 +15,8 @@ eleventyComputed:
   description: "{{ description }}<br />You can also view the full list of releases on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
   changelog-title: "{% if pagination.pageNumber > 0 %} | Page {{ pagination.pageNumber | plus: 1 }}{% endif %}"
 ---
+
 {% assign filename = page.fileSlug %}
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">
         <div class="section-heading mb-4">
