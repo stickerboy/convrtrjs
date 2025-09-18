@@ -988,19 +988,6 @@ mark {
         @extend .h5 !optional;
         font-weight: 400;
     }
-    article img {
-        height: auto;
-        max-width: 100%;
-        @media (min-width: map-get($grid-breakpoints, md)) {
-            max-width: 95%;
-        }
-        @media (min-width: map-get($grid-breakpoints, lg)) {
-            max-width: 85%;
-        }
-        @media (min-width: map-get($grid-breakpoints, xl)) {
-            max-width: 75%;
-        }
-    }
     a > img {
         max-width: 100%;
         padding: 0.5rem;
@@ -1013,6 +1000,19 @@ mark {
         &:active,
         &:focus {
             outline-color: var(--convrtr-bg-color-75)
+        }
+    }
+    article img {
+        height: auto;
+        max-width: 100%;
+        @media (min-width: map-get($grid-breakpoints, md)) {
+            max-width: 95%;
+        }
+        @media (min-width: map-get($grid-breakpoints, lg)) {
+            max-width: 85%;
+        }
+        @media (min-width: map-get($grid-breakpoints, xl)) {
+            max-width: 75%;
         }
     }
     code {
