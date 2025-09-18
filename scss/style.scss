@@ -1324,6 +1324,7 @@ button.cc-nb-changep {
 }
 .pagefind-ui__filter-name {
     font-size: 1.5rem;
+    text-align: start;
 }
 .pagefind-ui__filter-block summary::-webkit-details-marker,
 .pagefind-ui__filter-block summary::marker {
@@ -1396,6 +1397,7 @@ button.cc-nb-changep {
     width: 100%;
     height: 100%;
     padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
+    text-align: start;
     cursor: pointer;
 }
 .pagefind-ui__filter-checkbox:checked+.pagefind-ui__filter-label {
