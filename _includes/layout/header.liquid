@@ -19,7 +19,7 @@
                 <ul class="navbar-nav mx-0 mx-md-2 flex-row d-none d-sm-flex">
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
-                            title="Discord" href="{{ pkg.support }}" title="Discord"
+                            title="Discord" href="{{ pkg.support }}"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
@@ -27,10 +27,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
-                            title="Github" href="{{ pkg.repository.site }}" title="Github"
+                            title="Github" href="{{ pkg.repository.site }}"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Search the website" 
+                            title="Search" href="{{ '/search' | url }}"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                            <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
                         </a>
                     </li>
                     {% assign excludedPages = "fourohfour,404,search" | split: "," %}
@@ -92,18 +100,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
-                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
-                                    Github
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
+                                <a href="{{ '/search' | url }}" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-search" aria-hidden="true" focusable="false"></i>
+                                    Search <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">the website</span>
+                                </a>
                             </li>
                             {% if not excludedPages contains page-id %}
                             <li>
@@ -115,6 +115,20 @@
                                 </button>
                             </li>
                             {% endif %}
+                            <li>
+                                <a href="{{ pkg.support }}" class="dropdown-item d-flex align-items-center rounded-0" title="Discord" aria-label="Join the Discord">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
+                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ pkg.repository.site }}" class="dropdown-item d-flex align-items-center rounded-0" title="Github" aria-label="Github code repository">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
+                                    Github
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
