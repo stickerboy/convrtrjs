@@ -1336,6 +1336,10 @@ button.cc-nb-changep {
 .pagefind-ui__filter-name {
     font-size: 1.5rem;
     text-align: start;
+    position: relative;
+}
+.pagefind-ui__filter-block summary {
+    margin-bottom: 0.5rem;
 }
 .pagefind-ui__filter-block summary::-webkit-details-marker,
 .pagefind-ui__filter-block summary::marker {
@@ -1355,7 +1359,7 @@ button.cc-nb-changep {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     padding: 0.25rem;
-    margin-right: 0.25rem;
+    margin-right: 0.5rem;
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
     --bs-border-opacity: 1;
@@ -1378,8 +1382,8 @@ button.cc-nb-changep {
     color: var(--bs-white);
     z-index: 5;
     position: absolute;
-    left: 0.25rem;
-    top: 4.65rem;
+    left: 0.3rem;
+    top: 0.8rem;
     transform: rotate(0deg);
     transition: transform .4s ease-in-out;
 }
