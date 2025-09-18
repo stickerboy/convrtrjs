@@ -12,30 +12,36 @@ window.addEventListener('DOMContentLoaded', (event) => {
     });
 
     const searchInput = document.querySelector(".pagefind-ui__search-input");
-    const searchFilter = document.querySelector('.pagefind-ui__drawer');
+    const searchFilters = document.querySelectorAll('.pagefind-ui__drawer');
 
     function openDetails() {
-        const details = searchFilter.querySelector('details'); 
-        if (details && !details.open) {
-            details.open = true;
-        }
+        searchFilters.forEach(filter => {
+            const detailsElements = filter.querySelectorAll('details');
+            detailsElements.forEach(details => {
+                if (!details.open) {
+                    details.open = true;
+                }
+            });
+        });
     }
 
     // Run observer as search filters are injected dynamically on input focus
     function observeDetails() {
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.addedNodes.length) {
-                    mutation.addedNodes.forEach((node) => {
-                        if (node.nodeType === Node.ELEMENT_NODE && node.matches('details')) {
-                            openDetails();
-                        }
-                    });
-                }
+        searchFilters.forEach(filter => {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.addedNodes.length) {
+                        mutation.addedNodes.forEach((node) => {
+                            if (node.nodeType === Node.ELEMENT_NODE && node.matches('details')) {
+                                openDetails();
+                            }
+                        });
+                    }
+                });
             });
-        });
 
-        observer.observe(searchFilter, { childList: true, subtree: true });
+            observer.observe(filter, { childList: true, subtree: true });
+        });
     }
 
     observeDetails();
