@@ -5,7 +5,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
         showImages: false, 
         resetStyles: false,
         pageSize: 10,
-        excerptLength: 42
+        excerptLength: 42,
+        translations: {
+            placeholder: "Search convrtrs, tools, and other resources...",
+        }
     });
 
     const searchInput = document.querySelector(".pagefind-ui__search-input");

@@ -1322,7 +1322,59 @@ button.cc-nb-changep {
     @extend .list-group-item-action;
     padding: 0;
 }
-.pagefind-ui__filter-name,
+.pagefind-ui__filter-name {
+    font-size: 1.5rem;
+}
+.pagefind-ui__filter-block summary::-webkit-details-marker,
+.pagefind-ui__filter-block summary::marker {
+    display: none;
+    content: "";
+}
+.pagefind-ui__filter-block summary::before {
+    content: "\f148";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0.25rem;
+    margin-right: 0.25rem;
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+    border-radius: var(--bs-border-radius) !important;
+    color: var(--bs-dark-rgb);
+}
+.pagefind-ui__filter-block summary::after {
+    content: "\f148";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--bs-white);
+    z-index: 5;
+    position: absolute;
+    left: 0.25rem;
+    top: 4.5rem;
+    transform: rotate(0deg);
+    transition: transform .4s ease-in-out;
+}
+.pagefind-ui__filter-block[open] summary::after {
+    transform: rotate(90deg);
+}
+.pagefind-ui__filter-panel-label,
 .pagefind-ui__filter-group-label {
     display: none;
 }

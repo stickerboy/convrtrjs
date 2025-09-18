@@ -13,7 +13,7 @@ description: >
 page-id: "{{ page.fileSlug }}"
 tags: landing-page
 ---
-<span class="hidden" data-pagefind-filter="Tags">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 {% for page in collections.oni %}
     {% if page-id == "oni" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}
