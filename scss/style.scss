@@ -45,6 +45,7 @@
     --convrtr-bg-color-10: #0f735f;
     --convrtr-bg-color-20: #0e6655;
     --convrtr-bg-color-25: #11806a40;
+    --convrtr-color-25: #c3dfda;
     --convrtr-bg-color-25-rgb: rgba(17, 128, 106, 0.25);
     --convrtr-bg-color-50-rgb: rgba(17, 128, 106, 0.5);
     --convrtr-bg-color-75-rgb: rgba(17, 128, 106, 0.75);
@@ -123,6 +124,7 @@ body {
 }
 @include color-mode(dark) {
     .page-wrap {
+        background-color: var(--convrtr-bg-dark);
         &-404 {
             background-color: var(--convrtr-bg-dark) !important;
         }
@@ -947,6 +949,16 @@ textarea.form-control.is-invalid.ld-warning {
     font-size: 2.5rem;
     line-height: 1;
     font-weight: normal;
+}
+
+mark {
+    background-color: var(--convrtr-color-25);
+    border-radius: var(--bs-border-radius-sm);
+}
+@include color-mode(dark) {
+    mark {
+        background-color: var(--convrtr-bg-color);
+    }
 }
 
 .changelog {
