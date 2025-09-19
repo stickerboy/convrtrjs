@@ -5,6 +5,8 @@ description: "Quickly search and filter through the available decoding tools, an
 page-id: search
 permalink: /search/
 eleventyExcludeFromCollections: true
+eleventyComputed:
+  description: "{{ description }}<br />A minimum of 2 characters is required in order for results to be returned"
 ---
 
 {% assign filename = page.fileSlug %}
