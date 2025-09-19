@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
         translations: {
             placeholder: "Search convrtrs, tools, and other resources...",
             clear_search: "Clear",
-            load_more: "Load more results",
+            load_more: "Show more results",
             search_label: "Search this site",
             filters_label: "Filters",
             zero_results: "There are no result for your search term: [SEARCH_TERM]",
