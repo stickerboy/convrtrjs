@@ -23,16 +23,16 @@ tags: tools
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    H → T → M
+                    H &srarr; T &srarr; M
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    e → e → a
+                    e &srarr; e &srarr; a
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → s → h
+                    l &srarr; s &srarr; h
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → t → i
+                    l &srarr; t &srarr; i
                 </code>
                 - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
             </p>
@@ -44,7 +44,7 @@ tags: tools
                 <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Beaufort encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello → Test [key] → Mahif" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; Test [key] &srarr; Mahif" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">

@@ -888,16 +888,16 @@
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    H → T → M
+                    H &srarr; T &srarr; M
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    e → e → a
+                    e &srarr; e &srarr; a
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → s → h
+                    l &srarr; s &srarr; h
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → t → i
+                    l &srarr; t &srarr; i
                 </code>
                 - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
             </p>
@@ -909,7 +909,7 @@
                 <span class="card-label visually-hidden">Beaufort cipher</span>
                 <div class="card-body text-center">
                     <label for="beaufortText" class="visually-hidden">Beaufort encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello → Test [key] → Mahif" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; Test [key] &srarr; Mahif" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1176,7 +1176,7 @@
                 <span class="card-label visually-hidden">Caesar cipher</span>
                 <div class="card-body text-center">
                     <label for="caesarText" class="visually-hidden">Caesar Text - text to substitute</label>
-                    <textarea placeholder="Example: Hello → Mjqqt (Rot 5)" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; Mjqqt (Rot 5)" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1240,7 +1240,7 @@
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     Hello World
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WahqzIuets
                 </code>
@@ -1254,7 +1254,7 @@
                 <span class="card-label visually-hidden">Chaocipher</span>
                 <div class="card-body text-center">
                     <label for="chaocipherText" class="visually-hidden">Encrypt or decrypt Chaocipher string</label>
-                    <textarea placeholder="Example: Hello World → WahqzIuets" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello World &srarr; WahqzIuets" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1324,7 +1324,7 @@
                 <span class="card-label visually-hidden">Hash text</span>
                 <div class="card-body text-center">
                     <label for="hashText" class="visually-hidden">Generate hash values for a string</label>
-                    <textarea placeholder="Example: Hello World → b10a8db164e0754105b7a99be72e3fe5" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello World &srarr; b10a8db164e0754105b7a99be72e3fe5" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="d-flex justify-content-start align-items-center">
@@ -1394,7 +1394,7 @@
                 <span class="card-label visually-hidden">Keyword cipher</span>
                 <div class="card-body text-center">
                     <label for="keywordText" class="visually-hidden">Keyword encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello World → Test [key] → Eckkn Unqkb
+                    <textarea placeholder="Example: Hello World &srarr; Test [key] &srarr; Eckkn Unqkb
                     " rows="6" id="keywordText" class="form-control keyword-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
@@ -1483,7 +1483,7 @@
                 <span class="card-label visually-hidden">Rail fence cipher</span>
                 <div class="card-body text-center">
                     <label for="railText" class="visually-hidden">Encrypt / Decrypt Rail fence string</label>
-                    <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: HELLO WORLD &srarr; HOLELWRDLO" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1550,7 +1550,7 @@
                 <span class="card-label visually-hidden">Smithy cipher</span>
                 <div class="card-body text-center">
                     <label for="smithyText" class="visually-hidden">Smithy encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello → World [key] → Rmxsp
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Rmxsp
                     " rows="6" id="smithyText" class="form-control smithy-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
@@ -1619,11 +1619,11 @@
                 A quick example substitution: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WORLD
-                </code> → 
+                </code> &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                → 
+                &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNRJO
                 </code> 
@@ -1634,22 +1634,22 @@
                 Mixed case strings and keys are supported here, for example:
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNrjo
                 </code>
                 or 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HEllo
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     UMpjo
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
@@ -1662,7 +1662,7 @@
                 <span class="card-label visually-hidden">Substitution cipher</span>
                 <div class="card-body text-center">
                     <label for="substitutionText" class="visually-hidden">Substitution</label>
-                    <textarea placeholder="Example: Hello → World [key] → Cdggj" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Cdggj" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1726,19 +1726,19 @@
             <p class="px-2">
                 One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    H → W → D
+                    H &srarr; W &srarr; D
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    e → o → s
+                    e &srarr; o &srarr; s
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → r → c
+                    l &srarr; r &srarr; c
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → l → w
+                    l &srarr; l &srarr; w
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    o → d → r
+                    o &srarr; d &srarr; r
                 </code>
                 - for the next letters, the key would loop back and start from the W in World again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
             </p>
@@ -1750,7 +1750,7 @@
                 <span class="card-label visually-hidden">Vigenère cipher</span>
                 <div class="card-body text-center">
                     <label for="vigenereText" class="visually-hidden">Vigenère string</label>
-                    <textarea placeholder="Example: Hello → World [key] → Dscwr" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Dscwr" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">

@@ -27,11 +27,11 @@ tags: tools
                 A quick example substitution: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WORLD
-                </code> → 
+                </code> &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                → 
+                &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNRJO
                 </code> 
@@ -42,22 +42,22 @@ tags: tools
                 Mixed case strings and keys are supported here, for example:
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNrjo
                 </code>
                 or 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HEllo
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     UMpjo
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
@@ -70,7 +70,7 @@ tags: tools
                 <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">{{ filename | upperFirst }}</label>
-                    <textarea placeholder="Example: Hello → World [key] → Cdggj" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Cdggj" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
