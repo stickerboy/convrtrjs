@@ -27,10 +27,9 @@ eleventyComputed:
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                {% if tag %}
-                {% assign postListItems = collections[tag] %}
-                {% for version in postListItems reversed %}
-                
+                {%- if tag -%}
+                {%- assign postListItems = collections[tag] -%}
+                {% for version in postListItems reversed -%}
                     <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
@@ -43,7 +42,6 @@ eleventyComputed:
                                         {{ version.data.title }}
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -64,22 +62,22 @@ eleventyComputed:
                                 <div class="col">
                                     {% if version.data.tags -%}
                                     {%- for tag in version.data.tags -%}
-                                    {% assign normalizedTag = tag | downcase | strip %}
-                                    {% assign label = labels.labels | where: "key", normalizedTag | first %}
+                                    {%- assign normalizedTag = tag | downcase | strip -%}
+                                    {% assign label = labels.labels | where: "key", normalizedTag | first -%}
                                     <a href="{{ '/changelog/tag/' | append: tag | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{
                                         tag }}</a>
                                     {% endfor -%}
-                                    {%- endif %}
+                                    {% endif -%}
                                 </div>
                             </div>
                         </td>
                     </tr>
-                {% endfor %}
-                {% endif %}
+                {% endfor -%}
+                {% endif -%}
                 </tbody>
             </table>
         </div>
-        
+
         <p>
             <a href="{{ '/tags' | url }}" class="text-convrtr">See the full list of tags</a>
         </p>
