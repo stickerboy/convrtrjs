@@ -1,13 +1,14 @@
+{%- assign searchItem = nav | where: "id", "search" | first -%}
 <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm" aria-label="Main navigation">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
                 aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
-            >
+                >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
                 <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
-
+            
             <a href="{{ '/' | url }}" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk me-2"></i>{% endif %}<span{% if data.environment == 'development' %} class="d-none d-sm-block"{% endif %}>{{ pkg.sitename }}</span>
@@ -27,18 +28,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
-                            title="Github" href="{{ pkg.repository.site }}"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
-                        </a>
+                        title="Github" href="{{ pkg.repository.site }}"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                        <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                    </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-md btn-link text-light" aria-label="Search the website" 
-                            title="Search" href="{{ '/search' | url }}"
+                        <a class="btn btn-md btn-link text-light" aria-label="{{ searchItem.aria-label }}" 
+                            title="{{ searchItem.label }}" href="{{ '/' | append: searchItem.id | url }}"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
-                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
+                            <i class="bi bi-{{ searchItem.icon }}" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label }}</span>
                         </a>
                     </li>
                     {% assign excludedPages = "fourohfour,404,search" | split: "," %}
@@ -100,9 +101,9 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
-                                <a href="{{ '/search' | url }}" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-search" aria-hidden="true" focusable="false"></i>
-                                    Search <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">the website</span>
+                                <a href="{{ '/' | append: searchItem.id | url }}" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-{{ searchItem.icon }}" aria-hidden="true" focusable="false"></i>
+                                    {{ searchItem.label_1 }} <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label_2 }}</span>
                                 </a>
                             </li>
                             {% if not excludedPages contains page-id %}
