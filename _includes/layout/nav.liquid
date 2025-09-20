@@ -1,5 +1,6 @@
 <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     {% for link in nav %}
+    {% if link.exclude-from-sidebar == false %}
     <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id or folderName == link.id %} active{% endif %}" data-link-id="{{ link.id }}"
         data-page-id="{{ page-id }}">
         {% if link.children %}
@@ -37,19 +38,20 @@
         {% else %}
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
         {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}" aria-label="{{ link.aria-label }}"
-            href="{{ '/' | append: link.id | replace: 'text', '' | url }}" data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                {%- if link.switch-label %}
-                {{ link.label_1 }}<span class="visually-hidden">{{ link.label_2 }}</span>
-                {%- else %}
-                <span class="visually-hidden">{{ link.label_1 }}</span>{{ link.label_2 }}
-                {%- endif %}
-            </span>
-        </a>
-        {% endif %}
-    </div>
-    {% endfor %}
+        href="{{ '/' | append: link.id | replace: 'text', '' | url }}" data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            {%- if link.switch-label %}
+            {{ link.label_1 }}<span class="visually-hidden">{{ link.label_2 }}</span>
+            {%- else %}
+            <span class="visually-hidden">{{ link.label_1 }}</span>{{ link.label_2 }}
+            {%- endif %}
+        </span>
+    </a>
+    {% endif %}
+</div>
+{% endif %}
+{% endfor %}
 </div>

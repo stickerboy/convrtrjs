@@ -22,7 +22,8 @@
                 "label": "Character frequencies"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "ciphers",
@@ -62,7 +63,8 @@
                 "label": "Hash algorithms"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "hex",
@@ -81,7 +83,8 @@
                 "label": "Hex Frequencies"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "files",
@@ -97,7 +100,8 @@
                 "label": "File headers"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "misc",
@@ -125,7 +129,8 @@
                 "label": "Covenant glyphs"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "oni",
@@ -156,7 +161,8 @@
                 "label": "Calendar"
             }
         ],
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "sitemap",
@@ -168,7 +174,8 @@
         "label_2": "Sitemap",
         "aria-label": "View the Sitemap",
         "switch-label": false,
-        "exclude-from-sitemap": true
+        "exclude-from-sitemap": true,
+        "exclude-from-sidebar": false
     },
     {
         "id": "changelog",
@@ -180,7 +187,8 @@
         "label_2": ": latest site updates",
         "aria-label": "Changelog: latest site updates",
         "switch-label": true,
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "privacy",
@@ -192,7 +200,8 @@
         "label_2": "Privacy policy",
         "aria-label": "View the Privacy policy",
         "switch-label": false,
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
     },
     {
         "id": "accessibility",
@@ -204,6 +213,20 @@
         "label_2": "Accessibility statement",
         "aria-label": "View the Accessibility statement",
         "switch-label": false,
-        "exclude-from-sitemap": false
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
+    },
+    {
+        "id": "search",
+        "label": "Search",
+        "short-label": "Search",
+        "icon": "search",
+        "description": "Quickly search and filter through the available decoding tools, and resources",
+        "label_1": "Search ",
+        "label_2": "the site",
+        "aria-label": "Search the site",
+        "switch-label": false,
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": true
     }
 ]

@@ -551,6 +551,11 @@
         <changefreq>monthly</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/search/</loc>
+        <lastmod>2025-09-15T10:46:58.489Z</lastmod>
+        <changefreq>monthly</changefreq>
+    </url>
+    <url>
         <loc>https://www.convrtr.xyz/tags/release/</loc>
         <lastmod>2025-09-16T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
