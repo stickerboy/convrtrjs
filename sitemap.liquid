@@ -5,6 +5,7 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign pageNeverChanges = "changelog-item,search,accessibility,privacy" | split: "," %}
 {%- for item in collections.all %}
   {%- unless item.url contains "assets" %}
     <url>
@@ -12,9 +13,13 @@ eleventyExcludeFromCollections: true
       {%- if item.data.date %}
         <lastmod>{{ item.data.date | dateISO }}</lastmod>
       {%- else %}
-        <lastmod>{{ lastmod | dateISO }}</lastmod>
+      <lastmod>{{ lastmod | dateISO }}</lastmod>
       {%- endif %}
-        <changefreq>monthly</changefreq>
+      {% if pageNeverChanges contains item.data.page-id %}
+      <changefreq>never</changefreq>
+      {%- else %}
+      <changefreq>monthly</changefreq>
+      {%- endif %}
     </url>
   {%- endunless %}
 {%- endfor %}
