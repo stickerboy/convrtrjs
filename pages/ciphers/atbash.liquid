@@ -1,15 +1,16 @@
 ---
 layout: layout.liquid
 title: Atbash cipher
+tags: tools
 ---
-
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
-            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 {{ filename | upperFirst }} cipher
             </h2>
@@ -22,10 +23,10 @@ title: Atbash cipher
             <p class="px-2">
                 A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    A ⇆ Z
+                    A &lrarr; Z
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    B ⇆ Y
+                    B &lrarr; Y
                 </code>
                 etc.
             </p>
@@ -37,7 +38,7 @@ title: Atbash cipher
                 <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Atbash encrypt a string</label>
-                    <textarea placeholder="Example: (Hello ⇆ Svool)" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: (Hello &lrarr; Svool)" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">

@@ -18,3 +18,7 @@
 {% if page-id == "elementstable" or page-id == "misc" -%}
 <script>const ELEMENTS = {{ elements | json }};</script>
 {% endif -%}
+{% if page-id == "search" -%}
+<script src="/pagefind/pagefind-ui.js"></script>
+<script type="module" src="{{ '/assets/js/search.mjs' | url }}"></script>
+{% endif -%}

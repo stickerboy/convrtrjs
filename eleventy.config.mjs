@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
+import { execSync } from 'child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -235,5 +236,13 @@ export default function (eleventyConfig) {
         const uniqueFilteredTags = [...new Set(allTags.filter((tag) => allowedTagKeys.includes(tag)))];
 
         return uniqueFilteredTags;
+    });
+
+    eleventyConfig.on("eleventy.after", () => {
+        try {
+            execSync('npx pagefind --site _site --glob "**/*.html"', { stdio: 'inherit', encoding: 'utf-8' });
+        } catch (err) {
+            console.error('Pagefind generation failed:', err);
+        }
     });
 }

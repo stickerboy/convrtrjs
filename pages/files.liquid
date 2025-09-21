@@ -3,9 +3,9 @@ layout: layout.liquid
 title: File tools
 description: Various tools for working with files and file formats.
 page-id: "{{ page.fileSlug }}"
+tags: landing-page
 ---
-
-
+<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 {% for page in collections.files %}
     {% if page-id == "files" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}

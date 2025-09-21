@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Braille
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -9,7 +10,7 @@ title: Braille
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="true" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-            <h2 class="display-6 w-100 d-flex m-0">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
                 {{ filename | upperFirst }}
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">

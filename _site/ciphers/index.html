@@ -123,17 +123,17 @@
         <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
     <body>
-        <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+        <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm" aria-label="Main navigation">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
                 aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
-            >
+                >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
                 <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
-
+            
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
@@ -145,7 +145,7 @@
                 <ul class="navbar-nav mx-0 mx-md-2 flex-row d-none d-sm-flex">
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
-                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
@@ -153,10 +153,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
-                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                        title="Github" href="https://github.com/stickerboy/convrtrjs"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                        <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Search the site" 
+                            title="Search" href="/search"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                            <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
                         </a>
                     </li>
                     
@@ -218,18 +226,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
-                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
-                                    Github
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
+                                <a href="/search" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-search" aria-hidden="true" focusable="false"></i>
+                                    Search  <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">the site</span>
+                                </a>
                             </li>
                             
                             <li>
@@ -241,6 +241,20 @@
                                 </button>
                             </li>
                             
+                            <li>
+                                <a href="https://discord.gg/FhwjhdkTwD" class="dropdown-item d-flex align-items-center rounded-0" title="Discord" aria-label="Join the Discord">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
+                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/stickerboy/convrtrjs" class="dropdown-item d-flex align-items-center rounded-0" title="Github" aria-label="Github code repository">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
+                                    Github
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -286,6 +300,7 @@
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     <nav class="sidebar px-2 px-sm-3 ps-sm-3 py-3" aria-label="Sidebar navigation">
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
+    
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
         data-page-id="ciphers">
@@ -346,7 +361,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2 active" data-link-id="ciphers"
         data-page-id="ciphers">
@@ -437,7 +454,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
         data-page-id="ciphers">
@@ -486,7 +505,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
         data-page-id="ciphers">
@@ -529,7 +550,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
         data-page-id="ciphers">
@@ -596,7 +619,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
         data-page-id="ciphers">
@@ -669,77 +694,90 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="sitemap"
         data-page-id="ciphers">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Sitemap"
-            href="/sitemap" data-href="/sitemap">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Sitemap
-            </span>
-        </a>
-        
-    </div>
+        href="/sitemap" data-href="/sitemap">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Sitemap
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="changelog"
         data-page-id="ciphers">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="Changelog: latest site updates"
-            href="/changelog" data-href="/changelog">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                Changelog<span class="visually-hidden">: latest site updates</span>
-            </span>
-        </a>
-        
-    </div>
+        href="/changelog" data-href="/changelog">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            Changelog<span class="visually-hidden">: latest site updates</span>
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="privacy"
         data-page-id="ciphers">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Privacy policy"
-            href="/privacy" data-href="/privacy">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Privacy policy
-            </span>
-        </a>
-        
-    </div>
+        href="/privacy" data-href="/privacy">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Privacy policy
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="accessibility"
         data-page-id="ciphers">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Accessibility statement"
-            href="/accessibility" data-href="/accessibility">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-universal-access-circle" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Accessibility statement
-            </span>
-        </a>
-        
-    </div>
+        href="/accessibility" data-href="/accessibility">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-universal-access-circle" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Accessibility statement
+        </span>
+    </a>
     
+</div>
+
+
+    
+
 </div>
 </nav>
                 </div>
-                <main class="page-wrap page-wrap-ciphers overflow-y-auto p-0 mw"
-                    data-bs-smooth-scroll="true" id="content">
+                
+                
+                <span class="hidden" data-pagefind-filter="Filters">landing-page</span><main class="page-wrap page-wrap-ciphers overflow-y-auto p-0 mw"
+                    data-bs-smooth-scroll="true" id="content" data-pagefind-body>
                     <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
         
@@ -766,22 +804,24 @@
             <hr>
             <p class="px-2">
                 A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
-            </p><p class="px-2 m-0">
+            </p>
+            <div class="px-2">
+            </div><p class="px-2 m-0" data-pagefind-ignore="all">
     Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
 </p>
         </div>
     </div>
-</section>
+</section><span class="hidden" data-pagefind-filter="Filters">landing-page</span>
 
     
         
-
 <section id="atbash" class="section">
 <div class="section-heading">
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#atbashCollapse" role="button" 
             aria-expanded="false" aria-controls="atbashCollapse"
-            data-section-name="atbash" data-section-description="Toggle visibility of atbash section">
+            data-section-name="atbash" data-section-description="Toggle visibility of atbash section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Atbash cipher
             </h2>
@@ -794,10 +834,10 @@
             <p class="px-2">
                 A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    A ⇆ Z
+                    A &lrarr; Z
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    B ⇆ Y
+                    B &lrarr; Y
                 </code>
                 etc.
             </p>
@@ -809,7 +849,7 @@
                 <span class="card-label visually-hidden">Atbash</span>
                 <div class="card-body text-center">
                     <label for="atbashText" class="visually-hidden">Atbash encrypt a string</label>
-                    <textarea placeholder="Example: (Hello ⇆ Svool)" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: (Hello &lrarr; Svool)" rows="6" id="atbashText" class="form-control atbash-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -828,7 +868,7 @@
                             <div class="col-12 col-sm-auto">
                                 <div class="row row-cols-auto g-0">
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -856,7 +896,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#beaufortCollapse" role="button" 
             aria-expanded="false" aria-controls="beaufortCollapse"
-            data-section-name="beaufort" data-section-description="Toggle visibility of beaufort section">
+            data-section-name="beaufort" data-section-description="Toggle visibility of beaufort section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Beaufort cipher
             </h2>
@@ -869,16 +910,16 @@
             <p class="px-2">
                 Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    H → T → M
+                    H &srarr; T &srarr; M
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    e → e → a
+                    e &srarr; e &srarr; a
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → s → h
+                    l &srarr; s &srarr; h
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → t → i
+                    l &srarr; t &srarr; i
                 </code>
                 - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
             </p>
@@ -890,7 +931,7 @@
                 <span class="card-label visually-hidden">Beaufort cipher</span>
                 <div class="card-body text-center">
                     <label for="beaufortText" class="visually-hidden">Beaufort encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello → Test [key] → Mahif" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; Test [key] &srarr; Mahif" rows="6" id="beaufortText" class="form-control beaufort-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -904,7 +945,7 @@
                                 </div>
                             </div>
                             <div class="col d-flex flex-fill justify-content-end">
-                                <div class="btn-group ms-auto align-items-start">
+                                <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -930,7 +971,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#caesarCollapse" role="button" 
             aria-expanded="true" aria-controls="caesarCollapse"
-            data-section-name="caesar" data-section-description="Toggle visibility of caesar section">
+            data-section-name="caesar" data-section-description="Toggle visibility of caesar section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Caesar cipher
             </h2>
@@ -1156,7 +1198,7 @@
                 <span class="card-label visually-hidden">Caesar cipher</span>
                 <div class="card-body text-center">
                     <label for="caesarText" class="visually-hidden">Caesar Text - text to substitute</label>
-                    <textarea placeholder="Example: Hello → Mjqqt (Rot 5)" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; Mjqqt (Rot 5)" rows="6" id="caesarText" class="form-control caesar-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1176,7 +1218,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1204,7 +1246,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#chaocipherCollapse" role="button" 
             aria-expanded="false" aria-controls="chaocipherCollapse"
-            data-section-name="chaocipher" data-section-description="Toggle visibility of chaocipher section">
+            data-section-name="chaocipher" data-section-description="Toggle visibility of chaocipher section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Chaocipher
             </h2>
@@ -1219,7 +1262,7 @@
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     Hello World
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WahqzIuets
                 </code>
@@ -1233,7 +1276,7 @@
                 <span class="card-label visually-hidden">Chaocipher</span>
                 <div class="card-body text-center">
                     <label for="chaocipherText" class="visually-hidden">Encrypt or decrypt Chaocipher string</label>
-                    <textarea placeholder="Example: Hello World → WahqzIuets" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello World &srarr; WahqzIuets" rows="6" id="chaocipherText" class="form-control chaocipher-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1253,7 +1296,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1281,7 +1324,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#hashCollapse" role="button" 
             aria-expanded="false" aria-controls="hashCollapse"
-            data-section-name="hash" data-section-description="Toggle visibility of hash section">
+            data-section-name="hash" data-section-description="Toggle visibility of hash section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Hash
             </h2>
@@ -1302,12 +1346,12 @@
                 <span class="card-label visually-hidden">Hash text</span>
                 <div class="card-body text-center">
                     <label for="hashText" class="visually-hidden">Generate hash values for a string</label>
-                    <textarea placeholder="Example: Hello World → b10a8db164e0754105b7a99be72e3fe5" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello World &srarr; b10a8db164e0754105b7a99be72e3fe5" rows="6" id="hashText" class="form-control hash-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="d-flex justify-content-start align-items-center">
                         <button type="button" class="btn btn-md btn-convrtr" id="hashDecode" title="Generate hashes">Generate</button>
-                        <div class="btn-group ms-auto align-items-start">
+                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1348,7 +1392,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#keywordCollapse" role="button" 
             aria-expanded="false" aria-controls="keywordCollapse"
-            data-section-name="keyword" data-section-description="Toggle visibility of keyword section">
+            data-section-name="keyword" data-section-description="Toggle visibility of keyword section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Keyword cipher
             </h2>
@@ -1371,7 +1416,7 @@
                 <span class="card-label visually-hidden">Keyword cipher</span>
                 <div class="card-body text-center">
                     <label for="keywordText" class="visually-hidden">Keyword encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello World → Test [key] → Eckkn Unqkb
+                    <textarea placeholder="Example: Hello World &srarr; Test [key] &srarr; Eckkn Unqkb
                     " rows="6" id="keywordText" class="form-control keyword-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
@@ -1394,7 +1439,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1422,7 +1467,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#railCollapse" role="button" 
             aria-expanded="false" aria-controls="railCollapse"
-            data-section-name="rail" data-section-description="Toggle visibility of rail section">
+            data-section-name="rail" data-section-description="Toggle visibility of rail section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Rail fence cipher
             </h2>
@@ -1436,7 +1482,7 @@
                 Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
             </p>
-            <p class="px-2">
+            <p class="px-2" data-pagefind-ignore="all">
                 <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WE ARE DISCOVERED. RUN AT ONCE.
                 </code>
@@ -1459,7 +1505,7 @@
                 <span class="card-label visually-hidden">Rail fence cipher</span>
                 <div class="card-body text-center">
                     <label for="railText" class="visually-hidden">Encrypt / Decrypt Rail fence string</label>
-                    <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: HELLO WORLD &srarr; HOLELWRDLO" rows="6" id="railText" class="form-control rail-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1473,7 +1519,7 @@
                                 </div>
                             </div>
                             <div class="col d-flex flex-fill justify-content-end">
-                                <div class="btn-group ms-auto align-items-start">
+                                <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1499,7 +1545,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#smithyCollapse" role="button" 
             aria-expanded="false" aria-controls="smithyCollapse"
-            data-section-name="smithy" data-section-description="Toggle visibility of smithy section">
+            data-section-name="smithy" data-section-description="Toggle visibility of smithy section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Smithy cipher
             </h2>
@@ -1525,7 +1572,7 @@
                 <span class="card-label visually-hidden">Smithy cipher</span>
                 <div class="card-body text-center">
                     <label for="smithyText" class="visually-hidden">Smithy encrypt/decrypt string</label>
-                    <textarea placeholder="Example: Hello → World [key] → Rmxsp
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Rmxsp
                     " rows="6" id="smithyText" class="form-control smithy-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
@@ -1548,7 +1595,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1576,7 +1623,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#substitutionCollapse" role="button" 
             aria-expanded="false" aria-controls="substitutionCollapse"
-            data-section-name="substitution" data-section-description="Toggle visibility of substitution section">
+            data-section-name="substitution" data-section-description="Toggle visibility of substitution section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Substitution cipher
             </h2>
@@ -1593,11 +1641,11 @@
                 A quick example substitution: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WORLD
-                </code> → 
+                </code> &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                → 
+                &srarr; 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNRJO
                 </code> 
@@ -1608,22 +1656,22 @@
                 Mixed case strings and keys are supported here, for example:
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HELLO
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WNrjo
                 </code>
                 or 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WOrld
-                </code> →
+                </code> &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     HEllo
                 </code>
-                →
+                &srarr;
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     UMpjo
                 </code> &ndash; There is more information available on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page. 
@@ -1636,7 +1684,7 @@
                 <span class="card-label visually-hidden">Substitution cipher</span>
                 <div class="card-body text-center">
                     <label for="substitutionText" class="visually-hidden">Substitution</label>
-                    <textarea placeholder="Example: Hello → World [key] → Cdggj" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Cdggj" rows="6" id="substitutionText" class="form-control substitution-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1658,7 +1706,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1686,7 +1734,8 @@
         <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#vigenereCollapse" role="button" 
             aria-expanded="false" aria-controls="vigenereCollapse"
-            data-section-name="vigenere" data-section-description="Toggle visibility of vigenere section">
+            data-section-name="vigenere" data-section-description="Toggle visibility of vigenere section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Vigenère cipher
             </h2>
@@ -1699,19 +1748,19 @@
             <p class="px-2">
                 One of the most well known cipher methods. Each letter of the message is shifted by a corresponding character of the key, running out of characters in the key will loop back to the beginning. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    H → W → D
+                    H &srarr; W &srarr; D
                 </code> 
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    e → o → s
+                    e &srarr; o &srarr; s
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → r → c
+                    l &srarr; r &srarr; c
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    l → l → w
+                    l &srarr; l &srarr; w
                 </code>
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    o → d → r
+                    o &srarr; d &srarr; r
                 </code>
                 - for the next letters, the key would loop back and start from the W in World again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher" class="text-convrtr">Vigenère cipher</a> Wikipedia page. 
             </p>
@@ -1723,7 +1772,7 @@
                 <span class="card-label visually-hidden">Vigenère cipher</span>
                 <div class="card-body text-center">
                     <label for="vigenereText" class="visually-hidden">Vigenère string</label>
-                    <textarea placeholder="Example: Hello → World [key] → Dscwr" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Dscwr" rows="6" id="vigenereText" class="form-control vigenere-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">
@@ -1745,7 +1794,7 @@
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">
-                                        <div class="btn-group ms-auto align-items-start">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
     <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
     <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
     <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -1776,9 +1825,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.2.2" 
+                title="Release version: v3.3.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.2.2</small>
+                <small>v3.3.0</small>
             </a>
             
             <p class="float-end mb-1">

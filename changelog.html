@@ -3,16 +3,18 @@ layout: layout.liquid
 title: Changelog
 description: History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.
 page-id: changelog
+tags: changelog
 pagination:
   data: collections.versions
   size: 15
   alias: versions
   label: Changelog navigation
 permalink: "changelog/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber | plus: 1 }}/{% endif %}index.html"
-eleventyExcludeFromCollections: true
 eleventyComputed:
   description: "{{ description }}<br />You can also view the full list of releases on <a href='{{ pkg.releases.url }}' class='text-convrtr'>Github</a>"
+  changelog-title: "{% if pagination.pageNumber > 0 %} | Page {{ pagination.pageNumber | plus: 1 }}{% endif %}"
 ---
+
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
     <div class="py-4 px-2 px-sm-4">

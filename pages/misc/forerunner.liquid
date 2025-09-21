@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Forerunner glyphs
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -9,7 +10,7 @@ title: Forerunner glyphs
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="true" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-            <h2 class="display-6 w-100 d-flex m-0">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
                 Forerunner glyphs
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
@@ -30,7 +31,7 @@ title: Forerunner glyphs
         <div class="col">
             <div class="card">
                 <span class="card-label visually-hidden">Forerunner glyphs</span>
-                <div class="card-body text-center">
+                <div class="card-body text-center" data-pagefind-ignore="all">
                     <div class="mb-2">
                         <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle fr-glyph" id="fr-1" aria-label="Glyph: 1 [†]" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 1 [†]" data-glyph="†"><span class="visually-hidden">Glyph 1 [</span>†<span class="visually-hidden">]</span></button>
                         <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle fr-glyph" id="fr-0" aria-label="Glyph: 0 […]" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 0 […]" data-glyph="…"><span class="visually-hidden">Glyph 0 [</span>…<span class="visually-hidden">]</span></button>

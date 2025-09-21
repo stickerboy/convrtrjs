@@ -3,8 +3,9 @@ layout: layout.liquid
 title: Cipher tools
 description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
 page-id: "{{ page.fileSlug }}"
+tags: landing-page
 ---
-
+<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
 {% for page in collections.ciphers %}
     {% if page-id == "ciphers" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}

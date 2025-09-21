@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Railfence cipher
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -8,7 +9,8 @@ title: Railfence cipher
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
-            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Rail fence cipher
             </h2>
@@ -22,7 +24,7 @@ title: Railfence cipher
                 Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
             </p>
-            <p class="px-2">
+            <p class="px-2" data-pagefind-ignore="all">
                 <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WE ARE DISCOVERED. RUN AT ONCE.
                 </code>
@@ -45,7 +47,7 @@ title: Railfence cipher
                 <span class="card-label visually-hidden">Rail fence cipher</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Encrypt / Decrypt Rail fence string</label>
-                    <textarea placeholder="Example: HELLO WORLD → HOLELWRDLO" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: HELLO WORLD &srarr; HOLELWRDLO" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="text-center mb-4 g-0">

@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Periodic elements
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -9,7 +10,7 @@ title: Periodic elements
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
-            <h2 class="display-6 w-100 d-flex m-0">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
                 {{ filename | upperFirst }}
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
@@ -36,7 +37,7 @@ title: Periodic elements
                 <span class="card-label visually-hidden">Periodic elements conversion</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Textarea" class="visually-hidden">Periodic element conversion</label>
-                    <textarea placeholder="34,7,52,7,58 [Atomic Number] → Se,N,Te,N,Ce" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
+                    <textarea placeholder="34,7,52,7,58 [Atomic Number] &srarr; Se,N,Te,N,Ce" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="mb-2 g-0">

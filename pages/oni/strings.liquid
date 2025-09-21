@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: ONI strings
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -8,7 +9,8 @@ title: ONI strings
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
-            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Extract strings
             </h2>
@@ -31,7 +33,7 @@ title: ONI strings
                     <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ filename | prepend: "window." }}(string, n = 4)</code>
                     {% comment -%}
                     <label for="{{ filename }}Text" class="visually-hidden">String to extract</label>
-                    <textarea placeholder="Example: 4 → 'This is a test' → ['This'], ['test']" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: 4 &srarr; 'This is a test' &srarr; ['This'], ['test']" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                     {%- endcomment -%}
                 </div>
                 <div class="card-footer py-3">

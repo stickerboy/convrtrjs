@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Text tools
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -8,7 +9,8 @@ title: Text tools
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
-            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 Tools
             </h2>

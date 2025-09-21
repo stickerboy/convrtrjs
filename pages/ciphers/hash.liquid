@@ -1,6 +1,7 @@
 ---
 layout: layout.liquid
 title: Hash
+tags: tools
 ---
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
@@ -8,7 +9,8 @@ title: Hash
         <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
             aria-expanded="false" aria-controls="{{ filename }}Collapse"
-            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
+            data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 {{ filename | upperFirst }}
             </h2>
@@ -29,7 +31,7 @@ title: Hash
                 <span class="card-label visually-hidden">Hash text</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Generate hash values for a string</label>
-                    <textarea placeholder="Example: Hello World → b10a8db164e0754105b7a99be72e3fe5" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
+                    <textarea placeholder="Example: Hello World &srarr; b10a8db164e0754105b7a99be72e3fe5" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
                     <div class="d-flex justify-content-start align-items-center">

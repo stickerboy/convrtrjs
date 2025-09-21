@@ -123,17 +123,17 @@
         <meta name="msapplication-square310x310logo" content="/assets/favicons/mstile-310x310.png" />
     </head>
     <body>
-        <a class="visually-hidden-focusable" href="#content">Skip to main content</a>
+        <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
         <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm" aria-label="Main navigation">
         <div class="container-fluid mw justify-content-start">
             <button class="navbar-toggler" id="navbar-toggler" type="button"
                 aria-controls="nav-dropdown" aria-expanded="false" aria-labelledby="nav-toggle-label"
-            >
+                >
                 <span class="navbar-toggler-icon" aria-hidden="true" focusable="false"></span>
                 <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
-
+            
             <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 <span>Convrtr</span>
@@ -145,7 +145,7 @@
                 <ul class="navbar-nav mx-0 mx-md-2 flex-row d-none d-sm-flex">
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Discord support server" 
-                            title="Discord" href="https://discord.gg/FhwjhdkTwD" title="Discord"
+                            title="Discord" href="https://discord.gg/FhwjhdkTwD"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-discord" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the discord</span>
@@ -153,10 +153,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="Github code repository" 
-                            title="Github" href="https://github.com/stickerboy/convrtrjs" title="Github"
+                        title="Github" href="https://github.com/stickerboy/convrtrjs"
+                        data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
+                        <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-md btn-link text-light" aria-label="Search the site" 
+                            title="Search" href="/search"
                             data-bs-toggle="tooltip" data-bs-placement="bottom">
-                            <i class="bi bi-github" aria-hidden="true" focusable="false"></i>
-                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Github</span>
+                            <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
+                            <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
                         </a>
                     </li>
                     
@@ -218,18 +226,10 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
-                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
-                            </li>
-                            <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center rounded-0">
-                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
-                                    Github
-                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
-                                </button>
+                                <a href="/search" class="dropdown-item d-flex align-items-center rounded-0">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-search" aria-hidden="true" focusable="false"></i>
+                                    Search  <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">the site</span>
+                                </a>
                             </li>
                             
                             <li>
@@ -241,6 +241,20 @@
                                 </button>
                             </li>
                             
+                            <li>
+                                <a href="https://discord.gg/FhwjhdkTwD" class="dropdown-item d-flex align-items-center rounded-0" title="Discord" aria-label="Join the Discord">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>
+                                    <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Join the</span> Discord
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/stickerboy/convrtrjs" class="dropdown-item d-flex align-items-center rounded-0" title="Github" aria-label="Github code repository">
+                                    <i class="bi me-2 opacity-75 theme-icon bi-github" aria-hidden="true" focusable="false"></i>
+                                    Github
+                                    <i class="bi bi-box-arrow-up-right opacity-75 ms-auto" focusable="false" aria-hidden="false"></i>
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -286,6 +300,7 @@
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     <nav class="sidebar px-2 px-sm-3 ps-sm-3 py-3" aria-label="Sidebar navigation">
     <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
+    
     
     <div class="sidebar-item d-grid gap-2" data-link-id="text"
         data-page-id="tag">
@@ -346,7 +361,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="ciphers"
         data-page-id="tag">
@@ -437,7 +454,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="hex"
         data-page-id="tag">
@@ -486,7 +505,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="files"
         data-page-id="tag">
@@ -529,7 +550,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="misc"
         data-page-id="tag">
@@ -596,7 +619,9 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="oni"
         data-page-id="tag">
@@ -669,75 +694,88 @@
             </div>
         </div>
         
-    </div>
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="sitemap"
         data-page-id="tag">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Sitemap"
-            href="/sitemap" data-href="/sitemap">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Sitemap
-            </span>
-        </a>
-        
-    </div>
+        href="/sitemap" data-href="/sitemap">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-diagram-3" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Sitemap
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="changelog"
         data-page-id="tag">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="Changelog: latest site updates"
-            href="/changelog" data-href="/changelog">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                Changelog<span class="visually-hidden">: latest site updates</span>
-            </span>
-        </a>
-        
-    </div>
+        href="/changelog" data-href="/changelog">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-calendar2-week" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            Changelog<span class="visually-hidden">: latest site updates</span>
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="privacy"
         data-page-id="tag">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Privacy policy"
-            href="/privacy" data-href="/privacy">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Privacy policy
-            </span>
-        </a>
-        
-    </div>
+        href="/privacy" data-href="/privacy">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-shield-check" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Privacy policy
+        </span>
+    </a>
+    
+</div>
+
+
     
     <div class="sidebar-item d-grid gap-2" data-link-id="accessibility"
         data-page-id="tag">
         
         <a class="btn btn-md sidebar-item__link text-start p-1 border border-success
          border-opacity-10" aria-label="View the Accessibility statement"
-            href="/accessibility" data-href="/accessibility">
-            <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
-                <i class="bi bi-universal-access-circle" aria-hidden="true" focusable="false"></i>
-            </span>
-            <span class="sidebar-item__label fs-6 ms-3">
-                <span class="visually-hidden">View the </span>Accessibility statement
-            </span>
-        </a>
-        
-    </div>
+        href="/accessibility" data-href="/accessibility">
+        <span class="sidebar-item__icon ms-2 me-1 fs-5 position-relative" style="left:4px;top:2px;">
+            <i class="bi bi-universal-access-circle" aria-hidden="true" focusable="false"></i>
+        </span>
+        <span class="sidebar-item__label fs-6 ms-3">
+            <span class="visually-hidden">View the </span>Accessibility statement
+        </span>
+    </a>
     
+</div>
+
+
+    
+
 </div>
 </nav>
                 </div>
+                
+                
                 <main class="page-wrap page-wrap-tag overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content">
                     <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
@@ -786,12 +824,7 @@
                         <th scope="col">Tags</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
-                
-                
-                
-                
-                    <tr class="position-relative">
+                <tbody class="table-group-divider"><tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -803,7 +836,6 @@
                                         3.2.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -822,20 +854,13 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -847,7 +872,6 @@
                                         3.2.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -866,26 +890,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -897,7 +910,6 @@
                                         3.1.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -916,20 +928,13 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -941,7 +946,6 @@
                                         3.1.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -960,26 +964,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -991,7 +984,6 @@
                                         2.0.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1010,20 +1002,13 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1035,7 +1020,6 @@
                                         2.0.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1054,26 +1038,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1085,7 +1058,6 @@
                                         2.0.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1104,23 +1076,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1132,7 +1095,6 @@
                                         1.17.9
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1151,26 +1113,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1182,7 +1133,6 @@
                                         1.17.11
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1201,26 +1151,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1232,7 +1171,6 @@
                                         1.17.10
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1251,26 +1189,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1282,7 +1209,6 @@
                                         1.17.8
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1301,29 +1227,16 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1335,7 +1248,6 @@
                                         1.17.7
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1354,23 +1266,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1382,7 +1285,6 @@
                                         1.17.6
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1401,20 +1303,13 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1426,7 +1321,6 @@
                                         1.17.5
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1445,32 +1339,17 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/security" class="badge git-badge badge-security" title="Security/vulnerability/CVE related updates">security</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1482,7 +1361,6 @@
                                         1.17.4
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1501,32 +1379,17 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1538,7 +1401,6 @@
                                         1.17.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1557,26 +1419,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1588,7 +1439,6 @@
                                         1.17.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1607,29 +1457,16 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1641,7 +1478,6 @@
                                         1.17.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1660,23 +1496,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1688,7 +1515,6 @@
                                         1.15.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1707,23 +1533,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1735,7 +1552,6 @@
                                         1.15.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1754,29 +1570,16 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/a11y" class="badge git-badge badge-a11y" title="Accessibility improvements">a11y</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1788,7 +1591,6 @@
                                         1.14.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1807,23 +1609,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1835,7 +1628,6 @@
                                         1.12.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1854,26 +1646,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1885,7 +1666,6 @@
                                         1.12.4
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1904,23 +1684,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1932,7 +1703,6 @@
                                         1.12.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1951,23 +1721,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -1979,7 +1740,6 @@
                                         1.12.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -1998,23 +1758,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2026,7 +1777,6 @@
                                         1.10.8
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2045,23 +1795,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2073,7 +1814,6 @@
                                         1.10.7
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2092,26 +1832,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2123,7 +1852,6 @@
                                         1.10.6
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2142,29 +1870,16 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2176,7 +1891,6 @@
                                         1.10.5
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2195,26 +1909,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2226,7 +1929,6 @@
                                         1.10.4
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2245,26 +1947,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2276,7 +1967,6 @@
                                         1.10.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2295,26 +1985,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2326,7 +2005,6 @@
                                         1.10.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2345,26 +2023,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2376,7 +2043,6 @@
                                         1.8.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2395,23 +2061,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2423,7 +2080,6 @@
                                         1.8.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2442,26 +2098,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2473,7 +2118,6 @@
                                         1.7.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2492,23 +2136,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2520,7 +2155,6 @@
                                         1.7.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2539,23 +2173,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2567,7 +2192,6 @@
                                         1.5.4
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2586,23 +2210,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2614,7 +2229,6 @@
                                         1.5.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2633,20 +2247,13 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2658,7 +2265,6 @@
                                         1.5.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2677,29 +2283,16 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2711,7 +2304,6 @@
                                         1.5.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2730,26 +2322,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                    
                                     <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2761,7 +2342,6 @@
                                         1.2.3
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2780,23 +2360,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2808,7 +2379,6 @@
                                         1.2.2
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2827,23 +2397,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2855,7 +2416,6 @@
                                         1.2.0
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2874,23 +2434,14 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2902,7 +2453,6 @@
                                         1.1.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2921,26 +2471,15 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
-                    <tr class="position-relative">
+                <tr class="position-relative">
                         <th scope="row">
                             <div class="row">
                                 <div class="col-3 col-sm-2 d-md-none">
@@ -2952,7 +2491,6 @@
                                         1.0.1
                                     </a>
                                 </div>
-                    
                             </div>
                         </th>
                         <td>
@@ -2971,29 +2509,18 @@
                                     Tags
                                 </div>
                                 <div class="col">
-                                    
-                                    
                                     <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
                                     <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
-                                    
-                                    
                                     <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
-                                    
-                                    
                                     <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
-                                    
-                                </div>
+                                    </div>
                             </div>
                         </td>
                     </tr>
-                
-                
                 </tbody>
             </table>
         </div>
-        
+
         <p>
             <a href="/tags" class="text-convrtr">See the full list of tags</a>
         </p>
@@ -3009,9 +2536,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.2.2" 
+                title="Release version: v3.3.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.2.2</small>
+                <small>v3.3.0</small>
             </a>
             
             <p class="float-end mb-1">
