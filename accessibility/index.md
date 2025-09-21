@@ -33,7 +33,7 @@ We check accessibility using a mix of automated tools, manual testing, and feedb
 If you’ve hit a barrier or need something in a different format, we’d love to hear from you:
 
 - On our [Discord support server]({{ pkg.support }})
-- Submit an issue to our [issue tracker on Github]({{ pkg.bugs.url | append: "/new" }})
+- Submit an issue to our [issue tracker on GitHub]({{ pkg.bugs.url | append: "/new" }})
 - By email: [accessibility@convrtr.xyz](mailto:accessibility@convrtr.xyz "Send me an email")
 
 ## If Things Don’t Get Resolved
