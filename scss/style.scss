@@ -92,6 +92,25 @@ body {
         background-color: #2e3236 !important;
     }
 }
+
+::selection {
+    background-color: var(--convrtr-bg-color);
+    color: white;
+}
+::-moz-selection {
+    background-color: var(--convrtr-bg-color);
+    color: white;
+}
+@include color-mode(dark) {
+    ::selection {
+        background-color: var(--convrtr-bg-color-10);
+        color: white;
+    }
+    ::-moz-selection {
+        background-color: var(--convrtr-bg-color-1-);
+        color: white;
+    }
+}
 .page-wrap {
     grid-column-start: 2;
     position: relative;
@@ -1014,6 +1033,10 @@ mark {
         @media (min-width: map-get($grid-breakpoints, xl)) {
             max-width: 75%;
         }
+    }
+    pre {
+        font-size: inherit;
+        user-select: all;
     }
     code {
         --bs-bg-opacity: 0.1;
