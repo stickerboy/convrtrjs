@@ -45,7 +45,10 @@ export default function (eleventyConfig) {
             };
         });
     });
-    eleventyConfig.addFilter("upperFirst", (filename) => `${filename.charAt(0).toUpperCase() + filename.slice(1)}`);
+    eleventyConfig.addFilter("upperFirst", (filename) => {
+        const lowerCased = filename.toLowerCase();
+        return `${lowerCased.charAt(0).toUpperCase() + lowerCased.slice(1)}`;
+    });
     eleventyConfig.setLiquidOptions({
         dynamicPartials: true,
         strict_filters: true,
