@@ -15,6 +15,7 @@ export default function (eleventyConfig) {
     eleventyConfig.ignores.add("README.md");
     eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
+    eleventyConfig.addPassthroughCopy("LICENSE");
     eleventyConfig.addPassthroughCopy("assets/css/*.css");
     eleventyConfig.addPassthroughCopy("assets/favicons/*");
     eleventyConfig.addPassthroughCopy("assets/img");
