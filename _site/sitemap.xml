@@ -667,20 +667,20 @@
       <changefreq>never</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/3.3.1/</loc>
-        <lastmod>2025-09-21T00:00:00.000Z</lastmod>
-      
-      <changefreq>never</changefreq>
-    </url>
-    <url>
       <loc>https://www.convrtr.xyz/search/</loc>
       <lastmod>2025-09-21T00:49:09.803Z</lastmod>
       
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.3.1/</loc>
+        <lastmod>2025-09-23T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
         <loc>https://www.convrtr.xyz/tags/release/</loc>
-        <lastmod>2025-09-21T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-23T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -695,7 +695,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/tags/patch/</loc>
-        <lastmod>2025-09-21T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-23T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -710,7 +710,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/tags/improvements/</loc>
-        <lastmod>2025-09-21T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-23T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
