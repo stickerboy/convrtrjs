@@ -1,15 +1,3 @@
----
-layout: layout.liquid
-title: Privacy policy
-description: This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.
-page-id: privacy
-eleventyExcludeFromCollections: true
-eleventyComputed:
-  description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
----
-<section class="section changelog privacy">
-    <article class="py-4 px-2 px-sm-4">
-
 We care about your privacy and want to be transparent about how your data is handled when you use **Convrtr**.
 
 ## What We Collect
@@ -79,6 +67,3 @@ If you have any questions about this policy, feel free to reach out:
 - By email: [privacy@convrtr.xyz](mailto:privacy@convrtr.xyz "Send me an email")
 
   <script type="module" src="{{ '/assets/js/privacy/privacy.mjs' | url }}"></script>
-
-  </article>
-</section>
