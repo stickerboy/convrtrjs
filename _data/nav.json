@@ -175,19 +175,19 @@
         "icon": "people",
         "description": "Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.",
         "children": [{
-                "id": "privacy",
-                "label": "Privacy policy",
-                "short-label": "Privacy",
-                "aria-label": "View the Privacy policy",
-                "icon": "shield-check",
-                "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe."
-            },{
                 "id": "accessibility",
                 "label": "Accessibility statement",
                 "short-label": "Accessibility",
                 "aria-label": "View the Accessibility statement",
                 "icon": "universal-access-circle",
                 "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working."
+            },{
+                "id": "privacy",
+                "label": "Privacy policy",
+                "short-label": "Privacy",
+                "aria-label": "View the Privacy policy",
+                "icon": "shield-check",
+                "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe."
             },{
                 "id": "contributing",
                 "label": "Contributing",
