@@ -30,7 +30,7 @@ eleventyExcludeFromCollections: true
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
-                            <a href="/{{ page-id | append: '/item.id' }}" class="card-link stretched-link text-convrtr-link"
+                            <a href="/{{ page-id | append: '/' | append: item.id }}" class="card-link stretched-link text-convrtr-link"
                                arial-label="{{ item.aria-label }}">
                                 {{ item.aria-label }}
                             </a>
