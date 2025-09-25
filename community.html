@@ -30,7 +30,7 @@ eleventyExcludeFromCollections: true
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
-                            <a href="/{{ page-id | append: '/' | append: item.id }}" class="card-link stretched-link text-convrtr-link"
+                            <a href="/{{ page-id | append: '/' | append: item.id }}" class="card-link stretched-link btn btn-outline-convrtr"
                                arial-label="{{ item.aria-label }}">
                                 {{ item.aria-label }}
                             </a>
@@ -49,7 +49,7 @@ eleventyExcludeFromCollections: true
                             <p class="card-text">Collaborate on code, track issues, and contribute to {{ pkg.sitename }}’s development on our GitHub space.</p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
-                            <a href="{{ pkg.repository.site }}" class="card-link stretched-link text-convrtr-link"
+                            <a href="{{ pkg.repository.site }}" class="card-link stretched-link btn btn-outline-convrtr"
                                 arial-label="View us on GitHub">
                                 View us on GitHub
                             </a>
@@ -67,7 +67,7 @@ eleventyExcludeFromCollections: true
                             <p class="card-text">Join the conversation, ask questions, solve puzzles, and connect with the {{ pkg.sitename }} community on Discord.</p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
-                            <a href="{{ pkg.support }}" class="card-link stretched-link text-convrtr-link"
+                            <a href="{{ pkg.support }}" class="card-link stretched-link btn btn-outline-convrtr"
                                 arial-label="Join us on Discord">
                                 Join us on Discord
                             </a>
