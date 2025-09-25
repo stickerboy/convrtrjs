@@ -176,16 +176,32 @@
         "description": "Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.",
         "children": [{
                 "id": "privacy",
-                "label": "Privacy policy"
+                "label": "Privacy policy",
+                "short-label": "Privacy",
+                "aria-label": "View the Privacy policy",
+                "icon": "shield-check",
+                "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe."
             },{
                 "id": "accessibility",
-                "label": "Accessibility statement"
+                "label": "Accessibility statement",
+                "short-label": "Accessibility",
+                "aria-label": "View the Accessibility statement",
+                "icon": "universal-access-circle",
+                "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working."
             },{
                 "id": "contributing",
-                "label": "Contributing"
+                "label": "Contributing",
+                "short-label": "Contributing",
+                "aria-label": "View contribution info",
+                "icon": "git",
+                "description": "Learn how to get involved with Convrtr — whether it's fixing bugs, suggesting features, or improving docs, every contribution makes a difference!"
             },{
                 "id": "license",
-                "label": "License"
+                "label": "License",
+                "short-label": "License",
+                "aria-label": "View the project license",
+                "icon": "body-text",
+                "description": "The license we use for the project — a way to share and remix content freely, as long as you give credit, don't use it commercially, and keep the same license."
             }
         ],
         "exclude-from-sitemap": false,
@@ -216,32 +232,6 @@
         "switch-label": true,
         "exclude-from-sitemap": false,
         "exclude-from-sidebar": false
-    },
-    {
-        "id": "privacy",
-        "label": "Privacy policy",
-        "short-label": "Privacy",
-        "icon": "shield-check",
-        "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.",
-        "label_1": "View the ",
-        "label_2": "Privacy policy",
-        "aria-label": "View the Privacy policy",
-        "switch-label": false,
-        "exclude-from-sitemap": true,
-        "exclude-from-sidebar": true
-    },
-    {
-        "id": "accessibility",
-        "label": "Accessibility statement",
-        "short-label": "Accessibility",
-        "icon": "universal-access-circle",
-        "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working.",
-        "label_1": "View the ",
-        "label_2": "Accessibility statement",
-        "aria-label": "View the Accessibility statement",
-        "switch-label": false,
-        "exclude-from-sitemap": true,
-        "exclude-from-sidebar": true
     },
     {
         "id": "search",
