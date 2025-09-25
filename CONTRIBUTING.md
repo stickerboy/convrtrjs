@@ -35,7 +35,7 @@ git commit -m "Describe your changes"
 git push origin my-feature
 ```
 
-### Open a pull request
+### 7. Open a pull request
 Go to the original repository and open a Pull Request from your branch. Please describe your changes and link any related issues, it will be reviewed as soon as possible.
 
 ## Guidelines
