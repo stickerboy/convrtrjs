@@ -2,7 +2,7 @@ Thank you for your interest in contributing to Convrtr! We welcome all kinds of 
 
 ## How to contribute
 
-### How to report a bug
+### Reporting a bug
 
 - **Spot something weird?** First, check if it’s already been reported in [Issues](https://github.com/stickerboy/convrtrjs/issues).
 - **Not there?** [Open a new issue](https://github.com/stickerboy/convrtrjs/issues/new) and give it a clear title.
