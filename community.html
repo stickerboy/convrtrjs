@@ -4,6 +4,7 @@ title: Community
 description: Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.
 page-id: community
 eleventyExcludeFromCollections: true
+tags: landing-page
 ---
 
 <section id="sitemap" class="section">
@@ -17,7 +18,7 @@ eleventyExcludeFromCollections: true
             
             {% assign community = nav | where: "id", "community" | first %}
             
-            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mt-2">
             {% for item in community.children %}
                 <div class="col">
                     <div class="card shadow-sm h-100">
