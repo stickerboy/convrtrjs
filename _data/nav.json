@@ -207,14 +207,14 @@
                 "label": "Code of conduct",
                 "short-label": "Code of conduct",
                 "aria-label": "View the code of conduct",
-                "icon": "body-text",
+                "icon": "chat-right-text",
                 "description": "Our commitment to building a community that’s welcoming, safe, and equitable for everyone—where respect, inclusion, and accountability are at the core."
             },{
                 "id": "license",
                 "label": "License",
                 "short-label": "License",
                 "aria-label": "View the project license",
-                "icon": "body-text",
+                "icon": "list-columns-reverse",
                 "description": "The license we use for the project — a way to share and remix content freely, as long as you give credit, don't use it commercially, and keep the same license."
             }
         ],
