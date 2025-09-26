@@ -1,0 +1,15 @@
+---
+layout: layout.liquid
+title: Code of conduct
+description: Our commitment to building a community that’s welcoming, safe, and equitable for everyone—where respect, inclusion, and accountability are at the core.
+page-id: code-of-conduct
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
+tags: community
+---
+<section class="section changelog code-of-conduct">
+  <article class="py-4 px-2 px-sm-4">
+        {% renderMarkdownFile "./CODE_OF_CONDUCT.md" %}
+    </article>
+</section>

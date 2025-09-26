@@ -16,11 +16,13 @@ Thanks for helping us squash bugs and make Convrtr better!
 ### Reporting a security issue
 
 - **Found a security bug?** Thank you for looking out for us!
-- **Please don’t open a public issue.** Instead, email us privately at [security@convrtr.xyz].
+- **Please don’t open a public issue.** Instead, submit an issue to our [security tracker](https://github.com/stickerboy/convrtrjs/security/advisories/new).
+- Alternatively, you can email us privately at [security@convrtr.xyz]
 - Include as much detail as you can — what you found, how to reproduce it, and why it’s a concern.
 - We’ll review it quickly and get back to you as soon as possible.
 - Responsible disclosure is appreciated — we’ll credit you if you'd like (or keep it anonymous).
 
+For more information, please see our [Security section](https://github.com/stickerboy/convrtrjs/security/) on GitHub.
 Thanks for helping keep Convrtr safe and secure!
 
 ### Suggesting a new feature, tool or enhancement

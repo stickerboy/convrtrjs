@@ -178,14 +178,14 @@
                 "id": "accessibility",
                 "label": "Accessibility statement",
                 "short-label": "Accessibility",
-                "aria-label": "View the Accessibility statement",
+                "aria-label": "View the accessibility statement",
                 "icon": "universal-access-circle",
                 "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working."
             },{
                 "id": "privacy",
                 "label": "Privacy policy",
                 "short-label": "Privacy",
-                "aria-label": "View the Privacy policy",
+                "aria-label": "View the privacy policy",
                 "icon": "shield-check",
                 "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe."
             },{
@@ -195,6 +195,20 @@
                 "aria-label": "View contribution info",
                 "icon": "git",
                 "description": "Learn how to get involved with Convrtr — whether it's fixing bugs, suggesting features, or improving docs, every contribution makes a difference!"
+            },{
+                "id": "security",
+                "label": "Security",
+                "short-label": "Security",
+                "aria-label": "View our security info",
+                "icon": "lock",
+                "description": "How we protect our project and contributors—reporting vulnerabilities, handling incidents, and keeping our community safe."
+            },{
+                "id": "code-of-conduct",
+                "label": "Code of conduct",
+                "short-label": "Code of conduct",
+                "aria-label": "View the code of conduct",
+                "icon": "body-text",
+                "description": "Our commitment to building a community that’s welcoming, safe, and equitable for everyone—where respect, inclusion, and accountability are at the core."
             },{
                 "id": "license",
                 "label": "License",
