@@ -192,14 +192,14 @@
                 "id": "contributing",
                 "label": "Contributing",
                 "short-label": "Contributing",
-                "aria-label": "View contribution info",
+                "aria-label": "View the contribution info",
                 "icon": "git",
                 "description": "Learn how to get involved with Convrtr — whether it's fixing bugs, suggesting features, or improving docs, every contribution makes a difference!"
             },{
                 "id": "security",
                 "label": "Security",
                 "short-label": "Security",
-                "aria-label": "View our security info",
+                "aria-label": "View the security policy",
                 "icon": "lock",
                 "description": "How we protect our project and contributors—reporting vulnerabilities, handling incidents, and keeping our community safe."
             },{
