@@ -34,7 +34,7 @@
         </li>
         {% else %}
         <li class="breadcrumb-item active" aria-current="page">
-            {{ page-id }}
+            {{ page-id | lowercase }}
         </li>
         {% endif %}
     </ol>

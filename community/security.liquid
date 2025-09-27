@@ -1,0 +1,15 @@
+---
+layout: layout.liquid
+title: Security
+description: How we protect our project and contributors—reporting vulnerabilities, handling incidents, and keeping our community safe.
+page-id: security
+eleventyExcludeFromCollections: true
+eleventyComputed:
+  description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
+tags: community
+---
+<section class="section changelog security">
+  <article class="py-4 px-2 px-sm-4">
+        {% renderMarkdownFile "./SECURITY.md" %}
+    </article>
+</section>

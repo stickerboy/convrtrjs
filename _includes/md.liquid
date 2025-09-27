@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" class="overflow-y-hidden">
+    <head>
+        {% include "layout/ga" %}
+        {% include "layout/cookie" %}
+        {% include "layout/meta" %}
+        {% include "layout/title" %}
+
+        <script>
+            (function () {
+                const theme = localStorage.getItem("theme") || "auto";
+                document.documentElement.setAttribute("data-bs-theme", theme);
+            })();
+        </script>
+
+        {% include "layout/css" %}
+        {% include "layout/favicons" %}
+    </head>
+    <body>
+        <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
+        {% include "layout/header" %}
+        <div class="mw d-flex mx-auto">
+            <div class="grid sidebar-grid gap-0 p-0 w-100">
+                <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
+                    {% include "layout/sidebar" %}
+                </div>
+                {% assign excludedPages = "fourohfour,404,search,sitemap,tags" | split: "," %}
+                {% assign isExcluded = excludedPages contains page-id %}
+                {% assign isTagPath = page.inputPath contains "tag" %}
+                {%- for tag in tags -%}
+                <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
+                {%- endfor -%}
+                <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw"
+                    data-bs-smooth-scroll="true" id="content" data-pagefind-body>
+                    <section class="section changelog" id="IOOBI9O4IEIEOIO4O4IB">
+                        <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.5">
+                            {% include "layout/breadcrumbs" %}
+                            {{ content }}
+                        </article>
+                    </section>
+                    {% include "layout/footer" %}
+                </main>
+            </div>
+        </div>
+        {% include "layout/scripts" %}
+        {% render "layout/toast" %}
+    </body>
+</html>
+{% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
+{% if dynamicPartialPath | fileExists %}
+    {% render dynamicPartialPath %}
+{% else %}
+    {% render "partials/routes/home" %}
+{% endif %}

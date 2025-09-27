@@ -3,6 +3,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 import matter from "gray-matter";
 import { execSync } from 'child_process';
+import markdownIt from "markdown-it";
+import { RenderPlugin } from "@11ty/eleventy";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -12,16 +14,48 @@ const allowedTagsData = JSON.parse(fs.readFileSync(allowedTagsPath, "utf-8"));
 const navData = JSON.parse(fs.readFileSync(path.join(__dirname, "_data", "nav.json"), "utf-8"));
 
 export default function (eleventyConfig) {
+    eleventyConfig.addPlugin(RenderPlugin);
+
+    eleventyConfig.ignores.add("a11y.md");
+    eleventyConfig.ignores.add("privacy.md");
     eleventyConfig.ignores.add("README.md");
+    eleventyConfig.ignores.add("SECURITY.md");
+    eleventyConfig.ignores.add("CONTRIBUTING.md");
+    eleventyConfig.ignores.add("CODE_OF_CONDUCT.md");
+    eleventyConfig.ignores.add("LICENSE");
     eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
+    eleventyConfig.addPassthroughCopy("LICENSE");
     eleventyConfig.addPassthroughCopy("assets/css/*.css");
     eleventyConfig.addPassthroughCopy("assets/favicons/*");
     eleventyConfig.addPassthroughCopy("assets/img");
     eleventyConfig.addPassthroughCopy("assets/fonts/*");
     eleventyConfig.addPassthroughCopy("assets/js/**/*.js");
     eleventyConfig.addPassthroughCopy("assets/js/**/*.mjs");
+
+    eleventyConfig.addTemplateFormats("md");
+    const md = markdownIt({
+        html: true, // Allow HTML tags in Markdown
+    });
+    eleventyConfig.addGlobalData("layout", "md.liquid");
+    eleventyConfig.setLibrary("md", md);
+
+    eleventyConfig.setLiquidOptions({
+        dynamicPartials: true,
+        strict_filters: true,
+    });
+
     eleventyConfig.addShortcode("year", () => `2013 &mdash; ${new Date().getFullYear()}`);
+
+    eleventyConfig.addFilter("readFile", (filePath) => {
+        const fullPath = path.join(process.cwd(), filePath);
+        return fs.readFileSync(fullPath, "utf-8");
+    });
+    eleventyConfig.addShortcode("renderMarkdownFile", (filePath) => {
+        const fullPath = path.join(process.cwd(), filePath);
+        const content = fs.readFileSync(fullPath, "utf-8");
+        return md.render(content);
+    });
     eleventyConfig.addFilter("fileExists", (filePath) => {
         const fullPath = path.join("_includes", filePath);
         return fs.existsSync(fullPath);
@@ -44,17 +78,23 @@ export default function (eleventyConfig) {
             };
         });
     });
-    eleventyConfig.addFilter("upperFirst", (filename) => `${filename.charAt(0).toUpperCase() + filename.slice(1)}`);
-    eleventyConfig.setLiquidOptions({
-        dynamicPartials: true,
-        strict_filters: true,
+    eleventyConfig.addFilter("upperFirst", (filename) => {
+        const lowerCased = filename.toLowerCase();
+        return `${lowerCased.charAt(0).toUpperCase() + lowerCased.slice(1)}`;
     });
-
-    eleventyConfig.addFilter("safe", function (content) {
+    eleventyConfig.addFilter("lowercase", (filename) => {
+        return `${filename.toLowerCase()}`;
+    });
+    
+    eleventyConfig.addFilter("markdown", (content) => {
+        md.render(content);
+    });
+    
+    eleventyConfig.addFilter("safe", (content) => {
         return content; // Return the content as-is
     });
 
-    eleventyConfig.addFilter('dateISO', function (date) {
+    eleventyConfig.addFilter('dateISO', (date) =>{
         return new Date(date).toISOString();
     });
 

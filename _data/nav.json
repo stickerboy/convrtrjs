@@ -31,7 +31,8 @@
         "short-label": "Ciphers",
         "icon": "puzzle",
         "description": "A collection of tools for encrypting and decrypting data, using some commonly known ciphers.",
-        "children":[{
+        "children":[
+            {
                 "id": "caesar",
                 "label": "Caesar cipher"
             }, {
@@ -72,7 +73,8 @@
         "short-label": "Hex",
         "icon": "nut",
         "description": "Various tools for working with hexadecimal strings.",
-        "children":[{
+        "children":[
+            {
                 "id": "shift",
                 "label": "Shift hex"
             },{
@@ -92,7 +94,8 @@
         "short-label": "Files",
         "icon": "journal-code",
         "description": "Various tools for working with files and file formats.",
-        "children":[{
+        "children":[
+            {
                 "id": "check",
                 "label": "Check file type"
             }, {
@@ -105,11 +108,12 @@
     },
     {
         "id": "misc",
-        "label": "Misc",
+        "label": "Miscellaneous",
         "short-label": "Misc",
         "icon": "braces-asterisk",
         "description": "A collection of miscellaneous tools for use in puzzle solving.",
-        "children":[{
+        "children":[
+            {
                 "id": "braille",
                 "label": "Braille"
             },{
@@ -165,6 +169,59 @@
         "exclude-from-sidebar": false
     },
     {
+        "id": "community",
+        "label": "Community",
+        "short-label": "Community",
+        "icon": "people",
+        "description": "Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.",
+        "children": [{
+                "id": "accessibility",
+                "label": "Accessibility statement",
+                "short-label": "Accessibility",
+                "aria-label": "View the accessibility statement",
+                "icon": "universal-access-circle",
+                "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working."
+            },{
+                "id": "privacy",
+                "label": "Privacy policy",
+                "short-label": "Privacy",
+                "aria-label": "View the privacy policy",
+                "icon": "shield-check",
+                "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe."
+            },{
+                "id": "contributing",
+                "label": "Contributing",
+                "short-label": "Contributing",
+                "aria-label": "View the contribution info",
+                "icon": "git",
+                "description": "Learn how to get involved with Convrtr — whether it's fixing bugs, suggesting features, or improving docs, every contribution makes a difference!"
+            },{
+                "id": "security",
+                "label": "Security",
+                "short-label": "Security",
+                "aria-label": "View the security policy",
+                "icon": "lock",
+                "description": "How we protect our project and contributors—reporting vulnerabilities, handling incidents, and keeping our community safe."
+            },{
+                "id": "code-of-conduct",
+                "label": "Code of conduct",
+                "short-label": "Code of conduct",
+                "aria-label": "View the code of conduct",
+                "icon": "chat-right-text",
+                "description": "Our commitment to building a community that’s welcoming, safe, and equitable for everyone—where respect, inclusion, and accountability are at the core."
+            },{
+                "id": "license",
+                "label": "License",
+                "short-label": "License",
+                "aria-label": "View the project license",
+                "icon": "list-columns-reverse",
+                "description": "The license we use for the project — a way to share and remix content freely, as long as you give credit, don't use it commercially, and keep the same license."
+            }
+        ],
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false
+    },
+    {
         "id": "sitemap",
         "label": "Sitemap",
         "short-label": "Sitemap",
@@ -187,32 +244,6 @@
         "label_2": ": latest site updates",
         "aria-label": "Changelog: latest site updates",
         "switch-label": true,
-        "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
-    },
-    {
-        "id": "privacy",
-        "label": "Privacy policy",
-        "short-label": "Privacy",
-        "icon": "shield-check",
-        "description": "This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.",
-        "label_1": "View the ",
-        "label_2": "Privacy policy",
-        "aria-label": "View the Privacy policy",
-        "switch-label": false,
-        "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
-    },
-    {
-        "id": "accessibility",
-        "label": "Accessibility statement",
-        "short-label": "Accessibility",
-        "icon": "universal-access-circle",
-        "description": "How we’re building inclusive experiences for everyone — and how you can reach us if something’s not working.",
-        "label_1": "View the ",
-        "label_2": "Accessibility statement",
-        "aria-label": "View the Accessibility statement",
-        "switch-label": false,
         "exclude-from-sitemap": false,
         "exclude-from-sidebar": false
     },
