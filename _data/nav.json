@@ -108,7 +108,7 @@
     },
     {
         "id": "misc",
-        "label": "Misc",
+        "label": "Miscellaneous",
         "short-label": "Misc",
         "icon": "braces-asterisk",
         "description": "A collection of miscellaneous tools for use in puzzle solving.",
