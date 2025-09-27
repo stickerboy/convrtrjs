@@ -16,7 +16,13 @@ const navData = JSON.parse(fs.readFileSync(path.join(__dirname, "_data", "nav.js
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(RenderPlugin);
 
+    eleventyConfig.ignores.add("a11y.md");
+    eleventyConfig.ignores.add("privacy.md");
     eleventyConfig.ignores.add("README.md");
+    eleventyConfig.ignores.add("SECURITY.md");
+    eleventyConfig.ignores.add("CONTRIBUTING.md");
+    eleventyConfig.ignores.add("CODE_OF_CONDUCT.md");
+    eleventyConfig.ignores.add("LICENSE");
     eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
     eleventyConfig.addPassthroughCopy("LICENSE");
