@@ -355,7 +355,7 @@
       <changefreq>monthly</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
+      <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>
@@ -683,6 +683,12 @@
         <lastmod>2025-09-27T00:00:00.000Z</lastmod>
       
       <changefreq>never</changefreq>
+    </url>
+    <url>
+      <loc>https://www.convrtr.xyz/LICENSE/</loc>
+      <lastmod>2025-09-24T11:49:19.942Z</lastmod>
+      
+      <changefreq>monthly</changefreq>
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/3.4.1/</loc>
