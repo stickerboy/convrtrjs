@@ -355,7 +355,7 @@
       <changefreq>monthly</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
+      <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>
@@ -697,8 +697,14 @@
       <changefreq>monthly</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.4.1/</loc>
+        <lastmod>2025-09-28T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
         <loc>https://www.convrtr.xyz/tags/release/</loc>
-        <lastmod>2025-09-27T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-28T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -713,7 +719,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/tags/patch/</loc>
-        <lastmod>2025-09-23T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-28T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -728,7 +734,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/tags/improvements/</loc>
-        <lastmod>2025-09-27T00:00:00.000Z</lastmod>
+        <lastmod>2025-09-28T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>

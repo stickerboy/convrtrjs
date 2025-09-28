@@ -1057,6 +1057,12 @@ mark {
     }
     summary {
         margin-bottom: 0.5rem;
+        position: relative;
+        
+        &::marker {
+            display: none;
+            content: "";
+        }
     }
 }
 
@@ -1369,6 +1375,7 @@ button.cc-nb-changep {
     display: none;
     content: "";
 }
+.changelog summary::before,
 .pagefind-ui__filter-block summary::before {
     content: "\f148";
     display: inline-block;
@@ -1390,6 +1397,7 @@ button.cc-nb-changep {
     border-radius: var(--bs-border-radius) !important;
     color: var(--bs-dark-rgb);
 }
+.changelog summary::after,
 .pagefind-ui__filter-block summary::after {
     content: "\f148";
     display: inline-block;
@@ -1410,6 +1418,10 @@ button.cc-nb-changep {
     transform: rotate(0deg);
     transition: transform .4s ease-in-out;
 }
+.changelog summary::after {
+    top: 0.35rem;
+}
+.changelog details[open] summary::after,
 .pagefind-ui__filter-block[open] summary::after {
     transform: rotate(90deg);
 }
