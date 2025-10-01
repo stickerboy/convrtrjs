@@ -349,19 +349,13 @@
       <changefreq>never</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/_templates/0.0.0/</loc>
-        <lastmod>2025-01-01T00:00:00.000Z</lastmod>
-      
-      <changefreq>never</changefreq>
-    </url>
-    <url>
       <loc>https://www.convrtr.xyz/changelog/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
+      <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>
