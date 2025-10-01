@@ -939,17 +939,20 @@
 </section>
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.1">
-        <h2>Changes</h2>
-<h3>Platform</h3>
+        <h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Changes</h3>
+<h4>Platform</h4>
 <p>These are primarily internal changes, relating to how the site is built</p>
 <ul>
 <li>Added a new shortcode to pass the name of a file when including a partial</li>
 <li>Added a new filter to uppercase the first letter of a string</li>
-<li>Used `` to automatically set values in partials, rather than typing everything out. Still need to handle JS manually, but this makes some things easier.</li>
+<li>Used {{ filename }} to automatically set values in partials, rather than typing everything out. Still need to handle JS manually, but this makes some things easier.</li>
 <li>Renamed a few files to prevent conflicts and follow the same format for all partials</li>
 <li>Replaced variable declaration for delimiter with filename</li>
 </ul>
-
+</details>
 
         
 

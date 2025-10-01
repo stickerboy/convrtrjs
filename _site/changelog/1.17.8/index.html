@@ -950,15 +950,21 @@
 <ul>
 <li>Added better support for multibyte conversions when converting to and from hex, and when shifting hex strings</li>
 <li>Added better support for multibyte conversions when converting to and from binary strings</li>
-<li>Replaced ord() function with a much simpler solution using TextEncoder</li>
-<li>Improvements and simplifications to various functions</li>
-<li>Adding some checks around event listeners to make sure events only fire when they have something to fire on</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
 <li>Fixed an issue where image generation would generate an embeddable image tag, but no longer generate a downloadable image file</li>
 </ul>
-
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Changes</h3>
+<ul>
+<li>Replaced ord() function with a much simpler solution using TextEncoder</li>
+<li>Improvements and simplifications to various functions</li>
+<li>Adding some checks around event listeners to make sure events only fire when they have something to fire on</li>
+</ul>
+</details>
 
         
         <div class="mt-4">

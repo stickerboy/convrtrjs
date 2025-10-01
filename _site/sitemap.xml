@@ -355,7 +355,7 @@
       <changefreq>monthly</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
+      <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>
@@ -686,18 +686,6 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/LICENSE/</loc>
-      <lastmod>2025-09-24T11:49:19.942Z</lastmod>
-      
-      <changefreq>monthly</changefreq>
-    </url>
-    <url>
-      <loc>https://www.convrtr.xyz/.github/ISSUE_TEMPLATE/bug_report/</loc>
-      <lastmod>2025-09-24T11:49:19.942Z</lastmod>
-      
-      <changefreq>monthly</changefreq>
-    </url>
-    <url>
-      <loc>https://www.convrtr.xyz/.github/ISSUE_TEMPLATE/feature_request/</loc>
       <lastmod>2025-09-24T11:49:19.942Z</lastmod>
       
       <changefreq>monthly</changefreq>

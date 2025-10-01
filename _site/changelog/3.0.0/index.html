@@ -943,14 +943,16 @@
 </section>
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.1">
-        <p>Originally going to be just a minor 2.1.0 release, as a new menu design and some bug fixes to recently added features, v3 took on a life of its own. It made sense to do an additional overhaul of the internal structure to better support the new design, and to also make it a little more modular and easier to maintain going forward.</p>
+        <p>Originally going to be just a minor 2.1.0 release, as a new menu design and some bug fixes to recently added features, v3 took on a life of its own. It made sense to do an additional overhaul of the internal structure to better support the new design, and to also make it a little more modular and easier to maintain going forward</p>
 <h2>New features</h2>
 <h3>Individual tool pages</h3>
-<p>Each tool, along with remaining available on each main/top-level page, is also now available on their own dedicated page.</p>
+<ul>
+<li>Each tool, along with remaining available on each main/top-level page, is also now available on their own dedicated page</li>
+</ul>
 <h3>Sidebar / Navigation</h3>
 <ul>
 <li>Overhauled the primary navigation across the site, replacing the bootstrap offcanvas flyout menu with a left hand expanding sidebar (though a customised offcanvas version of the menu exists for smaller screen devices)</li>
-<li>Sidebar can be expanded by clicking on the hamburger icon next to the sitename</li>
+<li>Sidebar can be expanded by clicking on the hamburger icon next to the site name</li>
 <li>Clicking the dropdown toggle on a tab will auto-expand to reveal a list of all the child pages</li>
 <li>Child pages now link through to that tool's dedicated page, instead of scrolling to its position (goodbye scroll issues)</li>
 <li>Closing the menu will close all open tabs</li>
@@ -958,7 +960,7 @@
 <li>Re-arranged order of items in the menu</li>
 </ul>
 <p><a href="/assets/img/changelog/v3.png"><img src="/assets/img/changelog/v3.png" alt="Screenshot of the Convrtrs tool page, showcasing the new sidebar design"></a></p>
-<h3>Pagingation</h3>
+<h3>Pagination</h3>
 <ul>
 <li>Added &quot;Jump to first page&quot; and &quot;Jump to last page&quot; pagination links</li>
 </ul>
@@ -994,7 +996,7 @@
 <h3>BTS - Changes</h3>
 <ul>
 <li>Moved pagination into its own separate component file, so it can be re-used elsewhere</li>
-<li>Updated Bootstrap core js to 5.3.3</li>
+<li>Updated Bootstrap core js to <a href="https://github.com/twbs/bootstrap/releases/tag/v5.3.3">5.3.3</a></li>
 <li>Created individual mjs files for each tool event and functions</li>
 <li>Reduced the number of scripts loaded on a each page, additionally only loading in the scripts and functions necessary for that tool</li>
 <li>Updated all scripts to output functions to the window object, making them web console accessible/usable</li>
@@ -1005,7 +1007,7 @@
 <h3>BTS - Bug fixes</h3>
 <ul>
 <li>Fixed issue with tag filter where it had the potential to expose other site assets/pages</li>
-<li>Fixed some sass compiler warnings</li>
+<li>Fixed some SASS compiler warnings</li>
 </ul>
 </details>
 

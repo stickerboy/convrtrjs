@@ -951,11 +951,18 @@
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li>Correctly handle navigation urls by adding the | url filter. Main nav urls were broken due to <code>../</code>, when in a sub-directory, not pointing to the root of the site</li>
-<li>Fixed missing 'v' prefix on the title of Changelog pages<br>
-Using <code>templateSyntax</code> is a weird but decent enough workaround to only target the changelog item itself</li>
+<li>
+<p>Fixed missing 'v' prefix on the title of Changelog pages (Using <code>templateSyntax</code> is a weird but decent enough workaround to only target the changelog item itself)</p>
+<h2>Behind the scenes changes</h2>
+</li>
 </ul>
-
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Bug fixes</h3>
+<ul>
+<li>Correctly handle navigation urls by adding the <code>|</code> url filter. Main nav urls were broken due to <code>../</code>, when in a sub-directory, not pointing to the root of the site</li>
+</ul>
+</details>
 
         
         <div class="mt-4">
