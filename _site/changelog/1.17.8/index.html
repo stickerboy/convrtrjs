@@ -946,19 +946,25 @@
 <ul>
 <li>Added additional Text tool to strip all whitespace from a string (this will include things like tabs and newlines)</li>
 </ul>
-<h2>Changes</h2>
+<h2>Improvements</h2>
 <ul>
 <li>Added better support for multibyte conversions when converting to and from hex, and when shifting hex strings</li>
 <li>Added better support for multibyte conversions when converting to and from binary strings</li>
-<li>Replaced ord() function with a much simpler solution using TextEncoder</li>
-<li>Improvements and simplifications to various functions</li>
-<li>Adding some checks around event listeners to make sure events only fire when they have something to fire on</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
 <li>Fixed an issue where image generation would generate an embeddable image tag, but no longer generate a downloadable image file</li>
 </ul>
-
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Changes</h3>
+<ul>
+<li>Replaced ord() function with a much simpler solution using TextEncoder</li>
+<li>Improvements and simplifications to various functions</li>
+<li>Adding some checks around event listeners to make sure events only fire when they have something to fire on</li>
+</ul>
+</details>
 
         
         <div class="mt-4">
@@ -986,9 +992,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.4.1" 
+                title="Release version: v3.4.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.4.1</small>
+                <small>v3.4.2</small>
             </a>
             
             <p class="float-end mb-1">

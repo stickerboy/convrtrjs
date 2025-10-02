@@ -1064,6 +1064,16 @@ mark {
             content: "";
         }
     }
+    blockquote {
+        padding-left: 1rem;
+        margin-left: 1rem;
+        border-left: 0.25rem solid var(--convrtr-bg-color-50);
+    }
+    &.license {
+        blockquote {
+            margin-left: 0;
+        }
+    }
 }
 
 .changelog,

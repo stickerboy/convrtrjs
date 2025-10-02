@@ -944,10 +944,10 @@
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.1">
         <h2>New features</h2>
-<h3>Changelog</h3>
+<h3><a href="/changelog">Changelog</a></h3>
 <ul>
-<li>Added a built in changelog that shows recent feature additions, updates, and bug fixes (saves going offsite to GitHub)<br>
-Accessible from the fly-out navigation and by clicking the site version number in the footer</li>
+<li>Added a built in changelog that shows recent feature additions, updates, and bug fixes (saves going offsite to GitHub)</li>
+<li>Accessible from the fly-out navigation and by clicking the site version number in the footer</li>
 <li>Tags are also clickable, leading to a filtered list of changelog items that include the given tag/label</li>
 <li>Added a list of available tags, along with the number of times that tag has been used and a link to the filtered changelog list (if greater than 0)</li>
 </ul>
@@ -961,21 +961,17 @@ Accessible from the fly-out navigation and by clicking the site version number i
 <ul>
 <li>Added breadcrumb navigation across the site, for additional ease of navigation</li>
 </ul>
-<h2>Changes</h2>
+<h2>Improvements</h2>
 <h3>Platform</h3>
 <ul>
-<li>Migrated the codebase to ESM to (hopefully) make it easier to maintain and improve going forward</li>
-<li>Split front-end JS functionality into its own file, separate from main functions</li>
 <li>Assigned some functions [ONI] to the global window object, so they can still be accessed from the web console</li>
 <li>Updated/improved various JS Doc comments</li>
-<li>Added meta keywords and open graph tags to the site</li>
 </ul>
 <h3>Frontend</h3>
 <ul>
 <li>Improved/unified various tool descriptions and examples</li>
 <li>Added changelog and sitemap links to the flyout navigation</li>
 <li>Changed the version number link in the footer to point to the internal changelog now, rather than GitHub</li>
-<li>Changed the &quot;Not data to clear&quot; notice to be informational, rather than a warning (no data isn't always bad)</li>
 </ul>
 <h3>A11y</h3>
 <ul>
@@ -987,9 +983,26 @@ Accessible from the fly-out navigation and by clicking the site version number i
 <ul>
 <li>Fixed issue with binary conversion, ensuring that spaces are not counted when checking if Binary is valid</li>
 <li>Correctly handle times when local storage won't have a stored value for a section toggle</li>
+</ul>
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Changes</h3>
+<h4>Platform</h4>
+<ul>
+<li>Migrated the codebase to ESM to (hopefully) make it easier to maintain and improve going forward</li>
+<li>Split front-end JS functionality into its own file, separate from main functions</li>
+<li>Added meta keywords and open graph tags to the site</li>
+</ul>
+<h4>Frontend</h4>
+<ul>
+<li>Changed the &quot;No data to clear&quot; notice to be informational, rather than a warning (no data isn't always bad)</li>
+</ul>
+<h3>Bug fixes</h3>
+<ul>
 <li>[A11y] Fixed incorrect hex delimiter label on Convrtrs</li>
 </ul>
-
+</details>
 
         
         <div class="mt-4">
@@ -1017,9 +1030,9 @@ Accessible from the fly-out navigation and by clicking the site version number i
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.4.1" 
+                title="Release version: v3.4.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.4.1</small>
+                <small>v3.4.2</small>
             </a>
             
             <p class="float-end mb-1">

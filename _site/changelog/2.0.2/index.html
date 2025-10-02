@@ -941,7 +941,7 @@
 </section>
 <section class="section changelog">
     <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.1">
-        <h2>Changes</h2>
+        <h2>Improvements</h2>
 <ul>
 <li>Re-introduced the 'release' tag to all relevant changelogs</li>
 <li>Only show &quot;View on GitHub&quot; release link on a changelog, if that version was officially released</li>
@@ -951,11 +951,16 @@
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li>Correctly handle navigation urls by adding the | url filter. Main nav urls were broken due to <code>../</code>, when in a sub-directory, not pointing to the root of the site</li>
-<li>Fixed missing 'v' prefix on the title of Changelog pages<br>
-Using <code>templateSyntax</code> is a weird but decent enough workaround to only target the changelog item itself</li>
+<li>Fixed missing 'v' prefix on the title of Changelog pages (Using <code>templateSyntax</code> is a weird but decent enough workaround to only target the changelog item itself)</li>
 </ul>
-
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>Bug fixes</h3>
+<ul>
+<li>Correctly handle navigation urls by adding the <code>|</code> url filter. Main nav urls were broken due to <code>../</code>, when in a sub-directory, not pointing to the root of the site</li>
+</ul>
+</details>
 
         
         <div class="mt-4">
@@ -983,9 +988,9 @@ Using <code>templateSyntax</code> is a weird but decent enough workaround to onl
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.4.1" 
+                title="Release version: v3.4.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.4.1</small>
+                <small>v3.4.2</small>
             </a>
             
             <p class="float-end mb-1">

@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {%- assign pageNeverChanges = "changelog-item,search,accessibility,privacy" | split: "," %}
 {%- for item in collections.all %}
-  {%- unless item.url contains "assets" %}
+  {%- unless item.url contains "assets" or item.url contains "tag" %}
     <url>
       <loc>{{ pkg.homepage }}{{ item.url }}</loc>
       {%- if item.data.date %}
@@ -28,7 +28,7 @@ eleventyExcludeFromCollections: true
     {%- assign tagItems = collections[tag.key] | sort: "date" | reverse %}
     {%- if tagItems.size > 0 %}
     <url>
-        <loc>{{ pkg.homepage }}/tags/{{ tag.key }}/</loc>
+        <loc>{{ pkg.homepage }}/changelog/tag/{{ tag.key }}/</loc>
         <lastmod>{{ tagItems[0].date | dateISO }}</lastmod>
         <changefreq>monthly</changefreq>
     </url>

@@ -944,23 +944,29 @@
     <article class="py-4 px-2 px-sm-4" data-pagefind-weight="0.1">
         <h2>New features</h2>
 <ul>
-<li>Added ability to reverse hex nibbles, different from functionality that was there already, and wording updated to reflect. This functionality is not yet exposed in the UI, will be in a future update.</li>
-<li>Added validation function for hex string</li>
-<li>Added validation function for binary string</li>
+<li>Added ability to reverse hex nibbles, different from functionality that was there already, and wording updated to reflect. This functionality is not yet exposed in the UI, will be in a future update</li>
 <li>Added ability to use &quot;No delimiter&quot; in a hex conversion, so you can drop in a string with just hex characters and correctly convert to and from</li>
 </ul>
-<h2>Changes</h2>
+<h2>Behind the scenes changes</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing changes made to the site</summary>
+<h3>New features</h3>
 <ul>
-<li>Improved performance of morsernary by moving to a single match, rather than chaining</li>
-<li>Improved and simplified the reveseHex function</li>
+<li>Added validation function for hex string</li>
+<li>Added validation function for binary string</li>
+</ul>
+<h3>Improvements</h3>
+<ul>
+<li>Improved performance of Morsernary by moving to a single match, rather than chaining</li>
 <li>Improved error handling across functions</li>
+<li>Improved and simplified the reverseHex function</li>
 <li>Moved delimiter dropdown to a liquid partial, so that it can be reused across the site</li>
 </ul>
-<h2>Bug fixes</h2>
+<h3>Bug fixes</h3>
 <ul>
 <li>Correctly pass values from the delimiter dropdown through to all the functions that require it</li>
 </ul>
-
+</details>
 
         
         <div class="mt-4">
@@ -988,9 +994,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.4.1" 
+                title="Release version: v3.4.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.4.1</small>
+                <small>v3.4.2</small>
             </a>
             
             <p class="float-end mb-1">

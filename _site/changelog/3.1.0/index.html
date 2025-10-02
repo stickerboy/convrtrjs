@@ -947,18 +947,18 @@
 <ul>
 <li>Added support for Google Analytics tracking</li>
 </ul>
-<h2>Cookie consent banner</h2>
+<h3>Cookie consent banner</h3>
 <ul>
-<li>In line with the addition of Google Analytics tracking, added a cookie consent banner</li>
+<li>In line with the addition of Google Analytics tracking, added a Cookie consent banner</li>
 </ul>
 <h3>Privacy policy</h3>
 <ul>
 <li>Added a new <a href="/privacy">Privacy policy</a> page to explain data captured from analytics and localStorage, along with an output of any localStorage data saved for the site</li>
 </ul>
-<h2>Changes</h2>
+<h2>Improvements</h2>
 <h3>Navbar menu on mobile</h3>
 <ul>
-<li>A new navigation icon design for mobile layouts has been added for the 4 icons in the nav bar. Due to limited space on mobile, there may be some instances where the icons wrap to the next line (even after removing the tag line). This change moved the icons into a new dropdown menu. As sub-menus are not currently supported within Bootstrap, the theme options have been exposed at the bottom but work in exactly the same way.</li>
+<li>A new navigation icon design for mobile layouts has been added for the 4 icons in the nav bar. Due to limited space on mobile, there may be some instances where the icons wrap to the next line (even after removing the tag line). This change moved the icons into a new dropdown menu. As sub-menus are not currently supported within Bootstrap, the theme options have been exposed at the bottom but work in exactly the same way</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
@@ -969,17 +969,18 @@
 <h2>Behind the scenes changes</h2>
 <details>
 <summary>This is a list of more technical and non-front facing changes made to the site  </summary>
-<h3>Themeing and localStorage</h3>
+<h3>Changes</h3>
+<h4>Theming and localStorage</h4>
 <ul>
 <li>Made an adjustment to how items in localStorage are stored, moving to a serialized JSON object instead of just a plain text string. This means that things like descriptions can be stored and displayed. An example is on the Privacy policy, where the all stored items will be listed with their friendly name and description.</li>
 <li>Legacy local storage items will now be cleared on first visit and a &quot;legacy&quot; flag stored, this will be removed in a future update</li>
 </ul>
-<h3>Tool headers</h3>
+<h4>Tool headers</h4>
 <ul>
-<li>Introduced tooltips to the tool headers, to make it more apparent that they can be clicked on. These will be updated as you expand/collapse them.</li>
-<li>Adjusted the padding.spacing around tool headers to make it easier to tapclick on them. Clickable area now fills that area, rather that just being an area the same size as the tool heading font.</li>
+<li>Introduced tooltips to the tool headers, to make it more apparent that they can be clicked on. These will be updated as you expand/collapse them</li>
+<li>Adjusted the padding and spacing around tool headers to make it easier to TapClick on them. Clickable area now fills that area, rather that just being an area the same size as the tool heading font</li>
 </ul>
-<h3>Copyright</h3>
+<h4>Copyright</h4>
 <ul>
 <li>Fixed the date :)</li>
 </ul>
@@ -1011,9 +1012,9 @@
         </div>
         <div class="p-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.4.1" 
+                title="Release version: v3.4.2" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.4.1</small>
+                <small>v3.4.2</small>
             </a>
             
             <p class="float-end mb-1">
