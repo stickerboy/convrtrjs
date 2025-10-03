@@ -703,8 +703,14 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.5.0/</loc>
+        <lastmod>2025-10-03T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
         <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
-        <lastmod>2025-09-27T00:00:00.000Z</lastmod>
+        <lastmod>2025-10-03T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -714,7 +720,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
-        <lastmod>2025-09-27T00:00:00.000Z</lastmod>
+        <lastmod>2025-10-03T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>

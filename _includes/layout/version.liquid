@@ -6,7 +6,7 @@ layout: layout.liquid
     <article class="py-4 px-3 px-sm-4" data-pagefind-weight="0.1">
         {{ content }}
 
-        {% if tags contains "release" %}
+        {%- if tags contains "release" %}
         <div class="mt-4">
             <a class="btn btn-convrtr" href="{{ pkg.releases.url }}/tag/v{{ page.fileSlug }}-Release">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
@@ -18,7 +18,63 @@ layout: layout.liquid
                 View on GitHub
             </a>
         </div>
-        {% endif %}
-
+        {%- endif %}
     </article>
+
+    {%- assign versions = collections.versions -%}
+    {%- assign currentIndex = -1 -%}
+    {%- assign latest = null -%}
+    {%- assign earliest = null -%}
+    {%- assign last = null -%}
+
+    {%- for item in versions %}
+        {%- if forloop.first %}
+            {%- assign latest = item %}
+        {%- endif %}
+        {%- if forloop.last %}
+            {%- assign earliest = item %}
+            {%- assign last = forloop.index0 %}
+        {%- endif %}
+        {%- if item.url == page.url %}
+            {%- assign currentIndex = forloop.index0 -%}
+        {%- endif %}
+    {%- endfor %}
+
+    {%- assign nextIndex = currentIndex | minus: 1 -%}
+    {%- assign prevIndex = currentIndex | plus: 1 %}
+
+    <nav class="version-nav px-4 pt-2" aria-label="Next and previous changelog items">
+        <ul class="pagination pagination-sm justify-content-between m-0">
+            <li class="page-item">
+                <div class="btn-group d-flex flex-row" role="group">
+                    {%- unless currentIndex == 0 %}
+                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded{% if nextIndex >= 0 %}-sm-start{% endif %} fw-normal" href="{{ latest.url }}" title="Latest changelog">
+                        &laquo; <span class="d-none d-sm-inline-flex">Latest</span>
+                    </a>
+                    {%- endunless %}
+                    {%- if nextIndex >= 0 %}
+                    {%- assign next = versions[nextIndex] %}
+                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded-end rounded-start-0 fw-normal" href="{{ next.url }}" title="Next changelog: v{{ next.data.title }}">
+                        &#8678; <span class="d-none d-sm-inline-flex">Next:&nbsp;</span> v{{ next.data.title }}
+                    </a>
+                    {%- endif %}
+                </div>
+            </li>
+            <li class="page-item">
+                <div class="btn-group d-flex flex-row" role="group">
+                    {%- if prevIndex < versions.size %}
+                    {%- assign prev = versions[prevIndex] %}
+                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded-start rounded-end-0 fw-normal" href="{{ prev.url }}" title="Previous changelog: v{{ next.data.title }}">
+                        <span class="d-none d-sm-inline-flex">Previous:&nbsp;</span> v{{ prev.data.title }} &#8680;
+                    </a>
+                    {%- endif %}
+                    {%- unless currentIndex == last %}
+                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded{% if prevIndex < versions.size %}-sm-end{% endif %} fw-normal" href="{{ earliest.url }}" title="Earliest changelog">
+                        <span class="d-none d-sm-inline-flex">Earliest</span> &raquo;
+                    </a>
+                    {%- endunless %}
+                </div>
+            </li>
+        </ul>
+    </nav>
 </section>
