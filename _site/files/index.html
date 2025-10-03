@@ -584,6 +584,14 @@
                     
                     <li class="mb-1">
                         <a class="dropdown-item"
+                            href="/files/exif"
+                            data-target="#files">
+                            Exif reader
+                        </a>
+                    </li>
+                    
+                    <li class="mb-1">
+                        <a class="dropdown-item"
                             href="/files/headers"
                             data-target="#files">
                             File headers
@@ -928,9 +936,7 @@
                 Various tools for working with files and file formats.
             </p>
             <div class="px-2">
-            </div><p class="px-2 m-0" data-pagefind-ignore="all">
-    Please note that these tools aren't optimized for large amounts of data, processing can slow down or run into problems once you reach above <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">150,000</code> characters. A cap of 1 million characters is currently in place.
-</p>
+            </div>
         </div>
     </div>
 </section><span class="hidden" data-pagefind-filter="Filters">landing-page</span>
@@ -1515,6 +1521,60 @@
         </div>
     </div>
 </section>
+    
+
+    
+        
+<section id="exif" class="section">
+<div class="section-heading">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#exifCollapse" role="button" 
+            aria-expanded="true" aria-controls="exifCollapse"
+            data-section-name="exif" data-section-description="Toggle visibility of exif section"
+            data-pagefind-ignore="all">
+            <h2 class="display-6 w-100 d-flex m-0">
+                Check file type
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
+                The Exif reader tool allows you to pull metadata information from a variety of image file types, such as GPS information, camera information (like exposure, aperture, device make and model), and more. This metadata can often be where puzzle makers hide information.
+            </p>
+            <p class="px-2">
+                The Exif reader supports the following file types: 
+            </p>
+        </div>
+        <div id="exifCollapse" class="pb-4 px-2 px-sm-4 collapse show">
+            <div class="col">
+                <div class="card">
+                    <span class="card-label visually-hidden">Check Exif information</span>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="fileInput">
+                        </div>
+                    </div>
+                    <div class="card-footer py-3">
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                        </div>
+                        <hr />
+                        <div id="exifResults" class="data-to-copy active convrtr-results"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<script type="module" src="/assets/js/files/exif.mjs"></script>
     
 
                     <footer class="section footer">

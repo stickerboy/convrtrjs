@@ -101,6 +101,9 @@
             }, {
                 "id": "headers",
                 "label": "File headers"
+            }, {
+                "id": "exif",
+                "label": "Exif reader"
             }
         ],
         "exclude-from-sitemap": false,
