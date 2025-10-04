@@ -12,7 +12,7 @@ tags: tools
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
-                Check file type
+                {{ title }}
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -24,8 +24,18 @@ tags: tools
                 The Exif reader tool allows you to pull metadata information from a variety of image file types, such as GPS information, camera information (like exposure, aperture, device make and model), and more. This metadata can often be where puzzle makers hide information.
             </p>
             <p class="px-2">
+                {%- assign supported_file_types = "JPEG,TIFF,PNG,HEIC,AVIF,WebP,GIF" | split: "," %}
                 The Exif reader supports the following file types: 
+                {%- for fileType in supported_file_types %}
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ fileType }}</code> 
+                {%- endfor %}
             </p>
+            <blockquote>
+                <p class="ms-2">&mdash; Powered by <a href="https://github.com/mattiasw/ExifReader"
+                        class="text-convrtr">ExifReader</a> by Mattias Wallander, available under the <a
+                        href="https://mozilla.org/MPL/2.0/" class="text-convrtr">Mozilla Public License Version 2.0</a>.</p>
+            </blockquote>
         </div>
         <div id="{{ filename }}Collapse" class="pb-4 px-2 px-sm-4 collapse show">
             <div class="col">
@@ -33,8 +43,8 @@ tags: tools
                     <span class="card-label visually-hidden">Check Exif information</span>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
-                            <input class="form-control" type="file" id="fileInput">
+                            <label for="exifInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="exifInput">
                         </div>
                     </div>
                     <div class="card-footer py-3">

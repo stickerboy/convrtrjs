@@ -954,7 +954,7 @@
             data-section-name="exif" data-section-description="Toggle visibility of exif section"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
-                Check file type
+                Exif reader
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -966,8 +966,27 @@
                 The Exif reader tool allows you to pull metadata information from a variety of image file types, such as GPS information, camera information (like exposure, aperture, device make and model), and more. This metadata can often be where puzzle makers hide information.
             </p>
             <p class="px-2">
-                The Exif reader supports the following file types: 
+                The Exif reader supports the following file types:
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">JPEG</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TIFF</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">PNG</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">HEIC</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">AVIF</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">WebP</code>
+                <code
+                    class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">GIF</code>
             </p>
+            <blockquote>
+                <p class="ms-2">&mdash; Powered by <a href="https://github.com/mattiasw/ExifReader"
+                        class="text-convrtr">ExifReader</a> by Mattias Wallander, available under the <a
+                        href="https://mozilla.org/MPL/2.0/" class="text-convrtr">Mozilla Public License Version 2.0</a>.</p>
+            </blockquote>
         </div>
         <div id="exifCollapse" class="pb-4 px-2 px-sm-4 collapse show">
             <div class="col">
@@ -975,8 +994,8 @@
                     <span class="card-label visually-hidden">Check Exif information</span>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="fileInput" class="form-label visually-hidden">Select a file</label>
-                            <input class="form-control" type="file" id="fileInput">
+                            <label for="exifInput" class="form-label visually-hidden">Select a file</label>
+                            <input class="form-control" type="file" id="exifInput">
                         </div>
                     </div>
                     <div class="card-footer py-3">
@@ -1030,6 +1049,7 @@
 <script type="module" src="/assets/js/theme.mjs"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
+<script src="/assets/js/files/exif-reader.js"></script>
 
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">
