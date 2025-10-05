@@ -2,7 +2,7 @@ export async function getExifInfo(selectedFile) {
     const arrayBuffer = await selectedFile.arrayBuffer();
 
     try {
-        const tags = await ExifReader.load(arrayBuffer);
+        const tags = await ExifReader.load(arrayBuffer, { includeUnknown: true, async: true});
         const output = document.getElementById("exifResults");
 
         // Clear previous content
