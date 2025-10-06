@@ -1074,6 +1074,9 @@ mark {
             margin-left: 0;
         }
     }
+    .pagination .btn {
+        font-size: var(--bs-pagination-font-size);
+    }
 }
 
 .changelog,
