@@ -703,16 +703,22 @@
       <changefreq>never</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/files/exif/</loc>
-      <lastmod>2025-10-02T14:55:56.526Z</lastmod>
-      
-      <changefreq>monthly</changefreq>
-    </url>
-    <url>
       <loc>https://www.convrtr.xyz/changelog/3.5.0/</loc>
         <lastmod>2025-10-06T00:00:00.000Z</lastmod>
       
       <changefreq>never</changefreq>
+    </url>
+    <url>
+      <loc>https://www.convrtr.xyz/changelog/3.5.1/</loc>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
+      <loc>https://www.convrtr.xyz/files/exif/</loc>
+      <lastmod>2025-10-02T14:55:56.526Z</lastmod>
+      
+      <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
@@ -731,7 +737,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
-        <lastmod>2025-10-03T00:00:00.000Z</lastmod>
+        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>

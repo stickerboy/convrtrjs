@@ -11,7 +11,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // Load allowed tags from JSON file
 const allowedTagsPath = path.join(__dirname, "_data", "labels.json");
 const allowedTagsData = JSON.parse(fs.readFileSync(allowedTagsPath, "utf-8"));
-const navData = JSON.parse(fs.readFileSync(path.join(__dirname, "_data", "nav.json"), "utf-8"));
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(RenderPlugin);
@@ -78,12 +77,15 @@ export default function (eleventyConfig) {
             };
         });
     });
-    eleventyConfig.addFilter("upperFirst", (filename) => {
-        const lowerCased = filename.toLowerCase();
+    eleventyConfig.addFilter("upperFirst", (string) => {
+        const lowerCased = string.toLowerCase();
         return `${lowerCased.charAt(0).toUpperCase() + lowerCased.slice(1)}`;
     });
-    eleventyConfig.addFilter("lowercase", (filename) => {
-        return `${filename.toLowerCase()}`;
+    eleventyConfig.addFilter("lowercase", (string) => {
+        return `${string.toLowerCase()}`;
+    });
+    eleventyConfig.addFilter("uppercase", (string) => {
+        return `${string.toUpperCase()}`;
     });
     
     eleventyConfig.addFilter("markdown", (content) => {
