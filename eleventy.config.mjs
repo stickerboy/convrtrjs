@@ -78,13 +78,6 @@ export default function (eleventyConfig) {
         });
     });
 
-    eleventyConfig.addFilter("lowercase", (string) => {
-        return `${string.toLowerCase()}`;
-    });
-    eleventyConfig.addFilter("uppercase", (string) => {
-        return `${string.toUpperCase()}`;
-    });
-    
     eleventyConfig.addFilter("markdown", (content) => {
         md.render(content);
     });
