@@ -64,9 +64,9 @@ tags: tools
         </ul>
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
+                <span class="card-label visually-hidden">{{ filename | capitalize }} cipher</span>
                 <div class="card-body text-center">
-                    <label for="{{ filename }}Text" class="visually-hidden">{{ filename | upperFirst }} Text - text to substitute</label>
+                    <label for="{{ filename }}Text" class="visually-hidden">{{ filename | capitalize }} Text - text to substitute</label>
                     <textarea placeholder="Example: Hello &srarr; Mjqqt (Rot 5)" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
                 </div>
                 <div class="card-footer py-3">
@@ -74,7 +74,7 @@ tags: tools
                         <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                             <div class="col col-12 col-md-auto">
                                 <div class="input-group w-auto">
-                                    <label class="input-group-text" id="{{ filename }}-group" for="{{ filename }}Key"><span class="visually-hidden">{{ filename | upperFirst }} Cipher </span>Key</label>
+                                    <label class="input-group-text" id="{{ filename }}-group" for="{{ filename }}Key"><span class="visually-hidden">{{ filename | capitalize }} Cipher </span>Key</label>
                                     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed">
                                 </div>
                             </div>

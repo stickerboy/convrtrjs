@@ -3,6 +3,7 @@ layout: layout.liquid
 title: Convenant glyphs
 tags: tools
 ---
+{%- assign letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z" | split: "," -%}
 {% assign filename = page.fileSlug %}
 <section id="{{ filename }}" class="section">
 <div class="section-heading">
@@ -33,42 +34,12 @@ tags: tools
                 <span class="card-label visually-hidden" data-pagefind-ignore="all">Covenant glyphs</span>
                 <div class="card-body text-center" data-pagefind-ignore="all">
                     <div class="mb-2">
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-0" aria-label="Glyph: 0" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 0">0</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-1" aria-label="Glyph: 1" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 1">1</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-2" aria-label="Glyph: 2" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 2">2</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-3" aria-label="Glyph: 3" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 3">3</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-4" aria-label="Glyph: 4" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 4">4</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-5" aria-label="Glyph: 5" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 5">5</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-6" aria-label="Glyph: 6" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 6">6</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-7" aria-label="Glyph: 7" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 7">7</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-8" aria-label="Glyph: 8" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 8">8</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-9" aria-label="Glyph: 9" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: 9">9</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-A" aria-label="Glyph: A" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: A">A</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-B" aria-label="Glyph: B" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: B">B</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-C" aria-label="Glyph: C" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: C">C</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-D" aria-label="Glyph: D" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: D">D</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-E" aria-label="Glyph: E" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: E">E</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-F" aria-label="Glyph: F" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: F">F</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-G" aria-label="Glyph: G" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: G">G</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-H" aria-label="Glyph: H" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: H">H</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-I" aria-label="Glyph: I" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: I">I</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-J" aria-label="Glyph: J" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: J">J</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-K" aria-label="Glyph: K" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: K">K</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-L" aria-label="Glyph: L" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: L">L</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-M" aria-label="Glyph: M" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: M">M</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-N" aria-label="Glyph: N" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: N">N</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-O" aria-label="Glyph: O" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: O">O</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-P" aria-label="Glyph: P" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: P">P</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-Q" aria-label="Glyph: Q" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Q">Q</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-R" aria-label="Glyph: R" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: R">R</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-S" aria-label="Glyph: S" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: S">S</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-T" aria-label="Glyph: T" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: T">T</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-U" aria-label="Glyph: U" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: U">U</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-V" aria-label="Glyph: V" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: V">V</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-W" aria-label="Glyph: W" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: W">W</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-X" aria-label="Glyph: X" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: X">X</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-Y" aria-label="Glyph: Y" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Y">Y</button>
-                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-Z" aria-label="Glyph: Z" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Z">Z</button>
+                    {%- for i in (0..9) %}
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-{{ i }}" aria-label="Glyph: {{ i }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: {{ i }}">{{ i }}</button>
+                    {%- endfor -%}
+                    {%- for letter in letters %}
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-{{ letter | upcase }}" aria-label="Glyph: {{ letter | upcase }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: {{ letter | upcase }}">{{ letter | upcase }}</button>
+                    {%- endfor %}
                     </div>
                 </div>
                 <div class="card-footer py-3">

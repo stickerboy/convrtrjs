@@ -11,7 +11,7 @@ tags: tools
             aria-expanded="true" aria-controls="{{ filename }}Collapse"
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
             <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
-                {{ filename | upperFirst }}
+                {{ filename | capitalize }}
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -30,7 +30,7 @@ tags: tools
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
+                <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Textarea" class="visually-hidden">Braille conversion</label>
                     <textarea placeholder="Enter some text and click the 'Convert' button below" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>

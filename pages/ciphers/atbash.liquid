@@ -12,7 +12,7 @@ tags: tools
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
-                {{ filename | upperFirst }} cipher
+                {{ filename | capitalize }} cipher
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -35,7 +35,7 @@ tags: tools
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
+                <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Atbash encrypt a string</label>
                     <textarea placeholder="Example: (Hello &lrarr; Svool)" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>

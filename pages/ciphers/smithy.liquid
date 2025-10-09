@@ -12,7 +12,7 @@ tags: tools
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
-                {{ filename | upperFirst }} cipher
+                {{ filename | capitalize }} cipher
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -27,16 +27,16 @@ tags: tools
             </p>
             <p class="px-2">
                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">{{
-                    filename | upperFirst }}</a> Wikipedia page
+                    filename | capitalize }}</a> Wikipedia page
             </p>
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">{{ filename | upperFirst }} cipher</span>
+                <span class="card-label visually-hidden">{{ filename | capitalize }} cipher</span>
                 <div class="card-body text-center">
-                    <label for="{{ filename }}Text" class="visually-hidden">{{ filename | upperFirst }} encrypt/decrypt string</label>
+                    <label for="{{ filename }}Text" class="visually-hidden">{{ filename | capitalize }} encrypt/decrypt string</label>
                     <textarea placeholder="Example: Hello &srarr; World [key] &srarr; Rmxsp
                     " rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
                 </div>
@@ -45,7 +45,7 @@ tags: tools
                         <div class="row row-cols-2 g-md-0 gx-0 gy-2">
                             <div class="col col-12 col-md-auto">
                                 <div class="input-group w-auto">
-                                    <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key"><span class="visually-hidden">{{ filename | upperFirst }} </span>Key</label>
+                                    <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key"><span class="visually-hidden">{{ filename | capitalize }} </span>Key</label>
                                     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off">
                                     <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
                                     <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>

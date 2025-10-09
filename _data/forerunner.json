@@ -1,0 +1,150 @@
+[
+    {
+        "key": "1",
+        "glyph": "†"
+    },
+    {
+        "key": "0",
+        "glyph": "…"
+    },
+    {
+        "key": "2",
+        "glyph": "‡"
+    },
+    {
+        "key": "3",
+        "glyph": "ˆ"
+    },
+    {
+        "key": "4",
+        "glyph": "Š"
+    },
+    {
+        "key": "5",
+        "glyph": "Œ"
+    },
+    {
+        "key": "6",
+        "glyph": "Ž"
+    },
+    {
+        "key": "7",
+        "glyph": "‘"
+    },
+    {
+        "key": "8",
+        "glyph": "’"
+    },
+    {
+        "key": "9",
+        "glyph": "“"
+    },
+    {
+        "key": "A",
+        "glyph": "™"
+    },
+    {
+        "key": "B",
+        "glyph": "š"
+    },
+    {
+        "key": "C",
+        "glyph": "œ"
+    },
+    {
+        "key": "D",
+        "glyph": "ž"
+    },
+    {
+        "key": "E",
+        "glyph": "Ÿ"
+    },
+    {
+        "key": "F",
+        "glyph": "¡"
+    },
+    {
+        "key": "G",
+        "glyph": "¤"
+    },
+    {
+        "key": "H",
+        "glyph": "¥"
+    },
+    {
+        "key": "I",
+        "glyph": "¦"
+    },
+    {
+        "key": "J",
+        "glyph": "§"
+    },
+    {
+        "key": "K",
+        "glyph": "«"
+    },
+    {
+        "key": "L",
+        "glyph": "¬"
+    },
+    {
+        "key": "M",
+        "glyph": "®"
+    },
+    {
+        "key": "N",
+        "glyph": "¯"
+    },
+    {
+        "key": "O",
+        "glyph": "±"
+    },
+    {
+        "key": "P",
+        "glyph": "²"
+    },
+    {
+        "key": "Q",
+        "glyph": "´"
+    },
+    {
+        "key": "R",
+        "glyph": "µ"
+    },
+    {
+        "key": "S",
+        "glyph": "º"
+    },
+    {
+        "key": "T",
+        "glyph": "»"
+    },
+    {
+        "key": "U",
+        "glyph": "½"
+    },
+    {
+        "key": "V",
+        "glyph": "¾"
+    },
+    {
+        "key": "W",
+        "glyph": "¿"
+    },
+    {
+        "key": "X",
+        "glyph": "À"
+    },
+    {
+        "key": "Y",
+        "glyph": "Â"
+    },
+    {
+        "key": "Z",
+        "glyph": "Ã"
+    },
+    {
+        "key": "Æ",
+        "glyph": "Å"
+    }
+]
