@@ -12,7 +12,7 @@ tags: tools
             data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
-                {{ filename | upperFirst }}
+                {{ filename | capitalize }}
             </h2>
             <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
                 <i class="bi bi-arrow-up lh-base"></i>
@@ -29,14 +29,14 @@ tags: tools
                 <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
                     WahqzIuets
                 </code>
-                etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">{{ filename | upperFirst }}</a> Wikipedia page
+                etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">{{ filename | capitalize }}</a> Wikipedia page
             </p>
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
         <div class="col">
             <div class="card">
-                <span class="card-label visually-hidden">{{ filename | upperFirst }}</span>
+                <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
                 <div class="card-body text-center">
                     <label for="{{ filename }}Text" class="visually-hidden">Encrypt or decrypt Chaocipher string</label>
                     <textarea placeholder="Example: Hello World &srarr; WahqzIuets" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
@@ -54,8 +54,8 @@ tags: tools
                                 <div class="row row-cols-auto g-0">
                                     <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
                                         <div class="form-check form-switch text-start ms-2">
-                                            <input class="form-check-input" type="checkbox" role="switch" id="chain{{ filename | upperFirst }}" aria-checked="false" aria-labelledby="chain{{ filename | upperFirst }}Label">
-                                            <label class="form-check-label" id="chain{{ filename | upperFirst }}Label" for="chain{{ filename | upperFirst }}">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
+                                            <input class="form-check-input" type="checkbox" role="switch" id="chain{{ filename | capitalize }}" aria-checked="false" aria-labelledby="chain{{ filename | capitalize }}Label">
+                                            <label class="form-check-label" id="chain{{ filename | capitalize }}Label" for="chain{{ filename | capitalize }}">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
                                         </div>
                                     </div>
                                     <div class="col d-flex flex-fill justify-content-end">

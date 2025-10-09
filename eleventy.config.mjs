@@ -77,10 +77,7 @@ export default function (eleventyConfig) {
             };
         });
     });
-    eleventyConfig.addFilter("upperFirst", (string) => {
-        const lowerCased = string.toLowerCase();
-        return `${lowerCased.charAt(0).toUpperCase() + lowerCased.slice(1)}`;
-    });
+
     eleventyConfig.addFilter("lowercase", (string) => {
         return `${string.toLowerCase()}`;
     });

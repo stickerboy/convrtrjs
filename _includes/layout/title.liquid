@@ -1,5 +1,5 @@
 <title>{{ pkg.sitename }} - {% if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md"
-        %} Changelog | v{% endif %}{% if title %}{{ title }} {% else %}{{ page.fileSlug | upperFirst }} {% endif %}{%
+        %} Changelog | v{% endif %}{% if title %}{{ title }} {% else %}{{ page.fileSlug | capitalize }} {% endif %}{%
         if page.url contains "tag/" -%}{%- assign tag = page.url | split: '/' | last %}| {{ tag }}{% endif %}{% if
         page.inputPath contains "changelog" %}{{ changelog-title }}{% endif %}</title>
 <link rel="canonical" href="{{ pkg.homepage }}">
