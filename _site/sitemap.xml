@@ -721,6 +721,18 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.6.0/</loc>
+        <lastmod>2025-10-16T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
+      <loc>https://www.convrtr.xyz/misc/pigpen/</loc>
+      <lastmod>2025-10-02T14:55:56.526Z</lastmod>
+      
+      <changefreq>monthly</changefreq>
+    </url>
+    <url>
         <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
         <lastmod>2025-10-06T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
@@ -732,7 +744,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
-        <lastmod>2025-10-06T00:00:00.000Z</lastmod>
+        <lastmod>2025-10-16T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>

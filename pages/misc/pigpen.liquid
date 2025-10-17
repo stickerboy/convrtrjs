@@ -1,0 +1,73 @@
+---
+layout: layout.liquid
+title: Pigpen cipher
+tags: misc
+---
+{%- assign letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z" | split: "," -%}
+{% assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+<div class="section-heading">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#{{ filename }}Collapse" role="button" 
+            aria-expanded="true" aria-controls="{{ filename }}Collapse"
+            data-section-name="{{ filename }}" data-section-description="Toggle visibility of {{ filename }} section">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
+                Pigpen cipher
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
+                The Pigpen cipher is a simple substitution cipher where each letter is represented by a symbol formed from parts of a grid. These symbols use straight or angled lines, and may include a dot to distinguish characters.
+            </p>
+            <p class="px-2">
+                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Pigpen_cipher" class="text-convrtr">Pigpen cipher</a> Wikipedia page. 
+            </p>
+        </div>
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden" data-pagefind-ignore="all">Pigpen cipher</span>
+                <div class="card-body text-center" data-pagefind-ignore="all">
+                    <div class="mb-2">
+                    {%- for letter in letters %}
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-{{ letter | upcase }}" aria-label="Glyph: {{ letter | upcase }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: {{ letter | upcase }}">{{ letter | upcase }}</button>
+                    {%- endfor %}
+                    </div>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-sm-0 gx-0 gy-2">
+                            <div class="col col-12 col-sm-auto flex-fill">
+                                <div class="row row-cols-auto g-1">
+                                    <div class="input-group w-auto">
+                                        <button role="button" class="btn btn-md btn-convrtr" id="generatePigpenImage" title="Create an image from Pigpen glyphs">Create image</button>
+                                    </div>
+                                    <div class="form-check form-switch mx-2">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="pigImageTransparency" aria-checked="false" aria-labelledby="pigImageTransparencyLabel">
+                                        <label class="form-check-label" id="pigImageTransparencyLabel" for="pigImageTransparency">Transparent background <span class="visually-hidden">for Pigpen image</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-auto">
+                                <div class="row row-cols-auto g-0">
+                                    <div class="col d-flex flex-fill justify-content-end">
+                                        {% include "components/select-copy-dl" %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
+                    <div id="{{ filename }}ImageResults" class="pigpen convrtr-results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% render "dynamic-script", page: page %}

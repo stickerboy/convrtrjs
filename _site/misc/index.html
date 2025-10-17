@@ -680,6 +680,14 @@
                         </a>
                     </li>
                     
+                    <li class="mb-1">
+                        <a class="dropdown-item"
+                            href="/misc/pigpen"
+                            data-target="#misc">
+                            Pigpen cipher
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
         </div>
@@ -2281,6 +2289,104 @@
 <script type="module" src="/assets/js/misc/forerunner.mjs"></script>
     
 
+    
+        
+<section id="pigpen" class="section">
+<div class="section-heading">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none  pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#pigpenCollapse" role="button" 
+            aria-expanded="true" aria-controls="pigpenCollapse"
+            data-section-name="pigpen" data-section-description="Toggle visibility of pigpen section">
+            <h2 class="display-6 w-100 d-flex m-0" data-pagefind-ignore="all">
+                Pigpen cipher
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
+            <p class="px-2">
+                The Pigpen cipher is a simple substitution cipher where each letter is represented by a symbol formed from parts of a grid. These symbols use straight or angled lines, and may include a dot to distinguish characters.
+            </p>
+            <p class="px-2">
+                 There is more information available on the <a href="https://en.wikipedia.org/wiki/Pigpen_cipher" class="text-convrtr">Pigpen cipher</a> Wikipedia page. 
+            </p>
+        </div>
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="pigpenCollapse">
+        <div class="col">
+            <div class="card">
+                <span class="card-label visually-hidden" data-pagefind-ignore="all">Pigpen cipher</span>
+                <div class="card-body text-center" data-pagefind-ignore="all">
+                    <div class="mb-2">
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-A" aria-label="Glyph: A" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: A">A</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-B" aria-label="Glyph: B" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: B">B</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-C" aria-label="Glyph: C" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: C">C</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-D" aria-label="Glyph: D" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: D">D</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-E" aria-label="Glyph: E" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: E">E</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-F" aria-label="Glyph: F" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: F">F</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-G" aria-label="Glyph: G" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: G">G</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-H" aria-label="Glyph: H" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: H">H</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-I" aria-label="Glyph: I" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: I">I</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-J" aria-label="Glyph: J" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: J">J</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-K" aria-label="Glyph: K" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: K">K</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-L" aria-label="Glyph: L" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: L">L</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-M" aria-label="Glyph: M" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: M">M</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-N" aria-label="Glyph: N" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: N">N</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-O" aria-label="Glyph: O" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: O">O</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-P" aria-label="Glyph: P" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: P">P</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-Q" aria-label="Glyph: Q" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Q">Q</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-R" aria-label="Glyph: R" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: R">R</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-S" aria-label="Glyph: S" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: S">S</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-T" aria-label="Glyph: T" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: T">T</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-U" aria-label="Glyph: U" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: U">U</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-V" aria-label="Glyph: V" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: V">V</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-W" aria-label="Glyph: W" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: W">W</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-X" aria-label="Glyph: X" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: X">X</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-Y" aria-label="Glyph: Y" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Y">Y</button>
+                        <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle pig-glyph" id="pig-Z" aria-label="Glyph: Z" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: Z">Z</button>
+                    </div>
+                </div>
+                <div class="card-footer py-3">
+                    <div class="text-center mb-4 g-0">
+                        <div class="row row-cols-2 g-sm-0 gx-0 gy-2">
+                            <div class="col col-12 col-sm-auto flex-fill">
+                                <div class="row row-cols-auto g-1">
+                                    <div class="input-group w-auto">
+                                        <button role="button" class="btn btn-md btn-convrtr" id="generatePigpenImage" title="Create an image from Pigpen glyphs">Create image</button>
+                                    </div>
+                                    <div class="form-check form-switch mx-2">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="pigImageTransparency" aria-checked="false" aria-labelledby="pigImageTransparencyLabel">
+                                        <label class="form-check-label" id="pigImageTransparencyLabel" for="pigImageTransparency">Transparent background <span class="visually-hidden">for Pigpen image</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-auto">
+                                <div class="row row-cols-auto g-0">
+                                    <div class="col d-flex flex-fill justify-content-end">
+                                        <div class="btn-group ms-auto align-items-start" data-pagefind-ignore="all">
+    <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
+    <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
+</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div id="pigpenResults" class="data-to-copy active convrtr-results"></div>
+                    <div id="pigpenImageResults" class="pigpen convrtr-results"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="module" src="/assets/js/misc/pigpen.mjs"></script>
+    
+
                     <footer class="section footer">
     <div class="mw me-auto ms-auto">
         <div class="py-4 px-3 px-sm-4 pb-2">
@@ -2291,9 +2397,9 @@
         </div>
         <div class="py-4 px-3 px-sm-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.5.1" 
+                title="Release version: v3.6.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.5.1</small>
+                <small>v3.6.0</small>
             </a>
             
             <p class="float-end mb-1">
