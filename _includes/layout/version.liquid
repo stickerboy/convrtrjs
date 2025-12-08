@@ -64,7 +64,7 @@ layout: layout.liquid
                 <div class="btn-group d-flex flex-row" role="group">
                     {%- if prevIndex < versions.size %}
                     {%- assign prev = versions[prevIndex] %}
-                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded-start rounded-end-0 fw-normal" href="{{ prev.url }}" title="Previous changelog: v{{ next.data.title }}">
+                    <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded-start rounded-end-0 fw-normal" href="{{ prev.url }}" title="Previous changelog: v{{ prev.data.title }}">
                         <span class="d-none d-sm-inline-flex">Previous:&nbsp;</span> v{{ prev.data.title }} &#8680;
                     </a>
                     {%- endif %}
