@@ -128,6 +128,9 @@
             },{
                 "id": "elementstable",
                 "label": "Periodic elements"
+            },{
+                "id": "pigpen",
+                "label": "Pigpen cipher"
             }, {
                 "id": "forerunner",
                 "label": "Forerunner glyphs"
