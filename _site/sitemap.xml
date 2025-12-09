@@ -721,14 +721,20 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.6.0/</loc>
+        <lastmod>2025-12-08T00:00:00.000Z</lastmod>
+      
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/misc/pigpen/</loc>
       <lastmod>2025-10-02T14:55:56.526Z</lastmod>
       
       <changefreq>monthly</changefreq>
     </url>
     <url>
-      <loc>https://www.convrtr.xyz/changelog/3.6.0/</loc>
-        <lastmod>2025-12-08T00:00:00.000Z</lastmod>
+      <loc>https://www.convrtr.xyz/changelog/3.6.1/</loc>
+        <lastmod>2025-12-09T00:00:00.000Z</lastmod>
       
       <changefreq>never</changefreq>
     </url>
@@ -749,7 +755,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
-        <lastmod>2025-10-09T00:00:00.000Z</lastmod>
+        <lastmod>2025-12-09T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -764,7 +770,7 @@
     </url>
     <url>
         <loc>https://www.convrtr.xyz/changelog/tag/improvements/</loc>
-        <lastmod>2025-12-08T00:00:00.000Z</lastmod>
+        <lastmod>2025-12-09T00:00:00.000Z</lastmod>
         <changefreq>monthly</changefreq>
     </url>
     <url>
