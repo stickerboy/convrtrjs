@@ -124,19 +124,31 @@ export function largeDataWarning(data, container) {
  * @returns {boolean} - Returns true if the data is not empty, otherwise false.
  */
 export function emptyContainerCheck(data, container, error) {
+    // Remove invalid class from any visible data containers
     let allElements = Array.from(document.querySelectorAll(".data-to-copy"));
-    for (let element of allElements) {
-        element.classList.remove("is-invalid");
+    allElements.forEach(el => el.classList.remove("is-invalid"));
+
+    // Resolve container if a selector string was passed
+    let el = null;
+    if (typeof container === "string") {
+        el = document.querySelector(container);
+    } else if (container instanceof HTMLElement) {
+        el = container;
     }
 
-    if (data.trim() === "") {
-        container.classList.add("is-invalid");
+    // Consider empty if falsy or a trimmed-empty string
+    const isEmpty = !data || (typeof data === "string" && data.trim() === "");
+
+    if (isEmpty) {
+        if (el && el.classList) {
+            el.classList.add("is-invalid");
+        }
         showToast("Warning", error ? error : "There is no content in the container you are trying to encode", "warning");
         return false;
     }
 
-    if (container.classList.contains("is-invalid")) {
-        container.classList.remove("is-invalid");
+    if (el && el.classList && el.classList.contains("is-invalid")) {
+        el.classList.remove("is-invalid");
     }
     return true;
 }
