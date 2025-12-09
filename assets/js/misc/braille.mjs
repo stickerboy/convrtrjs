@@ -37,7 +37,9 @@ brailleSwitch && brailleSwitch.addEventListener("click", function () {
 });
 
 brailleImage && brailleImage.addEventListener("click", function () {
-    if (!emptyContainerCheck(bIR.innerHTML, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
+    // Avoid accessing innerHTML when bIR may not exist yet
+    const bIRContent = bIR?.innerHTML ?? "";
+    if (!emptyContainerCheck(bIRContent, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
         return false;
     }
     let bOptions = {};

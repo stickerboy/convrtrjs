@@ -68,6 +68,7 @@
     --convrtr-table-header: rgb(209, 231, 220.8);
     --convrtr-row-bg: #212529;
     --convrtr-textarea: rgba(0,0,0,.03);
+    --convrtr-input-bg: #fcfdfd;
     --convrtr-row-highlight-color: #dee2e6;
     --convrtr-row-highlight-dark: #212529;
     --convrtr-switch-thumb: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2388c0b5'/%3e%3c/svg%3e");
@@ -749,6 +750,7 @@ code {
 }
 
 .form-control {
+    background-color: var(--convrtr-input-bg);
     padding: 0.575rem 0.75rem;
 }
 .form-select {

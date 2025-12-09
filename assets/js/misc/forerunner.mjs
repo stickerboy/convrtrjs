@@ -6,6 +6,7 @@ const forerunnerButtons = document.getElementsByClassName("fr-glyph");
 let fR = document.getElementById("forerunnerResults");
 let fIR = document.getElementById("forerunnerImageResults");
 let fIT = document.getElementById("frImageTransparency");
+
 if (forerunnerButtons.length > 0) {
     Array.from(forerunnerButtons, c => c.addEventListener("click", function () {
         Array.from(forerunnerButtons, button => {
