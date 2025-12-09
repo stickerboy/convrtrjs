@@ -51,6 +51,7 @@
     "morsenary",
     "code solving",
     "file tools",
+    "exif reader",
     "hexadecimal tools",
     "text tools",
     "flip text",
@@ -66,6 +67,8 @@
     "regex substitution",
     "strip all whitespace",
     "letters to alphabet number",
+    "vigenere",
+    "vigenère",
     "vigenère cipher",
     "interleave",
     "unscramble",
@@ -87,7 +90,8 @@
     "halo forerunner glyphs",
     "periodic element conversion",
     "convert periodic elements",
-    "convert periodic element properties"
+    "convert periodic element properties",
+    "pigpen"
   ],
   "ga": "G-7P9LT5PVBK",
   "dependencies": {
