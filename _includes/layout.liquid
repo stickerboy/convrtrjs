@@ -30,6 +30,7 @@
                 {%- for tag in tags -%}
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
                 {%- endfor -%}
+                {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
                 <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
                     data-bs-smooth-scroll="true" id="content"{% unless isExcluded or isTagPath %} data-pagefind-body{% endunless %}>
                     {% if page-id != "404" -%}

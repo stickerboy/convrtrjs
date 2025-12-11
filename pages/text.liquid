@@ -8,7 +8,7 @@ page-id: "{{ page.fileSlug }}"
 customPermalink: /
 tags: landing-page
 ---
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="tags:{{tags}}">{{ tags }}</span>
 <span class="hidden" data-pagefind-meta="title">Convrtrs</span>
 {% for page in collections.text %}
     {% if page-id == "text" %}

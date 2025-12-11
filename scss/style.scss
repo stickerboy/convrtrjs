@@ -753,6 +753,11 @@ code {
     background-color: var(--convrtr-input-bg);
     padding: 0.575rem 0.75rem;
 }
+@include color-mode(dark) {
+    .form-control {
+        background-color: var(--bs-body-bg);
+    }
+}
 .form-select {
     width: 5.82rem;
     padding: 0.66rem 0.5rem;
@@ -1153,6 +1158,16 @@ mark {
     padding: 0.35rem 0.85rem;
 }
 .badge {
+    &-changelog,
+    &-landing-page,
+    &-tool,
+    &-tools,
+    &-community,
+    &-misc {
+        --bs-bg-opacity: 0.1;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+        color: var(--bs-body-color);
+    }
     &-improvements {
         color: var(--bs-primary-text-emphasis);
         background-color: var(--bs-primary-bg-subtle);
@@ -1354,6 +1369,8 @@ button.cc-nb-changep {
     @extend .list-group-item !optional;
     @extend .list-group-item-action !optional;
     text-align: start;
+    transition: background-color 0.3s ease;
+    
 }
 .pagefind-ui__result-link {
     --bs-link-underline-opacity: 0;
@@ -1401,6 +1418,7 @@ button.cc-nb-changep {
     @extend .list-group-item !optional;
     @extend .list-group-item-action !optional;
     padding: 0;
+    transition: background-color 0.3s ease;
 }
 .pagefind-ui__filter-name {
     font-size: 1.5rem;
@@ -1493,4 +1511,37 @@ button.cc-nb-changep {
 .pagefind-ui__filter-checkbox:checked+.pagefind-ui__filter-label {
     --bs-bg-opacity: 0.1;
     background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+}
+.pagefind-ui__result-tags {
+    padding: 0;
+}
+
+$badges: changelog,tool,tools,landing-page,community,misc,release,major,minor,patch,hotfix,new-features,improvements,bug-fixes,security,privacy,a11y,documentation,feature-request,bug,duplicate,question,wontfix;
+
+.pagefind-ui__result-tag {
+    @extend .badge;
+
+    --bs-bg-opacity: 0.1;
+    --bs-border-opacity: 0.1;
+    font-size: 0;
+    padding: 0.25rem 0.5rem;
+    display: inline-flex;
+    color: transparent;
+    margin-right: 0.5rem;
+
+    &:last-child {
+        margin-right: 0;
+    }
+
+    &::before {
+        --bs-text-opacity: 1;
+        content: attr(data-pagefind-ui-meta);
+        font-size: calc(var(--bs-body-font-size) - 2px);
+    }
+    
+    @each $badge in $badges {
+        &[data-pagefind-ui-meta="#{$badge}"] {
+            @extend .badge-#{$badge} !optional;
+        }
+    }
 }

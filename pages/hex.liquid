@@ -5,7 +5,7 @@ description: Various tools for working with hexadecimal strings.
 page-id: "{{ page.fileSlug }}"
 tags: landing-page
 ---
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
 {% for page in collections.hex %}
     {% if page-id == "hex" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}

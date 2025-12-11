@@ -5,7 +5,7 @@ description: A collection of miscellaneous tools for use in puzzle solving.
 page-id: "{{ page.fileSlug }}"
 tags: landing-page
 ---
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
 {% for page in collections.misc %}
     {% if page-id == "misc" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}
