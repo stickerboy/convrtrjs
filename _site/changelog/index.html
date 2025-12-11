@@ -914,7 +914,7 @@
                 </div>
                 
                 
-                <span class="hidden" data-pagefind-filter="Filters">changelog</span><main class="page-wrap page-wrap-changelog overflow-y-auto p-0 mw"
+                <span class="hidden" data-pagefind-filter="Filters">changelog</span><span class="hidden" data-pagefind-meta="changelog:" data-pagefind-ui-meta="changelog"></span><main class="page-wrap page-wrap-changelog overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content" data-pagefind-body>
                     <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -940,7 +940,7 @@
         <div class="section-heading">
             <h1 class="display-6">Changelog<small class="text-body-secondary fs-3"></small></h1>
             <hr>
-            <p class="px-2">
+            <p class="px-2"data-pagefind-ignore="all">
                 History of feature releases, changes and bug fixes. Click on an item to see the full changelog details.<br />You can also view the full list of releases on <a href='https://github.com/stickerboy/convrtrjs/releases' class='text-convrtr'>GitHub</a>
             </p>
             <div class="px-2">
@@ -953,7 +953,7 @@
     <div class="py-4 px-3 px-sm-4">
         <div class="section-heading mb-4">
             <table class="table table-hover version-list">
-                <caption class="visually-hidden">
+                <caption class="visually-hidden" data-pagefind-ignore>
                     Site changelog: all the glorious chaos we’ve shipped — version history, release dates, and tags
                 </caption>
                 <thead class="d-none d-md-table-header-group">
@@ -964,6 +964,54 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
+                    
+                    <tr class="position-relative">
+                        <th scope="row">
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    <span class="fs-6 fw-medium">Version</span>
+                                </div>
+                                <div class="col">
+                                    <a href="/changelog/3.6.3/" class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
+                                        3.6.3
+                                    </a>
+                                </div>
+
+                            </div>
+                        </th>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Date
+                                </div>
+                                <div class="col">
+                                    December 11, 2025
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="row">
+                                <div class="col-3 col-sm-2 d-md-none">
+                                    Tags
+                                </div>
+                                <div class="col">
+                                    
+                                    
+                                    <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
+                                    
+                                    
+                                    <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
+                                    
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
                     
                     <tr class="position-relative">
                         <th scope="row">
@@ -1625,48 +1673,6 @@
                         </td>
                     </tr>
                     
-                    <tr class="position-relative">
-                        <th scope="row">
-                            <div class="row">
-                                <div class="col-3 col-sm-2 d-md-none">
-                                    <span class="fs-6 fw-medium">Version</span>
-                                </div>
-                                <div class="col">
-                                    <a href="/changelog/3.1.2/" class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr">
-                                        3.1.2
-                                    </a>
-                                </div>
-
-                            </div>
-                        </th>
-                        <td>
-                            <div class="row">
-                                <div class="col-3 col-sm-2 d-md-none">
-                                    Date
-                                </div>
-                                <div class="col">
-                                    September 04, 2025
-                                </div>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="row">
-                                <div class="col-3 col-sm-2 d-md-none">
-                                    Tags
-                                </div>
-                                <div class="col">
-                                    
-                                    
-                                    <a href="/changelog/tag/patch" class="badge git-badge badge-patch" title="Bug fixes and patches">patch</a>
-                                    
-                                    
-                                    <a href="/changelog/tag/hotfix" class="badge git-badge badge-hotfix" title="Quick fix to resolve a bug or minor issue">hotfix</a>
-                                    
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    
                 </tbody>
             </table>
         </div>
@@ -1752,9 +1758,9 @@
         </div>
         <div class="py-4 px-3 px-sm-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.6.2" 
+                title="Release version: v3.6.3" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.6.2</small>
+                <small>v3.6.3</small>
             </a>
             
             <p class="float-end mb-1">

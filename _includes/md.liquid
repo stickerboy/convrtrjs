@@ -27,9 +27,8 @@
                 {% assign excludedPages = "fourohfour,404,search,sitemap,tags" | split: "," %}
                 {% assign isExcluded = excludedPages contains page-id %}
                 {% assign isTagPath = page.inputPath contains "tag" %}
-                {%- for tag in tags -%}
-                <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
-                {%- endfor -%}
+                {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
+
                 <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content" data-pagefind-body>
                     <section class="section changelog" id="IOOBI9O4IEIEOIO4O4IB">

@@ -5,7 +5,7 @@ description: A collection of tools for encrypting and decrypting data, using som
 page-id: "{{ page.fileSlug }}"
 tags: landing-page
 ---
-<span class="hidden" data-pagefind-filter="Filters">{{ tags }}</span>
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
 {% for page in collections.ciphers %}
     {% if page-id == "ciphers" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}
