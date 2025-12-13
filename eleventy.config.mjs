@@ -21,6 +21,7 @@ export default function (eleventyConfig) {
     eleventyConfig.ignores.add("CONTRIBUTING.md");
     eleventyConfig.ignores.add("CODE_OF_CONDUCT.md");
     eleventyConfig.ignores.add("LICENSE");
+    eleventyConfig.ignores.add("_includes/");
     eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
     eleventyConfig.addPassthroughCopy("LICENSE");

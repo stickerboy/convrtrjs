@@ -11,10 +11,10 @@ eleventyExcludeFromCollections: true
     <url>
       <loc>{{ pkg.homepage }}{{ item.url }}</loc>
       {%- if item.data.date %}
-        <lastmod>{{ item.data.date | dateISO }}</lastmod>
+      <lastmod>{{ item.data.date | dateISO }}</lastmod>
       {%- else %}
       <lastmod>{{ lastmod | dateISO }}</lastmod>
-      {%- endif %}
+      {%- endif -%}
       {% if pageNeverChanges contains item.data.page-id %}
       <changefreq>never</changefreq>
       {%- else %}
@@ -28,9 +28,9 @@ eleventyExcludeFromCollections: true
     {%- assign tagItems = collections[tag.key] | sort: "date" | reverse %}
     {%- if tagItems.size > 0 %}
     <url>
-        <loc>{{ pkg.homepage }}/changelog/tag/{{ tag.key }}/</loc>
-        <lastmod>{{ tagItems[0].date | dateISO }}</lastmod>
-        <changefreq>monthly</changefreq>
+      <loc>{{ pkg.homepage }}/changelog/tag/{{ tag.key }}/</loc>
+      <lastmod>{{ tagItems[0].date | dateISO }}</lastmod>
+      <changefreq>monthly</changefreq>
     </url>
     {%- endif %}
   {%- endif %}
