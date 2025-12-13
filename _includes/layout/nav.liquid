@@ -8,7 +8,7 @@
         <div class="btn-group">
             <a class="btn sidebar-item__link border border-success rounded-start-2 {% if page-id ==  link.id or folderName == link.id or page.url contains link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start p-0"
                 href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
-                <span class="sidebar-item__icon  fs-4 px-3 py-2 d-inline-flex" title="{{ link.label }}"
+                <span role="button" class="sidebar-item__icon btn btn-link fs-4 px-3 py-2 d-inline-flex" title="{{ link.label }}"
                     data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="bi bi-{{ link.icon }} d-inline-block" style="height:auto;width:auto;"></i>
                 </span>
@@ -44,8 +44,8 @@
         {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
             aria-label="{{ link.aria-label }}" href="{{ '/' | append: link.id | replace: 'text', '' | url }}"
             data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
-            <span class="sidebar-item__icon px-3 py-1 d-inline-block fs-5 position-relative" style="left:2px;top:2px;"
-                title="{{ link.label }}" data-bs-toggle="tooltip" data-bs-placement="right">
+            <span class="sidebar-item__icon btn btn-link px-3 py-1 d-inline-block fs-5 position-relative" style="left:2px;top:2px;"
+                title="{{ link.label }}" data-bs-toggle="tooltip" data-bs-placement="right" role="button">
                 <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label fs-6">
