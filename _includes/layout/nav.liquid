@@ -40,15 +40,15 @@
             </div>
         </div>
         {% else %}
-        <a class="btn btn-md sidebar-item__link d-flex align-items-center text-start p-0 border border-success
+        <a class="btn sidebar-item__link d-flex align-items-center text-start p-0 border border-success
         {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
             aria-label="{{ link.aria-label }}" href="{{ '/' | append: link.id | replace: 'text', '' | url }}"
             data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
-            <span class="sidebar-item__icon btn px-3 py-1 d-inline-block fs-5 position-relative" style="left:2px;top:2px;"
+            <span class="sidebar-item__icon btn px-3 py-1 d-inline-block fs-5"
                 title="{{ link.label }}" data-bs-toggle="tooltip" data-bs-placement="right" role="button">
                 <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
             </span>
-            <span class="sidebar-item__label justify-content-center fs-6">
+            <span class="sidebar-item__label justify-content-center fs-6 position-relative" style="left:2px;">
                 {%- if link.switch-label %}
                 {{ link.label_1 }}<span class="visually-hidden">{{ link.label_2 }}</span>
                 {%- else %}
