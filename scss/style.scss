@@ -1008,6 +1008,7 @@ mark {
 }
 @include color-mode(dark) {
     mark {
+        color: var(--bs-white);
         background-color: var(--convrtr-bg-color);
     }
 }

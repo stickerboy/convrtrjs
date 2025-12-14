@@ -34,6 +34,7 @@
                         <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">GitHub</span>
                     </a>
                     </li>
+                    {%- unless page-id == "search" %}
                     <li class="nav-item">
                         <a class="btn btn-md btn-link text-light" aria-label="{{ searchItem.aria-label }}" 
                             title="{{ searchItem.label }}" href="{{ '/' | append: searchItem.id | url }}"
@@ -42,8 +43,9 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label }}</span>
                         </a>
                     </li>
-                    {% assign excludedPages = "fourohfour,404,search" | split: "," %}
-                {% if not excludedPages contains page-id  %}
+                    {%- endunless %}
+                    {%- assign excludedPages = "fourohfour,404,search" | split: "," %}
+                {%- if not excludedPages contains page-id  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
@@ -52,7 +54,7 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Clear all data</span>
                         </button>
                     </li>
-                {% endif %}
+                {%- endif %}
                     <li class="nav-item dropdown" data-bs-toggle="tooltip" data-placement="bottom" data-bs-trigger="hover" data-bs-title="Toggle theme">
                         <button class="btn btn-md btn-link btn-theme text-light dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" 
                         aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" 
@@ -106,7 +108,7 @@
                                     {{ searchItem.label_1 }} <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label_2 }}</span>
                                 </a>
                             </li>
-                            {% if not excludedPages contains page-id %}
+                            {%- if not excludedPages contains page-id %}
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
                                     id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">
@@ -115,7 +117,7 @@
                                         textareas</span>
                                 </button>
                             </li>
-                            {% endif %}
+                            {%- endif %}
                             <li>
                                 <a href="{{ pkg.support }}" class="dropdown-item d-flex align-items-center rounded-0" title="Discord" aria-label="Join the Discord">
                                     <i class="bi me-2 opacity-75 theme-icon bi-discord" aria-hidden="true" focusable="false"></i>

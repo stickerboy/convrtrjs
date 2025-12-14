@@ -75,7 +75,8 @@ tags: tools
                             <div class="col col-12 col-md-auto">
                                 <div class="input-group w-auto">
                                     <label class="input-group-text" id="{{ filename }}-group" for="{{ filename }}Key"><span class="visually-hidden">{{ filename | capitalize }} Cipher </span>Key</label>
-                                    <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed">
+                                    <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" pattern="[A-Za-z]*" title="Only letters allowed" aria-describedby="{{ filename }}-help">
+                                    <span class="visually-hidden" id="{{ filename }}-help">Only letters are allowed in this box, both uppercase and lowercase are valid.</span>
                                 </div>
                             </div>
                             <div class="col-12 col-md-auto flex-fill">
