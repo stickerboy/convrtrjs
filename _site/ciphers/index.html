@@ -159,12 +159,12 @@
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-md btn-link text-light" aria-label="Search the site" 
-                            title="Search" href="/search"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <button class="btn btn-md btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                            aria-controls="offcanvasSearch" aria-label="Search the site" 
+                            title="Search" data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -289,6 +289,26 @@
         </div>
     </nav>
 </header>
+        <div class="offcanvas offcanvas-top shadow-sm" tabindex="-1" id="offcanvasSearch" 
+     aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false" >
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasSearchLabel">Search</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form class="form" role="search" id="quick-search" aria-label="Search this site" action="/search/">
+            <div class="input-group input-group-lg">
+                <label class="visually-hidden" for="t">Enter your search term</label>
+                <input class="form-control" type="text" name="t" placeholder="Search convrtrs, tools, and other resources..."
+                       title="Search convrtrs, tools, and other resources..." autocapitalize="none" enterkeyhint="search">
+                <button class="btn btn-convrtr" type="submit">Search</button>
+                <button class="btn btn-outline-convrtr" type="reset">Clear</button>
+            </div>
+        </form>
+        
+        <div id="page-search" class=""></div>
+    </div>
+</div>
         <div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
@@ -1959,9 +1979,9 @@
         </div>
         <div class="py-4 px-3 px-sm-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.6.4" 
+                title="Release version: v3.7.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.6.4</small>
+                <small>v3.7.0</small>
             </a>
             
             <p class="float-end mb-1">
@@ -1984,6 +2004,8 @@
 <script type="module" src="/assets/js/clip.mjs"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script><script type="module" src="/assets/js/scripts.mjs"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script type="module" src="/assets/js/search-global.mjs"></script>
 
 
         <div class="toast-container position-fixed top-0 end-0 p-5">

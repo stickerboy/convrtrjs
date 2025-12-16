@@ -79,6 +79,7 @@
     --convrtr-nav-tabs-border-color: #dee2e6;
     --convrtr-code-opacity: 0.2;
     --bs-bg-dark-opacity: 0.08;
+    --navbar-height: 64px;
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -215,6 +216,18 @@ body {
         width: 100%;
     }
 }
+.offcanvas.offcanvas-top {
+    height: 24vh;
+    top: var(--navbar-height);
+    z-index: 4;
+}
+@include color-mode(light) {
+    .offcanvas.offcanvas-top {
+        --bs-bg-opacity: 1;
+        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+    }
+}
+
 .sidebar {
     height: 100%;
     .bi {
@@ -1454,7 +1467,7 @@ button.cc-nb-changep {
     --bs-border-opacity: 1;
     border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
     border-radius: var(--bs-border-radius) !important;
-    color: var(--bs-dark-rgb);
+    color: transparent;
 }
 .changelog summary::after,
 .pagefind-ui__filter-block summary::after {

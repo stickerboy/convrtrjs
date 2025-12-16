@@ -12,16 +12,19 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 {%- endif -%}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
-{% if page-id == "check" or page-id == "files" -%}
+{%- if page-id == "check" or page-id == "files" -%}
 <script>const HEADERS = {{ headers | json }};</script>
-{% endif -%}
-{% if page-id == "elementstable" or page-id == "misc" -%}
+{%- endif -%}
+{%- if page-id == "elementstable" or page-id == "misc" -%}
 <script>const ELEMENTS = {{ elements | json }};</script>
-{% endif -%}
+{%- endif -%}
 {%- if page-id == "exif" or page-id == "files" -%}
 <script src="{{ '/assets/js/files/exif-reader.js' | url }}"></script>
 {%- endif %}
-{% if page-id == "search" -%}
 <script src="{{ '/pagefind/pagefind-ui.js' | url }}"></script>
+{%- if page-id == 'search' -%}
 <script type="module" src="{{ '/assets/js/search.mjs' | url }}"></script>
-{% endif -%}
+{%- else %}
+<script type="module" src="{{ '/assets/js/search-global.mjs' | url }}"></script>
+{%- endif %}
+
