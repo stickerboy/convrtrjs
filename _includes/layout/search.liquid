@@ -1,20 +1,12 @@
-<div class="offcanvas offcanvas-top shadow-sm" tabindex="-1" id="offcanvasSearch" 
-     aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false" >
+{%- assign searchItem = nav | where: "id", "search" | first -%}
+<div class="offcanvas offcanvas-end shadow-sm" tabindex="-1" id="offcanvasSearch" 
+     aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasSearchLabel">Search</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form class="form" role="search" id="quick-search" aria-label="Search this site" action="{{ '/search/' | url }}">
-            <div class="input-group input-group-lg">
-                <label class="visually-hidden" for="t">Enter your search term</label>
-                <input class="form-control" type="text" name="t" placeholder="Search convrtrs, tools, and other resources..."
-                       title="Search convrtrs, tools, and other resources..." autocapitalize="none" enterkeyhint="search">
-                <button class="btn btn-convrtr" type="submit">Search</button>
-                <button class="btn btn-outline-convrtr" type="reset">Clear</button>
-            </div>
-        </form>
-        
-        <div id="page-search" class=""></div>
+        <a href="{{ '/' | append: searchItem.id | url }}" class="text-convrtr-link advanced-search">Advanced search</a>
+        <div id="page-search" class="mt-2"></div>
     </div>
 </div>

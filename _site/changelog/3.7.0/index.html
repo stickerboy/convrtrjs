@@ -288,28 +288,17 @@
             </div>
         </div>
     </nav>
-</header>
-        <div class="offcanvas offcanvas-top shadow-sm" tabindex="-1" id="offcanvasSearch" 
-     aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false" >
+</header><div class="offcanvas offcanvas-end shadow-sm" tabindex="-1" id="offcanvasSearch" 
+     aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false">
     <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasSearchLabel">Search</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-        <form class="form" role="search" id="quick-search" aria-label="Search this site" action="/search/">
-            <div class="input-group input-group-lg">
-                <label class="visually-hidden" for="t">Enter your search term</label>
-                <input class="form-control" type="text" name="t" placeholder="Search convrtrs, tools, and other resources..."
-                       title="Search convrtrs, tools, and other resources..." autocapitalize="none" enterkeyhint="search">
-                <button class="btn btn-convrtr" type="submit">Search</button>
-                <button class="btn btn-outline-convrtr" type="reset">Clear</button>
-            </div>
-        </form>
-        
-        <div id="page-search" class=""></div>
+        <a href="/search" class="text-convrtr-link advanced-search">Advanced search</a>
+        <div id="page-search" class="mt-2"></div>
     </div>
-</div>
-        <div class="mw d-flex mx-auto">
+</div><div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     <nav class="sidebar px-2 px-sm-3 ps-sm-3 py-3" aria-label="Sidebar navigation">
@@ -974,7 +963,7 @@
         <h2>New features</h2>
 <h3>Search</h3>
 <ul>
-<li>Quick search is now the default on all pages. The header link for search will open a dropdown with a search box, submitting will then automatically take you to the results page.</li>
+<li>Quick search is now the default on all pages. The header link for search will open a sidebar with a search box, the box here works the same as the search page where typing will automatically generate a list of results. The advanced search link will take you to the results page including the query string of the text entered.</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>

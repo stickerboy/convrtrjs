@@ -39,6 +39,8 @@ function getURLParameter(paramName, url) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    const advancedSearchLink = document.querySelector(".advanced-search");
+    
     let convrtrSearch = new PagefindUI({ 
         element: "#page-search", 
         showSubResults: true, 
@@ -47,7 +49,6 @@ window.addEventListener('DOMContentLoaded', () => {
         resetStyles: false,
         pageSize: 10,
         excerptLength: 42,
-        // openFilters: ['Filters'],
         debounceTimeoutMs: 500,
         translations: {
             placeholder: "Search convrtrs, tools, and other resources...",
@@ -64,15 +65,45 @@ window.addEventListener('DOMContentLoaded', () => {
         },
         processTerm: function (term) {
             term = String(term).trim();
+
+            // Prefer to read the actual input value (keeps in sync with Pagefind)
+            const input = document.querySelector(".pagefind-ui__search-input");
+            const value = String(input?.value || term).trim();
+            
+            if (advancedSearchLink) {
+                const base = new URL(advancedSearchLink.getAttribute("href"), window.location.origin);
+                const basePath = base.pathname.endsWith("/") ? base.pathname : base.pathname + "/";
+                if (value.length >= 2) {
+                    advancedSearchLink.href = `${basePath}?t=${encodeURIComponent(value)}`;
+                } else {
+                    advancedSearchLink.href = basePath;
+                }
+            }
             
             if (term.length < 2) {
-                history.replaceState({}, "", window.location.pathname + window.location.hash);
                 return "";
             }
-            history.replaceState({}, "", `?t=${encodeURIComponent(term)}`);
             return term;
         },
     });
+    
+    // Manually handle the link click to ensure we navigate with the composed querystring
+    if (advancedSearchLink) {
+        advancedSearchLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            // read the live input value again at click-time
+            const input = document.querySelector(".pagefind-ui__search-input");
+            const term = String(input?.value || "").trim();
+            const base = new URL(this.getAttribute("href"), window.location.origin);
+            const basePath = base.pathname.endsWith("/") ? base.pathname : base.pathname + "/";
+            const dest = term.length >= 2
+                ? `${basePath}?t=${encodeURIComponent(term)}`
+                : basePath;
+            console.log("advanced search navigate ->", dest);
+            // perform navigation
+            window.location.assign(dest);
+        });
+    }
     
     if (hasUrlParameters()) {
         convrtrSearch.triggerSearch(getURLParameter("t"));
