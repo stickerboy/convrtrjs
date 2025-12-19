@@ -918,7 +918,7 @@
                 </div>
                 
                 
-                <span class="hidden" data-pagefind-filter="Filters">release</span><span class="hidden" data-pagefind-filter="Filters">minor</span><span class="hidden" data-pagefind-filter="Filters">new-features</span><span class="hidden" data-pagefind-meta="release:" data-pagefind-ui-meta="release"></span><span class="hidden" data-pagefind-meta="minor:" data-pagefind-ui-meta="minor"></span><span class="hidden" data-pagefind-meta="new-features:" data-pagefind-ui-meta="new-features"></span><main class="page-wrap page-wrap-changelog-item overflow-y-auto p-0 mw"
+                <span class="hidden" data-pagefind-filter="Filters">release</span><span class="hidden" data-pagefind-filter="Filters">minor</span><span class="hidden" data-pagefind-filter="Filters">new-features</span><span class="hidden" data-pagefind-filter="Filters">bug-fixes</span><span class="hidden" data-pagefind-meta="release:" data-pagefind-ui-meta="release"></span><span class="hidden" data-pagefind-meta="minor:" data-pagefind-ui-meta="minor"></span><span class="hidden" data-pagefind-meta="new-features:" data-pagefind-ui-meta="new-features"></span><span class="hidden" data-pagefind-meta="bug-fixes:" data-pagefind-ui-meta="bug-fixes"></span><main class="page-wrap page-wrap-changelog-item overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content" data-pagefind-body>
                     <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -954,6 +954,7 @@
                 <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
                 <a href="/changelog/tag/minor" class="badge git-badge badge-minor" title="Minor feature updates">minor</a>
                 <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
+                <a href="/changelog/tag/bug-fixes" class="badge git-badge badge-bug-fixes" title="Fixed something that wasn't working">bug-fixes</a>
             </div>
         </div>
     </div>
@@ -963,13 +964,27 @@
         <h2>New features</h2>
 <h3>Search</h3>
 <ul>
-<li>Quick search is now the default on all pages. The header link for search will open a sidebar with a search box, the box here works the same as the search page where typing will automatically generate a list of results. The advanced search link will take you to the results page including the query string of the text entered.</li>
+<li><strong>Quick Search</strong> is now the default across all pages. Clicking the header search link opens a sidebar with a search box that works like the main search page—results update automatically as you type.</li>
+<li><strong>Advanced Search</strong> link takes you to the full results page, including the query string from your input.</li>
+</ul>
+<h2>Improvements</h2>
+<h3>Search</h3>
+<ul>
+<li>Removed Caesar buttons from the index to prevent clutter from single-letter results.</li>
+<li>Added new term options to improve result accuracy.</li>
 </ul>
 <h2>Bug fixes</h2>
 <ul>
-<li>Fixed color of filter icon in dark mode, which caused a duplicate icon to be visible</li>
+<li>Fixed filter icon color in dark mode to remove duplicate icon visibility.</li>
 </ul>
-
+<h2>Behind the scenes improvements</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing improvements made to the site</summary>
+<h3>Improvements</h3>
+<ul>
+<li>Refactored <code>hasURL()</code> and <code>getURL()</code> functions into the toolkit to reduce code duplication.</li>
+</ul>
+</details>
         <div class="mt-4" data-pagefind-ignore="all">
             <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v3.7.0-Release">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
