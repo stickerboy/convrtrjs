@@ -1,42 +1,4 @@
-/**
- * Checks if the current URL contains query string parameters.
- * @returns {boolean} True if the URL has query parameters, false otherwise.
- * @throws {Error} Logs an error to console if the URL is invalid, but returns false instead of throwing.
- * @example
- * // Returns true if URL is 'https://example.com?key=value'
- * hasUrlParameters(); // true
- * 
- * // Returns false if URL is 'https://example.com'
- * hasUrlParameters(); // false
- */
-function hasUrlParameters() {
-    try {
-        const url = new URL(window.location.href);
-        return url.search.length > 1; // search includes '?' so length > 1 means parameters exist
-    } catch (error) {
-        console.error("Invalid URL:", error);
-        return false;
-    }
-}
-
-/**
- * Get the value of a specific URL parameter
- * @param {string} paramName - The name of the parameter to retrieve
- * @param {string} [url] - Optional: URL to parse (defaults to current page URL)
- * @returns {string|null} - The parameter value or null if not found
- */
-function getURLParameter(paramName, url) {
-    try {
-        const targetURL = url || window.location.href;
-        const parsedURL = new URL(targetURL);
-        const value = parsedURL.searchParams.get(paramName);
-
-        return value;
-    } catch (error) {
-        console.error("Invalid URL provided:", error);
-        return null;
-    }
-}
+import { hasUrlParameters, getURLParameter } from "./toolkit.mjs";
 
 window.addEventListener('DOMContentLoaded', () => {
     const advancedSearchLink = document.querySelector(".advanced-search");
@@ -50,6 +12,9 @@ window.addEventListener('DOMContentLoaded', () => {
         pageSize: 10,
         excerptLength: 42,
         debounceTimeoutMs: 500,
+        termFrequency: 0.4,
+        termSimilarity: 10,
+        termSaturation: 1.6,
         translations: {
             placeholder: "Search convrtrs, tools, and other resources...",
             clear_search: "Clear",
@@ -79,19 +44,18 @@ window.addEventListener('DOMContentLoaded', () => {
                     advancedSearchLink.href = basePath;
                 }
             }
-            
+
             if (term.length < 2) {
                 return "";
             }
             return term;
-        },
+        }
     });
-    
-    // Manually handle the link click to ensure we navigate with the composed querystring
+
+    // Build the advanced search link dynamically from the current search value
     if (advancedSearchLink) {
         advancedSearchLink.addEventListener("click", function (event) {
             event.preventDefault();
-            // read the live input value again at click-time
             const input = document.querySelector(".pagefind-ui__search-input");
             const term = String(input?.value || "").trim();
             const base = new URL(this.getAttribute("href"), window.location.origin);
@@ -99,8 +63,6 @@ window.addEventListener('DOMContentLoaded', () => {
             const dest = term.length >= 2
                 ? `${basePath}?t=${encodeURIComponent(term)}`
                 : basePath;
-            console.log("advanced search navigate ->", dest);
-            // perform navigation
             window.location.assign(dest);
         });
     }

@@ -35,7 +35,7 @@ tags: tools
         </div>
     </div>
     <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ filename }}Collapse">
-        <ul class="pagination justify-content-center flex-wrap" id="pagination">
+        <ul class="pagination justify-content-center flex-wrap" id="pagination" data-pagefind-ignore="all">
             {% for char in alpha -%}
                 {% if forloop.first -%}
                 <li class="page-item">

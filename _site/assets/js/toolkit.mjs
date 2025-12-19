@@ -551,3 +551,43 @@ export function handleDownload(url, filename, download) {
         return img;
     }
 }
+
+/**
+ * Checks if the current URL contains query string parameters.
+ * @returns {boolean} True if the URL has query parameters, false otherwise.
+ * @throws {Error} Logs an error to console if the URL is invalid, but returns false instead of throwing.
+ * @example
+ * // Returns true if URL is 'https://example.com?key=value'
+ * hasUrlParameters(); // true
+ * 
+ * // Returns false if URL is 'https://example.com'
+ * hasUrlParameters(); // false
+ */
+export function hasUrlParameters() {
+    try {
+        const url = new URL(window.location.href);
+        return url.search.length > 1; // search includes '?' so length > 1 means parameters exist
+    } catch (error) {
+        console.error("Invalid URL:", error);
+        return false;
+    }
+}
+
+/**
+ * Get the value of a specific URL parameter
+ * @param {string} paramName - The name of the parameter to retrieve
+ * @param {string} [url] - Optional: URL to parse (defaults to current page URL)
+ * @returns {string|null} - The parameter value or null if not found
+ */
+export function getURLParameter(paramName, url) {
+    try {
+        const targetURL = url || window.location.href;
+        const parsedURL = new URL(targetURL);
+        const value = parsedURL.searchParams.get(paramName);
+
+        return value;
+    } catch (error) {
+        console.error("Invalid URL provided:", error);
+        return null;
+    }
+}
