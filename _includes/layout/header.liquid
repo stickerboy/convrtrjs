@@ -36,12 +36,12 @@
                     </li>
                     {%- unless page-id == "search" %}
                     <li class="nav-item">
-                        <a class="btn btn-md btn-link text-light" aria-label="{{ searchItem.aria-label }}" 
-                            title="{{ searchItem.label }}" href="{{ '/' | append: searchItem.id | url }}"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <button class="btn btn-md btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                            aria-controls="offcanvasSearch" aria-label="{{ searchItem.aria-label }}" 
+                            title="{{ searchItem.label }}" data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-{{ searchItem.icon }}" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label }}</span>
-                        </a>
+                        </button>
                     </li>
                     {%- endunless %}
                     {%- assign excludedPages = "fourohfour,404,search" | split: "," %}

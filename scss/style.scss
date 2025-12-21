@@ -79,6 +79,7 @@
     --convrtr-nav-tabs-border-color: #dee2e6;
     --convrtr-code-opacity: 0.2;
     --bs-bg-dark-opacity: 0.08;
+    --navbar-height: 64px;
 }
 @media (prefers-color-scheme: dark) {
     :root {
@@ -215,6 +216,38 @@ body {
         width: 100%;
     }
 }
+.offcanvas.offcanvas-end {
+    width: 100vw;
+    top: var(--navbar-height);
+    z-index: 4;
+}
+@include media-breakpoint-up(md) {
+    .offcanvas.offcanvas-end {
+        width: 80vw;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .offcanvas.offcanvas-end {
+        width: 70vw;
+    }
+}
+@include media-breakpoint-up(xl) {
+    .offcanvas.offcanvas-end {
+        width: 60vw;
+    }
+}
+@include media-breakpoint-up(xxl) {
+    .offcanvas.offcanvas-end {
+        width: 50vw;
+    }
+}
+@include color-mode(light) {
+    .offcanvas.offcanvas-end {
+        --bs-bg-opacity: 1;
+        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+    }
+}
+
 .sidebar {
     height: 100%;
     .bi {
@@ -1386,6 +1419,9 @@ button.cc-nb-changep {
     @extend .btn !optional;
     @extend .btn-outline-convrtr !optional;
 }
+.offcanvas .pagefind-ui__filter-panel {
+    display: none;
+}
 .pagefind-ui__filter-panel,
 .pagefind-ui__results-area {
     @extend .col-12 !optional;
@@ -1401,6 +1437,9 @@ button.cc-nb-changep {
         width: 75%;
         padding-left: 1rem !important;
     }
+    .offcanvas .pagefind-ui__results-area {
+        width: 100%;
+    }
 }
 @media (min-width:1201px) {
     .pagefind-ui__filter-panel {
@@ -1410,6 +1449,9 @@ button.cc-nb-changep {
     .pagefind-ui__results-area {
         flex: 0 0 auto;
         width: 83.33333333%;
+    }
+    .offcanvas .pagefind-ui__results-area {
+        width: 100%;
     }
 }
 .pagefind-ui__filter-group {
@@ -1454,7 +1496,7 @@ button.cc-nb-changep {
     --bs-border-opacity: 1;
     border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
     border-radius: var(--bs-border-radius) !important;
-    color: var(--bs-dark-rgb);
+    color: transparent;
 }
 .changelog summary::after,
 .pagefind-ui__filter-block summary::after {

@@ -159,12 +159,12 @@
                     </a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-md btn-link text-light" aria-label="Search the site" 
-                            title="Search" href="/search"
-                            data-bs-toggle="tooltip" data-bs-placement="bottom">
+                        <button class="btn btn-md btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
+                            aria-controls="offcanvasSearch" aria-label="Search the site" 
+                            title="Search" data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-search" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">Search</span>
-                        </a>
+                        </button>
                     </li>
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
@@ -1096,9 +1096,9 @@
         </div>
         <div class="py-4 px-3 px-sm-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.6.4" 
+                title="Release version: v3.7.0" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.6.4</small>
+                <small>v3.7.0</small>
             </a>
             
             <p class="float-end mb-1">
@@ -1120,6 +1120,8 @@
 <script type="module" src="/assets/js/theme.mjs"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
+<script src="/pagefind/pagefind-ui.js"></script>
+<script type="module" src="/assets/js/search-global.mjs"></script>
 
 
         <div class="toast-container position-fixed top-0 end-0 p-5">
