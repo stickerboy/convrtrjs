@@ -24,8 +24,8 @@ eleventyExcludeFromCollections: true
         <div class="grid" style="gap:0.5rem;">
           {%- assign sortedItems = link.children | sort: 'id' %}
           {%- for child in sortedItems %}
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-{{ child.id }}" name="Filters" value="{{ child.id }}">
+            <div id="{{ child.id }}" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-{{ child.id }}" name="Filters" value="{{ child.id }}" data-section-name="{{ child.id }}" data-section-description="Toggle visibility of {{ child.id }} section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-{{ child.id }}">{{ child.label }}</label>
             </div>
           {%- endfor %}

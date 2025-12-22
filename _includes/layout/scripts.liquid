@@ -27,4 +27,6 @@
 {%- else %}
 <script type="module" src="{{ '/assets/js/search-global.mjs' | url }}"></script>
 {%- endif %}
-
+{%- if page-id == 'settings' -%}
+<script type="module" src="{{ '/assets/js/settings/settings.mjs' | url }}"></script>
+{%- endif %}

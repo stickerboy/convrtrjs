@@ -703,13 +703,17 @@ textarea {
     &-check {
         top: .7rem;
         cursor: pointer;
-        
+
         &:checked+.settings-label {
             --bs-bg-opacity: 0.1;
             --bs-border-opacity: 0.5;
             background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
             border-color: rgba(var(--convrtr-bg-color), var(--bs-border-opacity)) !important;
         }
+    }
+    &-label {
+        cursor: pointer;
+        transition: background-color 0.3s ease;
     }
 }
 
@@ -1417,8 +1421,7 @@ button.cc-nb-changep {
     @extend .list-group-item !optional;
     @extend .list-group-item-action !optional;
     text-align: start;
-    transition: background-color 0.3s ease;
-    
+    transition: background-color 0.3s ease; 
 }
 .pagefind-ui__result-link {
     --bs-link-underline-opacity: 0;

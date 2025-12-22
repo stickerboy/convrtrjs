@@ -968,24 +968,24 @@
             <i class="bi bi-code-square me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> Text tools
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-convrtrs" name="Filters" value="convrtrs">
+            <div id="convrtrs" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-convrtrs" name="Filters" value="convrtrs" data-section-name="convrtrs" data-section-description="Toggle visibility of convrtrs section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-convrtrs">Convrtrs</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-flip" name="Filters" value="flip">
+            <div id="flip" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-flip" name="Filters" value="flip" data-section-name="flip" data-section-description="Toggle visibility of flip section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-flip">Flip text</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-frequencies" name="Filters" value="frequencies">
+            <div id="frequencies" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-frequencies" name="Filters" value="frequencies" data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-frequencies">Character frequencies</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-replace" name="Filters" value="replace">
+            <div id="replace" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-replace" name="Filters" value="replace" data-section-name="replace" data-section-description="Toggle visibility of replace section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-replace">Replace characters</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-tools" name="Filters" value="tools">
+            <div id="tools" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-tools" name="Filters" value="tools" data-section-name="tools" data-section-description="Toggle visibility of tools section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-tools">Text tools</label>
             </div>
         </div><hr class="mt-4" />
@@ -993,44 +993,44 @@
             <i class="bi bi-puzzle me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> Cipher tools
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-atbash" name="Filters" value="atbash">
+            <div id="atbash" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-atbash" name="Filters" value="atbash" data-section-name="atbash" data-section-description="Toggle visibility of atbash section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-atbash">Atbash cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-beaufort" name="Filters" value="beaufort">
+            <div id="beaufort" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-beaufort" name="Filters" value="beaufort" data-section-name="beaufort" data-section-description="Toggle visibility of beaufort section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-beaufort">Beaufort cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-caesar" name="Filters" value="caesar">
+            <div id="caesar" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-caesar" name="Filters" value="caesar" data-section-name="caesar" data-section-description="Toggle visibility of caesar section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-caesar">Caesar cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-chaocipher" name="Filters" value="chaocipher">
+            <div id="chaocipher" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-chaocipher" name="Filters" value="chaocipher" data-section-name="chaocipher" data-section-description="Toggle visibility of chaocipher section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-chaocipher">Chaocipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-hash" name="Filters" value="hash">
+            <div id="hash" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-hash" name="Filters" value="hash" data-section-name="hash" data-section-description="Toggle visibility of hash section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-hash">Hash algorithms</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-keyword" name="Filters" value="keyword">
+            <div id="keyword" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-keyword" name="Filters" value="keyword" data-section-name="keyword" data-section-description="Toggle visibility of keyword section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-keyword">Keyword cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-rail" name="Filters" value="rail">
+            <div id="rail" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-rail" name="Filters" value="rail" data-section-name="rail" data-section-description="Toggle visibility of rail section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-rail">Rail fence cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-smithy" name="Filters" value="smithy">
+            <div id="smithy" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-smithy" name="Filters" value="smithy" data-section-name="smithy" data-section-description="Toggle visibility of smithy section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-smithy">Smithy cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-substitution" name="Filters" value="substitution">
+            <div id="substitution" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-substitution" name="Filters" value="substitution" data-section-name="substitution" data-section-description="Toggle visibility of substitution section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-substitution">Substitution cipher</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-vigenere" name="Filters" value="vigenere">
+            <div id="vigenere" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-vigenere" name="Filters" value="vigenere" data-section-name="vigenere" data-section-description="Toggle visibility of vigenere section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-vigenere">Vigenère cipher</label>
             </div>
         </div><hr class="mt-4" />
@@ -1038,16 +1038,16 @@
             <i class="bi bi-nut me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> Hex tools
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-frequencies" name="Filters" value="frequencies">
+            <div id="frequencies" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-frequencies" name="Filters" value="frequencies" data-section-name="frequencies" data-section-description="Toggle visibility of frequencies section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-frequencies">Hex Frequencies</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-reverse" name="Filters" value="reverse">
+            <div id="reverse" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-reverse" name="Filters" value="reverse" data-section-name="reverse" data-section-description="Toggle visibility of reverse section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-reverse">Reverse hex</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-shift" name="Filters" value="shift">
+            <div id="shift" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-shift" name="Filters" value="shift" data-section-name="shift" data-section-description="Toggle visibility of shift section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-shift">Shift hex</label>
             </div>
         </div><hr class="mt-4" />
@@ -1055,16 +1055,16 @@
             <i class="bi bi-journal-code me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> File tools
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-check" name="Filters" value="check">
+            <div id="check" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-check" name="Filters" value="check" data-section-name="check" data-section-description="Toggle visibility of check section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-check">Check file type</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-exif" name="Filters" value="exif">
+            <div id="exif" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-exif" name="Filters" value="exif" data-section-name="exif" data-section-description="Toggle visibility of exif section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-exif">Exif reader</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-headers" name="Filters" value="headers">
+            <div id="headers" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-headers" name="Filters" value="headers" data-section-name="headers" data-section-description="Toggle visibility of headers section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-headers">File headers</label>
             </div>
         </div><hr class="mt-4" />
@@ -1072,32 +1072,32 @@
             <i class="bi bi-braces-asterisk me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> Miscellaneous
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-braille" name="Filters" value="braille">
+            <div id="braille" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-braille" name="Filters" value="braille" data-section-name="braille" data-section-description="Toggle visibility of braille section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-braille">Braille</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-colors" name="Filters" value="colors">
+            <div id="colors" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-colors" name="Filters" value="colors" data-section-name="colors" data-section-description="Toggle visibility of colors section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-colors">Color generator</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-covenant" name="Filters" value="covenant">
+            <div id="covenant" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-covenant" name="Filters" value="covenant" data-section-name="covenant" data-section-description="Toggle visibility of covenant section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-covenant">Covenant glyphs</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-elements" name="Filters" value="elements">
+            <div id="elements" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-elements" name="Filters" value="elements" data-section-name="elements" data-section-description="Toggle visibility of elements section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-elements">Elements</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-elementstable" name="Filters" value="elementstable">
+            <div id="elementstable" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-elementstable" name="Filters" value="elementstable" data-section-name="elementstable" data-section-description="Toggle visibility of elementstable section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-elementstable">Periodic elements</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-forerunner" name="Filters" value="forerunner">
+            <div id="forerunner" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-forerunner" name="Filters" value="forerunner" data-section-name="forerunner" data-section-description="Toggle visibility of forerunner section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-forerunner">Forerunner glyphs</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-pigpen" name="Filters" value="pigpen">
+            <div id="pigpen" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-pigpen" name="Filters" value="pigpen" data-section-name="pigpen" data-section-description="Toggle visibility of pigpen section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-pigpen">Pigpen cipher</label>
             </div>
         </div><hr class="mt-4" />
@@ -1105,32 +1105,32 @@
             <i class="bi bi-question-octagon me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> ONI tools
         </h3>
         <div class="grid" style="gap:0.5rem;">
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-calendar" name="Filters" value="calendar">
+            <div id="calendar" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-calendar" name="Filters" value="calendar" data-section-name="calendar" data-section-description="Toggle visibility of calendar section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-calendar">Calendar</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-interleave" name="Filters" value="interleave">
+            <div id="interleave" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-interleave" name="Filters" value="interleave" data-section-name="interleave" data-section-description="Toggle visibility of interleave section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-interleave">Interleave</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-lookahead" name="Filters" value="lookahead">
+            <div id="lookahead" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-lookahead" name="Filters" value="lookahead" data-section-name="lookahead" data-section-description="Toggle visibility of lookahead section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-lookahead">Lookahead</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-mergeb64" name="Filters" value="mergeb64">
+            <div id="mergeb64" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-mergeb64" name="Filters" value="mergeb64" data-section-name="mergeb64" data-section-description="Toggle visibility of mergeb64 section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-mergeb64">Merge Base64</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-strings" name="Filters" value="strings">
+            <div id="strings" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-strings" name="Filters" value="strings" data-section-name="strings" data-section-description="Toggle visibility of strings section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-strings">Extract strings</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-unmunge" name="Filters" value="unmunge">
+            <div id="unmunge" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-unmunge" name="Filters" value="unmunge" data-section-name="unmunge" data-section-description="Toggle visibility of unmunge section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-unmunge">Unmunge</label>
             </div>
-            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
-              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-unscramble" name="Filters" value="unscramble">
+            <div id="unscramble" class="settings-button g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-unscramble" name="Filters" value="unscramble" data-section-name="unscramble" data-section-description="Toggle visibility of unscramble section">
               <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-unscramble">Unscramble</label>
             </div>
         </div>
@@ -1172,8 +1172,7 @@
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
 <script src="/pagefind/pagefind-ui.js"></script>
-<script type="module" src="/assets/js/search-global.mjs"></script>
-
+<script type="module" src="/assets/js/search-global.mjs"></script><script type="module" src="/assets/js/settings/settings.mjs"></script>
 
         <div class="toast-container position-fixed top-0 end-0 p-5">
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-autohide="false" id="toast">

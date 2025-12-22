@@ -23,9 +23,12 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 
 /**
- * Saves a value to local storage
- * @param {string} key - The key under which to store the value.
+ * Saves a value and its metadata to localStorage under a specified key.
+ *
+ * @param {string} id - The unique key to use for storing the item in localStorage.
+ * @param {string} name - A human-readable name for the stored item.
  * @param {string} value - The value to be stored.
+ * @param {string} description - A description of the stored item.
  * @returns {void}
  */
 export function saveLocalStorage(id, name, value, description) {
