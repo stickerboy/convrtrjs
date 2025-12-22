@@ -7,18 +7,6 @@ import { showToast } from "./scripts.mjs";
 (() => {
     "use strict";
 
-    const migrateLegacyOptions = () => {
-        const legacyFlag = localStorage.getItem("legacy");
-        const theme = localStorage.getItem("theme");
-        if (!legacyFlag && !theme && localStorage.length > 0) {
-            localStorage.clear();
-            localStorage.setItem("legacy", JSON.stringify({"id": "legacy", "name": "Legacy flag", "value": "", "description": "A flag to assist in a migration from legacy theme settings."}));
-            showToast("Legacy migration", "Legacy settings stored in local storage have been cleared, migrating to new functionality. Theme preferences and tool states will need to be reset.", "convrtr", 7500, false);
-        } else {
-            return;
-        }
-    };
-
     // Retrieve theme object from localStorage
     const getStoredTheme = () => {
         const raw = localStorage.getItem("theme");
@@ -105,8 +93,6 @@ import { showToast } from "./scripts.mjs";
 
     // Initialize on DOM ready
     window.addEventListener("DOMContentLoaded", () => {
-        migrateLegacyOptions();
-
         const preferredTheme = getPreferredTheme();
         setTheme(preferredTheme);
         showActiveTheme(preferredTheme);
