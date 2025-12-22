@@ -28,7 +28,7 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
  * @param {string} value - The value to be stored.
  * @returns {void}
  */
-function saveLocalStorage(id, name, value, description) {
+export function saveLocalStorage(id, name, value, description) {
     const sectionObj = {
         id,
         name,
@@ -43,7 +43,7 @@ function saveLocalStorage(id, name, value, description) {
  * @param {string} string - The key of the item to retrieve.
  * @returns {any} - The parsed value retrieved from local storage.
  */
-function getLocalStorageItem(id) {
+export function getLocalStorageItem(id) {
     const raw = localStorage.getItem(id);
     if (!raw) { return false };
 
