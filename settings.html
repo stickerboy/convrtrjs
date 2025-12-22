@@ -1,0 +1,45 @@
+---
+title: Settings
+layout: layout.liquid
+description: Manage your preferences and customize how the site works for you.
+page-id: settings
+eleventyExcludeFromCollections: true
+---
+
+{%- assign filename = page.fileSlug %}
+<section id="{{ filename }}" class="section">
+  <div class="py-4 px-3 px-sm-4">
+    <h2 class="display-6 fs-3 w-100 d-flex">
+      Show/hide tools
+    </h2>
+    <p>
+      Here you can choose which tools are shown or hidden by default.
+    </p>
+    <div class="px-3">
+      {%- for link in nav %}
+      {%- if link.exclude-from-settings == false %}
+        <h3 class="display-6 fs-4 w-100 d-flex">
+            <i class="bi bi-{{ link.icon }} me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> {{ link.label }}
+        </h3>
+        <div class="grid" style="gap:0.5rem;">
+          {%- assign sortedItems = link.children | sort: 'id' %}
+          {%- for child in sortedItems %}
+            <div class="g-col-12 g-col-sm-6 g-col-lg-4 g-col-xl-3 position-relative border border-2 rounded-2 text-start d-flex">
+              <input class="settings-check order-2 mx-2 position-absolute end-0" type="checkbox" id="settings-{{ child.id }}" name="Filters" value="{{ child.id }}">
+              <label class="settings-label align-items-center display-6 fs-5 w-100 d-flex order-1 py-1 px-2 bg-light" for="settings-{{ child.id }}">{{ child.label }}</label>
+            </div>
+          {%- endfor %}
+        </div>
+        {%- assign hasMore = false %}
+        {%- for checkLink in nav offset: forloop.index %}
+          {%- if checkLink.exclude-from-settings == false %}
+            {%- assign hasMore = true %}
+            {%- break %}
+          {%- endif %}
+        {%- endfor %}
+        {%- if hasMore %}<hr class="mt-4" />{%- endif %}
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>

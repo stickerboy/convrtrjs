@@ -699,6 +699,20 @@ textarea {
     }
 }
 
+.settings {
+    &-check {
+        top: .7rem;
+        cursor: pointer;
+        
+        &:checked+.settings-label {
+            --bs-bg-opacity: 0.1;
+            --bs-border-opacity: 0.5;
+            background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+            border-color: rgba(var(--convrtr-bg-color), var(--bs-border-opacity)) !important;
+        }
+    }
+}
+
 code {
     color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
     background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
