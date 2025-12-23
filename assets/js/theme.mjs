@@ -2,7 +2,6 @@
 * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
 * Refactored to support complex theme objects in localStorage
 */
-import { showToast } from "./scripts.mjs";
 
 (() => {
     "use strict";
