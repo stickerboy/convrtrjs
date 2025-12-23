@@ -2,22 +2,16 @@
 * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
 * Refactored to support complex theme objects in localStorage
 */
-import { saveLocalStorage } from "./scripts.mjs";
+import { getLocalStorageItem, saveLocalStorage } from "./scripts.mjs";
 
 (() => {
     "use strict";
 
-    // Retrieve theme object from localStorage
-    const getStoredTheme = () => {
-        const raw = localStorage.getItem("theme");
-        return raw ? JSON.parse(raw) : null;
-    };
-
     // Get preferred theme value (from stored object or system preference)
     const getPreferredTheme = () => {
-        const storedTheme = getStoredTheme();
-        if (storedTheme && storedTheme.value) {
-            return storedTheme.value;
+        const storedTheme = getLocalStorageItem("theme");
+        if (storedTheme) {
+            return storedTheme;
         }
 
         return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -80,8 +74,8 @@ import { saveLocalStorage } from "./scripts.mjs";
 
     // Listen for system theme changes
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        const storedTheme = getStoredTheme();
-        if (!storedTheme || (storedTheme.value !== "light" && storedTheme.value !== "dark")) {
+        const storedTheme = getLocalStorageItem("theme");
+        if (!storedTheme || (storedTheme !== "light" && storedTheme !== "dark")) {
             setTheme(getPreferredTheme());
         }
     });
