@@ -47,18 +47,16 @@ export default function (eleventyConfig) {
         return fs.readFileSync(fullPath, "utf-8");
     });
 
-    eleventyConfig.addFilter("fileExists", (filePath) => {
-        const fullPath = path.join("_includes", filePath);
+    eleventyConfig.addFilter("fileExists", (filePath, joinPath) => {
+        const fullPath = path.join(joinPath, filePath);
         return fs.existsSync(fullPath);
     });
-    eleventyConfig.addFilter("assetExists", function(filePath) {
-        const fullJSPath = path.join("assets", filePath);
-        return fs.existsSync(fullJSPath);
-    });
+
     eleventyConfig.addFilter("listFiles", function(folderPath) {
         const fullPath = path.join("_includes", folderPath);
         return fs.readdirSync(fullPath).map(file => path.join(folderPath, file));
     });
+
     eleventyConfig.addFilter("listFilesWithInfo", function(folderPath) {
         const fullPath = path.join("_includes", folderPath);
         return fs.readdirSync(fullPath).map(file => {
