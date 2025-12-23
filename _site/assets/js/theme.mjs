@@ -2,6 +2,7 @@
 * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
 * Refactored to support complex theme objects in localStorage
 */
+import { saveLocalStorage } from "./scripts.mjs";
 
 (() => {
     "use strict";
@@ -10,11 +11,6 @@
     const getStoredTheme = () => {
         const raw = localStorage.getItem("theme");
         return raw ? JSON.parse(raw) : null;
-    };
-
-    // Store theme object in localStorage
-    const setStoredTheme = themeObj => {
-        localStorage.setItem("theme", JSON.stringify(themeObj));
     };
 
     // Get preferred theme value (from stored object or system preference)
@@ -99,14 +95,7 @@
         document.querySelectorAll("[data-bs-theme-value]").forEach(toggle => {
             toggle.addEventListener("click", () => {
                 const themeValue = toggle.getAttribute("data-bs-theme-value");
-                const themeObj = {
-                    id: "theme",
-                    name: toggle.getAttribute("data-theme-name") || "Theme",
-                    value: themeValue,
-                    description: toggle.getAttribute("data-theme-description") || ""
-                };
-
-                setStoredTheme(themeObj);
+                saveLocalStorage("theme", toggle.getAttribute("data-theme-name") || "Theme", themeValue, toggle.getAttribute("data-theme-description") || "");
                 setTheme(themeValue);
                 showActiveTheme(themeValue, true);
             });
