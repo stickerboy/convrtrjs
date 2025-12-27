@@ -52,22 +52,6 @@ export default function (eleventyConfig) {
         return fs.existsSync(fullPath);
     });
 
-    eleventyConfig.addFilter("listFiles", function(folderPath) {
-        const fullPath = path.join("_includes", folderPath);
-        return fs.readdirSync(fullPath).map(file => path.join(folderPath, file));
-    });
-
-    eleventyConfig.addFilter("listFilesWithInfo", function(folderPath) {
-        const fullPath = path.join("_includes", folderPath);
-        return fs.readdirSync(fullPath).map(file => {
-            const fileNoExtension = path.parse(file).name;
-            return {
-                filePath: path.join(folderPath, file),
-                fileName: fileNoExtension
-            };
-        });
-    });
-
     eleventyConfig.addFilter("safe", (content) => {
         return content; // Return the content as-is
     });
