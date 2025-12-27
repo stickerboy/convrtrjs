@@ -49,7 +49,7 @@
     </body>
 </html>
 {% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
-{% if dynamicPartialPath | fileExists: "../_includes" %}
+{% if dynamicPartialPath | fileExists: "../_includes/" %}
     {% render dynamicPartialPath %}
 {% else %}
     {% render "partials/routes/home" %}
