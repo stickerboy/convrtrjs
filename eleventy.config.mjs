@@ -47,7 +47,7 @@ export default function (eleventyConfig) {
         return fs.readFileSync(fullPath, "utf-8");
     });
 
-    eleventyConfig.addFilter("fileExists", (filePath, joinPath) => {
+    eleventyConfig.addFilter("fileExists", (filePath, joinPath = "_includes") => {
         const fullPath = path.join(joinPath, filePath);
         return fs.existsSync(fullPath);
     });
