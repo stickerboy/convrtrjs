@@ -943,7 +943,7 @@
                 </div>
                 
                 
-                <span class="hidden" data-pagefind-filter="Filters">release</span><span class="hidden" data-pagefind-filter="Filters">minor</span><span class="hidden" data-pagefind-filter="Filters">new-features</span><span class="hidden" data-pagefind-meta="release:" data-pagefind-ui-meta="release"></span><span class="hidden" data-pagefind-meta="minor:" data-pagefind-ui-meta="minor"></span><span class="hidden" data-pagefind-meta="new-features:" data-pagefind-ui-meta="new-features"></span><main class="page-wrap page-wrap-changelog-item overflow-y-auto p-0 mw"
+                <span class="hidden" data-pagefind-filter="Filters">release</span><span class="hidden" data-pagefind-filter="Filters">minor</span><span class="hidden" data-pagefind-filter="Filters">new-features</span><span class="hidden" data-pagefind-filter="Filters">improvements</span><span class="hidden" data-pagefind-meta="release:" data-pagefind-ui-meta="release"></span><span class="hidden" data-pagefind-meta="minor:" data-pagefind-ui-meta="minor"></span><span class="hidden" data-pagefind-meta="new-features:" data-pagefind-ui-meta="new-features"></span><span class="hidden" data-pagefind-meta="improvements:" data-pagefind-ui-meta="improvements"></span><main class="page-wrap page-wrap-changelog-item overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content" data-pagefind-body>
                     <section class="section" id="IOOBI9O4IEIEOIO4O4IB">
     <div class="py-3 pb-4 px-2 px-sm-4">
@@ -973,12 +973,13 @@
             <h1 class="display-6"><span class="visually-hidden" data-pagefind-ignore>Changelog | </span>v3.8.0<small class="text-body-secondary fs-3"></small></h1>
             <hr>
             <p class="px-2"data-pagefind-ignore="all">
-                Released on December 21, 2025
+                Released on January 7, 2025
             </p>
             <div class="px-2">
                 <a href="/changelog/tag/release" class="badge git-badge badge-release" title="Officially tagged and released version">release</a>
                 <a href="/changelog/tag/minor" class="badge git-badge badge-minor" title="Minor feature updates">minor</a>
                 <a href="/changelog/tag/new-features" class="badge git-badge badge-new-features" title="Introduction of new features">new-features</a>
+                <a href="/changelog/tag/improvements" class="badge git-badge badge-improvements" title="General improvements">improvements</a>
             </div>
         </div>
     </div>
@@ -988,9 +989,19 @@
         <h2>New features</h2>
 <h3>Settings</h3>
 <ul>
-<li></li>
+<li>Added a new page for user settings. Currently it only displays show/hide options for tools, but I'm hopeful I can open it up to other things in the future—like also bringing over site theme and data clearing (while they are in the header, it could be useful to have them here too).</li>
 </ul>
-
+<h2>Behind the scenes improvements</h2>
+<details>
+<summary>This is a list of more technical and non-front-facing improvements made to the site</summary>
+<h3>Improvements</h3>
+<ul>
+<li>added additional flag to nav.json to allow excluding any non-tool items. Easiest way to get all the metadata I want/need</li>
+<li>Refactored Bootstrap theme settings to use my own local storage functions, for consistency</li>
+<li>Refactored fileExists filter to take an optional path</li>
+<li>Removed unused liquid filters</li>
+</ul>
+</details>
         <div class="mt-4" data-pagefind-ignore="all">
             <a class="btn btn-convrtr" href="https://github.com/stickerboy/convrtrjs/releases/tag/v3.8.0-Release">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-github"
@@ -1027,7 +1038,7 @@
     <div class="mw me-auto ms-auto">
         <div class="py-4 px-3 px-sm-4 pb-2">
             <p class="mb-1">
-                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2013 &mdash; 2025. Content licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-convrtr-link">CC BY-NC-SA 4.0</a>.<br />
+                &copy; <a href="https://kenny.cx" title="kenny.cx - Personal website" class="text-convrtr">Kenny Cameron</a> 2013 &mdash; 2026. Content licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-convrtr-link">CC BY-NC-SA 4.0</a>.<br />
                 Powered by <a href="https://www.11ty.dev/" title="Eleventy, a simpler static site generator" class="text-convrtr">11ty</a>, <a href="https://getbootstrap.com/" title="Bootstrap - an HTML, CSS, and JS library" class="text-convrtr">Bootstrap</a> and <a href="https://pages.github.com/" title="GitHub pages - websites hosted directly from your GitHub repository" class="text-convrtr">GitHub Pages</a>
             </p>
         </div>

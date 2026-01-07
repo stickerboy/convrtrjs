@@ -291,6 +291,11 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.8.0/</loc>
+      <lastmod>2025-01-07T00:00:00.000Z</lastmod>
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/</loc>
       <lastmod>2025-12-14T02:42:12.668Z</lastmod>
       <changefreq>monthly</changefreq>
@@ -632,11 +637,6 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/3.7.0/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
-      <changefreq>never</changefreq>
-    </url>
-    <url>
-      <loc>https://www.convrtr.xyz/changelog/3.8.0/</loc>
       <lastmod>2025-12-21T00:00:00.000Z</lastmod>
       <changefreq>never</changefreq>
     </url>
