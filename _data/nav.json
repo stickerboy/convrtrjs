@@ -275,5 +275,19 @@
         "exclude-from-sitemap": false,
         "exclude-from-sidebar": true,
         "exclude-from-settings": true
+    },
+    {
+        "id": "settings",
+        "label": "Settings",
+        "short-label": "Settings",
+        "icon": "gear",
+        "description": "Manage your preferences and customize how the site works for you",
+        "label_1": "View ",
+        "label_2": "settings",
+        "aria-label": "View settings",
+        "switch-label": false,
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": true
     }
 ]
