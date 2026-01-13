@@ -283,7 +283,7 @@
         "icon": "gear",
         "description": "Manage your preferences and customize how the site works for you",
         "label_1": "View ",
-        "label_2": "settings",
+        "label_2": "Settings",
         "aria-label": "View settings",
         "switch-label": false,
         "exclude-from-sitemap": false,
