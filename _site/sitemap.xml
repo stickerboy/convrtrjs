@@ -636,8 +636,13 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.8.0/</loc>
+      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
+      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -647,7 +652,7 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
+      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -662,12 +667,12 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/new-features/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
+      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/improvements/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
+      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>

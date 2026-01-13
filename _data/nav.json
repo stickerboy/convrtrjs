@@ -23,7 +23,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "ciphers",
@@ -65,7 +66,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "hex",
@@ -86,7 +88,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "files",
@@ -107,7 +110,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "misc",
@@ -140,7 +144,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "oni",
@@ -172,7 +177,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": false
     },
     {
         "id": "community",
@@ -225,7 +231,8 @@
             }
         ],
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": true
     },
     {
         "id": "sitemap",
@@ -238,7 +245,8 @@
         "aria-label": "View the Sitemap",
         "switch-label": false,
         "exclude-from-sitemap": true,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": true
     },
     {
         "id": "changelog",
@@ -251,7 +259,8 @@
         "aria-label": "Changelog: latest site updates",
         "switch-label": true,
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": false
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": true
     },
     {
         "id": "search",
@@ -264,6 +273,21 @@
         "aria-label": "Search the site",
         "switch-label": false,
         "exclude-from-sitemap": false,
-        "exclude-from-sidebar": true
+        "exclude-from-sidebar": true,
+        "exclude-from-settings": true
+    },
+    {
+        "id": "settings",
+        "label": "Settings",
+        "short-label": "Settings",
+        "icon": "gear",
+        "description": "Manage your preferences and customize how the site works for you",
+        "label_1": "View ",
+        "label_2": "Settings",
+        "aria-label": "View settings",
+        "switch-label": false,
+        "exclude-from-sitemap": false,
+        "exclude-from-sidebar": false,
+        "exclude-from-settings": true
     }
 ]

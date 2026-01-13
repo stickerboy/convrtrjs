@@ -2,39 +2,16 @@
 * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
 * Refactored to support complex theme objects in localStorage
 */
-import { showToast } from "./scripts.mjs";
+import { getLocalStorageItem, saveLocalStorage } from "./scripts.mjs";
 
 (() => {
     "use strict";
 
-    const migrateLegacyOptions = () => {
-        const legacyFlag = localStorage.getItem("legacy");
-        const theme = localStorage.getItem("theme");
-        if (!legacyFlag && !theme && localStorage.length > 0) {
-            localStorage.clear();
-            localStorage.setItem("legacy", JSON.stringify({"id": "legacy", "name": "Legacy flag", "value": "", "description": "A flag to assist in a migration from legacy theme settings."}));
-            showToast("Legacy migration", "Legacy settings stored in local storage have been cleared, migrating to new functionality. Theme preferences and tool states will need to be reset.", "convrtr", 7500, false);
-        } else {
-            return;
-        }
-    };
-
-    // Retrieve theme object from localStorage
-    const getStoredTheme = () => {
-        const raw = localStorage.getItem("theme");
-        return raw ? JSON.parse(raw) : null;
-    };
-
-    // Store theme object in localStorage
-    const setStoredTheme = themeObj => {
-        localStorage.setItem("theme", JSON.stringify(themeObj));
-    };
-
     // Get preferred theme value (from stored object or system preference)
     const getPreferredTheme = () => {
-        const storedTheme = getStoredTheme();
-        if (storedTheme && storedTheme.value) {
-            return storedTheme.value;
+        const storedTheme = getLocalStorageItem("theme");
+        if (storedTheme) {
+            return storedTheme;
         }
 
         return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -97,16 +74,14 @@ import { showToast } from "./scripts.mjs";
 
     // Listen for system theme changes
     window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
-        const storedTheme = getStoredTheme();
-        if (!storedTheme || (storedTheme.value !== "light" && storedTheme.value !== "dark")) {
+        const storedTheme = getLocalStorageItem("theme");
+        if (!storedTheme || (storedTheme !== "light" && storedTheme !== "dark")) {
             setTheme(getPreferredTheme());
         }
     });
 
     // Initialize on DOM ready
     window.addEventListener("DOMContentLoaded", () => {
-        migrateLegacyOptions();
-
         const preferredTheme = getPreferredTheme();
         setTheme(preferredTheme);
         showActiveTheme(preferredTheme);
@@ -114,14 +89,7 @@ import { showToast } from "./scripts.mjs";
         document.querySelectorAll("[data-bs-theme-value]").forEach(toggle => {
             toggle.addEventListener("click", () => {
                 const themeValue = toggle.getAttribute("data-bs-theme-value");
-                const themeObj = {
-                    id: "theme",
-                    name: toggle.getAttribute("data-theme-name") || "Theme",
-                    value: themeValue,
-                    description: toggle.getAttribute("data-theme-description") || ""
-                };
-
-                setStoredTheme(themeObj);
+                saveLocalStorage("theme", toggle.getAttribute("data-theme-name") || "Theme", themeValue, toggle.getAttribute("data-theme-description") || "");
                 setTheme(themeValue);
                 showActiveTheme(themeValue, true);
             });
