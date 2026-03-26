@@ -1153,6 +1153,10 @@ mark {
         margin-left: 1rem;
         border-left: 0.25rem solid var(--convrtr-bg-color-50);
     }
+    table {
+        @extend .table !optional;
+        @extend .table-striped !optional;
+    }
     &.license {
         blockquote {
             margin-left: 0;
