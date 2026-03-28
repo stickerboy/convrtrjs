@@ -646,6 +646,11 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/changelog/3.8.2/</loc>
+      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
       <lastmod>2026-01-13T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
@@ -662,7 +667,7 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/patch/</loc>
-      <lastmod>2026-03-26T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -687,7 +692,7 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/security/</loc>
-      <lastmod>2026-03-26T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
