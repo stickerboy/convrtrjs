@@ -240,6 +240,72 @@ export default function (eleventyConfig) {
         return uniqueFilteredTags;
     });
 
+    eleventyConfig.addCollection("filteredTagPages", (collectionApi) => {
+        const tagPageSize = 20;
+        const parseVersion = (version) => version.split('.').map(Number);
+        const versions = collectionApi.getFilteredByGlob("./changelog/**/*.md").sort((a, b) => {
+            const [aMajor, aMinor, aPatch] = parseVersion(a.data.title);
+            const [bMajor, bMinor, bPatch] = parseVersion(b.data.title);
+
+            if (aMajor !== bMajor) {
+                return bMajor - aMajor;
+            }
+            if (aMinor !== bMinor) {
+                return bMinor - aMinor;
+            }
+            return bPatch - aPatch;
+        });
+
+        const tagMap = new Map();
+
+        versions.forEach((item) => {
+            (item.data.tags || [])
+                .filter((tag) => allowedTagKeys.includes(tag))
+                .forEach((tag) => {
+                    if (!tagMap.has(tag)) {
+                        tagMap.set(tag, []);
+                    }
+                    tagMap.get(tag).push(item);
+                });
+        });
+
+        return Array.from(tagMap.entries())
+            .sort(([a], [b]) => a.localeCompare(b))
+            .flatMap(([tag, items]) => {
+                const encodedTag = encodeURIComponent(tag);
+                const totalPages = Math.ceil(items.length / tagPageSize);
+                const hrefs = Array.from({ length: totalPages }, (_, index) => {
+                    if (index === 0) {
+                        return `/changelog/tag/${encodedTag}/`;
+                    }
+                    return `/changelog/tag/${encodedTag}/${index + 1}/`;
+                });
+
+                return Array.from({ length: totalPages }, (_, pageIndex) => {
+                    const start = pageIndex * tagPageSize;
+                    const end = start + tagPageSize;
+
+                    return {
+                        tag,
+                        permalink: hrefs[pageIndex],
+                        items: items.slice(start, end),
+                        pagination: {
+                            label: `Pagination for ${tag} changelog pages`,
+                            pageNumber: pageIndex,
+                            pages: hrefs.map((_, i) => i + 1),
+                            hrefs,
+                            href: {
+                                first: hrefs[0],
+                                last: hrefs[hrefs.length - 1],
+                            },
+                            previousPageHref: pageIndex > 0 ? hrefs[pageIndex - 1] : null,
+                            nextPageHref: pageIndex < totalPages - 1 ? hrefs[pageIndex + 1] : null,
+                        },
+                    };
+                });
+            });
+    });
+
     eleventyConfig.on("eleventy.after", () => {
         try {
             execSync('npx pagefind --site _site --glob "**/*.html"', { stdio: 'inherit', encoding: 'utf-8' });
