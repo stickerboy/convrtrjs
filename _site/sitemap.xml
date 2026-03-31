@@ -656,13 +656,18 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/about/</loc>
+      <lastmod>2026-03-26T12:07:55.107Z</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/3.9.0/</loc>
-      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-31T00:00:00.000Z</lastmod>
       <changefreq>never</changefreq>
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
-      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-31T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -672,7 +677,7 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
-      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-31T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -692,12 +697,12 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/improvements/</loc>
-      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-31T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/bug-fixes/</loc>
-      <lastmod>2026-03-28T00:00:00.000Z</lastmod>
+      <lastmod>2026-03-31T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>

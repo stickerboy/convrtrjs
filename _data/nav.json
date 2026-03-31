@@ -187,6 +187,13 @@
         "icon": "people",
         "description": "Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.",
         "children": [{
+                "id": "about",
+                "label": "About us",
+                "short-label": "About",
+                "aria-label": "View the about page",
+                "icon": "info-circle",
+                "description": "Learn about the Convrtr community, our mission, and how we collaborate to create inclusive and engaging experiences."
+            },{
                 "id": "accessibility",
                 "label": "Accessibility statement",
                 "short-label": "Accessibility",
