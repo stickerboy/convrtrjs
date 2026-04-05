@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
+      <loc>https://www.convrtr.xyz/changelog/1.0.0/</loc>
+      <lastmod>2023-12-23T00:00:00.000Z</lastmod>
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/1.0.1/</loc>
       <lastmod>2023-12-23T00:00:00.000Z</lastmod>
       <changefreq>never</changefreq>
@@ -651,8 +656,18 @@
       <changefreq>never</changefreq>
     </url>
     <url>
+      <loc>https://www.convrtr.xyz/about/</loc>
+      <lastmod>2026-03-26T12:07:55.107Z</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    <url>
+      <loc>https://www.convrtr.xyz/changelog/3.9.0/</loc>
+      <lastmod>2026-04-05T00:00:00.000Z</lastmod>
+      <changefreq>never</changefreq>
+    </url>
+    <url>
       <loc>https://www.convrtr.xyz/changelog/tag/release/</loc>
-      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
+      <lastmod>2026-04-05T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -662,7 +677,7 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/minor/</loc>
-      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
+      <lastmod>2026-04-05T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
@@ -682,12 +697,12 @@
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/improvements/</loc>
-      <lastmod>2026-01-13T00:00:00.000Z</lastmod>
+      <lastmod>2026-04-05T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>
       <loc>https://www.convrtr.xyz/changelog/tag/bug-fixes/</loc>
-      <lastmod>2025-12-21T00:00:00.000Z</lastmod>
+      <lastmod>2026-04-05T00:00:00.000Z</lastmod>
       <changefreq>monthly</changefreq>
     </url>
     <url>

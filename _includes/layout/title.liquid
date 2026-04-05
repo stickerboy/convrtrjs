@@ -1,5 +1,7 @@
-<title>{{ pkg.sitename }} - {% if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md"
-        %} Changelog | v{% endif %}{% if title %}{{ title }} {% else %}{{ page.fileSlug | capitalize }} {% endif %}{%
-        if page.url contains "tag/" -%}{%- assign tag = page.url | split: '/' | last %}| {{ tag }}{% endif %}{% if
-        page.inputPath contains "changelog" %}{{ changelog-title }}{% endif %}</title>
+{% assign currentTag = tagPage.tag %}
+{% if currentTag == blank and page.url contains "/changelog/tag/" %}
+{% assign tagPath = page.url | remove_first: "/changelog/tag/" | split: "/" %}
+{% assign currentTag = tagPath[0] %}
+{% endif %}
+<title>{{ pkg.sitename }} - {% if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md" %} Changelog | v{% endif %}{% if title %}{{ title }} {% else %}{{ page.fileSlug | capitalize }} {% endif %}{% if currentTag %}| {{ currentTag }}{% endif %}{% if tagPage.pagination.pageNumber > 0 %} | Page {{ tagPage.pagination.pageNumber | plus: 1 }}{% endif %}{% if page.inputPath contains "changelog" %}{{ changelog-title }}{% endif %}</title>
 <link rel="canonical" href="{{ pkg.homepage }}">
