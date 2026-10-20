@@ -80,18 +80,48 @@
     --convrtr-code-opacity: 0.2;
     --bs-bg-dark-opacity: 0.08;
     --navbar-height: 64px;
+    --pf-background: rgba(var(--bs-white-rgb), 0.96);
+    --pf-text: var(--convrtr-base-color);
+    --pf-text-secondary: rgba(var(--bs-body-color-rgb), 0.8);
+    --pf-text-muted: rgba(var(--bs-body-color-rgb), 0.65);
+    --pf-border: rgba(var(--bs-dark-rgb), 0.15);
+    --pf-border-focus: var(--convrtr-bg-color);
+    --pf-hover: rgba(var(--convrtr-bg-color-50-rgba), 0.12);
+    --pf-mark: var(--convrtr-bg-color);
+    --pf-shadow-sm: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
+    --pf-shadow-md: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12);
+    --pf-shadow-lg: 0 1rem 2rem rgba(0, 0, 0, 0.16);
+    --pf-icon-search: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z' fill='%23000000'/%3E%3C/svg%3E%0A");
+    --pf-border-radius: 0.5rem;
+    --pf-input-height: 2.75rem !important;
+    --pf-input-font-size: 1rem;
+    --pf-result-title-font-size: 1.05rem;
+    --pf-result-excerpt-font-size: 0.9rem;
+    --pf-summary-font-size: 1.05rem !important;
+    --pf-outline-focus: var(--convrtr-bg-color);
+    --pf-outline-width: 2px;
+    --pf-outline-offset: 2px;
 }
 @media (prefers-color-scheme: dark) {
     :root {
-        --pagefind-ui-primary: #eeeeee;
+        --pagefind-ui-primary: #88c0b5;
         --pagefind-ui-text: #eeeeee;
         --pagefind-ui-background: #152028;
-        --pagefind-ui-border: #152028;
+        --pagefind-ui-border: #2d3740;
         --pagefind-ui-tag: #152028;
+        --pagefind-ui-tag-text: #eeeeee;
+        --pagefind-ui-shadow: rgba(0, 0, 0, 0.2);
     }
 }
 [data-bs-theme="dark"] {
     --convrtr-base-color: #dee2e6;
+    --pagefind-ui-primary: #88c0b5;
+    --pagefind-ui-text: #eeeeee;
+    --pagefind-ui-background: #152028;
+    --pagefind-ui-border: #2d3740;
+    --pagefind-ui-tag: #152028;
+    --pagefind-ui-tag-text: #eeeeee;
+    --pagefind-ui-shadow: rgba(0, 0, 0, 0.2);
 }
 body {
     color: var(--convrtr-base-color);
@@ -1206,6 +1236,15 @@ mark {
     }
 }
 
+.badges {
+    display: flex;
+    gap: 0.5rem !important;
+
+    .badge {
+        font-size: calc(var(--bs-body-font-size) - 2px);
+    }
+}
+
 .git-badge {
     color: var(--bs-black);
     background-color: var(--bs-light-rgb);
@@ -1213,7 +1252,10 @@ mark {
     z-index: 3;
     padding: 0.35rem 0.85rem;
 }
-.badge {
+
+.badge,
+.pf-result-tag,
+.pagefind-ui__result-tag {
     &-changelog,
     &-landing-page,
     &-tool,
@@ -1224,77 +1266,239 @@ mark {
         background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
         color: var(--bs-body-color);
     }
+
     &-improvements {
         color: var(--bs-primary-text-emphasis);
         background-color: var(--bs-primary-bg-subtle);
     }
+
     &-a11y {
         color: var(--bs-info-text-emphasis);
         background-color: var(--bs-info-bg-subtle);
     }
+
     &-bug-fixes {
         color: var(--bs-danger-text-emphasis);
         background-color: var(--bs-danger-bg-subtle);
     }
+
     &-bug {
         color: var(--bs-white);
         background-color: var(--bs-danger);
     }
+
     &-documentation {
         color: var(--bs-white);
         background-color: var(--bs-primary);
     }
+
     &-duplicate {
         color: var(--bs-black);
         background-color: $gray-400;
     }
+
     &-feature-request {
         color: var(--bs-black);
         background-color: $indigo-200;
     }
+
     &-hotfix {
         color: var(--bs-black);
         background-color: var(--bs-warning);
     }
+
     &-major {
         color: var(--bs-white);
         background-color: var(--convrtr-bg-color);
     }
+
     &-minor {
         color: var(--convrtr-txt-color);
         background-color: $gray-200;
         border: 1px solid var(--convrtr-bg-color-25);
     }
+
     &-new-features {
         color: var(--bs-success-text-emphasis);
         background-color: var(--bs-success-bg-subtle);
     }
+
     &-patch {
         color: var(--convrtr-link-color);
         background-color: var(--bs-white);
         border: 1px solid var(--convrtr-bg-color-25);
     }
+
     &-question {
         color: var(--bs-white);
         background-color: var(--bs-black);
     }
+
     &-release {
         color: var(--bs-white);
         background-color: #008672;
     }
+
     &-security {
         color: var(--bs-white);
         background-color: $purple;
     }
+
     &-privacy {
         color: $gray-900;
         background-color: var(--bs-white);
         border: 1px solid $gray-600;
     }
+
     &-wontfix {
         color: var(--bs-white);
         background-color: $pink-600;
     }
+}
+
+.badge-changelog,
+.pf-result-tag[data-pagefind-ui-meta="changelog"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="changelog"],
+.badge-landing-page,
+.pf-result-tag[data-pagefind-ui-meta="landing-page"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="landing-page"],
+.badge-tool,
+.pf-result-tag[data-pagefind-ui-meta="tool"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="tool"],
+.badge-tools,
+.pf-result-tag[data-pagefind-ui-meta="tools"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="tools"],
+.badge-community,
+.pf-result-tag[data-pagefind-ui-meta="community"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="community"],
+.badge-misc,
+.pf-result-tag[data-pagefind-ui-meta="misc"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="misc"] {
+    --bs-bg-opacity: 0.1;
+    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+    color: var(--bs-body-color);
+}
+
+.badge-improvements,
+.pf-result-tag[data-pagefind-ui-meta="improvements"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="improvements"] {
+    color: var(--bs-primary-text-emphasis);
+    background-color: var(--bs-primary-bg-subtle);
+}
+
+.badge-a11y,
+.pf-result-tag[data-pagefind-ui-meta="a11y"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="a11y"] {
+    color: var(--bs-info-text-emphasis);
+    background-color: var(--bs-info-bg-subtle);
+}
+
+.badge-bug-fixes,
+.pf-result-tag[data-pagefind-ui-meta="bug-fixes"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="bug-fixes"] {
+    color: var(--bs-danger-text-emphasis);
+    background-color: var(--bs-danger-bg-subtle);
+}
+
+.badge-bug,
+.pf-result-tag[data-pagefind-ui-meta="bug"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="bug"] {
+    color: var(--bs-white);
+    background-color: var(--bs-danger);
+}
+
+.badge-documentation,
+.pf-result-tag[data-pagefind-ui-meta="documentation"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="documentation"] {
+    color: var(--bs-white);
+    background-color: var(--bs-primary);
+}
+
+.badge-duplicate,
+.pf-result-tag[data-pagefind-ui-meta="duplicate"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="duplicate"] {
+    color: var(--bs-black);
+    background-color: $gray-400;
+}
+
+.badge-feature-request,
+.pf-result-tag[data-pagefind-ui-meta="feature-request"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="feature-request"] {
+    color: var(--bs-black);
+    background-color: $indigo-200;
+}
+
+.badge-hotfix,
+.pf-result-tag[data-pagefind-ui-meta="hotfix"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="hotfix"] {
+    color: var(--bs-black);
+    background-color: var(--bs-warning);
+}
+
+.badge-major,
+.pf-result-tag[data-pagefind-ui-meta="major"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="major"] {
+    color: var(--bs-white);
+    background-color: var(--convrtr-bg-color);
+}
+
+.badge-minor,
+.pf-result-tag[data-pagefind-ui-meta="minor"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="minor"] {
+    color: var(--convrtr-txt-color);
+    background-color: $gray-200;
+    border: 1px solid var(--convrtr-bg-color-25);
+}
+
+.badge-new-features,
+.pf-result-tag[data-pagefind-ui-meta="new-features"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="new-features"] {
+    color: var(--bs-success-text-emphasis);
+    background-color: var(--bs-success-bg-subtle);
+}
+
+.badge-patch,
+.pf-result-tag[data-pagefind-ui-meta="patch"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="patch"] {
+    color: var(--convrtr-link-color);
+    background-color: var(--bs-white);
+    border: 1px solid var(--convrtr-bg-color-25);
+}
+
+.badge-question,
+.pf-result-tag[data-pagefind-ui-meta="question"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="question"] {
+    color: var(--bs-white);
+    background-color: var(--bs-black);
+}
+
+.badge-release,
+.pf-result-tag[data-pagefind-ui-meta="release"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="release"] {
+    color: var(--bs-white);
+    background-color: #008672;
+}
+
+.badge-security,
+.pf-result-tag[data-pagefind-ui-meta="security"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="security"] {
+    color: var(--bs-white);
+    background-color: $purple;
+}
+
+.badge-privacy,
+.pf-result-tag[data-pagefind-ui-meta="privacy"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="privacy"] {
+    color: $gray-900;
+    background-color: var(--bs-white);
+    border: 1px solid $gray-600;
+}
+
+.badge-wontfix,
+.pf-result-tag[data-pagefind-ui-meta="wontfix"],
+.pagefind-ui__result-tag[data-pagefind-ui-meta="wontfix"] {
+    color: var(--bs-white);
+    background-color: $pink-600;
 }
 
 .termsfeed-com---nb-headline {
@@ -1393,112 +1597,316 @@ button.cc-nb-changep {
     @extend .d-none !optional;
 }
 
-.pagefind-ui__form {
-    @extend .input-group !optional;
-    @extend .mb-3 !optional;
+pagefind-input,
+pagefind-results,
+pagefind-filter-pane,
+pagefind-summary,
+.pagefind-ui {
+    color: var(--pf-text);
 
-    .pagefind-ui__search-input {
-        @extend .form-control !optional;
+    @include color-mode(dark) {
+        --pf-background: #152028;
+        --pf-text: #eeeeee;
+        --pf-text-secondary: rgba(255, 255, 255, 0.8);
+        --pf-text-muted: rgba(255, 255, 255, 0.65);
+        --pf-border: #2d3740;
+        --pf-hover: rgba(136, 192, 181, 0.12);
+        --pf-mark: #88c0b5;
+    }
+}
+ 
+// Search input, styled to match .form-control with the Clear button joined on the right like an input-group
+.pf-input-wrapper::before {
+    background-color: var(--convrtr-bg-color) !important;
+    width: 16px !important;
+    height: 16px !important;
+    top: calc((var(--pf-input-height) - 16px) / 2) !important;
+    inset-inline-start: 0.85rem !important;
+}
+
+.pf-input {
+    padding-inline-start: 2.6rem !important;
+    padding-inline-end: 5.5rem !important;
+    background-color: var(--convrtr-input-bg) !important;
+    color: var(--bs-body-color) !important;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+
+    &::placeholder {
+        color: var(--bs-secondary-color) !important;
     }
 
-    .pagefind-ui__search-clear {
-        @extend .btn !optional;
-        @extend .btn-convrtr !optional;
-        --bs-btn-border-radius: .5rem;
-        border-top-right-radius: var(--bs-btn-border-radius) !important;
-        border-bottom-right-radius: var(--bs-btn-border-radius) !important;
+    &:focus,
+    &:focus-visible {
+        border-color: var(--convrtr-bg-color-25-rgb) !important;
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb) !important;
+        outline: 0 !important;
     }
 }
-.pagefind-ui__drawer {
-    @extend .w-100 !optional;
-    @extend .row !optional;
-    margin-top: 1rem;
+
+.pf-input-clear {
+    inset-inline-end: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+    padding: 0 1.25rem !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: var(--bs-white) !important;
+    background-color: var(--convrtr-bg-color) !important;
+    border: var(--bs-border-width) solid var(--convrtr-bg-color) !important;
+    border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0 !important;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+
+    &:hover,
+    &:active {
+        background-color: var(--convrtr-bg-color-10) !important;
+        border-color: var(--convrtr-bg-color-10) !important;
+    }
+
+    &:focus-visible {
+        outline: 0 !important;
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb) !important;
+    }
 }
-.pagefind-ui__message {
-    @extend .px-2 !optional;
+
+[data-bs-theme="dark"] {
+    .pf-input-wrapper::before {
+        background-color: var(--convrtr-bg-color-50) !important;
+    }
+
+    .pf-input {
+        background-color: var(--bs-body-bg) !important;
+
+        &:focus,
+        &:focus-visible {
+            border-color: var(--convrtr-bg-color-50-rgb) !important;
+            box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb) !important;
+        }
+    }
+
+    .pf-input-clear:focus-visible {
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb) !important;
+    }
 }
-.pagefind-ui__results {
+
+.pf-filter-pane:empty {
+    display: none !important;
+}
+
+// Pagefind defaults use ID-level specificity, hence the !important overrides
+.pf-filter-pane {
+    gap: 0 !important;
+    padding: 0 !important;
+    background: var(--bs-body-bg) !important;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+    text-align: start !important;
+}
+
+summary.pf-filter-group-title {
+    margin: 0 !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    color: var(--bs-body-color) !important;
+
+    &::after {
+        order: -1 !important;
+        margin-inline-start: 0 !important;
+        margin-inline-end: 0.6rem !important;
+        background: var(--convrtr-bg-color) !important;
+    }
+
+    &:hover {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+}
+
+details.pf-filter-group[open] > summary.pf-filter-group-title {
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+details.pf-filter-group > .pf-filter-fieldset {
+    margin-top: 0 !important;
+}
+
+.pf-filter-group-count {
+    background: var(--convrtr-bg-color) !important;
+    color: var(--bs-white) !important;
+}
+
+.pf-filter-checkbox {
+    gap: 0.75rem !important;
+    min-height: 0 !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 1rem !important;
+    color: var(--bs-body-color) !important;
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+    transition: background-color 0.3s ease !important;
+
+    &:hover {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+
+    &:has(.pf-checkbox-input:checked) {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.08) !important;
+    }
+
+    &:has(.pf-checkbox-input:focus-visible) {
+        outline-offset: -2px !important;
+        border-radius: 0 !important;
+    }
+}
+
+// hidden (zero-count) rows can be last, so tuck the final border under the pane edge instead of using :last-of-type
+.pf-filter-options {
+    margin-bottom: calc(var(--bs-border-width) * -1) !important;
+}
+
+.pf-checkbox-input {
+    accent-color: var(--convrtr-bg-color) !important;
+}
+
+.pf-filter-checkbox-count {
+    padding: 0.3em 0.65em !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    color: var(--convrtr-bg-color) !important;
+    background-color: rgba(var(--convrtr-bg-color-rgb), 0.1) !important;
+    border-radius: var(--bs-border-radius-pill) !important;
+    font-variant-numeric: tabular-nums !important;
+}
+
+[data-bs-theme="dark"] {
+    summary.pf-filter-group-title::after {
+        background: #88c0b5 !important;
+    }
+
+    .pf-filter-checkbox-count {
+        color: #88c0b5 !important;
+        background-color: rgba(136, 192, 181, 0.15) !important;
+    }
+}
+
+.pf-results {
     @extend .list-group !optional;
     @extend .list-group-flush !optional;
+    gap: 0 !important;
 }
-.pagefind-ui__result {
+
+.pf-result-item {
     @extend .list-group-item !optional;
     @extend .list-group-item-action !optional;
     text-align: start;
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease !important;
+    padding: 0.9rem 1rem !important;
+    border-bottom: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color) !important;
+    position: relative !important;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+
+    &:last-child {
+        border-bottom-width: 0 !important;
+    }
 }
-.pagefind-ui__result-link {
+
+.pf-result-title,
+.pf-result-excerpt {
+    margin-bottom: 0.5rem;
+}
+
+.pf-result-excerpt {
+    color: var(--pf-text-secondary);
+    font-size: 1rem !important;
+    line-height: 1.6;
+}
+
+.pf-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem !important;
+    margin: 0 !important;
+
+    .badge {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        padding: 0.25rem 0.5rem;
+        border-radius: 3px;
+    }
+}
+
+.pf-result-excerpt mark,
+.pf-result-title mark {
+    background-color: rgba(var(--convrtr-bg-color-rgb), 0.18) !important;
+    color: inherit !important;
+    padding: 0 0.15em;
+    border-radius: 0.2rem;
+    font-weight: 600 !important;
+}
+
+.pf-result-link {
     --bs-link-underline-opacity: 0;
     @extend .text-convrtr-link !optional;
     font-weight: 500 !important;
-    font-size: 1.15rem;
+    font-size: 1.15rem !important;
     text-decoration-color: rgba(var(--bs-link-color-rgb), var(--bs-link-underline-opacity, 1)) !important;
     @extend .stretched-link !optional;
+    color: var(--convrtr-link-color) !important;
 }
-.pagefind-ui__button {
+
+.result-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+pagefind-input {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+pagefind-filter-pane,
+pagefind-summary,
+pagefind-results {
+    display: block;
+}
+
+pagefind-results {
     margin-top: 1rem;
-    @extend .btn !optional;
-    @extend .btn-outline-convrtr !optional;
 }
-.offcanvas .pagefind-ui__filter-panel {
-    display: none;
-}
-.pagefind-ui__filter-panel,
-.pagefind-ui__results-area {
-    @extend .col-12 !optional;
-    padding: 0 !important;
-}
-@media (min-width:869px) {
-    .pagefind-ui__filter-panel {
-        flex: 0 0 auto;
-        width: 25%;
-    }
-    .pagefind-ui__results-area {
-        flex: 0 0 auto;
-        width: 75%;
-        padding-left: 1rem !important;
-    }
-    .offcanvas .pagefind-ui__results-area {
-        width: 100%;
+
+.offcanvas .list-group-action-item {
+    background-color: var(--pf-background) !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--pf-hover) !important;
     }
 }
-@media (min-width:1201px) {
-    .pagefind-ui__filter-panel {
-        flex: 0 0 auto;
-        width: 16.66666667%;
-    }
-    .pagefind-ui__results-area {
-        flex: 0 0 auto;
-        width: 83.33333333%;
-    }
-    .offcanvas .pagefind-ui__results-area {
-        width: 100%;
-    }
-}
-.pagefind-ui__filter-group {
-    @extend .list-group !optional;
-}
-.pagefind-ui__filter-value {
-    @extend .list-group-item !optional;
-    @extend .list-group-item-action !optional;
-    padding: 0;
-    transition: background-color 0.3s ease;
-}
-.pagefind-ui__filter-name {
-    font-size: 1.5rem;
-    text-align: start;
+
+.changelog summary {
+    margin-bottom: 0.5rem;
     position: relative;
 }
-.pagefind-ui__filter-block summary {
-    margin-bottom: 0.5rem;
-}
-.pagefind-ui__filter-block summary::-webkit-details-marker,
-.pagefind-ui__filter-block summary::marker {
+
+.changelog summary::marker {
     display: none;
     content: "";
 }
-.changelog summary::before,
-.pagefind-ui__filter-block summary::before {
+
+.changelog summary::before {
     content: "\f148";
     display: inline-block;
     font-family: bootstrap-icons !important;
@@ -1519,8 +1927,8 @@ button.cc-nb-changep {
     border-radius: var(--bs-border-radius) !important;
     color: transparent;
 }
-.changelog summary::after,
-.pagefind-ui__filter-block summary::after {
+
+.changelog summary::after {
     content: "\f148";
     display: inline-block;
     font-family: bootstrap-icons !important;
@@ -1536,76 +1944,11 @@ button.cc-nb-changep {
     z-index: 5;
     position: absolute;
     left: 0.3rem;
-    top: 0.8rem;
-    transform: rotate(0deg);
-    transition: transform .4s ease-in-out;
-}
-.changelog summary::after {
     top: 0.35rem;
+    transform: rotate(0deg);
+    transition: transform 0.4s ease-in-out;
 }
-.changelog details[open] summary::after,
-.pagefind-ui__filter-block[open] summary::after {
+
+.changelog details[open] summary::after {
     transform: rotate(90deg);
-}
-.pagefind-ui__filter-panel-label,
-.pagefind-ui__filter-group-label {
-    display: none;
-}
-.pagefind-ui__message {
-    @extend .lead !optional;
-    margin-top: 2rem;
-}
-.pagefind-ui__filter-value:first-of-type {
-    --bs-btn-border-radius: .5rem;
-    border-top-left-radius: var(--bs-btn-border-radius);
-    border-top-right-radius: var(--bs-btn-border-radius);
-}
-.pagefind-ui__filter-checkbox {
-    position: absolute;
-    right: 1rem;
-    top: 0.9rem;
-}
-.pagefind-ui__filter-label {
-    width: 100%;
-    height: 100%;
-    padding: var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);
-    text-align: start;
-    cursor: pointer;
-}
-.pagefind-ui__filter-checkbox:checked+.pagefind-ui__filter-label {
-    --bs-bg-opacity: 0.1;
-    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
-}
-.pagefind-ui__result-tags {
-    padding: 0;
-}
-
-$badges: changelog,tool,tools,landing-page,community,misc,release,major,minor,patch,hotfix,new-features,improvements,bug-fixes,security,privacy,a11y,documentation,feature-request,bug,duplicate,question,wontfix;
-
-.pagefind-ui__result-tag {
-    @extend .badge;
-
-    --bs-bg-opacity: 0.1;
-    --bs-border-opacity: 0.1;
-    font-size: 0;
-    padding: 0.25rem 0.5rem;
-    display: inline-flex;
-    color: transparent;
-    margin-right: 0.5rem;
-
-    &:last-child {
-        margin-right: 0;
-    }
-
-    &::before {
-        --bs-text-opacity: 1;
-        content: attr(data-pagefind-ui-meta);
-        font-size: calc(var(--bs-body-font-size) - 2px);
-    }
-    
-    @each $badge in $badges {
-        &[data-pagefind-ui-meta="#{$badge}"] {
-            @extend .badge-#{$badge} !optional;
-        }
-    }
 }
