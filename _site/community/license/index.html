@@ -76,7 +76,7 @@
         <meta name="description" content="A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques">
         <meta name="keywords" content="decode, encode, decoding, encoding, converters, data convert, javascript, data, puzzles, puzzle solving, puzzle solving tools, data driven puzzles, base64, binary, hexadecimal, ciphers, morse code, rot13, morsenary, code solving, file tools, exif reader, hexadecimal tools, text tools, flip text, replace characters, atbash cipher, beaufort cipher, caesar cipher, chaicipher, hash algorithms, rail fence cipher, smithy cipher, substitution cipher, regex substitution, strip all whitespace, letters to alphabet number, vigenere, vigenère, vigenère cipher, interleave, unscramble, extract string, merge base64, reverse hexadecimal, shift hexadecimal, hexadecimal frequencies, character frequencies, file headers, check file type, braille to text, text to braille, generate braille text, color generator, covenant glyphs, halo covenant glyphs, forerunner glyphs, halo forerunner glyphs, periodic element conversion, convert periodic elements, convert periodic element properties, pigpen">
         <meta name="author" content="Kenny Cameron">
-        <meta name="generator" content="Eleventy v3.1.5">
+        <meta name="generator" content="Eleventy v3.1.6">
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.convrtr.xyz" />
@@ -100,6 +100,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
         <!-- Core theme and Bootstrap CSS -->
         <link href="/assets/css/main.css" rel="stylesheet">
+        <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
+        
         <!-- Favicons -->
         <meta name="theme-color" content="#11806a">
         <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/assets/favicons/apple-touch-icon-57x57.png" />
@@ -297,13 +299,52 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
+        <pagefind-config excerpt-length="42"></pagefind-config>
         <p>
             Begin typing to see live results right away; there's no need to hit Enter, everything updates as you type.
         </p>
         <p class="text-end">
-            <a href="/search" class="text-convrtr-link advanced-search">Advanced search</a>
+            <a href="/search/" class="text-convrtr-link advanced-search">Advanced search</a>
         </p>
-        <div id="page-search" class="mt-2"></div>
+        <div class="mb-2">
+            <pagefind-input debounce="500"></pagefind-input>
+        </div>
+        <div class="mb-2">
+            <convrtr-summary></convrtr-summary>
+        </div>
+        <div id="page-search" class="mt-2">
+            <pagefind-results></pagefind-results>
+              <script>
+                (() => {
+                  // the html-template context strips "filters", so a JS resultTemplate is required to render tags
+                  const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (c) => ({
+                    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+                  }[c]));
+
+                  const resultsEl = document.currentScript.previousElementSibling;
+
+                  // element resets resultTemplate on upgrade, so it must be set after the custom element is defined
+                  customElements.whenDefined("pagefind-results").then(() => {
+                    resultsEl.resultTemplate = (data) => {
+                      const tags = [...new Set(data.filters?.Filters ?? [])];
+                      const tagsHtml = tags.length
+                        ? `<div class="badges mt-3">${tags.map((tag) => `<span class="badge badge-${escapeHtml(tag)}">${escapeHtml(tag)}</span>`).join("")}</div>`
+                        : "";
+
+                      return `
+                        <li class="pf-result-item list-group-action-item">
+                          <p class="pf-result-title mb-3">
+                            <a href="${escapeHtml(data.url)}" class="pf-result-link">${escapeHtml(data.meta?.title)}</a>
+                          </p>
+                          <p class="result-excerpt">${data.excerpt ?? ""}</p>
+                          ${tagsHtml}
+                        </li>
+                      `;
+                    };
+                  });
+                })();
+              </script>
+        </div>
     </div>
 </div><div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
@@ -1156,9 +1197,9 @@
         </div>
         <div class="py-4 px-3 px-sm-4 pt-2">
             <a href="/changelog"
-                title="Release version: v3.9.0" 
+                title="Release version: v3.9.1" 
                 class="d-inline-flex fw-semibold bg-convrtr border border-convrtr border-opacity-10 rounded-2 text-white release-version">
-                <small>v3.9.0</small>
+                <small>v3.9.1</small>
             </a>
             
             <p class="float-end mb-1">
@@ -1180,7 +1221,7 @@
 <script type="module" src="/assets/js/theme.mjs"></script>
 <script type="module" src="/assets/js/clip.mjs"></script>
 <script type="module" src="/assets/js/scripts.mjs"></script>
-<script src="/pagefind/pagefind-ui.js"></script>
+<script src="/pagefind/pagefind-component-ui.js" type="module"></script>
 <script type="module" src="/assets/js/search-global.mjs"></script>
 
         <div class="toast-container position-fixed top-0 end-0 p-5">

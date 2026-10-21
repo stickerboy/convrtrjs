@@ -21,7 +21,7 @@
 {%- if page-id == "exif" or page-id == "files" -%}
 <script src="{{ '/assets/js/files/exif-reader.js' | url }}"></script>
 {%- endif %}
-<script src="{{ '/pagefind/pagefind-ui.js' | url }}"></script>
+<script src="{{ '/pagefind/pagefind-component-ui.js' | url }}" type="module"></script>
 {%- if page-id == "search" -%}
 <script type="module" src="{{ '/assets/js/search.mjs' | url }}"></script>
 {%- else %}
