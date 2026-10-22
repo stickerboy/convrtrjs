@@ -13,7 +13,7 @@ eleventyExcludeFromCollections: true
       {%- if item.data.date %}
       <lastmod>{{ item.data.date | dateISO }}</lastmod>
       {%- else %}
-      <lastmod>{{ lastmod | dateISO }}</lastmod>
+      <lastmod>{{ item.data.lastmod | dateISO }}</lastmod>
       {%- endif -%}
       {% if pageNeverChanges contains item.data.page-id %}
       <changefreq>never</changefreq>
