@@ -10,12 +10,11 @@ description: >
   <p class="px-2"><strong>This section is still a work in progress</strong>, and tools are currently only available via
   the web console until a UI can be built for them. Most require specifically crafted data packets that were built for
   the ARG, there may still be some floating around out in space somewhere!</p>
-page-id: "{{ page.fileSlug }}"
 tags: landing-page
 ---
 <span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
 {% for page in collections.oni %}
-    {% if page-id == "oni" %}
+    {% if pageId == "oni" %}
         {{ page.templateContent | removeHiddenClass: true | safe }}
     {% else %}
         {% include "wrapper.liquid" with page %}

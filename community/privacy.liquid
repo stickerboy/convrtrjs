@@ -2,7 +2,6 @@
 layout: layout.liquid
 title: Privacy policy
 description: This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.
-page-id: privacy
 eleventyExcludeFromCollections: true
 lastmodFrom: privacy.md
 eleventyComputed:
@@ -12,7 +11,8 @@ eleventyComputed:
     issues: "{{ pkg.bugs.url }}/new"
 tags: community
 ---
-<section class="section changelog privacy">
+<section class="section prose privacy">
   <article class="py-4 px-3 px-sm-4">
         {% renderFile "./privacy.md", contact %}
     </article>
+</section>

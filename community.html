@@ -2,7 +2,6 @@
 layout: layout.liquid
 title: Community
 description: Welcome to the Convrtr community hub! This section brings together important information about how we work, how we collaborate, and how we ensure our project remains inclusive, respectful, and transparent.
-page-id: community
 eleventyExcludeFromCollections: true
 tags: landing-page, community
 ---
@@ -31,9 +30,9 @@ tags: landing-page, community
                             <p class="card-text">{{ item.description }}</p>
                         </div>
                         <div class="card-footer bg-transparent border-0">
-                            <a href="/{{ page-id | append: '/' | append: item.id }}" class="card-link stretched-link btn btn-outline-convrtr"
-                               arial-label="{{ item.aria-label }}">
-                                {{ item.aria-label }}
+                            <a href="/{{ pageId | append: '/' | append: item.id }}" class="card-link stretched-link btn btn-outline-convrtr"
+                               aria-label="{{ item.ariaLabel }}">
+                                {{ item.ariaLabel }}
                             </a>
                         </div>
                     </div>
@@ -51,7 +50,7 @@ tags: landing-page, community
                         </div>
                         <div class="card-footer bg-transparent border-0">
                             <a href="{{ pkg.repository.site }}" class="card-link stretched-link btn btn-outline-convrtr"
-                                arial-label="View us on GitHub">
+                                aria-label="View us on GitHub">
                                 View us on GitHub
                             </a>
                         </div>
@@ -69,7 +68,7 @@ tags: landing-page, community
                         </div>
                         <div class="card-footer bg-transparent border-0">
                             <a href="{{ pkg.support }}" class="card-link stretched-link btn btn-outline-convrtr"
-                                arial-label="Join us on Discord">
+                                aria-label="Join us on Discord">
                                 Join us on Discord
                             </a>
                         </div>

@@ -1,12 +1,12 @@
 {%- assign excludeFoldername = "convrtrs" | split: "," %}
 <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     {% for link in nav %}
-    {% if link.exclude-from-sidebar == false %}
-    <div class="sidebar-item d-grid gap-2{% if page-id ==  link.id or folderName == link.id or page.url contains link.id %} active{% endif %}"
-        data-link-id="{{ link.id }}" data-page-id="{{ page-id }}">
+    {% if link.excludeFromSidebar == false %}
+    <div class="sidebar-item d-grid gap-2{% if pageId ==  link.id or folderName == link.id or page.url contains link.id %} active{% endif %}"
+        data-link-id="{{ link.id }}" data-page-id="{{ pageId }}">
         {% if link.children %}
         <div class="btn-group">
-            <a class="btn sidebar-item__link d-flex align-items-center border border-success rounded-start-2 {% if page-id ==  link.id or folderName == link.id or page.url contains link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start p-0"
+            <a class="btn sidebar-item__link d-flex align-items-center border border-success rounded-start-2 {% if pageId ==  link.id or folderName == link.id or page.url contains link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start p-0"
                 href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
                 <span role="button" class="sidebar-item__icon btn fs-4 px-3 py-2 d-inline-flex" title="{{ link.label }}"
                     data-bs-toggle="tooltip" data-bs-placement="right">
@@ -18,7 +18,7 @@
             </a>
             <button
                 class="btn sidebar-item__link dropdown-toggle dropdown-toggle-split border border-success rounded-end-2 
-            {% if page-id ==  link.id or folderName == link.id -%} border-opacity-25{% else -%} border-opacity-10{% endif -%}"
+            {% if pageId ==  link.id or folderName == link.id -%} border-opacity-25{% else -%} border-opacity-10{% endif -%}"
                 type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ link.id }}"
                 aria-controls="collapse{{ link.id }}" aria-expanded="false" aria-label="{{ link.label }}" tabindex="-1">
                 <span class="visually-hidden">Toggle Dropdown</span>
@@ -29,7 +29,7 @@
                     {% assign sortedItems = link.children | sort: 'id' %}
                     {% for child in sortedItems %}
                     <li class="mb-1">
-                        <a class="dropdown-item{% if page-id == child.id %} fw-bold link-underline-success{% endif %}"
+                        <a class="dropdown-item{% if pageId == child.id %} fw-bold link-underline-success{% endif %}"
                             href="{% if child.id != 'convrtrs' %}{{ '/' | append: link.id | url }}{% endif %}/{{ child.id }}"
                             data-target="#{{ link.id }}">
                             {{ child.label }}
@@ -41,15 +41,15 @@
         </div>
         {% else %}
         <a class="btn sidebar-item__link d-flex align-items-center text-start p-0 border border-success
-        {% if page-id ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
-            aria-label="{{ link.aria-label }}" href="{{ '/' | append: link.id | replace: 'text', '' | url }}"
+        {% if pageId ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
+            aria-label="{{ link.ariaLabel }}" href="{{ '/' | append: link.id | replace: 'text', '' | url }}"
             data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
             <span class="sidebar-item__icon btn px-3 py-1 d-inline-block fs-5"
                 title="{{ link.label }}" data-bs-toggle="tooltip" data-bs-placement="right" role="button">
                 <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>
             </span>
             <span class="sidebar-item__label justify-content-center fs-6 position-relative" style="left:2px;">
-                {%- if link.switch-label %}
+                {%- if link.switchLabel %}
                 {{ link.label_1 }}<span class="visually-hidden">{{ link.label_2 }}</span>
                 {%- else %}
                 <span class="visually-hidden">{{ link.label_1 }}</span>{{ link.label_2 }}

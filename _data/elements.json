@@ -34,7 +34,7 @@
         "ionization_energies": [
             1312
         ],
-        "cpk-hex": "ffffff",
+        "cpkHex": "ffffff",
         "image": {
             "title": "Vial of glowing ultrapure hydrogen, H2. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Hydrogenglow.jpg",
@@ -78,7 +78,7 @@
             2372.3,
             5250.5
         ],
-        "cpk-hex": "d9ffff",
+        "cpkHex": "d9ffff",
         "image": {
             "title": "Vial of glowing ultrapure helium. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Helium-glow.jpg",
@@ -124,7 +124,7 @@
             7298.1,
             11815
         ],
-        "cpk-hex": "cc80ff",
+        "cpkHex": "cc80ff",
         "image": {
             "title": "0.5 Grams Lithium under Argon. Original size of the largest piece in cm: 0.3 x 4",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/0.5_grams_lithium_under_argon.jpg",
@@ -171,7 +171,7 @@
             14848.7,
             21006.6
         ],
-        "cpk-hex": "c2ff00",
+        "cpkHex": "c2ff00",
         "image": {
             "title": "Pure Beryllium bead, 2.5 grams. Original size in cm: 1 x 1.5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Beryllium_%28Be%29.jpg",
@@ -219,7 +219,7 @@
             25025.8,
             32826.7
         ],
-        "cpk-hex": "ffb5b5",
+        "cpkHex": "ffb5b5",
         "image": {
             "title": "Pure Crystalline Boron, front and back side. Original size in cm: 2 x 3",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Boron.jpg",
@@ -268,7 +268,7 @@
             37831,
             47277
         ],
-        "cpk-hex": "909090",
+        "cpkHex": "909090",
         "image": {
             "title": "Element 6 - Carbon",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Pure_Carbon.png",
@@ -318,7 +318,7 @@
             53266.6,
             64360
         ],
-        "cpk-hex": "3050f8",
+        "cpkHex": "3050f8",
         "image": {
             "title": "Vial of Glowing Ultrapure Nitrogen, N2. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Nitrogen-glow.jpg",
@@ -369,7 +369,7 @@
             71330,
             84078
         ],
-        "cpk-hex": "ff0d0d",
+        "cpkHex": "ff0d0d",
         "image": {
             "title": "Liquid Oxygen in a Beaker",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Liquid_oxygen_in_a_beaker_%28cropped_and_retouched%29.jpg",
@@ -421,7 +421,7 @@
             92038.1,
             106434.3
         ],
-        "cpk-hex": "90e050",
+        "cpkHex": "90e050",
         "image": {
             "title": "Liquid Fluorine at -196°C",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Fluoro_liquido_a_-196%C2%B0C_1.jpg",
@@ -474,7 +474,7 @@
             115379.5,
             131432
         ],
-        "cpk-hex": "b3e3f5",
+        "cpkHex": "b3e3f5",
         "image": {
             "title": "Vial of Glowing Ultrapure neon. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Neon-glow.jpg",
@@ -529,7 +529,7 @@
             141362,
             159076
         ],
-        "cpk-hex": "ab5cf2",
+        "cpkHex": "ab5cf2",
         "image": {
             "title": "Na (Sodium) Metal",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Na_%28Sodium%29.jpg",
@@ -585,7 +585,7 @@
             169988,
             189368
         ],
-        "cpk-hex": "8aff00",
+        "cpkHex": "8aff00",
         "image": {
             "title": "Magnesium crystals",
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Magnesium_crystals.jpg",
@@ -642,7 +642,7 @@
             201266,
             222316
         ],
-        "cpk-hex": "bfa6a6",
+        "cpkHex": "bfa6a6",
         "image": {
             "title": "Pure aluminium foil. Original size in cm: 5 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Aluminium.jpg",
@@ -700,7 +700,7 @@
             235196,
             257923
         ],
-        "cpk-hex": "f0c8a0",
+        "cpkHex": "f0c8a0",
         "image": {
             "title": "Chunk of Ultrapure Silicon, 2 x 2 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Silicon.jpg",
@@ -759,7 +759,7 @@
             271791,
             296195
         ],
-        "cpk-hex": "ff8000",
+        "cpkHex": "ff8000",
         "image": {
             "title": "Purple Phosphorus",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Phosphorus-purple.jpg",
@@ -819,7 +819,7 @@
             311048,
             337138
         ],
-        "cpk-hex": "ffff30",
+        "cpkHex": "ffff30",
         "image": {
             "title": "Native Sulfur From Russia",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Native_sulfur_%28Vodinskoe_Deposit%3B_quarry_near_Samara%2C_Russia%29_9.jpg",
@@ -880,7 +880,7 @@
             352994,
             380760
         ],
-        "cpk-hex": "1ff01f",
+        "cpkHex": "1ff01f",
         "image": {
             "title": "A Sample of Chlorine",
             "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Chlorine-sample-flip.jpg",
@@ -942,7 +942,7 @@
             397605,
             427066
         ],
-        "cpk-hex": "80d1e3",
+        "cpkHex": "80d1e3",
         "image": {
             "title": "Vial of glowing ultrapure argon. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/53/Argon-glow.jpg",
@@ -1006,7 +1006,7 @@
             444880,
             476063
         ],
-        "cpk-hex": "8f40d4",
+        "cpkHex": "8f40d4",
         "image": {
             "title": "Potassium Pieces",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Potassium.JPG",
@@ -1071,7 +1071,7 @@
             494850,
             527762
         ],
-        "cpk-hex": "3dff00",
+        "cpkHex": "3dff00",
         "image": {
             "title": "Calcium Grains, grain size about 1 mm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Calcium.jpg",
@@ -1137,7 +1137,7 @@
             547530,
             582163
         ],
-        "cpk-hex": "e6e6e6",
+        "cpkHex": "e6e6e6",
         "image": {
             "title": "Crystal of Scandium. About 1g",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Scandium%2C_Sc.jpg",
@@ -1204,7 +1204,7 @@
             602930,
             639294
         ],
-        "cpk-hex": "bfc2c7",
+        "cpkHex": "bfc2c7",
         "image": {
             "title": "Titanium Crystal made with the van Arkel-de Booer Process. 87 grams, Original size in cm: 2.5 x 4",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Titanium.jpg",
@@ -1272,7 +1272,7 @@
             661050,
             699144
         ],
-        "cpk-hex": "a6a6ab",
+        "cpkHex": "a6a6ab",
         "image": {
             "title": "Pieces of Pure Vanadium with Oxide Layer",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Vanadium-pieces.jpg",
@@ -1341,7 +1341,7 @@
             721870,
             761733
         ],
-        "cpk-hex": "8a99c7",
+        "cpkHex": "8a99c7",
         "image": {
             "title": "Piece of Chromium Metal",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chromium.jpg",
@@ -1411,7 +1411,7 @@
             785450,
             827067
         ],
-        "cpk-hex": "9c7ac7",
+        "cpkHex": "9c7ac7",
         "image": {
             "title": "Two Oieces of Manganese Metal",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Manganese_element.jpg",
@@ -1482,7 +1482,7 @@
             851800,
             895161
         ],
-        "cpk-hex": "e06633",
+        "cpkHex": "e06633",
         "image": {
             "title": "Fragments of an iron meteorite, about 92% iron. Original size of the single pieces in cm: 0.4 - 0.8",
             "url": "https://images-of-elements.com/iron-2.jpg",
@@ -1554,7 +1554,7 @@
             920870,
             966023
         ],
-        "cpk-hex": "f090a0",
+        "cpkHex": "f090a0",
         "image": {
             "title": "Fractions from a cobalt, 7 and 4 grams. Original size in cm: 2 x 2",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Cobalt_ore_2.jpg",
@@ -1627,7 +1627,7 @@
             992718,
             1039668
         ],
-        "cpk-hex": "50d050",
+        "cpkHex": "50d050",
         "image": {
             "title": "Nickel Chunk",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/Nickel_chunk.jpg",
@@ -1701,7 +1701,7 @@
             1067358,
             1116105
         ],
-        "cpk-hex": "c88033",
+        "cpkHex": "c88033",
         "image": {
             "title": "Macro of Native Copper about 1 ½ inches (4 cm) in size",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/NatCopper.jpg",
@@ -1767,7 +1767,7 @@
             71200,
             179100
         ],
-        "cpk-hex": "7d80b0",
+        "cpkHex": "7d80b0",
         "image": {
             "title": "30 grams Zinc, front and back side. Original size in cm: 3",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Zinc_%2830_Zn%29.jpg",
@@ -1816,7 +1816,7 @@
             2963,
             6180
         ],
-        "cpk-hex": "c28f8f",
+        "cpkHex": "c28f8f",
         "image": {
             "title": "Solid gallium, fresh and after some time (2 months) at room temperature",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Solid_gallium_%28Ga%29.jpg",
@@ -1866,7 +1866,7 @@
             4411,
             9020
         ],
-        "cpk-hex": "668f8f",
+        "cpkHex": "668f8f",
         "image": {
             "title": "12 Grams Polycrystalline Germanium, 2*3 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Polycrystalline-germanium.jpg",
@@ -1917,7 +1917,7 @@
             6043,
             12310
         ],
-        "cpk-hex": "bd80e3",
+        "cpkHex": "bd80e3",
         "image": {
             "title": "Ultrapure Metallic Arsenic under Argon, 1 - 2 grams. Original size of each piece in cm: 0.5 x 1",
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Arsenic_%2833_As%29.jpg",
@@ -1969,7 +1969,7 @@
             7880,
             14990
         ],
-        "cpk-hex": "ffa100",
+        "cpkHex": "ffa100",
         "image": {
             "title": "Ultrapure Black, Amorphous Selenium, 3 - 4 grams. Original size in cm: 2",
             "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Selenium.jpg",
@@ -2022,7 +2022,7 @@
             9940,
             18600
         ],
-        "cpk-hex": "a62929",
+        "cpkHex": "a62929",
         "image": {
             "title": "99.5 % pure liquid Bromine in a 4 x 1 cm big glass ampoule, cast in acrylic",
             "url": "https://upload.wikimedia.org/wikipedia/commons/8/87/Bromine-ampoule.jpg",
@@ -2097,7 +2097,7 @@
             311400,
             326200
         ],
-        "cpk-hex": "5cb8d1",
+        "cpkHex": "5cb8d1",
         "image": {
             "title": "Vial of Glowing Ultrapure Krypton. Original size in cm: 1 x 5.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Krypton-glow.jpg",
@@ -2153,7 +2153,7 @@
             14500,
             26740
         ],
-        "cpk-hex": "702eb0",
+        "cpkHex": "702eb0",
         "image": {
             "title": "Rubidium Metal Sample",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Rb5.JPG",
@@ -2210,7 +2210,7 @@
             17100,
             31270
         ],
-        "cpk-hex": "00ff00",
+        "cpkHex": "00ff00",
         "image": {
             "title": "Strontium Pieces under Paraffin Oil.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Strontium-1.jpg",
@@ -2268,7 +2268,7 @@
             19900,
             36090
         ],
-        "cpk-hex": "94ffff",
+        "cpkHex": "94ffff",
         "image": {
             "title": "6,21g Yttrium, Reinheit mindestens 99%.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Piece_of_Yttrium.jpg",
@@ -2320,7 +2320,7 @@
             7752,
             9500
         ],
-        "cpk-hex": "94e0e0",
+        "cpkHex": "94e0e0",
         "image": {
             "title": "Two pieces of Zirconium, 1 cm each.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Zirconium-pieces.jpg",
@@ -2373,7 +2373,7 @@
             9847,
             12100
         ],
-        "cpk-hex": "73c2c9",
+        "cpkHex": "73c2c9",
         "image": {
             "title": "Niobium strips",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Niobium_strips.JPG",
@@ -2449,7 +2449,7 @@
             148100,
             154500
         ],
-        "cpk-hex": "54b5b5",
+        "cpkHex": "54b5b5",
         "image": {
             "title": "99.9 Pure Molybdenum Crystal, about 2 x 3 cm, with anodisation color",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Molybdenum.jpg",
@@ -2498,7 +2498,7 @@
             1470,
             2850
         ],
-        "cpk-hex": "3b9e9e",
+        "cpkHex": "3b9e9e",
         "image": {
             "title": "Technetium Sample inside a sealed glass ampoule, filled with argon gas. 6x1 mm goldfoil covered with 99Tc powder (electroplated).",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Technetium-sample-cropped.jpg",
@@ -2547,7 +2547,7 @@
             1620,
             2747
         ],
-        "cpk-hex": "248f8f",
+        "cpkHex": "248f8f",
         "image": {
             "title": "Ruthenium Crystal, 0.6 grams, 0.6 x 1.3 cm size",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Ruthenium_crystal.jpg",
@@ -2596,7 +2596,7 @@
             1740,
             2997
         ],
-        "cpk-hex": "0a7d8c",
+        "cpkHex": "0a7d8c",
         "image": {
             "title": "Pure Rhodium Bead, 1 gram. Original size in cm: 0.5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Rhodium_%28Rh%29.jpg",
@@ -2644,7 +2644,7 @@
             1870,
             3177
         ],
-        "cpk-hex": "006985",
+        "cpkHex": "006985",
         "image": {
             "title": "Palladium Crystal, about 1 gram. Original size in cm: 0.5 x 1",
             "url": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Palladium_%2846_Pd%29.jpg",
@@ -2693,7 +2693,7 @@
             2070,
             3361
         ],
-        "cpk-hex": "c0c0c0",
+        "cpkHex": "c0c0c0",
         "image": {
             "title": "Natural silver nugget, 1 cm long.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Silver-nugget.jpg",
@@ -2742,7 +2742,7 @@
             1631.4,
             3616
         ],
-        "cpk-hex": "ffd98f",
+        "cpkHex": "ffd98f",
         "image": {
             "title": "48 Cd Cadmium",
             "url": "https://images-of-elements.com/cadmium-4.jpg",
@@ -2792,7 +2792,7 @@
             2704,
             5210
         ],
-        "cpk-hex": "a67573",
+        "cpkHex": "a67573",
         "image": {
             "title": "1.5 x 1.5 cm liquid indium",
             "url": "https://images-of-elements.com/indium-2.jpg",
@@ -2843,7 +2843,7 @@
             3930.3,
             7456
         ],
-        "cpk-hex": "668080",
+        "cpkHex": "668080",
         "image": {
             "title": "Tin blob",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Tin-2.jpg",
@@ -2895,7 +2895,7 @@
             5400,
             10400
         ],
-        "cpk-hex": "9e63b5",
+        "cpkHex": "9e63b5",
         "image": {
             "title": "Antimony crystal, 2 grams, 1 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Antimony-4.jpg",
@@ -2948,7 +2948,7 @@
             6820,
             13200
         ],
-        "cpk-hex": "d47a00",
+        "cpkHex": "d47a00",
         "image": {
             "title": "Metallic tellurium, diameter 3.5 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Tellurium2.jpg",
@@ -2997,7 +2997,7 @@
             1845.9,
             3180
         ],
-        "cpk-hex": "940094",
+        "cpkHex": "940094",
         "image": {
             "title": "Iodine Sample",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Iodine-sample.jpg",
@@ -3046,7 +3046,7 @@
             2046.4,
             3099.4
         ],
-        "cpk-hex": "429eb0",
+        "cpkHex": "429eb0",
         "image": {
             "title": "Vial of glowing ultrapure xenon. Original size in cm: 1 x 5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Xenon-glow.jpg",
@@ -3096,7 +3096,7 @@
             2234.3,
             3400
         ],
-        "cpk-hex": "57178f",
+        "cpkHex": "57178f",
         "image": {
             "title": "Cesium/Caesium metal",
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3d/Cesium.jpg",
@@ -3146,7 +3146,7 @@
             965.2,
             3600
         ],
-        "cpk-hex": "00c900",
+        "cpkHex": "00c900",
         "image": {
             "title": "1.5 Grams Barium with a Grey Oxide Layer under Argon. Original size in cm: 0.7 x 1",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f5/Barium_%2856_Ba%29.jpg",
@@ -3198,7 +3198,7 @@
             4819,
             5940
         ],
-        "cpk-hex": "70d4ff",
+        "cpkHex": "70d4ff",
         "image": {
             "title": "1 cm Big Piece of Pure Lanthanum",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Lanthanum.jpg",
@@ -3251,7 +3251,7 @@
             6325,
             7490
         ],
-        "cpk-hex": "ffffc7",
+        "cpkHex": "ffffc7",
         "image": {
             "title": "Ultrapure Cerium under Argon, 1.5 grams. Original size in cm: 1 x 1",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Cerium2.jpg",
@@ -3303,7 +3303,7 @@
             3761,
             5551
         ],
-        "cpk-hex": "d9ffc7",
+        "cpkHex": "d9ffc7",
         "image": {
             "title": "1.5 Grams Praseodymium under Argon, 0.5 cm big pieces",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/Praseodymium.jpg",
@@ -3354,7 +3354,7 @@
             2130,
             3900
         ],
-        "cpk-hex": "c7ffc7",
+        "cpkHex": "c7ffc7",
         "image": {
             "title": "Ultrapure Neodymium under Argon, 5 grams. Original length of the large piece in cm: 1",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Neodymium_%2860_Nd%29.jpg",
@@ -3405,7 +3405,7 @@
             2150,
             3970
         ],
-        "cpk-hex": "a3ffc7",
+        "cpkHex": "a3ffc7",
         "image": {
             "title": "Photomontage of what promethium metal might look like (it is too radioactive and real images are not available)",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Promethium.jpg",
@@ -3456,7 +3456,7 @@
             2260,
             3990
         ],
-        "cpk-hex": "8fffc7",
+        "cpkHex": "8fffc7",
         "image": {
             "title": "Ultrapure Sublimated Samarium, 2 grams. Original size in cm: 0.8 x 1.5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/Samarium-2.jpg",
@@ -3507,7 +3507,7 @@
             2404,
             4120
         ],
-        "cpk-hex": "61ffc7",
+        "cpkHex": "61ffc7",
         "image": {
             "title": "Weakly Oxidized Europium, hence slightly yellowish. 1.5 grams, large piece 0.6 x 1.6 cm.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Europium.jpg",
@@ -3558,7 +3558,7 @@
             1990,
             4250
         ],
-        "cpk-hex": "45ffc7",
+        "cpkHex": "45ffc7",
         "image": {
             "title": "Pure (99.95%) Amorphous Gadolinium, about 12 grams, 2 × 1.5 × 0.5 cm, cast in acrylic glass",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Gadolinium-2.jpg",
@@ -3609,7 +3609,7 @@
             2114,
             3839
         ],
-        "cpk-hex": "30ffc7",
+        "cpkHex": "30ffc7",
         "image": {
             "title": "Pure Terbium, 3 grams. Original size: 1 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Terbium-2.jpg",
@@ -3660,7 +3660,7 @@
             2200,
             3990
         ],
-        "cpk-hex": "1fffc7",
+        "cpkHex": "1fffc7",
         "image": {
             "title": "Pure Dysprosium Dendrites",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Dysprosium-2.jpg",
@@ -3711,7 +3711,7 @@
             2204,
             4100
         ],
-        "cpk-hex": "00ff9c",
+        "cpkHex": "00ff9c",
         "image": {
             "title": "Ultrapure Holmium, 17 grams. Original size in cm: 1.5 x 2.5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Holmium2.jpg",
@@ -3762,7 +3762,7 @@
             2194,
             4120
         ],
-        "cpk-hex": "00e675",
+        "cpkHex": "00e675",
         "image": {
             "title": "9.5 Gramms Pure Erbium, 2 x 2 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Erbium-2.jpg",
@@ -3813,7 +3813,7 @@
             2285,
             4120
         ],
-        "cpk-hex": "00d452",
+        "cpkHex": "00d452",
         "image": {
             "title": "Ultrapure (99.997%) Crystalline Thulium, 22.3 grams, 3 × 3 × 2 cm in size",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Thulium-2.jpg",
@@ -3864,7 +3864,7 @@
             2417,
             4203
         ],
-        "cpk-hex": "00bf38",
+        "cpkHex": "00bf38",
         "image": {
             "title": "Ytterbium, 0.5 x 1 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Ytterbium-3.jpg",
@@ -3916,7 +3916,7 @@
             4370,
             6445
         ],
-        "cpk-hex": "00ab24",
+        "cpkHex": "00ab24",
         "image": {
             "title": "1 cm Big Piece of Pure Lutetium",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Lutetium.jpg",
@@ -3967,7 +3967,7 @@
             2250,
             3216
         ],
-        "cpk-hex": "4dc2ff",
+        "cpkHex": "4dc2ff",
         "image": {
             "title": "Electrolytic Hafnium, 22 grams. Original size in cm: 1 x 2 x 3",
             "url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Hafnium_%2872_Hf%29.jpg",
@@ -4016,7 +4016,7 @@
             761,
             1500
         ],
-        "cpk-hex": "4da6ff",
+        "cpkHex": "4da6ff",
         "image": {
             "title": "Piece of tantalum, 1 cm in size",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Tantalum.jpg",
@@ -4065,7 +4065,7 @@
             770,
             1700
         ],
-        "cpk-hex": "2194d6",
+        "cpkHex": "2194d6",
         "image": {
             "title": "Tungsten rod with oxidised surface, 80 grams. Original size in cm: 1.3 x 3",
             "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Tungsten_rod_with_oxidised_surface.jpg",
@@ -4116,7 +4116,7 @@
             2510,
             3640
         ],
-        "cpk-hex": "267dab",
+        "cpkHex": "267dab",
         "image": {
             "title": "Pure Rhenium Bead, arc melted, 21 grams. Original size in cm: 1.5 x 1.7. Measured radiation dose <0.05 μS/h.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Pure_rhenium_bead%2C_arc_melted%2C_21_grams._Original_size_in_cm_-_1.5_x_1.7.jpg",
@@ -4165,7 +4165,7 @@
             840,
             1600
         ],
-        "cpk-hex": "266696",
+        "cpkHex": "266696",
         "image": {
             "title": "Pure Osmium Bead",
             "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Osmium-bead.jpg",
@@ -4214,7 +4214,7 @@
             880,
             1600
         ],
-        "cpk-hex": "175487",
+        "cpkHex": "175487",
         "image": {
             "title": "Pieces of Pure Iridium, 1 gram. Original size: 0.1 - 0.3 cm each",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Iridium-2.jpg",
@@ -4263,7 +4263,7 @@
             870,
             1791
         ],
-        "cpk-hex": "d0d0e0",
+        "cpkHex": "d0d0e0",
         "image": {
             "title": "Crystals of Pure Platinum grown by gas phase transport",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/68/Platinum_crystals.jpg",
@@ -4312,7 +4312,7 @@
             890.1,
             1980
         ],
-        "cpk-hex": "ffd123",
+        "cpkHex": "ffd123",
         "image": {
             "title": "Ultrapure Gold Leaf",
             "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Gold_%2879_Au%29.jpg",
@@ -4362,7 +4362,7 @@
             1810,
             3300
         ],
-        "cpk-hex": "b8b8d0",
+        "cpkHex": "b8b8d0",
         "image": {
             "title": "6 grams pure mercury. Diameter of the inner disc: 2 cm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/be/Hydrargyrum_%2880_Hg%29.jpg",
@@ -4412,7 +4412,7 @@
             1971,
             2878
         ],
-        "cpk-hex": "a6544d",
+        "cpkHex": "a6544d",
         "image": {
             "title": "8 grams pure thallium under argon. Original size in cm: 0.7 x 1.5",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Thallium_%2881_Tl%29.jpg",
@@ -4464,7 +4464,7 @@
             4083,
             6640
         ],
-        "cpk-hex": "575961",
+        "cpkHex": "575961",
         "image": {
             "title": "Ultrapure Lead Bead from two sides. Original size in cm: 1.5 x 2",
             "url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Lead-2.jpg",
@@ -4517,7 +4517,7 @@
             5400,
             8520
         ],
-        "cpk-hex": "9e4fb5",
+        "cpkHex": "9e4fb5",
         "image": {
             "title": "Bismuth Crystal",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Bismuth-2.jpg",
@@ -4565,7 +4565,7 @@
         "ionization_energies": [
             812.1
         ],
-        "cpk-hex": "ab5c00",
+        "cpkHex": "ab5c00",
         "image": {
             "title": "This is only an illustration, not polonium itself. A silvery, radioactive metal, producing so much heat that it gets liquid and ionizes the surrounding air",
             "url": "https://images-of-elements.com/polonium.jpg",
@@ -4613,7 +4613,7 @@
         "ionization_energies": [
             899.003
         ],
-        "cpk-hex": "754f45",
+        "cpkHex": "754f45",
         "image": {
             "title": "This is only an illustration, not astatine itself. Crystals similar to iodine, but darker in color than these, which due to the extreme radioactivity glow blue and evaporate to dark purple gas",
             "url": "https://images-of-elements.com/astatine.jpg",
@@ -4661,7 +4661,7 @@
         "ionization_energies": [
             1037
         ],
-        "cpk-hex": "428296",
+        "cpkHex": "428296",
         "image": {
             "title": "This is only an illustration, not radon itself. Radon is said to glow red in discharge tubes, although it practically is never used for this, due to its strong radioactivity.",
             "url": "https://images-of-elements.com/radon.jpg",
@@ -4710,7 +4710,7 @@
         "ionization_energies": [
             380
         ],
-        "cpk-hex": "420066",
+        "cpkHex": "420066",
         "image": {
             "title": "This is only an illustration, not francium itself.",
             "url": "https://images-of-elements.com/francium.jpg",
@@ -4760,7 +4760,7 @@
             509.3,
             979
         ],
-        "cpk-hex": "007d00",
+        "cpkHex": "007d00",
         "image": {
             "title": "Radium electroplated on a very small sample of copper foil and covered with polyurethane to prevent reaction with the air",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Radium226.jpg",
@@ -4810,7 +4810,7 @@
             499,
             1170
         ],
-        "cpk-hex": "70abfa",
+        "cpkHex": "70abfa",
         "image": {
             "title": "Actinium-225 medical radioisotope held in a v-vial at ORNL. The blue glow comes from the ionization of surrounding air by alpha particles",
             "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Actinium_sample_%2831481701837%29.png",
@@ -4862,7 +4862,7 @@
             1930,
             2780
         ],
-        "cpk-hex": "00baff",
+        "cpkHex": "00baff",
         "image": {
             "title": "Thorium Metal in Ampoule, corroded",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Thorium-1.jpg",
@@ -4911,7 +4911,7 @@
         "ionization_energies": [
             568
         ],
-        "cpk-hex": "00a1ff",
+        "cpkHex": "00a1ff",
         "image": {
             "title": "This sample of Protactinium-233 (dark circular area in the photo) was photographed in the light from its own radioactive emission (the lighter area) at the National Reactor Testing Station in Idaho.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Protactinium-233.jpg",
@@ -4961,7 +4961,7 @@
             597.6,
             1420
         ],
-        "cpk-hex": "008fff",
+        "cpkHex": "008fff",
         "image": {
             "title": "A biscuit of uranium metal after reduction via the Ames Process. c.1943.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Ames_Process_uranium_biscuit.jpg",
@@ -5010,7 +5010,7 @@
         "ionization_energies": [
             604.5
         ],
-        "cpk-hex": "0080ff",
+        "cpkHex": "0080ff",
         "image": {
             "title": "Neptunium 237 sphere (6 kg)",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Neptunium2.jpg",
@@ -5059,7 +5059,7 @@
         "ionization_energies": [
             584.7
         ],
-        "cpk-hex": "006bff",
+        "cpkHex": "006bff",
         "image": {
             "title": "Plutonium Ring",
             "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Plutonium_ring.jpg",
@@ -5108,7 +5108,7 @@
         "ionization_energies": [
             578
         ],
-        "cpk-hex": "545cf2",
+        "cpkHex": "545cf2",
         "image": {
             "title": "A small disc of Am-241 under the microscope.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Americium_microscope.jpg",
@@ -5157,7 +5157,7 @@
         "ionization_energies": [
             581
         ],
-        "cpk-hex": "785ce3",
+        "cpkHex": "785ce3",
         "image": {
             "title": "A piece of curium, which emitts strong radiation that makes it glow",
             "url": "https://images-of-elements.com/s/curium-glow.jpg",
@@ -5206,7 +5206,7 @@
         "ionization_energies": [
             601
         ],
-        "cpk-hex": "8a4fe3",
+        "cpkHex": "8a4fe3",
         "image": {
             "title": "It took 250 days to make enough berkelium, shown here (in dissolved state), to synthesize element 117",
             "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Berkelium.jpg",
@@ -5255,7 +5255,7 @@
         "ionization_energies": [
             608
         ],
-        "cpk-hex": "a136d4",
+        "cpkHex": "a136d4",
         "image": {
             "title": "A disc of californium metal (249Cf, 10 mg). The source implies that the disc has a diameter about twice the thickness of a typical pin, or on the order of 1 mm",
             "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Californium.jpg",
@@ -5304,7 +5304,7 @@
         "ionization_energies": [
             619
         ],
-        "cpk-hex": "b31fd4",
+        "cpkHex": "b31fd4",
         "image": {
             "title": "300 micrograms of Einsteinium 253, which has a half-life of 20 days.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/Einsteinium.jpg",
@@ -5353,7 +5353,7 @@
         "ionization_energies": [
             627
         ],
-        "cpk-hex": "b31fba",
+        "cpkHex": "b31fba",
         "image": {
             "title": "Fermium was first observed in the fallout from the Ivy Mike nuclear test.",
             "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Ivy_Mike_-_mushroom_cloud.jpg",
@@ -5402,7 +5402,7 @@
         "ionization_energies": [
             635
         ],
-        "cpk-hex": "b30da6",
+        "cpkHex": "b30da6",
         "image": {
             "title": "This is only an illustration, not mendelevium itself. Chemically similar to Thulium, the highly radioactive heavy metal emits very energetic α-radiation.",
             "url": "https://images-of-elements.com/s/mendelevium.jpg",
@@ -5451,7 +5451,7 @@
         "ionization_energies": [
             642
         ],
-        "cpk-hex": "bd0d87",
+        "cpkHex": "bd0d87",
         "image": {
             "title": "This is only an illustration, not nobelium itself. Nobelium can only be made in very small amounts and emits strong radiation of various kinds.",
             "url": "https://images-of-elements.com/nobelium.jpg",
@@ -5500,7 +5500,7 @@
         "ionization_energies": [
             470
         ],
-        "cpk-hex": "c70066",
+        "cpkHex": "c70066",
         "image": {
             "title": "This is only an illustration, not lawrencium itself. Lawrencium can only be made in very small amounts and emits strong radiation",
             "url": "https://images-of-elements.com/lawrencium.jpg",
@@ -5549,7 +5549,7 @@
         "ionization_energies": [
             580
         ],
-        "cpk-hex": "cc0059",
+        "cpkHex": "cc0059",
         "image": {
             "title": "Decay traces in a spark chamber, not of rutherfordium, but of a pion. This is a completely different, unrelated particle, but the decay of rutherfordium would make streaks there, too.",
             "url": "https://images-of-elements.com/s/rutherfordium.jpg",
@@ -5596,7 +5596,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": "d1004f",
+        "cpkHex": "d1004f",
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5643,7 +5643,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": "d90045",
+        "cpkHex": "d90045",
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5690,7 +5690,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": "e00038",
+        "cpkHex": "e00038",
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5737,7 +5737,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": "e6002e",
+        "cpkHex": "e6002e",
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5784,7 +5784,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": "eb0026",
+        "cpkHex": "eb0026",
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5831,7 +5831,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5878,7 +5878,7 @@
         "electron_affinity": 151,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5925,7 +5925,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -5972,7 +5972,7 @@
         "electron_affinity": 66.6,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6019,7 +6019,7 @@
         "electron_affinity": null,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6066,7 +6066,7 @@
         "electron_affinity": 35.3,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6113,7 +6113,7 @@
         "electron_affinity": 74.9,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6160,7 +6160,7 @@
         "electron_affinity": 165.9,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6207,7 +6207,7 @@
         "electron_affinity": 5.40318,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image": {
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",
@@ -6255,7 +6255,7 @@
         "electron_affinity": 63.87,
         "electronegativity_pauling": null,
         "ionization_energies": [],
-        "cpk-hex": null,
+        "cpkHex": null,
         "image":{
             "title": "No Image Found",
             "url": "https://images-of-elements.com/s/transactinoid.png",

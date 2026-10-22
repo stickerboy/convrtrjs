@@ -1094,7 +1094,7 @@ mark {
     }
 }
 
-.changelog {
+.prose {
     h1,h2 {
         padding-bottom: 0.75rem;
         margin-bottom: 1.25rem;
@@ -1197,17 +1197,13 @@ mark {
     }
 }
 
-.changelog,
-.privacy,
-.accessibility  {
+.prose {
     a:not(.btn) {
         color: var(--convrtr-link-color) !important;
     }
 }
 @include color-mode(dark) {
-    .changelog,
-    .privacy,
-    .accessibility  {
+    .prose {
         a:not(.btn) {
             color: var(--convrtr-table-header) !important;
         }
@@ -1896,17 +1892,17 @@ pagefind-results {
     }
 }
 
-.changelog summary {
+.prose summary {
     margin-bottom: 0.5rem;
     position: relative;
 }
 
-.changelog summary::marker {
+.prose summary::marker {
     display: none;
     content: "";
 }
 
-.changelog summary::before {
+.prose summary::before {
     content: "\f148";
     display: inline-block;
     font-family: bootstrap-icons !important;
@@ -1928,7 +1924,7 @@ pagefind-results {
     color: transparent;
 }
 
-.changelog summary::after {
+.prose summary::after {
     content: "\f148";
     display: inline-block;
     font-family: bootstrap-icons !important;
@@ -1949,6 +1945,6 @@ pagefind-results {
     transition: transform 0.4s ease-in-out;
 }
 
-.changelog details[open] summary::after {
+.prose details[open] summary::after {
     transform: rotate(90deg);
 }

@@ -1,0 +1,6 @@
+{
+    "layout": "layout/version.liquid",
+    "eleventyComputed": {
+        "pageId": "changelog-item"
+    }
+}

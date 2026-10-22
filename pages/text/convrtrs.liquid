@@ -64,7 +64,7 @@ tags: tools
                         <div class="card-title d-flex align-items-center">
                             <span class="h6 m-0 text-uppercase">
                                 <label class="card-label" for="form-{{ tool.id }}">
-                                    {{ tool.card-label }}
+                                    {{ tool.cardLabel }}
                                 </label>
                             </span>
                             {% if tool.id == "hex" %}
@@ -86,7 +86,7 @@ tags: tools
                                     data-bs-placement="left" 
                                     {% if tool.html == true %}data-bs-html="true"{% endif %}
                                     data-bs-trigger="focus"
-                                    data-bs-content='{{ tool.popover-content }}'>
+                                    data-bs-content='{{ tool.popoverContent }}'>
                                     <i class="bi bi-info-circle"></i>
                                 </button>
                             </div>
@@ -94,12 +94,12 @@ tags: tools
                         <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active" autocomplete="off"></textarea>
                         <div class="d-flex justify-content-between align-items-center mt-3">
                             {% if forloop.first == true %}
-                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
-                                <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">Encode</button>
+                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.buttonLabel }}">
+                                <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.buttonId }}" aria-label="{{ tool.buttonLabel }}">Encode</button>
                             </span>
                             {% else %}
-                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.button-label }}">
-                                <button type="button" class="btn btn-md btn-light" id="{{ tool.button-id }}" aria-label="{{ tool.button-label }}">
+                            <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.buttonLabel }}">
+                                <button type="button" class="btn btn-md btn-light" id="{{ tool.buttonId }}" aria-label="{{ tool.buttonLabel }}">
                                     Decode
                                 </button>
                             </span>

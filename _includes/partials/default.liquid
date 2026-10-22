@@ -9,7 +9,7 @@
             {% endif %}
             {% assign normalizedCurrentTag = currentTag | downcase | strip %}
             {% assign currentTagLabel = labels.labels | where: "key", normalizedCurrentTag | first %}
-            <h1 class="display-6">{%- if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md" -%}<span class="visually-hidden" data-pagefind-ignore>Changelog | </span>v{% endif %}{{ title }}{% if currentTag %} <span class="h5"><span class="badge git-badge badge-{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}">{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}</span></span>{% if tagPage.pagination.pageNumber > 0 %}<small class="text-body-secondary fs-3"> | Page {{ tagPage.pagination.pageNumber | plus: 1 }}</small>{% endif %}{% endif %}{% if page.inputPath contains "changelog" %}<small class="text-body-secondary fs-3">{{ changelog-title }}</small>{% endif %}</h1>
+            <h1 class="display-6">{%- if page.inputPath contains "changelog" and page.templateSyntax contains "liquid,md" -%}<span class="visually-hidden" data-pagefind-ignore>Changelog | </span>v{% endif %}{{ title }}{% if currentTag %} <span class="h5"><span class="badge git-badge badge-{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}">{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}</span></span>{% if tagPage.pagination.pageNumber > 0 %}<small class="text-body-secondary fs-3"> | Page {{ tagPage.pagination.pageNumber | plus: 1 }}</small>{% endif %}{% endif %}{% if page.inputPath contains "changelog" %}<small class="text-body-secondary fs-3">{{ changelogTitle }}</small>{% endif %}</h1>
             <hr>
             <p class="px-2"{%- if page.inputPath contains "changelog" -%} data-pagefind-ignore="all"{%- endif -%}>
                 {{ description }}
@@ -28,7 +28,7 @@
             {%- assign excluded_ids = "files,check,exif,headers,community,privacy,about,accessibility,license,contributing,code-of-conduct,security,sitemap,search,settings" | split: "," -%}
             {%- assign excluded_fragments = "tag,tags,changelog" | split: "," -%}
 
-            {%- assign id_excluded = excluded_ids contains page-id -%}
+            {%- assign id_excluded = excluded_ids contains pageId -%}
             {%- assign path_excluded = false -%}
 
             {%- for fragment in excluded_fragments -%}

@@ -2,7 +2,6 @@
 layout: layout.liquid
 title: Sitemap
 description: An overview of all pages available across the site
-page-id: sitemap
 eleventyExcludeFromCollections: true
 ---
 
@@ -10,22 +9,22 @@ eleventyExcludeFromCollections: true
     <div class="py-4 px-3 px-sm-4">
         <div class="section-heading mb-4">
             <div class="row" style="--bs-gutter-y:1.5rem;" data-masonry='{"percentPosition": true }'>
-                {% for nav-item in nav %}
-                {% if nav-item.exclude-from-sitemap == false %}
+                {% for navItem in nav %}
+                {% if navItem.excludeFromSitemap == false %}
                 <div class="col-12 col-md-6 col-lg-4 col-hd-3 col-hd-3 col-fhd-3">
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title h5 position-relative mb-0 mt-2">
-                                <a class="stretched-link link-underline link-underline-opacity-0 text-convrtr-link" href="{{ '/' | append: nav-item.id | replace: 'text', '' | url }}">
-                                    {{ nav-item.label }}
+                                <a class="stretched-link link-underline link-underline-opacity-0 text-convrtr-link" href="{{ '/' | append: navItem.id | replace: 'text', '' | url }}">
+                                    {{ navItem.label }}
                                 </a>
                             </h2>
                         </div>
                         <div class="list-group list-group-flush">
-                            {%- assign sortedItems = nav-item.children | sort: 'id' -%}
-                            {% for nav-child in sortedItems %}
-                            <a href="../{% if nav-child.id != 'convrtrs'%}{{ nav-item.id }}/{% endif %}{{ nav-child.id }}" 
-                            class="list-group-item list-group-item-action py-3">{{ nav-child.label }}</a>
+                            {%- assign sortedItems = navItem.children | sort: 'id' -%}
+                            {% for navChild in sortedItems %}
+                            <a href="../{% if navChild.id != 'convrtrs'%}{{ navItem.id }}/{% endif %}{{ navChild.id }}" 
+                            class="list-group-item list-group-item-action py-3">{{ navChild.label }}</a>
                             {% endfor %}
                         </div>
                     </div>

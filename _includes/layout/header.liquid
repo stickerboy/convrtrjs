@@ -34,18 +34,18 @@
                         <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">GitHub</span>
                     </a>
                     </li>
-                    {%- unless page-id == "search" %}
+                    {%- unless pageId == "search" %}
                     <li class="nav-item">
                         <button class="btn btn-md btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
-                            aria-controls="offcanvasSearch" aria-label="{{ searchItem.aria-label }}" 
+                            aria-controls="offcanvasSearch" aria-label="{{ searchItem.ariaLabel }}" 
                             title="{{ searchItem.label }}" data-bs-toggle="tooltip" data-bs-placement="bottom">
                             <i class="bi bi-{{ searchItem.icon }}" aria-hidden="true" focusable="false"></i>
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label }}</span>
                         </button>
                     </li>
                     {%- endunless %}
-                    {%- assign excludedPages = "fourohfour,404,search" | split: "," %}
-                {%- if not excludedPages contains page-id  %}
+                    {%- assign excludedPages = "404,search" | split: "," %}
+                {%- if not excludedPages contains pageId  %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
@@ -108,7 +108,7 @@
                                     {{ searchItem.label_1 }} <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label_2 }}</span>
                                 </a>
                             </li>
-                            {%- if not excludedPages contains page-id %}
+                            {%- if not excludedPages contains pageId %}
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
                                     id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">

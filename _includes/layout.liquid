@@ -19,7 +19,7 @@
     <body>
         <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
         {% include "layout/header" %}
-        {%- unless page-id == "search" -%}
+        {%- unless pageId == "search" -%}
         {% include "layout/search" %}
         {%- endunless -%}
         <div class="mw d-flex mx-auto">
@@ -27,16 +27,16 @@
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     {% include "layout/sidebar" %}
                 </div>
-                {% assign excludedPages = "fourohfour,404,search,sitemap,tags" | split: "," %}
-                {% assign isExcluded = excludedPages contains page-id %}
+                {% assign excludedPages = "404,search,sitemap,tags" | split: "," %}
+                {% assign isExcluded = excludedPages contains pageId %}
                 {% assign isTagPath = page.inputPath contains "tag" %}
                 {%- for tag in tags -%}
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
                 {%- endfor -%}
                 {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
-                <main class="page-wrap page-wrap-{{ page-id }} overflow-y-auto p-0 mw{% if page-id == "404" %} g-start-1 g-start-md-2{% endif %}"
+                <main class="page-wrap page-wrap-{{ pageId }} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
                     data-bs-smooth-scroll="true" id="content"{% unless isExcluded or isTagPath %} data-pagefind-body{% endunless %}>
-                    {% if page-id != "404" -%}
+                    {% if pageId != "404" -%}
                     {% include "partials/default" %}
                     {%- endif -%}
                     {{ content }}
@@ -48,7 +48,7 @@
         {% render "layout/toast" %}
     </body>
 </html>
-{% assign dynamicPartialPath = "partials/routes/" | append: page-id | append: ".liquid" %}
+{% assign dynamicPartialPath = "partials/routes/" | append: pageId | append: ".liquid" %}
 {% if dynamicPartialPath | fileExists %}
     {% render dynamicPartialPath %}
 {% else %}

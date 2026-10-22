@@ -2,7 +2,6 @@
 title: Settings
 layout: layout.liquid
 description: Manage your preferences and customize how the site works for you.
-page-id: settings
 eleventyExcludeFromCollections: true
 ---
 
@@ -17,7 +16,7 @@ eleventyExcludeFromCollections: true
     </p>
     <div class="px-3">
       {%- for link in nav %}
-      {%- if link.exclude-from-settings == false %}
+      {%- if link.excludeFromSettings == false %}
         <h3 class="display-6 fs-4 w-100 d-flex">
             <i class="bi bi-{{ link.icon }} me-2 mt-1 fs-5" aria-hidden="true" focusable="false"></i> {{ link.label }}
         </h3>
@@ -32,7 +31,7 @@ eleventyExcludeFromCollections: true
         </div>
         {%- assign hasMore = false %}
         {%- for checkLink in nav offset: forloop.index %}
-          {%- if checkLink.exclude-from-settings == false %}
+          {%- if checkLink.excludeFromSettings == false %}
             {%- assign hasMore = true %}
             {%- break %}
           {%- endif %}
