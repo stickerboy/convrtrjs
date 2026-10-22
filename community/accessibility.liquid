@@ -6,11 +6,14 @@ page-id: accessibility
 eleventyExcludeFromCollections: true
 eleventyComputed:
   description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
+  contact:
+    support: "{{ pkg.support }}"
+    issues: "{{ pkg.bugs.url }}/new"
 tags: community
 ---
 
 <section class="section changelog accessibility">
     <article class="py-4 px-3 px-sm-4">
-        {% renderFile "./a11y.md" %}
+        {% renderFile "./a11y.md", contact %}
     </article>
 </section>

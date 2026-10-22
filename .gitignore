@@ -1,5 +1,5 @@
-.github
 .nvmrc
+_site/
 assets/devcss/*
 node_modules/*
 

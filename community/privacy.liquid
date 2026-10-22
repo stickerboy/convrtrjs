@@ -6,10 +6,13 @@ page-id: privacy
 eleventyExcludeFromCollections: true
 eleventyComputed:
   description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | date: "%B %d, %Y" }}</code>'
+  contact:
+    support: "{{ pkg.support }}"
+    issues: "{{ pkg.bugs.url }}/new"
 tags: community
 ---
 <section class="section changelog privacy">
   <article class="py-4 px-3 px-sm-4">
-        {% renderFile "./privacy.md" %}
+        {% renderFile "./privacy.md", contact %}
     </article>
 </section>

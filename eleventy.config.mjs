@@ -14,7 +14,9 @@ const allowedTagsData = JSON.parse(fs.readFileSync(allowedTagsPath, "utf-8"));
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(RenderPlugin);
 
+    eleventyConfig.ignores.add(".github/");
     eleventyConfig.ignores.add("a11y.md");
+    eleventyConfig.ignores.add("about.md");
     eleventyConfig.ignores.add("privacy.md");
     eleventyConfig.ignores.add("README.md");
     eleventyConfig.ignores.add("SECURITY.md");
@@ -24,7 +26,6 @@ export default function (eleventyConfig) {
     eleventyConfig.ignores.add("_includes/");
     eleventyConfig.ignores.add("_templates/");
     eleventyConfig.setWatchThrottleWaitTime(100);
-    eleventyConfig.addPassthroughCopy("LICENSE");
     eleventyConfig.addPassthroughCopy("assets/css/*.css");
     eleventyConfig.addPassthroughCopy("assets/favicons/*");
     eleventyConfig.addPassthroughCopy("assets/img");
@@ -67,27 +68,8 @@ export default function (eleventyConfig) {
     eleventyConfig.on("beforeBuild", () => {
         const outputDir = path.join(process.cwd(), "_site");
 
-        // Check if the _site directory exists
-        if (fs.existsSync(outputDir)) {
-            // Read all files and subdirectories inside _site
-            const files = fs.readdirSync(outputDir);
-
-            // Iterate over each file/subdirectory and remove it
-            files.forEach((file) => {
-                const filePath = path.join(outputDir, file);
-                if (fs.lstatSync(filePath).isDirectory()) {
-                    // Remove subdirectory recursively
-                    fs.rmSync(filePath, { recursive: true, force: true });
-                    // Recreate the subdirectory
-                    fs.mkdirSync(filePath);
-                } else {
-                    // Remove file
-                    fs.unlinkSync(filePath);
-                }
-            });
-
-            console.log("Cleaned and recreated contents of _site directory.");
-        }
+        // Start from a clean output directory so stale pages/folders don't linger
+        fs.rmSync(outputDir, { recursive: true, force: true });
 
         const changelogDir = path.join(__dirname, "changelog");
         const files = fs.readdirSync(changelogDir).filter((file) => file.endsWith(".md"));
