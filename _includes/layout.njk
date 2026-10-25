@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" class="overflow-y-hidden">
     <head>
-        {% include "layout/ga" %}
-        {% include "layout/cookie" %}
-        {% include "layout/meta" %}
-        {% include "layout/title" %}
+        {% include "layout/ga.njk" %}
+        {% include "layout/cookie.njk" %}
+        {% include "layout/meta.njk" %}
+        {% include "layout/title.njk" %}
 
         <script>
             (function () {
@@ -13,44 +13,43 @@
             })();
         </script>
 
-        {% include "layout/css" %}
-        {% include "layout/favicons" %}
+        {% include "layout/css.njk" %}
+        {% include "layout/favicons.njk" %}
     </head>
     <body>
         <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
-        {% include "layout/header" %}
-        {%- unless pageId == "search" -%}
-        {% include "layout/search" %}
-        {%- endunless -%}
+        {% include "layout/header.njk" %}
+        {%- if pageId != "search" -%}
+        {% include "layout/search.njk" %}
+        {%- endif -%}
         <div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
-                    {% include "layout/sidebar" %}
+                    {% include "layout/sidebar.njk" %}
                 </div>
-                {% assign excludedPages = "404,search,sitemap,tags" | split: "," %}
-                {% assign isExcluded = excludedPages contains pageId %}
-                {% assign isTagPath = page.inputPath contains "tag" %}
+                {% set isExcluded = pageId in ["404", "search", "sitemap", "tags"] %}
+                {% set isTagPath = "tag" in page.inputPath %}
                 {%- for tag in tags -%}
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
                 {%- endfor -%}
                 {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
                 <main class="page-wrap page-wrap-{{ pageId }} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
-                    data-bs-smooth-scroll="true" id="content"{% unless isExcluded or isTagPath %} data-pagefind-body{% endunless %}>
+                    data-bs-smooth-scroll="true" id="content"{% if not (isExcluded or isTagPath) %} data-pagefind-body{% endif %}>
                     {% if pageId != "404" -%}
-                    {% include "partials/default" %}
+                    {% include "partials/default.njk" %}
                     {%- endif -%}
                     {{ content }}
-                    {% include "layout/footer" %}
+                    {% include "layout/footer.njk" %}
                 </main>
             </div>
         </div>
-        {% include "layout/scripts" %}
-        {% render "layout/toast" %}
+        {% include "layout/scripts.njk" %}
+        {% include "layout/toast.njk" %}
     </body>
 </html>
-{% assign dynamicPartialPath = "partials/routes/" | append: pageId | append: ".liquid" %}
-{% if dynamicPartialPath | fileExists %}
-    {% render dynamicPartialPath %}
+{% set routePartial = "partials/routes/" ~ pageId ~ ".njk" %}
+{% if routePartial | fileExists %}
+    {% include routePartial %}
 {% else %}
-    {% render "partials/routes/home" %}
+    {% include "partials/routes/home.njk" %}
 {% endif %}

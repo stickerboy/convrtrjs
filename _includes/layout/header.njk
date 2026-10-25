@@ -1,4 +1,4 @@
-{%- assign searchItem = nav | where: "id", "search" | first -%}
+{%- set searchItem = nav | where("id", "search") | first -%}
 <header>
     <nav id="navbar" class="navbar fixed-top navbar-dark bg-convrtr shadow-sm" aria-label="Main navigation">
         <div class="container-fluid mw justify-content-start">
@@ -34,7 +34,7 @@
                         <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">GitHub</span>
                     </a>
                     </li>
-                    {%- unless pageId == "search" %}
+                    {%- if pageId != "search" %}
                     <li class="nav-item">
                         <button class="btn btn-md btn-link text-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSearch"
                             aria-controls="offcanvasSearch" aria-label="{{ searchItem.ariaLabel }}" 
@@ -43,9 +43,9 @@
                             <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label }}</span>
                         </button>
                     </li>
-                    {%- endunless %}
-                    {%- assign excludedPages = "404,search" | split: "," %}
-                {%- if not excludedPages contains pageId  %}
+                    {%- endif %}
+                    {%- set excludedPages = ["404", "search"] %}
+                {%- if pageId not in excludedPages %}
                     <li class="nav-item">
                         <button type="button" class="btn btn-md btn-link text-light btn-reset-data" id="resetData" 
                                 aria-label="Clear all data inside textareas" title="Clear data"
@@ -103,12 +103,12 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end position-absolute" aria-labelledby="bd-settings" id="bd-nested-settings">
                             <li>
-                                <a href="{{ '/' | append: searchItem.id | url }}" class="dropdown-item d-flex align-items-center rounded-0">
+                                <a href="{{ ('/' ~ searchItem.id) | url }}" class="dropdown-item d-flex align-items-center rounded-0">
                                     <i class="bi me-2 opacity-75 theme-icon bi-{{ searchItem.icon }}" aria-hidden="true" focusable="false"></i>
                                     {{ searchItem.label_1 }} <span class="visually-hidden mx-2" focusable="false" aria-hidden="false">{{ searchItem.label_2 }}</span>
                                 </a>
                             </li>
-                            {%- if not excludedPages contains pageId %}
+                            {%- if pageId not in excludedPages %}
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded-0 btn-reset-data"
                                     id="resetDataAlt" aria-label="Clear all data inside textareas" title="Clear data">

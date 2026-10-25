@@ -1,4 +1,4 @@
-{%- assign searchItem = nav | where: "id", "search" | first -%}
+{%- set searchItem = nav | where("id", "search") | first -%}
 <div class="offcanvas offcanvas-end shadow" tabindex="-1" id="offcanvasSearch" 
      aria-labelledby="offcanvasSearchLabel" data-bs-scroll="true" data-bs-backdrop="false">
     <div class="offcanvas-header">
@@ -11,7 +11,7 @@
             Begin typing to see live results right away; there's no need to hit Enter, everything updates as you type.
         </p>
         <p class="text-end">
-            <a href="{{ '/' | append: searchItem.id | append: '/' | url }}" class="text-convrtr-link advanced-search">Advanced search</a>
+            <a href="{{ ('/' ~ searchItem.id ~ '/') | url }}" class="text-convrtr-link advanced-search">Advanced search</a>
         </p>
         <div class="mb-2">
             <pagefind-input debounce="500"></pagefind-input>

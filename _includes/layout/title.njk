@@ -1,0 +1,6 @@
+{% set currentTag = tagPage.tag %}
+{% if not currentTag and "/changelog/tag/" in page.url %}
+{% set currentTag = page.url.replace("/changelog/tag/", "").split("/")[0] %}
+{% endif %}
+<title>{{ pkg.sitename }} - {% if pageId == "changelog-item" %} Changelog | v{% endif %}{% if title %}{{ title }} {% else %}{{ page.fileSlug | capitalize }} {% endif %}{% if currentTag %}| {{ currentTag }}{% endif %}{% if tagPage.pagination.pageNumber > 0 %} | Page {{ tagPage.pagination.pageNumber + 1 }}{% endif %}{% if "changelog" in page.inputPath %}{{ changelogTitle }}{% endif %}</title>
+<link rel="canonical" href="{{ pkg.homepage }}">

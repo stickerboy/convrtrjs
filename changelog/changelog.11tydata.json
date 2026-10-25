@@ -1,5 +1,5 @@
 {
-    "layout": "layout/version.liquid",
+    "layout": "layout/version.njk",
     "eleventyComputed": {
         "pageId": "changelog-item"
     }

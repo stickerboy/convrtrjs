@@ -1,13 +1,12 @@
-{%- assign excludeFoldername = "convrtrs" | split: "," %}
 <div class="sidebar-dropdown d-grid gap-2 pb-3" id="nav-dropdown">
     {% for link in nav %}
     {% if link.excludeFromSidebar == false %}
-    <div class="sidebar-item d-grid gap-2{% if pageId ==  link.id or folderName == link.id or page.url contains link.id %} active{% endif %}"
+    <div class="sidebar-item d-grid gap-2{% if pageId ==  link.id or folderName == link.id or link.id in page.url %} active{% endif %}"
         data-link-id="{{ link.id }}" data-page-id="{{ pageId }}">
         {% if link.children %}
         <div class="btn-group">
-            <a class="btn sidebar-item__link d-flex align-items-center border border-success rounded-start-2 {% if pageId ==  link.id or folderName == link.id or page.url contains link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start p-0"
-                href="{{ '/' | append: link.id | replace: 'text', '' | url }}" aria-label="{{ link.label }}">
+            <a class="btn sidebar-item__link d-flex align-items-center border border-success rounded-start-2 {% if pageId ==  link.id or folderName == link.id or link.id in page.url %} border-opacity-25 active{% else %} border-opacity-10{% endif %} text-start p-0"
+                href="{{ ('/' ~ link.id) | replace('text', '') | url }}" aria-label="{{ link.label }}">
                 <span role="button" class="sidebar-item__icon btn fs-4 px-3 py-2 d-inline-flex" title="{{ link.label }}"
                     data-bs-toggle="tooltip" data-bs-placement="right">
                     <i class="bi bi-{{ link.icon }} d-inline-block" style="height:auto;width:auto;"></i>
@@ -26,11 +25,11 @@
         <div class="collapse multi-collapse" id="collapse{{ link.id }}">
             <div class="ac-body">
                 <ul class="menu">
-                    {% assign sortedItems = link.children | sort: 'id' %}
+                    {% set sortedItems = link.children | sort(false, true, 'id') %}
                     {% for child in sortedItems %}
                     <li class="mb-1">
                         <a class="dropdown-item{% if pageId == child.id %} fw-bold link-underline-success{% endif %}"
-                            href="{% if child.id != 'convrtrs' %}{{ '/' | append: link.id | url }}{% endif %}/{{ child.id }}"
+                            href="{% if child.id != 'convrtrs' %}{{ ('/' ~ link.id) | url }}{% endif %}/{{ child.id }}"
                             data-target="#{{ link.id }}">
                             {{ child.label }}
                         </a>
@@ -42,8 +41,8 @@
         {% else %}
         <a class="btn sidebar-item__link d-flex align-items-center text-start p-0 border border-success
         {% if pageId ==  link.id or folderName == link.id %} border-opacity-25 active{% else %} border-opacity-10{% endif %}"
-            aria-label="{{ link.ariaLabel }}" href="{{ '/' | append: link.id | replace: 'text', '' | url }}"
-            data-href="{{ '/' | append: link.id | replace: 'text', '' | url }}">
+            aria-label="{{ link.ariaLabel }}" href="{{ ('/' ~ link.id) | replace('text', '') | url }}"
+            data-href="{{ ('/' ~ link.id) | replace('text', '') | url }}">
             <span class="sidebar-item__icon btn px-3 py-1 d-inline-block fs-5"
                 title="{{ link.label }}" data-bs-toggle="tooltip" data-bs-placement="right" role="button">
                 <i class="bi bi-{{ link.icon }}" aria-hidden="true" focusable="false"></i>

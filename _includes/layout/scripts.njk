@@ -13,10 +13,10 @@
 {%- endif -%}
 <script type="module" src="{{ '/assets/js/scripts.mjs' | url }}"></script>
 {%- if pageId == "check" or pageId == "files" -%}
-<script>const HEADERS = {{ headers | json }};</script>
+<script>const HEADERS = {{ headers | dump }};</script>
 {%- endif -%}
 {%- if pageId == "elementstable" or pageId == "misc" -%}
-<script>const ELEMENTS = {{ elements | json }};</script>
+<script>const ELEMENTS = {{ elements | dump }};</script>
 {%- endif -%}
 {%- if pageId == "exif" or pageId == "files" -%}
 <script src="{{ '/assets/js/files/exif-reader.js' | url }}"></script>

@@ -7,7 +7,10 @@ export default function (eleventyConfig) {
     eleventyConfig.addFilter("fileExists", (filePath, joinPath = "_includes") => fs.existsSync(path.join(joinPath, filePath)));
 
     // No-op stand-in for Nunjucks' built-in `safe` - remove once templates are converted
-    eleventyConfig.addFilter("safe", (content) => content);
+    eleventyConfig.addLiquidFilter("safe", (content) => content);
+
+    // Liquid's `where`, e.g. nav | where("id", "search") | first
+    eleventyConfig.addNunjucksFilter("where", (array, key, value) => (array || []).filter((item) => item?.[key] === value));
 
     eleventyConfig.addFilter("dateISO", (date) => new Date(date).toISOString());
 

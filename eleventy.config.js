@@ -29,6 +29,9 @@ export default function (eleventyConfig) {
         eleventyConfig.addPassthroughCopy(asset)
     );
 
+    // Data and content contain trusted HTML (descriptions, popovers), so output isn't escaped - matching Liquid
+    eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: false });
+
     eleventyConfig.setLiquidOptions({
         dynamicPartials: true,
         strict_filters: true,

@@ -13,28 +13,28 @@
         {% if folderName and folderName != "pages" %}
         {% if folderName != "text" %}
         <li class="breadcrumb-item">
-            <a href="{{ folderName | prepend: '/' | url }}" class="text-convrtr">{{ folderName }}</a>
+            <a href="{{ ('/' ~ folderName) | url }}" class="text-convrtr">{{ folderName }}</a>
         </li>
         {% endif %}
         {% endif %}
-        {% if page.inputPath contains "changelog/" %}
+        {% if "changelog/" in page.inputPath %}
         <li class="breadcrumb-item">
             <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
             v{{ page.fileSlug }}
         </li>
-        {% elsif page.url contains "/tag/" %}
+        {% elif "/tag/" in page.url %}
         <li class="breadcrumb-item">
             <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
         </li>
-        {%- assign tag = page.url | split: '/' | last -%}
+        {%- set tag = page.url.split('/').slice(-2)[0] -%}
         <li class="breadcrumb-item active" aria-current="page">
             {{ tag }}
         </li>
         {% else %}
         <li class="breadcrumb-item active" aria-current="page">
-            {{ pageId | downcase }}
+            {{ pageId | lower }}
         </li>
         {% endif %}
     </ol>
