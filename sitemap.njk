@@ -1,0 +1,38 @@
+---
+layout: layout.njk
+title: Sitemap
+description: An overview of all pages available across the site
+eleventyExcludeFromCollections: true
+---
+
+<section id="sitemap" class="section">
+    <div class="py-4 px-3 px-sm-4">
+        <div class="section-heading mb-4">
+            <div class="row" style="--bs-gutter-y:1.5rem;" data-masonry='{"percentPosition": true }'>
+                {% for navItem in nav %}
+                {% if navItem.excludeFromSitemap == false %}
+                <div class="col-12 col-md-6 col-lg-4 col-hd-3 col-hd-3 col-fhd-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title h5 position-relative mb-0 mt-2">
+                                <a class="stretched-link link-underline link-underline-opacity-0 text-convrtr-link" href="{{ ('/' ~ navItem.id) | replace('text', '') | url }}">
+                                    {{ navItem.label }}
+                                </a>
+                            </h2>
+                        </div>
+                        <div class="list-group list-group-flush">
+                            {%- set sortedItems = navItem.children | sort(false, true, 'id') -%}
+                            {% for navChild in sortedItems %}
+                            <a href="../{% if navChild.id != 'convrtrs'%}{{ navItem.id }}/{% endif %}{{ navChild.id }}" 
+                            class="list-group-item list-group-item-action py-3">{{ navChild.label }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+

@@ -6,13 +6,17 @@ export default function (eleventyConfig) {
 
     eleventyConfig.addFilter("fileExists", (filePath, joinPath = "_includes") => fs.existsSync(path.join(joinPath, filePath)));
 
-    // No-op stand-in for Nunjucks' built-in `safe` - remove once templates are converted
-    eleventyConfig.addLiquidFilter("safe", (content) => content);
-
-    // Liquid's `where`, e.g. nav | where("id", "search") | first
-    eleventyConfig.addNunjucksFilter("where", (array, key, value) => (array || []).filter((item) => item?.[key] === value));
+    // Items whose `key` equals `value`, e.g. nav | where("id", "search") | first
+    eleventyConfig.addFilter("where", (array, key, value) => (array || []).filter((item) => item?.[key] === value));
 
     eleventyConfig.addFilter("dateISO", (date) => new Date(date).toISOString());
+
+    // e.g. "September 04, 2025" (UTC, so local builds match CI)
+    eleventyConfig.addFilter("readableDate", (date) => {
+        const d = new Date(date);
+        const month = d.toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+        return `${month} ${String(d.getUTCDate()).padStart(2, "0")}, ${d.getUTCFullYear()}`;
+    });
 
     // Landing pages show every tool in a category, so reveal the collapse toggles hidden on single tool pages
     eleventyConfig.addFilter("removeHiddenClass", (content, isLandingPage) => {

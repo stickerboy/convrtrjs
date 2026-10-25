@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+title: Miscellaneous tools
+description: A collection of miscellaneous tools for use in puzzle solving.
+tags: landing-page
+---
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
+{% for tool in collections.misc %}
+    {{ tool.templateContent | removeHiddenClass(true) | safe }}
+{% endfor %}

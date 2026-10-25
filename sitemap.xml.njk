@@ -1,0 +1,38 @@
+---
+layout: null 
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- set pageNeverChanges = "changelog-item,search,accessibility,privacy".split(",") %}
+{%- for item in collections.all %}
+  {%- if not ("assets" in item.url or "tag" in item.url) %}
+    <url>
+      <loc>{{ pkg.homepage }}{{ item.url }}</loc>
+      {%- if item.data.date %}
+      <lastmod>{{ item.data.date | dateISO }}</lastmod>
+      {%- else %}
+      <lastmod>{{ item.data.lastmod | dateISO }}</lastmod>
+      {%- endif -%}
+      {% if item.data.pageId in pageNeverChanges %}
+      <changefreq>never</changefreq>
+      {%- else %}
+      <changefreq>monthly</changefreq>
+      {%- endif %}
+    </url>
+  {%- endif %}
+{%- endfor %}
+{%- for tag in labels.labels %}
+  {%- if tag.visible %}
+    {%- set tagItems = collections[tag.key] | sort(true, false, "date") %}
+    {%- if tagItems | length > 0 %}
+    <url>
+      <loc>{{ pkg.homepage }}/changelog/tag/{{ tag.key }}/</loc>
+      <lastmod>{{ tagItems[0].date | dateISO }}</lastmod>
+      <changefreq>monthly</changefreq>
+    </url>
+    {%- endif %}
+  {%- endif %}
+{%- endfor %}
+</urlset>

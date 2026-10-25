@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+title: Cipher tools
+description: A collection of tools for encrypting and decrypting data, using some commonly known ciphers.
+tags: landing-page
+---
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
+{% for tool in collections.ciphers %}
+    {{ tool.templateContent | removeHiddenClass(true) | safe }}
+{% endfor %}

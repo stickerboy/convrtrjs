@@ -1,0 +1,56 @@
+---
+title: Search
+layout: layout.njk
+description: Quickly search and filter through the available decoding tools, and resources
+permalink: /search/
+eleventyComputed:
+  description: "{{ description }}<br />A minimum of 2 characters is required in order for results to be returned"
+---
+
+{% set filename = page.fileSlug %}
+<section id="{{ filename }}" class="section py-4 px-3 px-sm-4">
+    <div id="page-search" class="col-md-12 text-center search">
+      <pagefind-config excerpt-length="80"></pagefind-config>
+      <pagefind-input debounce="500"></pagefind-input>
+      <div class="grid mt-3">
+          <div class="g-col-12 g-col-md-4 g-col-lg-3">
+            <pagefind-filter-pane open="filters"></pagefind-filter-pane>
+          </div>
+          <div class="g-col-12 g-col-md-8 g-col-lg-9">
+            <convrtr-summary></convrtr-summary>
+            <div class="mt-3 list-group">
+              <pagefind-results></pagefind-results>
+              <script>
+                (() => {
+                  // the html-template context strips "filters", so a JS resultTemplate is required to render tags
+                  const escapeHtml = (str) => String(str ?? "").replace(/[&<>"']/g, (c) => ({
+                    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+                  }[c]));
+
+                  const resultsEl = document.currentScript.previousElementSibling;
+
+                  // element resets resultTemplate on upgrade, so it must be set after the custom element is defined
+                  customElements.whenDefined("pagefind-results").then(() => {
+                    resultsEl.resultTemplate = (data) => {
+                      const tags = [...new Set(data.filters?.Filters ?? [])];
+                      const tagsHtml = tags.length
+                        ? `<div class="badges mt-3">${tags.map((tag) => `<span class="badge badge-${escapeHtml(tag)}">${escapeHtml(tag)}</span>`).join("")}</div>`
+                        : "";
+
+                      return `
+                        <li class="pf-result-item list-group-action-item">
+                          <p class="pf-result-title mb-3">
+                            <a href="${escapeHtml(data.url)}" class="pf-result-link">${escapeHtml(data.meta?.title)}</a>
+                          </p>
+                          <p class="result-excerpt">${data.excerpt ?? ""}</p>
+                          ${tagsHtml}
+                        </li>
+                      `;
+                    };
+                  });
+                })();
+              </script>
+            </div>
+      </div>
+    </div>
+</section>

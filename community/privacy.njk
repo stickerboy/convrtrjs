@@ -1,0 +1,18 @@
+---
+layout: layout.njk
+title: Privacy policy
+description: This page explains how we handle your info — what we collect, why we need it, and how we keep it safe.
+eleventyExcludeFromCollections: true
+lastmodFrom: privacy.md
+eleventyComputed:
+  description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | readableDate }}</code>'
+  contact:
+    support: "{{ pkg.support }}"
+    issues: "{{ pkg.bugs.url }}/new"
+tags: community
+---
+<section class="section prose privacy">
+  <article class="py-4 px-3 px-sm-4">
+        {% renderFile "./privacy.md", contact %}
+    </article>
+</section>

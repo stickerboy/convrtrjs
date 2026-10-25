@@ -1,0 +1,15 @@
+---
+layout: layout.njk
+title: Contributing to the project
+description: Learn how to get involved with Convrtr — whether it's fixing bugs, suggesting features, or improving docs, every contribution makes a difference!
+eleventyExcludeFromCollections: true
+lastmodFrom: CONTRIBUTING.md
+eleventyComputed:
+  description: '{{ description }}<br />Last updated: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ lastmod | readableDate }}</code>'
+tags: community
+---
+<section class="section prose contributing">
+  <article class="py-4 px-3 px-sm-4">
+        {% renderFile "./CONTRIBUTING.md" %}
+    </article>
+</section>

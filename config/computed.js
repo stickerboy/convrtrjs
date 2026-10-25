@@ -11,7 +11,7 @@ export default {
         if (data.customPermalink) {
             return data.customPermalink;
         }
-        // ./pages/hex/shift.liquid -> /hex/shift/
+        // ./pages/hex/shift.njk -> /hex/shift/
         if (isToolPage(data)) {
             return `/${data.page.inputPath.replace(/^.*\/pages\//, "").replace(/\.[^/.]+$/, "")}/`;
         }
@@ -34,7 +34,7 @@ export default {
         return data.description;
     },
 
-    // The tool category a page belongs to, e.g. "hex" for ./pages/hex/shift.liquid
+    // The tool category a page belongs to, e.g. "hex" for ./pages/hex/shift.njk
     folderName: (data) => (isToolPage(data) ? data.page.inputPath.split("/").at(-2) : null),
 
     pageId: (data) => data.page.fileSlug,

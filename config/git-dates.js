@@ -45,7 +45,7 @@ export function resetGitDates() {
  * mtime if it has uncommitted changes or has never been committed.
  * Requires full history in CI (actions/checkout `fetch-depth: 0`).
  *
- * @param {string} inputPath - Eleventy input path, e.g. "./pages/hex/shift.liquid"
+ * @param {string} inputPath - Eleventy input path, e.g. "./pages/hex/shift.njk"
  * @returns {Date}
  */
 export function lastModified(inputPath) {

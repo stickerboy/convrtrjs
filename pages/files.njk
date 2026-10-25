@@ -1,0 +1,10 @@
+---
+layout: layout.njk
+title: File tools
+description: Various tools for working with files and file formats.
+tags: landing-page
+---
+<span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
+{% for tool in collections.files %}
+    {{ tool.templateContent | removeHiddenClass(true) | safe }}
+{% endfor %}
