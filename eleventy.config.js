@@ -10,6 +10,7 @@ export default function (eleventyConfig) {
     eleventyConfig.addPlugin(collections);
     eleventyConfig.addPlugin(events);
     eleventyConfig.addGlobalData("eleventyComputed", computed);
+    eleventyConfig.addGlobalData("layout", "layouts/base.njk");
 
     // Repo docs - kept in the root for GitHub, rendered onto /community pages via renderFile
     [

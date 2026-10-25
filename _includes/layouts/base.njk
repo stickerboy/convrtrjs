@@ -1,10 +1,10 @@
 <!doctype html>
 <html lang="en" class="overflow-y-hidden">
     <head>
-        {% include "layout/ga.njk" %}
-        {% include "layout/cookie.njk" %}
-        {% include "layout/meta.njk" %}
-        {% include "layout/title.njk" %}
+        {% include "partials/ga.njk" %}
+        {% include "partials/cookie.njk" %}
+        {% include "partials/meta.njk" %}
+        {% include "partials/title.njk" %}
 
         <script>
             (function () {
@@ -13,19 +13,19 @@
             })();
         </script>
 
-        {% include "layout/css.njk" %}
-        {% include "layout/favicons.njk" %}
+        {% include "partials/css.njk" %}
+        {% include "partials/favicons.njk" %}
     </head>
     <body>
         <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
-        {% include "layout/header.njk" %}
+        {% include "partials/header.njk" %}
         {%- if pageId != "search" -%}
-        {% include "layout/search.njk" %}
+        {% include "partials/search.njk" %}
         {%- endif -%}
         <div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
-                    {% include "layout/sidebar.njk" %}
+                    {% include "partials/sidebar.njk" %}
                 </div>
                 {% set isExcluded = pageId in ["404", "search", "sitemap", "tags"] %}
                 {% set isTagPath = "tag" in page.inputPath %}
@@ -36,15 +36,15 @@
                 <main class="page-wrap page-wrap-{{ pageId }} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
                     data-bs-smooth-scroll="true" id="content"{% if not (isExcluded or isTagPath) %} data-pagefind-body{% endif %}>
                     {% if pageId != "404" -%}
-                    {% include "partials/default.njk" %}
+                    {% include "partials/page-header.njk" %}
                     {%- endif -%}
                     {{ content }}
-                    {% include "layout/footer.njk" %}
+                    {% include "partials/footer.njk" %}
                 </main>
             </div>
         </div>
-        {% include "layout/scripts.njk" %}
-        {% include "layout/toast.njk" %}
+        {% include "partials/scripts.njk" %}
+        {% include "partials/toast.njk" %}
     </body>
 </html>
 {% set routePartial = "partials/routes/" ~ pageId ~ ".njk" %}
