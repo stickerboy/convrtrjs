@@ -13,5 +13,5 @@ tags: landing-page
 ---
 <span class="hidden" data-pagefind-filter="Filters" data-pagefind-meta="type:{{tags}}">{{ tags }}</span>
 {% for tool in collections.oni %}
-    {{ tool.templateContent | removeHiddenClass(true) | safe }}
+    {{ tool.templateContent }}
 {% endfor %}

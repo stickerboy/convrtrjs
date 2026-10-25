@@ -1,6 +1,6 @@
 {#
     Collapsible tool section: heading + intro, then the tool UI in a collapse body.
-    On a tool's own page the toggle is hidden; landing pages reveal it (see removeHiddenClass).
+    The collapse toggle only shows on category landing pages (.landing-page, set by the base layout).
 
     {% from "macros/tool.njk" import toolSection with context %}
     {% set intro %}<p class="px-2">What the tool does…</p>{% endset %}
@@ -15,7 +15,7 @@
 {%- set id = page.fileSlug -%}
 <section id="{{ id }}" class="section">
     <div class="section-heading">
-        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+        <a class="section-toggle justify-content-between text-decoration-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ id }}Collapse" role="button"
             aria-expanded="true" aria-controls="{{ id }}Collapse"
             data-section-name="{{ id }}" data-section-description="Toggle visibility of {{ id }} section"
@@ -27,7 +27,7 @@
                 <i class="bi bi-arrow-up lh-base"></i>
             </span>
         </a>
-        <hr class="d-none my-0 mx-4">
+        <hr class="section-toggle-rule my-0 mx-4">
         <div class="section-description py-3 px-2 px-sm-4">
             {{ intro }}
         </div>

@@ -17,12 +17,4 @@ export default function (eleventyConfig) {
         const month = d.toLocaleString("en-US", { month: "long", timeZone: "UTC" });
         return `${month} ${String(d.getUTCDate()).padStart(2, "0")}, ${d.getUTCFullYear()}`;
     });
-
-    // Landing pages show every tool in a category, so reveal the collapse toggles hidden on single tool pages
-    eleventyConfig.addFilter("removeHiddenClass", (content, isLandingPage) => {
-        if (!isLandingPage) {
-            return content;
-        }
-        return content.replace(/class="([^"]*d-none[^"]*)"/g, (match, classes) => `class="${classes.replace(/\bd-none\b/g, "").trim()}"`);
-    });
 }

@@ -33,7 +33,7 @@
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
                 {%- endfor -%}
                 {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
-                <main class="page-wrap page-wrap-{{ pageId }} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
+                <main class="page-wrap page-wrap-{{ pageId }}{% if tags and "landing-page" in tags %} landing-page{% endif %} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
                     data-bs-smooth-scroll="true" id="content"{% if not (isExcluded or isTagPath) %} data-pagefind-body{% endif %}>
                     {% if pageId != "404" -%}
                     {% include "partials/page-header.njk" %}

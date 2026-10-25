@@ -201,8 +201,8 @@ function isTooltipVisible(instance) {
     return tip && tip.classList.contains("show");
 }
 
-const sectionToggles = Array.from(document.getElementsByClassName("section-toggle"))
-    .filter(sectionToggle => !sectionToggle.classList.contains("d-none"));
+// Toggles are only shown (and active) on category landing pages
+const sectionToggles = Array.from(document.querySelectorAll(".landing-page .section-toggle"));
 if (sectionToggles.length > 0) {
     function restoreOptions() {
         if (localStorage.length !== 0) {

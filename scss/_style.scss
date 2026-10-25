@@ -645,6 +645,20 @@ body {
         transform: rotate(-90deg);
     }
 }
+// Tool sections can only be collapsed on category landing pages, where several tools are listed
+.section-toggle,
+.section-toggle-rule {
+    display: none;
+}
+.landing-page {
+    .section-toggle {
+        display: flex;
+    }
+    .section-toggle-rule {
+        display: block;
+    }
+}
+
 .toggle-button {
     --bs-bg-opacity: 1;
     background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
