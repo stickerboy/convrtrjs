@@ -1,0 +1,42 @@
+{#
+    Collapsible tool section: heading + intro, then the tool UI in a collapse body.
+    On a tool's own page the toggle is hidden; landing pages reveal it (see removeHiddenClass).
+
+    {% from "macros/tool.njk" import toolSection with context %}
+    {% set intro %}<p class="px-2">What the tool does…</p>{% endset %}
+    {% call toolSection(intro) %}
+        …tool UI…
+    {% endcall %}
+
+    Uses page data: heading (falls back to title), page.fileSlug as the section id,
+    and noScript: true to skip loading the tool's JS module.
+#}
+{% macro toolSection(intro) %}
+{%- set id = page.fileSlug -%}
+<section id="{{ id }}" class="section">
+    <div class="section-heading">
+        <a class="d-flex justify-content-between section-toggle text-decoration-none d-none pt-4 pb-3 px-2 px-sm-4"
+            data-bs-toggle="collapse" href="#{{ id }}Collapse" role="button"
+            aria-expanded="true" aria-controls="{{ id }}Collapse"
+            data-section-name="{{ id }}" data-section-description="Toggle visibility of {{ id }} section"
+            data-pagefind-ignore="all">
+            <h2 class="display-6 w-100 d-flex m-0">
+                {{ heading or title }}
+            </h2>
+            <span class="text-light px-1 border rounded align-self-end toggle-button" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Collapse section">
+                <i class="bi bi-arrow-up lh-base"></i>
+            </span>
+        </a>
+        <hr class="d-none my-0 mx-4">
+        <div class="section-description py-3 px-2 px-sm-4">
+            {{ intro }}
+        </div>
+    </div>
+    <div class="pb-4 px-2 px-sm-4 collapse show" id="{{ id }}Collapse">
+        {{ caller() }}
+    </div>
+</section>
+{%- if not noScript %}
+{% include "components/dynamic-script.njk" %}
+{%- endif %}
+{% endmacro %}

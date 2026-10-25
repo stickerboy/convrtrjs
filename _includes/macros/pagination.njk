@@ -1,3 +1,5 @@
+{# Numbered page links for an Eleventy pagination object (or one shaped like it, e.g. tagPage.pagination) #}
+{% macro paginationNav(pagination) %}
 {% if pagination.pages | length > 1 %}
 <nav class="px-2" aria-label="{{ pagination.label}}" data-pagefind-ignore="all">
     <ul class="pagination">
@@ -60,3 +62,4 @@
     </ul>
 </nav>
 {% endif %}
+{% endmacro %}

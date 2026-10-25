@@ -80,6 +80,7 @@ eleventyComputed:
             <a href="{{ '/tags' | url }}" class="text-convrtr">See the full list of tags</a>
         </p>
 
-        {% include "components/pagination.njk" %}
+        {% from "macros/pagination.njk" import paginationNav %}
+        {{ paginationNav(pagination) }}
     </div>
 </section>

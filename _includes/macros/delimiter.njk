@@ -1,0 +1,12 @@
+{# Hex delimiter <select>, with id "<id>Delimiter". `small` is the compact version used in a card title (Convrtrs) #}
+{% macro delimiter(id, small = false) %}
+<select class="form-select {% if small %}form-select-sm mx-2 ms-auto {% endif %}hex-delimiter" id="{{ id }}Delimiter" autocomplete="off" data-pagefind-ignore="all">
+    <option value=" " selected="">Space</option>
+    <option value="-">Hyphen</option>
+    <option value=":">Colon</option>
+    <option value=",">Comma</option>
+    <option value="\x">Slash x </option>
+    <option value="0x">Zero x</option>
+    <option value="">None</option>
+</select>
+{% endmacro %}
