@@ -47,9 +47,10 @@
         {% include "partials/toast.njk" %}
     </body>
 </html>
-{% set routePartial = "partials/routes/" ~ pageId ~ ".njk" %}
-{% if routePartial | fileExists %}
-    {% include routePartial %}
+{# Hidden packet for this page (partials/routes/<pageId>.njk), falling back to the home packet #}
+{% set packet %}{% include "partials/routes/" ~ pageId ~ ".njk" ignore missing %}{% endset %}
+{% if packet | trim %}
+    {{ packet }}
 {% else %}
     {% include "partials/routes/home.njk" %}
 {% endif %}
