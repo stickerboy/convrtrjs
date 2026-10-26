@@ -65,5 +65,3 @@ If you have any questions about this policy, feel free to reach out:
 - On our [Discord support server]({{ support }})
 - Submit an issue to our [issue tracker on GitHub]({{ issues }})
 - By email: [privacy@convrtr.xyz](mailto:privacy@convrtr.xyz "Send me an email")
-
-  <script type="module" src="{{ '/assets/js/privacy/privacy.mjs' | url }}"></script>
