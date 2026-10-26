@@ -1,17 +1,13 @@
-<script src="{{ '/assets/js/core/bootstrap.bundle.min.js' | url }}" crossorigin="anonymous"></script>
+<script src="{{ '/assets/js/vendor/bootstrap.bundle.min.js' | url }}" crossorigin="anonymous"></script>
 {%- if pageId == "sitemap" %}
 <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
     integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D" crossorigin="anonymous"
     async></script>
 {%- endif %}
-<script type="module" src="{{ '/assets/js/theme.js' | url }}"></script>
-{%- if pageId != "404" %}
-<script type="module" src="{{ '/assets/js/clip.js' | url }}"></script>
-{%- endif %}
 {% if pageId == "ciphers" or pageId == "hash" %}
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
 {%- endif -%}
-<script type="module" src="{{ '/assets/js/scripts.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/site/main.js' | url }}"></script>
 {%- if pageId == "check" or pageId == "files" -%}
 <script>const HEADERS = {{ headers | dump }};</script>
 {%- endif -%}
@@ -19,14 +15,14 @@
 <script>const ELEMENTS = {{ elements | dump }};</script>
 {%- endif -%}
 {%- if pageId == "exif" or pageId == "files" -%}
-<script src="{{ '/assets/js/files/exif-reader.js' | url }}"></script>
+<script src="{{ '/assets/js/vendor/exif-reader.js' | url }}"></script>
 {%- endif %}
 <script src="{{ '/pagefind/pagefind-component-ui.js' | url }}" type="module"></script>
 {%- if pageId == "search" -%}
-<script type="module" src="{{ '/assets/js/search.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/site/search.js' | url }}"></script>
 {%- else %}
-<script type="module" src="{{ '/assets/js/search-global.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/site/search-global.js' | url }}"></script>
 {%- endif %}
 {%- if pageId == "settings" -%}
-<script type="module" src="{{ '/assets/js/settings/settings.js' | url }}"></script>
+<script type="module" src="{{ '/assets/js/site/settings.js' | url }}"></script>
 {%- endif %}

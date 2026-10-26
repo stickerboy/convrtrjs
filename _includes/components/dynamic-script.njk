@@ -1,2 +1,2 @@
-{% set dynamicJSPath = (page.filePathStem | replace("/pages", "/assets/js")) ~ ".js" %}
+{% set dynamicJSPath = (page.filePathStem | replace("/pages", "/assets/js/tools")) ~ ".js" %}
 <script type="module" src="{{ dynamicJSPath | url }}"></script>
