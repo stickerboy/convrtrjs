@@ -1,6 +1,6 @@
 {
   "name": "convrtrjs",
-  "version": "3.10.0",
+  "version": "3.10.1",
   "description": "A simple JavaScript based tool to quickly convert text between different formats, and solve data driven puzzles using a variety of coding and decryption techniques",
   "tagline": "For everlost and Grollow!",
   "main": "index.html",
@@ -8,7 +8,7 @@
   "scripts": {
     "sass:dev": "sass --watch --update --style=expanded scss:assets/devcss",
     "sass:prod": "sass --no-source-map --style=compressed scss:assets/css",
-    "build": "npx @11ty/eleventy --formats=html,md"
+    "build": "npx @11ty/eleventy"
   },
   "repository": {
     "name": "stickerboy",
