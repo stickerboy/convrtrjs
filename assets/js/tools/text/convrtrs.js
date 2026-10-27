@@ -4,9 +4,10 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import * as home from '../../lib/text/convrtrs.js';
 
-Object.entries(home).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
+// Morsenary conversions use the ". = 0" / "- = 0" setting chosen on the page
+const morsenarySetting = document.getElementById("morsenarySetting");
+const toMorsenary = (string) => home.stringToMorsenary(string, morsenarySetting.value);
+const fromMorsenary = (string) => home.morsenaryToString(string, morsenarySetting.value);
 
 // Make it so
 const encodeButton = document.getElementById("encode");
@@ -29,7 +30,7 @@ encodeButton && encodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value     = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value       = toolkit.rot13(data);
     document.getElementById("convrtrs-morse").querySelector("textarea").value       = home.stringToMorse(data);
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = home.stringToMorsenary(data);
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = toMorsenary(data);
 });
 
 
@@ -62,7 +63,7 @@ binaryDecodeButton && binaryDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value     = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value       = "";
     document.getElementById("convrtrs-morse").querySelector("textarea").value       = home.stringToMorse(home.binaryToString(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = home.stringToMorsenary(home.binaryToString(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = toMorsenary(home.binaryToString(data));
 });
 
 
@@ -95,7 +96,7 @@ hexDecodeButton && hexDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value     = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value       = toolkit.rot13(data);
     document.getElementById("convrtrs-morse").querySelector("textarea").value       = home.stringToMorse(toolkit.hexToString(data, hexDelimiter));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = home.stringToMorsenary(toolkit.hexToString(data, hexDelimiter));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value   = toMorsenary(toolkit.hexToString(data, hexDelimiter));
 });
 
 
@@ -128,7 +129,7 @@ b64DecodeButton && b64DecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value = "";
     document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(home.base64ToString(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(home.base64ToString(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toMorsenary(home.base64ToString(data));
 });
 
 
@@ -161,7 +162,7 @@ decDecodeButton && decDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(data);
     document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(toolkit.decimalToString(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(toolkit.decimalToString(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toMorsenary(toolkit.decimalToString(data));
 });
 
 
@@ -194,7 +195,7 @@ revDecodeButton && revDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.reverseString(toolkit.stringToDecimal(data));
     document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.reverseString(toolkit.rot13(data));
     document.getElementById("convrtrs-morse").querySelector("textarea").value = toolkit.reverseString(home.stringToMorse(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toolkit.reverseString(home.stringToMorsenary(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toolkit.reverseString(toMorsenary(data));
 });
 
 
@@ -227,7 +228,7 @@ rot13DecodeButton && rot13DecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
     document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(toolkit.rot13(data));
     document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(toolkit.rot13(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(toolkit.rot13(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toMorsenary(toolkit.rot13(data));
 });
 
 
@@ -260,7 +261,7 @@ morseDecodeButton && morseDecodeButton.addEventListener("click", function() {
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
     document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(home.morseToString(data));
     document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(home.morseToString(data));
-    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = home.stringToMorsenary(home.morseToString(data));
+    document.getElementById("convrtrs-morsenary").querySelector("textarea").value = toMorsenary(home.morseToString(data));
 });
 
 
@@ -280,18 +281,37 @@ mrsnryDecodeButton && mrsnryDecodeButton.addEventListener("click", function() {
     }
 
     try {
-        home.morsenaryToString(data);
+        fromMorsenary(data);
     } catch (e) {
         showToast("Error",`An error occurred trying to decode the data: ${e.message}`, "danger");
         return;
     }
 
-    document.getElementById("convrtrs-text").querySelector("textarea").value = home.morsenaryToString(data);
-    document.getElementById("convrtrs-binary").querySelector("textarea").value = toolkit.stringToBinary(home.morsenaryToString(data));
-    document.getElementById("convrtrs-hex").querySelector("textarea").value = toolkit.stringToHex(home.morsenaryToString(data), hexDelimiter);
-    document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(home.morsenaryToString(data));
+    document.getElementById("convrtrs-text").querySelector("textarea").value = fromMorsenary(data);
+    document.getElementById("convrtrs-binary").querySelector("textarea").value = toolkit.stringToBinary(fromMorsenary(data));
+    document.getElementById("convrtrs-hex").querySelector("textarea").value = toolkit.stringToHex(fromMorsenary(data), hexDelimiter);
+    document.getElementById("convrtrs-base64").querySelector("textarea").value = toolkit.stringToBase64(fromMorsenary(data));
     document.getElementById("convrtrs-reverse").querySelector("textarea").value = toolkit.reverseString(data);
-    document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(home.morsenaryToString(data));
-    document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(home.morsenaryToString(data));
-    document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(home.morsenaryToString(data));
+    document.getElementById("convrtrs-rot13").querySelector("textarea").value = toolkit.rot13(fromMorsenary(data));
+    document.getElementById("convrtrs-decimal").querySelector("textarea").value = toolkit.stringToDecimal(fromMorsenary(data));
+    document.getElementById("convrtrs-morse").querySelector("textarea").value = home.stringToMorse(fromMorsenary(data));
+});
+
+// Re-code Hex on delimiter change
+let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
+hexDelimiterSelect.addEventListener("change", function () {
+    let hexData = document.getElementById("form-hex").value;
+    if (hexData === "") {
+        return;
+    }
+    document.getElementById("encode").click();
+});
+
+// Re-code Morsenary on delimiter change
+morsenarySetting.addEventListener("change", function () {
+    let morsenaryData = document.getElementById("form-morsenary").value;
+    if (morsenaryData === "") {
+        return;
+    }
+    document.getElementById("mrsnryDecode").click();
 });

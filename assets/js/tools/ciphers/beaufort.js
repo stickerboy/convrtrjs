@@ -1,12 +1,9 @@
 import * as beaufort from '../../lib/ciphers/beaufort.js';
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
-
-Object.entries(beaufort).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
+import { showToast } from '../../ui/toast.js';
 
 // Beaufort cipher
-const beaufortEncryptButton = document.getElementById("beaufortEncrypt");false
+const beaufortEncryptButton = document.getElementById("beaufortEncrypt");
 beaufortEncryptButton && beaufortEncryptButton.addEventListener("click", function() {
     const beaufortString = document.getElementById("beaufortText");
     const beaufortKey = document.getElementById("beaufortKey");

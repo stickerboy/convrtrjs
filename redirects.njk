@@ -1,0 +1,25 @@
+---
+# One redirect page per old URL listed in a page's `redirectFrom` front matter.
+# GitHub Pages has no server-side redirects, so this uses a meta refresh (plus JS to keep any ?query or #hash).
+pagination:
+  data: collections.redirects
+  size: 1
+  alias: redirect
+permalink: "{{ redirect.from }}"
+layout: null
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{{ pkg.sitename }} - Page moved</title>
+    <meta name="robots" content="noindex">
+    <link rel="canonical" href="{{ pkg.homepage }}{{ redirect.to }}">
+    <meta http-equiv="refresh" content="0; url={{ redirect.to | url }}">
+    <script>location.replace("{{ redirect.to | url }}" + location.search + location.hash);</script>
+</head>
+<body>
+    <p>This page has moved to <a href="{{ redirect.to | url }}">{{ pkg.homepage }}{{ redirect.to }}</a>.</p>
+</body>
+</html>

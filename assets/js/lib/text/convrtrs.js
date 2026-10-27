@@ -105,6 +105,7 @@ export function stringToMorse(string) {
  * Converts a string to Morsenary code (binary-based Morse code)
  *
  * @param {string} string - The input string to be converted.
+ * @param {string} [morsenarySetting="default"] - "default" maps . to 0 and - to 1; any other value ("flipped") swaps them.
  * @returns {string} - The Morsenary code representation of the input string.
  *
  * @example
@@ -113,8 +114,7 @@ export function stringToMorse(string) {
  * // Input: "hello world" with custom setting (e.g., "default" or "reverse")
  * // Output: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100"
  */
-export function stringToMorsenary(string) {
-    const morsenarySetting = document.getElementById("morsenarySetting").value;
+export function stringToMorsenary(string, morsenarySetting = "default") {
     const binaryString = toolkit.stringToBinary(string).replace(/ /g, "");
 
     return binaryString.replace(/[01]/g, match => {
@@ -130,6 +130,7 @@ export function stringToMorsenary(string) {
  * Converts Morsenary code (binary-based Morse code) back to a string
  *
  * @param {string} string - The Morsenary code to be converted.
+ * @param {string} [morsenarySetting="default"] - "default" maps . to 0 and - to 1; any other value ("flipped") swaps them.
  * @returns {string} - The original plaintext string.
  *
  * @throws {Error} - If the input contains invalid characters.
@@ -138,12 +139,11 @@ export function stringToMorsenary(string) {
  * // Input: "01001000 01000101 01001100 01001100 01001111 00101100 00100000 01010111 01001111 01010010 01001100 01000100" with default setting
  * // Output: "hello, world"
  */
-export function morsenaryToString(string) {
+export function morsenaryToString(string, morsenarySetting = "default") {
     if (!/^[\s./-]*$/.test(string)) {
         throw new Error("Morsenary contains invalid characters");
     }
 
-    const morsenarySetting = document.getElementById("morsenarySetting").value;
 
     // Replace Morsenary code with binary representation
     const binaryString = string.replace(/[.-]/g, match => {
@@ -157,23 +157,3 @@ export function morsenaryToString(string) {
     // Convert binary string back to text
     return binaryToString(binaryString.match(/.{1,8}/g).join(" "));
 }
-
-// Re-code Hex on delimiter change
-let hexDelimiterSelect = document.getElementById("convrtrsDelimiter");
-hexDelimiterSelect.addEventListener("change", function () {
-    let hexData = document.getElementById("form-hex").value;
-    if (hexData === "") {
-        return;
-    }
-    document.getElementById("encode").click();
-});
-
-// Re-code Morsenary on delimiter change
-let morsenarySelect = document.getElementById("morsenarySetting");
-morsenarySelect.addEventListener("change", function () {
-    let morsenaryData = document.getElementById("form-morsenary").value;
-    if (morsenaryData === "") {
-        return;
-    }
-    document.getElementById("mrsnryDecode").click();
-});

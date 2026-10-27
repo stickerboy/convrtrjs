@@ -2,10 +2,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import * as keyword from '../../lib/ciphers/keyword.js';
 
-Object.entries(keyword).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const keywordEncryptButton = document.getElementById("keywordEncrypt");
 keywordEncryptButton && keywordEncryptButton.addEventListener("click", function () {
     const keywordString = document.getElementById("keywordText");

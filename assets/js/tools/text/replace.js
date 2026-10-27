@@ -2,10 +2,6 @@ import * as toolkit from '../../lib/toolkit.js';
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 
-Object.entries(replace).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const replaceButton = document.getElementById("replaceDecode");
 replaceButton.addEventListener("click", function() {
     const replaceString = document.getElementById("replaceText");

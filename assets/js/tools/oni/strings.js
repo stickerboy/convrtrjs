@@ -1,10 +1,6 @@
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import * as strings from '../../lib/oni/strings.js';
 
-Object.entries(strings).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 // Extract strings
 const stringsDecodeButton = document.getElementById("stringsDecode");
 if(stringsDecodeButton) {
@@ -19,6 +15,6 @@ if(stringsDecodeButton) {
             return false;
         }
 
-        document.getElementById("stringsResults").textContent = oni.strings(stringsString.value);
+        document.getElementById("stringsResults").textContent = strings.strings(stringsString.value);
     });
 }

@@ -2,10 +2,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import * as substitution from '../../lib/ciphers/substitution.js';
 
-Object.entries(substitution).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const subEncryptButton = document.getElementById("substitutionEncrypt");
 subEncryptButton && subEncryptButton.addEventListener("click", function() {
     const subString = document.getElementById("substitutionText");

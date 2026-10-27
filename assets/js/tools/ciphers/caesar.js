@@ -3,10 +3,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import { getCustomAlphabet } from "../../lib/ciphers/common.js";
 
-Object.entries(rot).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 // Caesar (ROT) Text
 const caesarButtons    = document.getElementsByClassName("caesar-link");
 const caesarPrevious   = document.getElementById("caesarPrev");

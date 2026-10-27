@@ -2,10 +2,6 @@ import * as toolkit from '../../lib/toolkit.js';
 import * as flip from '../../lib/text/flip.js';
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 
-Object.entries(flip).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const flipButton = document.getElementById("flipDecode");
 flipButton.addEventListener("click", function() {
     const flipString = document.getElementById("flipText");
@@ -20,5 +16,5 @@ flipButton.addEventListener("click", function() {
 
     let flipDirection = document.getElementById("flipDirection");
     document.getElementById("flipResults").textContent = flipDirection.checked ? 
-    flip.flipText(flipString.value) : toolkit.reverseString(flipText(flipString.value));
+    flip.flipText(flipString.value) : toolkit.reverseString(flip.flipText(flipString.value));
 });

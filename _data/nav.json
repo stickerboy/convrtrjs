@@ -160,7 +160,7 @@
                 "id": "lookahead",
                 "label": "Lookahead"
             },{
-                "id": "mergeb64",
+                "id": "mergeBase64",
                 "label": "Merge Base64"
             },{
                 "id": "unscramble",

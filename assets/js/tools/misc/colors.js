@@ -2,10 +2,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { stringToHex } from '../../lib/toolkit.js';
 import * as colors from '../../lib/misc/colors.js';
 
-Object.entries(colors).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const colorgeneratorButton = document.getElementById("colorsDecode");
 colorgeneratorButton.addEventListener("click", function () {
     const colorgeneratorString = document.getElementById("colorsText");

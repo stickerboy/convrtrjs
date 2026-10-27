@@ -80,4 +80,9 @@ export default function (eleventyConfig) {
 
     eleventyConfig.addCollection("versions", getVersions);
     eleventyConfig.addCollection("filteredTagPages", getTagPages);
+
+    // Old URLs listed in a page's `redirectFrom` (string or list) - redirect pages are built by redirects.njk
+    eleventyConfig.addCollection("redirects", (collectionApi) =>
+        collectionApi.getAll().flatMap((item) => [item.data.redirectFrom ?? []].flat().map((from) => ({ from, to: item.url })))
+    );
 }

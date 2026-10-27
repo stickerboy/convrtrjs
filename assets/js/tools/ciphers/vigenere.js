@@ -3,9 +3,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import * as vigenere from '../../lib/ciphers/vigenere.js';
 
-Object.entries(vigenere).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
 const vigenereEncryptButton = document.getElementById("vigenereEncrypt");
 vigenereEncryptButton && vigenereEncryptButton.addEventListener("click", function() {
     const vigenereString = document.getElementById("vigenereText");

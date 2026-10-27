@@ -1,10 +1,6 @@
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import * as smithy from '../../lib/ciphers/smithy.js';
 
-Object.entries(smithy).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const smithyEncryptButton = document.getElementById("smithyEncrypt");
 smithyEncryptButton && smithyEncryptButton.addEventListener("click", function () {
     const smithyString = document.getElementById("smithyText");

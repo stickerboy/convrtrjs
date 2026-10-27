@@ -2,10 +2,6 @@ import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import { showToast } from '../../ui/toast.js';
 import * as rail from '../../lib/ciphers/rail.js';
 
-Object.entries(rail).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const railEncryptButton = document.getElementById("railEncrypt");
 railEncryptButton && railEncryptButton.addEventListener("click", function () {
     const railString = document.getElementById("railText");
@@ -26,7 +22,7 @@ railEncryptButton && railEncryptButton.addEventListener("click", function () {
     }
 
     try {
-        railFenceEncode(railString.value, railAmount.value)
+        rail.railFenceEncode(railString.value, railAmount.value)
     } catch (e) {
         showToast("Error", `An error occurred trying to encrypt the string: ${e.message}`, "danger");
         return;
@@ -54,7 +50,7 @@ railDecryptButton && railDecryptButton.addEventListener("click", function () {
     }
 
     try {
-        railFenceDecode(railString.value, railAmount.value)
+        rail.railFenceDecode(railString.value, railAmount.value)
     } catch (e) {
         showToast("Error", `An error occurred trying to decrypt the string: ${e.message}`, "danger");
         return;

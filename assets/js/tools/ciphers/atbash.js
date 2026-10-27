@@ -1,10 +1,6 @@
 import * as atbash from '../../lib/ciphers/atbash.js';
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 
-Object.entries(atbash).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const atbashDecodeButton = document.getElementById("atbashDecode");
 atbashDecodeButton && atbashDecodeButton.addEventListener("click", function() {
     const atbashString = document.getElementById("atbashText");

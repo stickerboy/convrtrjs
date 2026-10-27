@@ -1,10 +1,6 @@
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import * as chaocipher from '../../lib/ciphers/chaocipher.js';
 
-Object.entries(chaocipher).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 // Chaocipher
 const chaosEncryptButton = document.getElementById("chaocipherEncrypt");
 chaosEncryptButton && chaosEncryptButton.addEventListener("click", function () {

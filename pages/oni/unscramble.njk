@@ -2,6 +2,7 @@
 title: ONI unscramble
 tags: tools
 heading: "Unscramble"
+noScript: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
@@ -15,7 +16,7 @@ heading: "Unscramble"
     <div class="card">
         <span class="card-label visually-hidden">Unscramble</span>
         <div class="card-body text-left">
-            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">{{ "window." ~ filename }}(string)</code>
+            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string)</code>
         </div>
         <div class="card-footer py-3">
             <div class="text-center mb-4 g-0">

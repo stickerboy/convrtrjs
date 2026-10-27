@@ -2,10 +2,6 @@
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 import * as hash from '../../lib/ciphers/hash.js';
 
-Object.entries(hash).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const hashButton = document.getElementById("hashDecode");
 hashButton && hashButton.addEventListener("click", function() {
     const hashString = document.getElementById("hashText");

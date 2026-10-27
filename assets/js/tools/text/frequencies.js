@@ -2,10 +2,6 @@ import * as toolkit from '../../lib/toolkit.js';
 import * as frequencies from '../../lib/text/frequencies.js';
 import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
 
-Object.entries(frequencies).forEach(([functionName, functionRef]) => {
-    window[functionName] = functionRef;
-});
-
 const freqButton = document.getElementById("frequenciesDecode");
 freqButton.addEventListener("click", function() {
     const freqString = document.getElementById("frequenciesText");
