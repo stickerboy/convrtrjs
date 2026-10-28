@@ -239,23 +239,45 @@ export function rot13(string) {
 }
 
 /**
- * Returns the number used to represent a character in Unicode
- * @param {string} string - The input string.
- * @returns {number} - The Unicode character number.
+ * Turns bytes back into text: as UTF-8 if they're valid UTF-8, otherwise one character per byte (Latin-1),
+ * so both UTF-8 text and older single-byte data decode as expected.
+ * @param {number[]|Uint8Array} bytes - Byte values (0-255).
+ * @returns {string} - The decoded text.
  */
-export function ord(string) {
-    const encoder = new TextEncoder();
-    const encoded = encoder.encode(string);
-    return encoded[0];
+export function bytesToString(bytes) {
+    const array = Uint8Array.from(bytes);
+    try {
+        return new TextDecoder("utf-8", { fatal: true }).decode(array);
+    } catch {
+        // Not valid UTF-8 - one character per byte, in chunks to stay within argument limits on large input
+        let result = "";
+        for (let i = 0; i < array.length; i += 8192) {
+            result += String.fromCharCode(...array.subarray(i, i + 8192));
+        }
+        return result;
+    }
 }
 
 /**
- * Convert string to space-separated string Decimals
+ * Returns the number used to represent a character in Unicode (its code point)
+ * @param {string} string - The input string (only its first character is used).
+ * @returns {number} - The Unicode code point.
+ */
+export function ord(string) {
+    return string.codePointAt(0);
+}
+
+/**
+ * Convert string to space-separated string Decimals (one number per UTF-8 byte, like binary and hex)
  * @param {string} string - The input string.
- * @returns {string} - A space-separated string of decimal code point values.
+ * @returns {string} - A space-separated string of decimal byte values.
+ *
+ * @example
+ * // Input: "Hé"
+ * // Output: "72 195 169"
  */
 export function stringToDecimal(string) {
-    return Array.from(string).map(c => ord(c)).join(" ");
+    return Array.from(new TextEncoder().encode(string)).join(" ");
 }
 
 /**
@@ -268,12 +290,23 @@ export function string2Dec(string) {
 }
 
 /**
- * Decimal to String
- * @param {string} string - The input string containing decimal code point values.
+ * Decimal to String. Numbers up to 255 are read as bytes (see bytesToString); if any number is larger,
+ * they're all read as Unicode code points instead (e.g. "8364" is €).
+ * @param {string} string - The input string containing space-separated decimal values.
  * @returns {string} - The decoded string.
+ * @throws {Error} - If a value isn't a whole number, or is beyond the Unicode range.
  */
 export function decimalToString(string) {
-    return string.trim().split(/\s+/).map(c => String.fromCharCode(c)).join("");
+    const trimmed = string.trim();
+    if (trimmed === "") {
+        return "";
+    }
+
+    const numbers = trimmed.split(/\s+/).map(Number);
+    if (numbers.some((n) => !Number.isInteger(n) || n < 0 || n > 0x10FFFF)) {
+        throw new Error("Decimal contains invalid values, only whole numbers separated by spaces are supported");
+    }
+    return numbers.every((n) => n <= 255) ? bytesToString(numbers) : numbers.map((n) => String.fromCodePoint(n)).join("");
 }
 
 /**

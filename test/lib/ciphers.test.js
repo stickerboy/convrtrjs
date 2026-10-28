@@ -138,7 +138,8 @@ describe("smithy", () => {
     it("matches the current output", (t) => {
         t.assert.snapshot(smithyEncrypt("The quick brown fox jumps over the lazy dog", "jaeiextostgpsacgreamqwfkadpmqzv"));
     });
-    it("keeps non-ASCII characters intact", { todo: "rebuilds the text one UTF-8 byte at a time" }, () => {
-        assert.equal(smithyDecrypt(smithyEncrypt("Café ✓", "key"), "key"), "Café ✓");
+    it("keeps non-ASCII characters intact", () => {
+        assert.equal(smithyDecrypt(smithyEncrypt("Café ✓ 😀", "key"), "key"), "Café ✓ 😀");
+        assert.match(smithyEncrypt("Café ✓", "key"), /^[A-Za-z]{3}é ✓$/);
     });
 });

@@ -1,37 +1,33 @@
-import * as tools from '../strings.js';
 import * as toolkit from '../toolkit.js';
 
 /**
- * Checks for a valid binary string length (multiple of 8)
+ * Checks for a valid binary string length (a whole number of bytes)
  *
- * @param {string} string - The binary string to validate.
- * @returns {boolean} - `true` if the length is valid, otherwise `false`.
- * @throws {Error} - If the input is not a valid binary string.
+ * @param {string} string - The binary string to validate (anything other than 0 and 1 is ignored).
+ * @returns {boolean} - `true` if the number of bits is a multiple of 8, otherwise `false`.
  */
 export function isValidBinaryLength(string) {
-    return tools.numbersOnly(string).length % 8 === 0;
+    return string.replace(/[^01]/g, "").length % 8 === 0;
 }
 
 /**
- * Converts a valid binary string to its corresponding ASCII string
+ * Converts a binary string to text. The bits are read 8 at a time, however they're spaced (spaces, none,
+ * new lines, commas), and decoded as UTF-8, or one character per byte if they aren't valid UTF-8.
  *
  * @param {string} string - The binary string to convert.
- * @returns {string} - The resulting ASCII string.
- * @throws {Error} - If the input is not a valid binary string.
+ * @returns {string} - The resulting text.
+ * @throws {Error} - If the number of bits isn't a multiple of 8.
+ *
+ * @example
+ * // Input: "01001000 01101001" or "0100100001101001"
+ * // Output: "Hi"
  */
 export function binaryToString(string) {
-    if (isValidBinaryLength(string)) {
-        string = string.replace(/[^10\s]/g, "");
-
-        let charCodes = string.split(" ").map(bin => {
-            bin = bin.padStart(8, "0");
-            return parseInt(bin, 2);
-        });
-
-        return String.fromCharCode(...charCodes);
-    } else {
+    if (!isValidBinaryLength(string)) {
         throw new Error("Not a valid Binary string, length is not divisible by 8");
     }
+    const bytes = (string.replace(/[^01]/g, "").match(/.{8}/g) ?? []).map((bin) => parseInt(bin, 2));
+    return toolkit.bytesToString(bytes);
 }
 
 /**

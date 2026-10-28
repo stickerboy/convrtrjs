@@ -16,8 +16,29 @@ describe("binary", () => {
     it("rejects input that isn't whole bytes", () => {
         assert.throws(() => convrtrs.binaryToString("0100100"), /divisible by 8/);
     });
-    it("round-trips non-ASCII text", { todo: "decodes bytes with String.fromCharCode instead of as UTF-8" }, () => {
-        assert.equal(convrtrs.binaryToString(toolkit.stringToBinary("Café ✓")), "Café ✓");
+    it("round-trips non-ASCII text", () => {
+        assert.equal(convrtrs.binaryToString(toolkit.stringToBinary("Café ✓ 😀")), "Café ✓ 😀");
+    });
+    it("reads bits however they're spaced", () => {
+        assert.equal(convrtrs.binaryToString("0100100001101001"), "Hi");
+        assert.equal(convrtrs.binaryToString("01001000\n01101001"), "Hi");
+        assert.equal(convrtrs.binaryToString("01001000, 01101001"), "Hi");
+        assert.equal(convrtrs.binaryToString(""), "");
+    });
+    it("falls back to one character per byte when the bytes aren't UTF-8", () => {
+        assert.equal(convrtrs.binaryToString("11101001"), "é"); // 0xE9 on its own is Latin-1 é
+    });
+    it("handles large input", () => {
+        const text = "Hello, World! ".repeat(20000);
+        assert.equal(convrtrs.binaryToString(toolkit.stringToBinary(text)), text);
+    });
+});
+
+describe("bytesToString", () => {
+    it("decodes UTF-8, falling back to Latin-1", () => {
+        assert.equal(toolkit.bytesToString([0x48, 0xC3, 0xA9]), "Hé");
+        assert.equal(toolkit.bytesToString([0x48, 0xE9]), "Hé");
+        assert.equal(toolkit.bytesToString([]), "");
     });
 });
 
@@ -66,8 +87,28 @@ describe("decimal", () => {
         assert.equal(toolkit.stringToDecimal("Hi"), "72 105");
         assert.equal(toolkit.decimalToString("72 105"), "Hi");
     });
-    it("round-trips non-ASCII text", { todo: "encodes only the first UTF-8 byte of each character" }, () => {
-        assert.equal(toolkit.decimalToString(toolkit.stringToDecimal("Café ✓")), "Café ✓");
+    it("round-trips non-ASCII text", () => {
+        assert.equal(toolkit.decimalToString(toolkit.stringToDecimal("Café ✓ 😀")), "Café ✓ 😀");
+    });
+    it("encodes one number per UTF-8 byte, like binary and hex", () => {
+        assert.equal(toolkit.stringToDecimal("Hé"), "72 195 169");
+    });
+    it("decodes Latin-1 bytes and Unicode code points", () => {
+        assert.equal(toolkit.decimalToString("233"), "é");
+        assert.equal(toolkit.decimalToString("8364 49 48"), "€10");
+        assert.equal(toolkit.decimalToString("128512"), "😀");
+        assert.equal(toolkit.decimalToString("  72   105 "), "Hi");
+        assert.equal(toolkit.decimalToString(""), "");
+    });
+    it("rejects values that aren't whole numbers in the Unicode range", () => {
+        assert.throws(() => toolkit.decimalToString("72 abc"), /invalid values/);
+        assert.throws(() => toolkit.decimalToString("72.5"), /invalid values/);
+        assert.throws(() => toolkit.decimalToString("1114112"), /invalid values/);
+    });
+    it("ord and string2Dec return the Unicode code point", () => {
+        assert.equal(toolkit.ord("A"), 65);
+        assert.equal(toolkit.ord("é"), 233);
+        assert.equal(toolkit.string2Dec("😀"), 128512);
     });
 });
 
