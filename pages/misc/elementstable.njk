@@ -27,7 +27,7 @@ heading: "Periodic elements"
         <div class="card-body text-center">
             <div class="d-flex flex-wrap elements-grid" style="gap:0.5rem;">
                 {% for el in elements %}
-                    <button type="button" class="p-element g-col-1 position-relative p-1 btn btn-outline-convrtr border border-3 border-convrtr rounded-2" data-element="{{el.number}}" data-phase="{{el.phase}}" data-group="{{el.group}}" data-period="{{el.period}}" data-block="{{el.block}}">
+                    <button type="button" class="p-element g-col-1 position-relative p-1 btn btn-outline-convrtr border border-3 border-convrtr rounded-2" id="{{ el.name.toLowerCase() }}" data-element="{{el.number}}" data-phase="{{el.phase}}" data-group="{{el.group}}" data-period="{{el.period}}" data-block="{{el.block}}">
                         <div class="p-element__number fs-6 position-absolute top-0 end-0 px-2 py-1" aria-hidden="true">{{ el.number }}</div>
                         <div class="p-element__symbol display-6" aria-hidden="true">{{ el.symbol }}</div>
                         <div class="p-element__name">{{ el.name }}</div>

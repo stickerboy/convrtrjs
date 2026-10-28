@@ -1,14 +1,18 @@
+// The element data is large (~260KB), so it's only fetched when first needed
+const loadElements = () => import("../../data/elements.json", { with: { type: "json" } }).then((module) => module.default);
+
 /**
  * Converts periodic elements from a string representation to their corresponding target property values.
  * @param {string} string - The input string containing element representations.
  * @param {string} sourceProp - The property used for matching elements in the input string.
  * @param {string} targetProp - The target property whose value should be extracted.
  * @param {boolean} removeDelimiters - Whether to remove delimiters (optional, default is false).
- * @returns {string} - The resulting string after converting elements.
+ * @returns {Promise<string>} - The resulting string after converting elements.
  * @throws {Error} - Throws an error if an element with the specified source property is not found,
  * or if the target property does not exist for a matched element.
  */
-export function convertElements(string, sourceProp, targetProp, removeDelimiters) {
+export async function convertElements(string, sourceProp, targetProp, removeDelimiters) {
+    const ELEMENTS = await loadElements();
     const strings = string.trim().split(/[ ,:;\-]+/);
     const results = [];
 

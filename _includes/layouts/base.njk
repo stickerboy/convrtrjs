@@ -4,6 +4,8 @@
         {% include "partials/ga.njk" %}
         {% include "partials/cookie.njk" %}
         {% include "partials/meta.njk" %}
+        {#- Lets modules import npm packages by name (copied to /assets/js/vendor/ - see eleventy.config.js). Must come before any module script. #}
+        <script type="importmap">{ "imports": { "@noble/hashes/": "{{ '/assets/js/vendor/noble-hashes/' | url }}" } }</script>
         {% include "partials/title.njk" %}
 
         <script>

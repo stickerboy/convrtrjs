@@ -1,3 +1,5 @@
+import ELEMENTS from '../../data/elements.json' with { type: 'json' };
+
 const elementInfo = document.getElementById("elementstableResults");
 document.querySelectorAll(".p-element").forEach(item => {
     item.addEventListener("click", event => {

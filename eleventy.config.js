@@ -30,9 +30,17 @@ export default function (eleventyConfig) {
         eleventyConfig.addPassthroughCopy(asset)
     );
 
+    // npm packages used in the browser, mapped to their bare names by the import map in layouts/base.njk
+    eleventyConfig.addPassthroughCopy({
+        "node_modules/@noble/hashes/*.js": "assets/js/vendor/noble-hashes",
+        "node_modules/@noble/hashes/LICENSE": "assets/js/vendor/noble-hashes/LICENSE",
+    });
+
     // Data and content contain trusted HTML (descriptions, popovers), so output isn't escaped
     eleventyConfig.setNunjucksEnvironmentOptions({ autoescape: false });
 
+    // Shared JSON data used by both the browser JS and templates (_data/elements.js, _data/headers.js)
+    eleventyConfig.addWatchTarget("assets/js/data/");
     eleventyConfig.setWatchThrottleWaitTime(100);
 }
 

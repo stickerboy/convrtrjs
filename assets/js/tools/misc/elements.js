@@ -3,7 +3,7 @@ import { showToast } from '../../ui/toast.js';
 import * as elements from '../../lib/misc/elements.js';
 
 const elementsChange = document.getElementById("elementsChange");
-elementsChange && elementsChange.addEventListener("click", function () {
+elementsChange && elementsChange.addEventListener("click", async function () {
     let elementsString = document.getElementById("elementsTextarea");
 
     if (!emptyContainerCheck(elementsString.value, elementsString)) {
@@ -17,12 +17,13 @@ elementsChange && elementsChange.addEventListener("click", function () {
     let elementPropTo = document.getElementById("elementPropTo");
     let removeDelimiters = document.getElementById("removeDelimiters");
 
+    let result;
     try {
-        elements.convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value);
+        result = await elements.convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
     } catch (e) {
         showToast("Error", `An error occurred trying to map elements: ${e.message}`, "danger");
         return;
     }
 
-    document.getElementById("elementResults").textContent = elements.convertElements(elementsString.value, elementPropFrom.value, elementPropTo.value, removeDelimiters.checked);
+    document.getElementById("elementResults").textContent = result;
 });
