@@ -1,0 +1,3 @@
+exports[`colors > renders the same HTML as before 1`] = `
+"<div class=\\"color-block\\" style=\\"background-color:#48656c\\" title=\\"#48656c\\">\\n                        <span class=\\"visually-hidden\\">#48656c</span>\\n                     </div><div class=\\"color-block\\" style=\\"background-color:#6c6fFF\\" title=\\"#6c6fFF\\">\\n                        <span class=\\"visually-hidden\\">#6c6fFF</span>\\n                     </div>"
+`;

@@ -1,0 +1,3 @@
+exports[`hex shift > matches the current shiftHexKey output 1`] = `
+"�\\u0000�\\u0001\\n"
+`;
