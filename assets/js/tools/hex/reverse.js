@@ -1,56 +1,23 @@
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
-import { showToast } from '../../ui/toast.js';
+import { bindTool } from '../../ui/tool.js';
 import * as reverse from '../../lib/hex/reverse.js';
 
+const reversals = {
+    "bytes": reverse.reverseHexBytes,
+    "byte-order": reverse.reverseHexByteOrder,
+    "nibbles": reverse.reverseHexNibbles,
+};
 
-const reverseHexButton = document.getElementById("reverseDecode");
-reverseHexButton && reverseHexButton.addEventListener("click", function() {
-    const chainReverse = document.getElementById("reverseChain");
-
-    const reverseHexString = document.getElementById("reverseText");
-    let reverseHexDelimiter = document.getElementById("reverseDelimiter").value;
-    let reverseType = document.getElementById("reverseType");
-    let reverseResults = document.getElementById("reverseResults");
-
-    if(!emptyContainerCheck(reverseHexString.value, reverseHexString)) {
-        return false;
-    }
-    if (!largeDataWarning(reverseHexString.value, reverseHexString)) {
-        return false;
-    }
-
-    let revHexContent;
-    
-    try {
-        switch (reverseType.value) { 
-            case "bytes":
-                if (chainReverse.checked && reverseResults.textContent.length > 0) {
-                    revHexContent = reverse.reverseHexBytes(reverseResults.textContent.trim(), reverseHexDelimiter);
-                } else {
-                    revHexContent = reverse.reverseHexBytes(reverseHexString.value.trim(), reverseHexDelimiter);
-                }
-            break;
-            case "byte-order": 
-                if (chainReverse.checked && reverseResults.textContent.length > 0) {
-                    revHexContent = reverse.reverseHexByteOrder(reverseResults.textContent.trim(), reverseHexDelimiter);
-                } else {
-                    revHexContent = reverse.reverseHexByteOrder(reverseHexString.value.trim(), reverseHexDelimiter);
-                }
-            break;
-            case "nibbles":
-                if (chainReverse.checked && reverseResults.textContent.length > 0) {
-                    revHexContent = reverse.reverseHexNibbles(reverseResults.textContent.trim(), reverseHexDelimiter);
-                } else {
-                    revHexContent = reverse.reverseHexNibbles(reverseHexString.value.trim(), reverseHexDelimiter);
-                }
-            break;
-            default:
-                throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
+bindTool({
+    button: "reverseDecode",
+    input: "reverseText",
+    output: "reverseResults",
+    chain: "reverseChain",
+    errorPrefix: "An error occurred trying to reverse the hex string",
+    run: (text) => {
+        const reversal = reversals[document.getElementById("reverseType").value];
+        if (!reversal) {
+            throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
         }
-    } catch (e) {
-        showToast("Error", `An error occurred trying to reverse the hex string: ${e.message}`, "danger");
-        return;
-    }
-
-    document.getElementById("reverseResults").textContent = revHexContent;
+        return reversal(text.trim(), document.getElementById("reverseDelimiter").value);
+    },
 });

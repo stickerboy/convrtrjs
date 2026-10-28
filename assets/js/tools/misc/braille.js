@@ -1,4 +1,5 @@
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
+import { emptyContainerCheck } from '../../ui/input.js';
+import { bindTool } from '../../ui/tool.js';
 import { createImage } from '../../lib/toolkit.js';
 import * as braille from '../../lib/misc/braille.js';
 
@@ -8,23 +9,13 @@ let bIT = document.getElementById("brImageTransparency");
 let brailleImage = document.getElementById("generateBrailleImage");
 let brailleSwitch = document.getElementById("brailleSwitch");
 
-const brailleButton = document.getElementById("brailleConvert");
-brailleButton && brailleButton.addEventListener("click", function () {
-    const brailleString = document.getElementById("brailleTextarea");
-
-    if (!emptyContainerCheck(brailleString.value, brailleString)) {
-        bR.textContent = "";
-        return false;
-    }
-    if (!largeDataWarning(brailleString.value, brailleString)) {
-        return false;
-    }
-
-    if (brailleSwitch.checked) {
-        bR.textContent = braille.convertBraille(brailleString.value);
-    } else {
-        bR.textContent = braille.convertBraille(brailleString.value, "text");
-    }
+// Converts in the direction chosen by the switch: Braille to text when checked, otherwise text to Braille
+bindTool({
+    button: "brailleConvert",
+    input: "brailleTextarea",
+    output: "brailleResults",
+    clear: true,
+    run: (text) => brailleSwitch.checked ? braille.convertBraille(text) : braille.convertBraille(text, "text"),
 });
 
 brailleSwitch && brailleSwitch.addEventListener("click", function () {

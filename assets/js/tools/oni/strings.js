@@ -1,20 +1,10 @@
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
+import { bindTool } from '../../ui/tool.js';
 import * as strings from '../../lib/oni/strings.js';
 
-// Extract strings
-const stringsDecodeButton = document.getElementById("stringsDecode");
-if(stringsDecodeButton) {
-    stringsDecodeButton.addEventListener("click", function () {
-        const stringsString = document.getElementById("stringsText");
-        // const stringsKey = document.getElementById("stringsKey");
-
-        if (!emptyContainerCheck(stringsString.value, stringsString)) {
-            return false;
-        }
-        if (!largeDataWarning(stringsString.value, stringsString)) {
-            return false;
-        }
-
-        document.getElementById("stringsResults").textContent = strings.strings(stringsString.value);
-    });
-}
+// Extract strings (the UI for this is currently disabled on the page; available as convrtr.strings)
+bindTool({
+    button: "stringsDecode",
+    input: "stringsText",
+    output: "stringsResults",
+    run: strings.strings,
+});

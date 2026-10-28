@@ -1,96 +1,49 @@
 import rot from '../../lib/ciphers/rot.js';
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
-import { showToast } from '../../ui/toast.js';
+import { readToolInput } from '../../ui/tool.js';
 import { getCustomAlphabet } from "../../lib/ciphers/common.js";
 
-// Caesar (ROT) Text
-const caesarButtons    = document.getElementsByClassName("caesar-link");
-const caesarPrevious   = document.getElementById("caesarPrev");
-const caesarNext       = document.getElementById("caesarNext");
-const caesarKey        = document.getElementById("caesarKey");
+const caesarText = document.getElementById("caesarText");
+const caesarButtons = document.getElementsByClassName("caesar-link");
 
-if(caesarButtons.length > 0) {
-    Array.from(caesarButtons, c => c.addEventListener("click", function() {
-        const caesarText = document.getElementById("caesarText");
-        const caesarNumber = c.getAttribute("data-caesar-number");
-        let chainRots = document.getElementById("chainRots");
-        let rR = document.getElementById("caesarResults").textContent;
-        let caesarResults = chainRots.checked && rR.length > 0 ? rR : caesarText.value.trim();
+const tool = {
+    input: "caesarText",
+    output: "caesarResults",
+    chain: "chainRots",
+    key: {
+        id: "caesarKey",
+        pattern: /^[A-Za-z]+$/,
+        invalid: "Caesar key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
+    },
+};
 
-        if(!emptyContainerCheck(caesarText.value, caesarText)) {
-            caesarResults = "";
-            return false;
-        }
-        if (!largeDataWarning(caesarText.value, caesarText)) {
-            return false;
-        }
-        if (caesarKey.value.length > 0 && /[^A-Za-z]/.test(caesarKey.value)) {
-            showToast("Error", "Caesar key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here", "danger");
-            return;
-        }
+// Caesar (ROT) text - one button per shift (1-26), with an optional key for a custom alphabet
+Array.from(caesarButtons, (button) => button.addEventListener("click", () => {
+    const values = readToolInput(tool);
+    if (!values) {
+        return;
+    }
+    // The input is trimmed; a chained (previous) result is used as-is
+    const text = values.text === caesarText.value ? values.text.trim() : values.text;
 
-        Array.from(caesarButtons, button => {
-            button.classList.remove("active");
-        });
-        c.classList.add("active");
-        if(caesarKey.value.length > 0) {
-            document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber), getCustomAlphabet(caesarKey.value));
-        } else {
-            document.getElementById("caesarResults").textContent = rot(caesarResults, parseInt(caesarNumber));
-        }
-    }));
+    Array.from(caesarButtons, (b) => b.classList.remove("active"));
+    button.classList.add("active");
+
+    const shift = parseInt(button.getAttribute("data-caesar-number"));
+    document.getElementById("caesarResults").textContent = values.key.length > 0
+        ? rot(text, shift, getCustomAlphabet(values.key))
+        : rot(text, shift);
+}));
+
+// Previous / next shift, wrapping around between 1 and 26
+function step(direction) {
+    if (!readToolInput({ input: "caesarText" })) {
+        return;
+    }
+    const active = document.querySelector(".caesar-link.active") ?? document.querySelector(".caesar-link:first-child");
+    const current = parseInt(active.getAttribute("data-caesar-number"));
+    const next = ((current - 1 + direction + 26) % 26) + 1;
+    document.getElementById(`caesar${next}`).click();
 }
 
-// Caesar - Go backwards
-caesarPrevious && caesarPrevious.addEventListener("click", function() {
-    const caesarText = document.getElementById("caesarText");
-
-    if (!emptyContainerCheck(caesarText.value, caesarText)) {
-        return false;
-    }
-    if (!largeDataWarning(caesarText.value, caesarText)) {
-        return false;
-    }
-
-    let activeButton;
-    if (document.querySelector(".caesar-link.active") !== null) {
-        activeButton = document.querySelector(".caesar-link.active");
-    } else {
-        activeButton = document.querySelector(".caesar-link:first-child");
-    }
-    let activeCaesarNumber = activeButton.getAttribute("data-caesar-number");
-    let previousCaesarNumber = parseInt(activeCaesarNumber) - 1; 
-
-    if (activeButton.getAttribute("data-caesar-number") === "1") {
-        document.getElementById("caesar26").click();
-    } else {
-        document.getElementById(`caesar${previousCaesarNumber}`).click();
-    }
-});
-
-// TOR - Go forwards
-caesarNext && caesarNext.addEventListener("click", function() {
-    const caesarText = document.getElementById("caesarText");
-
-    if (!emptyContainerCheck(caesarText.value, caesarText)) {
-        return false;
-    }
-    if (!largeDataWarning(caesarText.value, caesarText)) {
-        return false;
-    }
-
-    let activeButton;
-    if (document.querySelector(".caesar-link.active") !== null) {
-        activeButton = document.querySelector(".caesar-link.active");
-    } else {
-        activeButton = document.querySelector(".caesar-link:first-child");
-    }
-    let activeCaesarNumber = activeButton.getAttribute("data-caesar-number");
-    let nextCaesarNumber = parseInt(activeCaesarNumber) + 1;
-
-    if (activeButton.getAttribute("data-caesar-number") === "26") {
-        document.getElementById("caesar1").click();
-    } else {
-        document.getElementById(`caesar${nextCaesarNumber}`).click();
-    }
-});
+document.getElementById("caesarPrev")?.addEventListener("click", () => step(-1));
+document.getElementById("caesarNext")?.addEventListener("click", () => step(1));

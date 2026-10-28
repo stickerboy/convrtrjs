@@ -1,46 +1,8 @@
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
+import { bindTool } from '../../ui/tool.js';
 import * as smithy from '../../lib/ciphers/smithy.js';
 
-const smithyEncryptButton = document.getElementById("smithyEncrypt");
-smithyEncryptButton && smithyEncryptButton.addEventListener("click", function () {
-    const smithyString = document.getElementById("smithyText");
-    const smithyKey = document.getElementById("smithyKey");
+const tool = { input: "smithyText", output: "smithyResults", chain: "chainSm" };
+const key = (action) => ({ id: "smithyKey", required: `A key is required to ${action} this cipher` });
 
-    if (!emptyContainerCheck(smithyString.value, smithyString)) {
-        return false;
-    }
-    if (!emptyContainerCheck(smithyKey.value, smithyKey, "A key is required to encrypt this cipher")) {
-        return false;
-    }
-    if (!largeDataWarning(smithyString.value, smithyString)) {
-        return false;
-    }
-
-    let chainSm = document.getElementById("chainSm");
-    let sM = document.getElementById("smithyResults").textContent;
-    let kwResults = chainSm.checked && sM.length > 0 ? sM : smithyString.value;
-
-    document.getElementById("smithyResults").textContent = smithy.smithyEncrypt(kwResults, smithyKey.value);
-});
-
-const smithyDecryptButton = document.getElementById("smithyDecrypt");
-smithyDecryptButton && smithyDecryptButton.addEventListener("click", function () {
-    const smithyString = document.getElementById("smithyText");
-    const smithyKey = document.getElementById("smithyKey");
-
-    if (!emptyContainerCheck(smithyString.value, smithyString)) {
-        return false;
-    }
-    if (!emptyContainerCheck(smithyKey.value, smithyKey, "A key is required to decrypt this cipher")) {
-        return false;
-    }
-    if (!largeDataWarning(smithyString.value, smithyString)) {
-        return false;
-    }
-
-    let chainSm = document.getElementById("chainSm");
-    let sM = document.getElementById("smithyResults").textContent;
-    let kwResults = chainSm.checked && sM.length > 0 ? sM : smithyString.value;
-
-    document.getElementById("smithyResults").textContent = smithy.smithyDecrypt(kwResults, smithyKey.value);
-});
+bindTool({ ...tool, button: "smithyEncrypt", key: key("encrypt"), run: smithy.smithyEncrypt });
+bindTool({ ...tool, button: "smithyDecrypt", key: key("decrypt"), run: smithy.smithyDecrypt });

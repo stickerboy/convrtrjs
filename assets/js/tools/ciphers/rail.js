@@ -1,59 +1,13 @@
-import { emptyContainerCheck, largeDataWarning } from '../../ui/input.js';
-import { showToast } from '../../ui/toast.js';
+import { bindTool } from '../../ui/tool.js';
 import * as rail from '../../lib/ciphers/rail.js';
 
-const railEncryptButton = document.getElementById("railEncrypt");
-railEncryptButton && railEncryptButton.addEventListener("click", function () {
-    const railString = document.getElementById("railText");
-    const railAmount = document.getElementById("railAmount");
-
-    if (!emptyContainerCheck(railString.value, railString)) {
-        return false;
-    }
-    if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to encrypt this cipher text")) {
-        return false;
-    }
-    if (!largeDataWarning(railString.value, railString)) {
-        return false;
-    }
-    if (/[^0-9]/.test(railAmount.value)) {
-        showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
-        return;
-    }
-
-    try {
-        rail.railFenceEncode(railString.value, railAmount.value)
-    } catch (e) {
-        showToast("Error", `An error occurred trying to encrypt the string: ${e.message}`, "danger");
-        return;
-    }
-    document.getElementById("railResults").textContent = rail.railFenceEncode(railString.value, railAmount.value);
+const key = (action) => ({
+    id: "railAmount",
+    required: `A key is required to ${action} this cipher text`,
+    pattern: /^[0-9]+$/,
+    invalid: "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here",
 });
+const tool = { input: "railText", output: "railResults" };
 
-const railDecryptButton = document.getElementById("railDecrypt");
-railDecryptButton && railDecryptButton.addEventListener("click", function () {
-    const railString = document.getElementById("railText");
-    const railAmount = document.getElementById("railAmount");
-
-    if (!emptyContainerCheck(railString.value, railString)) {
-        return false;
-    }
-    if (!emptyContainerCheck(railAmount.value, railAmount, "A key is required to decrypt this cipher text")) {
-        return false;
-    }
-    if (!largeDataWarning(railString.value, railString)) {
-        return false;
-    }
-    if (/[^0-9]/.test(railAmount.value)) {
-        showToast("Error", "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here", "danger");
-        return;
-    }
-
-    try {
-        rail.railFenceDecode(railString.value, railAmount.value)
-    } catch (e) {
-        showToast("Error", `An error occurred trying to decrypt the string: ${e.message}`, "danger");
-        return;
-    }
-    document.getElementById("railResults").textContent = rail.railFenceDecode(railString.value, railAmount.value);
-});
+bindTool({ ...tool, button: "railEncrypt", key: key("encrypt"), run: rail.railFenceEncode, errorPrefix: "An error occurred trying to encrypt the string" });
+bindTool({ ...tool, button: "railDecrypt", key: key("decrypt"), run: rail.railFenceDecode, errorPrefix: "An error occurred trying to decrypt the string" });
