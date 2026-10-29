@@ -1,18 +1,18 @@
-import { alphabet } from '../toolkit.js';
+export const upperAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 /**
- * Builds a custom alphabet using a given key.
+ * Builds a custom (uppercase, 26-letter) alphabet using a given key: the key's unique letters, then the rest of the alphabet.
+ * The key's case doesn't matter, and anything other than A-Z is ignored.
  * @param {string} string - A user-specified text string.
- * @returns {string} - A string containing the custom alphabet formed by combining unique characters from the input string and the standard alphabet.
+ * @returns {string} - The custom alphabet.
  *
  * @example
- * // Input: "TEST"
+ * // Input: "TEST" or "test"
  * // Output: "TESABCDFGHIJKLMNOPQRUVWXYZ"
  */
 export function getCustomAlphabet(string) {
-    let stringArr = [...new Set(string.trim())];
-    let alphaArr = [...new Set(alphabet.trim())];
-    return [...new Set(stringArr.concat(alphaArr))].join("");
+    const keyLetters = string.toUpperCase().replace(/[^A-Z]/g, "");
+    return [...new Set(keyLetters + upperAlphabet)].join("");
 }
 
 /**

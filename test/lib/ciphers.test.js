@@ -34,9 +34,10 @@ describe("rot (Caesar)", () => {
         // KEYABCDF... : shifting by 1 moves each letter to the next one in the keyed alphabet
         assert.equal(rot("K", 1, getCustomAlphabet("KEY")), "E");
     });
-    it("cycles every 26 shifts with a keyed alphabet", { todo: "the keyed alphabet has 52 letters (both cases), so it cycles every 52" }, () => {
+    it("cycles every 26 shifts with a keyed alphabet, whatever the key's case", () => {
         assert.equal(rot("Hello", 26, getCustomAlphabet("KEY")), "Hello");
         assert.equal(rot(rot("Hello", 13, getCustomAlphabet("KEY")), 13, getCustomAlphabet("KEY")), "Hello");
+        assert.equal(rot("Hello", 3, getCustomAlphabet("key")), rot("Hello", 3, getCustomAlphabet("KEY")));
     });
 });
 
@@ -44,6 +45,11 @@ describe("common", () => {
     it("getCustomAlphabet puts the key's unique letters first", () => {
         assert.equal(getCustomAlphabet("KEY").slice(0, 8), "KEYABCDF");
         assert.equal(getCustomAlphabet("BALLOON").slice(0, 7), "BALONCD");
+    });
+    it("getCustomAlphabet is always the 26 uppercase letters", () => {
+        assert.equal(getCustomAlphabet("zebras"), "ZEBRASCDFGHIJKLMNOPQTUVWXY");
+        assert.equal(getCustomAlphabet("ZeBrAs"), "ZEBRASCDFGHIJKLMNOPQTUVWXY");
+        assert.equal(getCustomAlphabet(""), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
     });
     it("fibonacci", () => {
         assert.deepEqual(fibonacci(7), [1, 1, 2, 3, 5, 8, 13]);
@@ -108,16 +114,19 @@ describe("chaocipher", () => {
 
 describe("keyword", () => {
     // Standard example: ZEBRAS gives the alphabet ZEBRASCDFGHIJKLMNOPQTUVWXY
-    it("encrypts with ZEBRAS", { todo: "off by one: looks letters up in an alphabet that starts with a space" }, () => {
+    it("encrypts with ZEBRAS", () => {
         assert.equal(keywordEncode("FLEE AT ONCE", "ZEBRAS"), "SIAA ZQ LKBA");
     });
-    it("decrypts with ZEBRAS", { todo: "off by one (see above)" }, () => {
+    it("decrypts with ZEBRAS", () => {
         assert.equal(keywordDecode("SIAA ZQ LKBA", "ZEBRAS"), "FLEE AT ONCE");
     });
-    it("keeps case, whatever the key's case", { todo: "key and input case are mixed into one alphabet" }, () => {
+    it("keeps case, whatever the key's case", () => {
         assert.equal(keywordEncode("flee at once", "zebras"), "siaa zq lkba");
     });
-    it("round-trips (current behaviour)", () => {
+    it("keeps case when decoding", () => {
+        assert.equal(keywordDecode("Siaa Zq Lkba", "zebras"), "Flee At Once");
+    });
+    it("round-trips", () => {
         assert.equal(keywordDecode(keywordEncode("Hello World", "Zebras"), "Zebras"), "Hello World");
     });
 });
@@ -126,7 +135,7 @@ describe("substitution", () => {
     it("substitutes using the keyed alphabet, keeping case", () => {
         assert.equal(substituteChars("flee at once. we are discovered!", "ZEBRAS"), "siaa zq lkba. va zoa rfpbluaoar!");
     });
-    it("gives the same result for a lowercase key", { todo: "a lowercase key builds a different alphabet" }, () => {
+    it("gives the same result for a lowercase key", () => {
         assert.equal(substituteChars("flee at once", "zebras"), substituteChars("flee at once", "ZEBRAS"));
     });
 });

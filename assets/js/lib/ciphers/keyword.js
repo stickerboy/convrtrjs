@@ -1,35 +1,31 @@
-import { alphabet } from '../toolkit.js';
-import { getCustomAlphabet } from './common.js';
+import { matchCase } from '../toolkit.js';
+import { getCustomAlphabet, upperAlphabet } from './common.js';
 
 /**
- * Encodes a string using a keyword by creating a substitution cipher that supports both uppercase and lowercase keys.
- *
- * @param {string} string - The input string to encode.
- * @param {string} key - The keyword used for encoding, supporting both uppercase and lowercase.
- * @returns {string} - The encoded string.
+ * Replaces each letter found in one alphabet with the letter at the same position in another, keeping its case.
  */
-export function keywordEncode(string, key) {
-    const customAlphabet = getCustomAlphabet(key);
-    const trans = customAlphabet;
-
-    return string.replace(/[A-Za-z]/g, function (c) {
-        return trans[alphabet.indexOf(c)];
-    });
+function translate(string, from, to) {
+    return string.replace(/[A-Za-z]/g, (c) => matchCase(c, to[from.indexOf(c.toUpperCase())]));
 }
 
 /**
- * Decodes an encoded string using a keyword by reversing the substitution cipher that supports both uppercase and lowercase keys.
+ * Encodes a string using a keyword by creating a substitution cipher. The key's case doesn't matter and the input's case is kept.
+ *
+ * @param {string} string - The input string to encode.
+ * @param {string} key - The keyword used for encoding.
+ * @returns {string} - The encoded string.
+ */
+export function keywordEncode(string, key) {
+    return translate(string, upperAlphabet, getCustomAlphabet(key));
+}
+
+/**
+ * Decodes an encoded string using a keyword by reversing the substitution cipher. The key's case doesn't matter and the input's case is kept.
  *
  * @param {string} string - The encoded string to decode.
- * @param {string} key - The keyword used for decoding, supporting both uppercase and lowercase.
+ * @param {string} key - The keyword used for decoding.
  * @returns {string} - The decoded original string.
  */
 export function keywordDecode(string, key) {
-    const customAlphabet = getCustomAlphabet(key);
-    const trans = customAlphabet;
-
-    return string.replace(/./g, function (c) {
-        const index = trans.indexOf(c); 
-        return index !== -1 ? alphabet[index] : c; // Map back to the original alphabet or keep the character as-is
-    });
+    return translate(string, getCustomAlphabet(key), upperAlphabet);
 }
