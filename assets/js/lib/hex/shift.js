@@ -11,21 +11,9 @@ import * as toolkit from "../toolkit.js";
  * @throws {Error} - If the input hex string contains invalid characters.
  */
 export function shiftHexString(hexString, shiftValue, delimiter) {
-    if (!toolkit.isValidHex(hexString, delimiter)) {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
-    }
-    hexString = toolkit.cleanString(hexString);
-
-    // Convert hex string to byte array
-    const hexArray = hexString.split(delimiter).map(byte => parseInt(byte, 16));
-
-    // Shift each byte value
-    const shiftedHexArray = hexArray.map(byte => (byte + parseInt(shiftValue)) & 0xFF);
-
-    // Convert byte array back to a hex string
-    const result = shiftedHexArray.map(byte => byte.toString(16).padStart(2, '0')).join(delimiter);
-
-    return result;
+    const shift = parseInt(shiftValue);
+    const shifted = toolkit.hexToBytes(hexString, delimiter).map(byte => (byte + shift) & 0xFF);
+    return toolkit.bytesToHex(shifted, delimiter);
 }
 
 /**

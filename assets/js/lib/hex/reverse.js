@@ -1,31 +1,21 @@
 import * as toolkit from "../toolkit.js";
 
 /**
- * Reverses the order of bits within each byte in a hex string.
+ * Swaps the two hex digits (nibbles) of each byte in a hex string.
  *
  * @param {string} string - The input hexadecimal string.
  * @param {string} delimiter - The delimiter used in the hexadecimal string.
- * @returns {string} - The hexadecimal string with bits reversed in each byt.
+ * @returns {string} - The hexadecimal string with the digits of each byte swapped.
  *
  * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
  *
  * @example
- * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: ""
+ * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
  * // Output: "84 56 c6 c6 f6"
  * reverseHexBytes("48 65 6c 6c 6f", " ");
  */
 export function reverseHexBytes(string, delimiter) {
-    let reversedString;
-    if (toolkit.isValidHex(string, delimiter)) {
-        if (delimiter === "") {
-            reversedString = toolkit.stringToArray(string, 2).map(toolkit.reverseString).join(delimiter);
-        } else {
-            reversedString = string.split(delimiter).map(toolkit.reverseString).join(delimiter);
-        }
-        return reversedString;
-    } else {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
-    }
+    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).map(toolkit.reverseString), delimiter);
 }
 
 /**
@@ -63,17 +53,7 @@ function reverseHexNibble(string) {
  * reverseHexNibbles("48 65 6c 6c 6f", " ");
  */
 export function reverseHexNibbles(string, delimiter) {
-    let reversedString;
-    if (toolkit.isValidHex(string, delimiter)) {
-        if (delimiter === "") {
-            reversedString = toolkit.stringToArray(string, 2).map(reverseHexNibble).join(delimiter);
-        } else {
-            reversedString = string.split(delimiter).map(reverseHexNibble).join(delimiter);
-        }
-        return reversedString;
-    } else {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
-    }
+    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).map(reverseHexNibble), delimiter);
 }
 
 /**
@@ -109,15 +89,5 @@ function reverseBitsInNibble(string) {
  * reverseHexByteOrder("48 65 6c 6c 6f", " ");
  */
 export function reverseHexByteOrder(string, delimiter) {
-    let reversedString;
-    if (toolkit.isValidHex(string, delimiter)) {
-        if (delimiter === "") {
-            reversedString = toolkit.stringToArray(string, 2).reverse().join(delimiter);
-        } else {
-            reversedString = string.split(delimiter).reverse().join(delimiter);
-        }
-        return reversedString;
-    } else {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
-    }
+    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).reverse(), delimiter);
 }

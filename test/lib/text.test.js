@@ -57,8 +57,14 @@ describe("hex", () => {
         assert.equal(toolkit.hexToString("48:69", ":"), "Hi");
         assert.equal(toolkit.hexToString("0x480x69", "0x"), "Hi");
     });
-    it("decodes \\x-delimited hex", { todo: "the delimiter isn't escaped in the validation regex, so the backslash is rejected" }, () => {
+    it("decodes \\x-delimited hex", () => {
         assert.equal(toolkit.hexToString("\\x48\\x69", "\\x"), "Hi");
+    });
+    it("ignores surrounding whitespace with no delimiter", () => {
+        assert.equal(toolkit.hexToString(" 4869\n", ""), "Hi");
+    });
+    it("falls back to one character per byte when the bytes aren't UTF-8", () => {
+        assert.equal(toolkit.hexToString("48 e9", " "), "Hé");
     });
     it("round-trips non-ASCII text (UTF-8)", () => {
         assert.equal(toolkit.hexToString(toolkit.stringToHex("Café ✓", " "), " "), "Café ✓");

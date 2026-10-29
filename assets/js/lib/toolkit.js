@@ -155,9 +155,74 @@ export function stringToBinary(string) {
  * @returns {boolean} True if the input string is valid hexadecimal, otherwise false.
  */
 export function isValidHex(string, delimiter) {
-    const validHex = new RegExp(`^[0-9a-fA-F${delimiter}]+$`);
-    let cleanStr = cleanString(string);
-    return validHex.test(cleanStr);
+    const validHex = delimiter === ""
+        ? /^[0-9a-fA-F]+$/
+        : new RegExp(`^(?:[0-9a-fA-F]|${escapeRegExp(delimiter)})+$`);
+    return validHex.test(cleanString(string));
+}
+
+/**
+ * Escapes a string so it matches literally when used in a regular expression.
+ * @param {string} string - The input string.
+ * @returns {string} - The escaped string.
+ */
+export function escapeRegExp(string) {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Splits hex into its bytes, as 2-digit hex strings (keeping their case). Surrounding whitespace is ignored,
+ * and a group of several bytes between delimiters (e.g. "4869 21") is split into pairs.
+ *
+ * @param {string} string - The input hexadecimal string.
+ * @param {string} delimiter - The delimiter used in the string (e.g., ' ', '0x', '\\x', or '' for none).
+ * @returns {Array<string>} - The 2-digit hex string for each byte.
+ * @throws {Error} - If the hexadecimal contains invalid characters.
+ */
+export function hexToPairs(string, delimiter) {
+    if (!isValidHex(string, delimiter)) {
+        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
+    }
+    const groups = delimiter === "" ? [cleanString(string)] : cleanString(string).split(delimiter);
+    return groups
+        .filter(Boolean)
+        .flatMap((group) => stringToArray(group, 2))
+        .map((pair) => pair.padStart(2, "0"));
+}
+
+/**
+ * Parses hex into its byte values.
+ *
+ * @param {string} string - The input hexadecimal string.
+ * @param {string} delimiter - The delimiter used in the string (e.g., ' ', '0x', '\\x', or '' for none).
+ * @returns {Array<number>} - The byte values.
+ * @throws {Error} - If the hexadecimal contains invalid characters.
+ */
+export function hexToBytes(string, delimiter) {
+    return hexToPairs(string, delimiter).map((pair) => parseInt(pair, 16));
+}
+
+/**
+ * Joins 2-digit hex strings with a delimiter. Prefix-style delimiters ('0x', '\\x') also go before the first byte.
+ *
+ * @param {Array<string>} pairs - The 2-digit hex strings.
+ * @param {string} delimiter - The delimiter to use.
+ * @returns {string} - The joined hex string.
+ */
+export function joinHex(pairs, delimiter) {
+    const joined = pairs.join(delimiter);
+    return (delimiter === "\\x" || delimiter === "0x") && joined ? delimiter + joined : joined;
+}
+
+/**
+ * Formats byte values as hex.
+ *
+ * @param {Iterable<number>} bytes - The byte values.
+ * @param {string} delimiter - The delimiter to use (e.g., ' ', '0x', '\\x', or '' for none).
+ * @returns {string} - The hex string.
+ */
+export function bytesToHex(bytes, delimiter) {
+    return joinHex(Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")), delimiter);
 }
 
 /**
@@ -168,47 +233,18 @@ export function isValidHex(string, delimiter) {
  * @returns {string} - The hexadecimal representation of the input string.
  */
 export function stringToHex(string, delimiter) {
-    const encoder = new TextEncoder();
-    const uint8Array = encoder.encode(string);
-
-    let returnValue = Array.from(uint8Array).map(byte =>
-        byte.toString(16).padStart(2, '0')
-    ).join(`${delimiter}`);
-
-    return (delimiter === "\\x" || delimiter === "0x") ? delimiter + returnValue : returnValue;
+    return bytesToHex(new TextEncoder().encode(string), delimiter);
 }
 
 /**
- * Decode Hex to string
- * https://stackoverflow.com/a/60505243/3172872
+ * Decode Hex to string, as UTF-8, or one character per byte if the bytes aren't valid UTF-8
  * @param {string} string - The input hexadecimal string.
  * @param {string} delimiter - The delimiter used in the string (e.g., '0x', '\\x').
  * @returns {string} - The decoded string.
  * @throws {Error} - If the hexadecimal contains invalid characters.
  */
 export function hexToString(string, delimiter) {
-    if (isValidHex(string, delimiter)) {
-        let hexArray = [];
-        if (delimiter === "") {
-            for (let i = 0; i < string.length; i += 2) {
-                const chunk = string.slice(i, i + 2);
-                hexArray.push(parseInt(chunk, 16));
-            }
-        } else {
-            const hex = string.trim().split(delimiter);
-            for (let i = 0; i < hex.length; i++) {
-                if (hex[i]) { // Check to ensure non-empty string
-                    hexArray.push(parseInt(hex[i], 16));
-                }
-            }
-        }
-
-        const uint8Array = new Uint8Array(hexArray);
-        const decoder = new TextDecoder("utf-8", { fatal: false });
-        return decoder.decode(uint8Array);
-    } else {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
-    }
+    return bytesToString(hexToBytes(string, delimiter));
 }
 
 /**
