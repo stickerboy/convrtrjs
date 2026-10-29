@@ -121,12 +121,17 @@ export function urlEncode(string) {
 }
 
 /**
- * URL decode
+ * URL decode (+ is read as a space, as in form data and query strings)
  * @param {string} string - The URL-encoded string.
  * @returns {string} - The decoded string.
+ * @throws {Error} - If a % isn't followed by a valid escape sequence.
  */
 export function urlDecode(string) {
-    return decodeURIComponent(string).replace(/\+/g, "%20");
+    try {
+        return decodeURIComponent(string.replace(/\+/g, " "));
+    } catch {
+        throw new Error("Not a valid URL-encoded string, each % must be followed by two hex digits");
+    }
 }
 
 /**

@@ -184,8 +184,18 @@ describe("text tools (strings.js)", () => {
     it("URL encodes", () => {
         assert.equal(strings.urlEncode("a b&c=d"), "a+b%26c%3Dd");
     });
-    it("URL decodes", { todo: "turns + into %20 after decoding, instead of into a space" }, () => {
+    it("URL decodes, reading + as a space", () => {
         assert.equal(strings.urlDecode("a+b%26c%3Dd"), "a b&c=d");
+        assert.equal(strings.urlDecode("a%20b%2Bc"), "a b+c");
+        assert.equal(strings.urlDecode("caf%C3%A9"), "café");
+    });
+    it("round-trips URL encoding", () => {
+        const text = "a b+c&d=e/f?g é ✓";
+        assert.equal(strings.urlDecode(strings.urlEncode(text)), text);
+    });
+    it("rejects malformed escapes", () => {
+        assert.throws(() => strings.urlDecode("100%"), /Not a valid URL-encoded/);
+        assert.throws(() => strings.urlDecode("%E9"), /Not a valid URL-encoded/);
     });
     it("detects JSON objects and arrays", () => {
         assert.equal(strings.isLikelyJSON('{"a":1}'), true);
