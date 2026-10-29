@@ -41,13 +41,36 @@ describe("unscramble", () => {
     it("swaps each pair of characters", () => {
         assert.equal(unscramble("badc"), "abcd");
     });
-    it("keeps the last character of odd-length input", { todo: "the unpaired last character is dropped" }, () => {
+    it("keeps the last character of odd-length input", () => {
         assert.equal(unscramble("badce"), "abcde");
+        assert.equal(unscramble("a"), "a");
+        assert.equal(unscramble(""), "");
+    });
+    it("is its own inverse, and keeps emoji intact", () => {
+        assert.equal(unscramble(unscramble("Hello, World!")), "Hello, World!");
+        assert.equal(unscramble("😀a"), "a😀");
+    });
+    it("can drop the unpaired last character, like the original Ruby", () => {
+        assert.equal(unscramble("badce", true), "abcd");
+        assert.equal(unscramble("badc", true), "abcd");
+    });
+});
+
+describe("unmunge", () => {
+    it("reads columns from the key, then the key reversed without its first digit", () => {
+        // e f g = 101 102 103 -> columns 1 2 3, then 3 2 (as in the Ruby: key + key.reverse[0...-1])
+        assert.equal(unmunge("efg", "0123456789".repeat(6)), "123321");
+    });
+});
+
+describe("lookahead", () => {
+    it("adds the key byte when the first of the pair is odd, otherwise subtracts it", () => {
+        // "1" (49) is odd: 66 + 65 = 131; "2" (50) is even: 66 - 65 = 1
+        assert.equal(lookahead("A", "1B2B"), "\x83\x01");
     });
 });
 
 describe("snapshots", () => {
     it("calendar", (t) => t.assert.snapshot(calendar(datanode)));
     it("lookahead", (t) => t.assert.snapshot(lookahead("key", datanode)));
-    it("unmunge", (t) => t.assert.snapshot(unmunge("key", datanode)));
 });

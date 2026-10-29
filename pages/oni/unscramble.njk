@@ -10,13 +10,16 @@ noScript: true
 <p class="px-2">
     Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">abcdef</code> &srarr; <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
 </p>
+<p class="px-2">
+    An unpaired last character is kept. Pass <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">true</code> as the second argument to drop it instead, as the original ONI-Tools version does.
+</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">Unscramble</span>
         <div class="card-body text-left">
-            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string)</code>
+            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string, dropUnpaired = false)</code>
         </div>
         <div class="card-footer py-3">
             <div class="text-center mb-4 g-0">

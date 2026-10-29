@@ -1,27 +1,18 @@
 /**
- * Unscrambles a string by interleaving its characters.
- * e.g. "abcdef" => "badcfe"
+ * Unscrambles a string by swapping each pair of characters.
+ * e.g. "abcdef" => "badcfe", "abcde" => "badce" (or "badc" with dropUnpaired)
  *
  * @param {string} string - The input scrambled string.
+ * @param {boolean} [dropUnpaired=false] - Drop an unpaired last character, as the original ONI-Tools Ruby version does.
  * @returns {string} - The unscrambled string.
  */
-export function unscramble(string) {
-    const length = string.length;
-    const part1 = [];
-    const part2 = [];
-
-    for (let i = 0; i < length; i++) {
-        if (i % 2 === 0) {
-            part2.push(string[i]);
-        } else {
-            part1.push(string[i]);
-        }
+export function unscramble(string, dropUnpaired = false) {
+    const chars = Array.from(string);
+    if (dropUnpaired && chars.length % 2 === 1) {
+        chars.pop();
     }
-
-    let result = "";
-    for (let i = 0; i < part1.length; i++) {
-        result += part1[i] + (part2[i] || "");
+    for (let i = 0; i + 1 < chars.length; i += 2) {
+        [chars[i], chars[i + 1]] = [chars[i + 1], chars[i]];
     }
-
-    return result;
+    return chars.join("");
 }
