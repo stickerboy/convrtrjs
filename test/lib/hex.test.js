@@ -29,8 +29,10 @@ describe("hex shift", () => {
         assert.equal(shiftHexString("ff 00", 1, " "), "00 01");
         assert.equal(shiftHexString("00", -1, " "), "ff");
     });
-    it("matches the current shiftHexKey output", (t) => {
-        t.assert.snapshot(shiftHexKey("Hello", "key"));
+    it("subtracts the key's bytes, showing bytes that aren't UTF-8 one character per byte", () => {
+        // H-k = 221 (Ý), e-e = 0, l-y = 243 (ó), l-k = 1, o-e = 10
+        assert.equal(shiftHexKey("Hello", "key"), "Ý\x00ó\x01\n");
+        assert.equal(shiftHexKey(shiftHexKey("Hi", "\x00"), "\x00"), "Hi");
     });
 });
 

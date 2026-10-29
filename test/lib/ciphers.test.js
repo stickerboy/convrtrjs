@@ -9,7 +9,7 @@ import { railFenceEncode, railFenceDecode } from "../../assets/js/lib/ciphers/ra
 import rot from "../../assets/js/lib/ciphers/rot.js";
 import { smithyEncrypt, smithyDecrypt } from "../../assets/js/lib/ciphers/smithy.js";
 import { substituteChars } from "../../assets/js/lib/ciphers/substitution.js";
-import { vignereEncrypt, vignereDecrypt } from "../../assets/js/lib/ciphers/vigenere.js";
+import { vigenereEncrypt, vigenereDecrypt } from "../../assets/js/lib/ciphers/vigenere.js";
 
 describe("atbash", () => {
     it("mirrors each letter, keeping case and other characters", () => {
@@ -59,14 +59,14 @@ describe("common", () => {
 describe("vigenère", () => {
     // Textbook example (Wikipedia)
     it("encrypts ATTACKATDAWN with LEMON", () => {
-        assert.equal(vignereEncrypt("ATTACKATDAWN", "LEMON"), "LXFOPVEFRNHR");
+        assert.equal(vigenereEncrypt("ATTACKATDAWN", "LEMON"), "LXFOPVEFRNHR");
     });
     it("decrypts back", () => {
-        assert.equal(vignereDecrypt("LXFOPVEFRNHR", "LEMON"), "ATTACKATDAWN");
+        assert.equal(vigenereDecrypt("LXFOPVEFRNHR", "LEMON"), "ATTACKATDAWN");
     });
     it("keeps case and skips non-letters (they don't use up the key)", () => {
-        assert.equal(vignereEncrypt("Attack at dawn!", "lemon"), "Lxfopv ef rnhr!");
-        assert.equal(vignereDecrypt("Lxfopv ef rnhr!", "LEMON"), "Attack at dawn!");
+        assert.equal(vigenereEncrypt("Attack at dawn!", "lemon"), "Lxfopv ef rnhr!");
+        assert.equal(vigenereDecrypt("Lxfopv ef rnhr!", "LEMON"), "Attack at dawn!");
     });
 });
 

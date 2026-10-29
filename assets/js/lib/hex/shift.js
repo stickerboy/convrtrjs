@@ -21,12 +21,12 @@ export function shiftHexString(hexString, shiftValue, delimiter) {
  * 
  * @param {string} string - The input string.
  * @param {Uint8Array} keyBytes - The key bytes.
- * @returns {string} - The shifted string.
+ * @returns {string} - The shifted string, as UTF-8, or one character per byte if the bytes aren't valid UTF-8.
  */
 export function shiftHexPattern(string, keyBytes) {
     const inputBytes = new TextEncoder().encode(string);
     const shiftedBytes = inputBytes.map((byte, i) => (byte - keyBytes[i % keyBytes.length]) & 0xFF);
-    return new TextDecoder().decode(new Uint8Array(shiftedBytes));
+    return toolkit.bytesToString(shiftedBytes);
 }
 
 /**

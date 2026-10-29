@@ -1,5 +1,5 @@
 import { atbashCipher } from "./atbash.js";
-import { vignereDecrypt } from "./vigenere.js";
+import { vigenereDecrypt } from "./vigenere.js";
 /**
  * Encrypts or decrypts a string using the Beaufort cipher.
  * The encryption and decryption process is identical.
@@ -19,5 +19,5 @@ export function beaufortCipher(string, key) {
     const transformedString = atbashCipher(string);
     const transformedKey = atbashCipher(key);
 
-    return vignereDecrypt(transformedString, transformedKey);
+    return vigenereDecrypt(transformedString, transformedKey);
 }

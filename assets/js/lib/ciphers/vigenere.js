@@ -11,7 +11,7 @@ import { isLetter, isUpperCase } from "../toolkit.js";
  * // Input: "Hello, World!" with key "KEY"
  * // Output: "Rijvs Uyvjn!"
  */
-export function vignereEncrypt(string, key) {
+export function vigenereEncrypt(string, key) {
     let result = "";
 
     for (let i = 0, j = 0; i < string.length; i++) {
@@ -42,7 +42,7 @@ export function vignereEncrypt(string, key) {
  * // Input: "Rijvs Uyvjn!" with key "KEY"
  * // Output: "Hello, World!"
  */
-export function vignereDecrypt(string, key) {
+export function vigenereDecrypt(string, key) {
     let result = "";
 
     for (let i = 0, j = 0; i < string.length; i++) {

@@ -3,6 +3,18 @@ import assert from "node:assert/strict";
 import { convertBraille } from "../../assets/js/lib/misc/braille.js";
 import { hexToChunks } from "../../assets/js/lib/misc/colors.js";
 import { convertElements } from "../../assets/js/lib/misc/elements.js";
+import { fralphabet } from "../../assets/js/lib/misc/forerunner.js";
+import { getKeyValue } from "../../assets/js/lib/toolkit.js";
+
+describe("forerunner", () => {
+    it("maps each glyph to its character, plus space", () => {
+        assert.equal(fralphabet.length, 38);
+        assert.equal(getKeyValue("…", fralphabet), "0");
+        assert.equal(getKeyValue("™", fralphabet), "A");
+        assert.equal(getKeyValue("Å", fralphabet), "Æ");
+        assert.equal(getKeyValue(" ", fralphabet), " ");
+    });
+});
 
 // `mode` names the input: "braille" (default) reads Braille, "text" reads text
 describe("braille", () => {

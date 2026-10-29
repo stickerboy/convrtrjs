@@ -9,5 +9,5 @@ const key = (action) => ({
     invalid: "Vigenère key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
 });
 
-bindTool({ ...tool, button: "vigenereEncrypt", key: key("encrypt"), run: vigenere.vignereEncrypt });
-bindTool({ ...tool, button: "vigenereDecrypt", key: key("decrypt"), run: vigenere.vignereDecrypt });
+bindTool({ ...tool, button: "vigenereEncrypt", key: key("encrypt"), run: vigenere.vigenereEncrypt });
+bindTool({ ...tool, button: "vigenereDecrypt", key: key("decrypt"), run: vigenere.vigenereDecrypt });

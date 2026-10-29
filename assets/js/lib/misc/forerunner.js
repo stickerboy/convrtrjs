@@ -1,2 +1,4 @@
-export const fralphabet = [[" ", " "], ["…", "0"], ["†", "1"], ["‡", "2"], ["ˆ", "3"], ["Š", "4"], ["Œ", "5"], ["Ž", "6"], ["‘", "7"], ["’", "8"], ["“", "9"], ["™", "A"], ["š", "B"], ["œ", "C"], ["ž", "D"], ["Ÿ", "E"], ["¡", "F"], ["¤", "G"], ["¥", "H"], ["¦", "I"], ["§", "J"], ["«", "K"], ["¬", "L"], ["®", "M"], ["¯", "N"], ["±", "O"], ["²", "P"], ["´", "Q"], ["µ", "R"], ["º", "S"], ["»", "T"], ["½", "U"], ["¾", "V"], ["¿", "W"], ["À", "X"], ["Â", "Y"], ["Ã", "Z"], ["Å", "Æ"]
-];
+import FORERUNNER from "../../data/forerunner.json" with { type: "json" };
+
+// [glyph, character] pairs for each Forerunner glyph (the font maps each glyph to a character), plus space
+export const fralphabet = [[" ", " "], ...FORERUNNER.map(({ glyph, key }) => [glyph, key])];
