@@ -1,4 +1,4 @@
-import { hasUrlParameters, getURLParameter } from "../lib/toolkit.js";
+import { getURLParameter } from "../ui/url.js";
 import "./search-summary.js";
 
 const translations = {
@@ -76,7 +76,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    const initialTerm = hasUrlParameters() ? getURLParameter("t") : "";
+    const initialTerm = getURLParameter("t") ?? "";
     if (typeof initialTerm === "string" && initialTerm.trim().length >= 2) {
         customElements.whenDefined("pagefind-input").then(() => {
             requestAnimationFrame(() => {

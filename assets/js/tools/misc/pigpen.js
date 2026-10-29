@@ -1,5 +1,5 @@
 import { emptyContainerCheck } from '../../ui/input.js';
-import { createImage }  from '../../lib/toolkit.js';
+import { createImage } from '../../ui/image.js';
 
 const pigpenButtons = document.getElementsByClassName("pig-glyph");
 let pR = document.getElementById("pigpenResults");

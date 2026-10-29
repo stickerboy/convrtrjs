@@ -1,5 +1,6 @@
 import { emptyContainerCheck } from '../../ui/input.js';
-import { createImage, getKeyValue }  from '../../lib/toolkit.js';
+import { getKeyValue } from '../../lib/toolkit.js';
+import { createImage } from '../../ui/image.js';
 import * as forerunner from '../../lib/misc/forerunner.js';
 
 const forerunnerButtons = document.getElementsByClassName("fr-glyph");

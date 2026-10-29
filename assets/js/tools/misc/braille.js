@@ -1,10 +1,9 @@
 import { emptyContainerCheck } from '../../ui/input.js';
 import { bindTool } from '../../ui/tool.js';
-import { createImage } from '../../lib/toolkit.js';
+import { createImage } from '../../ui/image.js';
 import * as braille from '../../lib/misc/braille.js';
 
 let bR = document.getElementById("brailleResults");
-let bIR = document.getElementById("brailleImageResults");
 let bIT = document.getElementById("brImageTransparency");
 let brailleImage = document.getElementById("generateBrailleImage");
 let brailleSwitch = document.getElementById("brailleSwitch");
@@ -28,9 +27,8 @@ brailleSwitch && brailleSwitch.addEventListener("click", function () {
 });
 
 brailleImage && brailleImage.addEventListener("click", function () {
-    // Avoid accessing innerHTML when bIR may not exist yet
-    const bIRContent = bIR?.innerHTML ?? "";
-    if (!emptyContainerCheck(bIRContent, bIR, "There are no symbols present, please add at least one symbol to generate an image")) {
+    // The image is drawn from the results
+    if (!emptyContainerCheck(bR.innerText, bR, "There are no symbols present, please convert some text to generate an image")) {
         return false;
     }
     let bOptions = {};

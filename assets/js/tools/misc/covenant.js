@@ -1,5 +1,5 @@
 import { emptyContainerCheck } from '../../ui/input.js';
-import { createImage }  from '../../lib/toolkit.js';
+import { createImage } from '../../ui/image.js';
 
 const covenantButtons = document.getElementsByClassName("cov-glyph");
 let cR = document.getElementById("covenantResults");
