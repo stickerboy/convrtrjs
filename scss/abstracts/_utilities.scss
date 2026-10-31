@@ -1,0 +1,15 @@
+@use "sass:list";
+@use "sass:map";
+
+// Utility API changes, applied before the utility classes are generated
+
+// .d-table-header-group and its responsive variants
+$utilities: map.merge(
+  $utilities,
+  (
+    "display": map.merge(
+      map.get($utilities, "display"),
+      (values: list.append(map.get($utilities, "display", "values"), table-header-group))
+    )
+  )
+);

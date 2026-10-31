@@ -1,2 +1,50 @@
-@import "bootstrap";
-@import "style";
+/*!
+ * Convrtr styles
+ */
+
+// Bootstrap configuration: no CSS is output until vendor/bootstrap
+@import "bootstrap-scss/functions";
+@import "abstracts/variables";
+@import "bootstrap-scss/variables";
+@import "bootstrap-scss/variables-dark";
+@import "bootstrap-scss/maps";
+@import "bootstrap-scss/mixins";
+@import "bootstrap-scss/utilities";
+@import "abstracts/utilities";
+
+@import "vendor/bootstrap";
+
+@import "base/fonts";
+@import "base/root";
+@import "base/base";
+@import "base/code";
+@import "base/utilities";
+
+@import "layout/page";
+@import "layout/grid";
+@import "layout/sidebar";
+@import "layout/navbar";
+@import "layout/offcanvas";
+@import "layout/sections";
+
+@import "components/buttons";
+@import "components/icons";
+@import "components/forms";
+@import "components/cards";
+@import "components/nav";
+@import "components/pagination";
+@import "components/tables";
+@import "components/toasts";
+@import "components/badges";
+@import "components/prose";
+
+@import "tools/results";
+@import "tools/elements";
+@import "tools/glyphs";
+@import "tools/misc";
+
+@import "pages/settings";
+@import "pages/changelog";
+
+@import "vendor/pagefind";
+@import "vendor/termsfeed";

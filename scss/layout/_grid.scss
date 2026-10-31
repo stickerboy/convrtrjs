@@ -1,0 +1,14 @@
+.grid-auto {
+    grid-template-columns: repeat(auto-fill, 1rem)
+}
+
+.grid {
+    &--fill {
+        --bs-column-fill: 6rem;
+        grid-template-columns: repeat(auto-fill, minmax(var(--bs-column-fill), 1fr));
+    }
+    &--fit {
+        --bs-column-fit: 6rem;
+        grid-template-columns: repeat(auto-fill, minmax(var(--bs-column-fit), 1fr));
+    }
+}

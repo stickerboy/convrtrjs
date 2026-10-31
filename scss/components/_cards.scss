@@ -1,0 +1,9 @@
+.card-title {
+    min-height: 2rem;
+}
+
+@include color-mode(dark) {
+    .card {
+        background-color: var(--convrtr-bg-dark) !important;
+    }
+}

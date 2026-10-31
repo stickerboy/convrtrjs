@@ -1,0 +1,17 @@
+// Bootstrap variable overrides, loaded before Bootstrap's own defaults
+
+$enable-cssgrid: true;
+
+// Bootstrap's breakpoints plus larger ones for wide screens
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxxl: 1600px,
+  fhd: 1920px,
+  2k: 2048px,
+  qhd: 2560px
+);

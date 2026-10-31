@@ -6,8 +6,8 @@
   "main": "index.html",
   "type": "module",
   "scripts": {
-    "sass:dev": "sass --watch --update --style=expanded scss:assets/devcss",
-    "sass:prod": "sass --no-source-map --style=compressed scss:assets/css",
+    "sass:dev": "sass --watch --update --style=expanded --load-path=node_modules --quiet-deps --silence-deprecation=import scss:assets/devcss",
+    "sass:prod": "sass --no-source-map --style=compressed --load-path=node_modules --quiet-deps --silence-deprecation=import scss:assets/css",
     "build": "npx @11ty/eleventy",
     "test": "node --test \"test/**/*.test.js\"",
     "test:update-snapshots": "node --test --test-update-snapshots \"test/**/*.test.js\""

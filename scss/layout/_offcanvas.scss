@@ -1,0 +1,31 @@
+.offcanvas.offcanvas-end {
+    width: 100vw;
+    top: var(--navbar-height);
+    z-index: 4;
+}
+@include media-breakpoint-up(md) {
+    .offcanvas.offcanvas-end {
+        width: 80vw;
+    }
+}
+@include media-breakpoint-up(lg) {
+    .offcanvas.offcanvas-end {
+        width: 70vw;
+    }
+}
+@include media-breakpoint-up(xl) {
+    .offcanvas.offcanvas-end {
+        width: 60vw;
+    }
+}
+@include media-breakpoint-up(xxl) {
+    .offcanvas.offcanvas-end {
+        width: 50vw;
+    }
+}
+@include color-mode(light) {
+    .offcanvas.offcanvas-end {
+        --bs-bg-opacity: 1;
+        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+    }
+}

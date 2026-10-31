@@ -1,0 +1,78 @@
+.elements-grid {
+    overflow: hidden auto;
+    max-height: 20rem;
+}
+.p-element {
+    flex: 1 1 calc(10% - 0.5rem);
+    min-width: 8rem;
+    max-width: 12rem;
+}
+
+.elements-table {
+    & .col {
+        min-height: 2.5rem;
+
+        @media (max-width: 575px) {
+            padding-top: calc(var(--bs-gutter-x)* .5);
+            padding-bottom: calc(var(--bs-gutter-x)* .5);
+
+            &:nth-child(2n + 2) {
+                background-color: var(--convrtr-row-highlight-color);
+            }
+        }
+        @media (min-width: 576px) and (max-width: 767px) {
+            padding-top: calc(var(--bs-gutter-x)* .5);
+            padding-bottom: calc(var(--bs-gutter-x)* .5);
+            
+            &:nth-of-type(4n-1),
+            &:nth-of-type(4n) {
+                background-color:  var(--convrtr-row-highlight-color);
+            }
+        }
+        @media (max-width: 767px) {
+            &:empty {
+                display: none;
+            }
+        }
+        @media (min-width: 767px) {
+            // Highlight first 4, skip 4, highlight next 4
+            @for $i from 0 through 8 { // Large range to cover expected number of columns
+                &:nth-of-type(8n + #{$i * 8 + 1}),
+                &:nth-of-type(8n + #{$i * 8 + 2}),
+                &:nth-of-type(8n + #{$i * 8 + 3}),
+                &:nth-of-type(8n + #{$i * 8 + 4}) {
+                    background-color: var(--convrtr-row-highlight-color);
+                }
+            }
+        }
+    }
+}
+
+@include color-mode(dark) {
+    .elements-table {
+        & .col {
+            @media (max-width: 575px) {
+                &:nth-child(2n + 2) {
+                    background-color: var(--convrtr-row-highlight-dark);
+                }
+            }
+            @media (min-width: 576px) and (max-width: 767px) {
+                &:nth-of-type(4n-1),
+                &:nth-of-type(4n) {
+                    background-color:  var(--convrtr-row-highlight-dark);
+                }
+            }
+            @media (min-width: 767px) {
+                // Highlight first 4, skip 4, highlight next 4
+                @for $i from 0 through 8 { // Large range to cover expected number of columns
+                    &:nth-of-type(8n + #{$i * 8 + 1}),
+                    &:nth-of-type(8n + #{$i * 8 + 2}),
+                    &:nth-of-type(8n + #{$i * 8 + 3}),
+                    &:nth-of-type(8n + #{$i * 8 + 4}) {
+                        background-color: var(--convrtr-row-highlight-dark);
+                    }
+                }
+            }
+        }
+    }
+}

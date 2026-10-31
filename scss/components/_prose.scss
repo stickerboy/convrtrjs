@@ -1,0 +1,162 @@
+.prose {
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+    h1,h2 {
+        padding-bottom: 0.75rem;
+        margin-bottom: 1rem;
+        border-bottom-color: var(--bs-border-color-translucent);
+        border-style: none;
+        border-bottom-style: solid;
+        border-bottom-width: var(--bs-border-width);
+    }
+    @for $i from 1 through 6 {
+        h#{$i} {
+            font-weight: 300;
+        }
+    }
+    h3 {
+        @extend .h4 !optional;
+        font-size: 1.5rem;
+        font-weight: 400;
+    }
+    h4 {
+        @extend .h5 !optional;
+        font-weight: 400;
+    }
+    a > img {
+        max-width: 100%;
+        padding: 0.5rem;
+        outline-width: 3px;
+        outline-style: solid;
+        outline-color: var(--convrtr-bg-color);
+        transition: outline-color ease 0.3s;
+
+        &:hover,
+        &:active,
+        &:focus {
+            outline-color: var(--convrtr-bg-color-75)
+        }
+    }
+    article img {
+        height: auto;
+        max-width: 100%;
+        @include media-breakpoint-up(md) {
+            max-width: 95%;
+        }
+        @include media-breakpoint-up(lg) {
+            max-width: 85%;
+        }
+        @include media-breakpoint-up(xl) {
+            max-width: 75%;
+        }
+    }
+    pre {
+        font-size: inherit;
+        user-select: all;
+    }
+    code {
+        --bs-bg-opacity: 0.1;
+        --bs-border-opacity: 0.1;
+        display: inline-flex !important;
+        border-radius: var(--bs-border-radius) !important;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+        border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
+        border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
+        padding-right: .5rem !important;
+        padding-left: .5rem !important;
+        color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+        font-size: 0.875em;
+        color: var(--bs-code-color);
+        word-wrap: break-word;
+        font-family: var(--bs-font-monospace);
+    }
+    summary {
+        margin-bottom: 0.5rem;
+        position: relative;
+        
+        &::marker {
+            display: none;
+            content: "";
+        }
+    }
+    blockquote {
+        padding-left: 1rem;
+        margin-left: 1rem;
+        border-left: 0.25rem solid var(--convrtr-bg-color-50);
+    }
+    table {
+        @extend .table !optional;
+        @extend .table-striped !optional;
+    }
+    &.license {
+        blockquote {
+            margin-left: 0;
+        }
+    }
+    .pagination .btn {
+        font-size: var(--bs-pagination-font-size);
+    }
+}
+
+.prose {
+    a:not(.btn) {
+        color: var(--convrtr-link-color) !important;
+    }
+}
+@include color-mode(dark) {
+    .prose {
+        a:not(.btn) {
+            color: var(--convrtr-table-header) !important;
+        }
+    }
+}
+
+.prose summary::before {
+    content: "\f148";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 1rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: 0.25rem;
+    margin-right: 0.5rem;
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+    --bs-border-opacity: 1;
+    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+    border-radius: var(--bs-border-radius) !important;
+    color: transparent;
+}
+
+.prose summary::after {
+    content: "\f148";
+    display: inline-block;
+    font-family: bootstrap-icons !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 0.9rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--bs-white);
+    z-index: 5;
+    position: absolute;
+    left: 0.3rem;
+    top: 0.35rem;
+    transform: rotate(0deg);
+    transition: transform 0.4s ease-in-out;
+}
+
+.prose details[open] summary::after {
+    transform: rotate(90deg);
+}

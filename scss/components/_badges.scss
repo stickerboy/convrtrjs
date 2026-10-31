@@ -1,0 +1,118 @@
+.badges {
+    display: flex;
+    gap: 0.5rem !important;
+
+    .badge {
+        font-size: calc(var(--bs-body-font-size) - 2px);
+    }
+}
+
+.git-badge {
+    color: var(--bs-black);
+    background-color: var(--bs-light-rgb);
+    position: relative;
+    z-index: 3;
+    padding: 0.35rem 0.85rem;
+}
+
+// Changelog labels and search result tags
+.badge {
+    &-changelog,
+    &-landing-page,
+    &-tool,
+    &-tools,
+    &-community,
+    &-misc {
+        --bs-bg-opacity: 0.1;
+        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+        color: var(--bs-body-color);
+    }
+
+    &-improvements {
+        color: var(--bs-primary-text-emphasis);
+        background-color: var(--bs-primary-bg-subtle);
+    }
+
+    &-a11y {
+        color: var(--bs-info-text-emphasis);
+        background-color: var(--bs-info-bg-subtle);
+    }
+
+    &-bug-fixes {
+        color: var(--bs-danger-text-emphasis);
+        background-color: var(--bs-danger-bg-subtle);
+    }
+
+    &-bug {
+        color: var(--bs-white);
+        background-color: var(--bs-danger);
+    }
+
+    &-documentation {
+        color: var(--bs-white);
+        background-color: var(--bs-primary);
+    }
+
+    &-duplicate {
+        color: var(--bs-black);
+        background-color: $gray-400;
+    }
+
+    &-feature-request {
+        color: var(--bs-black);
+        background-color: $indigo-200;
+    }
+
+    &-hotfix {
+        color: var(--bs-black);
+        background-color: var(--bs-warning);
+    }
+
+    &-major {
+        color: var(--bs-white);
+        background-color: var(--convrtr-bg-color);
+    }
+
+    &-minor {
+        color: var(--convrtr-txt-color);
+        background-color: $gray-200;
+        border: 1px solid var(--convrtr-bg-color-25);
+    }
+
+    &-new-features {
+        color: var(--bs-success-text-emphasis);
+        background-color: var(--bs-success-bg-subtle);
+    }
+
+    &-patch {
+        color: var(--convrtr-link-color);
+        background-color: var(--bs-white);
+        border: 1px solid var(--convrtr-bg-color-25);
+    }
+
+    &-question {
+        color: var(--bs-white);
+        background-color: var(--bs-black);
+    }
+
+    &-release {
+        color: var(--bs-white);
+        background-color: #008672;
+    }
+
+    &-security {
+        color: var(--bs-white);
+        background-color: $purple;
+    }
+
+    &-privacy {
+        color: $gray-900;
+        background-color: var(--bs-white);
+        border: 1px solid $gray-600;
+    }
+
+    &-wontfix {
+        color: var(--bs-white);
+        background-color: $pink-600;
+    }
+}

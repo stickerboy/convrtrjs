@@ -1,0 +1,297 @@
+pagefind-input,
+pagefind-results,
+pagefind-filter-pane,
+pagefind-summary {
+    color: var(--pf-text);
+
+    @include color-mode(dark) {
+        --pf-background: #152028;
+        --pf-text: #eeeeee;
+        --pf-text-secondary: rgba(255, 255, 255, 0.8);
+        --pf-text-muted: rgba(255, 255, 255, 0.65);
+        --pf-border: #2d3740;
+        --pf-hover: rgba(136, 192, 181, 0.12);
+        --pf-mark: #88c0b5;
+    }
+}
+ 
+// Search input, styled to match .form-control with the Clear button joined on the right like an input-group
+.pf-input-wrapper::before {
+    background-color: var(--convrtr-bg-color) !important;
+    width: 16px !important;
+    height: 16px !important;
+    top: calc((var(--pf-input-height) - 16px) / 2) !important;
+    inset-inline-start: 0.85rem !important;
+}
+
+.pf-input {
+    padding-inline-start: 2.6rem !important;
+    padding-inline-end: 5.5rem !important;
+    background-color: var(--convrtr-input-bg) !important;
+    color: var(--bs-body-color) !important;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+
+    &::placeholder {
+        color: var(--bs-secondary-color) !important;
+    }
+
+    &:focus,
+    &:focus-visible {
+        border-color: var(--convrtr-bg-color-25-rgb) !important;
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb) !important;
+        outline: 0 !important;
+    }
+}
+
+.pf-input-clear {
+    inset-inline-end: 0 !important;
+    top: 0 !important;
+    transform: none !important;
+    height: 100% !important;
+    padding: 0 1.25rem !important;
+    font-family: inherit !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: var(--bs-white) !important;
+    background-color: var(--convrtr-bg-color) !important;
+    border: var(--bs-border-width) solid var(--convrtr-bg-color) !important;
+    border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0 !important;
+    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+
+    &:hover,
+    &:active {
+        background-color: var(--convrtr-bg-color-10) !important;
+        border-color: var(--convrtr-bg-color-10) !important;
+    }
+
+    &:focus-visible {
+        outline: 0 !important;
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb) !important;
+    }
+}
+
+[data-bs-theme="dark"] {
+    .pf-input-wrapper::before {
+        background-color: var(--convrtr-bg-color-50) !important;
+    }
+
+    .pf-input {
+        background-color: var(--bs-body-bg) !important;
+
+        &:focus,
+        &:focus-visible {
+            border-color: var(--convrtr-bg-color-50-rgb) !important;
+            box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb) !important;
+        }
+    }
+
+    .pf-input-clear:focus-visible {
+        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb) !important;
+    }
+}
+
+.pf-filter-pane:empty {
+    display: none !important;
+}
+
+// Pagefind defaults use ID-level specificity, hence the !important overrides
+.pf-filter-pane {
+    gap: 0 !important;
+    padding: 0 !important;
+    background: var(--bs-body-bg) !important;
+    border: var(--bs-border-width) solid var(--bs-border-color) !important;
+    border-radius: var(--bs-border-radius) !important;
+    text-align: start !important;
+}
+
+summary.pf-filter-group-title {
+    margin: 0 !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 1.15rem !important;
+    font-weight: 500 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    color: var(--bs-body-color) !important;
+
+    &::after {
+        order: -1 !important;
+        margin-inline-start: 0 !important;
+        margin-inline-end: 0.6rem !important;
+        background: var(--convrtr-bg-color) !important;
+    }
+
+    &:hover {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+}
+
+details.pf-filter-group[open] > summary.pf-filter-group-title {
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+}
+
+details.pf-filter-group > .pf-filter-fieldset {
+    margin-top: 0 !important;
+}
+
+.pf-filter-group-count {
+    background: var(--convrtr-bg-color) !important;
+    color: var(--bs-white) !important;
+}
+
+.pf-filter-checkbox {
+    gap: 0.75rem !important;
+    min-height: 0 !important;
+    padding: 0.6rem 1rem !important;
+    font-size: 1rem !important;
+    color: var(--bs-body-color) !important;
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
+    transition: background-color 0.3s ease !important;
+
+    &:hover {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+
+    &:has(.pf-checkbox-input:checked) {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.08) !important;
+    }
+
+    &:has(.pf-checkbox-input:focus-visible) {
+        outline-offset: -2px !important;
+        border-radius: 0 !important;
+    }
+}
+
+// hidden (zero-count) rows can be last, so tuck the final border under the pane edge instead of using :last-of-type
+.pf-filter-options {
+    margin-bottom: calc(var(--bs-border-width) * -1) !important;
+}
+
+.pf-checkbox-input {
+    accent-color: var(--convrtr-bg-color) !important;
+}
+
+.pf-filter-checkbox-count {
+    padding: 0.3em 0.65em !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    line-height: 1 !important;
+    color: var(--convrtr-bg-color) !important;
+    background-color: rgba(var(--convrtr-bg-color-rgb), 0.1) !important;
+    border-radius: var(--bs-border-radius-pill) !important;
+    font-variant-numeric: tabular-nums !important;
+}
+
+[data-bs-theme="dark"] {
+    summary.pf-filter-group-title::after {
+        background: #88c0b5 !important;
+    }
+
+    .pf-filter-checkbox-count {
+        color: #88c0b5 !important;
+        background-color: rgba(136, 192, 181, 0.15) !important;
+    }
+}
+
+.pf-results {
+    @extend .list-group !optional;
+    @extend .list-group-flush !optional;
+    gap: 0 !important;
+}
+
+.pf-result-item {
+    @extend .list-group-item !optional;
+    @extend .list-group-item-action !optional;
+    text-align: start;
+    transition: background-color 0.3s ease !important;
+    padding: 0.9rem 1rem !important;
+    border-bottom: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color) !important;
+    position: relative !important;
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+        background-color: rgba(var(--convrtr-bg-color-rgb), 0.04) !important;
+    }
+
+    &:last-child {
+        border-bottom-width: 0 !important;
+    }
+}
+
+.pf-result-title,
+.pf-result-excerpt {
+    margin-bottom: 0.5rem;
+}
+
+.pf-result-excerpt {
+    color: var(--pf-text-secondary);
+    font-size: 1rem !important;
+    line-height: 1.6;
+}
+
+.pf-result-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.5rem !important;
+    margin: 0 !important;
+
+    .badge {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        padding: 0.25rem 0.5rem;
+        border-radius: 3px;
+    }
+}
+
+.pf-result-excerpt mark,
+.pf-result-title mark {
+    background-color: rgba(var(--convrtr-bg-color-rgb), 0.18) !important;
+    color: inherit !important;
+    padding: 0 0.15em;
+    border-radius: 0.2rem;
+    font-weight: 600 !important;
+}
+
+.pf-result-link {
+    --bs-link-underline-opacity: 0;
+    @extend .text-convrtr-link !optional;
+    font-weight: 500 !important;
+    font-size: 1.15rem !important;
+    text-decoration-color: rgba(var(--bs-link-color-rgb), var(--bs-link-underline-opacity, 1)) !important;
+    @extend .stretched-link !optional;
+    color: var(--convrtr-link-color) !important;
+}
+
+.result-excerpt {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+pagefind-input {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+pagefind-filter-pane,
+pagefind-summary,
+pagefind-results {
+    display: block;
+}
+
+pagefind-results {
+    margin-top: 1rem;
+}
+
+.offcanvas .list-group-action-item {
+    background-color: var(--pf-background) !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: var(--pf-hover) !important;
+    }
+}

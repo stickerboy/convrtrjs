@@ -1,0 +1,10 @@
+code {
+    color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
+    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+}
+@include color-mode(dark) {
+    code {
+        color: var(--bs-white) !important;
+        background-color: rgba(var(--bs-bg-success), 0.7) !important;
+    }
+}
