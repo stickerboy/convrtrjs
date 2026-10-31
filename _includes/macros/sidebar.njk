@@ -1,0 +1,70 @@
+{#
+    The site sidebar: a rail of categories and site links, and a panel listing the pages of the open category.
+    currentUrl marks the current category and page. expanded is the category shown in the panel; it defaults
+    to the current one, and "" closes the panel. idPrefix keeps ids unique when the sidebar is rendered more
+    than once, as the UI kit does.
+#}
+{% macro categoryUrl(link) %}{{ "/" if link.id == "text" else "/" ~ link.id ~ "/" }}{% endmacro %}
+{% macro pageUrl(link, child) %}{{ "/convrtrs/" if child.id == "convrtrs" else "/" ~ link.id ~ "/" ~ child.id ~ "/" }}{% endmacro %}
+
+{% macro sidebar(nav, currentUrl, idPrefix = "sidebar", expanded = null) %}
+{%- set shown = nav | where("excludeFromSidebar", false) -%}
+{%- set categories = shown | selectattr("children") -%}
+{%- set links = shown | rejectattr("children") -%}
+{#- The category containing the current page: its landing page, anything under its folder, or one of its pages -#}
+{%- set currentId -%}
+    {%- for link in categories -%}
+        {%- set url = ("" ~ categoryUrl(link)) -%}
+        {%- if currentUrl == url or (url != "/" and currentUrl.startsWith(url)) %}{{ link.id }}
+        {%- else %}{% for child in link.children %}{% if ("" ~ pageUrl(link, child)) == currentUrl %}{{ link.id }}{% endif %}{% endfor %}
+        {%- endif -%}
+    {%- endfor -%}
+{%- endset -%}
+{%- set currentId = currentId | trim -%}
+{%- set openId = currentId if expanded == null else expanded -%}
+<nav class="sidebar" id="{{ idPrefix }}" aria-label="Site">
+    <ul class="sidebar-rail">
+        <li class="sidebar-rail__start">
+            <button type="button" class="sidebar-rail__item" data-sidebar-search aria-keyshortcuts="Control+K">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <span class="sidebar-rail__label">Search</span>
+            </button>
+        </li>
+        {%- for link in categories %}
+        <li>
+            <button type="button" class="sidebar-rail__item{% if link.id == currentId %} active{% endif %}"
+                aria-expanded="{{ 'true' if link.id == openId else 'false' }}" aria-controls="{{ idPrefix }}-{{ link.id }}"
+                data-category="{{ link.id }}">
+                <i class="bi bi-{{ link.icon }}" aria-hidden="true"></i>
+                <span class="sidebar-rail__label">{{ link.shortLabel }}</span>
+            </button>
+        </li>
+        {%- endfor %}
+        {%- for link in links %}
+        {%- set url = "/" ~ link.id ~ "/" %}
+        <li{% if loop.first %} class="sidebar-rail__end"{% endif %}>
+            <a class="sidebar-rail__item" href="{{ url | url }}"{% if currentUrl.startsWith(url) %} aria-current="page"{% endif %}>
+                <i class="bi bi-{{ link.icon }}" aria-hidden="true"></i>
+                <span class="sidebar-rail__label">{{ link.shortLabel }}</span>
+            </a>
+        </li>
+        {%- endfor %}
+    </ul>
+    <div class="sidebar-panel"{% if not openId %} hidden{% endif %}>
+        {%- for link in categories %}
+        <div class="sidebar-panel__group" id="{{ idPrefix }}-{{ link.id }}" role="region" aria-labelledby="{{ idPrefix }}-{{ link.id }}-title"{% if link.id != openId %} hidden{% endif %}>
+            <h2 class="sidebar-panel__title" id="{{ idPrefix }}-{{ link.id }}-title">
+                <a href="{{ ("" ~ categoryUrl(link)) | url }}"{% if currentUrl == ("" ~ categoryUrl(link)) %} aria-current="page"{% endif %}>{{ link.label }}</a>
+            </h2>
+            <p class="sidebar-panel__count">{{ link.children | length }} {{ "pages" if link.id == "community" else "tools" }}</p>
+            <ul class="sidebar-panel__list">
+                {%- for child in link.children | sort(false, true, "id") %}
+                {%- set url = ("" ~ pageUrl(link, child)) %}
+                <li><a class="sidebar-panel__link" href="{{ url | url }}"{% if url == currentUrl %} aria-current="page"{% endif %}>{{ child.label }}</a></li>
+                {%- endfor %}
+            </ul>
+        </div>
+        {%- endfor %}
+    </div>
+</nav>
+{% endmacro %}

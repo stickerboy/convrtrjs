@@ -74,3 +74,11 @@ $ui-kit-palette: (
     border: var(--bs-border-width) solid var(--bs-border-color-translucent);
     border-radius: var(--bs-border-radius-sm);
 }
+
+// Sidebar demos get a fixed height so the rail can push its site links to the bottom
+.ui-kit-sidebar {
+    height: 44rem;
+    overflow: hidden;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+}

@@ -249,6 +249,15 @@ noindex: true
 </div>
 {% endmacro %}
 
+{#- Sidebar -#}
+{% from "macros/sidebar.njk" import sidebar %}
+{% macro sidebarDemo(t) %}
+<div class="d-flex flex-wrap gap-3">
+    <div class="ui-kit-sidebar">{{ sidebar(nav, "/ciphers/caesar/", "kit-" ~ t ~ "-open") }}</div>
+    <div class="ui-kit-sidebar">{{ sidebar(nav, "/ciphers/caesar/", "kit-" ~ t ~ "-closed", "") }}</div>
+</div>
+{% endmacro %}
+
 {#- Tables -#}
 {% macro tables(t) %}
 <div class="table-responsive">
@@ -326,6 +335,10 @@ noindex: true
 
 {% call kitSection("navigation", "Navigation", "Breadcrumbs, pagination, the hex shift tabs and list groups.") %}
 {{ panes(navigation) }}
+{% endcall %}
+
+{% call kitSection("sidebar", "Sidebar", "The category rail and the panel of tools, as on a Caesar cipher page. With the panel open it shows the current category; with it closed, the bar on the rail marks the current category.") %}
+{{ panes(sidebarDemo) }}
 {% endcall %}
 
 {% call kitSection("tables", "Tables", "Result tables, including grouped rows from the hash tool.") %}

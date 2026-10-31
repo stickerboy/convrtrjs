@@ -50,12 +50,12 @@
     }
 }
 
-.sidebar {
+.sidebar-legacy {
     height: 100%;
     .bi {
         vertical-align: 0;
     }
-    &-item {
+    @at-root .sidebar-item {
         &__link {
             --bs-text-opacity: 1;
             --bs-navbar-toggler-focus-width: 0.25rem;
