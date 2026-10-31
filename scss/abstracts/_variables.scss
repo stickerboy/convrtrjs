@@ -32,6 +32,9 @@ $primary-border-subtle-dark: $convrtr-600;
 $link-color-dark:            $convrtr-200;
 $mark-bg-dark:               $convrtr;
 
+// Tables take the background of the card or section they sit on
+$table-bg: transparent;
+
 $enable-cssgrid: true;
 
 // Bootstrap's breakpoints plus larger ones for wide screens

@@ -1,3 +1,12 @@
+// Header rows in result tables. Bootstrap's .table-* variants are fixed light colours, these follow the theme.
+.table-convrtr {
+    --bs-table-color: var(--bs-emphasis-color);
+    --bs-table-bg: var(--bs-primary-bg-subtle);
+    --bs-table-border-color: var(--bs-primary-border-subtle);
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+}
+
 // Header cells in the grid-based elements table
 .convrtr-table-header {
     background-color: var(--bs-primary-bg-subtle);

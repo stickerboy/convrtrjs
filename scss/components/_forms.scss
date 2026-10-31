@@ -5,8 +5,6 @@ textarea {
 }
 
 .form-check-input {
-    height: 1.75rem;
-
     &:active {
         filter: none;
         opacity: 0.75;
@@ -26,11 +24,15 @@ textarea {
 
 .form-switch .form-check-input {
     width: 3.5rem;
+    height: 1.75rem;
     transition: background-position 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .form-check-label {
     margin-left: 0.5rem;
+}
+// Centres the label on the taller switch
+.form-switch .form-check-label {
     margin-top: 0.25rem;
 }
 

@@ -8,7 +8,7 @@ function renderTags(tags) {
 
     // Table header
     const thead = document.createElement("thead");
-    thead.classList.add("table-success");
+    thead.classList.add("table-convrtr");
     thead.innerHTML = `
         <tr>
             <th scope="col">Tag</th>
