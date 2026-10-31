@@ -1,0 +1,357 @@
+---
+title: UI kit
+description: The palette, theme tokens and components the site is built from, shown in the light and dark themes side by side. Not linked from the site.
+permalink: /ui-kit/
+eleventyExcludeFromCollections: true
+noindex: true
+---
+{#
+    Every demo is a macro taking the pane's theme ("light" or "dark") so ids stay unique,
+    and panes() renders it once in each theme. Use real site classes only, so the kit
+    shows what the site actually renders.
+#}
+{% macro panes(demo) %}
+<div class="row g-3">
+    {%- for theme in ["light", "dark"] %}
+    <div class="col-12 col-xxl-6">
+        <div class="ui-kit-pane" data-bs-theme="{{ theme }}">
+            <p class="ui-kit-pane__label">{{ theme | capitalize }}</p>
+            {{ demo(theme) }}
+        </div>
+    </div>
+    {%- endfor %}
+</div>
+{% endmacro %}
+
+{% macro kitSection(id, heading, description) %}
+<section id="{{ id }}" class="section">
+    <div class="py-4 px-2 px-sm-4">
+        <h2 class="display-6">{{ heading }}</h2>
+        <p class="px-2 text-body-secondary">{{ description }}</p>
+        {{ caller() }}
+    </div>
+</section>
+{% endmacro %}
+
+{#- Palette -#}
+{% macro swatch(label, cls, style) %}
+<div class="ui-kit-swatch">
+    <div class="ui-kit-swatch__chip {{ cls }}" data-swatch{% if style %} style="background-color: {{ style }}"{% endif %}></div>
+    <div class="ui-kit-swatch__name">{{ label }}</div>
+    <code class="ui-kit-swatch__value small"></code>
+</div>
+{% endmacro %}
+
+{% macro tokens(t) %}
+<h3 class="h6">Site tokens</h3>
+<div class="ui-kit-swatches mb-4">
+    {{ swatch("--convrtr-surface", "", "var(--convrtr-surface)") }}
+    {{ swatch("--convrtr-surface-alt", "", "var(--convrtr-surface-alt)") }}
+    {{ swatch("--convrtr-accent", "", "var(--convrtr-accent)") }}
+    {{ swatch("--convrtr-accent-subtle", "", "var(--convrtr-accent-subtle)") }}
+    {{ swatch("--convrtr-accent-subtle-hover", "", "var(--convrtr-accent-subtle-hover)") }}
+    {{ swatch("--convrtr-row-highlight", "", "var(--convrtr-row-highlight)") }}
+</div>
+<h3 class="h6">Bootstrap theme</h3>
+<div class="ui-kit-swatches mb-4">
+    {{ swatch("--bs-body-bg", "", "var(--bs-body-bg)") }}
+    {{ swatch("--bs-body-color", "", "var(--bs-body-color)") }}
+    {{ swatch("--bs-secondary-color", "", "var(--bs-secondary-color)") }}
+    {{ swatch("--bs-border-color", "", "var(--bs-border-color)") }}
+    {{ swatch("--bs-link-color", "", "var(--bs-link-color)") }}
+    {{ swatch("--bs-primary", "", "var(--bs-primary)") }}
+    {{ swatch("--bs-primary-text-emphasis", "", "var(--bs-primary-text-emphasis)") }}
+    {{ swatch("--bs-primary-bg-subtle", "", "var(--bs-primary-bg-subtle)") }}
+    {{ swatch("--bs-primary-border-subtle", "", "var(--bs-primary-border-subtle)") }}
+</div>
+<h3 class="h6">Contrast</h3>
+<p class="small text-body-secondary">Text needs 4.5:1 (AA). 3:1 is enough for large text, icons and borders.</p>
+<div class="table-responsive">
+    <table class="table table-sm align-middle ui-kit-contrast mb-0">
+        <thead>
+            <tr><th scope="col">Sample</th><th scope="col">Foreground</th><th scope="col">Background</th><th scope="col" class="text-end">Ratio</th></tr>
+        </thead>
+        <tbody>
+            {%- for pair in [
+                ["--bs-body-color", "--convrtr-surface"],
+                ["--bs-body-color", "--convrtr-surface-alt"],
+                ["--bs-secondary-color", "--convrtr-surface"],
+                ["--bs-link-color", "--convrtr-surface"],
+                ["--bs-link-color", "--convrtr-surface-alt"],
+                ["--bs-convrtr-text-emphasis", "--convrtr-surface"],
+                ["--convrtr-accent", "--convrtr-surface"],
+                ["--convrtr-accent", "--convrtr-surface-alt"],
+                ["--convrtr-accent", "--convrtr-accent-subtle"],
+                ["--bs-body-color", "--convrtr-accent-subtle"],
+                ["--bs-body-color", "--bs-primary-bg-subtle"],
+                ["--bs-white", "--bs-primary"]
+            ] %}
+            <tr data-fg="{{ pair[0] }}" data-bg="{{ pair[1] }}">
+                <td><span class="ui-kit-contrast__sample" style="color: var({{ pair[0] }}); background-color: var({{ pair[1] }})">Aa</span></td>
+                <td><code class="small">{{ pair[0] }}</code></td>
+                <td><code class="small">{{ pair[1] }}</code></td>
+                <td class="text-end text-nowrap"><span class="ui-kit-contrast__ratio"></span></td>
+            </tr>
+            {%- endfor %}
+        </tbody>
+    </table>
+</div>
+{% endmacro %}
+
+{#- Typography -#}
+{% macro typography(t) %}
+<h1 class="display-6">Display 6, page and tool headings</h1>
+<h2>Heading 2</h2>
+<h3>Heading 3</h3>
+<h4>Heading 4</h4>
+<h5>Heading 5</h5>
+<h6>Heading 6</h6>
+<p class="lead">Lead paragraph, used for short introductions.</p>
+<p>
+    Body text with <a href="#{{ t }}-typography">a link</a>, <a href="#{{ t }}-typography" class="text-convrtr">a .text-convrtr link</a>,
+    <strong>bold</strong>, <em>emphasis</em>, <mark>marked text</mark>, inline <code>code</code> and a code chip
+    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code>.
+</p>
+<p class="text-body-secondary mb-2">Secondary text, for descriptions and hints.</p>
+<p class="small mb-0">Small text.</p>
+{% endmacro %}
+
+{#- Buttons -#}
+{% macro buttons(t) %}
+<div class="d-flex flex-wrap gap-2 mb-3">
+    <button type="button" class="btn btn-convrtr">Primary action</button>
+    <button type="button" class="btn btn-outline-convrtr">Secondary action</button>
+    <button type="button" class="btn btn-convrtr" disabled>Disabled</button>
+    <button type="button" class="btn btn-outline-convrtr" disabled>Disabled</button>
+</div>
+<div class="d-flex flex-wrap gap-2 mb-3">
+    <button type="button" class="btn btn-md btn-light">Light</button>
+    <button type="button" class="btn btn-md btn-danger">Danger</button>
+    <button type="button" class="btn btn-link">Link button</button>
+    <button type="button" class="btn btn-reset-data btn-outline-danger"><i class="bi bi-arrow-counterclockwise me-2"></i>Reset</button>
+</div>
+<p class="small text-body-secondary mb-2">Select, copy and download group:</p>
+<div class="d-flex">
+    {% include "components/select-copy-dl.njk" %}
+</div>
+{% endmacro %}
+
+{#- Forms -#}
+{% macro forms(t) %}
+<div class="row g-3">
+    <div class="col-12">
+        <label for="{{ t }}-textarea" class="form-label">Textarea</label>
+        <textarea id="{{ t }}-textarea" class="form-control" rows="3" placeholder="Example: Hello world"></textarea>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <label class="input-group-text" for="{{ t }}-key">Key</label>
+            <input type="text" class="form-control" id="{{ t }}-key" autocomplete="off">
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="input-group">
+            <label class="input-group-text" for="{{ t }}-shift">Shift value</label>
+            <input type="number" class="form-control" id="{{ t }}-shift" value="1">
+            <button class="btn btn-convrtr" type="button">Shift</button>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <label class="visually-hidden" for="{{ t }}-select">Delimiter</label>
+        <select class="form-select form-select--large" id="{{ t }}-select">
+            <option>Space</option>
+            <option>Comma</option>
+            <option>None</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6">
+        <input type="text" class="form-control is-invalid" aria-label="Invalid input" value="Not valid hex">
+        <div class="invalid-feedback">Not a valid hex string</div>
+    </div>
+    <div class="col-12 d-flex flex-wrap gap-4">
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="{{ t }}-switch" checked>
+            <label class="form-check-label" for="{{ t }}-switch">Switch</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="{{ t }}-check" checked>
+            <label class="form-check-label" for="{{ t }}-check">Checkbox</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{ t }}-radio" id="{{ t }}-radio1" checked>
+            <label class="form-check-label" for="{{ t }}-radio1">Radio</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="{{ t }}-radio" id="{{ t }}-radio2">
+            <label class="form-check-label" for="{{ t }}-radio2">Radio</label>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{#- The standard tool card, as used on the cipher and text tools -#}
+{% macro toolCard(t) %}
+<div class="card">
+    <div class="card-body text-center">
+        <label for="{{ t }}-tool-text" class="visually-hidden">Text to convert</label>
+        <textarea placeholder="Example: Hello &srarr; Mjqqt (Rot 5)" rows="4" id="{{ t }}-tool-text" class="form-control" autocomplete="off"></textarea>
+    </div>
+    <div class="card-footer py-3">
+        <div class="d-flex flex-wrap align-items-center gap-3 mb-4">
+            <div class="input-group w-auto">
+                <label class="input-group-text" for="{{ t }}-tool-key">Key</label>
+                <input type="text" class="form-control" id="{{ t }}-tool-key" autocomplete="off">
+            </div>
+            <div class="form-check form-switch text-start">
+                <input class="form-check-input" type="checkbox" role="switch" id="{{ t }}-tool-chain">
+                <label class="form-check-label" for="{{ t }}-tool-chain">Chain commands</label>
+            </div>
+            {% include "components/select-copy-dl.njk" %}
+        </div>
+        <hr />
+        <div class="data-to-copy convrtr-results">Mjqqt btwqi</div>
+    </div>
+</div>
+{% endmacro %}
+
+{#- Navigation -#}
+{% macro navigation(t) %}
+<nav aria-label="Breadcrumb example">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#{{ t }}-navigation" class="text-convrtr">home</a></li>
+        <li class="breadcrumb-item"><a href="#{{ t }}-navigation" class="text-convrtr">ciphers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">caesar</li>
+    </ol>
+</nav>
+<ul class="pagination flex-wrap">
+    <li class="page-item"><button type="button" class="page-link" aria-label="Previous">&laquo;</button></li>
+    <li class="page-item"><button type="button" class="page-link">a</button></li>
+    <li class="page-item active"><button type="button" class="page-link" aria-current="true">b</button></li>
+    <li class="page-item"><button type="button" class="page-link">c</button></li>
+    <li class="page-item disabled"><button type="button" class="page-link" disabled>d</button></li>
+    <li class="page-item"><button type="button" class="page-link" aria-label="Next">&raquo;</button></li>
+</ul>
+<div class="row g-3">
+    <div class="col-12 col-md-4">
+        <div class="nav flex-column nav-pills shift-tabs" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" type="button" role="tab" aria-selected="true">Text</button>
+            <button class="nav-link" type="button" role="tab" aria-selected="false">Binary</button>
+            <button class="nav-link" type="button" role="tab" aria-selected="false" disabled>Hex</button>
+        </div>
+    </div>
+    <div class="col-12 col-md-8">
+        <div class="list-group">
+            <a href="#{{ t }}-navigation" class="list-group-item list-group-item-action active" aria-current="true">Active list item</a>
+            <a href="#{{ t }}-navigation" class="list-group-item list-group-item-action">List item</a>
+            <a href="#{{ t }}-navigation" class="list-group-item list-group-item-action disabled" aria-disabled="true">Disabled list item</a>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{#- Tables -#}
+{% macro tables(t) %}
+<div class="table-responsive">
+    <table class="table table-bordered hash-table mb-4">
+        <thead class="table-success">
+            <tr><th scope="col">Algorithm</th><th scope="col">Hash</th></tr>
+        </thead>
+        <tbody>
+            <tr class="table-active hash-group"><th scope="colgroup" colspan="2">SHA-2 <span class="fw-normal small text-body-secondary">(grouped rows)</span></th></tr>
+            <tr><td>SHA256</td><td>185f8db32271fe25f561a6fc938b2e264306ec304eda518007d1764826381969</td></tr>
+            <tr><td>SHA512</td><td>3615f80c9d293ed7402687f94b22d58e529b8cc7916f8fac7fddf7fbd5af4cf7</td></tr>
+        </tbody>
+    </table>
+</div>
+<table class="table table-striped table-sm mb-0">
+    <thead><tr><th scope="col">Character</th><th scope="col">Count</th><th scope="col">Percent</th></tr></thead>
+    <tbody>
+        <tr><td>l</td><td>3</td><td>27.3%</td></tr>
+        <tr><td>o</td><td>2</td><td>18.2%</td></tr>
+        <tr><td>e</td><td>1</td><td>9.1%</td></tr>
+    </tbody>
+</table>
+{% endmacro %}
+
+{#- Feedback -#}
+{% macro feedback(t) %}
+<div class="toast show mb-4" role="status" aria-live="off">
+    <div class="toast-header text-bg-convrtr">
+        <strong class="me-auto">Copied</strong>
+        <button type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+    <div class="toast-body text-bg-light">The results have been copied to your clipboard.</div>
+</div>
+<div class="alert alert-convrtr" role="note">Brand alert, for neutral information.</div>
+<div class="alert alert-success" role="note">Success alert.</div>
+<div class="alert alert-warning" role="note">Warning alert.</div>
+<div class="alert alert-danger mb-0" role="note">Danger alert.</div>
+{% endmacro %}
+
+{% call kitSection("palette", "Palette", "The brand teal, built with Bootstrap's tint-color and shade-color, and the neutrals used for surfaces. These are Sass variables, so they look the same in either theme.") %}
+<div class="ui-kit-swatches mb-4">
+    {%- for step in [100, 200, 300, 400, 500, 600, 700, 800, 900] %}
+    {{ swatch("$convrtr-" ~ step, "ui-kit-swatch--convrtr-" ~ step) }}
+    {%- endfor %}
+</div>
+<div class="ui-kit-swatches">
+    {{ swatch("$white", "ui-kit-swatch--white") }}
+    {{ swatch("$gray-100", "ui-kit-swatch--gray-100") }}
+    {{ swatch("$gray-300", "ui-kit-swatch--gray-300") }}
+    {{ swatch("$gray-900", "ui-kit-swatch--gray-900") }}
+    {{ swatch("$dark-surface", "ui-kit-swatch--dark-surface") }}
+    {{ swatch("$dark-surface-raised", "ui-kit-swatch--dark-surface-raised") }}
+</div>
+{% endcall %}
+
+{% call kitSection("tokens", "Theme tokens", "The roles components use. Each switches value with the theme, so use these rather than palette colours.") %}
+{{ panes(tokens) }}
+{% endcall %}
+
+{% call kitSection("typography", "Typography", "Headings, body text and inline elements.") %}
+{{ panes(typography) }}
+{% endcall %}
+
+{% call kitSection("buttons", "Buttons", "Primary and secondary actions, utility buttons and the results toolbar.") %}
+{{ panes(buttons) }}
+{% endcall %}
+
+{% call kitSection("forms", "Forms", "Inputs, input groups, selects, switches and validation.") %}
+{{ panes(forms) }}
+{% endcall %}
+
+{% call kitSection("tool-card", "Tool card", "The layout most tools share: input, options and the results toolbar, then the output.") %}
+{{ panes(toolCard) }}
+{% endcall %}
+
+{% call kitSection("navigation", "Navigation", "Breadcrumbs, pagination, the hex shift tabs and list groups.") %}
+{{ panes(navigation) }}
+{% endcall %}
+
+{% call kitSection("tables", "Tables", "Result tables, including grouped rows from the hash tool.") %}
+{{ panes(tables) }}
+{% endcall %}
+
+{% set badgeHtml %}
+<div class="badges flex-wrap">
+    {%- for label in labels.labels %}
+    <span class="badge git-badge badge-{{ label.key }}">{{ label.key }}</span>
+    {%- endfor %}
+</div>
+<div class="badges flex-wrap mt-3">
+    {%- for tag in ["tools", "landing-page", "changelog", "community", "misc"] %}
+    <span class="badge badge-{{ tag }}">{{ tag }}</span>
+    {%- endfor %}
+    <span class="badge text-bg-convrtr">12 results</span>
+</div>
+{% endset %}
+{% macro badges(t) %}{{ badgeHtml }}{% endmacro %}
+{% call kitSection("badges", "Badges", "Changelog labels, search result tags and counts.") %}
+{{ panes(badges) }}
+{% endcall %}
+
+{% call kitSection("feedback", "Feedback", "Toasts and alerts.") %}
+{{ panes(feedback) }}
+{% endcall %}
+
+<script type="module" src="{{ '/assets/js/site/ui-kit.js' | url }}"></script>

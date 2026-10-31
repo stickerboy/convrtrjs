@@ -29,7 +29,7 @@
                 <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
                     {% include "partials/sidebar.njk" %}
                 </div>
-                {% set isExcluded = pageId in ["404", "search", "sitemap", "tags"] %}
+                {% set isExcluded = pageId in ["404", "search", "sitemap", "tags", "ui-kit"] %}
                 {% set isTagPath = "tag" in page.inputPath %}
                 {%- for tag in tags -%}
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>

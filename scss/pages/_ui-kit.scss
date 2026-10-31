@@ -1,0 +1,76 @@
+@use "sass:map";
+
+// /ui-kit/: the palette, theme tokens and components in both themes
+
+// Each theme pane draws its own surface, so it reads correctly whatever the page theme is
+.ui-kit-pane {
+    height: 100%;
+    padding: 1.5rem;
+    color: var(--bs-body-color);
+    background-color: var(--convrtr-surface);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+
+    &__label {
+        margin-bottom: 1rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--bs-secondary-color);
+    }
+}
+
+.ui-kit-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+    gap: 1rem;
+}
+
+.ui-kit-swatch {
+    &__chip {
+        height: 3.5rem;
+        margin-bottom: 0.5rem;
+        border: var(--bs-border-width) solid var(--bs-border-color-translucent);
+        border-radius: var(--bs-border-radius);
+    }
+    &__name {
+        font-size: 0.875rem;
+        word-break: break-word;
+    }
+    &__value {
+        color: var(--bs-secondary-color);
+    }
+}
+
+// Fixed palette swatches, so they show the Sass values rather than themed ones
+$ui-kit-palette: (
+    "convrtr-100": $convrtr-100,
+    "convrtr-200": $convrtr-200,
+    "convrtr-300": $convrtr-300,
+    "convrtr-400": $convrtr-400,
+    "convrtr-500": $convrtr-500,
+    "convrtr-600": $convrtr-600,
+    "convrtr-700": $convrtr-700,
+    "convrtr-800": $convrtr-800,
+    "convrtr-900": $convrtr-900,
+    "white": $white,
+    "gray-100": $gray-100,
+    "gray-300": $gray-300,
+    "gray-900": $gray-900,
+    "dark-surface": $dark-surface,
+    "dark-surface-raised": $dark-surface-raised
+);
+@each $name, $color in $ui-kit-palette {
+    .ui-kit-swatch--#{$name} {
+        background-color: $color;
+    }
+}
+
+.ui-kit-contrast__sample {
+    display: inline-block;
+    padding: 0.125rem 0.5rem;
+    font-weight: 600;
+    border: var(--bs-border-width) solid var(--bs-border-color-translucent);
+    border-radius: var(--bs-border-radius-sm);
+}

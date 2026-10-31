@@ -1,13 +1,22 @@
+@include theme-vars(
+    (
+        convrtr-code-chip-color: currentcolor,
+        convrtr-code-chip-bg: rgba($success, 0.1),
+    ),
+    (
+        convrtr-code-chip-color: $white,
+        convrtr-code-chip-bg: rgba($convrtr, 0.7),
+    )
+);
+
 // Inline code takes the surrounding text colour instead of Bootstrap's pink
 code {
     color: inherit;
 }
 
-// Code chips are tinted with .bg-success.bg-opacity-10, which is too faint on dark backgrounds.
-// !important beats the utility.
-@include color-mode(dark) {
-    code {
-        color: $white;
-        background-color: rgba(var(--bs-convrtr-rgb), 0.7) !important;
-    }
+// Code chips in tool descriptions (.bg-success.bg-opacity-10), which are too faint on dark
+// backgrounds. !important beats the utility.
+code.bg-success {
+    color: var(--convrtr-code-chip-color);
+    background-color: var(--convrtr-code-chip-bg) !important;
 }

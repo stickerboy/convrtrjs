@@ -4,6 +4,9 @@
         <meta name="keywords" content="{{ pkg.keywords | join(', ') }}">
         <meta name="author" content="{{ pkg.author }}">
         <meta name="generator" content="{{ eleventy.generator }}">
+        {%- if noindex %}
+        <meta name="robots" content="noindex">
+        {%- endif %}
 
         <meta property="og:type" content="website" />
         <meta property="og:url" content="{{ pkg.homepage }}" />

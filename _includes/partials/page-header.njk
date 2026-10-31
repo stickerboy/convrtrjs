@@ -23,7 +23,7 @@
             </div>
             {%- endif -%}
             {#- Tool pages get a note about data limits; info pages, the changelog and tag pages don't -#}
-            {%- set excludedIds = ["files", "check", "exif", "headers", "community", "privacy", "about", "accessibility", "license", "contributing", "code-of-conduct", "security", "sitemap", "search", "settings"] -%}
+            {%- set excludedIds = ["files", "check", "exif", "headers", "community", "privacy", "about", "accessibility", "license", "contributing", "code-of-conduct", "security", "sitemap", "search", "settings", "ui-kit"] -%}
             {%- set pathExcluded = "tag" in page.inputPath or "changelog" in page.inputPath -%}
             {%- if not (pageId in excludedIds or pathExcluded) -%}
                 {% include "components/data-limits.njk" %}

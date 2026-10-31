@@ -11,6 +11,7 @@
 @import "bootstrap-scss/maps";
 @import "abstracts/maps";
 @import "bootstrap-scss/mixins";
+@import "abstracts/mixins";
 @import "bootstrap-scss/utilities";
 @import "abstracts/utilities";
 
@@ -47,6 +48,7 @@
 
 @import "pages/settings";
 @import "pages/changelog";
+@import "pages/ui-kit";
 
 @import "vendor/pagefind";
 @import "vendor/termsfeed";

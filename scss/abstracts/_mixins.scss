@@ -1,0 +1,17 @@
+// Declares custom properties for each colour mode on the theme roots: :root and any [data-bs-theme]
+// wrapper. Components read them with var(), so an element inside a nested light or dark wrapper gets
+// the value from its nearest wrapper. Avoid "[data-bs-theme=dark] .component" rules (color-mode(dark)):
+// they also match components inside a light wrapper on a dark page.
+@mixin theme-vars($light, $dark) {
+    :root,
+    [data-bs-theme="light"] {
+        @each $name, $value in $light {
+            --#{$name}: #{$value};
+        }
+    }
+    @include color-mode(dark, true) {
+        @each $name, $value in $dark {
+            --#{$name}: #{$value};
+        }
+    }
+}

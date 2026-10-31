@@ -7,13 +7,24 @@
 .btn-convrtr {
     --bs-btn-padding-y: 0.6rem;
 }
+
 // The outline button sits on a tinted background in dark mode so its border isn't the only cue
-@include color-mode(dark) {
-    .btn-outline-convrtr {
-        --bs-btn-color: #{$white};
-        --bs-btn-bg: rgba(var(--bs-convrtr-rgb), 0.25);
-        --bs-btn-border-color: var(--convrtr-accent);
-    }
+@include theme-vars(
+    (
+        convrtr-btn-outline-color: $convrtr,
+        convrtr-btn-outline-bg: transparent,
+    ),
+    (
+        convrtr-btn-outline-color: $white,
+        convrtr-btn-outline-bg: rgba($convrtr, 0.25),
+    )
+);
+.btn-outline-convrtr {
+    --bs-btn-color: var(--convrtr-btn-outline-color);
+    --bs-btn-bg: var(--convrtr-btn-outline-bg);
+    --bs-btn-border-color: var(--convrtr-accent);
+    --bs-btn-disabled-color: var(--convrtr-btn-outline-color);
+    --bs-btn-disabled-border-color: var(--convrtr-accent);
 }
 
 .btn-link {
@@ -61,28 +72,45 @@
 }
 
 // The collapse icon on tool section headers; !important on the border beats the .border utility
+@include theme-vars(
+    (convrtr-toggle-bg: $dark),
+    (convrtr-toggle-bg: rgba($convrtr, 0.75))
+);
 .toggle-button {
-    background-color: var(--bs-dark);
+    background-color: var(--convrtr-toggle-bg);
     border-color: var(--bs-dark) !important;
 }
-@include color-mode(dark) {
-    .toggle-button {
-        background-color: rgba(var(--bs-convrtr-rgb), 0.75);
-    }
-}
 
-@include color-mode(dark) {
-    .btn-light {
-        --bs-btn-padding-x: 0.85rem;
-        --bs-btn-padding-y: 0.575rem;
-        --bs-btn-color: var(--bs-body-color);
-        --bs-btn-bg: var(--convrtr-surface);
-        --bs-btn-border-color: var(--convrtr-surface);
-        --bs-btn-hover-color: #{$white};
-        --bs-btn-hover-bg: rgba(var(--bs-body-color-rgb), 0.2);
-        --bs-btn-hover-border-color: transparent;
-        --bs-btn-active-color: #{$white};
-        --bs-btn-active-bg: rgba(var(--bs-body-color-rgb), 0.2);
-        --bs-btn-active-border-color: transparent;
-    }
+// Utility buttons such as the select, copy and download group
+@include theme-vars(
+    (
+        convrtr-btn-light-color: $black,
+        convrtr-btn-light-bg: $light,
+        convrtr-btn-light-border: $light,
+        convrtr-btn-light-hover-color: $black,
+        convrtr-btn-light-hover-bg: shade-color($light, $btn-hover-bg-shade-amount),
+        convrtr-btn-light-hover-border: shade-color($light, $btn-hover-border-shade-amount),
+    ),
+    (
+        convrtr-btn-light-color: var(--bs-body-color),
+        convrtr-btn-light-bg: var(--convrtr-surface),
+        convrtr-btn-light-border: var(--convrtr-surface),
+        convrtr-btn-light-hover-color: $white,
+        convrtr-btn-light-hover-bg: rgba(var(--bs-body-color-rgb), 0.2),
+        convrtr-btn-light-hover-border: transparent,
+    )
+);
+.btn-light {
+    --bs-btn-color: var(--convrtr-btn-light-color);
+    --bs-btn-bg: var(--convrtr-btn-light-bg);
+    --bs-btn-border-color: var(--convrtr-btn-light-border);
+    --bs-btn-hover-color: var(--convrtr-btn-light-hover-color);
+    --bs-btn-hover-bg: var(--convrtr-btn-light-hover-bg);
+    --bs-btn-hover-border-color: var(--convrtr-btn-light-hover-border);
+    --bs-btn-active-color: var(--convrtr-btn-light-hover-color);
+    --bs-btn-active-bg: var(--convrtr-btn-light-hover-bg);
+    --bs-btn-active-border-color: var(--convrtr-btn-light-hover-border);
+    --bs-btn-disabled-color: var(--convrtr-btn-light-color);
+    --bs-btn-disabled-bg: var(--convrtr-btn-light-bg);
+    --bs-btn-disabled-border-color: var(--convrtr-btn-light-border);
 }

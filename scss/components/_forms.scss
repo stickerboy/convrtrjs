@@ -13,6 +13,17 @@ textarea {
     }
 }
 
+// Bootstrap swaps the unchecked switch thumb with a "[data-bs-theme=dark] .form-switch" rule, which also
+// matches switches inside a light wrapper. This matches its specificity, comes later, and reads the
+// thumb from the nearest theme wrapper instead.
+@include theme-vars(
+    (convrtr-switch-thumb: escape-svg($form-switch-bg-image)),
+    (convrtr-switch-thumb: escape-svg($form-switch-bg-image-dark))
+);
+.form-check.form-switch .form-check-input:not(:checked):not(:focus) {
+    --bs-form-switch-bg: var(--convrtr-switch-thumb);
+}
+
 .form-switch .form-check-input {
     width: 3.5rem;
     transition: background-position 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
@@ -25,6 +36,16 @@ textarea {
 
 .form-control {
     padding: 0.575rem 0.75rem;
+}
+
+// Same for the select arrow. Any [data-bs-theme] ancestor gives this the same specificity as
+// Bootstrap's dark rule, and it comes later.
+@include theme-vars(
+    (convrtr-select-indicator: escape-svg($form-select-indicator)),
+    (convrtr-select-indicator: escape-svg($form-select-indicator-dark))
+);
+[data-bs-theme] .form-select {
+    --bs-form-select-bg-img: var(--convrtr-select-indicator);
 }
 
 .form-select {
