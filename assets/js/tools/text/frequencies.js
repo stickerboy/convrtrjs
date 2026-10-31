@@ -1,4 +1,5 @@
 import * as toolkit from '../../lib/toolkit.js';
+import { styledUniqueArrayItems, styledArrayFrequencies } from '../../ui/frequencies.js';
 import * as frequencies from '../../lib/text/frequencies.js';
 import { bindTool } from '../../ui/tool.js';
 
@@ -30,7 +31,7 @@ bindTool({
                 </code>&nbsp;<br />
             </div>`
         ).join("");
-        output.insertAdjacentHTML("beforeend", toolkit.styledUniqueArrayItems(toolkit.uniqueArray(text)));
-        output.insertAdjacentHTML("beforeend", toolkit.styledArrayFrequencies(toolkit.countArrayFreq(text), "Unique character frequencies"));
+        output.insertAdjacentHTML("beforeend", styledUniqueArrayItems(toolkit.uniqueArray(text)));
+        output.insertAdjacentHTML("beforeend", styledArrayFrequencies(toolkit.countArrayFreq(text), "Unique character frequencies"));
     },
 });

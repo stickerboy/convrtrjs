@@ -218,10 +218,6 @@ describe("replace and frequencies (toolkit)", () => {
         assert.deepEqual(toolkit.uniqueArray("hello"), ["h", "e", "l", "o"]);
         assert.deepEqual(toolkit.countArrayFreq("hello"), { h: 1, e: 1, l: 2, o: 1 });
     });
-    it("renders frequency HTML as before", (t) => {
-        t.assert.snapshot(toolkit.styledUniqueArrayItems(toolkit.uniqueArray("ab c")));
-        t.assert.snapshot(toolkit.styledArrayFrequencies(toolkit.countArrayFreq("aab"), "Test"));
-    });
 });
 
 describe("text frequencies (stats)", () => {

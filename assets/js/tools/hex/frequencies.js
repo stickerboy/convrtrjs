@@ -1,4 +1,5 @@
 import * as toolkit from "../../lib/toolkit.js";
+import { styledArrayFrequencies } from "../../ui/frequencies.js";
 import { bindTool } from "../../ui/tool.js";
 import * as frequencies from "../../lib/hex/frequencies.js";
 
@@ -36,7 +37,7 @@ bindTool({
         output.innerHTML = renderStat("Character count", characterCount);
         for (const { label, minSize, freqs } of tables) {
             if (toolkit.objectSize(freqs) > 0) {
-                output.insertAdjacentHTML("beforeend", toolkit.styledArrayFrequencies(freqs, label, minSize));
+                output.insertAdjacentHTML("beforeend", styledArrayFrequencies(freqs, label, minSize));
             }
         }
     },
