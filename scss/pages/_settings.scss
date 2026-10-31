@@ -1,13 +1,11 @@
 .settings {
     &-check {
-        top: .7rem;
+        top: 0.7rem;
         cursor: pointer;
 
-        &:checked+.settings-label {
-            --bs-bg-opacity: 0.1;
-            --bs-border-opacity: 0.5;
-            background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
-            border-color: rgba(var(--convrtr-bg-color), var(--bs-border-opacity)) !important;
+        // !important beats the label's background utility
+        &:checked + .settings-label {
+            background-color: var(--convrtr-accent-subtle) !important;
         }
     }
     &-label {

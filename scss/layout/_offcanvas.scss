@@ -23,9 +23,6 @@
         width: 50vw;
     }
 }
-@include color-mode(light) {
-    .offcanvas.offcanvas-end {
-        --bs-bg-opacity: 1;
-        background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
-    }
+.offcanvas.offcanvas-end {
+    --bs-offcanvas-bg: var(--convrtr-surface-alt);
 }

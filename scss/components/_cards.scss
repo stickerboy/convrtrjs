@@ -1,9 +1,7 @@
-.card-title {
-    min-height: 2rem;
+.card {
+    --bs-card-bg: var(--convrtr-surface);
 }
 
-@include color-mode(dark) {
-    .card {
-        background-color: var(--convrtr-bg-dark) !important;
-    }
+.card-title {
+    min-height: 2rem;
 }

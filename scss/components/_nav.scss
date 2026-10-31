@@ -1,44 +1,24 @@
 .breadcrumb-item.active {
-    --bs-breadcrumb-item-active-color: var(--convrtr-base-color);
+    --bs-breadcrumb-item-active-color: var(--bs-body-color);
 }
 
 .nav-pills {
-    .nav-link {
     --bs-nav-link-padding-y: 0.625rem;
-    }
 }
 
 .tab-content {
     padding: 0.5rem 0.65rem;
-    background-color: var(--bs-white);
-    border: 1px solid;
-    border-color: var(--convrtr-nav-tabs-border-color);
-    border-radius: var(--convrtr-nav-tabs-border-radius);
-}
-@include color-mode(dark) {
-    .tab-content {
-        background-color: var(--bs-body-bg);
-        border-color: var(--bs-border-color);
-    }
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
 }
 
-.shift-tabs {
-    & .nav-link {
-        color: var(--convrtr-bg-color);
-        &.active {
-            color: var(--convrtr-base-color);
-            background-color: var(--convrtr-bg-color-25-rgb);
-        }
-    }
-}
-@include color-mode(dark) {
-    .shift-tabs {
-        & .nav-link {
-            color: var(--bs-white);
-            &.active {
-                color: var(--bs-white);
-                background-color: var(--convrtr-bg-color-75-rgb);
-            }
-        }
+// Vertical pills on the hex shift tool
+.shift-tabs .nav-link {
+    color: var(--bs-convrtr-text-emphasis);
+
+    &.active {
+        color: var(--bs-body-color);
+        background-color: var(--bs-primary-bg-subtle);
     }
 }

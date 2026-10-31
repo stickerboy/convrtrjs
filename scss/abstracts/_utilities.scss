@@ -13,3 +13,14 @@ $utilities: map.merge(
     )
   )
 );
+
+// .text-convrtr follows the colour mode, so brand-coloured text stays readable on dark backgrounds
+$utilities: map.merge(
+  $utilities,
+  (
+    "color": map.merge(
+      map.get($utilities, "color"),
+      (values: map.merge(map.get($utilities, "color", "values"), ("convrtr": var(--#{$prefix}convrtr-text-emphasis))))
+    )
+  )
+);

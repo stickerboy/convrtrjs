@@ -1,50 +1,32 @@
+// Focus rings, checked states and switch thumbs come from the theme ($primary); these are size and spacing
+
 textarea {
-    background-color: var(--convrtr-textarea);
+    background-color: rgba(var(--bs-body-color-rgb), 0.03);
 }
 
 .form-check-input {
     height: 1.75rem;
+
+    &:active {
+        filter: none;
+        opacity: 0.75;
+    }
 }
 
-.form-switch {
-    .form-check-input {
-        width: 3.5rem;
-        transition: background-position 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-    .form-check-input:focus {
-        background-image: var(--convrtr-switch-thumb);
-        border-color: var(--convrtr-bg-color-50);
-        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb);
-    }
-    .form-check-input:checked:focus {
-        background-image: var(--convrtr-switch-checked);
-    }
+.form-switch .form-check-input {
+    width: 3.5rem;
+    transition: background-position 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .form-check-label {
     margin-left: 0.5rem;
     margin-top: 0.25rem;
 }
-.form-check-input {
-    &:checked {
-        background-color: var(--convrtr-bg-color-25);
-        border-color: var(--convrtr-bg-color-20);
-    }
-    &:active {
-        filter: none;
-        opacity: 0.75;
-    }    
-}
 
 .form-control {
-    background-color: var(--convrtr-input-bg);
     padding: 0.575rem 0.75rem;
 }
-@include color-mode(dark) {
-    .form-control {
-        background-color: var(--bs-body-bg);
-    }
-}
+
 .form-select {
     width: 5.82rem;
     padding: 0.66rem 0.5rem;
@@ -52,22 +34,6 @@ textarea {
 
     &--large {
         width: 10rem;
-    }
-}
-.form-control,
-.form-select {
-    &:focus {
-        border-color: var(--convrtr-bg-color-25-rgb);
-        box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-25-rgb);
-    }
-}
-@include color-mode(dark) {
-    .form-control,
-    .form-select {
-        &:focus {
-            border-color: var(--convrtr-bg-color-50-rgb);
-            box-shadow: 0 0 0 0.25rem var(--convrtr-bg-color-50-rgb);
-        }
     }
 }
 
@@ -83,7 +49,7 @@ textarea {
     cursor: pointer;
 }
 
-.was-validated textarea.form-control.ld-warning:invalid, 
+.was-validated textarea.form-control.ld-warning:invalid,
 textarea.form-control.is-invalid.ld-warning {
     background-position: top calc(0.375em + 0.1875rem) right calc(0.875em + 0.3875rem);
 }

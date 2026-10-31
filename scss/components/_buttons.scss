@@ -1,66 +1,39 @@
-.btn-link {
-    --bs-btn-color: var(--convrtr-base-color) !important;
-    &:hover {
-        --bs-btn-hover-color: var(--convrtr-bg-color-10) !important;
-    }
-    &:active,
-    &:focus-visible {
-        --bs-btn-focus-shadow-rgb: 255, 255, 255;
+// Brand buttons: colours come from the "convrtr" theme colour, these add the weight and shape
+.btn-convrtr,
+.btn-outline-convrtr {
+    --bs-btn-font-weight: 600;
+    --bs-btn-border-radius: var(--bs-border-radius-lg);
+}
+.btn-convrtr {
+    --bs-btn-padding-y: 0.6rem;
+}
+// The outline button sits on a tinted background in dark mode so its border isn't the only cue
+@include color-mode(dark) {
+    .btn-outline-convrtr {
+        --bs-btn-color: #{$white};
+        --bs-btn-bg: rgba(var(--bs-convrtr-rgb), 0.25);
+        --bs-btn-border-color: var(--convrtr-accent);
     }
 }
 
-.btn-convrtr {
-    --bs-btn-font-weight: 600;
-    --bs-btn-color: var(--bs-white);
-    --bs-btn-bg: var(--convrtr-bg-color);
-    --bs-btn-border-color: var(--convrtr-bg-color);
-    --bs-btn-border-radius: .5rem;
-    --bs-btn-hover-color: var(--bs-white);
-    --bs-btn-hover-bg: var(--convrtr-bg-color-10);
-    --bs-btn-hover-border-color: var(--convrtr-bg-color-10);
-    --bs-btn-active-color: var(--bs-btn-hover-color);
-    --bs-btn-active-bg: var(--convrtr-bg-color-20);
-    --bs-btn-active-border-color: var(--convrtr-bg-color-20);
-    --bs-btn-padding-y: 0.6rem;
-}
-.btn-outline-convrtr {
-    --bs-btn-font-weight: 600;
-    --bs-btn-color: var(--convrtr-bg-color);
-    --bs-btn-bg: var(--bs-white);
-    --bs-btn-border-color: var(--convrtr-bg-color);
-    --bs-btn-border-radius: .5rem;
-    --bs-btn-hover-color: var(--bs-white);
-    --bs-btn-hover-bg: var(--convrtr-bg-color-10);
-    --bs-btn-hover-border-color: var(--convrtr-bg-color-10);
-    --bs-btn-active-color: var(--bs-btn-hover-color);
-    --bs-btn-active-bg: var(--convrtr-bg-color-20);
-    --bs-btn-active-border-color: var(--convrtr-bg-color-20);
-}
-@include color-mode(dark) {
-    .btn-outline-convrtr {
-        --bs-btn-color: var(--bs-white);
-        --bs-btn-bg: var(--convrtr-bg-color-25-rgb);
-    }
+.btn-link {
+    --bs-btn-color: var(--bs-body-color);
+    --bs-btn-hover-color: var(--bs-link-hover-color);
+    --bs-btn-active-color: var(--bs-link-hover-color);
 }
 
 .convrtr-spin {
-    -webkit-animation-name: convrtr-spin;
-    animation-name: convrtr-spin;
-    -webkit-animation-duration: var(--convrtr-animation-duration, 1s);
-    animation-duration: var(--convrtr-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--convrtr-animation-iteration-count, infinite);
-    animation-iteration-count: var(--convrtr-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--convrtr-animation-timing, linear);
-    animation-timing-function: var(--convrtr-animation-timing, linear);
+    animation: convrtr-spin var(--convrtr-animation-duration, 1s) var(--convrtr-animation-timing, linear) var(--convrtr-animation-iteration-count, infinite);
 }
 @keyframes convrtr-spin {
-    0% {
-      transform: rotate(0deg);
+    from {
+        transform: rotate(0deg);
     }
-    100% {
-      transform: rotate(360deg);
+    to {
+        transform: rotate(360deg);
     }
 }
+
 .btn-reset-data {
     .bi {
         display: inline-flex;
@@ -82,21 +55,19 @@
     padding: 0.5rem 0.825rem;
     &:hover,
     &:active {
-        background-color: var(--convrtr-bg-color);
-        color: white;
+        background-color: var(--bs-primary);
+        color: $white;
     }
 }
 
+// The collapse icon on tool section headers; !important on the border beats the .border utility
 .toggle-button {
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-    --bs-border-opacity: 1;
-    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
+    background-color: var(--bs-dark);
+    border-color: var(--bs-dark) !important;
 }
 @include color-mode(dark) {
     .toggle-button {
-        color: var(--bs-white) !important;
-        background-color: var(--convrtr-bg-color-75-rgb) !important;
+        background-color: rgba(var(--bs-convrtr-rgb), 0.75);
     }
 }
 
@@ -104,14 +75,14 @@
     .btn-light {
         --bs-btn-padding-x: 0.85rem;
         --bs-btn-padding-y: 0.575rem;
-        background-color: var(--convrtr-bg-dark) !important;
-        color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
-        border-color: var(--convrtr-bg-dark) !important;
-        &:hover, &:focus, &:active {
-            background-color: rgba(var(--bs-body-color-rgb), var(--convrtr-code-opacity)) !important;
-        }
-        &:active {
-            color: var(--bs-white);
-        }
+        --bs-btn-color: var(--bs-body-color);
+        --bs-btn-bg: var(--convrtr-surface);
+        --bs-btn-border-color: var(--convrtr-surface);
+        --bs-btn-hover-color: #{$white};
+        --bs-btn-hover-bg: rgba(var(--bs-body-color-rgb), 0.2);
+        --bs-btn-hover-border-color: transparent;
+        --bs-btn-active-color: #{$white};
+        --bs-btn-active-bg: rgba(var(--bs-body-color-rgb), 0.2);
+        --bs-btn-active-border-color: transparent;
     }
 }

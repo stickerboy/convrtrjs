@@ -1,21 +1,23 @@
+// Termsfeed cookie banner. It follows its own light/dark palette classes rather than the site theme,
+// and its styles need !important to override.
 .termsfeed-com---nb-headline {
     position: absolute !important;
     background-color: transparent !important;
     max-width: 1920px !important;
     margin: 0 auto !important;
-    top: 64px !important;
+    top: var(--navbar-height) !important;
 }
 .termsfeed-com---palette-light .cc-nb-main-container {
-    background-color: var(--bs-gray-100) !important;
+    background-color: $gray-100 !important;
 }
 .termsfeed-com---palette-dark .cc-nb-main-container {
-    background-color: var(--convrtr-bg-dark) !important;
+    background-color: $dark-surface-raised !important;
 }
 .cc-nb-main-container { 
     width: 100%;
     margin: 0 auto !important;
     padding: 1.5rem !important;
-    border: 1px solid var(--convrtr-bg-color);
+    border: 1px solid $convrtr;
     border-width: 0px !important;
     border-bottom-width: 5px !important;
 }
@@ -63,15 +65,15 @@ button.cc-nb-changep {
 }
 button.cc-nb-okagree,
 button.cc-nb-reject {
-    color: var(--bs-white) !important;
-    background-color: var(--convrtr-bg-color) !important;
-    border-color: var(--convrtr-bg-color) !important;
+    color: $white !important;
+    background-color: $convrtr !important;
+    border-color: $convrtr !important;
 
     &:active,
     &:hover,
     &:focus {
-        --bs-btn-hover-bg: var(--convrtr-bg-color-10);
-        --bs-btn-hover-border-color: var(--convrtr-bg-color-10);
+        --bs-btn-hover-bg: #{$convrtr-600};
+        --bs-btn-hover-border-color: #{$convrtr-600};
         background-color: var(--bs-btn-hover-bg) !important;
         border-color: var(--bs-btn-hover-border-color) !important;
     }
@@ -82,10 +84,10 @@ button.cc-nb-changep {
     &:active,
     &:hover,
     &:focus {
-        --bs-btn-hover-border-color: var(--convrtr-bg-color-10);
+        --bs-btn-hover-border-color: #{$convrtr-600};
         border-color: var(--bs-btn-hover-border-color) !important;
     }
 }
 .termsfeed-com---palette-dark button.cc-nb-changep {
-    color: var(--convrtr-txt-color) !important;
+    color: $convrtr-200 !important;
 }

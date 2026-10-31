@@ -1,0 +1,11 @@
+@use "sass:map";
+
+// The subtle and emphasis variants of the "convrtr" theme colour match primary.
+// Loaded after Bootstrap's maps.
+$theme-colors-text:          map.merge($theme-colors-text, ("convrtr": $primary-text-emphasis));
+$theme-colors-bg-subtle:     map.merge($theme-colors-bg-subtle, ("convrtr": $primary-bg-subtle));
+$theme-colors-border-subtle: map.merge($theme-colors-border-subtle, ("convrtr": $primary-border-subtle));
+
+$theme-colors-text-dark:          map.merge($theme-colors-text-dark, ("convrtr": $primary-text-emphasis-dark));
+$theme-colors-bg-subtle-dark:     map.merge($theme-colors-bg-subtle-dark, ("convrtr": $primary-bg-subtle-dark));
+$theme-colors-border-subtle-dark: map.merge($theme-colors-border-subtle-dark, ("convrtr": $primary-border-subtle-dark));

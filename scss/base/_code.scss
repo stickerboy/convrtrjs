@@ -1,10 +1,13 @@
+// Inline code takes the surrounding text colour instead of Bootstrap's pink
 code {
-    color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
-    background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+    color: inherit;
 }
+
+// Code chips are tinted with .bg-success.bg-opacity-10, which is too faint on dark backgrounds.
+// !important beats the utility.
 @include color-mode(dark) {
     code {
-        color: var(--bs-white) !important;
-        background-color: rgba(var(--bs-bg-success), 0.7) !important;
+        color: $white;
+        background-color: rgba(var(--bs-convrtr-rgb), 0.7) !important;
     }
 }

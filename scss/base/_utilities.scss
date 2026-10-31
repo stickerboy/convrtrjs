@@ -1,33 +1,14 @@
-.border-convrtr {
-    border-color: var(--convrtr-bg-color) !important;
-}
-.text-convrtr {
-    --bs-text-opacity: 1;
-    color: rgba(var(--bs-bg-success), var(--bs-text-opacity)) !important;
-}
-@include color-mode(dark) {
-    .text-convrtr {
-        --bs-btn-color: var(--bs-white);
-        color: var(--convrtr-table-header) !important;
-    }
-}   
+// Brand utilities that Bootstrap doesn't generate from the "convrtr" theme colour
+
+// Links that should stand out from body text in the same way in both colour modes
 .text-convrtr-link {
-    color: var(--convrtr-link-color) !important;
-}
-@include color-mode(dark) {
-    .text-convrtr-link {
-        color: var(--convrtr-table-header) !important;
+    color: var(--bs-link-color) !important;
+
+    &:hover {
+        color: var(--bs-link-hover-color) !important;
     }
-}
-.bg-convrtr {
-    background-color: var(--convrtr-bg-color);
-}
-.text-bg-convrtr {
-    --bs-text-opacity: 1;
-    color: var(--bs-white) !important;
-    background-color: rgba(var(--convrtr-bg-color-75rbg), var(--bs-text-opacity)) !important;
 }
 
 .hidden {
-    @extend .d-none !optional;
+    @extend .d-none;
 }

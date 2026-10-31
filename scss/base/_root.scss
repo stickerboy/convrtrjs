@@ -1,63 +1,31 @@
-:root {
-    --convrtr-bg-color: rgb(21, 96, 82);
-    --convrtr-txt-color: rgb(17, 77, 66);
-    --convrtr-bg-dark: #3b4044;
-    --bs-bg-success: 21, 96, 82;
-    --bs-bg-success-10: #e8f3ee;
-    --bs-bg-success-darken-10: #c9e3d7;
-    --convrtr-bg-color-rgb: 21, 96, 82;
-    --convrtr-bg-color-10: #0f735f;
-    --convrtr-bg-color-20: #0e6655;
-    --convrtr-bg-color-25: #11806a40;
-    --convrtr-color-25: #c3dfda;
-    --convrtr-bg-color-25-rgb: rgba(17, 128, 106, 0.25);
-    --convrtr-bg-color-50-rgb: rgba(17, 128, 106, 0.5);
-    --convrtr-bg-color-75-rgb: rgba(17, 128, 106, 0.75);
-    --convrtr-bg-color-50: #88c0b5;
-    --convrtr-bg-color-50-rgba: 136, 192, 181;
-    --convrtr-bg-color-75: #4da08f;
-    --convrtr-bg-color-75rbg: 77, 160, 143;
-    --convrtr-color-link: 150, 209, 197;
-    --convrtr-base-color: #212529;
-    --convrtr-link-color: #084f41;
-    --convrtr-link-color-dark: #a3cfc6;
-    --convrtr-table-header: rgb(209, 231, 220.8);
-    --convrtr-row-bg: #212529;
-    --convrtr-textarea: rgba(0,0,0,.03);
-    --convrtr-input-bg: #fcfdfd;
-    --convrtr-row-highlight-color: #dee2e6;
-    --convrtr-row-highlight-dark: #212529;
-    --convrtr-switch-thumb: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2388c0b5'/%3e%3c/svg%3e");
-    --convrtr-switch-checked: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-    --convrtr-nav-link-padding-x: 0.25rem;
-    --convrtr-nav-link-padding-y: 0.75rem;
-    --convrtr-nav-tabs-border-radius: 0.375rem;
-    --convrtr-nav-tabs-border-color: #dee2e6;
-    --convrtr-code-opacity: 0.2;
-    --bs-bg-dark-opacity: 0.08;
-    --navbar-height: 64px;
-    --pf-background: rgba(var(--bs-white-rgb), 0.96);
-    --pf-text: var(--convrtr-base-color);
-    --pf-text-secondary: rgba(var(--bs-body-color-rgb), 0.8);
-    --pf-text-muted: rgba(var(--bs-body-color-rgb), 0.65);
-    --pf-border: rgba(var(--bs-dark-rgb), 0.15);
-    --pf-border-focus: var(--convrtr-bg-color);
-    --pf-hover: rgba(var(--convrtr-bg-color-50-rgba), 0.12);
-    --pf-mark: var(--convrtr-bg-color);
-    --pf-shadow-sm: 0 0.5rem 1rem rgba(0, 0, 0, 0.08);
-    --pf-shadow-md: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.12);
-    --pf-shadow-lg: 0 1rem 2rem rgba(0, 0, 0, 0.16);
-    --pf-icon-search: url("data:image/svg+xml,%3Csvg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.7549 11.255H11.9649L11.6849 10.985C12.6649 9.845 13.2549 8.365 13.2549 6.755C13.2549 3.165 10.3449 0.255005 6.75488 0.255005C3.16488 0.255005 0.254883 3.165 0.254883 6.755C0.254883 10.345 3.16488 13.255 6.75488 13.255C8.36488 13.255 9.84488 12.665 10.9849 11.685L11.2549 11.965V12.755L16.2549 17.745L17.7449 16.255L12.7549 11.255ZM6.75488 11.255C4.26488 11.255 2.25488 9.245 2.25488 6.755C2.25488 4.26501 4.26488 2.255 6.75488 2.255C9.24488 2.255 11.2549 4.26501 11.2549 6.755C11.2549 9.245 9.24488 11.255 6.75488 11.255Z' fill='%23000000'/%3E%3C/svg%3E%0A");
-    --pf-border-radius: 0.5rem;
-    --pf-input-height: 2.75rem !important;
-    --pf-input-font-size: 1rem;
-    --pf-result-title-font-size: 1.05rem;
-    --pf-result-excerpt-font-size: 0.9rem;
-    --pf-summary-font-size: 1.05rem !important;
-    --pf-outline-focus: var(--convrtr-bg-color);
-    --pf-outline-width: 2px;
-    --pf-outline-offset: 2px;
+// Site tokens for the roles Bootstrap's own variables don't cover. Use Bootstrap's for everything
+// else: --bs-body-color, --bs-link-color, --bs-border-color, --bs-primary, --bs-focus-ring-color...
+:root,
+[data-bs-theme="light"] {
+    --navbar-height: 4rem;
+
+    // Main content background, and the alternate background for every other section and the sidebar
+    --convrtr-surface: #{$white};
+    --convrtr-surface-alt: #{$gray-100};
+
+    // The brand colour on a surface (icons, outlines, rules) and its tinted hover/active backgrounds
+    --convrtr-accent: #{$convrtr};
+    --convrtr-accent-rgb: #{to-rgb($convrtr)};
+    --convrtr-accent-subtle: #{tint-color($convrtr, 90%)};
+    --convrtr-accent-subtle-hover: #{$convrtr-100};
+
+    // Alternating rows in grid-based tables
+    --convrtr-row-highlight: #{$gray-300};
 }
-[data-bs-theme="dark"] {
-    --convrtr-base-color: #dee2e6;
+
+@include color-mode(dark, true) {
+    --convrtr-surface: #{$dark-surface-raised};
+    --convrtr-surface-alt: #{$dark-surface};
+
+    --convrtr-accent: #{$convrtr-200};
+    --convrtr-accent-rgb: #{to-rgb($convrtr-200)};
+    --convrtr-accent-subtle: #{shade-color($convrtr, 40%)};
+    --convrtr-accent-subtle-hover: #{$convrtr-600};
+
+    --convrtr-row-highlight: #{$gray-900};
 }

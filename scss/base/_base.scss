@@ -1,37 +1,17 @@
 body {
-    color: var(--convrtr-base-color);
     position: relative;
-}
-@include color-mode(dark) {
-    body {
-        background-color: #2e3236 !important;
-    }
 }
 
 ::selection {
-    background-color: var(--convrtr-bg-color);
-    color: white;
-}
-::-moz-selection {
-    background-color: var(--convrtr-bg-color);
-    color: white;
-}
-@include color-mode(dark) {
-    ::selection {
-        background-color: var(--convrtr-bg-color-10);
-        color: white;
-    }
-    ::-moz-selection {
-        background-color: var(--convrtr-bg-color-1-);
-        color: white;
-    }
+    background-color: var(--bs-primary);
+    color: $white;
 }
 
-:target::before { 
+:target::before {
     content: "";
     display: block;
-    height: 64px; /* Height of your navbar */
-    margin-top: -64px; /* Negative value of navbar height */
+    height: var(--navbar-height);
+    margin-top: calc(var(--navbar-height) * -1);
     visibility: hidden;
 }
 
@@ -44,19 +24,12 @@ body {
         @media (min-width: 800px) {
             font-size: calc(1.575rem + 1.5vw);
         }
-        @media (min-width: 1200px) {
+        @include media-breakpoint-up(xl) {
             font-size: 2.5rem;
         }
     }
 }
 
 mark {
-    background-color: var(--convrtr-color-25);
     border-radius: var(--bs-border-radius-sm);
-}
-@include color-mode(dark) {
-    mark {
-        color: var(--bs-white);
-        background-color: var(--convrtr-bg-color);
-    }
 }

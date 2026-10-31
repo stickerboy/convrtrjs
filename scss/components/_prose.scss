@@ -1,15 +1,10 @@
+// Markdown content: changelog entries, about, licence and other text pages
 .prose {
-    h1,h2 {
-        padding-bottom: 0.75rem;
-        margin-bottom: 1.25rem;
-    }
-    h1,h2 {
+    h1,
+    h2 {
         padding-bottom: 0.75rem;
         margin-bottom: 1rem;
-        border-bottom-color: var(--bs-border-color-translucent);
-        border-style: none;
-        border-bottom-style: solid;
-        border-bottom-width: var(--bs-border-width);
+        border-bottom: var(--bs-border-width) solid var(--bs-border-color-translucent);
     }
     @for $i from 1 through 6 {
         h#{$i} {
@@ -17,26 +12,24 @@
         }
     }
     h3 {
-        @extend .h4 !optional;
+        @extend .h4;
         font-size: 1.5rem;
         font-weight: 400;
     }
     h4 {
-        @extend .h5 !optional;
+        @extend .h5;
         font-weight: 400;
     }
     a > img {
         max-width: 100%;
         padding: 0.5rem;
-        outline-width: 3px;
-        outline-style: solid;
-        outline-color: var(--convrtr-bg-color);
+        outline: 3px solid var(--bs-primary);
         transition: outline-color ease 0.3s;
 
         &:hover,
         &:active,
         &:focus {
-            outline-color: var(--convrtr-bg-color-75)
+            outline-color: var(--convrtr-accent);
         }
     }
     article img {
@@ -56,40 +49,52 @@
         font-size: inherit;
         user-select: all;
     }
+    // Matches the inline code chips used in tool descriptions
     code {
-        --bs-bg-opacity: 0.1;
-        --bs-border-opacity: 0.1;
-        display: inline-flex !important;
-        border-radius: var(--bs-border-radius) !important;
-        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
-        border: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color) !important;
-        border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
-        padding-right: .5rem !important;
-        padding-left: .5rem !important;
-        color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
-        background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
-        font-size: 0.875em;
-        color: var(--bs-code-color);
-        word-wrap: break-word;
+        display: inline-flex;
+        padding: 0 0.5rem;
         font-family: var(--bs-font-monospace);
+        font-size: 0.875em;
+        word-wrap: break-word;
+        background-color: rgba(var(--bs-success-rgb), 0.1);
+        border: var(--bs-border-width) solid rgba(var(--bs-success-rgb), 0.1);
+        border-radius: var(--bs-border-radius);
     }
+    // A rotating chevron in a dark box replaces the default disclosure triangle
     summary {
         margin-bottom: 0.5rem;
         position: relative;
-        
+
         &::marker {
-            display: none;
             content: "";
         }
+        &::before {
+            content: "\f148";
+            display: inline-block;
+            padding: 0.25rem;
+            margin-right: 0.5rem;
+            font-family: bootstrap-icons;
+            font-size: 0.9rem;
+            line-height: 1;
+            color: $white;
+            background-color: var(--bs-dark);
+            border-radius: var(--bs-border-radius);
+            transition: transform 0.4s ease-in-out;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    }
+    details[open] > summary::before {
+        transform: rotate(90deg);
     }
     blockquote {
         padding-left: 1rem;
         margin-left: 1rem;
-        border-left: 0.25rem solid var(--convrtr-bg-color-50);
+        border-left: 0.25rem solid var(--convrtr-accent);
     }
     table {
-        @extend .table !optional;
-        @extend .table-striped !optional;
+        @extend .table;
+        @extend .table-striped;
     }
     &.license {
         blockquote {
@@ -99,64 +104,4 @@
     .pagination .btn {
         font-size: var(--bs-pagination-font-size);
     }
-}
-
-.prose {
-    a:not(.btn) {
-        color: var(--convrtr-link-color) !important;
-    }
-}
-@include color-mode(dark) {
-    .prose {
-        a:not(.btn) {
-            color: var(--convrtr-table-header) !important;
-        }
-    }
-}
-
-.prose summary::before {
-    content: "\f148";
-    display: inline-block;
-    font-family: bootstrap-icons !important;
-    font-style: normal;
-    font-weight: normal !important;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    font-size: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: 0.25rem;
-    margin-right: 0.5rem;
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
-    --bs-border-opacity: 1;
-    border-color: rgba(var(--bs-dark-rgb), var(--bs-border-opacity)) !important;
-    border-radius: var(--bs-border-radius) !important;
-    color: transparent;
-}
-
-.prose summary::after {
-    content: "\f148";
-    display: inline-block;
-    font-family: bootstrap-icons !important;
-    font-style: normal;
-    font-weight: normal !important;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    font-size: 0.9rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: var(--bs-white);
-    z-index: 5;
-    position: absolute;
-    left: 0.3rem;
-    top: 0.35rem;
-    transform: rotate(0deg);
-    transition: transform 0.4s ease-in-out;
-}
-
-.prose details[open] summary::after {
-    transform: rotate(90deg);
 }

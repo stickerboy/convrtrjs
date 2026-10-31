@@ -1,11 +1,11 @@
 .page-wrap {
     grid-column-start: 2;
     position: relative;
-    height: calc(100vh - 4rem);
-    margin-top: 4rem;
+    height: calc(100vh - var(--navbar-height));
+    margin-top: var(--navbar-height);
     display: flex;
     flex-direction: column;
-    background-color: var(--bs-white);
+    background-color: var(--convrtr-surface);
     @media screen and (prefers-reduced-motion: no-preference) {
         scroll-behavior: smooth;
     }
@@ -22,17 +22,6 @@
     &-home {
         .section:first-of-type {
             padding-top: 1.5rem;
-        }
-    }
-    &-404 {
-        background-color: var(--bs-white);
-    }
-}
-@include color-mode(dark) {
-    .page-wrap {
-        background-color: var(--convrtr-bg-dark);
-        &-404 {
-            background-color: var(--convrtr-bg-dark) !important;
         }
     }
 }

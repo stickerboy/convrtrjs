@@ -1,20 +1,13 @@
+// Page sections alternate between the two surface colours
 .section:nth-of-type(even) {
-    --bs-bg-opacity: 1;
-    background-color: var(--bs-white);
+    background-color: var(--convrtr-surface);
 }
 .section:nth-of-type(odd) {
-    --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+    background-color: var(--convrtr-surface-alt);
 }
-@include color-mode(dark) {
-    .section:nth-of-type(even) {
-        --bs-bg-opacity: 1;
-        background-color: #2e3236 !important;
-    }
-    .section:nth-of-type(odd) {
-        --bs-bg-opacity: 1;
-        background-color: var(--convrtr-bg-dark) !important;
-    }
+// The 404 page is a single section on the page background
+.page-wrap-404 .section {
+    background-color: var(--convrtr-surface);
 }
 .section:not(.footer):nth-of-type(odd) {
     @include media-breakpoint-up(fhd) {
@@ -26,10 +19,7 @@
 }
 
 .section-toggle {
-    color: rgba(var(--bs-dark-rgb), var(--bs-text-opacity)) !important;
-    @include color-mode(dark) {
-        color: rgba(var(--bs-light-rgb), var(--bs-text-opacity)) !important;
-    }
+    color: inherit;
 
     .bi::before {
         transition: transform 0.4s ease-in-out;

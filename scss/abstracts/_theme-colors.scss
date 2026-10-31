@@ -1,0 +1,6 @@
+@use "sass:map";
+
+// Adds the brand colour as a "convrtr" theme colour, so Bootstrap generates .btn-convrtr,
+// .btn-outline-convrtr, .bg-convrtr, .text-bg-convrtr, .border-convrtr and friends.
+// Loaded after Bootstrap's variables and before its maps.
+$theme-colors: map.merge($theme-colors, ("convrtr": $convrtr));

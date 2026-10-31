@@ -1,4 +1,36 @@
-// Bootstrap variable overrides, loaded before Bootstrap's own defaults
+// Theme palette and Bootstrap variable overrides, loaded before Bootstrap's own defaults
+
+// Brand teal and its tints/shades, from lightest (100) to darkest (900)
+$convrtr:     #156052;
+$convrtr-100: tint-color($convrtr, 80%);
+$convrtr-200: tint-color($convrtr, 60%);
+$convrtr-300: tint-color($convrtr, 40%);
+$convrtr-400: tint-color($convrtr, 20%);
+$convrtr-500: $convrtr;
+$convrtr-600: shade-color($convrtr, 20%);
+$convrtr-700: shade-color($convrtr, 40%);
+$convrtr-800: shade-color($convrtr, 60%);
+$convrtr-900: shade-color($convrtr, 80%);
+
+// Dark mode surfaces: the page and sidebar, and the raised content area on top of it
+$dark-surface:        #2e3236;
+$dark-surface-raised: #3b4044;
+
+// Light mode
+$primary:               $convrtr;
+$primary-text-emphasis: $convrtr-600;
+$primary-bg-subtle:     $convrtr-100;
+$primary-border-subtle: $convrtr-200;
+$link-color:            $convrtr-600;
+$mark-bg:               $convrtr-100;
+
+// Dark mode
+$body-bg-dark:               $dark-surface;
+$primary-text-emphasis-dark: $convrtr-200;
+$primary-bg-subtle-dark:     shade-color($convrtr, 50%);
+$primary-border-subtle-dark: $convrtr-600;
+$link-color-dark:            $convrtr-200;
+$mark-bg-dark:               $convrtr;
 
 $enable-cssgrid: true;
 
