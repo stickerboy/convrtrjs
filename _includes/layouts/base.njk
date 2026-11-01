@@ -8,16 +8,26 @@
         <script type="importmap">{ "imports": { "@noble/hashes/": "{{ '/assets/js/vendor/noble-hashes/' | url }}" } }</script>
         {% include "partials/title.njk" %}
 
+        {#- Runs before the page is drawn, so it starts in the saved theme and sidebar state rather than flashing the defaults.
+            Both are saved by ui/storage.js as { value, ... }; theme.js takes over the theme once the page has loaded. #}
         <script>
             (function () {
-                const theme = localStorage.getItem("theme") || "auto";
-                document.documentElement.setAttribute("data-bs-theme", theme);
-                // The sidebar panel was left closed; see layout/_sidebar.scss
-                try {
-                    if (JSON.parse(localStorage.getItem("sidebarPanel"))?.value === "closed") {
-                        document.documentElement.setAttribute("data-sidebar-panel", "closed");
+                const root = document.documentElement;
+                const saved = (key) => {
+                    try {
+                        return JSON.parse(localStorage.getItem(key))?.value;
+                    } catch {
+                        return undefined;
                     }
-                } catch {}
+                };
+                // Bootstrap only knows light and dark, so auto (or nothing saved) follows the system
+                const theme = saved("theme");
+                root.setAttribute("data-bs-theme", theme === "light" || theme === "dark" ? theme
+                    : matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+                // The sidebar panel was left closed; see layout/_sidebar.scss
+                if (saved("sidebarPanel") === "closed") {
+                    root.setAttribute("data-sidebar-panel", "closed");
+                }
             })();
         </script>
 
