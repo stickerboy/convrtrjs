@@ -2,13 +2,16 @@
     The site sidebar: a rail of categories and site links, and a panel listing the pages of the open category.
     currentUrl marks the current category and page. expanded is the category shown in the panel: the current one
     by default, or the first category on pages outside them (sitemap, settings...); "" closes the panel. The panel
-    starts open on every page, and nav.js closes it for visitors who closed it. idPrefix keeps ids unique when the
-    sidebar is rendered more than once, as the UI kit does.
+    starts open on every page, and nav.js closes it for visitors who closed it. remember = false stops nav.js saving
+    whether the panel is open, for pages that close it themselves. pagePanel is a page's own panel content, such as the
+    search page's filters: it's shown in place of a category, and closing a category returns to it. Its title needs
+    the id "<idPrefix>-page-title". idPrefix keeps ids unique when the sidebar is rendered more than once, as the UI
+    kit does.
 #}
 {% macro categoryUrl(link) %}{{ "/" if link.id == "text" else "/" ~ link.id ~ "/" }}{% endmacro %}
 {% macro pageUrl(link, child) %}{{ "/convrtrs/" if child.id == "convrtrs" else "/" ~ link.id ~ "/" ~ child.id ~ "/" }}{% endmacro %}
 
-{% macro sidebar(nav, currentUrl, idPrefix = "sidebar", expanded = null) %}
+{% macro sidebar(nav, currentUrl, idPrefix = "sidebar", expanded = null, remember = true, pagePanel = "") %}
 {%- set shown = nav | where("excludeFromSidebar", false) -%}
 {%- set categories = shown | selectattr("children") -%}
 {%- set links = shown | rejectattr("children") -%}
@@ -22,8 +25,8 @@
     {%- endfor -%}
 {%- endset -%}
 {%- set currentId = currentId | trim -%}
-{%- set openId = (currentId or (categories | first).id) if expanded == null else expanded -%}
-<nav class="sidebar" id="{{ idPrefix }}" aria-label="Site" data-panel="{{ 'open' if openId else 'closed' }}">
+{%- set openId = (currentId or ("page" if pagePanel else (categories | first).id)) if expanded == null else expanded -%}
+<nav class="sidebar" id="{{ idPrefix }}" aria-label="Site" data-panel="{{ 'open' if openId else 'closed' }}"{% if not remember %} data-remember="false"{% endif %}>
     <ul class="sidebar-rail">
         {%- for link in categories %}
         <li>
@@ -46,6 +49,11 @@
         {%- endfor %}
     </ul>
     <div class="sidebar-panel">
+        {%- if pagePanel %}
+        <div class="sidebar-panel__group" id="{{ idPrefix }}-page" role="region" aria-labelledby="{{ idPrefix }}-page-title" data-page-panel{% if openId != "page" %} hidden{% endif %}>
+            {{ pagePanel | safe }}
+        </div>
+        {%- endif %}
         {%- for link in categories %}
         <div class="sidebar-panel__group" id="{{ idPrefix }}-{{ link.id }}" role="region" aria-labelledby="{{ idPrefix }}-{{ link.id }}-title"{% if link.id != openId %} hidden{% endif %}>
             <h2 class="sidebar-panel__title" id="{{ idPrefix }}-{{ link.id }}-title">

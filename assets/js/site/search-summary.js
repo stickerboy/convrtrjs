@@ -20,6 +20,15 @@ class ConvrtrSummary extends HTMLElement {
         this.containerEl.setAttribute("aria-live", "polite");
         this.appendChild(this.containerEl);
 
+        // Pagefind's script runs after this one, so wait for it if it hasn't yet
+        if (window.PagefindComponents) {
+            this.connect();
+        } else {
+            window.addEventListener("DOMContentLoaded", () => this.connect(), { once: true });
+        }
+    }
+
+    connect() {
         const manager = window.PagefindComponents?.getInstanceManager();
         const instance = manager?.getInstance(this.getAttribute("instance") || "default");
 
@@ -32,6 +41,9 @@ class ConvrtrSummary extends HTMLElement {
             this.term = String(term ?? "").trim();
         }, this);
         instance.on("loading", () => {
+            if (!this.term) {
+                return;
+            }
             this.render("searching", { SEARCH_TERM: badge(this.term) }, `Searching for ${formatText(this.term)}...`);
         }, this);
         instance.on("results", (searchResult) => {
@@ -50,8 +62,11 @@ class ConvrtrSummary extends HTMLElement {
 
         const count = searchResult.results?.length ?? 0;
 
+        // Filters alone list every page they match (see search-filters.js)
         if (!this.term) {
-            this.containerEl.innerHTML = "";
+            this.containerEl.innerHTML = this.instance.faceted
+                ? `${badge(count)} page${count === 1 ? "" : "s"} match the selected filters`
+                : "";
             return;
         }
 

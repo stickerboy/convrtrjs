@@ -1,5 +1,6 @@
 import { getURLParameter } from "../ui/url.js";
 import "./search-summary.js";
+import "./search-filters.js";
 
 const translations = {
     placeholder: "Search convrtrs, tools, and other resources...",

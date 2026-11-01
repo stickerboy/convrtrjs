@@ -2,6 +2,8 @@
 title: Search
 description: Quickly search and filter through the available decoding tools, and resources
 permalink: /search/
+# The filters sit in the sidebar panel: partials/panels/search.njk
+sidebarPanel: search
 eleventyComputed:
   description: "{{ description }}<br />A minimum of 2 characters is required in order for results to be returned"
 ---
@@ -11,11 +13,11 @@ eleventyComputed:
     <div id="page-search" class="col-md-12 text-center search">
       <pagefind-config excerpt-length="80"></pagefind-config>
       <pagefind-input debounce="500"></pagefind-input>
-      <div class="grid mt-3">
-          <div class="g-col-12 g-col-md-4 g-col-lg-3">
-            <pagefind-filter-pane open="filters"></pagefind-filter-pane>
-          </div>
-          <div class="g-col-12 g-col-md-8 g-col-lg-9">
+      <div class="mt-3 text-start">
+          <button type="button" class="btn btn-outline-convrtr btn-sm d-md-none mb-3" data-sidebar-page-panel aria-controls="sidebar-page">
+            <i class="bi bi-funnel" aria-hidden="true"></i> Filters
+          </button>
+          <div>
             <convrtr-summary></convrtr-summary>
             <div class="mt-3 list-group">
               <pagefind-results></pagefind-results>
@@ -31,7 +33,7 @@ eleventyComputed:
                   // element resets resultTemplate on upgrade, so it must be set after the custom element is defined
                   customElements.whenDefined("pagefind-results").then(() => {
                     resultsEl.resultTemplate = (data) => {
-                      const tags = [...new Set(data.filters?.Filters ?? [])];
+                      const tags = [...new Set([...(data.filters?.Release ?? []), ...(data.filters?.Changes ?? [])])];
                       const tagsHtml = tags.length
                         ? `<div class="badges mt-3">${tags.map((tag) => `<span class="badge badge-${escapeHtml(tag)}">${escapeHtml(tag)}</span>`).join("")}</div>`
                         : "";

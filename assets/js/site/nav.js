@@ -1,5 +1,6 @@
-// The sidebar (macros/sidebar.njk). Categories on the rail show their pages in the panel; the header toggle shows or
-// hides the panel from md up, and opens the whole sidebar as a drawer below md.
+// The sidebar (macros/sidebar.njk). Categories on the rail show their pages in the panel, and some pages have panel
+// content of their own, such as the search page's filters. The header toggle shows or hides the panel from md up, and
+// opens the whole sidebar as a drawer below md.
 import { saveLocalStorage } from "../ui/storage.js";
 
 const grid = document.querySelector(".sidebar-grid");
@@ -9,34 +10,39 @@ const desktop = window.matchMedia("(min-width: 768px)");
 
 if (grid && sidebar && toggle) {
     const categories = [...sidebar.querySelectorAll("[data-category]")];
+    const groups = [...sidebar.querySelectorAll(".sidebar-panel__group")];
+    const pageGroup = sidebar.querySelector("[data-page-panel]");
+    const groupOf = (category) => document.getElementById(category.getAttribute("aria-controls"));
     const current = categories.find((category) => category.classList.contains("active"));
     const expanded = () => categories.find((category) => category.getAttribute("aria-expanded") === "true");
-    let shown = expanded() || current || categories[0];
+    let shown = groups.find((group) => !group.hidden) || groupOf(current || categories[0]);
 
     const isPanelOpen = () => sidebar.dataset.panel === "open";
     const isDrawerOpen = () => grid.classList.contains("drawer-open");
 
     const syncToggle = () => toggle.setAttribute("aria-expanded", desktop.matches ? isPanelOpen() : isDrawerOpen());
 
-    // Only a choice made from md up is remembered; the drawer opens the panel for itself
+    // Only a choice made from md up is remembered; the drawer opens the panel for itself. Pages that close the panel
+    // themselves, such as the sitemap, don't change what other pages show.
     const remember = () => {
-        if (desktop.matches) {
+        if (desktop.matches && sidebar.dataset.remember !== "false") {
             saveLocalStorage("sidebarPanel", "Sidebar panel", isPanelOpen() ? "open" : "closed", "Whether the list of tools beside the sidebar is shown");
         }
     };
 
-    // Shows a category's pages in the panel, or closes the panel. A closing panel keeps its pages while it slides away.
-    const showPanel = (category) => {
-        for (const button of categories) {
-            button.setAttribute("aria-expanded", button === category);
-            if (category) {
-                document.getElementById(button.getAttribute("aria-controls")).hidden = button !== category;
+    // Shows a group in the panel (a category's pages, or the page's own content), or closes the panel when given null.
+    // A closing panel keeps its group while it slides away.
+    const showPanel = (group) => {
+        for (const category of categories) {
+            category.setAttribute("aria-expanded", Boolean(group) && groupOf(category) === group);
+        }
+        if (group) {
+            for (const other of groups) {
+                other.hidden = other !== group;
             }
+            shown = group;
         }
-        if (category) {
-            shown = category;
-        }
-        sidebar.dataset.panel = category ? "open" : "closed";
+        sidebar.dataset.panel = group ? "open" : "closed";
         syncToggle();
     };
 
@@ -44,9 +50,9 @@ if (grid && sidebar && toggle) {
         grid.classList.toggle("drawer-open", open);
         if (open) {
             if (!isPanelOpen()) {
-                showPanel(current || shown);
+                showPanel(current ? groupOf(current) : shown);
             }
-            (expanded() || categories[0]).focus();
+            (expanded() || shown.querySelector("a, button:not(:disabled), input") || categories[0]).focus();
         } else if (sidebar.contains(document.activeElement)) {
             toggle.focus();
         }
@@ -60,10 +66,21 @@ if (grid && sidebar && toggle) {
     }
     syncToggle();
 
+    // Closing a category goes back to the page's own content, if it has some
     for (const category of categories) {
         category.addEventListener("click", () => {
-            showPanel(category === expanded() ? null : category);
+            showPanel(category === expanded() ? pageGroup : groupOf(category));
             remember();
+        });
+    }
+
+    // Buttons on the page that show its panel content, such as the search page's Filters button below md
+    for (const button of document.querySelectorAll("[data-sidebar-page-panel]")) {
+        button.addEventListener("click", () => {
+            showPanel(pageGroup);
+            if (!desktop.matches) {
+                setDrawer(true);
+            }
         });
     }
 
@@ -83,7 +100,7 @@ if (grid && sidebar && toggle) {
         }
     });
     document.addEventListener("click", (event) => {
-        if (isDrawerOpen() && !sidebar.contains(event.target) && !toggle.contains(event.target)) {
+        if (isDrawerOpen() && !sidebar.contains(event.target) && !toggle.contains(event.target) && !event.target.closest("[data-sidebar-page-panel]")) {
             setDrawer(false);
         }
     });

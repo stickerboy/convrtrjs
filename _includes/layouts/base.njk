@@ -32,13 +32,23 @@
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar">
                     {%- from "macros/sidebar.njk" import sidebar %}
-                    {{ sidebar(nav, page.url) }}
+                    {#- sidebarPanel in front matter: "closed" starts the panel closed on that page, whatever was saved; any
+                        other value is the page's own panel content, from partials/panels/<value>.njk #}
+                    {%- set panelClosed = sidebarPanel == "closed" %}
+                    {%- set pagePanel %}{% if sidebarPanel and not panelClosed %}{% include "partials/panels/" ~ sidebarPanel ~ ".njk" %}{% endif %}{% endset %}
+                    {{ sidebar(nav, page.url, expanded = ("" if panelClosed else null), remember = not panelClosed, pagePanel = (pagePanel if sidebarPanel and not panelClosed else "")) }}
                 </div>
                 {#- Not indexed for search: utility pages, and the changelog lists, which only repeat what each version's page says #}
                 {% set isExcluded = pageId in ["404", "search", "sitemap", "tags", "ui-kit", "changelog"] %}
                 {% set isTagPath = "tag" in page.inputPath %}
+                {#- Search filters, which the search page shows in its panel: the section a page belongs to, and a changelog
+                    entry's labels under their group (_data/labels.json) #}
+                {%- if pageId == "changelog-item" %}<span class="hidden" data-pagefind-filter="Section">changelog</span>{% endif -%}
                 {%- for tag in tags -%}
-                <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
+                {%- set label = labels.labels | where("key", tag) | first -%}
+                {%- if label %}<span class="hidden" data-pagefind-filter="{{ label.group }}">{{ tag }}</span>
+                {%- elif labels.sections | where("key", tag) | length %}<span class="hidden" data-pagefind-filter="Section">{{ tag }}</span>
+                {%- endif -%}
                 {%- endfor -%}
                 {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
                 <main class="page-wrap page-wrap-{{ pageId }}{% if tags and "landing-page" in tags %} landing-page{% endif %} overflow-y-auto p-0 mw"

@@ -1,0 +1,24 @@
+{#
+    The search page's filters, shown in the sidebar panel (see sidebarPanel in layouts/base.njk). Each chip is a value
+    of one of the filters base.njk writes into every page; assets/js/site/search-filters.js adds the counts and applies
+    them to the search.
+#}
+{%- set groups = [
+    { filter: "Section", title: "Pages", items: labels.sections },
+    { filter: "Release", title: "Releases", items: labels.labels | where("group", "Release") | where("visible", true) },
+    { filter: "Changes", title: "Changes", items: labels.labels | where("group", "Changes") | where("visible", true) }
+] -%}
+<h2 class="sidebar-panel__title" id="sidebar-page-title">Filters</h2>
+<p class="sidebar-panel__count">Narrow down your results</p>
+<div class="search-filters" data-search-filters>
+    {%- for group in groups %}
+    <p class="search-filters__heading" id="search-filters-{{ group.filter | lower }}">{{ group.title }}</p>
+    <div class="filter-chips" role="group" aria-labelledby="search-filters-{{ group.filter | lower }}">
+        {%- for item in group.items %}
+        <button type="button" class="filter-chip" aria-pressed="false" title="{{ item.description }}"
+            data-filter="{{ group.filter }}" data-value="{{ item.key }}">{{ item.friendlyName }} <span class="filter-chip__count"></span></button>
+        {%- endfor %}
+    </div>
+    {%- endfor %}
+    <button type="button" class="search-filters__clear" hidden>Clear filters</button>
+</div>

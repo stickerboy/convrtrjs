@@ -13,7 +13,8 @@
                 {{ description }}
             </p>
             {%- if tags %}
-            <div class="px-2">
+            {#- Left out of search, which has the labels as filters and shows them on each result #}
+            <div class="px-2" data-pagefind-ignore="all">
                 {%- for tag in tags -%}
                 {% set label = labels.labels | where("key", tag | lower) | first -%}
                 {% if label %}
