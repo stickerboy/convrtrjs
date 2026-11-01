@@ -1,8 +1,12 @@
-// Filter chips: pills that toggle a filter on and off, with a count of what it matches (aria-pressed marks one that's on)
+// Filter chips: pills that toggle a filter on and off, or link to a filtered page, with a count of what they match.
+// aria-pressed marks a toggle that's on, and aria-current a link to the current page.
 .filter-chips {
     display: flex;
     flex-wrap: wrap;
     gap: 0.375rem;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .filter-chip {
@@ -13,6 +17,7 @@
     font-size: 0.8125rem;
     line-height: 1.3;
     color: var(--bs-body-color);
+    text-decoration: none;
     background-color: var(--bs-body-bg);
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: 2rem;
@@ -26,7 +31,8 @@
         outline: 2px solid var(--convrtr-accent);
         outline-offset: 2px;
     }
-    &[aria-pressed="true"] {
+    &[aria-pressed="true"],
+    &[aria-current="page"] {
         color: var(--convrtr-accent);
         background-color: var(--convrtr-accent-selected);
         border-color: var(--convrtr-accent);
@@ -49,7 +55,8 @@
         font-variant-numeric: tabular-nums;
         color: var(--bs-secondary-color);
 
-        [aria-pressed="true"] > & {
+        [aria-pressed="true"] > &,
+        [aria-current="page"] > & {
             color: inherit;
         }
         &:empty {
@@ -60,24 +67,9 @@
 
 // The search page's filters in the sidebar panel (partials/panels/search.njk)
 .search-filters {
-    padding: 0 0.625rem;
-
-    &__heading {
-        margin: 1rem 0 0.5rem;
-        font-size: 0.6875rem;
-        font-weight: 600;
-        color: var(--bs-secondary-color);
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-
-        &:first-child {
-            margin-top: 0.25rem;
-        }
-    }
-
     &__clear {
         padding: 0;
-        margin-top: 1.25rem;
+        margin: 1.25rem 0.625rem 0;
         font-size: 0.8125rem;
         font-weight: 600;
         color: var(--convrtr-accent);

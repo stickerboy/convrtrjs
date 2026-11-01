@@ -6,10 +6,19 @@ export default function (eleventyConfig) {
 
     eleventyConfig.addFilter("dateISO", (date) => new Date(date).toISOString());
 
-    // e.g. "September 04, 2025" (UTC, so local builds match CI)
+    // Dates are read in UTC, so local builds match CI. Month names come from a lookup rather than toLocaleString, which
+    // is slow, and the changelog panel formats every release's date on every page.
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    // e.g. "September 04, 2025"
     eleventyConfig.addFilter("readableDate", (date) => {
         const d = new Date(date);
-        const month = d.toLocaleString("en-US", { month: "long", timeZone: "UTC" });
-        return `${month} ${String(d.getUTCDate()).padStart(2, "0")}, ${d.getUTCFullYear()}`;
+        return `${months[d.getUTCMonth()]} ${String(d.getUTCDate()).padStart(2, "0")}, ${d.getUTCFullYear()}`;
+    });
+
+    // e.g. "Sep 2025"
+    eleventyConfig.addFilter("monthYear", (date) => {
+        const d = new Date(date);
+        return `${months[d.getUTCMonth()].slice(0, 3)} ${d.getUTCFullYear()}`;
     });
 }

@@ -12,8 +12,8 @@
 <p class="sidebar-panel__count">Narrow down your results</p>
 <div class="search-filters" data-search-filters>
     {%- for group in groups %}
-    <p class="search-filters__heading" id="search-filters-{{ group.filter | lower }}">{{ group.title }}</p>
-    <div class="filter-chips" role="group" aria-labelledby="search-filters-{{ group.filter | lower }}">
+    <p class="sidebar-panel__heading" id="search-filters-{{ group.filter | lower }}">{{ group.title }}</p>
+    <div class="filter-chips sidebar-panel__chips" role="group" aria-labelledby="search-filters-{{ group.filter | lower }}">
         {%- for item in group.items %}
         <button type="button" class="filter-chip" aria-pressed="false" title="{{ item.description }}"
             data-filter="{{ group.filter }}" data-value="{{ item.key }}">{{ item.friendlyName }} <span class="filter-chip__count"></span></button>

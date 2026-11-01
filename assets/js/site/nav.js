@@ -59,6 +59,16 @@ if (grid && sidebar && toggle) {
         syncToggle();
     };
 
+    // Long lists, such as the changelog's releases, start scrolled to the current page if it's out of view
+    const panel = sidebar.querySelector(".sidebar-panel");
+    const currentLink = shown?.querySelector(".sidebar-panel__link[aria-current='page']");
+    if (currentLink) {
+        const top = currentLink.getBoundingClientRect().top - panel.getBoundingClientRect().top;
+        if (top + currentLink.offsetHeight > panel.clientHeight) {
+            panel.scrollTop = top - panel.clientHeight / 2;
+        }
+    }
+
     // The panel was left closed: <head> has already hidden it, so close it here before handing back to the normal styles
     if (document.documentElement.dataset.sidebarPanel === "closed") {
         showPanel(null);

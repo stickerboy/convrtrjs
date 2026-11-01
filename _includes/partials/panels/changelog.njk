@@ -1,0 +1,47 @@
+{#
+    The changelog's sidebar panel (see sidebarPanel in layouts/base.njk), on the changelog list, its entries and its tag
+    pages: every release grouped by major version, and the changelog's tags. The current entry's version starts open,
+    or the newest version off an entry.
+#}
+{%- set openMajor = (title | string).split(".")[0] if pageId == "changelog-item" else (collections.versionGroups | first).major -%}
+{%- set currentTag = tagPage.tag if tagPage else "" -%}
+{%- set tagGroups = [
+    { title: "Releases", items: collections.versionTags | where("group", "Release") },
+    { title: "Changes", items: collections.versionTags | where("group", "Changes") }
+] -%}
+<h2 class="sidebar-panel__title" id="sidebar-page-title">
+    <a href="{{ '/changelog/' | url }}"{% if page.url == "/changelog/" %} aria-current="page"{% endif %}>Changelog</a>
+</h2>
+<p class="sidebar-panel__count">{{ collections.versions | length }} releases</p>
+
+<p class="sidebar-panel__heading">Versions</p>
+{%- for group in collections.versionGroups %}
+<details class="version-group"{% if group.major == openMajor %} open{% endif %}>
+    <summary class="version-group__summary">
+        <i class="bi bi-chevron-right" aria-hidden="true"></i>
+        Version {{ group.major }}
+        <span class="version-group__count">{{ group.items | length }}</span>
+    </summary>
+    <ul class="sidebar-panel__list version-group__list">
+        {%- for version in group.items %}
+        <li>
+            <a class="sidebar-panel__link version-group__link" href="{{ version.url | url }}"{% if version.url == page.url %} aria-current="page"{% endif %}>
+                {{ version.data.title }}
+                <time datetime="{{ version.date | dateISO }}">{{ version.date | monthYear }}</time>
+            </a>
+        </li>
+        {%- endfor %}
+    </ul>
+</details>
+{%- endfor %}
+
+{%- for group in tagGroups %}
+<p class="sidebar-panel__heading" id="changelog-tags-{{ group.title | lower }}">{{ group.title }}</p>
+<ul class="filter-chips sidebar-panel__chips" aria-labelledby="changelog-tags-{{ group.title | lower }}">
+    {%- for tag in group.items %}
+    <li><a class="filter-chip" href="{{ ('/changelog/tag/' ~ tag.key ~ '/') | url }}" title="{{ tag.description }}"
+        {%- if tag.key == currentTag %} aria-current="page"{% endif %}>{{ tag.friendlyName }} <span class="filter-chip__count">{{ tag.count }}</span></a></li>
+    {%- endfor %}
+</ul>
+{%- endfor %}
+<p class="sidebar-panel__more"><a href="{{ '/tags/' | url }}"{% if page.url == "/tags/" %} aria-current="page"{% endif %}>All tags</a></p>

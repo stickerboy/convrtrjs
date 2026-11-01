@@ -28,6 +28,34 @@ function getVersions(collectionApi) {
 }
 
 /**
+ * The changelog grouped by major version, newest first: [{ major: "3", items: [...] }, ...]
+ */
+function getVersionGroups(collectionApi) {
+    const groups = new Map();
+
+    for (const item of getVersions(collectionApi)) {
+        const major = item.data.title.split(".")[0];
+        if (!groups.has(major)) {
+            groups.set(major, []);
+        }
+        groups.get(major).push(item);
+    }
+
+    return [...groups.entries()].map(([major, items]) => ({ major, items }));
+}
+
+/**
+ * Each label in _data/labels.json used by the changelog, in the same order, with how many entries use it.
+ */
+function getVersionTags(collectionApi) {
+    const versions = getVersions(collectionApi);
+
+    return labels.labels
+        .map((label) => ({ ...label, count: versions.filter((item) => (item.data.tags || []).includes(label.key)).length }))
+        .filter((label) => label.count > 0);
+}
+
+/**
  * Splits the changelog into paginated tag pages (/changelog/tag/<tag>/, /changelog/tag/<tag>/2/, ...).
  */
 function getTagPages(collectionApi) {
@@ -79,6 +107,8 @@ export default function (eleventyConfig) {
     }
 
     eleventyConfig.addCollection("versions", getVersions);
+    eleventyConfig.addCollection("versionGroups", getVersionGroups);
+    eleventyConfig.addCollection("versionTags", getVersionTags);
     eleventyConfig.addCollection("filteredTagPages", getTagPages);
 
     // Old URLs listed in a page's `redirectFrom` (string or list) - redirect pages are built by redirects.njk
