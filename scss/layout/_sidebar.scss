@@ -1,103 +1,43 @@
+// Places the sidebar (components/_sidebar.scss) beside the page. From md up it takes the first grid column and its
+// width follows the panel, so opening the panel pushes the page across; below md it is a drawer over the page.
 .sidebar-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 0 minmax(0, 1fr);
 
-    @media (min-width: 768px) {
-        transition: all ease 0.3s;
-        grid-template-columns: 4.5rem 1fr;
-        &.open {
-            grid-template-columns: 18rem 1fr;
-        }
+    @include media-breakpoint-up(md) {
+        grid-template-columns: auto minmax(0, 1fr);
     }
 }
+
 .nav-bar {
-    top: var(--navbar-height);
     height: calc(100vh - var(--navbar-height));
-    background-color: var(--convrtr-surface-alt);
-    scroll-snap-type: y mandatory;
-    overscroll-behavior-y: none;
-    scrollbar-width: none;
-    
-    @media (max-width: 576px) {
-        width: 100%;
-    }
+    margin-top: var(--navbar-height);
+    overflow: hidden;
 
-    @media (min-width: 576px) and (max-width: 768px) {
-        width: 18rem;
-    }
-
-    @media (max-width: 768px) {
-        position: fixed !important;
-        top: var(--navbar-height) !important;
-        transform: translateX(-100%);
-        transition: all ease 0.3s;
+    @include media-breakpoint-down(md) {
+        position: fixed;
+        top: var(--navbar-height);
+        left: 0;
+        z-index: $zindex-sticky;
+        max-width: 100%;
+        margin-top: 0;
         visibility: hidden;
-        z-index: 4;
-        .sidebar-grid.open & {
-            transition: all ease 0.3s;
-            transform: translateX(0);
+        box-shadow: $box-shadow-lg;
+        transform: translateX(-100%);
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: transform $convrtr-transition-duration ease, visibility 0s $convrtr-transition-duration;
+        }
+
+        .sidebar-grid.drawer-open & {
             visibility: visible;
+            transform: none;
+            transition-delay: 0s;
         }
-    }
-
-    @media screen and (prefers-reduced-motion: no-preference) {
-        scroll-behavior: smooth;
-    }
-}
-.sidebar-grid.open .nav-bar {
-    width: 18rem;
-    @media (max-width: 576px) {
-        width: 100%;
     }
 }
 
-.sidebar-legacy {
-    height: 100%;
-    .bi {
-        vertical-align: 0;
-    }
-    @at-root .sidebar-item {
-        &__link {
-            --bs-text-opacity: 1;
-            --bs-navbar-toggler-focus-width: 0.25rem;
-            --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
-            min-height: 44px;
-            color: var(--convrtr-accent);
-            background-color: var(--convrtr-surface);
-            @media (min-width: 576px) {
-                position: relative;
-            }
-            &:hover,
-            &:active,
-            &:focus {
-                background-color: var(--convrtr-accent-subtle);
-                box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width) rgba(var(--bs-body-bg-rgb), 0.8);
-            }
-            &.active {
-                background-color: var(--convrtr-accent-subtle);
-                &:hover,
-                &:active,
-                &:focus {
-                    background-color: var(--convrtr-accent-subtle-hover);
-                }
-            }
-        }
-        &__label {
-            opacity: 0;
-            transition: all ease 0.3s;
-
-            .sidebar-grid.open & {
-                opacity: 1;
-            }
-        }
-    }
-    .dropdown-item {
-        &:hover,
-        &:active,
-        &:focus {
-            text-decoration: underline;
-        }
-    }
-    .dropdown-toggle {
-        max-width: 2.5rem !important;
-    }
+// Set from <head> when the panel was left closed, so it doesn't show and then close once the sidebar script runs
+[data-sidebar-panel="closed"] .nav-bar .sidebar-panel {
+    @extend %sidebar-panel-closed;
+    transition: none;
 }

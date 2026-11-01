@@ -25,7 +25,7 @@ textarea {
 .form-switch .form-check-input {
     width: 3.5rem;
     height: 1.75rem;
-    transition: background-position 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, opacity 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: background-position $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out, opacity $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
 }
 
 .form-check-label {

@@ -7,6 +7,11 @@
     border-color: var(--bs-table-border-color);
 }
 
+// Hovered rows fade in. Bootstrap shades each cell with an inset box-shadow, so that is what transitions.
+.table-hover > tbody > tr > * {
+    transition: color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
+}
+
 // Header cells in the grid-based elements table
 .convrtr-table-header {
     background-color: var(--bs-primary-bg-subtle);

@@ -12,6 +12,12 @@
             (function () {
                 const theme = localStorage.getItem("theme") || "auto";
                 document.documentElement.setAttribute("data-bs-theme", theme);
+                // The sidebar panel was left closed; see layout/_sidebar.scss
+                try {
+                    if (JSON.parse(localStorage.getItem("sidebarPanel"))?.value === "closed") {
+                        document.documentElement.setAttribute("data-sidebar-panel", "closed");
+                    }
+                } catch {}
             })();
         </script>
 
@@ -26,8 +32,9 @@
         {%- endif -%}
         <div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
-                <div class="nav-bar p-0 position-fixed overflow-y-auto overflow-x-hidden">
-                    {% include "partials/sidebar.njk" %}
+                <div class="nav-bar">
+                    {%- from "macros/sidebar.njk" import sidebar %}
+                    {{ sidebar(nav, page.url) }}
                 </div>
                 {% set isExcluded = pageId in ["404", "search", "sitemap", "tags", "ui-kit"] %}
                 {% set isTagPath = "tag" in page.inputPath %}
@@ -35,7 +42,7 @@
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>
                 {%- endfor -%}
                 {%- for tag in tags -%}<span class="hidden" data-pagefind-meta="{{tag}}:" data-pagefind-ui-meta="{{tag}}"></span>{%- endfor -%}
-                <main class="page-wrap page-wrap-{{ pageId }}{% if tags and "landing-page" in tags %} landing-page{% endif %} overflow-y-auto p-0 mw{% if pageId == "404" %} g-start-1 g-start-md-2{% endif %}"
+                <main class="page-wrap page-wrap-{{ pageId }}{% if tags and "landing-page" in tags %} landing-page{% endif %} overflow-y-auto p-0 mw"
                     data-bs-smooth-scroll="true" id="content"{% if not (isExcluded or isTagPath) %} data-pagefind-body{% endif %}>
                     {% if pageId != "404" -%}
                     {% include "partials/page-header.njk" %}

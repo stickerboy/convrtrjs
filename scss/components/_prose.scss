@@ -24,7 +24,7 @@
         max-width: 100%;
         padding: 0.5rem;
         outline: 3px solid var(--bs-primary);
-        transition: outline-color ease 0.3s;
+        transition: outline-color ease $convrtr-transition-duration;
 
         &:hover,
         &:active,
@@ -80,7 +80,7 @@
             color: $white;
             background-color: var(--bs-dark);
             border-radius: var(--bs-border-radius);
-            transition: transform 0.4s ease-in-out;
+            transition: transform $convrtr-transition-duration ease-in-out;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }

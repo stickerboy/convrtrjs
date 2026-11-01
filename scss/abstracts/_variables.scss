@@ -12,6 +12,10 @@ $convrtr-700: shade-color($convrtr, 40%);
 $convrtr-800: shade-color($convrtr, 60%);
 $convrtr-900: shade-color($convrtr, 80%);
 
+// Selected items, such as the open category and current page in the sidebar; brighter than the tints above
+$convrtr-selected:      #dcefe7;
+$convrtr-selected-dark: #1f4a41;
+
 // Dark mode surfaces: the page and sidebar, and the raised content area on top of it
 $dark-surface:        #2e3236;
 $dark-surface-raised: #3b4044;
@@ -34,6 +38,28 @@ $mark-bg-dark:               $convrtr;
 
 // Tables take the background of the card or section they sit on
 $table-bg: transparent;
+
+// Transitions: one duration for every state change across the site (hover, focus, open and closed...), set on
+// Bootstrap's components here and used directly by ours
+$convrtr-transition-duration: 0.3s;
+$transition-base:                all $convrtr-transition-duration ease-in-out;
+$transition-fade:                opacity $convrtr-transition-duration linear;
+$transition-collapse:            height $convrtr-transition-duration ease;
+$transition-collapse-width:      width $convrtr-transition-duration ease;
+$icon-link-icon-transition:      $convrtr-transition-duration ease-in-out transform;
+$btn-transition:                 color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
+$input-transition:               border-color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
+$form-switch-transition:         background-position $convrtr-transition-duration ease-in-out;
+$form-range-thumb-transition:    background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
+$form-floating-transition:       opacity $convrtr-transition-duration ease-in-out, transform $convrtr-transition-duration ease-in-out;
+$nav-link-transition:            color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out;
+$navbar-toggler-transition:      box-shadow $convrtr-transition-duration ease-in-out;
+$pagination-transition:          $btn-transition;
+$accordion-transition:           $btn-transition, border-radius $convrtr-transition-duration ease;
+$accordion-icon-transition:      transform $convrtr-transition-duration ease-in-out;
+$carousel-control-transition:    opacity $convrtr-transition-duration ease;
+$modal-transition:               transform $convrtr-transition-duration ease-out;
+$offcanvas-transition-duration:  $convrtr-transition-duration;
 
 $enable-cssgrid: true;
 

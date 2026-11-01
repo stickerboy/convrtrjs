@@ -55,7 +55,7 @@ button.cc-nb-changep {
     user-select: none;
     border: var(--bs-btn-border-width) solid var(--bs-btn-border-color) !important;
     border-radius: var(--bs-btn-border-radius) !important;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    transition: $btn-transition;
 
     &:hover,
     &:active,

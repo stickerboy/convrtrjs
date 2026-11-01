@@ -45,7 +45,7 @@ pagefind-summary {
     color: var(--bs-body-color) !important;
     border: var(--bs-border-width) solid var(--bs-border-color) !important;
     border-radius: var(--bs-border-radius) !important;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+    transition: border-color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out !important;
 
     &::placeholder {
         color: var(--bs-secondary-color) !important;
@@ -72,7 +72,7 @@ pagefind-summary {
     background-color: var(--bs-primary) !important;
     border: var(--bs-border-width) solid var(--bs-primary) !important;
     border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0 !important;
-    transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+    transition: background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out !important;
 
     &:hover,
     &:active {
@@ -141,7 +141,7 @@ details.pf-filter-group > .pf-filter-fieldset {
     font-size: 1rem !important;
     color: var(--bs-body-color) !important;
     border-bottom: var(--bs-border-width) solid var(--bs-border-color) !important;
-    transition: background-color 0.3s ease !important;
+    transition: background-color $convrtr-transition-duration ease !important;
 
     &:hover {
         background-color: rgba(var(--convrtr-accent-rgb), 0.04) !important;
@@ -187,7 +187,7 @@ details.pf-filter-group > .pf-filter-fieldset {
     @extend .list-group-item;
     @extend .list-group-item-action;
     text-align: start;
-    transition: background-color 0.3s ease !important;
+    transition: background-color $convrtr-transition-duration ease !important;
     padding: 0.9rem 1rem !important;
     border-bottom: var(--bs-list-group-border-width) solid var(--bs-list-group-border-color) !important;
     position: relative !important;

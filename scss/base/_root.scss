@@ -8,11 +8,12 @@
     --convrtr-surface: #{$white};
     --convrtr-surface-alt: #{$gray-100};
 
-    // The brand colour on a surface (icons, outlines, rules) and its tinted hover/active backgrounds
+    // The brand colour on a surface (icons, outlines, rules), its tinted hover/active backgrounds and selected items
     --convrtr-accent: #{$convrtr};
     --convrtr-accent-rgb: #{to-rgb($convrtr)};
     --convrtr-accent-subtle: #{tint-color($convrtr, 90%)};
     --convrtr-accent-subtle-hover: #{$convrtr-100};
+    --convrtr-accent-selected: #{$convrtr-selected};
 
     // Alternating rows in grid-based tables
     --convrtr-row-highlight: #{$gray-300};
@@ -26,6 +27,7 @@
     --convrtr-accent-rgb: #{to-rgb($convrtr-200)};
     --convrtr-accent-subtle: #{shade-color($convrtr, 40%)};
     --convrtr-accent-subtle-hover: #{$convrtr-600};
+    --convrtr-accent-selected: #{$convrtr-selected-dark};
 
     --convrtr-row-highlight: #{$gray-900};
 }

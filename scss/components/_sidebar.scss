@@ -1,7 +1,7 @@
 // The site sidebar (macros/sidebar.njk): a rail of categories and a panel listing the open category's pages.
 // It fills its container; layout/_sidebar.scss places it on the page.
 .sidebar {
-    --sidebar-rail-width: 5.5rem;
+    --sidebar-rail-width: 5rem;
     --sidebar-panel-width: 16rem;
     display: flex;
     height: 100%;
@@ -13,48 +13,60 @@
     color: var(--bs-body-color);
     text-decoration: none;
     border-radius: var(--bs-border-radius-lg);
-    transition: background-color 0.15s ease-in-out;
+    // The outline is always there and fades in on focus, as the background does on hover
+    outline: 2px solid transparent;
+    outline-offset: -2px;
+    transition: color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out, outline-color $convrtr-transition-duration ease-in-out;
 
-    &:hover {
+    &:hover,
+    &:focus-visible {
         background-color: var(--convrtr-accent-subtle);
     }
     &:focus-visible {
-        outline: 2px solid var(--convrtr-accent);
-        outline-offset: -2px;
+        outline-color: var(--convrtr-accent);
+    }
+    // Forced colours paint transparent outlines, so only the focused item keeps one
+    @media (forced-colors: active) {
+        outline-style: none;
+
+        &:focus-visible {
+            outline-style: solid;
+        }
     }
     &[aria-expanded="true"],
     &[aria-current="page"] {
-        color: var(--bs-emphasis-color);
-        background-color: var(--convrtr-accent-subtle);
+        color: var(--convrtr-accent);
+        background-color: var(--convrtr-accent-selected);
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
             background-color: var(--convrtr-accent-subtle-hover);
         }
     }
 }
 
+// The rail sits above the panel, so the panel slides out from under it
 .sidebar-rail {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    gap: 0.125rem;
+    gap: 0.5rem;
     width: var(--sidebar-rail-width);
     padding: 0.5rem 0.375rem;
     margin: 0;
     overflow-y: auto;
     list-style: none;
     scrollbar-width: thin;
-    border-right: var(--bs-border-width) solid var(--bs-border-color-translucent);
+    background-color: var(--convrtr-surface-alt);
+    border-right: var(--bs-border-width) solid var(--bs-border-color);
 
-    // Search is set apart from the categories, and the site links sit at the bottom of the rail
-    &__start {
-        padding-bottom: 0.25rem;
-        border-bottom: var(--bs-border-width) solid var(--bs-border-color-translucent);
-    }
+    // Site links sit at the bottom of the rail
     &__end {
-        padding-top: 0.25rem;
+        padding-top: 0.5rem;
         margin-top: auto;
-        border-top: var(--bs-border-width) solid var(--bs-border-color-translucent);
+        border-top: var(--bs-border-width) solid var(--bs-border-color);
     }
 
     &__item {
@@ -62,13 +74,13 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0.375rem;
         align-items: center;
         justify-content: center;
         width: 100%;
-        min-height: 3.25rem;
-        padding: 0.25rem 0.125rem;
-        font-size: 0.75rem;
+        aspect-ratio: 1;
+        padding: 0.375rem 0;
+        font-size: 0.71875rem;
         font-weight: 600;
         line-height: 1.2;
         text-align: center;
@@ -99,31 +111,48 @@
     }
 }
 
+%sidebar-panel-closed {
+    margin-right: calc(-1 * var(--sidebar-panel-width));
+    visibility: hidden;
+    transform: translateX(-100%);
+}
+
 .sidebar-panel {
     flex-shrink: 0;
     width: var(--sidebar-panel-width);
     padding: 1rem 0.625rem;
     overflow-y: auto;
     scrollbar-width: thin;
-    border-right: var(--bs-border-width) solid var(--bs-border-color-translucent);
+    border-right: var(--bs-border-width) solid var(--bs-border-color);
 
-    &[hidden] {
-        display: none;
+    @media (prefers-reduced-motion: no-preference) {
+        transition: transform $convrtr-transition-duration ease, margin-right $convrtr-transition-duration ease, visibility 0s;
+    }
+
+    // Closed, it slides behind the rail and gives up its width, then hides so it leaves the tab order
+    .sidebar[data-panel="closed"] & {
+        @extend %sidebar-panel-closed;
+        transition-delay: 0s, 0s, $convrtr-transition-duration;
     }
 
     &__title {
         padding: 0 0.625rem;
-        margin: 0;
-        font-size: 1rem;
-        font-weight: 600;
+        margin: 0 0 0.125rem;
+        font-size: $h4-font-size;
+        font-weight: $display-font-weight;
+        line-height: $display-line-height;
 
         a {
             color: var(--bs-emphasis-color);
-            text-decoration: none;
+            // The underline is always there and fades in, as icon links do
+            text-decoration: underline;
+            text-decoration-color: transparent;
+            text-underline-offset: 0.2em;
+            transition: text-decoration-color $convrtr-transition-duration ease;
 
             &:hover,
             &[aria-current="page"] {
-                text-decoration: underline;
+                text-decoration-color: currentcolor;
             }
         }
     }
@@ -138,7 +167,7 @@
     &__list {
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 0.25rem;
         padding: 0;
         margin: 0;
         list-style: none;
