@@ -1,6 +1,8 @@
 .navbar {
     --convrtr-nav-link-padding-x: 0.25rem;
     --convrtr-nav-link-padding-y: 0.75rem;
+    // The page is laid out below this height, so the header keeps it whatever it holds
+    min-height: var(--navbar-height);
     color: $white;
     .container-fluid {
         --bs-gutter-x: 1rem;
@@ -8,15 +10,29 @@
             --bs-gutter-x: 2rem;
         }
     }
+    // The tagline sits under the name, leaving the rest of the header to the search and links. Two lines only fit in
+    // the header's height (--navbar-height) without the brand's padding.
     &-brand {
-        font-size: 2rem;
+        padding-block: 0;
+        font-size: 1.75rem;
         font-weight: 300;
-    }
 
-    &-text {
-        display: none;
-        @media (min-width: 672px) {
-            display: block;
+        &__text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.1875rem;
+            line-height: 1;
+        }
+        &__tagline {
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            opacity: 0.85;
+
+            // It's wider than the name, so the narrowest phones would wrap the header
+            @media (max-width: 359.98px) {
+                display: none;
+            }
         }
     }
 

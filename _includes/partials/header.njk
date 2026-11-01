@@ -10,12 +10,12 @@
             
             <a href="{{ '/' | url }}" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
-                {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk me-2"></i>{% endif %}<span{% if data.environment == 'development' %} class="d-none d-sm-block"{% endif %}>{{ pkg.sitename }}</span>
+                {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk me-2"></i>{% endif %}<span class="navbar-brand__text{% if data.environment == 'development' %} d-none d-sm-flex{% endif %}">
+                    <span>{{ pkg.sitename }}</span>
+                    <span class="navbar-brand__tagline">{{ pkg.tagline }}</span>
+                </span>
             </a>
             <div class="d-flex ms-auto">
-                <span class="navbar-text text-white mx-0 mx-md-3 fs-5">
-                    {{ pkg.tagline }}
-                </span>
                 <button type="button" class="navbar-search ms-2 ms-md-0" data-switcher-open aria-haspopup="dialog" aria-controls="switcher"
                     aria-keyshortcuts="Control+K /" aria-label="Search tools and pages">
                     <i class="bi bi-search" aria-hidden="true"></i>
