@@ -5,4 +5,5 @@ import "./theme.js";
 import "./sections.js";
 import "./controls.js";
 import "./nav.js";
+import "./switcher.js";
 import "./console.js";

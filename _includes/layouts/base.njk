@@ -27,16 +27,15 @@
     <body>
         <a class="visually-hidden-focusable position-absolute" href="#content">Skip to main content</a>
         {% include "partials/header.njk" %}
-        {%- if pageId != "search" -%}
-        {% include "partials/search.njk" %}
-        {%- endif -%}
+        {% include "partials/switcher.njk" %}
         <div class="mw d-flex mx-auto">
             <div class="grid sidebar-grid gap-0 p-0 w-100">
                 <div class="nav-bar">
                     {%- from "macros/sidebar.njk" import sidebar %}
                     {{ sidebar(nav, page.url) }}
                 </div>
-                {% set isExcluded = pageId in ["404", "search", "sitemap", "tags", "ui-kit"] %}
+                {#- Not indexed for search: utility pages, and the changelog lists, which only repeat what each version's page says #}
+                {% set isExcluded = pageId in ["404", "search", "sitemap", "tags", "ui-kit", "changelog"] %}
                 {% set isTagPath = "tag" in page.inputPath %}
                 {%- for tag in tags -%}
                 <span class="hidden" data-pagefind-filter="Filters">{{ tag }}</span>

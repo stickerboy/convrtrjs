@@ -1,0 +1,33 @@
+{#
+    The quick switcher (assets/js/site/switcher.js): a dialog that jumps to any tool or site page by name, and searches
+    the text of every page with Pagefind. The template lists everything it can jump to; the script builds the results.
+#}
+{%- from "macros/sidebar.njk" import categoryUrl, pageUrl %}
+{%- set shown = nav | where("excludeFromSidebar", false) -%}
+<dialog class="switcher" id="switcher" aria-label="Search" data-pagefind="{{ '/pagefind/pagefind.js' | url }}">
+    <div class="switcher__field">
+        <i class="bi bi-search" aria-hidden="true"></i>
+        <input class="switcher__input" type="text" role="combobox" aria-label="Search tools and pages" placeholder="Search tools and pages"
+            aria-expanded="true" aria-controls="switcher-results" aria-autocomplete="list" autocomplete="off" spellcheck="false" enterkeyhint="go">
+        <button type="button" class="switcher__close" aria-label="Close search"><kbd>Esc</kbd><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+    </div>
+    <div class="switcher__results" id="switcher-results" role="listbox" aria-label="Results"></div>
+    <p class="switcher__status visually-hidden" aria-live="polite"></p>
+    <div class="switcher__foot">
+        <span class="switcher__keys"><kbd>↑</kbd> <kbd>↓</kbd> to move</span>
+        <span class="switcher__keys"><kbd>Enter</kbd> to open</span>
+        <a class="switcher__all" href="{{ '/search/' | url }}" data-search-url="{{ '/search/' | url }}" hidden>All results <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+    </div>
+    <template class="switcher__items">
+        {%- for link in shown %}
+        {%- if link.children %}
+        <a href="{{ ('' ~ categoryUrl(link)) | url }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}" data-landing>{{ link.label }}</a>
+        {%- for child in link.children | sort(false, true, "id") %}
+        <a href="{{ ('' ~ pageUrl(link, child)) | url }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}">{{ child.label }}</a>
+        {%- endfor %}
+        {%- else %}
+        <a href="{{ ('/' ~ link.id ~ '/') | url }}" data-group="Site" data-short="Site" data-icon="{{ link.icon }}">{{ link.label }}</a>
+        {%- endif %}
+        {%- endfor %}
+    </template>
+</dialog>

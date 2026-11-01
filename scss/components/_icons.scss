@@ -4,6 +4,14 @@
     vertical-align: -.125em;
     fill: currentcolor;
 }
+// Centres an icon in a flex row, dropping the nudge down that lines icons up with running text
+%bi-centred {
+    line-height: 1;
+
+    &::before {
+        vertical-align: top;
+    }
+}
 .breadcrumb .bi {
     vertical-align: inherit;
 }

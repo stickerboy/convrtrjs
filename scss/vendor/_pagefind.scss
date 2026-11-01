@@ -267,13 +267,3 @@ pagefind-results {
 pagefind-results {
     margin-top: 1rem;
 }
-
-.offcanvas .list-group-action-item {
-    background-color: var(--pf-background) !important;
-
-    &:hover,
-    &:focus,
-    &:active {
-        background-color: var(--pf-hover) !important;
-    }
-}
