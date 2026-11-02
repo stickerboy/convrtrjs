@@ -6,4 +6,5 @@ import "./sections.js";
 import "./controls.js";
 import "./nav.js";
 import "./switcher.js";
+import "./info-popover.js";
 import "./console.js";

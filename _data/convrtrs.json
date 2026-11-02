@@ -1,6 +1,7 @@
 [
     {
       "id": "text",
+      "hint": "Plain text, encoded into every box",
       "cardLabel": "Text",
       "popoverContent": "Enter any text you wish to encode in here. The results of decoded text will also appear here.",
       "placeholder": "Example: Hello",
@@ -11,6 +12,7 @@
     },
     {
       "id": "binary",
+      "hint": "8 bits per character",
       "cardLabel": "Binary",
       "popoverContent": "Find out more about Binary on the <a href=\"http://en.wikipedia.org/wiki/Binary_numeral_system\" class=\"text-convrtr\" title=\"Binary Numeral System on Wikipedia\">Binary</a> Wikipedia page",
       "placeholder": "Example: 01001000 01100101 01101100 01101100 01101111",
@@ -21,6 +23,7 @@
     },
     {
       "id": "hex",
+      "hint": "Two characters per byte",
       "cardLabel": "Hexadecimal",
       "popoverContent": "Replacement of spaces, hyphens, colons and commas are supported here. \"\\x\" and \"0x\" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href=\"http://en.wikipedia.org/wiki/Hexidecimal\" class=\"text-convrtr\" title=\"Hexidecimal on Wikipedia\">Hexidecimal</a> Wikipedia page",
       "placeholder": "Example: 48 65 6c 6c 6f",
@@ -31,6 +34,7 @@
     },
     {
       "id": "base64",
+      "hint": "Letters, digits, + and /, often ending in =",
       "cardLabel": "Base64",
       "popoverContent": "Find out more about Base64 on the <a href=\"http://en.wikipedia.org/wiki/Base64\" class=\"text-convrtr\" title=\"Base64 on Wikipedia\">Base64</a> Wikipedia page",
       "placeholder": "Example: SGVsbG8=",
@@ -41,6 +45,7 @@
     },
     {
       "id": "decimal",
+      "hint": "A number from 0 to 255 per byte",
       "cardLabel": "Decimal",
       "popoverContent": "A numerical representation of each letter that computers use. Find out more about on the <a href=\"https://www.lookuptables.com/text/ascii-table\" class=\"text-convrtr\" title=\"ASCII Table\">ASCII Table</a> website",
       "placeholder": "Example: 72 101 108 108 111",
@@ -51,6 +56,7 @@
     },
     {
       "id": "reverse",
+      "hint": "The text backwards",
       "cardLabel": "Reverse",
       "popoverContent": "A simple function for displaying a string of text backwards.",
       "placeholder": "Example: olleH",
@@ -61,6 +67,7 @@
     },
     {
       "id": "rot13",
+      "hint": "Letters shifted 13 places",
       "cardLabel": "ROT13",
       "popoverContent": "Find out more about Rotational ciphers on the <a href=\"http://en.wikipedia.org/wiki/ROT13\" class=\"text-convrtr\" title=\"ROT13 on Wikipedia\">ROT13</a> Wikipedia page",
       "placeholder": "Example: Uryyb",
@@ -71,6 +78,7 @@
     },
     {
       "id": "morse",
+      "hint": "Dots and dashes, / between words",
       "cardLabel": "Morse",
       "popoverContent": "Find out more about Morse on the <a href=\"http://en.wikipedia.org/wiki/Morse_code\" class=\"text-convrtr\" title=\"Morse Code on Wikipedia\">Morse Code</a> Wikipedia page",
       "placeholder": "Example: .... . .-.. .-.. ---",
@@ -81,6 +89,7 @@
     },
     {
       "id": "morsenary",
+      "hint": "Binary written as Morse",
       "cardLabel": "Morsenary",
       "popoverContent": "Morsenary is Binary disguised as Morse code. Replace dots with 0 and dashes with 1 (or vice versa) and convert the binary to a string. You can go further and use other characters or words in place of dots and dashes, making your puzzle a bit harder.",
       "placeholder": "Example: .-..-....--..-.-.--.--...--.--...--.----",

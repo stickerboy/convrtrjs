@@ -1,0 +1,61 @@
+// Info popovers: notes about a tool or format, opened by a button with popovertarget. The browser's popover keeps them
+// above the page and closes them with Esc or a click elsewhere, and they stay open while you read or use their links.
+// site/info-popover.js places each one under its button.
+.info-popover {
+    --info-popover-arrow: 50%;
+    position: fixed;
+    inset: auto;
+    width: min(18rem, calc(100vw - 2rem));
+    padding: 0.625rem 0.75rem;
+    margin: 0;
+    overflow: visible;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--bs-body-color);
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-secondary-color);
+    border-radius: var(--bs-border-radius-lg);
+    box-shadow: var(--bs-box-shadow);
+
+    // The arrow, pointing up at the button
+    &::before {
+        position: absolute;
+        top: -0.4375rem;
+        left: calc(var(--info-popover-arrow) - 0.375rem);
+        width: 0.75rem;
+        height: 0.75rem;
+        content: "";
+        background-color: inherit;
+        border-top: inherit;
+        border-left: inherit;
+        transform: rotate(45deg);
+    }
+
+    strong {
+        display: block;
+        margin-bottom: 0.125rem;
+    }
+    p {
+        margin: 0;
+    }
+    a {
+        color: var(--convrtr-accent);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        opacity: 0;
+        transform: translateY(-0.25rem);
+        transition: opacity $convrtr-transition-duration ease, transform $convrtr-transition-duration ease,
+            overlay $convrtr-transition-duration allow-discrete, display $convrtr-transition-duration allow-discrete;
+
+        &:popover-open {
+            opacity: 1;
+            transform: none;
+
+            @starting-style {
+                opacity: 0;
+                transform: translateY(-0.25rem);
+            }
+        }
+    }
+}

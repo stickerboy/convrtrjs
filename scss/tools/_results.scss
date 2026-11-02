@@ -3,3 +3,88 @@
     max-height: 24rem;
     text-align: justify;
 }
+
+// Convrtrs: under each box, where its text came from (or what's wrong with it) and its length
+.convrtr-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.75rem;
+    justify-content: space-between;
+    min-height: 1.5em;
+    margin-top: 0.5rem;
+    font-size: 0.8125rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--bs-secondary-color);
+
+    .text-danger {
+        font-weight: 600;
+    }
+}
+
+// Convrtrs card header: name and hint on the left, then any setting and the info button. The setting and button only
+// show a background on hover and focus, so the name leads, and both stay 44px for touch.
+.convrtr-head {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin: -0.375rem -0.375rem 0.5rem 0;
+
+    &__titles {
+        display: grid;
+        min-width: 0;
+        margin-right: auto;
+
+        .card-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+    }
+
+    &__hint {
+        overflow: hidden;
+        font-size: 0.8125rem;
+        color: var(--bs-secondary-color);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    %quiet-control {
+        min-height: 2.75rem;
+        color: var(--bs-secondary-color);
+        background-color: transparent;
+        border: var(--bs-border-width) solid transparent;
+        border-radius: var(--bs-border-radius);
+        transition: color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--bs-emphasis-color);
+            background-color: var(--convrtr-accent-subtle);
+        }
+    }
+
+    .form-select {
+        @extend %quiet-control;
+        width: auto;
+        padding-block: 0;
+        padding-right: 2rem;
+        font-size: 0.875rem;
+        background-position: right 0.625rem center;
+    }
+
+    &__info {
+        @extend %quiet-control;
+        display: grid;
+        flex-shrink: 0;
+        place-items: center;
+        width: 2.75rem;
+        padding: 0;
+        font-size: 1.125rem;
+
+        .bi {
+            @extend %bi-centred;
+        }
+    }
+}

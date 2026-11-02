@@ -8,7 +8,7 @@ tags: tools
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
-    A description of each decoder and link to more information is available using the info button in the top-right of each decoder, you can also copy the contents on individual decoders and download the contents to a text file. By selecting the "chain decoders" option, the "decode" button under each decode switches its target to the Text decoder.
+    A description of each decoder and link to more information is available using the info button in the top-right of each decoder, you can also copy the contents on individual decoders and download the contents to a text file. Turn on "live typing" to convert as you type, without pressing a button. By selecting the "chain decoders" option, the "decode" button under each decode switches its target to the Text decoder.
 </p>
 <p class="px-2">This is useful if you have a string of text that has went through numerous encoding steps, e.g. 
     <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
@@ -34,49 +34,61 @@ tags: tools
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="grid">
-    <div class="form-check form-switch text-star g-col-12 mb-3">
-        <input class="form-check-input" type="checkbox" role="switch" id="chainDecoders" aria-checked="false" aria-labelledby="chainDecodersLebal">
-        <label class="form-check-label" id="chainDecodersLebal" for="chainDecoders">Chain decoders</label>
+<div class="d-flex flex-wrap gap-2 column-gap-4 mb-3">
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="liveTyping">
+        <label class="form-check-label" for="liveTyping">Live typing</label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="chainDecoders">
+        <label class="form-check-label" for="chainDecoders">Chain decoders</label>
     </div>
 </div>
+{#- One announcement per conversion, rather than one per box, for screen readers #}
+<p class="visually-hidden" aria-live="polite" id="convrtrsAnnounce"></p>
 <div class="grid g-3">
     {% for tool in convrtrs %}
     {% if convrtrs.length %}
     <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
-        <div class="card shadow-sm" id="{{ filename }}-{{ tool.id }}">
-            <div class="card-body">
-                <div class="card-title d-flex align-items-center">
-                    <span class="h6 m-0 text-uppercase">
-                        <label class="card-label" for="form-{{ tool.id }}">
-                            {{ tool.cardLabel }}
-                        </label>
-                    </span>
+        {#- Cards fill their row, and each box grows into the spare height, so a two-line status in one card keeps the
+            buttons level across the row #}
+        <div class="card shadow-sm h-100" id="{{ filename }}-{{ tool.id }}">
+            <div class="card-body d-flex flex-column">
+                {#- The format's name and a one-line hint, then any setting and the info button, each at least 44px square.
+                    Info opens in a popover (components/_info-popover.scss) that stays open until it's dismissed. #}
+                <div class="convrtr-head">
+                    <div class="convrtr-head__titles">
+                        <label class="card-label" for="form-{{ tool.id }}">{{ tool.cardLabel }}</label>
+                        <span class="convrtr-head__hint" id="{{ filename }}-{{ tool.id }}-hint">{{ tool.hint }}</span>
+                    </div>
                     {% if tool.id == "hex" %}
-                    <label class="visually-hidden" for="{{ filename }}Delimiter">Hex Delimiter</label>
-                    {{ delimiter(filename, small = true) }}
+                    <label class="visually-hidden" for="{{ filename }}Delimiter">Hex delimiter</label>
+                    {{ delimiter(filename) }}
                     {% endif %}
                     {% if tool.id == "morsenary" %}
-                    <select id="morsenarySetting" class="form-select form-select-sm mx-2 ms-auto" aria-label="Change Binary substitution" autocomplete="off">
+                    <label class="visually-hidden" for="morsenarySetting">Morsenary digits</label>
+                    <select id="morsenarySetting" class="form-select" autocomplete="off">
                         <option value="default" selected="">. = 0</option>
                         <option value="flipped">- = 0</option>
                     </select>
                     {% endif %}
-                    <div class="d-flex align-items-center{% if tool.delimiter == false %} ms-auto{% endif %}">
-                        <button type="button" tabindex="0" class="btn border border-convrtr rounded info-button"
-                            aria-label="Information popover for {% if loop.first == true %}encoding{% else %}decoding {{ tool.id }}{% endif %}"
-                            data-bs-container="body" 
-                            data-bs-toggle="popover" 
-                            data-bs-placement="left" 
-                            {% if tool.html == true %}data-bs-html="true"{% endif %}
-                            data-bs-trigger="focus"
-                            data-bs-content='{{ tool.popoverContent }}'>
-                            <i class="bi bi-info-circle"></i>
-                        </button>
+                    <button type="button" class="convrtr-head__info" popovertarget="{{ filename }}-{{ tool.id }}-info"
+                        aria-label="About {{ tool.cardLabel }}" title="About {{ tool.cardLabel }}">
+                        <i class="bi bi-info-circle" aria-hidden="true"></i>
+                    </button>
+                    <div class="info-popover" id="{{ filename }}-{{ tool.id }}-info" popover role="note">
+                        <strong>{{ tool.cardLabel }}</strong>
+                        <p>{{ tool.popoverContent }}</p>
                     </div>
                 </div>
-                <textarea placeholder="{{ tool.placeholder }}" rows="6" id="form-{{ tool.id }}" class="form-control data-to-copy active" autocomplete="off"></textarea>
-                <div class="d-flex justify-content-between align-items-center mt-3">
+                <textarea placeholder="{{ tool.placeholder }}" rows="5" id="form-{{ tool.id }}" class="form-control flex-grow-1 data-to-copy active" autocomplete="off"
+                    aria-describedby="{{ filename }}-{{ tool.id }}-hint {{ filename }}-{{ tool.id }}-status"></textarea>
+                {#- Where the box's text came from (or what's wrong with it), and its length #}
+                <div class="convrtr-status">
+                    <span id="{{ filename }}-{{ tool.id }}-status"></span>
+                    <span data-count>0 characters</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2">
                     {% if loop.first == true %}
                     <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.buttonLabel }}">
                         <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.buttonId }}" aria-label="{{ tool.buttonLabel }}">Encode</button>

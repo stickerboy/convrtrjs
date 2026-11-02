@@ -62,14 +62,6 @@
     --bs-btn-padding-x: 0.85rem;
     --bs-btn-padding-y: 0.575rem;
 }
-.info-button {
-    padding: 0.5rem 0.825rem;
-    &:hover,
-    &:active {
-        background-color: var(--bs-primary);
-        color: $white;
-    }
-}
 
 // The collapse icon on tool section headers; !important on the border beats the .border utility
 @include theme-vars(
