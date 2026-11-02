@@ -84,11 +84,14 @@ if (resetButtons.length > 0) {
 }
 
 
+// The select, copy and download buttons act on the .data-to-copy.active element in their tool pane (macros/tool-frame.njk),
+// or in their card for tools without one
+
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");
 if (selectButtons.length > 0) {
     Array.from(selectButtons, c => c.addEventListener("click", function () {
-        let card = c.closest(".card");
+        let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
         const tooltip = bootstrap.Tooltip.getInstance(c);
@@ -131,7 +134,7 @@ if (selectButtons.length > 0) {
 const copyButtons = document.getElementsByClassName("btn-copy");
 if (copyButtons.length > 0) {
     Array.from(copyButtons, c => c.addEventListener("click", function () {
-        let card = c.closest(".card");
+        let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
         const tooltip = bootstrap.Tooltip.getInstance(c);
@@ -180,9 +183,9 @@ if (copyButtons.length > 0) {
 const downloadButtons = document.getElementsByClassName("btn-download");
 if (downloadButtons.length > 0) {
     Array.from(downloadButtons, c => c.addEventListener("click", function () {
-        let card = c.closest(".card");
+        let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
-        let dt = card.querySelector(".card-label").textContent;
+        let dt = card.dataset.downloadName ?? card.querySelector(".card-label").textContent;
         let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
         const tooltip = bootstrap.Tooltip.getInstance(c);
 

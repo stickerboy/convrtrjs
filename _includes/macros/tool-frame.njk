@@ -1,0 +1,61 @@
+{#
+    The frame a text tool's controls sit in: an options bar (the caller's fields and action buttons, then a Live typing
+    switch that says what it does), a line showing what the tool does to the input ("Input → Encrypt with key World →
+    Output"), and input and output panes side by side from md. Between the panes, "Move to input" moves the result back
+    into the input. The output has select, copy and download, and a status line. assets/js/ui/tool-frame.js wires it up.
+
+    {% from "macros/tool-frame.njk" import toolFrame %}
+    {% call toolFrame(filename, "Vigenère cipher", placeholder = "Example: Hello") %}
+        …fields and action buttons…
+    {% endcall %}
+
+    id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
+    and names downloads.
+#}
+{% macro toolFrame(id, name, placeholder = "") %}
+<div class="tool-frame" data-tool-frame>
+    <div class="tool-frame__options">
+        {{ caller() }}
+        <div class="form-check form-switch tool-frame__live">
+            <input class="form-check-input" type="checkbox" role="switch" id="{{ id }}Live" aria-describedby="{{ id }}LiveHint">
+            <label class="form-check-label" for="{{ id }}Live">
+                Live typing
+                <small class="tool-frame__live-hint" id="{{ id }}LiveHint" data-live-hint></small>
+            </label>
+        </div>
+    </div>
+    <p class="tool-frame__flow" data-flow aria-hidden="true"></p>
+    <div class="tool-frame__panes">
+        <div class="tool-pane">
+            <div class="tool-pane__head">
+                <label class="tool-pane__label" for="{{ id }}Text">Input<span class="visually-hidden"> for the {{ name }}</span></label>
+            </div>
+            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="6" placeholder="{{ placeholder }}" autocomplete="off"></textarea>
+            <div class="tool-pane__status">
+                <span id="{{ id }}InputStatus" role="status"></span>
+                <span data-count-input></span>
+            </div>
+        </div>
+        {#- Between the panes, where the text travels: the arrow points at the input, left from md and up on phones #}
+        <div class="tool-frame__move">
+            <button type="button" class="tool-frame__move-button" data-use-as-input aria-label="Move the output to the input"
+                data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Replace the input with the output, so you can run the tool on it again">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i>
+            </button>
+            <span class="tool-frame__move-caption" aria-hidden="true">Move to input</span>
+        </div>
+        <div class="tool-pane" data-download-name="{{ name }}">
+            <div class="tool-pane__head">
+                <label class="tool-pane__label" for="{{ id }}Results">Output<span class="visually-hidden"> from the {{ name }}</span></label>
+                {% include "components/select-copy-dl.njk" %}
+            </div>
+            <textarea id="{{ id }}Results" class="form-control tool-pane__box tool-pane__output data-to-copy active" rows="6" readonly
+                aria-describedby="{{ id }}Status"></textarea>
+            <div class="tool-pane__status">
+                <span id="{{ id }}Status" role="status"></span>
+                <span data-count-output></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

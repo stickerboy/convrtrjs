@@ -1,13 +1,18 @@
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as vigenere from '../../lib/ciphers/vigenere.js';
 
-const tool = { input: "vigenereText", output: "vigenereResults", chain: "chainVig" };
-const key = (action) => ({
-    id: "vigenereKey",
-    required: `A key is required to ${action} this cipher`,
-    pattern: /^[A-Za-z]+$/,
-    invalid: "Vigenère key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
+bindToolFrame({
+    id: "vigenere",
+    modes: [
+        { button: "vigenereEncrypt", run: vigenere.vigenereEncrypt },
+        { button: "vigenereDecrypt", run: vigenere.vigenereDecrypt },
+    ],
+    key: {
+        id: "vigenereKey",
+        flow: "with key",
+        required: "A key is required for this cipher",
+        pattern: /^[A-Za-z]+$/,
+        invalid: "Vigenère key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
+    },
+    errorPrefix: "Couldn't run the Vigenère cipher",
 });
-
-bindTool({ ...tool, button: "vigenereEncrypt", key: key("encrypt"), run: vigenere.vigenereEncrypt });
-bindTool({ ...tool, button: "vigenereDecrypt", key: key("decrypt"), run: vigenere.vigenereDecrypt });
