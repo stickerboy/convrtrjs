@@ -3,6 +3,7 @@ title: Chaocipher
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
@@ -18,40 +19,10 @@ tags: tools
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Text" class="visually-hidden">Encrypt or decrypt Chaocipher string</label>
-            <textarea placeholder="Example: Hello World &srarr; WahqzIuets" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                        <div class="input-group w-auto">
-                            <button type="button" class="btn btn-convrtr" id="{{ filename }}Encrypt">Encrypt</button>
-                            <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-auto flex-fill">
-                        <div class="row row-cols-auto g-0">
-                            <div class="col col-8 col-sm-auto ms-0 mx-md-2 me-auto">
-                                <div class="form-check form-switch text-start ms-2">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="chain{{ filename | capitalize }}" aria-checked="false" aria-labelledby="chain{{ filename | capitalize }}Label">
-                                    <label class="form-check-label" id="chain{{ filename | capitalize }}Label" for="chain{{ filename | capitalize }}">Chain <span class="visually-hidden">{{ filename }} </span>commands</label>
-                                </div>
-                            </div>
-                            <div class="col d-flex flex-fill justify-content-end">
-                                {% include "components/select-copy-dl.njk" %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; WahqzIuets") %}
+<div class="input-group w-auto">
+    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
+    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
+{% endcall %}
 {% endcall %}

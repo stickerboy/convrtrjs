@@ -88,3 +88,90 @@
         }
     }
 }
+
+// Caesar cipher: the shift number between its previous and next buttons, and what the shift does to "A"
+.caesar-shift {
+    max-width: 4.5rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.caesar-map {
+    font-family: var(--bs-font-monospace);
+    font-size: 0.875rem;
+    color: var(--bs-secondary-color);
+}
+
+// Hash algorithms: the results list, grouped, with copy on each row. "Check a hash" highlights the row that matches.
+.hash-check {
+    flex: 1 1 20rem;
+    width: auto;
+
+    &__result {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--convrtr-accent);
+    }
+}
+
+.hash-group {
+    &__title {
+        margin: 0.25rem 0.25rem 0.375rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--bs-secondary-color);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+
+        small {
+            font-size: inherit;
+            font-weight: 400;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+    }
+
+    & + & {
+        margin-top: 0.75rem;
+    }
+}
+
+.hash-row {
+    display: grid;
+    grid-template-columns: 8rem minmax(0, 1fr) auto;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.125rem 0.125rem 0.125rem 0.75rem;
+    margin-bottom: 0.25rem;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out;
+
+    &__name {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    &__value {
+        padding: 0.375rem 0;
+        font-size: 0.8125rem;
+        line-height: 1.4;
+        color: var(--bs-body-color);
+        overflow-wrap: anywhere;
+    }
+
+    &.is-match {
+        background-color: var(--convrtr-accent-subtle);
+        border-color: var(--convrtr-accent);
+    }
+
+    @include media-breakpoint-down(sm) {
+        grid-template-columns: minmax(0, 1fr) auto;
+
+        .hash-row__value {
+            grid-row: 2;
+            grid-column: 1 / -1;
+        }
+    }
+}

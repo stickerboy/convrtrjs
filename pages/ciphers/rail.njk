@@ -4,6 +4,7 @@ tags: tools
 heading: "Rail fence cipher"
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
         <p class="px-2">
@@ -27,32 +28,12 @@ W . . . E . . . C . . . R . . . U . . . O . . .
         </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Rail fence cipher</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Text" class="visually-hidden">Encrypt / Decrypt Rail fence string</label>
-            <textarea placeholder="Example: HELLO WORLD &srarr; HOLELWRDLO" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                        <div class="input-group w-auto">
-                            <label class="input-group-text" id="{{ filename }}AmountLabel" for="{{ filename }}Amount"><span class="visually-hidden">Number of </span>Rails</label>
-                            <input type="number" class="form-control" id="{{ filename }}Amount" autocomplete="off" min="2" value="2">
-                            <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
-                            <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt">Decrypt</button>
-                        </div>
-                    </div>
-                    <div class="col d-flex flex-fill justify-content-end">
-                        {% include "components/select-copy-dl.njk" %}
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Rail fence cipher", placeholder = "Example: HELLO WORLD &srarr; 2 [rails] &srarr; HLOOLELWRD") %}
+<div class="input-group w-auto">
+    <label class="input-group-text" for="{{ filename }}Amount"><span class="visually-hidden">Number of </span>Rails</label>
+    <input type="number" class="form-control" id="{{ filename }}Amount" autocomplete="off" min="2" value="2" aria-describedby="{{ filename }}Status">
+    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
+    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
+{% endcall %}
 {% endcall %}

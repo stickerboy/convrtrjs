@@ -97,6 +97,17 @@
         }
     }
 
+    // The "list" layout: the input full width, with the tool's list of results under it
+    &__stack {
+        display: grid;
+        gap: 1rem;
+        padding: 1rem;
+
+        .tool-pane__head {
+            margin-bottom: 0.5rem;
+        }
+    }
+
     // "Move to input", between the panes: beside them from md, between them when they stack, where the arrow turns up
     &__move {
         display: flex;
@@ -194,6 +205,22 @@
 
     &__output {
         background-color: var(--bs-tertiary-bg);
+    }
+
+    // A tool's list of results: scrolls within a set height, so a long list doesn't stretch the page. It can be
+    // focused, so it scrolls from the keyboard too.
+    &__list {
+        max-height: 24rem;
+        padding: 0.5rem;
+        overflow: auto;
+        overscroll-behavior: contain;
+        background-color: var(--bs-tertiary-bg);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+
+        &:empty {
+            display: none;
+        }
     }
 
     // The input after "Move to input": a brief accent glow, so it's clear where the text went

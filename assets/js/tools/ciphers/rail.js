@@ -1,13 +1,18 @@
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as rail from '../../lib/ciphers/rail.js';
 
-const key = (action) => ({
-    id: "railAmount",
-    required: `A key is required to ${action} this cipher text`,
-    pattern: /^[0-9]+$/,
-    invalid: "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here",
+bindToolFrame({
+    id: "rail",
+    modes: [
+        { button: "railEncrypt", run: rail.railFenceEncode },
+        { button: "railDecrypt", run: rail.railFenceDecode },
+    ],
+    key: {
+        id: "railAmount",
+        flow: ["on", "rails"],
+        required: "A number of rails is required for this cipher",
+        pattern: /^[0-9]+$/,
+        invalid: "Rail amount can only contain numbers. Letters and special characters, including spaces, are not valid here",
+    },
+    errorPrefix: "Couldn't run the Rail fence cipher",
 });
-const tool = { input: "railText", output: "railResults" };
-
-bindTool({ ...tool, button: "railEncrypt", key: key("encrypt"), run: rail.railFenceEncode, errorPrefix: "An error occurred trying to encrypt the string" });
-bindTool({ ...tool, button: "railDecrypt", key: key("decrypt"), run: rail.railFenceDecode, errorPrefix: "An error occurred trying to decrypt the string" });

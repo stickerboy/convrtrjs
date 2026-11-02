@@ -1,17 +1,18 @@
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as keyword from '../../lib/ciphers/keyword.js';
 
-const tool = {
-    input: "keywordText",
-    output: "keywordResults",
-    chain: "chainKw",
-};
-const key = (action) => ({
-    id: "keywordKey",
-    required: `A key is required to ${action} this cipher`,
-    pattern: /^[A-Za-z]+$/,
-    invalid: "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
+bindToolFrame({
+    id: "keyword",
+    modes: [
+        { button: "keywordEncrypt", run: keyword.keywordEncode },
+        { button: "keywordDecrypt", run: keyword.keywordDecode },
+    ],
+    key: {
+        id: "keywordKey",
+        flow: "with key",
+        required: "A key is required for this cipher",
+        pattern: /^[A-Za-z]+$/,
+        invalid: "Keyword key can only contain uppercase and lowercase letters. Numbers and special characters, including spaces, are not valid here",
+    },
+    errorPrefix: "Couldn't run the Keyword cipher",
 });
-
-bindTool({ ...tool, button: "keywordEncrypt", key: key("encrypt"), run: keyword.keywordEncode });
-bindTool({ ...tool, button: "keywordDecrypt", key: key("decrypt"), run: keyword.keywordDecode });

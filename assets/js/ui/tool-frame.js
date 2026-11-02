@@ -21,10 +21,13 @@ const characters = (length) => `${length.toLocaleString()} character${length ===
  * @param {{button: string, run: (text: string, ...keys: string[]) => any}[]} options.modes - Each action button's id
  *   and its conversion, which may be async. The first is the mode until another is used.
  * @param {Field|Field[]} [options.key] - Extra fields, such as a cipher key, as readToolInput takes them. A field's
- *   `flow` is how it reads in the flow line, before its value: "with key" gives "Encrypt with key World".
+ *   `flow` is how it reads in the flow line: text before its value ("with key" gives "Encrypt with key World"), or
+ *   [before, after] (["on", "rails"] gives "Encrypt on 2 rails"). An optional field is left out of the line while empty.
+ * @param {(result: any, output: HTMLElement) => void} [options.render] - Shows the result, for the "list" layout where
+ *   the output is the tool's own list (default: as the output box's text).
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't encrypt".
  */
-export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something went wrong" }) {
+export function bindToolFrame({ id, modes, key = [], render, errorPrefix = "Something went wrong" }) {
     const input = byId(`${id}Text`);
     const output = byId(`${id}Results`);
     const status = byId(`${id}Status`);
@@ -34,9 +37,23 @@ export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something we
     const buttons = modes.map((mode) => ({ ...mode, el: byId(mode.button) }));
     let current = buttons[0];
 
+    // The output is a box of text, or with the "list" layout, a list the tool draws (and counts) itself
+    const isBox = output instanceof HTMLTextAreaElement;
+    const outputText = () => (isBox ? output.value : output.textContent);
+    const clearOutput = () => {
+        if (isBox) {
+            output.value = "";
+        } else {
+            output.replaceChildren();
+            frame.querySelector("[data-count-output]").textContent = "";
+        }
+    };
+
     const updateCounts = () => {
         frame.querySelector("[data-count-input]").textContent = characters(input.value.length);
-        frame.querySelector("[data-count-output]").textContent = characters(output.value.length);
+        if (isBox) {
+            frame.querySelector("[data-count-output]").textContent = characters(output.value.length);
+        }
     };
 
     const setStatus = (message = "", { error = false, field = null } = {}) => {
@@ -54,20 +71,25 @@ export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something we
     const flow = frame.querySelector("[data-flow]");
     const liveHint = frame.querySelector("[data-live-hint]");
     const describe = () => {
+        liveHint.textContent = live.checked ? "Results update as you type" : `Press ${modeName()} to see results`;
+        if (!flow) {
+            return;
+        }
         const arrow = () => Object.assign(document.createElement("i"), { className: "bi bi-arrow-right" });
         const bold = (text) => Object.assign(document.createElement("b"), { textContent: text });
         const step = document.createElement("span");
         step.append(modeName());
-        for (const field of fields.filter((field) => field.flow)) {
-            step.append(` ${field.flow} `, bold(field.el.value || "…"));
+        for (const field of fields.filter((field) => field.flow && (field.required || field.el.value))) {
+            const [before, after] = [field.flow].flat();
+            step.append(` ${before} `, bold(field.el.value || "…"), after ? ` ${after}` : "");
         }
         flow.replaceChildren(bold("Input"), arrow(), step, arrow(), bold("Output"));
-        liveHint.textContent = live.checked ? "Results update as you type" : `Press ${modeName()} to see results`;
     };
 
+    // A tool with one action has no mode to show, so its button stays an ordinary button
     const setMode = (mode) => {
         current = mode;
-        for (const button of buttons) {
+        for (const button of buttons.length > 1 ? buttons : []) {
             const pressed = button === mode;
             button.el.setAttribute("aria-pressed", String(pressed));
             button.el.classList.toggle("btn-convrtr", pressed);
@@ -94,7 +116,7 @@ export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something we
         let text;
         if (typed) {
             if (input.value.trim() === "") {
-                output.value = "";
+                clearOutput();
                 setStatus();
                 return;
             }
@@ -118,7 +140,11 @@ export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something we
         }
 
         const show = (result) => {
-            output.value = result;
+            if (render) {
+                render(result, output);
+            } else {
+                output.value = result;
+            }
             setStatus();
         };
         const fail = (error) => {
@@ -169,12 +195,12 @@ export function bindToolFrame({ id, modes, key = [], errorPrefix = "Something we
         }
     });
 
-    // "Move to input": moves the output into the input, so the next run builds on it (what "Chain commands" used to
-    // do). The input flashes and says where its text came from, so it's clear what happened.
+    // "Move to input" (the panes layout): moves the output into the input, so the next run builds on it (what "Chain
+    // commands" used to do). The input flashes and says where its text came from, so it's clear what happened.
     const inputStatus = byId(`${id}InputStatus`);
     let movedTimer;
-    frame.querySelector("[data-use-as-input]").addEventListener("click", () => {
-        if (output.value === "") {
+    frame.querySelector("[data-use-as-input]")?.addEventListener("click", () => {
+        if (outputText() === "") {
             showToast("Warning", "There's no output to move to the input yet", "warning");
             return;
         }

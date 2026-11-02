@@ -1,10 +1,10 @@
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as atbash from '../../lib/ciphers/atbash.js';
 
-bindTool({
-    button: "atbashDecode",
-    input: "atbashText",
-    output: "atbashResults",
-    chain: "chainAb",
-    run: atbash.atbashCipher,
+bindToolFrame({
+    id: "atbash",
+    modes: [
+        { button: "atbashEncrypt", run: atbash.atbashCipher },
+    ],
+    errorPrefix: "Couldn't run the Atbash cipher",
 });

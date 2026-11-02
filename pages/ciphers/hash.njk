@@ -3,6 +3,7 @@ title: Hash
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
@@ -10,38 +11,13 @@ tags: tools
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Hash text</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Text" class="visually-hidden">Generate hash values for a string</label>
-            <textarea placeholder="Example: Hello World &srarr; b10a8db164e0754105b7a99be72e3fe5" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-text" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="d-flex justify-content-start align-items-center">
-                <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Generate hashes">Generate</button>
-                {% include "components/select-copy-dl.njk" %}
-            </div>
-            <hr />
-            <div class="table-responsive">
-                <table class="table table-striped hash-table">
-                    <caption class="visually-hidden">
-                        Hash output table: lists hashing algorithms and their corresponding values for the provided input
-                    </caption>
-                    <thead class="table-convrtr">
-                        <tr>
-                            <th scope="col" class="col-3 col-md-2 col-lg-2">Hash Type</th>
-                            <th scope="col">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody class="data-to-copy active convrtr-results" id="{{ filename }}Results">
-                        <tr class="visually-hidden">
-                            <td colspan="2" class="text-center">No data available</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Hash algorithms", placeholder = "Example: Hello World → b10a8db164e0754105b7a99be72e3fe5 (MD5)", layout = "list", listLabel = "Hashes") %}
+<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Generate</button>
+{#- Finds which algorithm made a hash: the row that matches is highlighted #}
+<div class="input-group hash-check">
+    <label class="input-group-text" for="{{ filename }}Check">Check a hash</label>
+    <input type="text" class="form-control font-monospace" id="{{ filename }}Check" placeholder="Paste a hash to find its algorithm" autocomplete="off" spellcheck="false" aria-describedby="{{ filename }}CheckResult">
 </div>
+<span class="hash-check__result" id="{{ filename }}CheckResult" role="status"></span>
+{% endcall %}
 {% endcall %}

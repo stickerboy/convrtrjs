@@ -1,18 +1,34 @@
 {#
     The frame a text tool's controls sit in: an options bar (the caller's fields and action buttons, then a Live typing
-    switch that says what it does), a line showing what the tool does to the input ("Input → Encrypt with key World →
-    Output"), and input and output panes side by side from md. Between the panes, "Move to input" moves the result back
-    into the input. The output has select, copy and download, and a status line. assets/js/ui/tool-frame.js wires it up.
+    switch that says what it does), then the input and what the tool makes of it. assets/js/ui/tool-frame.js wires it up.
 
     {% from "macros/tool-frame.njk" import toolFrame %}
     {% call toolFrame(filename, "Vigenère cipher", placeholder = "Example: Hello") %}
         …fields and action buttons…
     {% endcall %}
 
+    layout "panes" (the default): a line showing what the tool does to the input ("Input → Encrypt with key World →
+    Output"), then input and output panes side by side from md, with "Move to input" between them to move the result back
+    into the input. The output has select, copy and download, and a status line.
+    layout "list": the input runs full width, with a scrolling list of results under it (the tool draws the list),
+    labelled listLabel, for tools that make several results at once, such as the hash algorithms.
+
     id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
     and names downloads.
 #}
-{% macro toolFrame(id, name, placeholder = "") %}
+{% macro toolFrame(id, name, placeholder = "", layout = "panes", listLabel = "Results") %}
+{%- set inputPane %}
+        <div class="tool-pane">
+            <div class="tool-pane__head">
+                <label class="tool-pane__label" for="{{ id }}Text">Input<span class="visually-hidden"> for the {{ name }}</span></label>
+            </div>
+            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="{{ 4 if layout == 'list' else 6 }}" placeholder="{{ placeholder }}" autocomplete="off"></textarea>
+            <div class="tool-pane__status">
+                <span id="{{ id }}InputStatus" role="status"></span>
+                <span data-count-input></span>
+            </div>
+        </div>
+{%- endset %}
 <div class="tool-frame" data-tool-frame>
     <div class="tool-frame__options">
         {{ caller() }}
@@ -24,18 +40,26 @@
             </label>
         </div>
     </div>
-    <p class="tool-frame__flow" data-flow aria-hidden="true"></p>
-    <div class="tool-frame__panes">
-        <div class="tool-pane">
+    {%- if layout == "list" %}
+    <div class="tool-frame__stack">
+        {{ inputPane | safe }}
+        <div class="tool-pane" data-download-name="{{ name }}">
             <div class="tool-pane__head">
-                <label class="tool-pane__label" for="{{ id }}Text">Input<span class="visually-hidden"> for the {{ name }}</span></label>
+                <span class="tool-pane__label" id="{{ id }}ResultsLabel">{{ listLabel }}</span>
+                {% include "components/select-copy-dl.njk" %}
             </div>
-            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="6" placeholder="{{ placeholder }}" autocomplete="off"></textarea>
+            <div id="{{ id }}Results" class="tool-pane__list data-to-copy active" tabindex="0" role="region"
+                aria-labelledby="{{ id }}ResultsLabel" aria-describedby="{{ id }}Status"></div>
             <div class="tool-pane__status">
-                <span id="{{ id }}InputStatus" role="status"></span>
-                <span data-count-input></span>
+                <span id="{{ id }}Status" role="status"></span>
+                <span data-count-output></span>
             </div>
         </div>
+    </div>
+    {%- else %}
+    <p class="tool-frame__flow" data-flow aria-hidden="true"></p>
+    <div class="tool-frame__panes">
+        {{ inputPane | safe }}
         {#- Between the panes, where the text travels: the arrow points at the input, left from md and up on phones #}
         <div class="tool-frame__move">
             <button type="button" class="tool-frame__move-button" data-use-as-input aria-label="Move the output to the input"
@@ -57,5 +81,6 @@
             </div>
         </div>
     </div>
+    {%- endif %}
 </div>
 {% endmacro %}
