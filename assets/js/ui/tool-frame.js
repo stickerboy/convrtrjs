@@ -23,11 +23,15 @@ const characters = (length) => `${length.toLocaleString()} character${length ===
  * @param {Field|Field[]} [options.key] - Extra fields, such as a cipher key, as readToolInput takes them. A field's
  *   `flow` is how it reads in the flow line: text before its value ("with key" gives "Encrypt with key World"), or
  *   [before, after] (["on", "rails"] gives "Encrypt on 2 rails"). An optional field is left out of the line while empty.
+ * @param {string[]} [options.watch] - Ids of other settings the conversion reads, such as switches and dropdowns:
+ *   changing one updates the flow line and, with live typing on, runs the tool again.
+ * @param {() => Array<string|{value: string}>} [options.flow] - The middle of the flow line, for a tool whose action is
+ *   more than its button and fields: text, with {value} for the parts shown in bold. Replaces the fields' `flow`.
  * @param {(result: any, output: HTMLElement) => void} [options.render] - Shows the result, for the "list" layout where
- *   the output is the tool's own list (default: as the output box's text).
+ *   the output is the tool's own list (default: as the output box's text). renderResults draws the usual rows.
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't encrypt".
  */
-export function bindToolFrame({ id, modes, key = [], render, errorPrefix = "Something went wrong" }) {
+export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeFlow, render, errorPrefix = "Something went wrong" }) {
     const input = byId(`${id}Text`);
     const output = byId(`${id}Results`);
     const status = byId(`${id}Status`);
@@ -78,10 +82,14 @@ export function bindToolFrame({ id, modes, key = [], render, errorPrefix = "Some
         const arrow = () => Object.assign(document.createElement("i"), { className: "bi bi-arrow-right" });
         const bold = (text) => Object.assign(document.createElement("b"), { textContent: text });
         const step = document.createElement("span");
-        step.append(modeName());
-        for (const field of fields.filter((field) => field.flow && (field.required || field.el.value))) {
-            const [before, after] = [field.flow].flat();
-            step.append(` ${before} `, bold(field.el.value || "…"), after ? ` ${after}` : "");
+        if (describeFlow) {
+            step.append(...describeFlow().map((part) => (typeof part === "string" ? part : bold(part.value || "…"))));
+        } else {
+            step.append(modeName());
+            for (const field of fields.filter((field) => field.flow && (field.required || field.el.value))) {
+                const [before, after] = [field.flow].flat();
+                step.append(` ${before} `, bold(field.el.value || "…"), after ? ` ${after}` : "");
+            }
         }
         flow.replaceChildren(bold("Input"), arrow(), step, arrow(), bold("Output"));
     };
@@ -184,6 +192,27 @@ export function bindToolFrame({ id, modes, key = [], render, errorPrefix = "Some
             typed();
         });
     }
+    for (const setting of watch.map(byId)) {
+        setting.addEventListener("change", () => {
+            describe();
+            typed();
+        });
+    }
+
+    // The "list" layout's rows (see renderResults) each copy their own value
+    output.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-copy-result]");
+        if (!button) {
+            return;
+        }
+        const row = button.closest(".tool-result");
+        navigator.clipboard.writeText(row.dataset.value).then(() => {
+            const icon = button.querySelector(".bi");
+            icon.classList.replace("bi-clipboard", "bi-clipboard-check-fill");
+            status.textContent = `Copied ${row.dataset.label}`;
+            setTimeout(() => icon.classList.replace("bi-clipboard-check-fill", "bi-clipboard"), 2000);
+        }, () => showToast("Error", "Couldn't copy to the clipboard", "danger"));
+    });
 
     // One live typing setting for every tool with a frame, remembered between visits
     live.checked = getLocalStorageItem("toolsLive") === "on";
@@ -222,4 +251,29 @@ export function bindToolFrame({ id, modes, key = [], render, errorPrefix = "Some
 
     setMode(current);
     setStatus();
+}
+
+const escapeHtml = (string) => String(string).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+/**
+ * Draws a "list" layout's results as labelled rows, each with its own copy button, optionally in groups. Each row reads
+ * "Label: value" as text, one per line, so select, copy and download above the list give a tidy list.
+ *
+ * @param {HTMLElement} output - The frame's results list (<id>Results).
+ * @param {Array<{label: string, value: string}>|Array<{name: string, note?: string, rows: Array<{label: string, value: string}>}>} items
+ *   Rows, or groups of rows with a heading and an optional note.
+ * @param {string} [count] - Shown under the list, e.g. "16 hashes".
+ */
+export function renderResults(output, items, count = "") {
+    const row = ({ label, value }) =>
+        `<div class="tool-result" data-value="${escapeHtml(value)}" data-label="${escapeHtml(label)}">` +
+        `<span class="tool-result__label">${escapeHtml(label)}<span class="visually-hidden">: </span></span>` +
+        `<code class="tool-result__value">${escapeHtml(value)}</code>` +
+        `<button type="button" class="btn btn-md btn-light" aria-label="Copy ${escapeHtml(label)}" title="Copy" data-copy-result>` +
+        `<i class="bi bi-clipboard" aria-hidden="true"></i></button></div>\n`;
+    output.innerHTML = items.map((item) => (item.rows
+        ? `<div class="tool-result-group"><h3 class="tool-result-group__title">${escapeHtml(item.name)}` +
+          `${item.note ? ` <small>(${escapeHtml(item.note)})</small>` : ""}</h3>\n${item.rows.map(row).join("")}</div>\n`
+        : row(item))).join("");
+    output.closest("[data-tool-frame]").querySelector("[data-count-output]").textContent = count;
 }

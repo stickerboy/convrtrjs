@@ -1,4 +1,4 @@
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as reverse from '../../lib/hex/reverse.js';
 
 const reversals = {
@@ -6,18 +6,22 @@ const reversals = {
     "byte-order": reverse.reverseHexByteOrder,
     "nibbles": reverse.reverseHexNibbles,
 };
+const type = document.getElementById("reverseType");
+const delimiter = document.getElementById("reverseDelimiter");
 
-bindTool({
-    button: "reverseDecode",
-    input: "reverseText",
-    output: "reverseResults",
-    chain: "reverseChain",
-    errorPrefix: "An error occurred trying to reverse the hex string",
-    run: (text) => {
-        const reversal = reversals[document.getElementById("reverseType").value];
-        if (!reversal) {
-            throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
-        }
-        return reversal(text.trim(), document.getElementById("reverseDelimiter").value);
-    },
+bindToolFrame({
+    id: "reverse",
+    modes: [{
+        button: "reverseRun",
+        run: (text) => {
+            const reversal = reversals[type.value];
+            if (!reversal) {
+                throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
+            }
+            return reversal(text.trim(), delimiter.value);
+        },
+    }],
+    watch: ["reverseType", "reverseDelimiter"],
+    flow: () => ["Reverse ", { value: type.selectedOptions[0].textContent.toLowerCase() }],
+    errorPrefix: "Couldn't reverse the hex",
 });

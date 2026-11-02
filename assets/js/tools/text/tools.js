@@ -1,6 +1,6 @@
 import * as tools from '../../lib/strings.js';
 import * as toolkit from '../../lib/toolkit.js';
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 
 // The options in the "toolsSelect" dropdown
 const toolFunctions = {
@@ -23,14 +23,25 @@ const toolFunctions = {
     urldecode:          (text) => tools.urlDecode(text)
 };
 
-bindTool({
-    button: "toolsChange",
-    input: "toolsTextarea",
-    output: "textResults",
-    chain: "chainCommands",
-    run: (text) => {
-        const selectedTool = toolFunctions[document.getElementById("toolsSelect").value];
-        const preserveWhitespace = document.getElementById("preserveWhitespace")?.checked;
-        return selectedTool ? selectedTool(text, preserveWhitespace) : document.getElementById("textResults").textContent;
-    },
+const select = document.getElementById("toolsSelect");
+const preserve = document.getElementById("toolsPreserveWhitespace");
+// Tools marked with an asterisk can keep spaces
+const chosen = () => select.selectedOptions[0];
+const keepsSpaces = () => preserve.checked && chosen().textContent.includes("*");
+
+bindToolFrame({
+    id: "tools",
+    modes: [{
+        button: "toolsRun",
+        run: (text) => {
+            const tool = toolFunctions[select.value];
+            if (!tool) {
+                throw new Error(`There's no tool called "${select.value}"`);
+            }
+            return tool(text, preserve.checked);
+        },
+    }],
+    watch: ["toolsSelect", "toolsPreserveWhitespace"],
+    flow: () => [{ value: chosen().textContent.replace("*", "").trim() }, keepsSpaces() ? ", keeping spaces" : ""],
+    errorPrefix: "Couldn't run the text tool",
 });

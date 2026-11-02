@@ -1,15 +1,18 @@
 import * as toolkit from '../../lib/toolkit.js';
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 
-bindTool({
-    button: "replaceDecode",
-    input: "replaceText",
-    output: "replaceResults",
-    chain: "replaceChain",
+const oldValue = document.getElementById("replaceValue");
+const newValue = document.getElementById("replacementValue");
+const matchCase = document.getElementById("replaceCase");
+
+bindToolFrame({
+    id: "replace",
+    modes: [{ button: "replaceRun", run: (text, from, to) => toolkit.replaceChars(text, from, to, matchCase.checked) }],
     key: [
         { id: "replaceValue", required: "Please provide the characters, words, or phrases you want to replace" },
         { id: "replacementValue", required: "Please provide the new characters, word, or phrases you want to be the replacements" },
     ],
-    errorPrefix: "An error occurred trying to replace characters",
-    run: (text, oldValue, newValue) => toolkit.replaceChars(text, oldValue, newValue, document.getElementById("replaceCase").checked),
+    watch: ["replaceCase"],
+    flow: () => ["Replace ", { value: oldValue.value }, " with ", { value: newValue.value }, matchCase.checked ? ", matching case" : ""],
+    errorPrefix: "Couldn't replace the characters",
 });

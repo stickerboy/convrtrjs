@@ -12,13 +12,3 @@
     border: var(--bs-border-width) solid var(--bs-border-color);
     border-radius: var(--bs-border-radius);
 }
-
-// Vertical pills on the hex shift tool
-.shift-tabs .nav-link {
-    color: var(--bs-convrtr-text-emphasis);
-
-    &.active {
-        color: var(--bs-body-color);
-        background-color: var(--bs-primary-bg-subtle);
-    }
-}
