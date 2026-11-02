@@ -5,14 +5,14 @@ import * as toolkit from "../toolkit.js";
  * 
  * @param {string} hexString - The input hexadecimal string.
  * @param {number} shiftValue - The value by which to shift each byte.
- * @param {string} delimiter - The delimiter used in the hex string.
+ * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
  * @returns {string} - The shifted hexadecimal string.
  * 
  * @throws {Error} - If the input hex string contains invalid characters.
  */
 export function shiftHexString(hexString, shiftValue, delimiter) {
     const shift = parseInt(shiftValue);
-    const shifted = toolkit.hexToBytes(hexString, delimiter).map(byte => (byte + shift) & 0xFF);
+    const shifted = toolkit.hexToBytes(hexString).map(byte => (byte + shift) & 0xFF);
     return toolkit.bytesToHex(shifted, delimiter);
 }
 

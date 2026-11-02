@@ -35,7 +35,7 @@ document.getElementById("shiftDecode")?.addEventListener("click", () => {
         return;
     }
 
-    const string = toolkit.hexToString(shiftedHexString, delimiter);
+    const string = toolkit.hexToString(shiftedHexString);
     for (const [name, format] of Object.entries(panes)) {
         pane(name).textContent = format(string);
     }

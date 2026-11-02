@@ -13,7 +13,7 @@ const morsenarySetting = document.getElementById("morsenarySetting");
 const formats = {
     text:      { button: "encode",       decode: (data) => data,                                   encode: (text) => text },
     binary:    { button: "binaryDecode", decode: (data) => home.binaryToString(data),              encode: (text) => toolkit.stringToBinary(text) },
-    hex:       { button: "hexDecode",    decode: (data) => toolkit.hexToString(data, hexDelimiter()), encode: (text) => toolkit.stringToHex(text, hexDelimiter()) },
+    hex:       { button: "hexDecode",    decode: (data) => toolkit.hexToString(data), encode: (text) => toolkit.stringToHex(text, hexDelimiter()) },
     base64:    { button: "b64Decode",    decode: (data) => home.base64ToString(data),              encode: (text) => toolkit.stringToBase64(text) },
     decimal:   { button: "decDecode",    decode: (data) => toolkit.decimalToString(data),          encode: (text) => toolkit.stringToDecimal(text) },
     reverse:   { button: "revDecode",    decode: (data) => toolkit.reverseString(data),            encode: (text) => toolkit.reverseString(text) },

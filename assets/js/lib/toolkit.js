@@ -147,71 +147,70 @@ export function stringToBinary(string) {
 }
 
 
+// What can separate hex bytes when reading it, in any mix: whitespace (including new lines), hyphens, colons, commas,
+// semicolons, and the prefixes 0x, \x (either case) and % (URL encoding). So "48 65", "48-65", "0x48, 0x65",
+// "\x48\x65", "%48%65" and "4865" all read the same.
+const HEX_SEPARATORS = /(?:0x|\\x|%|[\s,;:-])+/gi;
+
 /**
- * Validate hexadecimal characters
+ * Checks that a string is hex: hex digits, with any of the separators above between them.
  *
  * @param {string} string - The input string containing hexadecimal characters.
- * @param {string} delimiter - The delimiter used to separate hex characters in the input string (e.g., '0x', '\\x').
  * @returns {boolean} True if the input string is valid hexadecimal, otherwise false.
  */
-export function isValidHex(string, delimiter) {
-    const validHex = delimiter === ""
-        ? /^[0-9a-fA-F]+$/
-        : new RegExp(`^(?:[0-9a-fA-F]|${escapeRegExp(delimiter)})+$`);
-    return validHex.test(cleanString(string));
+export function isValidHex(string) {
+    const digits = string.replace(HEX_SEPARATORS, "");
+    return digits.length > 0 && /^[0-9a-f]+$/i.test(digits);
 }
 
 /**
- * Escapes a string so it matches literally when used in a regular expression.
- * @param {string} string - The input string.
- * @returns {string} - The escaped string.
- */
-export function escapeRegExp(string) {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-/**
- * Splits hex into its bytes, as 2-digit hex strings (keeping their case). Surrounding whitespace is ignored,
- * and a group of several bytes between delimiters (e.g. "4869 21") is split into pairs.
+ * Splits hex into its bytes, as 2-digit hex strings (keeping their case), whichever separators it uses. A group of
+ * several bytes between separators (e.g. "4869 21") is split into pairs, and a lone digit is read as 0-padded.
  *
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used in the string (e.g., ' ', '0x', '\\x', or '' for none).
  * @returns {Array<string>} - The 2-digit hex string for each byte.
  * @throws {Error} - If the hexadecimal contains invalid characters.
  */
-export function hexToPairs(string, delimiter) {
-    if (!isValidHex(string, delimiter)) {
-        throw new Error("Hexadecimal contains invalid characters, check you have selected the correct delimiter");
+export function hexToPairs(string) {
+    if (!isValidHex(string)) {
+        throw new Error("Hexadecimal contains invalid characters: use 0-9 and a-f, separated by spaces, hyphens, colons, commas, semicolons, 0x, \\x or %, or not at all");
     }
-    const groups = delimiter === "" ? [cleanString(string)] : cleanString(string).split(delimiter);
-    return groups
+    return string.split(HEX_SEPARATORS)
         .filter(Boolean)
         .flatMap((group) => stringToArray(group, 2))
         .map((pair) => pair.padStart(2, "0"));
 }
 
 /**
- * Parses hex into its byte values.
+ * Parses hex into its byte values, whichever separators it uses.
  *
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used in the string (e.g., ' ', '0x', '\\x', or '' for none).
  * @returns {Array<number>} - The byte values.
  * @throws {Error} - If the hexadecimal contains invalid characters.
  */
-export function hexToBytes(string, delimiter) {
-    return hexToPairs(string, delimiter).map((pair) => parseInt(pair, 16));
+export function hexToBytes(string) {
+    return hexToPairs(string).map((pair) => parseInt(pair, 16));
 }
 
+// Delimiters that go before every byte, as [prefix, what joins the bytes]. "0x, " is the style of code byte arrays.
+const PREFIXED_DELIMITERS = {
+    "\\x": ["\\x", "\\x"],
+    "0x": ["0x", "0x"],
+    "%": ["%", "%"],
+    "0x, ": ["0x", ", 0x"],
+};
+
 /**
- * Joins 2-digit hex strings with a delimiter. Prefix-style delimiters ('0x', '\\x') also go before the first byte.
+ * Joins 2-digit hex strings with a delimiter. Prefix-style delimiters ('0x', '\\x', '%', '0x, ') also go before the
+ * first byte, so "0x, " gives "0x48, 0x69".
  *
  * @param {Array<string>} pairs - The 2-digit hex strings.
  * @param {string} delimiter - The delimiter to use.
  * @returns {string} - The joined hex string.
  */
 export function joinHex(pairs, delimiter) {
-    const joined = pairs.join(delimiter);
-    return (delimiter === "\\x" || delimiter === "0x") && joined ? delimiter + joined : joined;
+    const [prefix, join] = PREFIXED_DELIMITERS[delimiter] ?? ["", delimiter];
+    return pairs.length ? prefix + pairs.join(join) : "";
 }
 
 /**
@@ -237,14 +236,14 @@ export function stringToHex(string, delimiter) {
 }
 
 /**
- * Decode Hex to string, as UTF-8, or one character per byte if the bytes aren't valid UTF-8
+ * Decode Hex to string, as UTF-8, or one character per byte if the bytes aren't valid UTF-8. Any of the separators
+ * hexToPairs accepts can be used.
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used in the string (e.g., '0x', '\\x').
  * @returns {string} - The decoded string.
  * @throws {Error} - If the hexadecimal contains invalid characters.
  */
-export function hexToString(string, delimiter) {
-    return bytesToString(hexToBytes(string, delimiter));
+export function hexToString(string) {
+    return bytesToString(hexToBytes(string));
 }
 
 /**

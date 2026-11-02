@@ -49,28 +49,29 @@ describe("hex", () => {
         assert.equal(toolkit.stringToHex("Hi", "-"), "48-69");
         assert.equal(toolkit.stringToHex("Hi", "0x"), "0x480x69");
         assert.equal(toolkit.stringToHex("Hi", "\\x"), "\\x48\\x69");
+        assert.equal(toolkit.stringToHex("Hi", "%"), "%48%69");
     });
-    it("decodes with each delimiter", () => {
-        assert.equal(toolkit.hexToString("48 69", " "), "Hi");
-        assert.equal(toolkit.hexToString("4869", ""), "Hi");
-        assert.equal(toolkit.hexToString("48-69", "-"), "Hi");
-        assert.equal(toolkit.hexToString("48:69", ":"), "Hi");
-        assert.equal(toolkit.hexToString("0x480x69", "0x"), "Hi");
+    it("decodes whichever delimiter the hex uses", () => {
+        for (const hex of ["48 69", "4869", "48-69", "48:69", "48,69", "48;69", "0x480x69", "\\x48\\x69", "%48%69", "0x48, 0x69", "48\n69"]) {
+            assert.equal(toolkit.hexToString(hex), "Hi", hex);
+        }
     });
-    it("decodes \\x-delimited hex", () => {
-        assert.equal(toolkit.hexToString("\\x48\\x69", "\\x"), "Hi");
+    it("decodes what it encodes, with every delimiter", () => {
+        for (const d of [" ", "-", ":", ",", "\\x", "0x", "0x, ", "%", ""]) {
+            assert.equal(toolkit.hexToString(toolkit.stringToHex("Hello", d)), "Hello", d);
+        }
     });
-    it("ignores surrounding whitespace with no delimiter", () => {
-        assert.equal(toolkit.hexToString(" 4869\n", ""), "Hi");
+    it("ignores surrounding whitespace", () => {
+        assert.equal(toolkit.hexToString(" 4869\n"), "Hi");
     });
     it("falls back to one character per byte when the bytes aren't UTF-8", () => {
-        assert.equal(toolkit.hexToString("48 e9", " "), "Hé");
+        assert.equal(toolkit.hexToString("48 e9"), "Hé");
     });
     it("round-trips non-ASCII text (UTF-8)", () => {
-        assert.equal(toolkit.hexToString(toolkit.stringToHex("Café ✓", " "), " "), "Café ✓");
+        assert.equal(toolkit.hexToString(toolkit.stringToHex("Café ✓", " ")), "Café ✓");
     });
     it("rejects invalid hex", () => {
-        assert.throws(() => toolkit.hexToString("4G 69", " "), /invalid characters/);
+        assert.throws(() => toolkit.hexToString("4G 69"), /invalid characters/);
     });
 });
 

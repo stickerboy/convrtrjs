@@ -49,42 +49,53 @@ describe("hex frequencies", () => {
 });
 
 describe("isValidHex", () => {
-    it("accepts hex with the chosen delimiter", () => {
-        assert.equal(isValidHex("48 65", " "), true);
-        assert.equal(isValidHex("48-65", "-"), true);
-        assert.equal(isValidHex("4865", ""), true);
+    it("accepts hex with any separator, or none", () => {
+        for (const hex of ["48 65", "48-65", "48:65", "48,65", "48;65", "4865", "\\x48\\x65", "0x480x65", "%48%65", "48\n65\t6c"]) {
+            assert.equal(isValidHex(hex), true, hex);
+        }
+    });
+    it("accepts separators mixed together, and prefixes in either case", () => {
+        assert.equal(isValidHex("0x48, 0x65; 0X6c \\X6c-6f"), true);
     });
     it("rejects other characters", () => {
-        assert.equal(isValidHex("48 6g", " "), false);
-        assert.equal(isValidHex("48-65", " "), false);
+        assert.equal(isValidHex("48 6g"), false);
+        assert.equal(isValidHex("48.65"), false);
     });
-    it("accepts \\x-delimited hex", () => {
-        assert.equal(isValidHex("\\x48\\x65", "\\x"), true);
+    it("only accepts x as part of a 0x or \\x prefix", () => {
+        assert.equal(isValidHex("4x8"), false);
     });
-    it("only accepts x as part of a 0x delimiter", () => {
-        assert.equal(isValidHex("0x480x65", "0x"), true);
-        assert.equal(isValidHex("4x8", "0x"), false);
+    it("needs at least one hex digit", () => {
+        assert.equal(isValidHex(""), false);
+        assert.equal(isValidHex(" , 0x "), false);
     });
 });
 
 describe("hex helpers", () => {
     it("splits hex into byte pairs, ignoring surrounding whitespace", () => {
-        assert.deepEqual(hexToPairs(" 48 6A\n", " "), ["48", "6A"]);
-        assert.deepEqual(hexToPairs("4869 21", " "), ["48", "69", "21"]);
-        assert.deepEqual(hexToPairs("\\x48\\x69", "\\x"), ["48", "69"]);
-        assert.deepEqual(hexToPairs(" 4869\n", ""), ["48", "69"]);
+        assert.deepEqual(hexToPairs(" 48 6A\n"), ["48", "6A"]);
+        assert.deepEqual(hexToPairs("4869 21"), ["48", "69", "21"]);
+        assert.deepEqual(hexToPairs("\\x48\\x69"), ["48", "69"]);
+        assert.deepEqual(hexToPairs(" 4869\n"), ["48", "69"]);
     });
-    it("parses and formats bytes, prefixing 0x and \\x", () => {
-        assert.deepEqual(hexToBytes("0x480x69", "0x"), [0x48, 0x69]);
+    it("reads common ways of writing hex the same", () => {
+        for (const hex of ["0x48, 0x69", "%48%69", "48;69", "48\n69", "0X48 \\X69", "0x48-\\x69"]) {
+            assert.deepEqual(hexToPairs(hex), ["48", "69"], hex);
+        }
+    });
+    it("parses and formats bytes, prefixing 0x, \\x and %", () => {
+        assert.deepEqual(hexToBytes("0x480x69"), [0x48, 0x69]);
         assert.equal(bytesToHex([0x48, 0x69], "0x"), "0x480x69");
         assert.equal(bytesToHex([0x48, 0x69], "\\x"), "\\x48\\x69");
+        assert.equal(bytesToHex([0x48, 0x69], "%"), "%48%69");
+        assert.equal(bytesToHex([0x48, 0x69], "0x, "), "0x48, 0x69");
+        assert.equal(bytesToHex([0x48], "0x, "), "0x48");
         assert.equal(bytesToHex([0x48, 0x69], ":"), "48:69");
         assert.equal(bytesToHex([], "0x"), "");
     });
 });
 
 describe("hex tools with every delimiter", () => {
-    const delimiters = [" ", "-", ":", ",", "\\x", "0x", ""];
+    const delimiters = [" ", "-", ":", ",", "\\x", "0x", "0x, ", "%", ""];
     const hex = (bytes, delimiter) => bytesToHex(bytes, delimiter);
     for (const d of delimiters) {
         it(`delimiter ${JSON.stringify(d)}`, () => {
@@ -96,6 +107,10 @@ describe("hex tools with every delimiter", () => {
             assert.deepEqual(generateHexFrequencies(hex([0x41, 0x41, 0x42], d), d, 4), { [hex([0x41, 0x41], d)]: 1 });
         });
     }
+    it("reads input written with a different separator to the one chosen for the result", () => {
+        assert.equal(reverseHexByteOrder("0x48, 0x65, 0x6c", " "), "6c 65 48");
+        assert.equal(shiftHexString("48-65", 1, ":"), "49:66");
+    });
     it("counts runs of 4 identical bytes (quad)", () => {
         assert.deepEqual(generateHexFrequencies("41 41 41 41 42", " ", 8), { "41 41 41 41": 1 });
     });

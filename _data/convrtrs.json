@@ -25,7 +25,7 @@
       "id": "hex",
       "hint": "Two characters per byte",
       "cardLabel": "Hexadecimal",
-      "popoverContent": "Spaces, hyphens, colons, commas, \"\\x\" and \"0x\" can all be used as delimiters: choose the one your hex uses. Find out more about Hexadecimal on the <a href=\"https://en.wikipedia.org/wiki/Hexadecimal\" class=\"text-convrtr\" title=\"Hexadecimal on Wikipedia\">Hexadecimal</a> Wikipedia page",
+      "popoverContent": "Paste hex with any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \"\\x\", \"0x\" or \"%\"), or none, even mixed. The dropdown chooses how hex is written out. Find out more about Hexadecimal on the <a href=\"https://en.wikipedia.org/wiki/Hexadecimal\" class=\"text-convrtr\" title=\"Hexadecimal on Wikipedia\">Hexadecimal</a> Wikipedia page",
       "placeholder": "Example: 48 65 6c 6c 6f",
       "buttonId": "hexDecode",
       "buttonLabel": "Decode Hexadecimal",

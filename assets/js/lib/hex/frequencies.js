@@ -4,7 +4,7 @@ import * as toolkit from "../toolkit.js";
  * Generates a frequency map of hexadecimal substrings of a specified length from a given string. 
  * 
  * @param {string} string - The input string containing hexadecimal values. 
- * @param {string} delimiter - The delimiter used to separate hexadecimal values in the input string. 
+ * @param {string} delimiter - The delimiter to write the results with; the input can use any separator. 
  * @param {number} chunkSize - The size of the chunks to be considered for the frequency map. 
  * @returns {Object} An object containing the frequency of each hexadecimal substring. 
  * 
@@ -14,7 +14,7 @@ export function generateHexFrequencies(string, delimiter, chunkSize = 1) {
     const hexFrequencies = {};
 
     // Remove delimiters and convert input to uppercase for case insensitivity
-    const upperInput = toolkit.hexToPairs(string, delimiter).join("").toUpperCase();
+    const upperInput = toolkit.hexToPairs(string).join("").toUpperCase();
 
     // Function to update frequencies for the given group size
     const split = upperInput.match(new RegExp(`.{1,${chunkSize}}`, 'g')) || [];

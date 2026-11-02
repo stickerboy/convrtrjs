@@ -4,10 +4,10 @@ import * as toolkit from "../toolkit.js";
  * Swaps the two hex digits (nibbles) of each byte in a hex string.
  *
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used in the hexadecimal string.
+ * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
  * @returns {string} - The hexadecimal string with the digits of each byte swapped.
  *
- * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ * @throws {Error} - If the input contains invalid characters.
  *
  * @example
  * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
@@ -15,7 +15,7 @@ import * as toolkit from "../toolkit.js";
  * reverseHexBytes("48 65 6c 6c 6f", " ");
  */
 export function reverseHexBytes(string, delimiter) {
-    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).map(toolkit.reverseString), delimiter);
+    return toolkit.joinHex(toolkit.hexToPairs(string).map(toolkit.reverseString), delimiter);
 }
 
 /**
@@ -42,10 +42,10 @@ function reverseHexNibble(string) {
  * and converting it back to hexadecimal.
  *
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used to separate hexadecimal bytes in the input string.
+ * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
  * @returns {string} - The hexadecimal string with reversed nibbles in each byte.
  *
- * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ * @throws {Error} - If the input contains invalid characters.
  *
  * @example
  * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
@@ -53,7 +53,7 @@ function reverseHexNibble(string) {
  * reverseHexNibbles("48 65 6c 6c 6f", " ");
  */
 export function reverseHexNibbles(string, delimiter) {
-    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).map(reverseHexNibble), delimiter);
+    return toolkit.joinHex(toolkit.hexToPairs(string).map(reverseHexNibble), delimiter);
 }
 
 /**
@@ -78,10 +78,10 @@ function reverseBitsInNibble(string) {
  * Reverses the order of bytes in a hex string.
  *
  * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter used in the hexadecimal string.
+ * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
  * @returns {string} - The reversed hexadecimal string.
  *
- * @throws {Error} - If the input contains invalid characters or the delimiter is incorrect.
+ * @throws {Error} - If the input contains invalid characters.
  *
  * @example
  * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
@@ -89,5 +89,5 @@ function reverseBitsInNibble(string) {
  * reverseHexByteOrder("48 65 6c 6c 6f", " ");
  */
 export function reverseHexByteOrder(string, delimiter) {
-    return toolkit.joinHex(toolkit.hexToPairs(string, delimiter).reverse(), delimiter);
+    return toolkit.joinHex(toolkit.hexToPairs(string).reverse(), delimiter);
 }
