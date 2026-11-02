@@ -1,20 +1,20 @@
 <!-- Google tag (gtag.js) -->
+{#- Nothing is sent to Google until the visitor accepts tracking in the cookie banner (cookie.njk). The two scripts
+    marked type="text/plain" data-cookie-consent="tracking" don't run until then; TermsFeed runs them on acceptance,
+    on that page and every page after. Consent is granted before config, so the first page view is a full one. #}
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
-    gtag('consent', 'default', {
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied',
-        'analytics_storage': 'denied'
+    gtag("consent", "default", {
+        "ad_storage": "denied",
+        "ad_user_data": "denied",
+        "ad_personalization": "denied",
+        "analytics_storage": "denied"
     });
 </script>
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ pkg.ga }}"  data-cookie-consent="tracking"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-
-    gtag('js', new Date());
-    gtag('config', '{{ pkg.ga }}');
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id={{ pkg.ga }}"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+    gtag("consent", "update", { "analytics_storage": "granted" });
+    gtag("js", new Date());
+    gtag("config", "{{ pkg.ga }}");
 </script>

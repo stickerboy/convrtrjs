@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en" class="overflow-y-hidden">
     <head>
+        {#- meta first: the charset has to be in the first 1024 bytes #}
+        {% include "partials/meta.njk" %}
         {% include "partials/ga.njk" %}
         {% include "partials/cookie.njk" %}
-        {% include "partials/meta.njk" %}
         {#- Lets modules import npm packages by name (copied to /assets/js/vendor/ - see eleventy.config.js). Must come before any module script. #}
         <script type="importmap">{ "imports": { "@noble/hashes/": "{{ '/assets/js/vendor/noble-hashes/' | url }}" } }</script>
         {% include "partials/title.njk" %}
