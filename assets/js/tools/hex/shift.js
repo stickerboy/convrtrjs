@@ -1,24 +1,26 @@
 import * as toolkit from '../../lib/toolkit.js';
-import { bindToolFrame, renderResults } from '../../ui/tool-frame.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as shift from '../../lib/hex/shift.js';
 
 const delimiter = document.getElementById("shiftDelimiter");
+const amount = document.getElementById("shiftValue");
 
-// The shifted hex, then the text it spells and that text in other formats, as rows with their own copy buttons
+// The shifted hex, and the text it spells in other formats, one per output tab. Move to input always moves the hex,
+// as the input is hex.
 bindToolFrame({
     id: "shift",
     modes: [{
         button: "shiftRun",
-        run: (text, amount) => {
-            const hex = shift.shiftHexString(text, amount, delimiter.value);
+        run: (text, by) => {
+            const hex = shift.shiftHexString(text, by, delimiter.value);
             const string = toolkit.hexToString(hex);
-            return [
-                { label: "Hex", value: hex },
-                { label: "Text", value: string },
-                { label: "Binary", value: toolkit.stringToBinary(string) },
-                { label: "Base64", value: toolkit.stringToBase64(string) },
-                { label: "Decimal", value: toolkit.stringToDecimal(string) },
-            ];
+            return {
+                Text: string,
+                Hex: hex,
+                Binary: toolkit.stringToBinary(string),
+                Base64: toolkit.stringToBase64(string),
+                Decimal: toolkit.stringToDecimal(string),
+            };
         },
     }],
     key: {
@@ -28,6 +30,7 @@ bindToolFrame({
         invalid: "The shift can only be a whole number, such as 1 or -3",
     },
     watch: ["shiftDelimiter"],
-    render: (rows, output) => renderResults(output, rows, "5 formats"),
+    flow: () => ["Shift each byte by ", { value: amount.value }],
+    moveTab: "Hex",
     errorPrefix: "Couldn't shift the hex",
 });

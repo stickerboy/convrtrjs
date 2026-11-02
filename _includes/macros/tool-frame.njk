@@ -8,15 +8,17 @@
     {% endcall %}
 
     layout "panes" (the default): a line showing what the tool does to the input ("Input → Encrypt with key World →
-    Output"), then input and output panes side by side from md, with "Move to input" between them to move the result back
-    into the input. The output has select, copy and download, and a status line.
+    Output"), then input and output panes, side by side when the frame is wide enough, with "Move to input" between them
+    to move the result back into the input. The output has select, copy and download, and a status line.
+    tabs, with the panes layout: names for several results the output can show, as tabs in place of the "Output" label
+    (e.g. ["Text", "Binary", "Hex"]). The first is shown to start with; the tool's run returns a value for each.
     layout "list": the input runs full width, with a scrolling list of results under it (the tool draws the list),
     labelled listLabel, for tools that make several results at once, such as the hash algorithms.
 
     id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
     and names downloads.
 #}
-{% macro toolFrame(id, name, placeholder = "", layout = "panes", listLabel = "Results") %}
+{% macro toolFrame(id, name, placeholder = "", layout = "panes", listLabel = "Results", tabs = []) %}
 {%- set inputPane %}
         <div class="tool-pane">
             <div class="tool-pane__head">
@@ -29,7 +31,7 @@
             </div>
         </div>
 {%- endset %}
-<div class="tool-frame" data-tool-frame>
+<div class="tool-frame{% if tabs | length %} tool-frame--tabs{% endif %}" data-tool-frame>
     <div class="tool-frame__options">
         {{ caller() }}
         <div class="form-check form-switch tool-frame__live">
@@ -70,10 +72,20 @@
         </div>
         <div class="tool-pane" data-download-name="{{ name }}">
             <div class="tool-pane__head">
+                {%- if tabs | length %}
+                <div class="tool-pane__tabs" role="tablist" aria-label="Output format" data-output-tabs>
+                    {%- for tab in tabs %}
+                    <button type="button" role="tab" id="{{ id }}Tab{{ tab }}" data-tab="{{ tab }}" aria-controls="{{ id }}Results"
+                        aria-selected="{{ 'true' if loop.first else 'false' }}" tabindex="{{ '0' if loop.first else '-1' }}">{{ tab }}</button>
+                    {%- endfor %}
+                </div>
+                {%- else %}
                 <label class="tool-pane__label" for="{{ id }}Results">Output<span class="visually-hidden"> from the {{ name }}</span></label>
+                {%- endif %}
                 {% include "components/select-copy-dl.njk" %}
             </div>
             <textarea id="{{ id }}Results" class="form-control tool-pane__box tool-pane__output data-to-copy active" rows="6" readonly
+                {%- if tabs | length %} role="tabpanel" aria-labelledby="{{ id }}Tab{{ tabs | first }}"{% endif %}
                 aria-describedby="{{ id }}Status"></textarea>
             <div class="tool-pane__status">
                 <span id="{{ id }}Status" role="status"></span>

@@ -1,6 +1,74 @@
-// The frame text tools sit in (macros/tool-frame.njk): an options bar over input and output panes, side by side from
-// md. Controls keep their full size (44px) for touch.
+// The frame text tools sit in (macros/tool-frame.njk): an options bar over input and output panes. Controls keep their
+// full size (44px) for touch.
+//
+// The panes go side by side when the frame itself is wide enough, not the window, as the sidebar can take a third of
+// the width: from 45rem, or 66rem for a frame with output tabs, where each pane's header then has room for the tabs and
+// buttons on one line (see .tool-pane__head below).
+$tool-frame-side-by-side: 45rem;
+$tool-frame-side-by-side-tabs: 66rem;
+
+// Input and output side by side: the panes share rows, so their headers, boxes and status lines line up, with "Move to
+// input" in its own column between the boxes
+@mixin tool-frame-side-by-side {
+    .tool-frame__panes {
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        column-gap: 0.5rem;
+        row-gap: 0.5rem;
+
+        .tool-pane {
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: span 3;
+            grid-column: 1;
+
+            &:last-child {
+                grid-column: 3;
+            }
+        }
+        .tool-pane__head,
+        .tool-pane__status {
+            margin: 0;
+        }
+    }
+    .tool-frame__move {
+        flex-direction: column;
+        grid-row: 2;
+        grid-column: 2;
+        width: 4.5rem;
+    }
+    .tool-frame__move-button .bi {
+        transform: none;
+    }
+}
+
+@container tool-frame (min-width: #{$tool-frame-side-by-side}) {
+    .tool-frame:not(.tool-frame--tabs) {
+        @include tool-frame-side-by-side;
+    }
+}
+@container tool-frame (min-width: #{$tool-frame-side-by-side-tabs}) {
+    .tool-frame--tabs {
+        @include tool-frame-side-by-side;
+    }
+}
+
+// When a pane's header is too narrow for the output tabs and the select, copy and download buttons on one line (they
+// need about 459px), whether the panes are stacked or side by side: the buttons go first, on the right, and the tabs
+// take the line under them, full width and shared equally, so they sit on the box they choose for.
+@container tool-pane-head (max-width: 28.75rem) {
+    .tool-pane__tabs {
+        flex: 1 1 100%;
+        order: 1;
+
+        button {
+            flex: 1 1 0;
+        }
+    }
+}
+
 .tool-frame {
+    container: tool-frame / inline-size;
     overflow: hidden;
     background-color: var(--bs-body-bg);
     border: var(--bs-border-width) solid var(--bs-border-color);
@@ -67,34 +135,11 @@
         }
     }
 
+    // Stacked until the frame is wide enough for them side by side (see tool-frame-side-by-side above)
     &__panes {
         display: grid;
         gap: 1rem 1.25rem;
         padding: 1rem;
-
-        // Side by side, the panes share rows, so their headers, boxes and status lines line up, with "Move to input"
-        // in its own column between the boxes
-        @include media-breakpoint-up(md) {
-            grid-template-rows: auto 1fr auto;
-            grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-            column-gap: 0.5rem;
-            row-gap: 0.5rem;
-
-            .tool-pane {
-                display: grid;
-                grid-template-rows: subgrid;
-                grid-row: span 3;
-                grid-column: 1;
-
-                &:last-child {
-                    grid-column: 3;
-                }
-            }
-            .tool-pane__head,
-            .tool-pane__status {
-                margin: 0;
-            }
-        }
     }
 
     // The "list" layout: the input full width, with the tool's list of results under it
@@ -108,19 +153,13 @@
         }
     }
 
-    // "Move to input", between the panes: beside them from md, between them when they stack, where the arrow turns up
+    // "Move to input", between the panes: in a row between them when they stack, with the arrow turned up at the input,
+    // and in its own column pointing left when they're side by side
     &__move {
         display: flex;
         gap: 0.5rem;
         align-items: center;
         justify-content: center;
-
-        @include media-breakpoint-up(md) {
-            flex-direction: column;
-            grid-row: 2;
-            grid-column: 2;
-            width: 4.5rem;
-        }
     }
 
     &__move-button {
@@ -146,10 +185,7 @@
         .bi {
             @extend %bi-centred;
             display: inline-block;
-
-            @include media-breakpoint-down(md) {
-                transform: rotate(90deg);
-            }
+            transform: rotate(90deg);
         }
     }
 
@@ -166,7 +202,9 @@
     flex-direction: column;
     min-width: 0;
 
+    // A container, so what's in it can lay out by the header's own width, as the output tabs do
     &__head {
+        container: tool-pane-head / inline-size;
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
@@ -182,6 +220,43 @@
         text-transform: uppercase;
         letter-spacing: 0.04em;
         cursor: pointer;
+    }
+
+    // Output tabs (the frame's `tabs`): a segmented control in place of the "Output" label, choosing which of the
+    // tool's results the output box shows
+    &__tabs {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 0.125rem;
+        padding: 0.1875rem;
+        background-color: var(--bs-tertiary-bg);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius-lg);
+
+        // 44px tall, as every other control
+        button {
+            min-height: 2.75rem;
+            min-width: 2.75rem;
+            padding: 0 0.75rem;
+            font-size: 0.875rem;
+            color: var(--bs-secondary-color);
+            background: none;
+            border: 0;
+            border-radius: var(--bs-border-radius);
+            transition: color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out,
+                box-shadow $convrtr-transition-duration ease-in-out;
+
+            &:hover {
+                color: var(--bs-emphasis-color);
+            }
+
+            &[aria-selected="true"] {
+                font-weight: 600;
+                color: var(--bs-emphasis-color);
+                background-color: var(--bs-body-bg);
+                box-shadow: var(--bs-box-shadow-sm);
+            }
+        }
     }
 
     &__status {

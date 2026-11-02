@@ -29,9 +29,11 @@ const characters = (length) => `${length.toLocaleString()} character${length ===
  *   more than its button and fields: text, with {value} for the parts shown in bold. Replaces the fields' `flow`.
  * @param {(result: any, output: HTMLElement) => void} [options.render] - Shows the result, for the "list" layout where
  *   the output is the tool's own list (default: as the output box's text). renderResults draws the usual rows.
+ * @param {string} [options.moveTab] - With output tabs, the tab "Move to input" always moves, such as the one in the
+ *   input's own format (default: the tab showing).
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't encrypt".
  */
-export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeFlow, render, errorPrefix = "Something went wrong" }) {
+export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeFlow, render, moveTab, errorPrefix = "Something went wrong" }) {
     const input = byId(`${id}Text`);
     const output = byId(`${id}Results`);
     const status = byId(`${id}Status`);
@@ -44,7 +46,14 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     // The output is a box of text, or with the "list" layout, a list the tool draws (and counts) itself
     const isBox = output instanceof HTMLTextAreaElement;
     const outputText = () => (isBox ? output.value : output.textContent);
+
+    // With output tabs, the tool's run returns a value for each tab, and the box shows the chosen one
+    const tabs = [...frame.querySelectorAll("[data-output-tabs] [role=tab]")];
+    let results = null;
+    let tab = tabs[0]?.dataset.tab;
+
     const clearOutput = () => {
+        results = null;
         if (isBox) {
             output.value = "";
         } else {
@@ -150,6 +159,9 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         const show = (result) => {
             if (render) {
                 render(result, output);
+            } else if (tabs.length) {
+                results = result;
+                output.value = results[tab] ?? "";
             } else {
                 output.value = result;
             }
@@ -214,6 +226,35 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         }, () => showToast("Error", "Couldn't copy to the clipboard", "danger"));
     });
 
+    // Output tabs: click, or arrow keys, Home and End, as tabs do; the box shows the chosen tab's result
+    const selectTab = (button, focus = false) => {
+        tab = button.dataset.tab;
+        for (const other of tabs) {
+            const selected = other === button;
+            other.setAttribute("aria-selected", String(selected));
+            other.tabIndex = selected ? 0 : -1;
+        }
+        output.setAttribute("aria-labelledby", button.id);
+        if (results) {
+            output.value = results[tab] ?? "";
+            updateCounts();
+        }
+        if (focus) {
+            button.focus();
+        }
+    };
+    for (const button of tabs) {
+        button.addEventListener("click", () => selectTab(button));
+        button.addEventListener("keydown", (event) => {
+            const index = tabs.indexOf(button);
+            const next = { ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: tabs.length - 1 }[event.key];
+            if (next !== undefined) {
+                event.preventDefault();
+                selectTab(tabs[(next + tabs.length) % tabs.length], true);
+            }
+        });
+    }
+
     // One live typing setting for every tool with a frame, remembered between visits
     live.checked = getLocalStorageItem("toolsLive") === "on";
     live.addEventListener("change", () => {
@@ -229,11 +270,13 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     const inputStatus = byId(`${id}InputStatus`);
     let movedTimer;
     frame.querySelector("[data-use-as-input]")?.addEventListener("click", () => {
-        if (outputText() === "") {
+        // With tabs, moveTab's result (such as the hex, for a tool whose input is hex), whichever tab is showing
+        const moving = tabs.length && moveTab ? (results?.[moveTab] ?? "") : outputText();
+        if (moving === "") {
             showToast("Warning", "There's no output to move to the input yet", "warning");
             return;
         }
-        input.value = output.value;
+        input.value = moving;
         input.focus();
         input.classList.remove("tool-pane__box--moved");
         void input.offsetWidth; // restart the flash if it's already running
@@ -244,7 +287,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         if (live.checked) {
             run(current, { typed: true });
         } else {
-            output.value = "";
+            clearOutput();
             setStatus(`Press ${modeName()} to run the tool on it again`);
         }
     });

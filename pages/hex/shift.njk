@@ -16,7 +16,7 @@ heading: "Shift hex"
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Shift hex", placeholder = "Example: 48 65 6c 6c 6f", layout = "list", listLabel = "Shifted") %}
+{% call toolFrame(filename, "Shift hex", placeholder = "Example: 48 65 6c 6c 6f", tabs = ["Text", "Hex", "Binary", "Base64", "Decimal"]) %}
 <div class="input-group w-auto">
     <label class="input-group-text" for="{{ filename }}Value">Shift<span class="visually-hidden"> each byte by</span></label>
     <input type="number" class="form-control" id="{{ filename }}Value" autocomplete="off" value="1" aria-describedby="{{ filename }}Status">
