@@ -1,5 +1,6 @@
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        {#- Bootstrap Icons, cut down to the icons the site uses (scripts/icons.mjs). Its CSS is in main.css; preloading
+            the font fetches it alongside main.css rather than after. The URL must match the one in the CSS. #}
+        <link rel="preload" href="{{ ('/assets/fonts/bootstrap-icons.woff2?v=' ~ iconFontVersion) | url }}" as="font" type="font/woff2" crossorigin>
         <!-- Core theme and Bootstrap CSS -->
         <link href="{{ '/assets/css/main.css' | url }}" rel="stylesheet">
         {%- if pageId == "search" %}

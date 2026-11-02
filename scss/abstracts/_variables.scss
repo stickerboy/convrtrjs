@@ -62,7 +62,8 @@ $modal-transition:               transform $convrtr-transition-duration ease-out
 
 $enable-cssgrid: true;
 
-// Bootstrap's breakpoints plus larger ones for wide screens
+// Bootstrap's breakpoints plus fhd for full HD screens. Each breakpoint adds ~14KB of responsive classes to main.css,
+// so only add one the site will use.
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
@@ -70,8 +71,5 @@ $grid-breakpoints: (
   lg: 992px,
   xl: 1200px,
   xxl: 1400px,
-  xxxl: 1600px,
-  fhd: 1920px,
-  2k: 2048px,
-  qhd: 2560px
+  fhd: 1920px
 );

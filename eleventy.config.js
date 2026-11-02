@@ -3,6 +3,7 @@ import collections from "./config/collections.js";
 import computed from "./config/computed.js";
 import events from "./config/events.js";
 import filters from "./config/filters.js";
+import { fontVersion } from "./scripts/icons.mjs";
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(RenderPlugin);
@@ -10,6 +11,8 @@ export default function (eleventyConfig) {
     eleventyConfig.addPlugin(collections);
     eleventyConfig.addPlugin(events);
     eleventyConfig.addGlobalData("eleventyComputed", computed);
+    // Versions the icon font's preload URL to match its @font-face (scripts/icons.mjs)
+    eleventyConfig.addGlobalData("iconFontVersion", fontVersion);
     eleventyConfig.addGlobalData("layout", "layouts/base.njk");
 
     // Repo docs - kept in the root for GitHub, rendered onto /community pages via renderFile
