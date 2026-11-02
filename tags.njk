@@ -9,7 +9,7 @@ pagination:
 permalink: '/tags/'
 eleventyExcludeFromCollections: true
 eleventyComputed: 
-  description: "{{ description }}<br />See the <a href='{{ '/changelog' | url }}' class='text-convrtr'>Changelog</a> for the full list of releases"
+  description: "{{ description }}<br />See the <a href='/changelog' class='text-convrtr'>Changelog</a> for the full list of releases"
 ---
 
 <section id="{{ filename }}" class="section">
@@ -52,7 +52,7 @@ eleventyComputed:
                                     {% if tagCount == 0 -%}
                                         <span class="fw-normal">{{ tag.key }}</span> 
                                     {% else -%}
-                                    <a href="{{ ('/changelog/tag/' ~ tag.key) | url }}"
+                                    <a href="{{ '/changelog/tag/' ~ tag.key }}"
                                         class="fw-medium stretched-link link-underline link-underline-opacity-0 text-convrtr"
                                         title="Changelog items tagged with {{ tag.key }}">
                                         {{ tag.key }}

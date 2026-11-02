@@ -10,7 +10,7 @@
     { title: "Changes", items: collections.versionTags | where("group", "Changes") }
 ] -%}
 <h2 class="sidebar-panel__title" id="sidebar-page-title">
-    <a href="{{ '/changelog/' | url }}"{% if page.url == "/changelog/" %} aria-current="page"{% endif %}>Changelog</a>
+    <a href="/changelog/"{% if page.url == "/changelog/" %} aria-current="page"{% endif %}>Changelog</a>
 </h2>
 <p class="sidebar-panel__count">{{ collections.versions | length }} releases</p>
 
@@ -25,7 +25,7 @@
     <ul class="sidebar-panel__list version-group__list">
         {%- for version in group.items %}
         <li>
-            <a class="sidebar-panel__link version-group__link" href="{{ version.url | url }}"{% if version.url == page.url %} aria-current="page"{% endif %}>
+            <a class="sidebar-panel__link version-group__link" href="{{ version.url }}"{% if version.url == page.url %} aria-current="page"{% endif %}>
                 {{ version.data.title }}
                 <time datetime="{{ version.date | dateISO }}">{{ version.date | monthYear }}</time>
             </a>
@@ -39,9 +39,9 @@
 <p class="sidebar-panel__heading" id="changelog-tags-{{ group.title | lower }}">{{ group.title }}</p>
 <ul class="filter-chips sidebar-panel__chips" aria-labelledby="changelog-tags-{{ group.title | lower }}">
     {%- for tag in group.items %}
-    <li><a class="filter-chip" href="{{ ('/changelog/tag/' ~ tag.key ~ '/') | url }}" title="{{ tag.description }}"
+    <li><a class="filter-chip" href="{{ '/changelog/tag/' ~ tag.key ~ '/' }}" title="{{ tag.description }}"
         {%- if tag.key == currentTag %} aria-current="page"{% endif %}>{{ tag.friendlyName }} <span class="filter-chip__count">{{ tag.count }}</span></a></li>
     {%- endfor %}
 </ul>
 {%- endfor %}
-<p class="sidebar-panel__more"><a href="{{ '/tags/' | url }}"{% if page.url == "/tags/" %} aria-current="page"{% endif %}>All tags</a></p>
+<p class="sidebar-panel__more"><a href="/tags/"{% if page.url == "/tags/" %} aria-current="page"{% endif %}>All tags</a></p>

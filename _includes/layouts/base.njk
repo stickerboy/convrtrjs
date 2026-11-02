@@ -6,7 +6,7 @@
         {% include "partials/ga.njk" %}
         {% include "partials/cookie.njk" %}
         {#- Lets modules import npm packages by name (copied to /assets/js/vendor/ - see eleventy.config.js). Must come before any module script. #}
-        <script type="importmap">{ "imports": { "@noble/hashes/": "{{ '/assets/js/vendor/noble-hashes/' | url }}" } }</script>
+        <script type="importmap">{ "imports": { "@noble/hashes/": "/assets/js/vendor/noble-hashes/" } }</script>
         {% include "partials/title.njk" %}
 
         {#- Runs before the page is drawn, so it starts in the saved theme and sidebar state rather than flashing the defaults.

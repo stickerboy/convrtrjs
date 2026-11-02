@@ -4,7 +4,7 @@
 #}
 {%- from "macros/sidebar.njk" import categoryUrl, pageUrl %}
 {%- set shown = nav | where("excludeFromSidebar", false) -%}
-<dialog class="switcher" id="switcher" aria-label="Search" data-pagefind="{{ '/pagefind/pagefind.js' | url }}">
+<dialog class="switcher" id="switcher" aria-label="Search" data-pagefind="/pagefind/pagefind.js">
     <div class="switcher__field">
         <i class="bi bi-search" aria-hidden="true"></i>
         <input class="switcher__input" type="text" role="combobox" aria-label="Search tools and pages" placeholder="Search tools and pages"
@@ -16,17 +16,17 @@
     <div class="switcher__foot">
         <span class="switcher__keys"><kbd>↑</kbd> <kbd>↓</kbd> to move</span>
         <span class="switcher__keys"><kbd>Enter</kbd> to open</span>
-        <a class="switcher__all" href="{{ '/search/' | url }}" data-search-url="{{ '/search/' | url }}" hidden>All results <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        <a class="switcher__all" href="/search/" data-search-url="/search/" hidden>All results <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
     </div>
     <template class="switcher__items">
         {%- for link in shown %}
         {%- if link.children %}
-        <a href="{{ ('' ~ categoryUrl(link)) | url }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}" data-landing>{{ link.label }}</a>
+        <a href="{{ categoryUrl(link) }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}" data-landing>{{ link.label }}</a>
         {%- for child in link.children | sort(false, true, "id") %}
-        <a href="{{ ('' ~ pageUrl(link, child)) | url }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}">{{ child.label }}</a>
+        <a href="{{ pageUrl(link, child) }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}">{{ child.label }}</a>
         {%- endfor %}
         {%- else %}
-        <a href="{{ ('/' ~ link.id ~ '/') | url }}" data-group="Site" data-short="Site" data-icon="{{ link.icon }}">{{ link.label }}</a>
+        <a href="{{ '/' ~ link.id ~ '/' }}" data-group="Site" data-short="Site" data-icon="{{ link.icon }}">{{ link.label }}</a>
         {%- endif %}
         {%- endfor %}
     </template>

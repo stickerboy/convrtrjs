@@ -16,10 +16,10 @@ eleventyExcludeFromCollections: true
     <title>{{ pkg.sitename }} - Page moved</title>
     <meta name="robots" content="noindex">
     <link rel="canonical" href="{{ pkg.homepage }}{{ redirect.to }}">
-    <meta http-equiv="refresh" content="0; url={{ redirect.to | url }}">
-    <script>location.replace("{{ redirect.to | url }}" + location.search + location.hash);</script>
+    <meta http-equiv="refresh" content="0; url={{ redirect.to }}">
+    <script>location.replace("{{ redirect.to }}" + location.search + location.hash);</script>
 </head>
 <body>
-    <p>This page has moved to <a href="{{ redirect.to | url }}">{{ pkg.homepage }}{{ redirect.to }}</a>.</p>
+    <p>This page has moved to <a href="{{ redirect.to }}">{{ pkg.homepage }}{{ redirect.to }}</a>.</p>
 </body>
 </html>

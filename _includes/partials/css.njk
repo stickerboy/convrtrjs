@@ -1,9 +1,9 @@
         {#- Bootstrap Icons, cut down to the icons the site uses (scripts/icons.mjs). Its CSS is in main.css; preloading
             the font fetches it alongside main.css rather than after. The URL must match the one in the CSS. #}
-        <link rel="preload" href="{{ ('/assets/fonts/bootstrap-icons.woff2?v=' ~ iconFontVersion) | url }}" as="font" type="font/woff2" crossorigin>
+        <link rel="preload" href="{{ '/assets/fonts/bootstrap-icons.woff2?v=' ~ iconFontVersion }}" as="font" type="font/woff2" crossorigin>
         <!-- Core theme and Bootstrap CSS -->
-        <link href="{{ '/assets/css/main.css' | url }}" rel="stylesheet">
+        <link href="/assets/css/main.css" rel="stylesheet">
         {%- if pageId == "search" %}
-        <link href="{{ '/pagefind/pagefind-component-ui.css' | url }}" rel="stylesheet">
+        <link href="/pagefind/pagefind-component-ui.css" rel="stylesheet">
         {%- endif %}
         

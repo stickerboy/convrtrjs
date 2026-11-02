@@ -8,7 +8,7 @@
                 <span id="nav-toggle-label" class="visually-hidden">Toggle navigation</span>
             </button>
             
-            <a href="{{ '/' | url }}" 
+            <a href="/" 
                class="navbar-brand text-white mb-0 h1 fw-light ms-2 me-auto me-md-3 d-flex" title="Home">
                 {% if data.environment == 'development' %}<i class="bi bi-braces-asterisk me-2"></i>{% endif %}<span class="navbar-brand__text{% if data.environment == 'development' %} d-none d-sm-flex{% endif %}">
                     <span>{{ pkg.sitename }}</span>

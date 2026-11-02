@@ -5,7 +5,7 @@
             {% if page.url == "/" %}
             Home
             {% else %}
-            <a href="{{ '/' | url }}" class="text-convrtr">
+            <a href="/" class="text-convrtr">
                 <i class="bi bi-house-fill me-1" aria-hidden="true" focusable="false"></i>Home
             </a>
             {% endif %}
@@ -13,20 +13,20 @@
         {% if folderName and folderName != "pages" %}
         {% if folderName != "text" %}
         <li class="breadcrumb-item">
-            <a href="{{ ('/' ~ folderName) | url }}" class="text-convrtr">{{ folderName }}</a>
+            <a href="{{ '/' ~ folderName }}" class="text-convrtr">{{ folderName }}</a>
         </li>
         {% endif %}
         {% endif %}
         {% if "changelog/" in page.inputPath %}
         <li class="breadcrumb-item">
-            <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
+            <a href="/changelog" class="text-convrtr">changelog</a>
         </li>
         <li class="breadcrumb-item active" aria-current="page">
             v{{ page.fileSlug }}
         </li>
         {% elif "/tag/" in page.url %}
         <li class="breadcrumb-item">
-            <a href="{{ '/changelog' | url }}" class="text-convrtr">changelog</a>
+            <a href="/changelog" class="text-convrtr">changelog</a>
         </li>
         {%- set tag = page.url.split('/').slice(-2)[0] -%}
         <li class="breadcrumb-item active" aria-current="page">

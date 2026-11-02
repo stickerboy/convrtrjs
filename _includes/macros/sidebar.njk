@@ -41,7 +41,7 @@
         {%- for link in links %}
         {%- set url = "/" ~ link.id ~ "/" %}
         <li{% if loop.first %} class="sidebar-rail__end"{% endif %}>
-            <a class="sidebar-rail__item" href="{{ url | url }}"{% if currentUrl.startsWith(url) %} aria-current="page"{% endif %}>
+            <a class="sidebar-rail__item" href="{{ url }}"{% if currentUrl.startsWith(url) %} aria-current="page"{% endif %}>
                 <i class="bi bi-{{ link.icon }}" aria-hidden="true"></i>
                 <span class="sidebar-rail__label">{{ link.shortLabel }}</span>
             </a>
@@ -57,13 +57,13 @@
         {%- for link in categories %}
         <div class="sidebar-panel__group" id="{{ idPrefix }}-{{ link.id }}" role="region" aria-labelledby="{{ idPrefix }}-{{ link.id }}-title"{% if link.id != openId %} hidden{% endif %}>
             <h2 class="sidebar-panel__title" id="{{ idPrefix }}-{{ link.id }}-title">
-                <a href="{{ ("" ~ categoryUrl(link)) | url }}"{% if currentUrl == ("" ~ categoryUrl(link)) %} aria-current="page"{% endif %}>{{ link.label }}</a>
+                <a href="{{ categoryUrl(link) }}"{% if currentUrl == ("" ~ categoryUrl(link)) %} aria-current="page"{% endif %}>{{ link.label }}</a>
             </h2>
             <p class="sidebar-panel__count">{{ link.children | length }} {{ "pages" if link.id == "community" else "tools" }}</p>
             <ul class="sidebar-panel__list">
                 {%- for child in link.children | sort(false, true, "id") %}
                 {%- set url = ("" ~ pageUrl(link, child)) %}
-                <li><a class="sidebar-panel__link" href="{{ url | url }}"{% if url == currentUrl %} aria-current="page"{% endif %}>{{ child.label }}</a></li>
+                <li><a class="sidebar-panel__link" href="{{ url }}"{% if url == currentUrl %} aria-current="page"{% endif %}>{{ child.label }}</a></li>
                 {%- endfor %}
             </ul>
         </div>

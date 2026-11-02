@@ -66,7 +66,7 @@ eleventyComputed:
                                     {%- for tag in version.data.tags -%}
                                     {% set normalizedTag = tag | lower | trim %}
                                     {% set label = labels.labels | where("key", normalizedTag) | first %}
-                                    <a href="{{ ('/changelog/tag/' ~ tag) | url }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{ tag }}</a>
+                                    <a href="{{ '/changelog/tag/' ~ tag }}" class="badge git-badge badge-{{ tag }}" title="{{ label.description }}">{{ tag }}</a>
                                     {% endfor -%}
                                     {%- endif %}
                                 </div>
@@ -79,7 +79,7 @@ eleventyComputed:
         </div>
 
         <p class="px-2">
-            <a href="{{ '/tags' | url }}" class="text-convrtr">See the full list of tags</a>
+            <a href="/tags" class="text-convrtr">See the full list of tags</a>
         </p>
 
         {% from "macros/pagination.njk" import paginationNav %}

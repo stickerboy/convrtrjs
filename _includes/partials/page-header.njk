@@ -18,7 +18,7 @@
                 {%- for tag in tags -%}
                 {% set label = labels.labels | where("key", tag | lower) | first -%}
                 {% if label %}
-                <a href="{{ ('/changelog/tag/' ~ tag) | url }}" class="badge git-badge badge-{{ label.key }}" title="{{ label.description }}">{{ label.key }}</a>
+                <a href="{{ '/changelog/tag/' ~ tag }}" class="badge git-badge badge-{{ label.key }}" title="{{ label.description }}">{{ label.key }}</a>
                 {%- endif -%}
                 {%- endfor %}
             </div>

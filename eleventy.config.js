@@ -1,4 +1,4 @@
-import { RenderPlugin } from "@11ty/eleventy";
+import { HtmlBasePlugin, RenderPlugin } from "@11ty/eleventy";
 import collections from "./config/collections.js";
 import computed from "./config/computed.js";
 import events from "./config/events.js";
@@ -7,6 +7,10 @@ import { fontVersion } from "./scripts/icons.mjs";
 
 export default function (eleventyConfig) {
     eleventyConfig.addPlugin(RenderPlugin);
+    // Links are written from the site root (/hex/). If the site is ever served from a folder, set pathPrefix and this
+    // adds it to every URL in the HTML. URLs inside scripts and JSON, such as the import map in layouts/base.njk and
+    // redirects.njk, would need it adding by hand.
+    eleventyConfig.addPlugin(HtmlBasePlugin);
     eleventyConfig.addPlugin(filters);
     eleventyConfig.addPlugin(collections);
     eleventyConfig.addPlugin(events);
