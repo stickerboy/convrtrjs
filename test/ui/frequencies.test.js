@@ -1,14 +1,19 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { uniqueArray, countArrayFreq } from "../../assets/js/lib/toolkit.js";
-import { styledUniqueArrayItems, styledArrayFrequencies } from "../../assets/js/ui/frequencies.js";
+import { characterName } from "../../assets/js/ui/frequencies.js";
 
-describe("frequency HTML", () => {
-    it("renders as before", (t) => {
-        t.assert.snapshot(styledUniqueArrayItems(uniqueArray("ab c")));
-        t.assert.snapshot(styledArrayFrequencies(countArrayFreq("aab"), "Test"));
+describe("frequency tables", () => {
+    it("names characters that can't be seen", () => {
+        assert.equal(characterName(" "), "Space");
+        assert.equal(characterName("\n"), "New line");
+        assert.equal(characterName("\t"), "Tab");
+        assert.equal(characterName("\x00"), "NUL");
+        assert.equal(characterName("\x07"), "Control");
+        assert.equal(characterName("\x85"), "Control");
     });
-    it("renders nothing when there are no frequencies", () => {
-        assert.equal(styledArrayFrequencies({}), "");
+    it("leaves characters that can be seen alone", () => {
+        for (const char of ["a", "!", "é", "😀"]) {
+            assert.equal(characterName(char), null, char);
+        }
     });
 });

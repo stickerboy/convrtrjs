@@ -3,46 +3,23 @@ title: Hex frequencies
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% from "macros/delimiter.njk" import delimiter %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
-    For a given string of Hexadecimal, list out the frequencies of various hex combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+    For a given string of Hexadecimal, list out the frequencies of each byte, and of runs of the same byte repeated 2 to 5 times (such as <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">00 00</code>). This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns. Runs are counted wherever they start, and a longer run counts as several shorter ones: five <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">41</code>s are two runs of 2.
 </p>
 <p class="px-2">
-    Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the results are written. Negative numbers are allowed.
+    Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how runs are written. Copy and download give the tables as tab-separated text, which pastes into a spreadsheet.
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Hex frequencies</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Text" class="visually-hidden">Hex characters to check</label>
-            <textarea placeholder="Enter some hex characters and click the 'Generate' button below" rows="6" id="{{ filename }}Text" class="form-control word-freqs" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                        <div class="input-group w-auto">
-                            <label class="input-group-text" for="{{ filename }}Delimiter">Delimiter</label>
-                            {{ delimiter(filename) }}
-                            <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Generate hex frequencies">Generate</button>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-auto flex-fill">
-                        <div class="row row-cols-auto g-0">
-                            {% include "components/select-copy-dl.njk" %}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="">
-                <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="{{ filename }}Results"></div>
-            </div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Hex frequencies", placeholder = "Example: 48 65 6c 6c 6f 00 00 00", layout = "analysis") %}
+<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Count</button>
+<div class="input-group w-auto">
+    <label class="input-group-text" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+    {{ delimiter(filename) }}
 </div>
+{% endcall %}
 {% endcall %}

@@ -14,6 +14,8 @@
     (e.g. ["Text", "Binary", "Hex"]). The first is shown to start with; the tool's run returns a value for each.
     layout "list": the input runs full width, with a scrolling list of results under it (the tool draws the list),
     labelled listLabel, for tools that make several results at once, such as the hash algorithms.
+    layout "analysis": as "list", for tools that count or measure the input: the results (drawn by ui/frequencies.js) are
+    figures and tables, which scroll on their own.
 
     id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
     and names downloads.
@@ -24,7 +26,7 @@
             <div class="tool-pane__head">
                 <label class="tool-pane__label" for="{{ id }}Text">Input<span class="visually-hidden"> for the {{ name }}</span></label>
             </div>
-            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="{{ 4 if layout == 'list' else 6 }}" placeholder="{{ placeholder }}" autocomplete="off"></textarea>
+            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="{{ 6 if layout == 'panes' else 4 }}" placeholder="{{ placeholder }}" autocomplete="off"></textarea>
             <div class="tool-pane__status">
                 <span id="{{ id }}InputStatus" role="status"></span>
                 <span data-count-input></span>
@@ -42,7 +44,7 @@
             </label>
         </div>
     </div>
-    {%- if layout == "list" %}
+    {%- if layout == "list" or layout == "analysis" %}
     <div class="tool-frame__stack">
         {{ inputPane | safe }}
         <div class="tool-pane" data-download-name="{{ name }}">
@@ -50,8 +52,9 @@
                 <span class="tool-pane__label" id="{{ id }}ResultsLabel">{{ listLabel }}</span>
                 {% include "components/select-copy-dl.njk" %}
             </div>
-            <div id="{{ id }}Results" class="tool-pane__list data-to-copy active" tabindex="0" role="region"
-                aria-labelledby="{{ id }}ResultsLabel" aria-describedby="{{ id }}Status"></div>
+            {#- A list scrolls as a whole, so it can be focused to scroll from the keyboard; an analysis's tables each do #}
+            <div id="{{ id }}Results" class="{{ 'tool-pane__analysis' if layout == 'analysis' else 'tool-pane__list' }} data-to-copy active"
+                {%- if layout == "list" %} tabindex="0"{% endif %} role="region" aria-labelledby="{{ id }}ResultsLabel" aria-describedby="{{ id }}Status"></div>
             <div class="tool-pane__status">
                 <span id="{{ id }}Status" role="status"></span>
                 <span data-count-output></span>

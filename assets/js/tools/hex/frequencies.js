@@ -1,44 +1,55 @@
 import * as toolkit from "../../lib/toolkit.js";
-import { styledArrayFrequencies } from "../../ui/frequencies.js";
-import { bindTool } from "../../ui/tool.js";
+import { bindToolFrame } from "../../ui/tool-frame.js";
+import { renderFrequencies, characterCell, characterName } from "../../ui/frequencies.js";
 import * as frequencies from "../../lib/hex/frequencies.js";
 
-const delimiter = () => document.getElementById("frequenciesDelimiter").value;
+const delimiter = document.getElementById("frequenciesDelimiter");
 
-const hexFrequencies = [
-    { delimiterLength: 2, label: "Hex frequencies", minSize: 6 },
-    { delimiterLength: 4, label: "Hex frequencies [double]", minSize: 8 },
-    { delimiterLength: 6, label: "Hex frequencies [triple]", minSize: 9 },
-    { delimiterLength: 8, label: "Hex frequencies [quad]", minSize: 10 },
-    { delimiterLength: 10, label: "Hex frequencies [quint]", minSize: 12 }
+// Single bytes, then runs of the same byte repeated
+const tables = [
+    { id: "bytes", name: "Bytes", runLength: 1 },
+    { id: "runs2", name: "Runs of 2", runLength: 2 },
+    { id: "runs3", name: "Runs of 3", runLength: 3 },
+    { id: "runs4", name: "Runs of 4", runLength: 4 },
+    { id: "runs5", name: "Runs of 5", runLength: 5 },
 ];
 
-function renderStat(label, value) {
-    return `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
-                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
-                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                    ${value}
-                </code>&nbsp;<br />
-            </div>`;
-}
+// The byte as text, as hex editors show it, with names for bytes that can't be seen
+const charOf = (row) => String.fromCharCode(row.code);
+const columns = [
+    { key: "value", label: "Value", mono: true, text: (row) => row.value },
+    { key: "code", label: "Char", mono: true, text: (row) => characterName(charOf(row)) ?? charOf(row), html: (row) => characterCell(charOf(row)) },
+];
 
-bindTool({
-    button: "frequenciesDecode",
-    input: "frequenciesText",
-    output: "frequenciesResults",
-    clear: true,
-    errorPrefix: "An error occurred trying to generate frequencies",
-    run: (text) => ({
-        characterCount: text.replaceAll(delimiter(), "").length,
-        tables: hexFrequencies.map(({ delimiterLength, label, minSize }) =>
-            ({ label, minSize, freqs: frequencies.generateHexFrequencies(text, delimiter(), delimiterLength) })),
-    }),
-    render: ({ characterCount, tables }, output) => {
-        output.innerHTML = renderStat("Character count", characterCount);
-        for (const { label, minSize, freqs } of tables) {
-            if (toolkit.objectSize(freqs) > 0) {
-                output.insertAdjacentHTML("beforeend", styledArrayFrequencies(freqs, label, minSize));
+bindToolFrame({
+    id: "frequencies",
+    modes: [{
+        button: "frequenciesRun",
+        run: (text) => {
+            const bytes = toolkit.hexToPairs(text);
+            if (bytes.length === 0) {
+                throw new Error("there's no hex to count");
             }
-        }
-    },
+            const counted = tables.map(({ id, name, runLength }) => ({
+                id, name, columns,
+                rows: Object.entries(frequencies.generateHexFrequencies(text, delimiter.value, runLength * 2)).map(([value, count]) => ({
+                    value, count, code: parseInt(toolkit.hexToPairs(value)[0], 16),
+                })),
+            }));
+            const [mostCommon] = [...counted[0].rows].sort((a, b) => b.count - a.count);
+            const longest = frequencies.longestHexRun(text);
+            return {
+                stats: [
+                    { label: "Bytes", value: bytes.length.toLocaleString() },
+                    { label: "Unique bytes", value: counted[0].rows.length.toLocaleString() },
+                    { label: "Most common", value: `${mostCommon.value} × ${mostCommon.count.toLocaleString()}` },
+                    { label: "Longest run", value: longest.length > 1 ? `${longest.byte} × ${longest.length.toLocaleString()}` : "None" },
+                ],
+                tables: counted,
+            };
+        },
+    }],
+    watch: ["frequenciesDelimiter"],
+    render: (results, output) => renderFrequencies(output, results),
+    errorPrefix: "Couldn't count the hex",
 });

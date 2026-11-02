@@ -1,37 +1,39 @@
-import * as toolkit from '../../lib/toolkit.js';
-import { styledUniqueArrayItems, styledArrayFrequencies } from '../../ui/frequencies.js';
+import { bindToolFrame, resultRow } from '../../ui/tool-frame.js';
+import { renderFrequencies, characterCell, characterName } from '../../ui/frequencies.js';
 import * as frequencies from '../../lib/text/frequencies.js';
-import { bindTool } from '../../ui/tool.js';
 
 // Stats to display
 const stats = [
-    { label: "Word count", stat: "word-count" },
-    { label: "Character count", stat: "char-count" },
-    { label: "Character count (no spaces)", stat: "char-count-ns" },
-    { label: "Letter count", stat: "letter-count" },
-    { label: "Letter count (only capitals)", stat: "letter-count-caps" },
-    { label: "Letter count (only lowercase)", stat: "letter-count-low" },
-    { label: "Number count", stat: "number-count" },
-    { label: "Special character count", stat: "special-count" },
-    { label: "Special character count (no spaces)", stat: "special-count-ns" }
+    { label: "Words", stat: "word-count" },
+    { label: "Characters", stat: "char-count" },
+    { label: "Characters without spaces", stat: "char-count-ns" },
+    { label: "Letters", stat: "letter-count" },
+    { label: "Capital letters", stat: "letter-count-caps" },
+    { label: "Lowercase letters", stat: "letter-count-low" },
+    { label: "Numbers", stat: "number-count" },
+    { label: "Special characters", stat: "special-count" },
+    { label: "Special characters without spaces", stat: "special-count-ns" }
 ];
 
-bindTool({
-    button: "frequenciesDecode",
-    input: "frequenciesText",
-    output: "frequenciesResults",
-    clear: true,
-    run: (text) => text,
-    render: (text, output) => {
-        output.innerHTML = stats.map(({ label, stat }) =>
-            `<div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxl-3">
-                <span class="display-6 fs-5">${label}</span>&nbsp;<br />
-                <code tabindex="0" class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2" role="note">
-                    ${frequencies.stringStats(text, stat)}
-                </code>&nbsp;<br />
-            </div>`
-        ).join("");
-        output.insertAdjacentHTML("beforeend", styledUniqueArrayItems(toolkit.uniqueArray(text)));
-        output.insertAdjacentHTML("beforeend", styledArrayFrequencies(toolkit.countArrayFreq(text), "Unique character frequencies"));
-    },
+const columns = [
+    { key: "char", label: "Char", mono: true, text: (row) => characterName(row.char) ?? row.char, html: (row) => characterCell(row.char) },
+    { key: "first", label: "First seen", numeric: true, startDescending: false, text: (row) => row.first.toLocaleString() },
+];
+
+bindToolFrame({
+    id: "frequencies",
+    modes: [{
+        button: "frequenciesRun",
+        run: (text) => {
+            const rows = frequencies.characterFrequencies(text);
+            return {
+                stats: stats.map(({ label, stat }) => ({ label, value: frequencies.stringStats(text, stat).toLocaleString() })),
+                // Every character once, in the order each first appears, to copy as text
+                extra: resultRow({ label: `${rows.length.toLocaleString()} unique`, value: rows.map((row) => row.char).join("") }),
+                tables: [{ id: "characters", name: "Character frequencies", columns, rows }],
+            };
+        },
+    }],
+    render: (results, output) => renderFrequencies(output, results),
+    errorPrefix: "Couldn't count the text",
 });

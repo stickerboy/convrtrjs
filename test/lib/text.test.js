@@ -4,7 +4,7 @@ import * as toolkit from "../../assets/js/lib/toolkit.js";
 import * as strings from "../../assets/js/lib/strings.js";
 import * as convrtrs from "../../assets/js/lib/text/convrtrs.js";
 import { flipText } from "../../assets/js/lib/text/flip.js";
-import { stringStats } from "../../assets/js/lib/text/frequencies.js";
+import { stringStats, characterFrequencies } from "../../assets/js/lib/text/frequencies.js";
 
 describe("binary", () => {
     it("encodes text as space-separated bytes", () => {
@@ -219,6 +219,10 @@ describe("replace and frequencies (toolkit)", () => {
         assert.deepEqual(toolkit.uniqueArray("hello"), ["h", "e", "l", "o"]);
         assert.deepEqual(toolkit.countArrayFreq("hello"), { h: 1, e: 1, l: 2, o: 1 });
     });
+    it("keeps emoji whole when finding and counting unique characters", () => {
+        assert.deepEqual(toolkit.uniqueArray("a😀😀"), ["a", "😀"]);
+        assert.deepEqual(toolkit.countArrayFreq("😀😀"), { "😀": 2 });
+    });
 });
 
 describe("text frequencies (stats)", () => {
@@ -230,6 +234,34 @@ describe("text frequencies (stats)", () => {
         assert.equal(stringStats(s, "letter-count"), 10);
         assert.equal(stringStats(s, "number-count"), 3);
         assert.equal(stringStats(s, "special-count-ns"), 1);
+        assert.equal(stringStats(s, "special-count"), 3);
+    });
+    it("splits words on any spaces, tabs and new lines", () => {
+        assert.equal(stringStats("one  two\nthree\tfour ", "word-count"), 4);
+        assert.equal(stringStats("", "word-count"), 0);
+        assert.equal(stringStats("  \n", "word-count"), 0);
+    });
+    it("leaves tabs and new lines out of the counts without spaces", () => {
+        assert.equal(stringStats("a b\nc\td", "char-count-ns"), 4);
+        assert.equal(stringStats("a!\n?", "special-count-ns"), 2);
+    });
+    it("counts accented letters and other alphabets as letters", () => {
+        assert.equal(stringStats("Café Жж", "letter-count"), 6);
+        assert.equal(stringStats("Café Жж", "letter-count-caps"), 2);
+        assert.equal(stringStats("Café Жж", "letter-count-low"), 4);
+        assert.equal(stringStats("Café Жж", "special-count-ns"), 0);
+    });
+    it("counts an emoji as one character", () => {
+        assert.equal(stringStats("a😀", "char-count"), 2);
+        assert.equal(stringStats("a😀", "special-count"), 1);
+    });
+    it("counts each character in the order it first appears", () => {
+        assert.deepEqual(characterFrequencies("hello"), [
+            { char: "h", count: 1, first: 1 }, { char: "e", count: 1, first: 2 },
+            { char: "l", count: 2, first: 3 }, { char: "o", count: 1, first: 5 },
+        ]);
+        assert.deepEqual(characterFrequencies("😀a😀"), [{ char: "😀", count: 2, first: 1 }, { char: "a", count: 1, first: 2 }]);
+        assert.deepEqual(characterFrequencies(""), []);
     });
 });
 

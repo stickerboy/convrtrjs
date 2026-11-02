@@ -345,7 +345,7 @@ export function decimalToString(string) {
 }
 
 /**
- * Return an array of unique character groups from a string, divided into chunks
+ * Return an array of unique character groups from a string, divided into chunks. Emoji count as one character.
  * @param {string} str - The input string.
  * @param {Number} [chunkSize=1] - The size of each chunk. Default is 1.
  * @returns {Array} - An array of unique character groups for each chunk.
@@ -355,10 +355,10 @@ export function uniqueArray(str, chunkSize = 1) {
         throw new Error("Invalid chunk size");
     }
 
+    const characters = [...str];
     const chunks = [];
-    for (let i = 0; i < str.length; i += chunkSize) {
-        const chunk = str.substring(i, i + chunkSize);
-        chunks.push(chunk);
+    for (let i = 0; i < characters.length; i += chunkSize) {
+        chunks.push(characters.slice(i, i + chunkSize).join(""));
     }
 
     return [...new Set(chunks)];
@@ -383,7 +383,7 @@ export function replaceChars(string, toReplace, replacement, caseSensitive) {
 
 /**
  * Simple and efficient method of returning frequency counts of each unique grouping of the same characters in an array
- * If a delimiter is present, removes those characters from the string before processing.
+ * If a delimiter is present, removes those characters from the string before processing. Emoji count as one character.
  * Based on code from this stackoverflow post
  * https://stackoverflow.com/a/66002712/3172872
  *
@@ -403,12 +403,13 @@ export function countArrayFreq(string, chunkSize = 1, delimiter) {
     }
 
     // Split the string into substrings of the specified chunk size
+    const characters = [...string];
     let split = [];
-    for (let i = 0; i <= string.length - chunkSize; i += chunkSize) {
-        const chunk = string.substring(i, i + chunkSize);
+    for (let i = 0; i <= characters.length - chunkSize; i += chunkSize) {
+        const chunk = characters.slice(i, i + chunkSize);
         // Check if all characters in the chunk are the same
-        if (chunk.split("").every(char => char === chunk[0])) {
-            split.push(chunk);
+        if (chunk.every(char => char === chunk[0])) {
+            split.push(chunk.join(""));
         }
     }
 

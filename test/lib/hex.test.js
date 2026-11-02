@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import { reverseHexBytes, reverseHexByteOrder, reverseHexNibbles } from "../../assets/js/lib/hex/reverse.js";
 import { shiftHexString, shiftHexKey } from "../../assets/js/lib/hex/shift.js";
-import { generateHexFrequencies } from "../../assets/js/lib/hex/frequencies.js";
+import { generateHexFrequencies, longestHexRun } from "../../assets/js/lib/hex/frequencies.js";
 import { isValidHex, hexToPairs, hexToBytes, bytesToHex } from "../../assets/js/lib/toolkit.js";
 
 describe("hex reverse", () => {
@@ -43,8 +43,24 @@ describe("hex frequencies", () => {
     it("counts repeated runs of the same byte", () => {
         assert.deepEqual(generateHexFrequencies("48 48 65 65", " ", 4), { "48 48": 1, "65 65": 1 });
     });
+    it("counts runs wherever they start", () => {
+        assert.deepEqual(generateHexFrequencies("20 41 41", " ", 4), { "41 41": 1 });
+        assert.deepEqual(generateHexFrequencies("20 41 41 41", " ", 6), { "41 41 41": 1 });
+    });
+    it("counts a longer run as several shorter ones", () => {
+        assert.deepEqual(generateHexFrequencies("41 41 41 41 41", " ", 4), { "41 41": 2 });
+        assert.deepEqual(generateHexFrequencies("41 41 41 41 41", " ", 2), { "41": 5 });
+    });
+    it("counts bytes in either case together", () => {
+        assert.deepEqual(generateHexFrequencies("6c 6C", " ", 2), { "6C": 2 });
+    });
     it("rejects invalid hex", () => {
         assert.throws(() => generateHexFrequencies("zz", " ", 2), /invalid characters/);
+    });
+    it("finds the longest run, the first of any tie", () => {
+        assert.deepEqual(longestHexRun("00 41 41 41 00 00"), { byte: "41", length: 3 });
+        assert.deepEqual(longestHexRun("00 00 41 41"), { byte: "00", length: 2 });
+        assert.deepEqual(longestHexRun("48 65"), { byte: "48", length: 1 });
     });
 });
 

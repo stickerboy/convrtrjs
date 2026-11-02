@@ -6,7 +6,11 @@ import { getLocalStorageItem, saveLocalStorage } from "./storage.js";
 const LIVE_LIMIT = 200000;
 
 const byId = (id) => document.getElementById(id);
-const characters = (length) => `${length.toLocaleString()} character${length === 1 ? "" : "s"}`;
+// How many characters text has, counting an emoji (two UTF-16 units) as one, as the tools themselves do
+const characters = (text) => {
+    const length = text.length - (text.match(/[\uD800-\uDBFF](?=[\uDC00-\uDFFF])/g)?.length ?? 0);
+    return `${length.toLocaleString()} character${length === 1 ? "" : "s"}`;
+};
 
 /**
  * Wires up a tool built with the toolFrame macro (macros/tool-frame.njk): its action buttons, live typing, the status
@@ -58,14 +62,15 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             output.value = "";
         } else {
             output.replaceChildren();
+            delete output.dataset.copy;
             frame.querySelector("[data-count-output]").textContent = "";
         }
     };
 
     const updateCounts = () => {
-        frame.querySelector("[data-count-input]").textContent = characters(input.value.length);
+        frame.querySelector("[data-count-input]").textContent = characters(input.value);
         if (isBox) {
-            frame.querySelector("[data-count-output]").textContent = characters(output.value.length);
+            frame.querySelector("[data-count-output]").textContent = characters(output.value);
         }
     };
 
@@ -211,7 +216,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         });
     }
 
-    // The "list" layout's rows (see renderResults) each copy their own value
+    // Rows of results (see resultRow) each copy their own value
     output.addEventListener("click", (event) => {
         const button = event.target.closest("[data-copy-result]");
         if (!button) {
@@ -296,7 +301,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     setStatus();
 }
 
-const escapeHtml = (string) => String(string).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+export const escapeHtml = (string) => String(string).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
 /**
  * Draws a "list" layout's results as labelled rows, each with its own copy button, optionally in groups. Each row reads
@@ -308,15 +313,23 @@ const escapeHtml = (string) => String(string).replace(/[&<>"]/g, (c) => ({ "&": 
  * @param {string} [count] - Shown under the list, e.g. "16 hashes".
  */
 export function renderResults(output, items, count = "") {
-    const row = ({ label, value }) =>
-        `<div class="tool-result" data-value="${escapeHtml(value)}" data-label="${escapeHtml(label)}">` +
+    output.innerHTML = items.map((item) => (item.rows
+        ? `<div class="tool-result-group"><h3 class="tool-result-group__title">${escapeHtml(item.name)}` +
+          `${item.note ? ` <small>(${escapeHtml(item.note)})</small>` : ""}</h3>\n${item.rows.map(resultRow).join("")}</div>\n`
+        : resultRow(item))).join("");
+    output.closest("[data-tool-frame]").querySelector("[data-count-output]").textContent = count;
+}
+
+/**
+ * One row of results (see renderResults): a label, the value, and a button that copies the value.
+ *
+ * @param {{label: string, value: string}} row
+ * @returns {string} The row's HTML.
+ */
+export function resultRow({ label, value }) {
+    return `<div class="tool-result" data-value="${escapeHtml(value)}" data-label="${escapeHtml(label)}">` +
         `<span class="tool-result__label">${escapeHtml(label)}<span class="visually-hidden">: </span></span>` +
         `<code class="tool-result__value">${escapeHtml(value)}</code>` +
         `<button type="button" class="btn btn-md btn-light" aria-label="Copy ${escapeHtml(label)}" title="Copy" data-copy-result>` +
         `<i class="bi bi-clipboard" aria-hidden="true"></i></button></div>\n`;
-    output.innerHTML = items.map((item) => (item.rows
-        ? `<div class="tool-result-group"><h3 class="tool-result-group__title">${escapeHtml(item.name)}` +
-          `${item.note ? ` <small>(${escapeHtml(item.note)})</small>` : ""}</h3>\n${item.rows.map(row).join("")}</div>\n`
-        : row(item))).join("");
-    output.closest("[data-tool-frame]").querySelector("[data-count-output]").textContent = count;
 }

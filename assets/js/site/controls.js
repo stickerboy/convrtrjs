@@ -85,7 +85,7 @@ if (resetButtons.length > 0) {
 
 
 // The select, copy and download buttons act on the .data-to-copy.active element in their tool pane (macros/tool-frame.njk),
-// or in their card for tools without one
+// or in their card for tools without one. Results drawn as HTML, such as tables, can give their text in data-copy.
 
 // Select and focus contents of an element
 const selectButtons = document.getElementsByClassName("btn-select");
@@ -93,7 +93,7 @@ if (selectButtons.length > 0) {
     Array.from(selectButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
-        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        let dtc = textarea.localName === "textarea" ? textarea.value : (textarea.dataset.copy ?? textarea.textContent);
         const tooltip = bootstrap.Tooltip.getInstance(c);
 
         Array.from(selectButtons, button => {
@@ -136,7 +136,7 @@ if (copyButtons.length > 0) {
     Array.from(copyButtons, c => c.addEventListener("click", function () {
         let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
-        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        let dtc = textarea.localName === "textarea" ? textarea.value : (textarea.dataset.copy ?? textarea.textContent);
         const tooltip = bootstrap.Tooltip.getInstance(c);
 
         Array.from(copyButtons, button => {
@@ -186,7 +186,7 @@ if (downloadButtons.length > 0) {
         let card = c.closest(".tool-pane, .card");
         let textarea = card.querySelector(".data-to-copy.active");
         let dt = card.dataset.downloadName ?? card.querySelector(".card-label").textContent;
-        let dtc = textarea.localName === "textarea" ? textarea.value : textarea.textContent;
+        let dtc = textarea.localName === "textarea" ? textarea.value : (textarea.dataset.copy ?? textarea.textContent);
         const tooltip = bootstrap.Tooltip.getInstance(c);
 
         Array.from(downloadButtons, button => {

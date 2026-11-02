@@ -1,0 +1,231 @@
+// The frame's "analysis" layout (ui/frequencies.js): figures first, then tables of counts that sort and scroll on their
+// own, in folds when there are several.
+
+.tool-pane__analysis {
+    > .tool-result {
+        margin-bottom: 0.75rem;
+    }
+}
+
+// Each figure's value above its label, in a grid ruled by the cells' own right and bottom edges, so a part-filled last
+// row leaves plain space rather than empty cells
+.tool-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    margin: 0 0 0.75rem;
+    overflow: hidden;
+    background-color: var(--bs-tertiary-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    &__item {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+        gap: 0.125rem;
+        padding: 0.5rem 0.75rem;
+        box-shadow: var(--bs-border-width) var(--bs-border-width) 0 var(--bs-border-color);
+    }
+
+    dt {
+        font-size: 0.8125rem;
+        font-weight: 400;
+        color: var(--bs-secondary-color);
+    }
+
+    dd {
+        margin: 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+}
+
+.frequency-fold {
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    & + & {
+        margin-top: 0.5rem;
+    }
+
+    summary {
+        display: flex;
+        gap: 0.625rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0 0.75rem;
+        font-weight: 600;
+        list-style: none;
+        cursor: pointer;
+        border-radius: var(--bs-border-radius);
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        .bi {
+            color: var(--convrtr-accent);
+            transition: transform $convrtr-transition-duration ease-in-out;
+        }
+
+        small {
+            margin-left: auto;
+            font-weight: 400;
+            font-variant-numeric: tabular-nums;
+            color: var(--bs-secondary-color);
+        }
+    }
+
+    &[open] summary .bi {
+        transform: rotate(90deg);
+    }
+
+    // Shorter inside a fold, so an open Bytes table leaves the runs in view
+    .frequency-table {
+        max-height: 18rem;
+        border: 0;
+        border-top: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: 0 0 var(--bs-border-radius) var(--bs-border-radius);
+    }
+}
+
+// Scrolls within a set height with the header row kept in view. It can be focused, so it scrolls from the keyboard too.
+.frequency-table {
+    max-height: 24rem;
+    overflow: auto;
+    overscroll-behavior: contain;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    &:focus-visible {
+        outline: 0;
+        box-shadow: $focus-ring-box-shadow;
+    }
+
+    &__table {
+        width: 100%;
+        margin: 0;
+        font-size: 0.875rem;
+        border-spacing: 0;
+        border-collapse: separate;
+    }
+
+    th,
+    td {
+        padding: 0.375rem 0.75rem;
+        white-space: nowrap;
+        border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+
+        // Phones: tighter, so a table of single bytes fits without scrolling sideways
+        @include media-breakpoint-down(sm) {
+            padding-inline: 0.5rem;
+        }
+    }
+
+    // Share takes what's left, for its bar
+    th:last-child,
+    td:last-child {
+        width: 40%;
+    }
+
+    th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        padding-block: 0;
+        height: 2.75rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: var(--bs-secondary-color);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        background-color: var(--bs-tertiary-bg);
+
+        // 44px tall, as every other control
+        button {
+            display: inline-flex;
+            gap: 0.125rem;
+            align-items: center;
+            min-height: 2.75rem;
+            padding: 0;
+            font: inherit;
+            color: inherit;
+            text-transform: inherit;
+            letter-spacing: inherit;
+            background: none;
+            border: 0;
+            transition: color $convrtr-transition-duration ease-in-out;
+
+            &:hover {
+                color: var(--bs-emphasis-color);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--convrtr-accent);
+                outline-offset: -2px;
+            }
+
+            .bi {
+                font-size: 1.125rem;
+            }
+        }
+
+        &[aria-sort] button {
+            color: var(--bs-emphasis-color);
+        }
+    }
+
+    tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    tbody tr {
+        transition: background-color $convrtr-transition-duration ease-in-out;
+
+        &:hover {
+            background-color: var(--bs-tertiary-bg);
+        }
+    }
+
+    // A character that can't be seen, by name: Space, New line
+    &__name {
+        padding: 0 0.375rem;
+        font-family: var(--bs-body-font-family);
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius-sm);
+    }
+
+    &__share {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+        min-width: 7rem;
+        font-variant-numeric: tabular-nums;
+    }
+
+    // A set width, so the bars after it line up
+    &__percent {
+        min-width: 3.25rem;
+        text-align: right;
+    }
+
+    &__track {
+        flex: 1 1 auto;
+        order: 1;
+    }
+
+    &__bar {
+        display: block;
+        min-width: 2px;
+        height: 0.5rem;
+        background-color: var(--convrtr-accent);
+        border-radius: 0.25rem;
+    }
+}

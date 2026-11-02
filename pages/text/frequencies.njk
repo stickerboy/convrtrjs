@@ -4,30 +4,18 @@ tags: tools
 heading: "Character frequencies"
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
-    For a given string of text, list out the frequencies of various character combinations. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+    For a given string of text, count its words, characters, letters and numbers, and list how often each character appears. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
+</p>
+<p class="px-2">
+    Letters include accented letters and other alphabets, spaces include tabs and new lines, and an emoji counts as one character. Sort the table by First seen to list each character in the order it first appears. Copy and download give the table as tab-separated text, which pastes into a spreadsheet.
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Character frequencies</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Text" class="visually-hidden">Characters to check</label>
-            <textarea placeholder="Enter some text and click the 'Generate' button below" rows="6" id="{{ filename }}Text" class="form-control word-freqs" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="d-flex justify-content-start align-items-center">
-                <button type="button" class="btn btn-md btn-convrtr" id="{{ filename }}Decode" title="Generate character frequencies">Generate</button>
-                {% include "components/select-copy-dl.njk" %}
-            </div>
-            <hr />
-            <div class="">
-                <div class="grid g-4 my-1 data-to-copy active convrtr-results" id="{{ filename }}Results"></div>
-            </div>
-        </div>
-    </div>
-</div>
+{% call toolFrame(filename, "Character frequencies", placeholder = "Example: Meet me at the old mill", layout = "analysis") %}
+<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Count</button>
+{% endcall %}
 {% endcall %}
