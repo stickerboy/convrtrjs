@@ -25,7 +25,7 @@
       "id": "hex",
       "hint": "Two characters per byte",
       "cardLabel": "Hexadecimal",
-      "popoverContent": "Replacement of spaces, hyphens, colons and commas are supported here. \"\\x\" and \"0x\" can be used as delimiters, but will not currently decode correctly. Find out more about Hexidecimal on the <a href=\"http://en.wikipedia.org/wiki/Hexidecimal\" class=\"text-convrtr\" title=\"Hexidecimal on Wikipedia\">Hexidecimal</a> Wikipedia page",
+      "popoverContent": "Spaces, hyphens, colons, commas, \"\\x\" and \"0x\" can all be used as delimiters: choose the one your hex uses. Find out more about Hexadecimal on the <a href=\"https://en.wikipedia.org/wiki/Hexadecimal\" class=\"text-convrtr\" title=\"Hexadecimal on Wikipedia\">Hexadecimal</a> Wikipedia page",
       "placeholder": "Example: 48 65 6c 6c 6f",
       "buttonId": "hexDecode",
       "buttonLabel": "Decode Hexadecimal",
