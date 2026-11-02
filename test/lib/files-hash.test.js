@@ -2,25 +2,68 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import zlib from "node:zlib";
-import { getFileHeader, matchFileHeader, convertToHexString } from "../../assets/js/lib/files/check.js";
+import { getFileHeader, matchFileHeader, convertToHexString, HEADER_LENGTH } from "../../assets/js/lib/files/check.js";
+import HEADERS from "../../assets/js/data/headers.json" with { type: "json" };
 import { generateHashes, crc32 } from "../../assets/js/lib/ciphers/hash.js";
 
 describe("file check", () => {
-    const png = new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0, 0, 0, 0x0D, 0x49, 0x48, 0x44, 0x52, 0xFF, 0xFF]);
+    const png = new Uint8Array([0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0, 0, 0, 0x0D, 0x49, 0x48, 0x44, 0x52, ...Array(24).fill(0xFF)]);
+    const text = (string) => [...Buffer.from(string, "latin1")];
 
     it("formats bytes as hex", () => {
         assert.equal(convertToHexString(new Uint8Array([0, 15, 255])), "00 0f ff");
     });
     it("recognises a PNG header", () => {
-        assert.match(matchFileHeader("89 50 4e 47 0d 0a 1a 0a"), /Portable Network Graphics/);
+        const match = matchFileHeader("89 50 4e 47 0d 0a 1a 0a");
+        assert.equal(match.name, "PNG image");
+        assert.deepEqual(match.extensions, ["png"]);
+        assert.equal(match.header, "89 50 4E 47 0D 0A 1A 0A");
     });
     it("returns null for an unknown header", () => {
         assert.equal(matchFileHeader("00 11 22 33"), null);
     });
-    it("reads only the first 16 bytes of a file", async () => {
+    it("only matches headers at the start of a file", () => {
+        // "BM" (BMP) and "MZ" (Windows program) partway in
+        assert.equal(matchFileHeader(text("hello BM MZ")), null);
+    });
+    it("prefers the longest header that matches", () => {
+        assert.equal(matchFileHeader("FF FE 00 00 41 00").name, "UTF-32 text (little endian)");
+        assert.equal(matchFileHeader("FF FE 41 00").name, "UTF-16 text (little endian)");
+    });
+    it("matches any byte where a header has ??", () => {
+        const webp = [...text("RIFF"), 1, 2, 3, 4, ...text("WEBPVP8 ")];
+        assert.equal(matchFileHeader(webp).name, "WebP image");
+        assert.deepEqual(matchFileHeader(webp).mask, [true, true, true, true, false, false, false, false, true, true, true, true]);
+        assert.equal(matchFileHeader([...text("RIFF"), 1, 2, 3, 4, ...text("WAVE")]).name, "WAV audio");
+        assert.equal(matchFileHeader([...text("RIFF"), 1, 2, 3, 4, ...text("XXXX")]).name, "RIFF file");
+        assert.equal(matchFileHeader([0, 0, 0, 0x18, ...text("ftypheic")]).name, "HEIC image");
+        assert.equal(matchFileHeader([0, 0, 0, 0x18, ...text("ftypzzzz")]).name, "ISO media");
+    });
+    it("tells MP3 and GIF apart", () => {
+        assert.equal(matchFileHeader(text("ID3\x03\x00")).name, "MP3 audio");
+        assert.equal(matchFileHeader(text("GIF89a")).name, "GIF image");
+    });
+    it("matches the OpenSSH private key header within the bytes read", () => {
+        assert.equal(matchFileHeader(text("-----BEGIN OPENSSH PRIVATE KEY-----\nb3Blbn")).name, "OpenSSH private key");
+        assert.equal(matchFileHeader(text("-----BEGIN CERTIFICATE-----")).name, "PEM file");
+    });
+    it("reads the first 36 bytes of a file", async () => {
         const header = await getFileHeader(new Blob([png]));
-        assert.equal(header.hex, "89 50 4e 47 0d 0a 1a 0a 00 00 00 0d 49 48 44 52");
-        assert.match(header.label, /Portable Network Graphics/);
+        assert.equal(header.bytes.length, 36);
+        assert.equal(header.hex.split(" ").length, 36);
+        assert.equal(header.match.name, "PNG image");
+    });
+    it("keeps every header within the bytes read, written as hex or ??", () => {
+        for (const { name, hex } of HEADERS) {
+            for (const header of hex) {
+                assert.match(header, /^(?:[0-9A-F]{2}|\?\?)(?: (?:[0-9A-F]{2}|\?\?))*$/, name);
+                assert.ok(header.split(" ").length <= HEADER_LENGTH, name);
+            }
+        }
+    });
+    it("has no header twice", () => {
+        const all = HEADERS.flatMap((type) => type.hex);
+        assert.equal(new Set(all).size, all.length);
     });
 });
 

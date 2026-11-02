@@ -135,3 +135,24 @@ morsenarySetting.addEventListener("change", function () {
     }
     document.getElementById("mrsnryDecode").click();
 });
+
+// Opened from a link with text to decode, such as the Exif reader's "Open in Convrtrs": #base64=<text>, or any other
+// format on the page. The link's text only ever goes into a box as its value (never into the page as HTML), up to a
+// set length, and is decoded as live typing would, with problems shown under the box. The address is then cleared, so
+// reloading or sharing the page doesn't bring the text back.
+const LINK_LIMIT = 10000;
+const [linked] = [...new URLSearchParams(location.hash.slice(1))].filter(([id]) => Object.hasOwn(formats, id));
+if (linked) {
+    const [id, text] = linked;
+    history.replaceState(null, "", location.pathname + location.search);
+    if (text.length > LINK_LIMIT) {
+        setStatus(id, `The link's text is too long to open: over ${LINK_LIMIT.toLocaleString()} characters`, { error: true });
+    } else {
+        box(id).value = text;
+        convertFrom(id, { typed: true });
+        if (box(id).getAttribute("aria-invalid") !== "true") {
+            setStatus(id, "Source, opened from a link");
+        }
+        box(id).focus();
+    }
+}

@@ -112,8 +112,8 @@ export function renderFrequencies(output, { stats, extra = "", tables }) {
             ? visible.map((table, index) => {
                 const values = `${table.rows.length.toLocaleString()} ${table.rows.length === 1 ? "value" : "values"}`;
                 const isOpen = firstRun ? index === 0 : open.has(table.id);
-                return `<details class="frequency-fold" data-table="${table.id}"${isOpen ? " open" : ""}>` +
-                    `<summary><i class="bi bi-chevron-right" aria-hidden="true"></i>${escapeHtml(table.name)}<small>${values}</small></summary>` +
+                return `<details class="tool-fold" data-table="${table.id}"${isOpen ? " open" : ""}>` +
+                    `<summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>${escapeHtml(table.name)}<small>${values}</small></summary>` +
                     `${tableBlock(table)}</details>`;
             }).join("")
             : visible.map(tableBlock).join(""));

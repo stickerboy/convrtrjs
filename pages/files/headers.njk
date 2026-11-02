@@ -1,56 +1,53 @@
 ---
 title: File headers
 tags: tools
-noScript: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
-    A list of common file headers in hexadecimal format, useful if you have a chunk of data so you can quickly match it with a potential file type.
+    A list of common file headers in hexadecimal format: the bytes a file of each type starts with. Useful if you have a chunk of data and want to quickly match it with a potential file type, or use <a href="/files/check/" class="text-convrtr">Check file type</a> to match a file's header for you.
 </p>
 <p class="px-2">
-    More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
+    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">??</code> stands for any byte, so a header that starts partway into the file is written where it sits. Filter by name, extension or hex: the hex can be written with or without spaces. More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="card">
-    <span class="card-label visually-hidden">File headers in hexadecimal format</span>
-    <div class="card-body py-3">
-        <hr />
-    </div>
-    <div class="card-footer py-3">
-        <div class="table-responsive">
-            <table class="table table-striped hash-table">
-                <caption class="visually-hidden">
-                    File type reference table: includes format descriptions, hexadecimal headers, and common file extensions
-                </caption>
-                <thead class="table-convrtr">
+<div class="tool-frame">
+    <div class="tool-frame__stack">
+        <div class="file-headers__filter">
+            <div class="input-group">
+                <label class="input-group-text" for="{{ filename }}Filter"><i class="bi bi-search" aria-hidden="true"></i><span class="visually-hidden">Filter file headers</span></label>
+                <input type="search" class="form-control" id="{{ filename }}Filter" placeholder="Name, extension or hex, such as png or 89 50" autocomplete="off" spellcheck="false" aria-describedby="{{ filename }}Count">
+            </div>
+            <span class="tool-pane__status" id="{{ filename }}Count" role="status">{{ headers | length }} file types</span>
+        </div>
+        <div class="file-headers" tabindex="0" role="region" aria-labelledby="{{ filename }}Caption">
+            <table class="file-headers__table">
+                <caption class="visually-hidden" id="{{ filename }}Caption">File headers: each file type, the bytes it starts with, and its usual extensions</caption>
+                <thead>
                     <tr>
-                        <th scope="col" class="col-4 col-md-4 col-lg-4">Description</th>
+                        <th scope="col">File type</th>
                         <th scope="col">Header</th>
                         <th scope="col">Extensions</th>
                     </tr>
                 </thead>
-                <tbody class="active" id="fileResults">
-                    {% for header in headers %}
-                        {% for item in header.hex %}
-                            {% if loop.first %}
-                            <tr>
-                                <th scope="row" rowspan="{{ header.hex | length }}">
-                                    <span class="display-6 fs-6 fw-normal">{{ header.label }}</span>
-                                </th>
-                                <td>{{ item }}</td>
-                                <td rowspan="{{ header.hex | length }}">{{ header.extensions }}</td>
-                            </tr>
-                            {% else %}
-                            <tr>
-                                <td>{{ item }}</td>
-                            </tr>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
+                <tbody>
+                    {%- for header in headers %}
+                    <tr data-search="{{ [header.name, header.description, header.extensions] | join(' ') | lower }}"
+                        data-hex="{{ header.hex | join('|') | replace(' ', '') | replace('??', '|') | lower }}">
+                        <th scope="row">{{ header.name }}<small>{{ header.description }}</small></th>
+                        <td class="file-headers__hex">
+                            {%- for item in header.hex %}
+                            <span>{{ item | replace("??", '<span class="file-headers__any">??</span>') | safe }}</span>
+                            {%- endfor %}
+                        </td>
+                        <td>{{ header.extensions or "—" }}</td>
+                    </tr>
+                    {%- endfor %}
                 </tbody>
             </table>
+            <p class="file-headers__empty" id="{{ filename }}Empty" hidden>No file types match</p>
         </div>
     </div>
 </div>

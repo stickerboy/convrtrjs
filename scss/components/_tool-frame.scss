@@ -329,6 +329,50 @@ $tool-frame-side-by-side-tabs: 66rem;
     }
 }
 
+// A fold in a tool's results, such as one of several tables or files: a 44px summary with a chevron (.tool-fold__chevron)
+// that turns when open, and a count or note on the right
+.tool-fold {
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    & + & {
+        margin-top: 0.5rem;
+    }
+
+    summary {
+        display: flex;
+        gap: 0.625rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0 0.75rem;
+        font-weight: 600;
+        list-style: none;
+        cursor: pointer;
+        border-radius: var(--bs-border-radius);
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        .tool-fold__chevron {
+            color: var(--convrtr-accent);
+            transition: transform $convrtr-transition-duration ease-in-out;
+        }
+
+        small {
+            margin-left: auto;
+            font-weight: 400;
+            font-variant-numeric: tabular-nums;
+            color: var(--bs-secondary-color);
+        }
+    }
+
+    &[open] .tool-fold__chevron {
+        transform: rotate(90deg);
+    }
+}
+
 // Rows in a "list" layout's results (renderResults in ui/tool-frame.js): a label, the value, and a copy button,
 // optionally in groups with a heading. .is-match highlights a row, as "Check a hash" does.
 .tool-result-group {

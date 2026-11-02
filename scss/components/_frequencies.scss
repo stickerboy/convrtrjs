@@ -1,5 +1,5 @@
 // The frame's "analysis" layout (ui/frequencies.js): figures first, then tables of counts that sort and scroll on their
-// own, in folds when there are several.
+// own, in folds (.tool-fold) when there are several.
 
 .tool-pane__analysis {
     > .tool-result {
@@ -43,47 +43,7 @@
     }
 }
 
-.frequency-fold {
-    background-color: var(--bs-body-bg);
-    border: var(--bs-border-width) solid var(--bs-border-color);
-    border-radius: var(--bs-border-radius);
-
-    & + & {
-        margin-top: 0.5rem;
-    }
-
-    summary {
-        display: flex;
-        gap: 0.625rem;
-        align-items: center;
-        min-height: 2.75rem;
-        padding: 0 0.75rem;
-        font-weight: 600;
-        list-style: none;
-        cursor: pointer;
-        border-radius: var(--bs-border-radius);
-
-        &::-webkit-details-marker {
-            display: none;
-        }
-
-        .bi {
-            color: var(--convrtr-accent);
-            transition: transform $convrtr-transition-duration ease-in-out;
-        }
-
-        small {
-            margin-left: auto;
-            font-weight: 400;
-            font-variant-numeric: tabular-nums;
-            color: var(--bs-secondary-color);
-        }
-    }
-
-    &[open] summary .bi {
-        transform: rotate(90deg);
-    }
-
+.tool-fold {
     // Shorter inside a fold, so an open Bytes table leaves the runs in view
     .frequency-table {
         max-height: 18rem;

@@ -99,3 +99,42 @@
     {%- endif %}
 </div>
 {% endmacro %}
+
+{#
+    The frame a file tool sits in: a drop zone (a label for the real file input, so it's one control from the keyboard
+    and for screen readers), a line saying the file stays on the device, then the results with select, copy and
+    download. assets/js/ui/file-drop.js wires it up.
+
+    {% from "macros/tool-frame.njk" import fileFrame %}
+    {% call fileFrame(filename, "Exif reader", formats = "JPEG, PNG or HEIC", privacy = "Read in your browser, never uploaded", accept = "image/*") %}{% endcall %}
+
+    formats says what can be dropped; multiple lets several files be chosen at once. Element ids start with id: <id>Input,
+    <id>Results, <id>Status.
+#}
+{% macro fileFrame(id, name, formats, privacy, accept = "", multiple = false) %}
+<div class="tool-frame" data-tool-frame>
+    <div class="tool-frame__stack">
+        <div>
+            <label class="tool-drop" data-drop>
+                <input type="file" class="tool-drop__input" id="{{ id }}Input"{% if accept %} accept="{{ accept }}"{% endif %}{% if multiple %} multiple{% endif %} aria-describedby="{{ id }}Formats {{ id }}Privacy">
+                <i class="bi bi-file-earmark-arrow-up tool-drop__icon" aria-hidden="true"></i>
+                <span class="tool-drop__title" data-drop-title>{{ "Drop files here" if multiple else "Drop a file here" }}</span>
+                <span class="tool-drop__formats" id="{{ id }}Formats">or <u>{{ "choose files" if multiple else "choose a file" }}</u> · {{ formats }}</span>
+            </label>
+            <p class="tool-drop__privacy" id="{{ id }}Privacy"><i class="bi bi-lock" aria-hidden="true"></i>{{ privacy }}</p>
+        </div>
+        {{ caller() if caller }}
+        {#- Shown once there's a file to show results for #}
+        <div class="tool-pane" data-download-name="{{ name }}" data-file-results hidden>
+            <div class="tool-pane__head">
+                <span class="tool-pane__label" id="{{ id }}ResultsLabel">Results</span>
+                {% include "components/select-copy-dl.njk" %}
+            </div>
+            <div id="{{ id }}Results" class="tool-pane__analysis data-to-copy active" role="region" aria-labelledby="{{ id }}ResultsLabel" aria-describedby="{{ id }}Status"></div>
+            <div class="tool-pane__status">
+                <span id="{{ id }}Status" role="status"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}

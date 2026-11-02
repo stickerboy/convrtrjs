@@ -270,3 +270,21 @@ describe("flip", () => {
         assert.equal(flipText("hello"), "oןןǝɥ");
     });
 });
+
+describe("guessEncoding", () => {
+    it("spots text encoded as binary, hex or Base64", () => {
+        assert.equal(convrtrs.guessEncoding("01001000 01101001 00100001"), "binary");
+        assert.equal(convrtrs.guessEncoding("57 45 53 54"), "hex");
+        assert.equal(convrtrs.guessEncoding("0x48, 0x65, 0x6c, 0x6c, 0x6f"), "hex");
+        assert.equal(convrtrs.guessEncoding(" SGVsbG8gd29ybGQ= "), "base64");
+    });
+    it("leaves words, numbers and dates alone, even when they're valid hex or Base64", () => {
+        for (const text of ["Make", "cafe", "deadbeef", "ABCD", "abcdefgh", "1234", "2024:03:14 09:26:53", "Hello world", ""]) {
+            assert.equal(convrtrs.guessEncoding(text), null, text);
+        }
+    });
+    it("needs the decoded text to be readable", () => {
+        assert.equal(convrtrs.guessEncoding("00000000 00000000 00000000"), null);
+        assert.equal(convrtrs.guessEncoding("ff fe fd fc"), null);
+    });
+});

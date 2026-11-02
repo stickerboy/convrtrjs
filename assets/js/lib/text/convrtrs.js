@@ -153,3 +153,49 @@ export function morsenaryToString(string, morsenarySetting = "default") {
     // Convert binary string back to text
     return binaryToString(binaryString.match(/.{1,8}/g).join(" "));
 }
+
+// Text a person could read: letters, numbers, punctuation, symbols and spaces, but not control characters or the
+// replacement character that bytes which aren't UTF-8 decode to
+const READABLE = /[\p{L}\p{M}\p{N}\p{P}\p{S}\p{Zs}\n\r\t]/gu;
+const isReadable = (text) => {
+    const characters = [...text];
+    const readable = (text.replace(/�/g, "").match(READABLE) ?? []).length;
+    return characters.length >= 3 && readable / characters.length >= 0.9;
+};
+
+/**
+ * Guesses whether text is encoded in a format Convrtrs decodes: binary, hex or Base64. It must be written wholly in
+ * that format, at least 3 bytes long, and decode to readable text, so words that happen to be valid hex or Base64
+ * ("cafe", "Make") aren't mistaken for it.
+ *
+ * @param {string} text - The text to check.
+ * @returns {"binary"|"hex"|"base64"|null} The format (as Convrtrs names it), or null if it doesn't look encoded.
+ *
+ * @example
+ * // Input: "SGVsbG8gd29ybGQ="
+ * // Output: "base64"
+ */
+export function guessEncoding(text) {
+    const trimmed = text.trim();
+    const decodes = (decode) => {
+        try {
+            return isReadable(decode(trimmed));
+        } catch {
+            return false;
+        }
+    };
+    // Bytes as UTF-8 only: the tools fall back to one character per byte, which reads as accented letters
+    const utf8 = (bytes) => new TextDecoder("utf-8", { fatal: true }).decode(new Uint8Array(bytes));
+    const bits = (binary) => binary.replace(/[^01]/g, "").match(/.{8}/g).map((byte) => parseInt(byte, 2));
+    // Binary is also valid hex, and hex is also valid Base64, so they're tried in that order
+    if (/^[01]{8}(?:[\s,]*[01]{8}){2,}$/.test(trimmed) && decodes((binary) => utf8(bits(binary)))) {
+        return "binary";
+    }
+    if (/[0-9a-f]{2}/i.test(trimmed) && toolkit.isValidHex(trimmed) && decodes((hex) => utf8(toolkit.hexToBytes(hex)))) {
+        return "hex";
+    }
+    if (/^[A-Za-z0-9+/]{4,}={0,2}$/.test(trimmed) && trimmed.length % 4 === 0 && decodes(base64ToString)) {
+        return "base64";
+    }
+    return null;
+}

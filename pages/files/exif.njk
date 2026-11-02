@@ -3,17 +3,21 @@ title: Exif reader
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import fileFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
     The Exif reader tool allows you to pull metadata information from a variety of image file types, such as GPS information, camera information (like exposure, aperture, device make and model), and more. This metadata can often be where puzzle makers hide information.
 </p>
 <p class="px-2">
+    Text fields, such as comments and descriptions, are shown first, and any value that looks encoded (as binary, hex or Base64) is marked, with a link that opens it in <a href="/convrtrs/" class="text-convrtr" data-convrtrs-link>Convrtrs</a> to decode. Every tag follows, grouped by where it's stored in the file.
+</p>
+<p class="px-2">
     {%- set supported_file_types = "JPEG,TIFF,PNG,HEIC,AVIF,WebP,GIF".split(",") %}
-    The Exif reader supports the following file types: 
+    The Exif reader supports the following file types:
     {%- for fileType in supported_file_types %}
     <code
-        class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ fileType }}</code> 
+        class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ fileType }}</code>
     {%- endfor %}
 </p>
 <blockquote>
@@ -23,22 +27,5 @@ tags: tools
 </blockquote>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Check Exif information</span>
-        <div class="card-body">
-            <div class="mb-3">
-                <label for="exifInput" class="form-label visually-hidden">Select a file</label>
-                <input class="form-control" type="file" id="exifInput">
-            </div>
-        </div>
-        <div class="card-footer py-3">
-            <div class="d-flex justify-content-start align-items-center">
-                {% include "components/select-copy-dl.njk" %}
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
-        </div>
-    </div>
-</div>
+{% call fileFrame(filename, "Exif reader", formats = "JPEG, TIFF, PNG, HEIC, AVIF, WebP or GIF", privacy = "Read in your browser. Your image is never uploaded.", accept = "image/*,.heic,.heif,.avif") %}{% endcall %}
 {% endcall %}
