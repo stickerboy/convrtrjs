@@ -1,48 +1,290 @@
-.elements-grid {
-    overflow: hidden auto;
-    max-height: 20rem;
+// The periodic table (pages/misc/elementstable.njk) and the Elements converter.
+
+// Each category's tint and edge, as categoryKey in lib/misc/elements.js groups them. The tints keep text at 4.5:1 or
+// more, and the edges set elements apart.
+$periodic-categories: (
+    "alkali": (#fde2e1, #c75a56, #4a2726, #e08884),
+    "alkaline": (#fdebd3, #b97a2f, #4a3620, #d9a05e),
+    "transition": (#fbf1c7, #9c8120, #463e1c, #cfb24a),
+    "post-transition": (#dff1d6, #5a8f47, #2c3f26, #86bb71),
+    "metalloid": (#d4efe9, #2f8775, #1f3e38, #5ebba8),
+    "nonmetal": (#d9ebfb, #3c7bb5, #1f3449, #74afe2),
+    "noble": (#e6e1fa, #7362bb, #332c4d, #a597e3),
+    "lanthanide": (#f6def0, #a5528c, #45263b, #d18bbc),
+    "actinide": (#f1e2d8, #946048, #43302a, #c3967d),
+    "unknown": (#eceeed, #7b8580, #333a38, #98a29d),
+);
+
+@each $key, $colours in $periodic-categories {
+    .periodic--#{$key} {
+        --periodic-tint: #{nth($colours, 1)};
+        --periodic-edge: #{nth($colours, 2)};
+    }
 }
-.p-element {
-    flex: 1 1 calc(10% - 0.5rem);
-    min-width: 8rem;
-    max-width: 12rem;
+@include color-mode(dark, true) {
+    @each $key, $colours in $periodic-categories {
+        .periodic--#{$key} {
+            --periodic-tint: #{nth($colours, 3)};
+            --periodic-edge: #{nth($colours, 4)};
+        }
+    }
 }
 
-// Grid-based periodic table rows: highlight every other row as the column count changes
-.elements-table {
-    .col {
-        min-height: 2.5rem;
+// The real table needs 18 columns of about 2.6rem: below that, elements run as tiles in atomic number order
+$periodic-table-width: 50rem;
 
-        @media (max-width: 575px) {
-            padding-top: calc(var(--bs-gutter-x) * 0.5);
-            padding-bottom: calc(var(--bs-gutter-x) * 0.5);
+.periodic {
+    &__count {
+        margin: 0 0 0 auto;
+    }
 
-            &:nth-child(2n + 2) {
-                background-color: var(--convrtr-row-highlight);
-            }
-        }
-        @media (min-width: 576px) and (max-width: 767px) {
-            padding-top: calc(var(--bs-gutter-x) * 0.5);
-            padding-bottom: calc(var(--bs-gutter-x) * 0.5);
+    &__scroll {
+        container: periodic / inline-size;
+    }
 
-            &:nth-of-type(4n - 1),
-            &:nth-of-type(4n) {
-                background-color: var(--convrtr-row-highlight);
-            }
+    // Tiles in atomic number order, scrolling within a set height
+    &__table {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+        gap: 0.375rem;
+        max-height: 28rem;
+        padding: 0.25rem;
+        overflow: auto;
+        overscroll-behavior: contain;
+    }
+
+    // Where the lanthanides and actinides sit in the real table
+    &__gap {
+        display: none;
+        place-items: center;
+        font-size: 0.6875rem;
+        color: var(--bs-secondary-color);
+        text-align: center;
+    }
+}
+
+.periodic-element {
+    position: relative;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    min-width: 0;
+    min-height: 4.75rem;
+    padding: 0.125rem;
+    color: var(--bs-body-color);
+    background-color: var(--periodic-tint);
+    border: 0.125rem solid var(--periodic-edge);
+    border-radius: var(--bs-border-radius);
+    transition: opacity $convrtr-transition-duration ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+    &:hover {
+        z-index: 2;
+        box-shadow: var(--bs-box-shadow);
+        @media (prefers-reduced-motion: no-preference) {
+            transform: scale(1.08);
         }
-        @media (max-width: 767px) {
-            &:empty {
-                display: none;
-            }
+    }
+
+    &:focus-visible {
+        z-index: 3;
+        outline: 3px solid var(--convrtr-accent);
+        outline-offset: 1px;
+    }
+
+    &[aria-pressed="true"] {
+        z-index: 3;
+        outline: 3px solid var(--bs-emphasis-color);
+        outline-offset: 1px;
+    }
+
+    &--dim {
+        opacity: 0.25;
+    }
+
+    &__number {
+        position: absolute;
+        top: 0.0625rem;
+        left: 0.25rem;
+        font-size: 0.625rem;
+        font-variant-numeric: tabular-nums;
+        color: var(--bs-secondary-color);
+    }
+
+    &__symbol {
+        font-size: 1.375rem;
+        font-weight: 700;
+        line-height: 1.1;
+    }
+
+    &__name {
+        max-width: 100%;
+        overflow: hidden;
+        font-size: 0.6875rem;
+        color: var(--bs-secondary-color);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+// The legend: each category, which highlights it when pressed
+.periodic-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+
+    &__item {
+        display: inline-flex;
+        gap: 0.375rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.8125rem;
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: 2rem;
+        transition: background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out;
+
+        &:hover {
+            background-color: var(--convrtr-accent-subtle);
         }
-        // Four columns per row: highlight the first four of every eight
-        @media (min-width: 767px) {
-            &:nth-of-type(8n + 1),
-            &:nth-of-type(8n + 2),
-            &:nth-of-type(8n + 3),
-            &:nth-of-type(8n + 4) {
-                background-color: var(--convrtr-row-highlight);
-            }
+
+        &[aria-pressed="true"] {
+            font-weight: 600;
+            background-color: var(--convrtr-accent-subtle);
+            border-color: var(--convrtr-accent);
         }
+    }
+
+    &__swatch {
+        width: 0.875rem;
+        height: 0.875rem;
+        background-color: var(--periodic-tint);
+        border: 0.125rem solid var(--periodic-edge);
+        border-radius: 0.1875rem;
+    }
+}
+
+// The chosen element: a large tile, its summary and facts
+.periodic-details {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.5rem 1.25rem;
+    align-items: start;
+    padding: 1rem;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    &__tile {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        width: 6.5rem;
+        aspect-ratio: 1;
+        font-size: 0.8125rem;
+        color: var(--bs-secondary-color);
+        background-color: var(--periodic-tint);
+        border: 0.125rem solid var(--periodic-edge);
+        border-radius: var(--bs-border-radius-lg);
+
+        b {
+            font-size: 2.25rem;
+            line-height: 1;
+            color: var(--bs-emphasis-color);
+        }
+    }
+
+    &__name {
+        margin: 0 0 0.5rem;
+        font-size: 1.375rem;
+        font-weight: 600;
+    }
+
+    p {
+        max-width: 75ch;
+        font-size: 0.9375rem;
+    }
+
+    &__facts {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+        gap: 0.5rem 1.25rem;
+        margin: 0 0 1rem;
+
+        dt {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--bs-secondary-color);
+        }
+
+        dd {
+            margin: 0;
+            font-size: 0.875rem;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    &__more {
+        margin: 0;
+    }
+
+    @include media-breakpoint-down(sm) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+// The Elements converter's From, swap and To, kept together
+.elements-convert {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+// The real table, when there's room: after the tiles' rules, which it overrides
+@container periodic (min-width: #{$periodic-table-width}) {
+    .periodic__table {
+        grid-template-columns: repeat(18, minmax(0, 1fr));
+        gap: 0.1875rem;
+        max-height: none;
+        overflow: visible;
+
+        > * {
+            grid-row: var(--y);
+            grid-column: var(--x);
+        }
+
+        // A gap above the lanthanides and actinides, as the table is printed
+        &::before {
+            grid-row: 8;
+            grid-column: 1 / -1;
+            height: 0.75rem;
+            content: "";
+        }
+    }
+
+    .periodic__gap {
+        display: grid;
+    }
+
+    .periodic-element {
+        aspect-ratio: 1 / 1.1;
+        min-height: 0;
+
+        // Names only fit once each cell is wide enough (see below)
+        &__name {
+            display: none;
+            font-size: 0.5625rem;
+        }
+
+        &__symbol {
+            font-size: 1.0625rem;
+        }
+    }
+}
+
+@container periodic (min-width: 72rem) {
+    .periodic-element__name {
+        display: block;
     }
 }

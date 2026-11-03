@@ -12,10 +12,6 @@
     transition: color $convrtr-transition-duration ease-in-out, box-shadow $convrtr-transition-duration ease-in-out;
 }
 
-// Header cells in the grid-based elements table
-.convrtr-table-header {
-    background-color: var(--bs-primary-bg-subtle);
-}
 
 .hash-table {
     td {

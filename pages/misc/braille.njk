@@ -3,54 +3,21 @@ title: Braille
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
 <p class="px-2">
-    Convert Braille to text and vice-versa. The "Create image" button downloads an image version of the generated Braille.
+    Convert Braille to text and vice-versa. "Save as image" downloads the Braille in the output as a picture.
 </p>
 <p class="px-2">
-     There is more information available on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Halopedia page. 
+     There is more information available on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Wikipedia page. 
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
-        <div class="card-body text-center">
-            <label for="{{ filename }}Textarea" class="visually-hidden">Braille conversion</label>
-            <textarea placeholder="Enter some text and click the 'Convert' button below" rows="6" id="{{ filename }}Textarea" class="form-control flip-text" autocomplete="off"></textarea>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                        <div class="w-auto text-start">
-                            <button role="button" class="btn btn-md btn-convrtr" id="{{ filename }}Convert" title="Create between braille and text">Convert</button>
-                            <button role="button" class="btn btn-md btn-convrtr" id="generateBrailleImage" title="Create an image from Braille symbols">Create image</button>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-auto flex-fill">
-                        <div class="row row-cols-auto g-0">
-                            <div class="col col-sm-8 col-md-auto ms-0 mx-sm-2 me-md-auto">
-                                <div class="form-check form-switch mx-lg-2 d-flex">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Switch" aria-checked="false" aria-labelledby="{{ filename }}Switch">
-                                    <label class="form-check-label" id="{{ filename }}SwitchLabel" for="{{ filename }}Switch">Convert Text to Braille</label>
-                                </div>
-                                <div class="form-check form-switch mx-lg-2 d-flex">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="brImageTransparency" aria-checked="false" aria-labelledby="brImageTransparencyLabel">
-                                    <label class="form-check-label" id="brImageTransparencyLabel" for="brImageTransparency">Transparent background <span class="visually-hidden">for Braille image</span></label>
-                                </div>
-                            </div>
-                            <div class="col d-flex flex-fill justify-content-end">
-                                {% include "components/select-copy-dl.njk" %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="braille data-to-copy active convrtr-results"></div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠓⠑⠇⠇⠕", saveImage = true) %}
+<div class="btn-group" role="group" aria-label="Convert">
+    <button class="btn btn-convrtr" type="button" id="{{ filename }}ToBraille" aria-pressed="true">To Braille</button>
+    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}ToText" aria-pressed="false">To text</button>
 </div>
+{% endcall %}
 {% endcall %}

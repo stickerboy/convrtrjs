@@ -1,42 +1,40 @@
-import { emptyContainerCheck } from '../../ui/input.js';
-import { bindTool } from '../../ui/tool.js';
+import { bindToolFrame } from '../../ui/tool-frame.js';
 import { createImage } from '../../ui/image.js';
 import * as braille from '../../lib/misc/braille.js';
 
-let bR = document.getElementById("brailleResults");
-let bIT = document.getElementById("brImageTransparency");
-let brailleImage = document.getElementById("generateBrailleImage");
-let brailleSwitch = document.getElementById("brailleSwitch");
+const output = document.getElementById("brailleResults");
+const status = document.getElementById("brailleStatus");
+const toBraille = document.getElementById("brailleToBraille");
+const toText = document.getElementById("brailleToText");
 
-// Converts in the direction chosen by the switch: Braille to text when checked, otherwise text to Braille
-bindTool({
-    button: "brailleConvert",
-    input: "brailleTextarea",
-    output: "brailleResults",
-    clear: true,
-    run: (text) => brailleSwitch.checked ? braille.convertBraille(text) : braille.convertBraille(text, "text"),
+// Braille is shown larger, so its dots can be read
+const sizeOutput = (isBraille) => output.classList.toggle("braille-output", isBraille);
+toBraille.addEventListener("click", () => sizeOutput(true));
+toText.addEventListener("click", () => sizeOutput(false));
+sizeOutput(true);
+
+// convertBraille's mode names what it reads: "text" turns text into Braille
+bindToolFrame({
+    id: "braille",
+    modes: [
+        { button: "brailleToBraille", run: (text) => braille.convertBraille(text, "text") },
+        { button: "brailleToText", run: (text) => braille.convertBraille(text) },
+    ],
+    errorPrefix: "Couldn't convert the Braille",
 });
 
-brailleSwitch && brailleSwitch.addEventListener("click", function () {
-    this.nextElementSibling.innerText = brailleSwitch.checked ? "Convert Braille to Text" : "Convert Text to Braille";
-    if (brailleSwitch.checked) {
-        document.getElementById("brailleResults").classList.add("fs-6");
-        return false;
+// An image of the output, as it's shown
+const image = document.getElementById("brailleImage");
+image.addEventListener("click", () => {
+    if (output.value.trim() === "") {
+        status.textContent = "Convert some text to make an image of";
+        status.classList.add("text-danger");
+        return;
     }
-    document.getElementById("brailleResults").classList.remove("fs-6");
-});
-
-brailleImage && brailleImage.addEventListener("click", function () {
-    // The image is drawn from the results
-    if (!emptyContainerCheck(bR.innerText, bR, "There are no symbols present, please convert some text to generate an image")) {
-        return false;
-    }
-    let bOptions = {};
-    bOptions.font = `3rem system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"`;
-    bOptions.paddingTop = 0;
-    bOptions.fontAdjust = true;
-    if (bIT.checked) {
-        bOptions.bgcolor = "rgba(0, 0, 0, 0)";
-    }
-    createImage(bR.offsetWidth, bR.offsetHeight, "braille.png", brailleImage, bR.innerText, bOptions);
+    createImage(output.offsetWidth, output.offsetHeight, "braille.png", image, output.value, {
+        font: `3rem system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Segoe UI Symbol"`,
+        paddingTop: 0,
+        fontAdjust: true,
+        ...(document.getElementById("brailleTransparent").checked ? { bgcolor: "rgba(0, 0, 0, 0)" } : {}),
+    });
 });

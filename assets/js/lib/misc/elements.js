@@ -2,49 +2,52 @@
 const loadElements = () => import("../../data/elements.json", { with: { type: "json" } }).then((module) => module.default);
 
 /**
- * Converts periodic elements from a string representation to their corresponding target property values.
- * @param {string} string - The input string containing element representations.
- * @param {string} sourceProp - The property used for matching elements in the input string.
- * @param {string} targetProp - The target property whose value should be extracted.
- * @param {boolean} removeDelimiters - Whether to remove delimiters (optional, default is false).
- * @returns {Promise<string>} - The resulting string after converting elements.
- * @throws {Error} - Throws an error if an element with the specified source property is not found,
- * or if the target property does not exist for a matched element.
+ * Converts periodic elements from one property to another, such as atomic numbers to symbols. Values are matched on the
+ * property converted from only, as text and ignoring case, so "se", "Se" and "SE" all find selenium, and "1.008" its
+ * atomic mass.
+ * @param {string} string - The values, separated by spaces, commas, colons, semicolons or hyphens.
+ * @param {string} sourceProp - The property the values are, e.g. "number".
+ * @param {string} targetProp - The property to convert them to, e.g. "symbol".
+ * @param {boolean} [removeDelimiters=false] - Join the results with nothing, rather than the first separator used.
+ * @returns {Promise<string>} - The converted values.
+ * @throws {Error} - If a value doesn't match any element, or the element has no value for the property.
  */
-export async function convertElements(string, sourceProp, targetProp, removeDelimiters) {
+export async function convertElements(string, sourceProp, targetProp, removeDelimiters = false) {
     const ELEMENTS = await loadElements();
-    const strings = string.trim().split(/[ ,:;\-]+/);
-    const results = [];
-
-    for (const str of strings) {
-        let found = false;
-
-        for (const el of ELEMENTS) {
-            if (el.hasOwnProperty(sourceProp)) {
-                // Compare the value regardless of its type (string or number)
-                if (el[sourceProp] === str || el["number"] === Number(str)) {
-                    if (el.hasOwnProperty(targetProp)) {
-                        const targetValue = el[targetProp];
-                        results.push(targetValue);
-                        found = true;
-                        break;
-                    } else {
-                        throw new Error(`Property "${targetProp}" does not exist for ${el.name}`);
-                    }
-                }
-            }
+    const values = string.trim().split(/[ ,:;-]+/).filter(Boolean);
+    const results = values.map((value) => {
+        const element = ELEMENTS.find((el) => el[sourceProp] !== null && el[sourceProp] !== undefined
+            && String(el[sourceProp]).toLowerCase() === value.toLowerCase());
+        if (!element) {
+            throw new Error(`Element with ${sourceProp} "${value}" not found`);
         }
-
-        if (!found) {
-            throw new Error(`Element with ${sourceProp} "${str}" not found`);
+        if (element[targetProp] === null || element[targetProp] === undefined) {
+            throw new Error(`${element.name} has no ${targetProp}`);
         }
-    }
+        return element[targetProp];
+    });
+    return results.join(removeDelimiters ? "" : (string.match(/[ ,:;-]+/)?.[0] ?? " "));
+}
 
-    let convertedElements;
-    if (removeDelimiters && removeDelimiters === true) {
-        convertedElements = results.join("");
-    } else {
-        convertedElements = results.join(string.match(/[ ,\-]+/));
-    }
-    return convertedElements;
+// Element categories, grouped as the periodic table colours them: [key, name, test]. Unconfirmed elements ("unknown,
+// probably transition metal") join the group they're predicted to be in.
+export const CATEGORIES = [
+    ["alkali", "Alkali metals", (c) => c.includes("alkali metal")],
+    ["alkaline", "Alkaline earth metals", (c) => c.includes("alkaline earth")],
+    ["transition", "Transition metals", (c) => c.includes("transition metal") && !c.includes("post-transition")],
+    ["post-transition", "Post-transition metals", (c) => c.includes("post-transition")],
+    ["metalloid", "Metalloids", (c) => c.includes("metalloid")],
+    ["nonmetal", "Nonmetals", (c) => c.includes("nonmetal")],
+    ["noble", "Noble gases", (c) => c.includes("noble gas")],
+    ["lanthanide", "Lanthanides", (c) => c === "lanthanide"],
+    ["actinide", "Actinides", (c) => c === "actinide"],
+];
+
+/**
+ * Which of the periodic table's colour groups (CATEGORIES) an element's category belongs to.
+ * @param {string} category - The element's category, e.g. "diatomic nonmetal".
+ * @returns {string} The group's key, e.g. "nonmetal", or "unknown".
+ */
+export function categoryKey(category) {
+    return CATEGORIES.find(([, , test]) => test(category))?.[0] ?? "unknown";
 }

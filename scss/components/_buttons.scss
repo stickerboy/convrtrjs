@@ -106,3 +106,18 @@
     --bs-btn-disabled-bg: var(--convrtr-btn-light-bg);
     --bs-btn-disabled-border-color: var(--convrtr-btn-light-border);
 }
+
+// A button with an icon and text, such as "Save as image" (or an icon alone): a flex row, so the icon centres on the
+// text, and 44px for touch, as the tool frame's other controls are
+.btn-icon-text {
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+
+    .bi {
+        @extend %bi-centred;
+    }
+}

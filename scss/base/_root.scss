@@ -14,9 +14,6 @@
     --convrtr-accent-subtle: #{tint-color($convrtr, 90%)};
     --convrtr-accent-subtle-hover: #{$convrtr-100};
     --convrtr-accent-selected: #{$convrtr-selected};
-
-    // Alternating rows in grid-based tables
-    --convrtr-row-highlight: #{$gray-300};
 }
 
 @include color-mode(dark, true) {
@@ -28,6 +25,4 @@
     --convrtr-accent-subtle: #{shade-color($convrtr, 40%)};
     --convrtr-accent-subtle-hover: #{$convrtr-600};
     --convrtr-accent-selected: #{$convrtr-selected-dark};
-
-    --convrtr-row-highlight: #{$gray-900};
 }

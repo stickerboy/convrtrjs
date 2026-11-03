@@ -1,5 +1,93 @@
+// hexToChunks' blocks (lib/misc/colors.js), for anyone using it from the console
 .color-block {
     width: 1.75rem;
     height: 1.75rem;
     overflow: hidden;
+}
+
+// Colors: each color with its hex and the characters it holds, a strip of them all, and Save as image
+.color-results {
+    &__bar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.5rem;
+    }
+
+    &__count {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    &__note {
+        margin: 0.5rem 0 0;
+        font-size: 0.8125rem;
+        color: var(--bs-secondary-color);
+    }
+
+    &__text {
+        padding: 0.75rem 1rem;
+        margin: 0.75rem 0 0;
+        font-size: 1.125rem;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
+        background-color: var(--bs-tertiary-bg);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+    }
+}
+
+.color-strip {
+    display: flex;
+    height: 2.5rem;
+    overflow: hidden;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    span {
+        flex: 1 1 0;
+    }
+}
+
+.color-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr));
+    gap: 0.5rem;
+    max-height: 24rem;
+    padding: 0;
+    margin: 0.75rem 0 0;
+    overflow: auto;
+    overscroll-behavior: contain;
+    list-style: none;
+}
+
+.color-swatch {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0 0.5rem;
+    overflow: hidden;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    &__chip {
+        grid-column: 1 / -1;
+        height: 3.5rem;
+    }
+
+    &__hex {
+        padding: 0.25rem 0 0.25rem 0.625rem;
+        font-size: 0.8125rem;
+        color: var(--bs-body-color);
+    }
+
+    &__text {
+        padding: 0.25rem 0.625rem 0.25rem 0;
+        font-family: var(--bs-font-monospace);
+        font-size: 0.75rem;
+        color: var(--bs-secondary-color);
+        white-space: pre;
+    }
 }

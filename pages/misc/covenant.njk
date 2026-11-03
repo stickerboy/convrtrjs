@@ -3,57 +3,16 @@ title: Covenant glyphs
 tags: tools
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import glyphFrame %}
 {% set filename = page.fileSlug %}
-{%- set letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z".split(",") -%}
 {% set intro %}
 <p class="px-2">
-    Convert Covenant glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were featured during an episode of the Halo 5: Guardians behind the scenes show "<a href="https://www.halopedia.org/File:H5G_The_Sprint_Covenant_Font.png" title="Halopedia - Covenant Font image" class="text-convrtr">The Sprint</a>". The "Create image" button downloads an image version of the glyphs selected and displayed below the text version.
+    Convert Covenant glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were featured during an episode of the Halo 5: Guardians behind the scenes show "<a href="https://www.halopedia.org/File:H5G_The_Sprint_Covenant_Font.png" title="Halopedia - Covenant Font image" class="text-convrtr">The Sprint</a>". Type a message to see it in glyphs, or tap the glyphs you see to read them as letters. "Save as image" downloads the glyphs as a picture.
 </p>
 <p class="px-2">
      There is more information available on the <a href="https://www.halopedia.org/Sangheili_(language)" class="text-convrtr">Sangheili language</a> Halopedia page. 
 </p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden" data-pagefind-ignore="all">Covenant glyphs</span>
-        <div class="card-body text-center" data-pagefind-ignore="all">
-            <div class="mb-2">
-            {%- for i in range(0, 10) %}
-                <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-{{ i }}" aria-label="Glyph: {{ i }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: {{ i }}">{{ i }}</button>
-            {%- endfor -%}
-            {%- for letter in letters %}
-                <button type="button" class="btn btn-outline-convrtr p-0 mb-1 border border-3 border-convrtr rounded-circle cov-glyph" id="cov-{{ letter | upper }}" aria-label="Glyph: {{ letter | upper }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Glyph: {{ letter | upper }}">{{ letter | upper }}</button>
-            {%- endfor %}
-            </div>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-sm-0 gx-0 gy-2">
-                    <div class="col col-12 col-sm-auto flex-fill">
-                        <div class="row row-cols-auto g-1">
-                            <div class="input-group w-auto">
-                                <button role="button" class="btn btn-md btn-convrtr" id="generateCovenantImage" title="Create an image from Covenant glyphs">Create image</button>
-                            </div>
-                            <div class="form-check form-switch mx-2">
-                                <input class="form-check-input" type="checkbox" role="switch" id="covImageTransparency" aria-checked="false" aria-labelledby="covImageTransparencyLabel">
-                                <label class="form-check-label" id="covImageTransparencyLabel" for="covImageTransparency">Transparent background <span class="visually-hidden">for Covenant image</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-auto">
-                        <div class="row row-cols-auto g-0">
-                            <div class="col d-flex flex-fill justify-content-end">
-                                {% include "components/select-copy-dl.njk" %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="data-to-copy active convrtr-results h5"></div>
-            <div id="{{ filename }}ImageResults" class="covenant convrtr-results"></div>
-        </div>
-    </div>
-</div>
+{{ glyphFrame(filename, "Covenant glyphs", "'Covenant'", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")) }}
 {% endcall %}

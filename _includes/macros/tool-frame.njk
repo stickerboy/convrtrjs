@@ -17,10 +17,25 @@
     layout "analysis": as "list", for tools that count or measure the input: the results (drawn by ui/frequencies.js) are
     figures and tables, which scroll on their own.
 
+    saveImage, with the panes layout: a "Save as image" button and its transparent background switch under the output,
+    as the glyph tools have under their glyphs (<id>Image, <id>Transparent); the tool's script draws the image.
+
     id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
     and names downloads.
 #}
-{% macro toolFrame(id, name, placeholder = "", layout = "panes", listLabel = "Results", tabs = []) %}
+
+{#- "Save as image" and its transparent background switch, under what's saved, on the right #}
+{% macro saveImageControls(id) %}
+<div class="tool-save-image">
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="{{ id }}Transparent">
+        <label class="form-check-label" for="{{ id }}Transparent">Transparent background</label>
+    </div>
+    <button type="button" class="btn btn-light btn-icon-text" id="{{ id }}Image"><i class="bi bi-image" aria-hidden="true"></i>Save as image</button>
+</div>
+{% endmacro %}
+
+{% macro toolFrame(id, name, placeholder = "", layout = "panes", listLabel = "Results", tabs = [], saveImage = false) %}
 {%- set inputPane %}
         <div class="tool-pane">
             <div class="tool-pane__head">
@@ -93,6 +108,7 @@
             <div class="tool-pane__status">
                 <span id="{{ id }}Status" role="status"></span>
                 <span data-count-output></span>
+                {%- if saveImage %}{{ saveImageControls(id) }}{% endif %}
             </div>
         </div>
     </div>
@@ -133,6 +149,60 @@
             <div id="{{ id }}Results" class="tool-pane__analysis data-to-copy active" role="region" aria-labelledby="{{ id }}ResultsLabel" aria-describedby="{{ id }}Status"></div>
             <div class="tool-pane__status">
                 <span id="{{ id }}Status" role="status"></span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{#
+    The frame a glyph tool sits in (Pigpen, Covenant, Forerunner): the message as text you can type in, its glyphs drawn
+    as you type, and a keyboard of glyphs that types their letters at the cursor. assets/js/ui/glyph-keyboard.js wires it up.
+
+    {% from "macros/tool-frame.njk" import glyphFrame %}
+    {{ glyphFrame(filename, "Pigpen cipher", "'Pigpen Cipher'", "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")) }}
+
+    font is the glyph font, as CSS font-family; keys are the characters there are glyphs for, or {key, glyph} objects
+    where the font draws a glyph from a different character than its letter (as Forerunner's does).
+#}
+{% macro glyphFrame(id, name, font, keys, placeholder = "Example: MEET AT THE OAK") %}
+<div class="tool-frame glyph-frame" data-tool-frame data-glyph-keyboard style="--glyph-font: {{ font }}">
+    <div class="tool-frame__stack">
+        <div class="tool-pane" data-download-name="{{ name }}">
+            <div class="tool-pane__head">
+                <label class="tool-pane__label" for="{{ id }}Text">Message</label>
+                {% include "components/select-copy-dl.njk" %}
+            </div>
+            <textarea id="{{ id }}Text" class="form-control tool-pane__box data-to-copy active" rows="3" placeholder="{{ placeholder }}"
+                autocomplete="off" spellcheck="false" aria-describedby="{{ id }}Status"></textarea>
+            <div class="tool-pane__status">
+                <span id="{{ id }}Status" role="status"></span>
+                <span data-count-input></span>
+            </div>
+        </div>
+        <div class="tool-pane">
+            <div class="tool-pane__head">
+                <span class="tool-pane__label">Glyphs</span>
+            </div>
+            {#- Drawn from the message, which screen readers already have #}
+            <div class="glyph-frame__glyphs" id="{{ id }}Glyphs" aria-hidden="true" data-empty="The glyphs for your message appear here"></div>
+            {{ saveImageControls(id) }}
+        </div>
+        <div>
+            <p class="glyph-frame__hint" id="{{ id }}KeysHint">Type letters in the message, or tap glyphs to type their letters where the cursor is.</p>
+            <div class="glyph-frame__keys" role="group" aria-label="{{ name }} glyphs" aria-describedby="{{ id }}KeysHint">
+                {%- for item in keys %}
+                {%- set key = item.key if item.key else item %}
+                <button type="button" class="glyph-key" data-key="{{ key }}" data-glyph="{{ item.glyph if item.glyph else key }}" aria-label="{{ key }}">
+                    <span class="glyph-key__glyph" aria-hidden="true">{{ item.glyph if item.glyph else key }}</span>
+                    <span class="glyph-key__letter" aria-hidden="true">{{ key }}</span>
+                </button>
+                {%- endfor %}
+            </div>
+            <div class="glyph-frame__keybar">
+                <button type="button" class="btn btn-light glyph-frame__space" data-key=" ">Space</button>
+                <button type="button" class="btn btn-light btn-icon-text" data-backspace><i class="bi bi-backspace" aria-hidden="true"></i>Backspace</button>
+                <button type="button" class="btn btn-light" data-clear>Clear</button>
             </div>
         </div>
     </div>
