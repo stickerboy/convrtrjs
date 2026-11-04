@@ -3,6 +3,7 @@
 import "./components.js";
 import "./theme.js";
 import "./sections.js";
+import "./preferences.js";
 import "./controls.js";
 import "./nav.js";
 import "./switcher.js";

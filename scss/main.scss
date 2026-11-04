@@ -57,5 +57,8 @@
 @import "pages/changelog";
 @import "pages/ui-kit";
 
+// Display settings, last so they win over the rules above
+@import "base/preferences";
+
 @import "vendor/pagefind";
 @import "vendor/termsfeed";

@@ -9,8 +9,9 @@
         <script type="importmap">{ "imports": { "@noble/hashes/": "/assets/js/vendor/noble-hashes/" } }</script>
         {% include "partials/title.njk" %}
 
-        {#- Runs before the page is drawn, so it starts in the saved theme and sidebar state rather than flashing the defaults.
-            Both are saved by ui/storage.js as { value, ... }; theme.js takes over the theme once the page has loaded. #}
+        {#- Runs before the page is drawn, so it starts in the saved theme, sidebar state and display settings rather than
+            flashing the defaults. All are saved by ui/storage.js as { value, ... }; theme.js takes over the theme once the
+            page has loaded, and site/preferences.js the display settings (it sets the same attributes). #}
         <script>
             (function () {
                 const root = document.documentElement;
@@ -28,6 +29,16 @@
                 // The sidebar panel was left closed; see layout/_sidebar.scss
                 if (saved("sidebarPanel") === "closed") {
                     root.setAttribute("data-sidebar-panel", "closed");
+                }
+                // Display settings; see base/_preferences.scss
+                for (const [key, attribute] of [["reduceMotion", "data-reduce-motion"], ["compactLayout", "data-compact"], ["monoBoxes", "data-mono-boxes"]]) {
+                    if (saved(key) === "on") {
+                        root.setAttribute(attribute, "");
+                    }
+                }
+                const boxSize = saved("boxTextSize");
+                if (boxSize === "small" || boxSize === "large") {
+                    root.setAttribute("data-box-size", boxSize);
                 }
             })();
         </script>

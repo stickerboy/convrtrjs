@@ -1,0 +1,57 @@
+// Display settings from the Settings page. The <head> script in layouts/base.njk sets these attributes on <html>
+// before the page is drawn, and site/preferences.js keeps them up to date. Imported last, so they win over components.
+
+// Reduce motion: transitions and animations finish at once. They still run (for a hundredth of a millisecond), so
+// scripts that wait for them to end, such as Bootstrap's collapse, carry on as normal.
+[data-reduce-motion] {
+    scroll-behavior: auto !important;
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+// Compact layout: tighter spacing around page headings, tool sections and inside the tool frame. Controls keep their
+// 44px height for touch. !important beats Bootstrap's spacing utilities on the same elements.
+[data-compact] {
+    .page-header__inner {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+    }
+    .section-toggle {
+        padding-top: 1rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    .section-description {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+    .section > .collapse {
+        padding-bottom: 1rem !important;
+    }
+    .tool-frame__options {
+        padding: 0.5rem 0.75rem;
+    }
+    .tool-frame__panes,
+    .tool-frame__stack {
+        gap: 0.625rem 1rem;
+        padding: 0.625rem;
+    }
+}
+
+// The text in tool boxes: monospace, so hex, binary and Morse line up, and a smaller or larger size
+[data-mono-boxes] textarea.form-control {
+    font-family: var(--bs-font-monospace);
+}
+[data-box-size="small"] textarea.form-control {
+    font-size: 0.875rem;
+}
+[data-box-size="large"] textarea.form-control {
+    font-size: 1.125rem;
+}

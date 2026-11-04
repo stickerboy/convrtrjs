@@ -2,6 +2,7 @@
 // elsewhere on the site that sets it, so they always agree. Your data lists what's saved, and Reset all settings clears
 // it, with an Undo.
 import { getLocalStorageItem, isToolOpen, saveLocalStorage, saveToolOpen } from "../ui/storage.js";
+import { applyDisplayPreferences } from "./preferences.js";
 import { applyTheme } from "./theme.js";
 
 const page = document.querySelector("[data-settings]");
@@ -58,19 +59,49 @@ if (page) {
         }).observe(sidebar, { attributes: true, attributeFilter: ["data-panel"] });
     }
 
-    // ---------- Tools ----------
-    // The same keys, names and values as the switches on the tools (ui/tool-frame.js, tools/text/convrtrs.js)
-    const LIVE = [
+    // ---------- Switches saved as "on" or "off" ----------
+    // Live typing uses the same keys, names and values as the switches on the tools (ui/tool-frame.js,
+    // tools/text/convrtrs.js); the display settings are applied by site/preferences.js
+    const SWITCHES = [
+        { id: "settingReduceMotion", key: "reduceMotion", name: "Reduce motion", description: "Whether the site's animations are turned off" },
+        { id: "settingCompact", key: "compactLayout", name: "Compact layout", description: "Whether pages use tighter spacing" },
         { id: "settingLive", key: "toolsLive", name: "Live typing", description: "Whether tools convert as you type" },
         { id: "settingConvrtrsLive", key: "convrtrsLive", name: "Convrtrs live typing", description: "Whether Convrtrs converts as you type" },
+        { id: "settingAboutOpen", key: "aboutOpen", name: "More about this tool", description: "Whether each tool's More about this tool starts open" },
+        { id: "settingMono", key: "monoBoxes", name: "Monospace text", description: "Whether tool boxes use monospace text" },
     ];
-    for (const live of LIVE) {
-        const input = document.getElementById(live.id);
+    for (const setting of SWITCHES) {
+        const input = document.getElementById(setting.id);
         input.addEventListener("change", () => {
-            saveLocalStorage(live.key, live.name, input.checked ? "on" : "off", live.description);
-            saved(live.id, live.name);
+            saveLocalStorage(setting.key, setting.name, input.checked ? "on" : "off", setting.description);
+            applyDisplayPreferences();
+            saved(setting.id, setting.name);
         });
     }
+
+    // ---------- Text size and hex delimiter ----------
+    const boxSize = document.getElementById("settingBoxSize");
+    const showBoxSize = (value) => {
+        for (const button of boxSize.querySelectorAll("button")) {
+            button.setAttribute("aria-pressed", String(button.dataset.value === value));
+        }
+    };
+    boxSize.addEventListener("click", (event) => {
+        const button = event.target.closest("button");
+        if (button) {
+            saveLocalStorage("boxTextSize", "Text size", button.dataset.value, "The size of the text in tool boxes");
+            applyDisplayPreferences();
+            showBoxSize(button.dataset.value);
+            saved("settingBoxSize", "Text size");
+        }
+    });
+
+    const delimiter = document.getElementById("settingDelimiter");
+    delimiter.setAttribute("aria-describedby", "settingDelimiter-hint");
+    delimiter.addEventListener("change", () => {
+        saveLocalStorage("hexDelimiter", "Hex delimiter", delimiter.value, "What goes between bytes when a tool writes hex");
+        saved("settingDelimiter", "Hex delimiter");
+    });
 
     // ---------- Category pages ----------
     const categories = [...page.querySelectorAll("[data-settings-category]")];
@@ -113,8 +144,14 @@ if (page) {
     const LABELS = {
         theme: ["Theme", capitalise],
         sidebarPanel: ["Tool list beside the sidebar", (value) => (value === "closed" ? "Hidden" : "Shown")],
+        reduceMotion: ["Reduce motion", capitalise],
+        compactLayout: ["Compact layout", capitalise],
         toolsLive: ["Live typing", capitalise],
         convrtrsLive: ["Live typing in Convrtrs", capitalise],
+        aboutOpen: ["More about this tool", (value) => (value === "on" ? "Open to start with" : "Closed to start with")],
+        monoBoxes: ["Monospace text in the boxes", capitalise],
+        boxTextSize: ["Text size in the boxes", (value) => ({ small: "Smaller", large: "Larger" })[value] || "Normal"],
+        hexDelimiter: ["Hex delimiter", (value) => [...delimiter.options].find((option) => option.value === value)?.textContent.trim() || value],
     };
 
     function renderData() {
@@ -159,6 +196,7 @@ if (page) {
     const applySaved = () => {
         applyTheme(getLocalStorageItem("theme") || "auto", { save: false });
         document.dispatchEvent(new CustomEvent("convrtr:sidebarpanel", { detail: { open: getLocalStorageItem("sidebarPanel") !== "closed", save: false } }));
+        applyDisplayPreferences();
         showAll();
     };
     reset.addEventListener("click", () => {
@@ -184,9 +222,12 @@ if (page) {
     function showAll() {
         showTheme(getLocalStorageItem("theme") || "auto");
         panel.checked = getLocalStorageItem("sidebarPanel") !== "closed";
-        for (const live of LIVE) {
-            document.getElementById(live.id).checked = getLocalStorageItem(live.key) === "on";
+        for (const setting of SWITCHES) {
+            document.getElementById(setting.id).checked = getLocalStorageItem(setting.key) === "on";
         }
+        showBoxSize(getLocalStorageItem("boxTextSize") || "normal");
+        const savedDelimiter = getLocalStorageItem("hexDelimiter");
+        delimiter.value = savedDelimiter === false ? " " : savedDelimiter;
         for (const category of categories) {
             for (const input of toolSwitches(category)) {
                 input.checked = isToolOpen(input.dataset.toolKey);

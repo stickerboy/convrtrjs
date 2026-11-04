@@ -15,6 +15,7 @@ settingsGroups:
     elsewhere that sets it (the navbar's theme menu, the sidebar toggle, each tool's Live typing switch and each
     section's collapse button), so the two always agree. assets/js/site/settings.js wires it up.
 #}
+{%- from "macros/delimiter.njk" import delimiter %}
 {%- macro savedNote(id) %}<span class="setting__saved" data-saved="{{ id }}" aria-hidden="true">Saved</span>{% endmacro %}
 {%- macro switchSetting(id, name, hint) %}
 <div class="setting">
@@ -56,13 +57,41 @@ settingsGroups:
                 </div>
             </div>
             {{ switchSetting("settingPanel", "Show the tool list beside the sidebar", "The list of a category's tools, next to the icons on the left, on wider screens. The button at the top left does the same.") }}
+            {{ switchSetting("settingReduceMotion", "Reduce motion", "Turns off the site's animations, such as folds opening and the sidebar sliding, even if your device doesn't ask for less motion.") }}
+            {{ switchSetting("settingCompact", "Compact layout", "Tighter spacing around page headings, tools and their boxes, so more of a tool fits on screen. Buttons stay 44px tall for touch.") }}
         </section>
 
         <section class="settings-group" id="tools" aria-labelledby="tools-title">
             <h2 class="settings-group__title" id="tools-title"><i class="bi bi-sliders" aria-hidden="true"></i>Tools</h2>
-            <p class="settings-group__intro">How the tools behave when you open them.</p>
+            <p class="settings-group__intro">How every tool behaves and shows its text.</p>
             {{ switchSetting("settingLive", "Live typing", "Tools convert as you type, without pressing their button. Each tool's own switch changes this too.") }}
             {{ switchSetting("settingConvrtrsLive", "Live typing in Convrtrs", "Convrtrs has its own switch, as converting into every format at once can be slow on long text.") }}
+            {{ switchSetting("settingAboutOpen", "Open “More about this tool” to start with", "Show each tool's examples and links without opening the fold.") }}
+            {{ switchSetting("settingMono", "Monospace text in the boxes", "Every character takes the same width, so hex, binary and Morse line up in columns.") }}
+            <div class="setting">
+                <div class="setting__text">
+                    <span class="setting__name" id="settingBoxSize-label">Text size in the boxes</span>
+                    <small class="setting__hint" id="settingBoxSize-hint">For long puzzle data, or reading on a small screen.</small>
+                </div>
+                <div class="setting__end">
+                    {{ savedNote("settingBoxSize") }}
+                    <div class="setting-segments setting__control" role="group" aria-labelledby="settingBoxSize-label" aria-describedby="settingBoxSize-hint" id="settingBoxSize">
+                        <button type="button" aria-pressed="false" data-value="small">Smaller</button>
+                        <button type="button" aria-pressed="false" data-value="normal">Normal</button>
+                        <button type="button" aria-pressed="false" data-value="large">Larger</button>
+                    </div>
+                </div>
+            </div>
+            <div class="setting">
+                <div class="setting__text">
+                    <label class="setting__name" for="settingDelimiter">Hex delimiter</label>
+                    <small class="setting__hint" id="settingDelimiter-hint">What goes between bytes when a tool writes hex. Each tool's delimiter dropdown starts on this.</small>
+                </div>
+                <div class="setting__end">
+                    {{ savedNote("settingDelimiter") }}
+                    <div class="setting__control">{{ delimiter("setting") }}</div>
+                </div>
+            </div>
         </section>
 
         <section class="settings-group" id="categories" aria-labelledby="categories-title">
