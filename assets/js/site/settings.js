@@ -24,13 +24,16 @@ if (page) {
         renderData();
     };
 
-    // ---------- Appearance ----------
-    const theme = document.getElementById("settingTheme");
-    const showTheme = (value) => {
-        for (const button of theme.querySelectorAll("button")) {
+    // A choice of a few values, as a row of buttons: marks the chosen one
+    const showSegments = (group, value) => {
+        for (const button of group.querySelectorAll("button")) {
             button.setAttribute("aria-pressed", String(button.dataset.value === value));
         }
     };
+
+    // ---------- Appearance ----------
+    const theme = document.getElementById("settingTheme");
+    const showTheme = (value) => showSegments(theme, value);
     theme.addEventListener("click", (event) => {
         const button = event.target.closest("button");
         if (button) {
@@ -69,6 +72,8 @@ if (page) {
         { id: "settingConvrtrsLive", key: "convrtrsLive", name: "Convrtrs live typing", description: "Whether Convrtrs converts as you type" },
         { id: "settingAboutOpen", key: "aboutOpen", name: "More about this tool", description: "Whether each tool's More about this tool starts open" },
         { id: "settingMono", key: "monoBoxes", name: "Monospace text", description: "Whether tool boxes use monospace text" },
+        { id: "settingChain", key: "chainDecoders", name: "Chain decoders", description: "Whether Convrtrs starts with Chain decoders on" },
+        { id: "settingPreserve", key: "preserveSpaces", name: "Preserve spaces", description: "Whether Text tools starts with Preserve spaces on" },
     ];
     for (const setting of SWITCHES) {
         const input = document.getElementById(setting.id);
@@ -79,20 +84,37 @@ if (page) {
         });
     }
 
-    // ---------- Text size and hex delimiter ----------
-    const boxSize = document.getElementById("settingBoxSize");
-    const showBoxSize = (value) => {
-        for (const button of boxSize.querySelectorAll("button")) {
-            button.setAttribute("aria-pressed", String(button.dataset.value === value));
+    // ---------- Choices of a few values (a row of buttons) ----------
+    const SEGMENTS = [
+        { id: "settingBoxSize", key: "boxTextSize", name: "Text size", description: "The size of the text in tool boxes", start: "normal" },
+        { id: "settingMorsenary", key: "morsenaryDigits", name: "Morsenary digits", description: "Which Morse mark Convrtrs reads as 0 in Morsenary", start: "default" },
+    ];
+    for (const setting of SEGMENTS) {
+        const group = document.getElementById(setting.id);
+        group.addEventListener("click", (event) => {
+            const button = event.target.closest("button");
+            if (button) {
+                saveLocalStorage(setting.key, setting.name, button.dataset.value, setting.description);
+                applyDisplayPreferences();
+                showSegments(group, button.dataset.value);
+                saved(setting.id, setting.name);
+            }
+        });
+    }
+
+    // ---------- Caesar shift ----------
+    // Saved once it's a whole number from 1 to 25; anything else goes back to what was saved when you leave the box
+    const caesarShift = document.getElementById("settingCaesarShift");
+    const validShift = () => /^\d+$/.test(caesarShift.value) && caesarShift.value >= 1 && caesarShift.value <= 25;
+    caesarShift.addEventListener("input", () => {
+        if (validShift()) {
+            saveLocalStorage("caesarShift", "Caesar shift", String(Number(caesarShift.value)), "The shift the Caesar cipher starts on");
+            saved("settingCaesarShift", "Caesar shift");
         }
-    };
-    boxSize.addEventListener("click", (event) => {
-        const button = event.target.closest("button");
-        if (button) {
-            saveLocalStorage("boxTextSize", "Text size", button.dataset.value, "The size of the text in tool boxes");
-            applyDisplayPreferences();
-            showBoxSize(button.dataset.value);
-            saved("settingBoxSize", "Text size");
+    });
+    caesarShift.addEventListener("change", () => {
+        if (!validShift()) {
+            caesarShift.value = getLocalStorageItem("caesarShift") || "3";
         }
     });
 
@@ -150,6 +172,10 @@ if (page) {
         convrtrsLive: ["Live typing in Convrtrs", capitalise],
         aboutOpen: ["More about this tool", (value) => (value === "on" ? "Open to start with" : "Closed to start with")],
         monoBoxes: ["Monospace text in the boxes", capitalise],
+        chainDecoders: ["Chain decoders in Convrtrs", (value) => (value === "on" ? "On to start with" : "Off to start with")],
+        preserveSpaces: ["Preserve spaces in Text tools", (value) => (value === "on" ? "On to start with" : "Off to start with")],
+        caesarShift: ["Caesar shift", (value) => value],
+        morsenaryDigits: ["Morsenary digits", (value) => (value === "flipped" ? "- = 0" : ". = 0")],
         boxTextSize: ["Text size in the boxes", (value) => ({ small: "Smaller", large: "Larger" })[value] || "Normal"],
         hexDelimiter: ["Hex delimiter", (value) => [...delimiter.options].find((option) => option.value === value)?.textContent.trim() || value],
     };
@@ -225,7 +251,10 @@ if (page) {
         for (const setting of SWITCHES) {
             document.getElementById(setting.id).checked = getLocalStorageItem(setting.key) === "on";
         }
-        showBoxSize(getLocalStorageItem("boxTextSize") || "normal");
+        for (const setting of SEGMENTS) {
+            showSegments(document.getElementById(setting.id), getLocalStorageItem(setting.key) || setting.start);
+        }
+        caesarShift.value = getLocalStorageItem("caesarShift") || "3";
         const savedDelimiter = getLocalStorageItem("hexDelimiter");
         delimiter.value = savedDelimiter === false ? " " : savedDelimiter;
         for (const category of categories) {

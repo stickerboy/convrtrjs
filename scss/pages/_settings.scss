@@ -100,6 +100,12 @@
         color: var(--bs-secondary-color);
     }
 
+    // A number, such as the Caesar shift: wide enough for two digits and the browser's stepper
+    &__number {
+        width: 6rem;
+        min-height: 2.75rem;
+    }
+
     // The control, with "Saved" before it, so the note never takes a line of its own
     &__end {
         display: flex;

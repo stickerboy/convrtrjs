@@ -6,6 +6,7 @@ sidebarPanel: settings
 settingsGroups:
   - { id: appearance, title: Appearance }
   - { id: tools, title: Tools }
+  - { id: defaults, title: Tool defaults }
   - { id: categories, title: Category pages }
   - { id: data, title: Your data }
 ---
@@ -90,6 +91,36 @@ settingsGroups:
                 <div class="setting__end">
                     {{ savedNote("settingDelimiter") }}
                     <div class="setting__control">{{ delimiter("setting") }}</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="settings-group" id="defaults" aria-labelledby="defaults-title">
+            <h2 class="settings-group__title" id="defaults-title"><i class="bi bi-toggles" aria-hidden="true"></i>Tool defaults</h2>
+            <p class="settings-group__intro">What a tool's own options are set to when you open it. You can still change them on the tool.</p>
+            {{ switchSetting("settingChain", "Chain decoders in Convrtrs", "Each Decode button sends its result to the Text box, for text that's been encoded several times.") }}
+            {{ switchSetting("settingPreserve", "Preserve spaces in Text tools", "Keeps spaces in place on the tools marked with an asterisk.") }}
+            <div class="setting">
+                <div class="setting__text">
+                    <label class="setting__name" for="settingCaesarShift">Caesar shift</label>
+                    <small class="setting__hint" id="settingCaesarShift-hint">The shift the Caesar cipher starts on, from 1 to 25. ROT13 is a shift of 13.</small>
+                </div>
+                <div class="setting__end">
+                    {{ savedNote("settingCaesarShift") }}
+                    <input type="number" class="form-control setting__control setting__number" id="settingCaesarShift" min="1" max="25" value="3" inputmode="numeric" autocomplete="off" aria-describedby="settingCaesarShift-hint">
+                </div>
+            </div>
+            <div class="setting">
+                <div class="setting__text">
+                    <span class="setting__name" id="settingMorsenary-label">Morsenary digits in Convrtrs</span>
+                    <small class="setting__hint" id="settingMorsenary-hint">Which Morse mark stands for 0 when Convrtrs reads and writes Morsenary.</small>
+                </div>
+                <div class="setting__end">
+                    {{ savedNote("settingMorsenary") }}
+                    <div class="setting-segments setting__control" role="group" aria-labelledby="settingMorsenary-label" aria-describedby="settingMorsenary-hint" id="settingMorsenary">
+                        <button type="button" aria-pressed="false" data-value="default">. = 0</button>
+                        <button type="button" aria-pressed="false" data-value="flipped">- = 0</button>
+                    </div>
                 </div>
             </div>
         </section>

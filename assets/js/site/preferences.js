@@ -47,3 +47,20 @@ if (delimiter !== false) {
         }
     }
 }
+
+// Tool defaults: what a tool's own options start on (Settings' Tool defaults). Each is set as if chosen, with the
+// event the control fires, so the tool updates (the Caesar map, live typing).
+const TOOL_DEFAULTS = [
+    { key: "chainDecoders", id: "chainDecoders", value: (input, saved) => (input.checked = saved === "on") },
+    { key: "preserveSpaces", id: "toolsPreserveWhitespace", value: (input, saved) => (input.checked = saved === "on") },
+    { key: "caesarShift", id: "caesarShift", event: "input", value: (input, saved) => (input.value = saved) },
+    { key: "morsenaryDigits", id: "morsenarySetting", value: (select, saved) => (select.value = saved) },
+];
+for (const { key, id, event = "change", value } of TOOL_DEFAULTS) {
+    const saved = getLocalStorageItem(key);
+    const control = document.getElementById(id);
+    if (saved !== false && control) {
+        value(control, saved);
+        control.dispatchEvent(new Event(event, { bubbles: true }));
+    }
+}
