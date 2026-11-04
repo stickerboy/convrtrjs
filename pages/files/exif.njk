@@ -1,30 +1,18 @@
 ---
 title: Exif reader
 tags: tools
+summary: >-
+    Reads the metadata stored in images, such as GPS position and camera details, where puzzle makers often hide information.
+noLimits: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import fileFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    The Exif reader tool allows you to pull metadata information from a variety of image file types, such as GPS information, camera information (like exposure, aperture, device make and model), and more. This metadata can often be where puzzle makers hide information.
-</p>
-<p class="px-2">
-    Text fields, such as comments and descriptions, are shown first, and any value that looks encoded (as binary, hex or Base64) is marked, with a link that opens it in <a href="/convrtrs/" class="text-convrtr" data-convrtrs-link>Convrtrs</a> to decode. Every tag follows, grouped by where it's stored in the file.
-</p>
-<p class="px-2">
-    {%- set supported_file_types = "JPEG,TIFF,PNG,HEIC,AVIF,WebP,GIF".split(",") %}
-    The Exif reader supports the following file types:
-    {%- for fileType in supported_file_types %}
-    <code
-        class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">{{ fileType }}</code>
-    {%- endfor %}
-</p>
-<blockquote>
-    <p class="ms-2">&mdash; Powered by <a href="https://github.com/mattiasw/ExifReader"
-            class="text-convrtr">ExifReader</a> by Mattias Wallander, available under the <a
-            href="https://mozilla.org/MPL/2.0/" class="text-convrtr">Mozilla Public License Version 2.0</a>.</p>
-</blockquote>
+    <p>That includes GPS information, and camera information such as the exposure, the aperture, and the device's make and model, from a variety of image file types.</p>
+    <p>Text fields, such as comments and descriptions, are shown first, and any value that looks encoded (as binary, hex or Base64) is marked, with a link that opens it in <a href="/convrtrs/" class="text-convrtr" data-convrtrs-link>Convrtrs</a> to decode. Every tag follows, grouped by where it's stored in the file.</p>
+    <p>Supports <code class="tool-example">JPEG</code> <code class="tool-example">TIFF</code> <code class="tool-example">PNG</code> <code class="tool-example">HEIC</code> <code class="tool-example">AVIF</code> <code class="tool-example">WebP</code> <code class="tool-example">GIF</code></p>
+    <p class="tool-about__credit">Powered by <a href="https://github.com/mattiasw/ExifReader" class="text-convrtr">ExifReader</a> by Mattias Wallander, under the <a href="https://mozilla.org/MPL/2.0/" class="text-convrtr">Mozilla Public License 2.0</a>.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call fileFrame(filename, "Exif reader", formats = "JPEG, TIFF, PNG, HEIC, AVIF, WebP or GIF", privacy = "Read in your browser. Your image is never uploaded.", accept = "image/*,.heic,.heif,.avif") %}{% endcall %}

@@ -329,6 +329,81 @@ $tool-frame-side-by-side-tabs: 66rem;
     }
 }
 
+// A tool's one-line summary, then the rest of its intro (examples, links, credits and the data limits note) in a quiet
+// fold under it (toolSection in macros/tool.njk). The summary is 44px tall to tap, and reads as a link.
+.tool-summary {
+    margin-bottom: 0.25rem;
+}
+.tool-about {
+    summary {
+        display: inline-flex;
+        gap: 0.375rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0 0.375rem;
+        margin-left: -0.375rem;
+        font-weight: 600;
+        color: var(--convrtr-accent);
+        list-style: none;
+        cursor: pointer;
+        border-radius: var(--bs-border-radius);
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__chevron {
+        @extend %bi-centred;
+        transition: transform $convrtr-transition-duration ease-in-out;
+    }
+    &[open] &__chevron {
+        transform: rotate(90deg);
+    }
+
+    &__body {
+        padding: 0.25rem 0 0.25rem 1rem;
+        margin: 0.25rem 0 0.5rem 0.4375rem;
+        border-left: 2px solid var(--bs-border-color);
+
+        p,
+        dl {
+            margin-bottom: 0.5rem;
+        }
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__limits,
+    &__credit {
+        font-size: 0.875rem;
+        color: var(--bs-secondary-color);
+    }
+}
+
+// An example in a tool's intro, such as a word and what it becomes
+.tool-example {
+    display: inline-flex;
+    padding: 0 0.5rem;
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+    border: var(--bs-border-width) solid rgba(var(--bs-success-rgb), 0.1);
+    border-radius: var(--bs-border-radius);
+
+    // A worked example that keeps its lines, such as the rail fence's rails; scrolls rather than wrapping on phones
+    &--block {
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0.5rem 0;
+        overflow-x: auto;
+        white-space: pre;
+    }
+}
+
 // A fold in a tool's results, such as one of several tables or files: a 44px summary with a chevron (.tool-fold__chevron)
 // that turns when open, and a count or note on the right
 .tool-fold {

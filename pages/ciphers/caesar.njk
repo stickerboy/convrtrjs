@@ -1,23 +1,16 @@
 ---
 title: Caesar cipher
 tags: tools
+summary: >-
+    Shifts every letter a set number of places along the alphabet, wrapping round from Z to A.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    A very simple method of encryption, the Caesar cipher - also known as a shift cipher - 'shifts' the alphabet a certain number of spaces, pushing the letters at the end to the beginning.
-    The most common Caesar cipher is Rot 13, where 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">A</code> 
-    becomes 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">N</code> 
-    and so forth. You can optionally add a key to the cipher to further encrypt your results, this will create a custom alphabet to rotate through &ndash;
-     see the <a href="/ciphers/substitution" class="text-convrtr">Substitution Cipher</a> below for more information.
-</p>
-<p class="px-2">
-     There is more information available on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar_cipher</a> Wikipedia page. 
-</p>
+    <p>A very simple method of encryption, also known as a shift cipher. It shifts the alphabet a set number of spaces, and the letters pushed off the end start again at the beginning.</p>
+    <p>The most common Caesar cipher is ROT13, where <code class="tool-example">A</code> becomes <code class="tool-example">N</code>. You can optionally add a key to encrypt your results further. It builds a custom alphabet to shift through: see the <a href="/ciphers/substitution/" class="text-convrtr">Substitution cipher</a> for how a key makes an alphabet.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Caesar cipher", placeholder = "Example: Hello → 5 [shift] → Mjqqt") %}

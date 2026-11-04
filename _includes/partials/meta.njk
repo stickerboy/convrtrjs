@@ -1,6 +1,8 @@
 <meta charset="utf-8">
+        {#- A tool page describes itself with its summary #}
+        {%- set metaDescription = (summary | striptags) if summary else pkg.description %}
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="{{ pkg.description }}">
+        <meta name="description" content="{{ metaDescription }}">
         <meta name="keywords" content="{{ pkg.keywords | join(', ') }}">
         <meta name="author" content="{{ pkg.author }}">
         <meta name="generator" content="{{ eleventy.generator }}">
@@ -12,5 +14,5 @@
         <meta property="og:url" content="{{ pkg.homepage }}" />
         <meta property="og:title" content="{{ pkg.tagline }}" />
         <meta property="og:description"
-                content="{{ pkg.description }}" />
+                content="{{ metaDescription }}" />
         <meta property="og:image" content="{% if data.environment == 'development' %}http://localhost:8088{% else %}{{ pkg.homepage }}{% endif %}/assets/img/convrtr.png" />

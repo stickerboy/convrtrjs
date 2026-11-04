@@ -2,21 +2,15 @@
 title: Periodic elements
 tags: tools
 heading: "Elements"
+summary: >-
+    Converts element values from one property to another, such as atomic numbers to names or symbols.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Convert periodic element property values to different property values, for example atomic numbers to element names or symbols.
-    Only a subset of element properties are available for conversion. Strings can be separated using a number of different delimiters: 
-    space, comma, colon, semi-colon, and hyphen. You can mix and match delimiters, but they are required. Values are matched ignoring case, so se, Se and SE all find selenium. The swap button turns the conversion round.
-</p>
-<blockquote>
-    <p class="ms-2">&mdash; Data sourced from <a href="https://github.com/Bowserinator/Periodic-Table-JSON" class="text-convrtr">Bowserinator / Periodic-Table-JSON</a> under the <a
-            href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons Attribution-ShareAlike 3.0
-            License</a>.</p>
-</blockquote>
+    <p>Only some element properties can be converted. Separate values with spaces, commas, colons, semicolons or hyphens: they can be mixed, but they're needed. Values are matched ignoring case, so se, Se and SE all find selenium. The swap button turns the conversion round.</p>
+    <p class="tool-about__credit">Data from <a href="https://github.com/Bowserinator/Periodic-Table-JSON" class="text-convrtr">Bowserinator / Periodic-Table-JSON</a>, under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Periodic elements", placeholder = "Example: 34,7,52,7,58 [Atomic number] → Se,N,Te,N,Ce") %}

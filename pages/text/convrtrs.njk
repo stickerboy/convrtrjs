@@ -2,36 +2,15 @@
 title: Convrtrs
 customPermalink: /convrtrs/
 tags: tools
+summary: >-
+    Converts text to and from binary, hex, Base64, decimal, Morse and more, in every format at once.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/delimiter.njk" import delimiter %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    A description of each decoder and link to more information is available using the info button in the top-right of each decoder, you can also copy the contents on individual decoders and download the contents to a text file. Turn on "live typing" to convert as you type, without pressing a button. By selecting the "chain decoders" option, the "decode" button under each decode switches its target to the Text decoder.
-</p>
-<p class="px-2">This is useful if you have a string of text that has went through numerous encoding steps, e.g. 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Text
-    </code>
-        &srarr; 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Binary
-    </code>
-        &srarr; 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Base64
-    </code>
-        &srarr; 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Reverse
-    </code>
-        &srarr; 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Hexadecimal
-    </code>
-    so you can quickly decode  your puzzle, without having to copy/paste into each different decoder text box.
-</p>
+    <p>The info button at the top right of each box describes its format and links to more information. You can also copy any box, or download it as a text file. Turn on Live typing to convert as you type, without pressing a button.</p>
+    <p>With Chain decoders on, each Decode button sends its result to the Text box. This is useful when text has been through several encoding steps, such as <code class="tool-example">Text</code> &srarr; <code class="tool-example">Binary</code> &srarr; <code class="tool-example">Base64</code> &srarr; <code class="tool-example">Reverse</code> &srarr; <code class="tool-example">Hexadecimal</code>, so you can quickly decode your puzzle a step at a time, without copying and pasting between boxes.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="d-flex flex-wrap gap-2 column-gap-4 mb-3">

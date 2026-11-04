@@ -3,15 +3,12 @@ title: ONI calendar
 tags: tools
 heading: "Calendar"
 noScript: true
+summary: >-
+    Picks characters out of a data string at positions set by calendar-like offsets.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Extracts characters from the data string at specific positions based on calendar-like offsets.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">{{ filename | capitalize }}</span>

@@ -3,16 +3,13 @@ title: ONI unscramble
 tags: tools
 heading: "Unscramble"
 noScript: true
+summary: >-
+    Unscrambles a string by swapping each pair of characters, so <code class="tool-example">abcdef</code> becomes <code class="tool-example">badcfe</code>.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Unscrambles a string by interleaving its characters. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">abcdef</code> &srarr; <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">badcfe</code>
-</p>
-<p class="px-2">
-    An unpaired last character is kept. Pass <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">true</code> as the second argument to drop it instead, as the original ONI-Tools version does.
-</p>
+    <p>An unpaired last character is kept. Pass <code class="tool-example">true</code> as the second argument to drop it instead, as the original ONI-Tools version does.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="col">

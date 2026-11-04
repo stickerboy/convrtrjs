@@ -2,13 +2,13 @@
 title: ONI strings
 tags: tools
 heading: "Extract strings"
+summary: >-
+    Pulls out the runs of printable characters in a string that are at least a set length.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-     Extracts sequences of printable characters from a string, based on a given number of minimum characters. Minimum characters cannot be less than 1.
-</p>
+    <p>The minimum length can't be less than 1.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="col">

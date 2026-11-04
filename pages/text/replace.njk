@@ -2,17 +2,13 @@
 title: Text replace
 tags: tools
 heading: "Replace characters"
+summary: >-
+    Replaces any characters or phrases in text with others, with <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> for advanced replacements.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Replace characters in a string &ndash; allows replacing any characters or phrases in a string with any character or phrase. 
-    Supports <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> so you can run your own custom advanced replacements.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 {% call toolFrame(filename, "Replace characters", placeholder = "Example: Hello &srarr; lo &srarr; ium &srarr; Helium") %}
 <div class="input-group w-auto">
     <label class="input-group-text" for="{{ filename }}Value">Old<span class="visually-hidden"> characters</span></label>

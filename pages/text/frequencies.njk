@@ -2,17 +2,15 @@
 title: Text frequencies
 tags: tools
 heading: "Character frequencies"
+summary: >-
+    Counts the words, characters, letters and numbers in text, and how often each character appears.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    For a given string of text, count its words, characters, letters and numbers, and list how often each character appears. This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns.
-</p>
-<p class="px-2">
-    Letters include accented letters and other alphabets, spaces include tabs and new lines, and an emoji counts as one character. Sort the table by First seen to list each character in the order it first appears. Copy and download give the table as tab-separated text, which pastes into a spreadsheet.
-</p>
+    <p>Useful for spotting patterns in data puzzles. Letters include accented letters and other alphabets, spaces include tabs and new lines, and an emoji counts as one character.</p>
+    <p>Sort the table by First seen to list each character in the order it first appears. Copy and download give the table as tab-separated text, which pastes into a spreadsheet.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Character frequencies", placeholder = "Example: Meet me at the old mill", layout = "analysis") %}

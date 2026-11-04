@@ -1,22 +1,15 @@
 ---
 title: Chaocipher
 tags: tools
+summary: >-
+    Encrypts with two alphabets that reshuffle after every letter, so the same letter comes out differently each time.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Chaocipher is an encryption method invented by John F. Byrne in the 1920s. It uses two shifting sets of the alphabet to scramble messages uniquely each time. Only someone with the correct settings can decode the scrambled message back to its original form. For example: 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        Hello World
-    </code>
-    &srarr;
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        WahqzIuets
-    </code>
-    etc. There is more information available on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">{{ filename | capitalize }}</a> Wikipedia page
-</p>
+    <p>Invented by John F. Byrne in the 1920s. Only someone with the same settings can decode a message. For example, <code class="tool-example">Hello World</code> becomes <code class="tool-example">WahqzIuets</code>.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; WahqzIuets") %}

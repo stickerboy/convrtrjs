@@ -1,27 +1,15 @@
 ---
 title: Beaufort cipher
 tags: tools
+summary: >-
+    Like the Vigenère cipher, but starting from a reversed alphabet, so encrypting and decrypting work the same way.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Similar to the Vigenère cipher (the decryption process is the same), except you start with a reversed alphabet. For example: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> would shift like: 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        H &srarr; T &srarr; M
-    </code> 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        e &srarr; e &srarr; a
-    </code>
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        l &srarr; s &srarr; h
-    </code> 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        l &srarr; t &srarr; i
-    </code>
-    - then loop back and start from the first letter in the key again. There is more information available on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page. 
-</p>
+    <p><code class="tool-example">Hello</code> encrypted with the key <code class="tool-example">Test</code> shifts like <code class="tool-example">H → T → M</code> <code class="tool-example">e → e → a</code> <code class="tool-example">l → s → h</code> <code class="tool-example">l → t → i</code>, then the key starts again from its first letter.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Beaufort cipher", placeholder = "Example: Hello &srarr; Test [key] &srarr; Mahif") %}

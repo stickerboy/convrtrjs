@@ -1,20 +1,15 @@
 ---
 title: Smithy cipher
 tags: tools
+summary: >-
+    A keyword cipher built on the Fibonacci sequence.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Smithy is interesting cipher, built using the fibonacci sequence as part of the keyword ecryption/decryption process. It was originally made for private amusement, and included in documentation in The Da Vinci Code copyright case. For example: 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">World</code> would shift like: 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Rmxsp</code> 
-</p>
-<p class="px-2">
-    There is more information available on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">{{
-        filename | capitalize }}</a> Wikipedia page
-</p>
+    <p>It was made for private amusement, and was included in documents in The Da Vinci Code copyright case. <code class="tool-example">Hello</code> encrypted with the key <code class="tool-example">World</code> becomes <code class="tool-example">Rmxsp</code>.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">Smithy code</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Smithy cipher", placeholder = "Example: Hello &srarr; World [key] &srarr; Rmxsp") %}

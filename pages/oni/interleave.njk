@@ -3,15 +3,12 @@ title: ONI interleave
 tags: tools
 heading: "Interleave"
 noScript: true
+summary: >-
+    Interleaves the characters of two strings, with an optional delimiter.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Interleaves the characters of two strings, you may optionally pass in a delimiter.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">{{ filename | capitalize }}</span>

@@ -2,30 +2,22 @@
 title: Railfence cipher
 tags: tools
 heading: "Rail fence cipher"
+summary: >-
+    Writes the message in a zigzag across a number of rails, then reads it off one rail at a time.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-        <p class="px-2">
-            Also known as the Zig Zag cipher, takes its name from the way in which the encryption is performed - in analogy to a fence built with horizontal rails. Below is an example using 3 rails, more rails equals more complexity and makes it harder to decode without the correct number of rails.
-            There is more information available on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page. 
-        </p>
-        <p class="px-2" data-pagefind-ignore="all">
-            <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                WE ARE DISCOVERED. RUN AT ONCE.
-            </code>
-            <code class="d-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2" style="
-        white-space: pre-wrap;
-        ">
-W . . . E . . . C . . . R . . . U . . . O . . . 
-. E . R . D . S . O . E . E . R . N . T . N . E 
-. . A . . . I . . . V . . . D . . . A . . . C . 
-            </code>
-            <code class="d-inline-flex px-2 my-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-                WECRUO ERDSOEERNTNE AIVDAC
-            </code>
-        </p>
+    <p>Also known as the zigzag cipher, it takes its name from the way it's written, like a fence built with horizontal rails. More rails make it harder to decode without knowing how many were used. Here it is with 3 rails:</p>
+    <p data-pagefind-ignore="all">
+        <code class="tool-example">WE ARE DISCOVERED. RUN AT ONCE.</code>
+        <code class="tool-example tool-example--block">W . . . E . . . C . . . R . . . U . . . O . . .
+. E . R . D . S . O . E . E . R . N . T . N . E
+. . A . . . I . . . V . . . D . . . A . . . C .</code>
+        <code class="tool-example">WECRUO ERDSOEERNTNE AIVDAC</code>
+    </p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Rail fence cipher", placeholder = "Example: HELLO WORLD &srarr; 2 [rails] &srarr; HLOOLELWRD") %}

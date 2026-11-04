@@ -1,17 +1,16 @@
 ---
 title: Forerunner glyphs
 tags: tools
+summary: >-
+    Converts the Forerunner glyphs from Halo to letters and back.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import glyphFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Convert Forerunner glyphs from the video game <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> to their text alternative, these glyphs were primarily used during an <a href="https://www.halopedia.org/Section_3_ARG" title="Halopedia - Section 3 ARG" class="text-convrtr">ARG</a> for Halo 4. Type a message to see it in glyphs, or tap the glyphs you see to read them as letters. "Save as image" downloads the glyphs as a picture.
-</p>
-<p class="px-2">
-     There is more information available on the <a href="https://www.halopedia.org/Forerunner_symbols" class="text-convrtr">Forerunner symbols</a> Halopedia page. 
-</p>
+    <p>These glyphs from <a href="https://www.halowaypoint.com/" title="HaloWaypoint.com - the official site for the Halo universe" class="text-convrtr">Halo</a> were mainly used in the <a href="https://www.halopedia.org/Section_3_ARG" title="Halopedia - Section 3 ARG" class="text-convrtr">Section 3 ARG</a> for Halo 4.</p>
+    <p>Type a message to see it in glyphs, or tap the glyphs you see to type their letters. "Save as image" downloads the glyphs as a picture.</p>
+    <p>More on the <a href="https://www.halopedia.org/Forerunner_symbols" class="text-convrtr">Forerunner symbols</a> Halopedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {{ glyphFrame(filename, "Forerunner glyphs", "'TerminalGlyphs'", forerunner) }}

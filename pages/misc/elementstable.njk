@@ -2,23 +2,16 @@
 title: Periodic elements table
 tags: tools
 heading: "Periodic elements"
+summary: >-
+    An interactive periodic table: choose an element to see its details.
+noLimits: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    An interactive periodic table of elements: choose an element to see its details. Elements are coloured by category, and the legend highlights one category. Find an element by name, symbol or number, or highlight a phase, block, period or group. On narrower screens, the table becomes a run of tiles in atomic number order.
-</p>
-<p class="px-2">
-     There is more information available on the <a href="https://en.wikipedia.org/wiki/Periodic_table" class="text-convrtr">Periodic table</a> wikipedia page. 
-</p>
-<blockquote>
-    <p class="ms-2">&mdash; Data sourced from <a href="https://github.com/Bowserinator/Periodic-Table-JSON"
-            class="text-convrtr">Bowserinator / Periodic-Table-JSON</a> under the <a
-            href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons
-            Attribution-ShareAlike 3.0
-            License</a>.</p>
-</blockquote>
+    <p>Elements are coloured by category, and the legend highlights one category. Find an element by name, symbol or number, or highlight a phase, block, period or group. On narrower screens, the table becomes a run of tiles in atomic number order.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Periodic_table" class="text-convrtr">Periodic table</a> Wikipedia page.</p>
+    <p class="tool-about__credit">Data from <a href="https://github.com/Bowserinator/Periodic-Table-JSON" class="text-convrtr">Bowserinator / Periodic-Table-JSON</a>, under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="tool-frame periodic" data-tool-frame>

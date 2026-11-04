@@ -1,17 +1,15 @@
 ---
 title: Color generator
 tags: tools
+summary: >-
+    Turns text into hex colors, three characters to each color, or reads a message back out of a palette.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Generates hex colors from a given string of data, displayed as both a list of hex colors and visually as blocks of colors. Each color holds three characters of the text (as three bytes of hex: red, green and blue), shown under it. Padding is used to add extra characters, in the event the hex colors can't make up to 6 characters, and padded colors are marked with *.
-</p>
-<p class="px-2">
-    "Colors to text" goes the other way, for a message hidden in a palette: paste hex colors, with or without #, and get the text back. Padding at the end is dropped. "Save as image" downloads the colors as a picture, one block each.
-</p>
+    <p>The colors are shown both as a list of hex colors and as blocks of color. Each color holds three characters of the text as three bytes of hex (red, green and blue), shown under it. Padding adds extra characters when the hex can't make up all 6 characters of the last color, and padded colors are marked with *.</p>
+    <p>"Colors to text" goes the other way: paste hex colors, with or without #, to get the text back. Padding at the end is dropped. "Save as image" downloads the colors as a picture, one block each.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Colors", placeholder = "Example: Hello → #48656C #6C6FFF", layout = "analysis") %}

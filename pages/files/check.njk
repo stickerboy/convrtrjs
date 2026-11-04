@@ -2,17 +2,16 @@
 title: File check
 tags: tools
 heading: "Check file type"
+summary: >-
+    Finds out what type up to 5 files really are, from the bytes each one starts with.
+noLimits: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import fileFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Choose or drop up to 5 files to find out what type each one really is, from its header: the bytes a file starts with. A file's name can say one thing and its header another, as when a file is renamed to hide it, and the check says when they disagree.
-</p>
-<p class="px-2">
-    Only the first 36 bytes of each file are read, in your browser, and nothing is uploaded or stored. Headers are matched against the <a href="/files/headers/" class="text-convrtr">File headers</a> list, which won't catch everything. Feel free to reach out if there's a header missing, or one you think would be worth adding.
-</p>
+    <p>A file's name can say one thing and its header another, as when a file is renamed to hide it, and the check says when they disagree.</p>
+    <p>Only the first 36 bytes of each file are read, in your browser, and nothing is uploaded or stored. Headers are matched against the <a href="/files/headers/" class="text-convrtr">File headers</a> list, which won't catch everything. Feel free to reach out if there's a header missing, or one you think would be worth adding.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call fileFrame(filename, "File check", formats = "any type, up to 5 at once", privacy = "Only the first 36 bytes of each file are read, in your browser. Nothing is uploaded.", multiple = true) %}{% endcall %}

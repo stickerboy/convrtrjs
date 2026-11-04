@@ -1,16 +1,16 @@
 ---
 title: File headers
 tags: tools
+summary: >-
+    Lists common file headers in hex, the bytes that files of each type start with, to quickly match a chunk of data to a file type.
+noLimits: true
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    A list of common file headers in hexadecimal format: the bytes a file of each type starts with. Useful if you have a chunk of data and want to quickly match it with a potential file type, or use <a href="/files/check/" class="text-convrtr">Check file type</a> to match a file's header for you.
-</p>
-<p class="px-2">
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">??</code> stands for any byte, so a header that starts partway into the file is written where it sits. Filter by name, extension or hex: the hex can be written with or without spaces. More information is available on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr" title="List of file signatures, Wikipedia">File signatures</a> Wikipedia page.
-</p>
+    <p>To match a file's header for you, use <a href="/files/check/" class="text-convrtr">Check file type</a>.</p>
+    <p><code class="tool-example">??</code> stands for any byte, so a header that starts partway into the file is written where it sits. Filter by name, extension or hex: the hex can be written with or without spaces.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/List_of_file_signatures" class="text-convrtr">File signatures</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="tool-frame">

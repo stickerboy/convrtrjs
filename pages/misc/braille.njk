@@ -1,17 +1,15 @@
 ---
 title: Braille
 tags: tools
+summary: >-
+    Converts Braille to text and back.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Convert Braille to text and vice-versa. "Save as image" downloads the Braille in the output as a picture.
-</p>
-<p class="px-2">
-     There is more information available on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Wikipedia page. 
-</p>
+    <p>"Save as image" downloads the Braille in the output as a picture.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠓⠑⠇⠇⠕", saveImage = true) %}

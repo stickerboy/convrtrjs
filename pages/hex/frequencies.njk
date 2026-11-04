@@ -1,18 +1,16 @@
 ---
 title: Hex frequencies
 tags: tools
+summary: >-
+    Counts how often each byte appears in hex, and runs of the same byte repeated 2 to 5 times, such as <code class="tool-example">00 00</code>.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% from "macros/delimiter.njk" import delimiter %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    For a given string of Hexadecimal, list out the frequencies of each byte, and of runs of the same byte repeated 2 to 5 times (such as <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">00 00</code>). This can be useful when looking at data-driven puzzles, and trying to find recognizable patterns. Runs are counted wherever they start, and a longer run counts as several shorter ones: five <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">41</code>s are two runs of 2.
-</p>
-<p class="px-2">
-    Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how runs are written. Copy and download give the tables as tab-separated text, which pastes into a spreadsheet.
-</p>
+    <p>Useful for spotting patterns in data puzzles. Runs are counted wherever they start, and a longer run counts as several shorter ones: five <code class="tool-example">41</code>s are two runs of 2.</p>
+    <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how runs are written. Copy and download give the tables as tab-separated text, which pastes into a spreadsheet.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Hex frequencies", placeholder = "Example: 48 65 6c 6c 6f 00 00 00", layout = "analysis") %}

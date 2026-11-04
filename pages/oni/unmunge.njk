@@ -3,15 +3,12 @@ title: ONI unmunge
 tags: tools
 heading: "Unmunge"
 noScript: true
+summary: >-
+    Unmunges a data node, using a key.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Unmunges a data node using a given key.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">Unmunge node</span>

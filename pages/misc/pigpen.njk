@@ -1,17 +1,16 @@
 ---
 title: Pigpen cipher
 tags: tools
+summary: >-
+    Converts text to Pigpen symbols, each drawn from part of a grid, and back.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import glyphFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    The Pigpen cipher is a simple substitution cipher where each letter is represented by a symbol formed from parts of a grid. These symbols use straight or angled lines, and may include a dot to distinguish characters. Type a message to see it in glyphs, or tap the glyphs you see to read them as letters. "Save as image" downloads the glyphs as a picture.
-</p>
-<p class="px-2">
-     There is more information available on the <a href="https://en.wikipedia.org/wiki/Pigpen_cipher" class="text-convrtr">Pigpen cipher</a> Wikipedia page. 
-</p>
+    <p>A simple substitution cipher: each symbol is made of straight or angled lines, and some have a dot to tell them apart.</p>
+    <p>Type a message to see it in glyphs, or tap the glyphs you see to type their letters. "Save as image" downloads the glyphs as a picture.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Pigpen_cipher" class="text-convrtr">Pigpen cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {{ glyphFrame(filename, "Pigpen cipher", "'Pigpen Cipher'", "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")) }}

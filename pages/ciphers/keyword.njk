@@ -1,17 +1,14 @@
 ---
 title: Keyword cipher
 tags: tools
+summary: >-
+    Builds a new alphabet that starts with a keyword, then swaps each letter of the message for the one in the same place.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    The keyword, with any repeated letters removed, starts a new alphabet, and the rest of the letters follow in order. Each letter of the message is swapped for the letter in the same place in that alphabet. For example:
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Hello World</code> encrypted with a key of <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Test</code> uses the alphabet
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">TESABCDFGH…</code> and becomes
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">Fbjjm Wmpja</code>
-</p>
+    <p>Repeated letters in the keyword are dropped, and the rest of the alphabet follows in order. <code class="tool-example">Hello World</code> encrypted with the key <code class="tool-example">Test</code> uses the alphabet <code class="tool-example">TESABCDFGH…</code> and becomes <code class="tool-example">Fbjjm Wmpja</code>.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Keyword cipher", placeholder = "Example: Hello World &srarr; Test [key] &srarr; Fbjjm Wmpja") %}

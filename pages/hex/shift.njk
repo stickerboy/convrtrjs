@@ -2,18 +2,16 @@
 title: Hex shift
 tags: tools
 heading: "Shift hex"
+summary: >-
+    Shifts every byte of hex up or down by a set amount, so <code class="tool-example">48 65 6c 6c 6f</code> [Hello] shifted by 1 becomes <code class="tool-example">49 66 6d 6d 70</code> [Ifmmp].
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% from "macros/delimiter.njk" import delimiter %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Lazy shift a hexadecimal string up or down: <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">48 65 6c 6c 6f</code> [Hello] becomes <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">49 66 6d 6d 70</code> [Ifmmp] when shifted 1 to the right (+1) or <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">47 64 6b 6b 6e</code> [Gdkkn] when shifted 1 to the left. 
-</p>
-<p class="px-2">
-    Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the result is written. Negative numbers are allowed.
-</p>
+    <p>A lazy shift: every byte moves up or down by the same amount. Positive numbers shift to the right, as in the +1 above, and negative numbers are allowed and shift to the left: shifted by -1, it becomes <code class="tool-example">47 64 6b 6b 6e</code> [Gdkkn].</p>
+    <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the result is written.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Shift hex", placeholder = "Example: 48 65 6c 6c 6f", tabs = ["Text", "Hex", "Binary", "Base64", "Decimal"]) %}

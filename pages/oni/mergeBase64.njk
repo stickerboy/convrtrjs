@@ -4,15 +4,12 @@ tags: tools
 heading: "Merge Base64"
 noScript: true
 redirectFrom: /oni/mergeb64/
+summary: >-
+    Merges several Base64 strings into one, taking the most common character at each position.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Merges multiple Base64 strings by selecting the most frequent character at each position.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">Merge Base64</span>

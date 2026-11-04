@@ -1,21 +1,15 @@
 ---
 title: Atbash cipher
 tags: tools
+summary: >-
+    Swaps each letter for its mirror image in the alphabet, so <code class="tool-example">A ↔ Z</code> and <code class="tool-example">B ↔ Y</code>.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    A simple substitution cipher that takes a string and transforms each letter to its mirror image in the alphabet. For example: 
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        A &lrarr; Z
-    </code>
-    <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">
-        B &lrarr; Y
-    </code>
-    etc.
-</p>
+    <p>A simple substitution cipher: each letter swaps with the one the same distance from the other end of the alphabet, so <code class="tool-example">C ↔ X</code>, <code class="tool-example">D ↔ W</code> and so on.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Atbash" class="text-convrtr">Atbash</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Atbash cipher", placeholder = "Example: (Hello &lrarr; Svool)") %}

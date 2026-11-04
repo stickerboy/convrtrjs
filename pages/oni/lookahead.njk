@@ -3,15 +3,12 @@ title: ONI lookahead
 tags: tools
 heading: "Lookahead"
 noScript: true
+summary: >-
+    Runs a lookahead on a data node, using a key.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Performs a lookahead operation on the data node using the given key.
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 <div class="col">
     <div class="card">
         <span class="card-label visually-hidden">{{ filename | capitalize }}</span>

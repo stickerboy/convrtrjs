@@ -1,16 +1,13 @@
 ---
 title: Flip text
 tags: tools
+summary: >-
+    Turns text upside down, so <code class="tool-example">this</code> becomes <code class="tool-example">ʇɥıs</code>.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
-{% set intro %}
-<p class="px-2">
-    Flip text upside down - allows you to turn <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">this</code> into <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2">ʇɥıs</code>
-</p>
-{% endset %}
-{% call toolSection(intro) %}
+{% call toolSection() %}
 {% call toolFrame(filename, "Flip text", placeholder = "Example: Hello &srarr; Hǝןןo") %}
 <button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Flip</button>
 <div class="form-check form-switch">

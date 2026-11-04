@@ -1,14 +1,14 @@
 ---
 title: Hash
 tags: tools
+summary: >-
+    Makes hashes of text with a range of algorithms, such as MD5, SHA-1, SHA-256 and SHA-3, and checks a hash against them.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Generate various hash values for a given text string. Hashes are generated in your browser using <a href="https://github.com/paulmillr/noble-hashes" class="text-convrtr">noble-hashes</a>, an audited JavaScript hashing library. More information about the library and the hashes it supports can be found on its GitHub repository.
-</p>
+    <p>Hashes are made in your browser with <a href="https://github.com/paulmillr/noble-hashes" class="text-convrtr">noble-hashes</a>, an audited JavaScript hashing library. Its GitHub page has more about the library and the hashes it supports.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Hash algorithms", placeholder = "Example: Hello World → b10a8db164e0754105b7a99be72e3fe5 (MD5)", layout = "list", listLabel = "Hashes") %}

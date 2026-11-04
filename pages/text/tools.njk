@@ -2,14 +2,14 @@
 title: Text tools
 tags: tools
 heading: "Tools"
+summary: >-
+    Runs common operations on text, such as stripping spaces or removing numbers.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-<p class="px-2">
-    Various operations that can be performed on any kind of text string. To run several tools in a row, use "Move to input" to bring the output back into the input, then run the next tool. E.g. Strip spaces from a string, move it to the input, then run Remove all numbers. Preserve spaces only works on tools marked with an asterisk [*].
-</p>
+    <p>To run several tools in a row, use "Move to input" to bring the output back into the input, then run the next tool: strip spaces, move the result to the input, then run Remove all numbers. Preserve spaces only works on tools marked with an asterisk [*].</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Text tools") %}

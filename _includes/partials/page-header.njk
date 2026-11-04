@@ -9,9 +9,12 @@
             {% set currentTagLabel = labels.labels | where("key", currentTag | lower | trim) | first %}
             <h1 class="display-6">{%- if pageId == "changelog-item" -%}<span class="visually-hidden" data-pagefind-ignore>Changelog | </span>v{% endif %}{{ title }}{% if currentTag %} <span class="h5"><span class="badge git-badge badge-{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}">{% if currentTagLabel %}{{ currentTagLabel.key }}{% else %}{{ currentTag }}{% endif %}</span></span>{% if tagPage.pagination.pageNumber > 0 %}<small class="text-body-secondary fs-3"> | Page {{ tagPage.pagination.pageNumber + 1 }}</small>{% endif %}{% endif %}{% if "changelog" in page.inputPath %}<small class="text-body-secondary fs-3">{{ changelogTitle }}</small>{% endif %}</h1>
             <hr>
+            {#- Tool pages have no description: their summary is in the tool section #}
+            {%- if description %}
             <p class="px-2"{%- if "changelog" in page.inputPath -%} data-pagefind-ignore="all"{%- endif -%}>
                 {{ description }}
             </p>
+            {%- endif %}
             {%- if tags %}
             {#- Left out of search, which has the labels as filters and shows them on each result #}
             <div class="px-2" data-pagefind-ignore="all">
@@ -23,12 +26,6 @@
                 {%- endfor %}
             </div>
             {%- endif -%}
-            {#- Tool pages get a note about data limits; info pages, the changelog and tag pages don't -#}
-            {%- set excludedIds = ["files", "check", "exif", "headers", "community", "privacy", "about", "accessibility", "license", "contributing", "code-of-conduct", "security", "sitemap", "search", "settings", "ui-kit"] -%}
-            {%- set pathExcluded = "tag" in page.inputPath or "changelog" in page.inputPath -%}
-            {%- if not (pageId in excludedIds or pathExcluded) -%}
-                {% include "components/data-limits.njk" %}
-            {%- endif %}
         </div>
     </div>
 </section>
