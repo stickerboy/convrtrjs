@@ -34,7 +34,8 @@
         }
     }
     &[aria-expanded="true"],
-    &[aria-current="page"] {
+    &[aria-current="page"],
+    &[aria-current="location"] {
         color: var(--convrtr-accent);
         background-color: var(--convrtr-accent-selected);
 
@@ -179,7 +180,8 @@
         padding: 0.5rem 0.625rem;
         border-radius: var(--bs-border-radius);
 
-        &[aria-current="page"] {
+        &[aria-current="page"],
+        &[aria-current="location"] {
             font-weight: 600;
         }
     }

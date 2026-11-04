@@ -1,5 +1,6 @@
 // Filter chips: pills that toggle a filter on and off, or link to a filtered page, with a count of what they match.
-// aria-pressed marks a toggle that's on, and aria-current a link to the current page.
+// aria-pressed marks a toggle that's on, aria-current="page" a link to the current page, and aria-current="location"
+// a link to the part of the page being read, as Settings' groups do.
 .filter-chips {
     display: flex;
     flex-wrap: wrap;
@@ -32,7 +33,8 @@
         outline-offset: 2px;
     }
     &[aria-pressed="true"],
-    &[aria-current="page"] {
+    &[aria-current="page"],
+    &[aria-current="location"] {
         color: var(--convrtr-accent);
         background-color: var(--convrtr-accent-selected);
         border-color: var(--convrtr-accent);
@@ -56,7 +58,8 @@
         color: var(--bs-secondary-color);
 
         [aria-pressed="true"] > &,
-        [aria-current="page"] > & {
+        [aria-current="page"] > &,
+        [aria-current="location"] > & {
             color: inherit;
         }
         &:empty {

@@ -1,15 +1,282 @@
+// The Settings page (settings.njk): groups of settings, each a row with what it is and does on the left and its control
+// on the right (under it on narrow screens). The groups are listed in the sidebar panel, or as chips above them when the
+// panel isn't showing: below md, or when it's been closed.
 .settings {
-    &-check {
-        top: 0.7rem;
-        cursor: pointer;
+    display: grid;
+    gap: 0.5rem;
+    max-width: 60rem;
+}
 
-        // !important beats the label's background utility
-        &:checked + .settings-label {
-            background-color: var(--convrtr-accent-subtle) !important;
+.settings-nav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: none;
+    flex-wrap: nowrap;
+    gap: 0.375rem;
+    padding: 0.5rem 0;
+    margin-top: -0.5rem;
+    overflow-x: auto;
+    // Scrolls by swiping, or as keyboard focus moves along it
+    scrollbar-width: none;
+    background-color: var(--convrtr-surface);
+
+    .filter-chip {
+        flex: none;
+        min-height: 2.75rem;
+    }
+
+    @include media-breakpoint-down(md) {
+        display: flex;
+    }
+    html:has(.sidebar[data-panel="closed"]) & {
+        display: flex;
+    }
+}
+
+.settings-group {
+    display: grid;
+    gap: 0.25rem;
+    padding-top: 1.25rem;
+    scroll-margin-top: 3.5rem;
+
+    & + & {
+        margin-top: 0.75rem;
+        border-top: var(--bs-border-width) solid var(--bs-border-color);
+    }
+
+    &__title {
+        display: flex;
+        gap: 0.625rem;
+        align-items: center;
+        margin: 0;
+        font-size: $h3-font-size;
+        font-weight: $display-font-weight;
+
+        .bi {
+            font-size: 0.8em;
+            color: var(--convrtr-accent);
         }
     }
-    &-label {
-        cursor: pointer;
-        transition: background-color $convrtr-transition-duration ease;
+
+    &__intro {
+        max-width: 70ch;
+        margin-bottom: 0.25rem;
+        color: var(--bs-secondary-color);
+    }
+}
+
+.setting {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+
+    &:last-child {
+        border-bottom: 0;
+    }
+
+    &__text {
+        display: grid;
+        // Narrow enough that a switch stays beside its text on phones
+        flex: 1 1 12rem;
+        gap: 0.125rem;
+        min-width: 0;
+    }
+
+    &__name {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        align-items: center;
+        font-weight: 600;
+    }
+
+    &__hint {
+        font-size: 0.875rem;
+        color: var(--bs-secondary-color);
+    }
+
+    // The control, with "Saved" before it, so the note never takes a line of its own
+    &__end {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+    }
+
+    // "Saved", shown for a moment after a change; screen readers hear it from the page's status line instead
+    &__saved {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--convrtr-accent);
+        opacity: 0;
+        transition: opacity $convrtr-transition-duration ease-in-out;
+
+        &.is-shown {
+            opacity: 1;
+        }
+    }
+
+    // A switch on its own: 44px to tap, and no label space beside it
+    .form-switch.setting__control {
+        display: flex;
+        align-items: center;
+        min-height: 2.75rem;
+        padding-left: 0;
+        margin: 0;
+
+        .form-check-input {
+            margin: 0;
+        }
+    }
+}
+
+// A choice of a few values, such as the theme: one bordered row of buttons, the chosen one tonal like the brand buttons
+.setting-segments {
+    display: inline-flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius-lg);
+
+    button {
+        display: inline-flex;
+        gap: 0.375rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0 0.875rem;
+        color: var(--bs-body-color);
+        background-color: var(--bs-body-bg);
+        border: 0;
+        transition: background-color $convrtr-transition-duration ease-in-out, color $convrtr-transition-duration ease-in-out;
+
+        & + button {
+            border-left: var(--bs-border-width) solid var(--bs-border-color);
+        }
+        &:hover {
+            background-color: var(--convrtr-btn-outline-hover-bg);
+        }
+        &[aria-pressed="true"] {
+            font-weight: 600;
+            color: var(--convrtr-btn-color);
+            background-color: var(--convrtr-btn-bg);
+        }
+        .bi {
+            @extend %bi-centred;
+        }
+    }
+}
+
+// Category pages: a fold per category, with a switch per tool
+.settings-category {
+    &__body {
+        display: grid;
+        gap: 0.625rem;
+        padding: 0.25rem 0.75rem 0.75rem;
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    &__tools {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+        gap: 0.375rem;
+    }
+
+    .setting__saved {
+        font-size: 0.8125rem;
+    }
+}
+
+.settings-tool {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 3rem;
+    padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+    cursor: pointer;
+    background-color: var(--bs-body-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: background-color $convrtr-transition-duration ease-in-out, border-color $convrtr-transition-duration ease-in-out;
+
+    > span:first-child {
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .form-switch {
+        padding-left: 0;
+
+        .form-check-input {
+            margin: 0;
+        }
+    }
+
+    &:has(:checked) {
+        background-color: var(--convrtr-accent-subtle);
+        border-color: var(--convrtr-btn-border);
+    }
+}
+
+// Your data
+.settings-data {
+    &__list {
+        margin: 0.25rem 0 0.75rem;
+        overflow: hidden;
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+
+        > div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem 1rem;
+            justify-content: space-between;
+            padding: 0.5rem 0.75rem;
+
+            & + div {
+                border-top: var(--bs-border-width) solid var(--bs-border-color);
+            }
+        }
+
+        dt {
+            font-weight: 600;
+        }
+        dd {
+            margin: 0;
+            color: var(--bs-secondary-color);
+            overflow-wrap: anywhere;
+        }
+    }
+
+    &__empty {
+        padding: 0.5rem 0.75rem;
+        margin: 0.25rem 0 0.75rem;
+        color: var(--bs-secondary-color);
+        border: var(--bs-border-width) dashed var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
+    }
+
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    &__undo {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.75rem;
+        align-items: center;
+        margin: 0.75rem 0 0;
+        color: var(--bs-secondary-color);
     }
 }

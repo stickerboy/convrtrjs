@@ -44,3 +44,41 @@ export function getLocalStorageItem(id) {
 export function clearLocalStorage() {
     localStorage.clear();
 }
+
+/**
+ * Whether a tool starts open on its category page. Tools are saved by their folder and id, such as "hex/frequencies",
+ * and start open unless they've been saved as closed.
+ * @param {string} key - The tool's folder and id.
+ * @returns {boolean}
+ */
+export function isToolOpen(key) {
+    return getLocalStorageItem(key) !== "false";
+}
+
+/**
+ * Saves whether a tool starts open on its category page, as its section's collapse button and Settings both do.
+ * @param {string} key - The tool's folder and id, such as "hex/frequencies".
+ * @param {string} name - The tool's name, such as "Hex frequencies".
+ * @param {boolean} open
+ * @returns {void}
+ */
+export function saveToolOpen(key, name, open) {
+    saveLocalStorage(key, name, String(open), `Whether ${name} starts open on its category page`);
+}
+
+/**
+ * Removes the open states saved before tools were keyed by folder, which were keyed by id alone (so Hex and Text
+ * frequencies shared one) and described as "Toggle visibility of ... section".
+ * @returns {void}
+ */
+export function removeOldToolStates() {
+    for (const key of Object.keys(localStorage)) {
+        try {
+            if (JSON.parse(localStorage.getItem(key))?.description?.startsWith("Toggle visibility of ")) {
+                localStorage.removeItem(key);
+            }
+        } catch {
+            // Not one of ours
+        }
+    }
+}

@@ -1,4 +1,6 @@
-import { getLocalStorageItem, saveLocalStorage } from "../ui/storage.js";
+import { isToolOpen, removeOldToolStates, saveToolOpen } from "../ui/storage.js";
+
+removeOldToolStates();
 
 function isTooltipVisible(instance) {
     const tip = instance?.tip;
@@ -8,44 +10,42 @@ function isTooltipVisible(instance) {
 // Toggles are only shown (and active) on category landing pages
 const sectionToggles = Array.from(document.querySelectorAll(".landing-page .section-toggle"));
 if (sectionToggles.length > 0) {
+    // Tools start open unless they were saved as closed, here or in Settings
     function restoreOptions() {
-        if (localStorage.length !== 0) {
-            for (const sectionToggle of sectionToggles) {
-                const section = sectionToggle.closest(".section");
-                if (!section) {
-                    console.warn("No parent section found for: ", sectionToggle);
-                    continue; // Skip this iteration if no parent section exists
-                }
+        for (const sectionToggle of sectionToggles) {
+            const section = sectionToggle.closest(".section");
+            if (!section) {
+                console.warn("No parent section found for: ", sectionToggle);
+                continue; // Skip this iteration if no parent section exists
+            }
 
-                const sectionID = section.id;
-                const isExpanded = getLocalStorageItem(sectionID) === "true";
+            const isExpanded = isToolOpen(section.dataset.sectionKey);
 
-                sectionToggle.setAttribute("aria-expanded", isExpanded);
+            sectionToggle.setAttribute("aria-expanded", isExpanded);
 
-                const collapseID = sectionToggle.getAttribute("href");
-                const collapseElement = document.querySelector(collapseID);
-                const collapseToggle = sectionToggle.querySelector(".toggle-button");
-                const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
+            const collapseID = sectionToggle.getAttribute("href");
+            const collapseElement = document.querySelector(collapseID);
+            const collapseToggle = sectionToggle.querySelector(".toggle-button");
+            const tooltipInstance = bootstrap.Tooltip.getInstance(collapseToggle);
 
-                if (collapseElement) {
-                    if (isExpanded === true) {
-                        collapseElement.classList.add("show");
+            if (collapseElement) {
+                if (isExpanded === true) {
+                    collapseElement.classList.add("show");
 
-                        if (tooltipInstance) {
-                            collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
-                            tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
-                        }
-                    } else {
-                        collapseElement.classList.remove("show");
-
-                        if (tooltipInstance) {
-                            collapseToggle.setAttribute("data-bs-original-title", "Expand section");
-                            tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
-                        }
+                    if (tooltipInstance) {
+                        collapseToggle.setAttribute("data-bs-original-title", "Collapse section");
+                        tooltipInstance.setContent({ '.tooltip-inner': "Collapse section" });
                     }
                 } else {
-                    console.warn("No collapse element found for ID: ", collapseID);
+                    collapseElement.classList.remove("show");
+
+                    if (tooltipInstance) {
+                        collapseToggle.setAttribute("data-bs-original-title", "Expand section");
+                        tooltipInstance.setContent({ '.tooltip-inner': "Expand section" });
+                    }
                 }
+            } else {
+                console.warn("No collapse element found for ID: ", collapseID);
             }
         }
     }
@@ -55,10 +55,7 @@ if (sectionToggles.length > 0) {
     // Save toggle state
     Array.from(sectionToggles, c => c.addEventListener("click", function () {
         const section = c.closest(".section");
-        const sectionID = section.id;
         const isExpanded = c.getAttribute("aria-expanded");
-        const name = c.getAttribute("data-section-name").charAt(0).toUpperCase() + c.getAttribute("data-section-name").slice(1) || `${sectionID.charAt(0).toUpperCase() + sectionID.slice(1)}`;
-        const description = c.getAttribute("data-section-description") || "Stores expanded/collapsed state of a section";
 
         const collapseToggle = c.querySelector(".toggle-button");
         const tooltipInstance = bootstrap.Tooltip.getOrCreateInstance(collapseToggle);
@@ -74,7 +71,7 @@ if (sectionToggles.length > 0) {
             }
         }
 
-        saveLocalStorage(sectionID, name, isExpanded, description);
+        saveToolOpen(section.dataset.sectionKey, c.dataset.sectionName, isExpanded === "true");
     }));
 }
 

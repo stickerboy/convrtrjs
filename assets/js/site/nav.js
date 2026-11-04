@@ -94,6 +94,20 @@ if (grid && sidebar && toggle) {
         });
     }
 
+    // Settings shows or hides the panel, as the toggle does from md up ("convrtr:sidebarpanel", detail { open, save }).
+    // Below md the drawer is left alone, but the choice is still saved for wider screens unless save is false.
+    document.addEventListener("convrtr:sidebarpanel", (event) => {
+        const { open, save = true } = event.detail;
+        if (desktop.matches) {
+            showPanel(open ? shown : null);
+            if (save) {
+                remember();
+            }
+        } else if (save) {
+            saveLocalStorage("sidebarPanel", "Sidebar panel", open ? "open" : "closed", "Whether the list of tools beside the sidebar is shown");
+        }
+    });
+
     toggle.addEventListener("click", () => {
         if (desktop.matches) {
             showPanel(isPanelOpen() ? null : shown);

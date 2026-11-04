@@ -15,12 +15,13 @@
 #}
 {% macro toolSection(intro = "") %}
 {%- set id = page.fileSlug -%}
-<section id="{{ id }}" class="section">
+{#- Saved by its folder and id, such as "hex/frequencies", as two categories can have a tool with the same id #}
+<section id="{{ id }}" class="section" data-section-key="{{ page.filePathStem | replace("/pages/", "") }}">
     <div class="section-heading">
         <a class="section-toggle justify-content-between text-decoration-none pt-4 pb-3 px-2 px-sm-4"
             data-bs-toggle="collapse" href="#{{ id }}Collapse" role="button"
             aria-expanded="true" aria-controls="{{ id }}Collapse"
-            data-section-name="{{ id }}" data-section-description="Toggle visibility of {{ id }} section"
+            data-section-name="{{ heading or title }}"
             data-pagefind-ignore="all">
             <h2 class="display-6 w-100 d-flex m-0">
                 {{ heading or title }}

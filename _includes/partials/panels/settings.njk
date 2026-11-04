@@ -1,0 +1,11 @@
+{#
+    The Settings page's groups, in the sidebar panel (see sidebarPanel in layouts/base.njk), from settingsGroups in its
+    front matter. assets/js/site/settings.js marks the group being read with aria-current="location".
+#}
+<h2 class="sidebar-panel__title" id="sidebar-page-title">Settings</h2>
+<p class="sidebar-panel__count">{{ settingsGroups | length }} groups</p>
+<ul class="sidebar-panel__list">
+    {%- for group in settingsGroups %}
+    <li><a class="sidebar-panel__link" href="#{{ group.id }}" data-settings-link="{{ group.id }}">{{ group.title }}</a></li>
+    {%- endfor %}
+</ul>
