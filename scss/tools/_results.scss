@@ -65,8 +65,10 @@
         }
     }
 
+    // As wide as the chosen option, not the longest ("Zero x with commas"), so the hint keeps its room
     .form-select {
         @extend %quiet-control;
+        field-sizing: content;
         width: auto;
         padding-block: 0;
         padding-right: 2rem;

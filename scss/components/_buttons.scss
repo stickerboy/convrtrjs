@@ -1,30 +1,75 @@
-// Brand buttons: colours come from the "convrtr" theme colour, these add the weight and shape
+// Brand buttons, tonal: the main action (and the chosen mode of a pair, such as Encrypt) is a pale green fill with dark
+// green text, so it's clear without competing with the navbar or the tool's input. Text is 7:1 or more in both themes.
+// The outline button is the unchosen mode or a secondary action: a plain button with a neutral edge.
+@include theme-vars(
+    (
+        convrtr-btn-color: shade-color($convrtr, 25%),
+        convrtr-btn-bg: #d3e8e1,
+        convrtr-btn-border: #b7d6cc,
+        convrtr-btn-hover-bg: #c2dfd5,
+        convrtr-btn-hover-border: #a3cabd,
+        convrtr-btn-outline-color: $body-color,
+        convrtr-btn-outline-bg: $white,
+        convrtr-btn-outline-border: $gray-400,
+        convrtr-btn-outline-hover-bg: $gray-200,
+    ),
+    (
+        convrtr-btn-color: #d3eee6,
+        convrtr-btn-bg: #2a4a42,
+        convrtr-btn-border: #3b6359,
+        convrtr-btn-hover-bg: #335950,
+        convrtr-btn-hover-border: #4a7569,
+        convrtr-btn-outline-color: var(--bs-body-color),
+        convrtr-btn-outline-bg: var(--convrtr-surface),
+        convrtr-btn-outline-border: $gray-700,
+        convrtr-btn-outline-hover-bg: rgba(var(--bs-body-color-rgb), 0.12),
+    )
+);
+// At least 6rem wide, so a one-word action such as Flip or Run still reads as a button, and 44px tall for touch;
+// icon-only buttons take .btn-icon-text instead, which makes them 44px square
 .btn-convrtr,
 .btn-outline-convrtr {
     --bs-btn-font-weight: 600;
     --bs-btn-border-radius: var(--bs-border-radius-lg);
+    display: inline-flex;
+    gap: 0.375rem;
+    align-items: center;
+    justify-content: center;
+    min-width: 6rem;
+    min-height: 2.75rem;
+
+    .bi {
+        @extend %bi-centred;
+    }
 }
 .btn-convrtr {
     --bs-btn-padding-y: 0.6rem;
+    --bs-btn-color: var(--convrtr-btn-color);
+    --bs-btn-bg: var(--convrtr-btn-bg);
+    --bs-btn-border-color: var(--convrtr-btn-border);
+    --bs-btn-hover-color: var(--convrtr-btn-color);
+    --bs-btn-hover-bg: var(--convrtr-btn-hover-bg);
+    --bs-btn-hover-border-color: var(--convrtr-btn-hover-border);
+    --bs-btn-active-color: var(--convrtr-btn-color);
+    --bs-btn-active-bg: var(--convrtr-btn-hover-bg);
+    --bs-btn-active-border-color: var(--convrtr-btn-hover-border);
+    --bs-btn-disabled-color: var(--convrtr-btn-color);
+    --bs-btn-disabled-bg: var(--convrtr-btn-bg);
+    --bs-btn-disabled-border-color: var(--convrtr-btn-border);
 }
-
-// The outline button sits on a tinted background in dark mode so its border isn't the only cue
-@include theme-vars(
-    (
-        convrtr-btn-outline-color: $convrtr,
-        convrtr-btn-outline-bg: transparent,
-    ),
-    (
-        convrtr-btn-outline-color: $white,
-        convrtr-btn-outline-bg: rgba($convrtr, 0.25),
-    )
-);
 .btn-outline-convrtr {
     --bs-btn-color: var(--convrtr-btn-outline-color);
     --bs-btn-bg: var(--convrtr-btn-outline-bg);
-    --bs-btn-border-color: var(--convrtr-accent);
+    --bs-btn-border-color: var(--convrtr-btn-outline-border);
+    --bs-btn-hover-color: var(--convrtr-btn-outline-color);
+    --bs-btn-hover-bg: var(--convrtr-btn-outline-hover-bg);
+    --bs-btn-hover-border-color: var(--convrtr-btn-outline-border);
+    --bs-btn-active-color: var(--convrtr-btn-outline-color);
+    --bs-btn-active-bg: var(--convrtr-btn-outline-hover-bg);
+    --bs-btn-active-border-color: var(--convrtr-btn-outline-border);
     --bs-btn-disabled-color: var(--convrtr-btn-outline-color);
-    --bs-btn-disabled-border-color: var(--convrtr-accent);
+    --bs-btn-disabled-bg: var(--convrtr-btn-outline-bg);
+    --bs-btn-disabled-border-color: var(--convrtr-btn-outline-border);
 }
 
 .btn-link {
