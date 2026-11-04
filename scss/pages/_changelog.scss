@@ -9,6 +9,9 @@
 }
 
 .version-list {
+    // Lets the columns narrow to fit beside the sidebar, breaking a long word only when they have to
+    overflow-wrap: anywhere;
+
     >:not(caption)>*>* {
         border-bottom-width: 0;
         @include media-breakpoint-up(md) {

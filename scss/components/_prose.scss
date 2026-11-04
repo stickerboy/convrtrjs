@@ -1,5 +1,10 @@
 // Markdown content: changelog entries, about, licence and other text pages
 .prose {
+    // A long address breaks rather than widening the page
+    a {
+        overflow-wrap: anywhere;
+    }
+
     h1,
     h2 {
         padding-bottom: 0.75rem;

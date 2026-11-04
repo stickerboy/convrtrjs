@@ -21,6 +21,32 @@
     }
 }
 
+// The Convrtrs cards: as many columns as fit cards at least about 17rem wide, up to three, and four on very wide screens
+.convrtr-cards {
+    container: convrtr-cards / inline-size;
+
+    &__grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 1rem;
+    }
+}
+@container convrtr-cards (min-width: 36rem) {
+    .convrtr-cards__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@container convrtr-cards (min-width: 54rem) {
+    .convrtr-cards__grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+@container convrtr-cards (min-width: 90rem) {
+    .convrtr-cards__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
 // Convrtrs card header: name and hint on the left, then any setting and the info button. The setting and button only
 // show a background on hover and focus, so the name leads, and both stay 44px for touch.
 .convrtr-head {

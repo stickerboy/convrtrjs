@@ -28,7 +28,8 @@ layout: layouts/base.njk
     {%- set prev = collections.versions | getNextCollectionItem(page) %}
 
     <nav class="version-nav px-4 pt-2" aria-label="Next and previous changelog items">
-        <ul class="pagination pagination-sm justify-content-between m-0">
+        {#- The second group wraps under the first, staying on the right, when they won't fit side by side #}
+        <ul class="pagination pagination-sm flex-wrap gap-2 justify-content-between m-0">
             <li class="page-item">
                 <div class="btn-group d-flex flex-row" role="group">
                     {%- if next %}
@@ -41,7 +42,7 @@ layout: layouts/base.njk
                     {%- endif %}
                 </div>
             </li>
-            <li class="page-item">
+            <li class="page-item ms-auto">
                 <div class="btn-group d-flex flex-row" role="group">
                     {%- if prev %}
                     <a class="btn btn-outline-convrtr border-light-subtle py-2 px-3 rounded-start rounded-end-0 fw-normal" href="{{ prev.url }}" title="Previous changelog: v{{ prev.data.title }}">

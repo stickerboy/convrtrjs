@@ -25,10 +25,12 @@ summary: >-
 </div>
 {#- One announcement per conversion, rather than one per box, for screen readers #}
 <p class="visually-hidden" aria-live="polite" id="convrtrsAnnounce"></p>
-<div class="grid g-3">
+{#- Columns follow the space the cards have, not the window, as the sidebar takes a share of it #}
+<div class="convrtr-cards">
+<div class="convrtr-cards__grid">
     {% for tool in convrtrs %}
     {% if convrtrs.length %}
-    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-hd-3 g-col-hd-3 g-col-fhd-3">
+    <div>
         {#- Cards fill their row, and each box grows into the spare height, so a two-line status in one card keeps the
             buttons level across the row #}
         <div class="card shadow-sm h-100" id="{{ filename }}-{{ tool.id }}">
@@ -67,7 +69,8 @@ summary: >-
                     <span id="{{ filename }}-{{ tool.id }}-status"></span>
                     <span data-count>0 characters</span>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mt-2">
+                {#- The buttons wrap, with the group staying on the right, when the card is too narrow for both on one line #}
+                <div class="d-flex flex-wrap gap-2 justify-content-between align-items-center mt-2">
                     {% if loop.first == true %}
                     <span data-bs-toggle="tooltip" data-bs-placement="top" title="{{ tool.buttonLabel }}">
                         <button type="button" class="btn btn-md btn-convrtr" id="{{ tool.buttonId }}" aria-label="{{ tool.buttonLabel }}">Encode</button>
@@ -79,7 +82,7 @@ summary: >-
                         </button>
                     </span>
                     {% endif %}
-                    <div class="btn-group">
+                    <div class="btn-group ms-auto">
                         <button type="button" class="btn btn-md btn-light btn-select" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Select All" data-bs-original-title="Select All"><i class="bi bi-check2-square"></i></button>
                         <button type="button" class="btn btn-md btn-light btn-copy" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Copy to clipboard" data-bs-original-title="Copy to clipboard"><i class="bi bi-clipboard"></i></button>
                         <button type="button" class="btn btn-md btn-light btn-download" data-bs-toggle="tooltip" data-bs-placement="top" aria-label="Download" data-bs-original-title="Download"><i class="bi bi-download"></i></button>
@@ -90,5 +93,6 @@ summary: >-
     </div>
     {% endif %}
     {% endfor %}
+</div>
 </div>
 {% endcall %}
