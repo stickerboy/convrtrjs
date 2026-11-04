@@ -1,6 +1,6 @@
 // The Settings page (settings.njk). Each setting saves as soon as it changes, with the same key and value as the control
-// elsewhere on the site that sets it, so they always agree. Your data lists what's saved, and Reset all settings clears
-// it, with an Undo.
+// elsewhere on the site that sets it, so they always agree. Your data lists what's saved, exports it to a file and
+// imports one (showing what would change first), and Reset all settings clears it. Reset and import offer an Undo.
 import { getLocalStorageItem, isToolOpen, saveLocalStorage, saveToolOpen } from "../ui/storage.js";
 import { applyDisplayPreferences } from "./preferences.js";
 import { applyTheme } from "./theme.js";
@@ -213,6 +213,7 @@ if (page) {
             ? `<dl class="settings-data__list">${rows.map(([name, value]) => `<div><dt>${escapeHtml(name)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>`
             : `<p class="settings-data__empty">Nothing saved yet. Everything is as it starts.</p>`;
         reset.disabled = rows.length === 0;
+        exportButton.disabled = !Object.keys(localStorage).some((key) => IMPORTABLE.has(key));
     }
 
     // Reset, with an Undo in place of a confirm dialog. Undo puts back exactly what was saved.
@@ -225,15 +226,21 @@ if (page) {
         applyDisplayPreferences();
         showAll();
     };
+    const offerUndo = (message) => {
+        document.getElementById("settingsUndoText").textContent = message;
+        undo.hidden = false;
+        document.getElementById("settingsUndoButton").focus();
+        status.textContent = message;
+    };
     reset.addEventListener("click", () => {
         before = Object.entries(localStorage);
         localStorage.clear();
         applySaved();
-        undo.hidden = false;
-        document.getElementById("settingsUndoButton").focus();
-        status.textContent = "All settings reset";
+        offerUndo("All settings are back to how they start.");
     });
     document.getElementById("settingsUndoButton").addEventListener("click", () => {
+        // Cleared first, so settings an import added go too
+        localStorage.clear();
         for (const [key, value] of before ?? []) {
             localStorage.setItem(key, value);
         }
@@ -242,6 +249,128 @@ if (page) {
         undo.hidden = true;
         reset.focus();
         status.textContent = "Settings restored";
+    });
+
+    // ---------- Export and import ----------
+    // Every setting a file can carry: the name and description Settings saves it with, what it starts as, and the values
+    // it can take. Anything else in a file is skipped, so importing can only set what Settings itself can.
+    const themeToggle = (value) => document.querySelector(`[data-bs-theme-value="${value}"]`);
+    const valuesOf = (group) => [...group.querySelectorAll("button")].map((button) => button.dataset.value);
+    const IMPORTABLE = new Map([
+        ["theme", { name: (value) => themeToggle(value)?.dataset.themeName || "Theme", description: (value) => themeToggle(value)?.dataset.themeDescription || "", start: "auto", valid: (value) => valuesOf(theme).includes(value) }],
+        ["sidebarPanel", { name: "Sidebar panel", description: "Whether the list of tools beside the sidebar is shown", start: "open", valid: (value) => value === "open" || value === "closed" }],
+        ...SWITCHES.map((setting) => [setting.key, { ...setting, start: "off", valid: (value) => value === "on" || value === "off" }]),
+        ...SEGMENTS.map((setting) => [setting.key, { ...setting, valid: (value) => valuesOf(document.getElementById(setting.id)).includes(value) }]),
+        ["caesarShift", { name: "Caesar shift", description: "The shift the Caesar cipher starts on", start: "3", valid: (value) => /^\d+$/.test(value) && value >= 1 && value <= 25 }],
+        ["hexDelimiter", { name: "Hex delimiter", description: "What goes between bytes when a tool writes hex", start: " ", valid: (value) => [...delimiter.options].some((option) => option.value === value) }],
+        ...[...toolNames].map(([key, name]) => [key, { name, tool: true, start: "true", valid: (value) => value === "true" || value === "false" }]),
+    ]);
+    const text = (field, value) => (typeof field === "function" ? field(value) : field);
+    const saveSetting = (key, value) => {
+        const setting = IMPORTABLE.get(key);
+        if (setting.tool) {
+            saveToolOpen(key, setting.name, value === "true");
+        } else {
+            saveLocalStorage(key, text(setting.name, value), value, text(setting.description, value));
+        }
+    };
+    // A setting and its value in plain words, as Your data shows them
+    const describe = (key, value) => (IMPORTABLE.get(key).tool
+        ? [`${IMPORTABLE.get(key).name} on its category page`, value === "false" ? "Collapsed" : "Open"]
+        : [LABELS[key][0], LABELS[key][1](value)]);
+
+    const exportButton = document.getElementById("settingsExport");
+    exportButton.addEventListener("click", () => {
+        const settings = {};
+        for (const key of Object.keys(localStorage)) {
+            if (IMPORTABLE.has(key) && getLocalStorageItem(key) !== false) {
+                settings[key] = String(getLocalStorageItem(key));
+            }
+        }
+        const file = new Blob([JSON.stringify({ app: "Convrtr", version: 1, exported: new Date().toISOString(), settings }, null, 2)], { type: "application/json" });
+        const link = Object.assign(document.createElement("a"), { href: URL.createObjectURL(file), download: `convrtr-settings-${new Date().toISOString().slice(0, 10)}.json` });
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+        status.textContent = "Settings exported";
+    });
+
+    const importFile = document.getElementById("settingsImportFile");
+    const importPanel = document.getElementById("settingsImport");
+    const importTitle = document.getElementById("settingsImportTitle");
+    const importBody = importPanel.querySelector("[data-import-body]");
+    const importActions = importPanel.querySelector("[data-import-actions]");
+    let importing = [];
+    const showImport = (title, body, { error = false, canApply = false } = {}) => {
+        importTitle.textContent = title;
+        importBody.innerHTML = body;
+        importPanel.classList.toggle("is-error", error);
+        document.getElementById("settingsImportApply").hidden = !canApply;
+        document.getElementById("settingsImportCancel").textContent = canApply ? "Cancel" : "Close";
+        importActions.hidden = false;
+        importPanel.hidden = false;
+        importPanel.focus();
+    };
+    document.getElementById("settingsImportButton").addEventListener("click", () => importFile.click());
+    importFile.addEventListener("change", async () => {
+        const file = importFile.files[0];
+        importFile.value = "";
+        if (!file) {
+            return;
+        }
+        let settings;
+        try {
+            if (file.size > 100000) {
+                throw new Error("too large");
+            }
+            const parsed = JSON.parse(await file.text());
+            settings = parsed?.app === "Convrtr" ? parsed.settings : null;
+        } catch {
+            settings = null;
+        }
+        if (!settings || typeof settings !== "object" || Array.isArray(settings)) {
+            showImport(`${file.name} isn't a Convrtr settings file`, `<p class="settings-import__note">Choose a file made with Export settings, which is named like convrtr-settings-2026-11-04.json.</p>`, { error: true });
+            return;
+        }
+        importing = [];
+        let skipped = 0;
+        for (const [key, value] of Object.entries(settings)) {
+            const setting = IMPORTABLE.get(key);
+            if (!setting || typeof value !== "string" || !setting.valid(value)) {
+                skipped++;
+                continue;
+            }
+            const now = getLocalStorageItem(key);
+            if ((now === false ? setting.start : String(now)) !== value) {
+                importing.push([key, value]);
+            }
+        }
+        const skippedNote = skipped ? `<p class="settings-import__note">${skipped} ${skipped === 1 ? "item" : "items"} in the file ${skipped === 1 ? "isn't a setting" : "aren't settings"} this page knows, so ${skipped === 1 ? "it'll" : "they'll"} be left out.</p>` : "";
+        if (!importing.length) {
+            showImport(`${file.name} has the same settings you have now`, skippedNote);
+            return;
+        }
+        const now = (key) => (getLocalStorageItem(key) === false ? IMPORTABLE.get(key).start : String(getLocalStorageItem(key)));
+        const changes = importing.map(([key, value]) => {
+            const [name, after] = describe(key, value);
+            return `<li><b>${escapeHtml(name)}:</b> ${escapeHtml(describe(key, now(key))[1])} → ${escapeHtml(after)}</li>`;
+        }).join("");
+        showImport(`${file.name} changes ${importing.length} ${importing.length === 1 ? "setting" : "settings"}`, `<ul class="settings-import__changes">${changes}</ul>${skippedNote}`, { canApply: true });
+    });
+    document.getElementById("settingsImportApply").addEventListener("click", () => {
+        before = Object.entries(localStorage);
+        for (const [key, value] of importing) {
+            saveSetting(key, value);
+        }
+        const count = importing.length;
+        importing = [];
+        importPanel.hidden = true;
+        applySaved();
+        offerUndo(`${count} ${count === 1 ? "setting" : "settings"} imported.`);
+    });
+    document.getElementById("settingsImportCancel").addEventListener("click", () => {
+        importing = [];
+        importPanel.hidden = true;
+        document.getElementById("settingsImportButton").focus();
     });
 
     // ---------- Show what's saved ----------

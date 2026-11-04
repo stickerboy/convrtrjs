@@ -158,14 +158,28 @@ settingsGroups:
 
         <section class="settings-group" id="data" aria-labelledby="data-title">
             <h2 class="settings-group__title" id="data-title"><i class="bi bi-database" aria-hidden="true"></i>Your data</h2>
-            <p class="settings-group__intro">Settings are saved in this browser's local storage. Nothing is sent anywhere, and nothing you type into a tool is saved.</p>
+            <p class="settings-group__intro">Settings are saved in this browser's local storage. Nothing is sent anywhere, and nothing you type into a tool is saved. Export saves your settings to a file you can import on another browser or device.</p>
             <div class="settings-data" id="settingsData"></div>
+            <div class="settings-data__actions">
+                <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsExport"><i class="bi bi-download" aria-hidden="true"></i>Export settings</button>
+                <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsImportButton" aria-controls="settingsImport"><i class="bi bi-upload" aria-hidden="true"></i>Import settings</button>
+                <input type="file" id="settingsImportFile" accept=".json,application/json" hidden>
+            </div>
+            {#- What an imported file would change, to apply or cancel #}
+            <div class="settings-import" id="settingsImport" role="region" aria-labelledby="settingsImportTitle" tabindex="-1" hidden>
+                <p class="settings-import__title" id="settingsImportTitle"></p>
+                <div data-import-body></div>
+                <div class="settings-data__actions" data-import-actions>
+                    <button type="button" class="btn btn-convrtr" id="settingsImportApply">Apply these settings</button>
+                    <button type="button" class="btn btn-outline-convrtr" id="settingsImportCancel">Cancel</button>
+                </div>
+            </div>
             <div class="settings-data__actions">
                 <button type="button" class="btn btn-outline-danger btn-icon-text" id="settingsReset"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset all settings</button>
                 <a class="btn btn-outline-convrtr" href="/community/privacy/">What we store and why</a>
             </div>
             <p class="settings-data__undo" id="settingsUndo" hidden>
-                All settings are back to how they start.
+                <span id="settingsUndoText"></span>
                 <button type="button" class="btn btn-outline-convrtr" id="settingsUndoButton">Undo</button>
             </p>
         </section>

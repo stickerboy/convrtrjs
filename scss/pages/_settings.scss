@@ -275,6 +275,10 @@
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
+
+        & + & {
+            margin-top: 0.5rem;
+        }
     }
 
     &__undo {
@@ -284,5 +288,40 @@
         align-items: center;
         margin: 0.75rem 0 0;
         color: var(--bs-secondary-color);
+    }
+}
+
+// What an imported file would change: a list of each setting from its value now to the file's, then Apply or Cancel
+.settings-import {
+    padding: 0.75rem;
+    margin-top: 0.75rem;
+    background-color: var(--bs-tertiary-bg);
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+
+    &:focus-visible {
+        outline: 2px solid var(--convrtr-accent);
+    }
+
+    &__title {
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+
+    &__changes {
+        display: grid;
+        gap: 0.25rem;
+        padding-left: 1.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    &__note {
+        margin-bottom: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--bs-secondary-color);
+    }
+
+    &.is-error &__title {
+        color: var(--bs-danger-text-emphasis);
     }
 }
