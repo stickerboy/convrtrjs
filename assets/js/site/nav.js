@@ -1,6 +1,6 @@
 // The sidebar (macros/sidebar.njk). Categories on the rail show their pages in the panel, and some pages have panel
 // content of their own, such as the search page's filters. The header toggle shows or hides the panel from md up, and
-// opens the whole sidebar as a drawer below md.
+// opens the whole sidebar as a drawer below md. The panel's close button closes whichever of those is open.
 import { saveLocalStorage } from "../ui/storage.js";
 
 const grid = document.querySelector(".sidebar-grid");
@@ -114,6 +114,17 @@ if (grid && sidebar && toggle) {
             remember();
         } else {
             setDrawer(!isDrawerOpen());
+        }
+    });
+
+    // The close button hides as it's used, so focus goes back to the toggle that reopens the panel
+    sidebar.querySelector("[data-sidebar-close]")?.addEventListener("click", () => {
+        if (desktop.matches) {
+            showPanel(null);
+            remember();
+            toggle.focus();
+        } else {
+            setDrawer(false);
         }
     });
 

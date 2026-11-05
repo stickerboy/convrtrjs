@@ -49,6 +49,7 @@
         {%- endfor %}
     </ul>
     <div class="sidebar-panel">
+        <button type="button" class="sidebar-panel__close" aria-label="Close sidebar panel" title="Close" data-sidebar-close><i class="bi bi-x-lg" aria-hidden="true"></i></button>
         {%- if pagePanel %}
         <div class="sidebar-panel__group" id="{{ idPrefix }}-page" role="region" aria-labelledby="{{ idPrefix }}-page-title" data-page-panel{% if openId != "page" %} hidden{% endif %}>
             {{ pagePanel | safe }}

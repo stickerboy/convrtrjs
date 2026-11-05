@@ -136,6 +136,30 @@
         transition-delay: 0s, 0s, $convrtr-transition-duration;
     }
 
+    // Top right, level with the title, which wraps around it. It scrolls with the list, so it never covers a link.
+    &__close {
+        @extend %sidebar-target;
+        display: grid;
+        float: right;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0;
+        margin: -0.5rem 0 0;
+        color: var(--bs-secondary-color);
+        background: none;
+        border: 0;
+
+        &:hover,
+        &:focus-visible {
+            color: var(--bs-emphasis-color);
+        }
+
+        .bi {
+            @extend %bi-centred;
+        }
+    }
+
     &__title {
         padding: 0 0.625rem;
         margin: 0 0 0.125rem;
