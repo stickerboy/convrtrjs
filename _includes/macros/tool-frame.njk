@@ -156,8 +156,8 @@
 {% endmacro %}
 
 {#
-    The frame a glyph tool sits in (Pigpen, Covenant, Forerunner): the message as text you can type in, its glyphs drawn
-    as you type, and a keyboard of glyphs that types their letters at the cursor. assets/js/ui/glyph-keyboard.js wires it up.
+    The frame a glyph tool sits in (Pigpen, Covenant, Forerunner): the message as text you can type in, a keyboard of
+    glyphs under it that types their letters at the cursor, and the message's glyphs drawn as you type. assets/js/ui/glyph-keyboard.js wires it up.
 
     {% from "macros/tool-frame.njk" import glyphFrame %}
     {{ glyphFrame(filename, "Pigpen cipher", "'Pigpen Cipher'", "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("")) }}
@@ -180,14 +180,6 @@
                 <span data-count-input></span>
             </div>
         </div>
-        <div class="tool-pane">
-            <div class="tool-pane__head">
-                <span class="tool-pane__label">Glyphs</span>
-            </div>
-            {#- Drawn from the message, which screen readers already have #}
-            <div class="glyph-frame__glyphs" id="{{ id }}Glyphs" aria-hidden="true" data-empty="The glyphs for your message appear here"></div>
-            {{ saveImageControls(id) }}
-        </div>
         <div>
             <p class="glyph-frame__hint" id="{{ id }}KeysHint">Type letters in the message, or tap glyphs to type their letters where the cursor is.</p>
             <div class="glyph-frame__keys" role="group" aria-label="{{ name }} glyphs" aria-describedby="{{ id }}KeysHint">
@@ -204,6 +196,14 @@
                 <button type="button" class="btn btn-light btn-icon-text" data-backspace><i class="bi bi-backspace" aria-hidden="true"></i>Backspace</button>
                 <button type="button" class="btn btn-light" data-clear>Clear</button>
             </div>
+        </div>
+        <div class="tool-pane">
+            <div class="tool-pane__head">
+                <span class="tool-pane__label">Glyphs</span>
+            </div>
+            {#- Drawn from the message, which screen readers already have #}
+            <div class="glyph-frame__glyphs" id="{{ id }}Glyphs" aria-hidden="true" data-empty="The glyphs for your message appear here"></div>
+            {{ saveImageControls(id) }}
         </div>
     </div>
 </div>

@@ -201,7 +201,6 @@ $periodic-table-width: 50rem;
     }
 
     p {
-        max-width: 75ch;
         font-size: 0.9375rem;
     }
 
@@ -212,9 +211,9 @@ $periodic-table-width: 50rem;
         margin: 0 0 1rem;
 
         dt {
-            font-size: 0.75rem;
-            font-weight: 400;
-            color: var(--bs-secondary-color);
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--bs-emphasis-color);
         }
 
         dd {
