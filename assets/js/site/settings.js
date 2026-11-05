@@ -180,6 +180,14 @@ if (page) {
         hexDelimiter: ["Hex delimiter", (value) => [...delimiter.options].find((option) => option.value === value)?.textContent.trim() || value],
     };
 
+    // Which of the page's groups each saved setting is listed under; anything else goes under Other
+    const DATA_GROUPS = {
+        Appearance: ["theme", "sidebarPanel", "reduceMotion", "compactLayout"],
+        Tools: ["toolsLive", "convrtrsLive", "aboutOpen", "monoBoxes", "boxTextSize", "hexDelimiter"],
+        "Tool defaults": ["chainDecoders", "preserveSpaces", "caesarShift", "morsenaryDigits"],
+    };
+    const dataGroup = (key) => Object.keys(DATA_GROUPS).find((name) => DATA_GROUPS[name].includes(key)) ?? "Other";
+
     function renderData() {
         const rows = [];
         const collapsed = [];
@@ -195,7 +203,7 @@ if (page) {
             }
             const value = getLocalStorageItem(key);
             if (LABELS[key]) {
-                rows.push([LABELS[key][0], LABELS[key][1](String(value))]);
+                rows.push([LABELS[key][0], LABELS[key][1](String(value)), dataGroup(key)]);
             } else {
                 let name = key;
                 try {
@@ -203,15 +211,18 @@ if (page) {
                 } catch {
                     // Saved by something else, as plain text
                 }
-                rows.push([name, value === false ? localStorage.getItem(key) : value]);
+                rows.push([name, value === false ? localStorage.getItem(key) : value, "Other"]);
             }
         }
         if (collapsed.length) {
-            rows.push(["Tools that start collapsed", collapsed.length <= 4 ? collapsed.join(", ") : `${collapsed.length} tools`]);
+            rows.push(["Tools that start collapsed", collapsed.length <= 4 ? collapsed.join(", ") : `${collapsed.length} tools`, "Category pages"]);
         }
+        const groupsInOrder = [...Object.keys(DATA_GROUPS), "Category pages", "Other"];
         data.innerHTML = rows.length
-            ? `<dl class="settings-data__list">${rows.map(([name, value]) => `<div><dt>${escapeHtml(name)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl>`
+            ? `<div class="settings-data__groups">${groupsInOrder.filter((group) => rows.some((row) => row[2] === group)).map((group) => `<section><h3 class="settings-data__heading">${group}</h3><dl class="settings-data__list">${
+                rows.filter((row) => row[2] === group).map(([name, value]) => `<div><dt>${escapeHtml(name)}</dt><dd>${escapeHtml(value)}</dd></div>`).join("")}</dl></section>`).join("")}</div>`
             : `<p class="settings-data__empty">Nothing saved yet. Everything is as it starts.</p>`;
+        document.getElementById("settingsDataCount").textContent = rows.length ? `${rows.length} setting${rows.length === 1 ? "" : "s"}` : "Nothing saved";
         reset.disabled = rows.length === 0;
         exportButton.disabled = !Object.keys(localStorage).some((key) => IMPORTABLE.has(key));
     }
@@ -397,12 +408,19 @@ if (page) {
     showAll();
 
     // ---------- Group links ----------
-    // The panel and the chips mark the group being read, as you scroll or when you pick one
+    // The panel and the row of links mark the group being read, as you scroll or when you pick one. The row scrolls
+    // sideways on phones, so it brings the marked link into view.
     const links = [...document.querySelectorAll("[data-settings-link]")];
     const mark = (id) => {
         for (const link of links) {
             if (link.dataset.settingsLink === id) {
+                const changed = link.getAttribute("aria-current") !== "location";
                 link.setAttribute("aria-current", "location");
+                // After marking it, as the bold text makes it a little wider
+                const row = link.closest(".settings-nav");
+                if (changed && row) {
+                    row.scrollLeft = link.offsetLeft - (row.clientWidth - link.offsetWidth) / 2;
+                }
             } else {
                 link.removeAttribute("aria-current");
             }

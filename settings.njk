@@ -11,7 +11,7 @@ settingsGroups:
   - { id: data, title: Your data }
 ---
 {#-
-    Settings, in groups listed in the sidebar panel (partials/panels/settings.njk), and as chips above the groups when
+    Settings, in groups listed in the sidebar panel (partials/panels/settings.njk), and as a row of the same links above the groups when
     the panel isn't showing. Each setting saves as soon as it changes, with the same keys and values as the control
     elsewhere that sets it (the navbar's theme menu, the sidebar toggle, each tool's Live typing switch and each
     section's collapse button), so the two always agree. assets/js/site/settings.js wires it up.
@@ -36,7 +36,7 @@ settingsGroups:
     <div class="settings py-4 px-3 px-sm-4" data-settings>
         <nav class="settings-nav" aria-label="Settings groups">
             {%- for group in settingsGroups %}
-            <a class="filter-chip" href="#{{ group.id }}" data-settings-link="{{ group.id }}">{{ group.title }}</a>
+            <a class="sidebar-panel__link" href="#{{ group.id }}" data-settings-link="{{ group.id }}">{{ group.title }}</a>
             {%- endfor %}
         </nav>
 
@@ -158,12 +158,24 @@ settingsGroups:
 
         <section class="settings-group" id="data" aria-labelledby="data-title">
             <h2 class="settings-group__title" id="data-title"><i class="bi bi-database" aria-hidden="true"></i>Your data</h2>
-            <p class="settings-group__intro">Settings are saved in this browser's local storage. Nothing is sent anywhere, and nothing you type into a tool is saved. Export saves your settings to a file you can import on another browser or device.</p>
-            <div class="settings-data" id="settingsData"></div>
-            <div class="settings-data__actions">
-                <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsExport"><i class="bi bi-download" aria-hidden="true"></i>Export settings</button>
-                <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsImportButton" aria-controls="settingsImport"><i class="bi bi-upload" aria-hidden="true"></i>Import settings</button>
-                <input type="file" id="settingsImportFile" accept=".json,application/json" hidden>
+            <p class="settings-group__intro">Settings are saved in this browser's local storage. Nothing is sent anywhere, and nothing you type into a tool is saved. <a class="text-convrtr" href="/community/privacy/">What we store and why</a></p>
+            <details class="tool-fold settings-data__fold">
+                <summary>
+                    <i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>What's saved
+                    <small id="settingsDataCount"></small>
+                </summary>
+                <div class="settings-data__body" id="settingsData"></div>
+            </details>
+            <div class="setting">
+                <div class="setting__text">
+                    <span class="setting__name">Use your settings elsewhere</span>
+                    <small class="setting__hint">Export saves them to a file you can import on another browser or device.</small>
+                </div>
+                <div class="setting__actions">
+                    <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsExport"><i class="bi bi-download" aria-hidden="true"></i>Export settings</button>
+                    <button type="button" class="btn btn-outline-convrtr btn-icon-text" id="settingsImportButton" aria-controls="settingsImport"><i class="bi bi-upload" aria-hidden="true"></i>Import settings</button>
+                    <input type="file" id="settingsImportFile" accept=".json,application/json" hidden>
+                </div>
             </div>
             {#- What an imported file would change, to apply or cancel #}
             <div class="settings-import" id="settingsImport" role="region" aria-labelledby="settingsImportTitle" tabindex="-1" hidden>
@@ -174,9 +186,14 @@ settingsGroups:
                     <button type="button" class="btn btn-outline-convrtr" id="settingsImportCancel">Cancel</button>
                 </div>
             </div>
-            <div class="settings-data__actions">
-                <button type="button" class="btn btn-outline-danger btn-icon-text" id="settingsReset"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset all settings</button>
-                <a class="btn btn-outline-convrtr" href="/community/privacy/">What we store and why</a>
+            <div class="setting settings-data__reset">
+                <div class="setting__text">
+                    <span class="setting__name">Reset all settings</span>
+                    <small class="setting__hint">Puts everything back as it started. You can undo this straight after.</small>
+                </div>
+                <div class="setting__actions">
+                    <button type="button" class="btn btn-outline-danger btn-icon-text" id="settingsReset"><i class="bi bi-arrow-counterclockwise" aria-hidden="true"></i>Reset<span class="visually-hidden"> all settings</span></button>
+                </div>
             </div>
             <p class="settings-data__undo" id="settingsUndo" hidden>
                 <span id="settingsUndoText"></span>
