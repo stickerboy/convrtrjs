@@ -3,7 +3,8 @@ title: Hex reverse
 tags: tools
 heading: "Reverse hex"
 summary: >-
-    Reverses the bits in each byte or nibble, or the order of the bytes, which isn't the same as reversing the whole string.
+    Swaps the digits of each byte, reverses the bits in each byte or nibble, or reverses the order of the bytes, which
+    isn't the same as reversing the whole string.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
@@ -12,12 +13,14 @@ summary: >-
 {% set intro %}
     <p>Reversing the whole string turns <code class="tool-example">48 65 6c 6c 6f</code> [Hello] into <code class="tool-example">f6 c6 c6 56 84</code>. These reverse it in other ways:</p>
     <dl>
-        <dt>Reverse bytes</dt>
-        <dd>Reverses the order of the bits within each byte, so <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">84 56 c6 c6 f6</code></dd>
-        <dt>Reverse byte order</dt>
-        <dd>While it sounds similar, byte order is a little different: this reverses the order of the bytes in the string, so <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">6f 6c 6c 65 48</code></dd>
-        <dt>Reverse nibbles</dt>
-        <dd>Reverses the bits within each nibble (4 bits) of every byte. It's the same as converting the hex to binary, reversing the bits in each nibble, then converting it back to hex: <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">21 6A 36 36 F6</code></dd>
+        <dt>Digits in each byte</dt>
+        <dd>Swaps the two hex digits of each byte, which is the same as swapping its two nibbles, so <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">84 56 c6 c6 f6</code></dd>
+        <dt>Bits in each byte</dt>
+        <dd>Reverses the order of all 8 bits within each byte, so <code class="tool-example">48</code> [01001000] becomes <code class="tool-example">12</code> [00010010], and <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">12 a6 36 36 f6</code></dd>
+        <dt>Bits in each nibble</dt>
+        <dd>Reverses the bits within each nibble (4 bits) of every byte, leaving the nibbles in place. It's the same as converting the hex to binary, reversing the bits in each nibble, then converting it back to hex: <code class="tool-example">48</code> [0100 1000] becomes <code class="tool-example">21</code> [0010 0001], and <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">21 6a 63 63 6f</code></dd>
+        <dt>Byte order</dt>
+        <dd>While it sounds similar, byte order is a little different: this reverses the order of the bytes in the string, leaving each byte as it is, so <code class="tool-example">48 65 6c 6c 6f</code> becomes <code class="tool-example">6f 6c 6c 65 48</code></dd>
     </dl>
     <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the result is written.</p>
 {% endset %}
@@ -26,9 +29,10 @@ summary: >-
 <div class="tool-field">
     <label class="tool-field__label" for="{{ filename }}Type"><span class="visually-hidden">What to </span>Reverse</label>
     <select class="form-select" id="{{ filename }}Type" autocomplete="off">
-        <option value="bytes" selected="">Bytes</option>
+        <option value="digits" selected="">Digits in each byte</option>
+        <option value="bits">Bits in each byte</option>
+        <option value="nibbles">Bits in each nibble</option>
         <option value="byte-order">Byte order</option>
-        <option value="nibbles">Nibbles</option>
     </select>
 </div>
 <div class="tool-field">

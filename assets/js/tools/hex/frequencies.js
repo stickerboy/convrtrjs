@@ -25,19 +25,21 @@ bindToolFrame({
     id: "frequencies",
     modes: [{
         button: "frequenciesRun",
+        // The hex is read once, into runs of the same byte, and every table and figure is worked out from those
         run: (text) => {
             const bytes = toolkit.hexToPairs(text);
             if (bytes.length === 0) {
                 throw new Error("there's no hex to count");
             }
+            const runs = frequencies.hexRuns(bytes);
             const counted = tables.map(({ id, name, runLength }) => ({
                 id, name, columns,
-                rows: Object.entries(frequencies.generateHexFrequencies(text, delimiter.value, runLength * 2)).map(([value, count]) => ({
-                    value, count, code: parseInt(toolkit.hexToPairs(value)[0], 16),
+                rows: Object.entries(frequencies.countHexRuns(runs, delimiter.value, runLength)).map(([value, count]) => ({
+                    value, count, code: parseInt(value.match(/[0-9a-f]{2}/i)[0], 16),
                 })),
             }));
             const [mostCommon] = [...counted[0].rows].sort((a, b) => b.count - a.count);
-            const longest = frequencies.longestHexRun(text);
+            const longest = frequencies.longestHexRun(runs);
             return {
                 stats: [
                     { label: "Bytes", value: bytes.length.toLocaleString() },

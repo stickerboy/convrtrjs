@@ -2,9 +2,10 @@ import { bindToolFrame } from '../../ui/tool-frame.js';
 import * as reverse from '../../lib/hex/reverse.js';
 
 const reversals = {
-    "bytes": reverse.reverseHexBytes,
-    "byte-order": reverse.reverseHexByteOrder,
+    "digits": reverse.reverseHexDigits,
+    "bits": reverse.reverseHexBits,
     "nibbles": reverse.reverseHexNibbles,
+    "byte-order": reverse.reverseHexByteOrder,
 };
 const type = document.getElementById("reverseType");
 const delimiter = document.getElementById("reverseDelimiter");
@@ -16,7 +17,7 @@ bindToolFrame({
         run: (text) => {
             const reversal = reversals[type.value];
             if (!reversal) {
-                throw new Error("Invalid selection, only 'bytes', 'byte-order', or 'nibbles' are valid options");
+                throw new Error("Choose what to reverse from the list");
             }
             return reversal(text.trim(), delimiter.value);
         },

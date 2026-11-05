@@ -5,21 +5,21 @@ import * as shift from '../../lib/hex/shift.js';
 const delimiter = document.getElementById("shiftDelimiter");
 const amount = document.getElementById("shiftValue");
 
-// The shifted hex, and the text it spells in other formats, one per output tab. Move to input always moves the hex,
-// as the input is hex.
+// The shifted bytes in each format, one per output tab, all from the bytes themselves: bytes that aren't valid UTF-8
+// show as one character per byte in Text, which mustn't then be encoded again for the other tabs. Move to input always
+// moves the hex, as the input is hex.
 bindToolFrame({
     id: "shift",
     modes: [{
         button: "shiftRun",
         run: (text, by) => {
-            const hex = shift.shiftHexString(text, by, delimiter.value);
-            const string = toolkit.hexToString(hex);
+            const bytes = shift.shiftHexBytes(text, by);
             return {
-                Text: string,
-                Hex: hex,
-                Binary: toolkit.stringToBinary(string),
-                Base64: toolkit.stringToBase64(string),
-                Decimal: toolkit.stringToDecimal(string),
+                Text: toolkit.bytesToString(bytes),
+                Hex: toolkit.bytesToHex(bytes, delimiter.value),
+                Binary: toolkit.bytesToBinary(bytes),
+                Base64: toolkit.bytesToBase64(bytes),
+                Decimal: toolkit.bytesToDecimal(bytes),
             };
         },
     }],

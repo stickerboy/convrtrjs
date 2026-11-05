@@ -139,11 +139,42 @@ export function stringToArray(string, number) {
  * @returns {string} - The binary representation of the input string.
  */
 export function stringToBinary(string) {
-    const encoder = new TextEncoder();
-    const uint8Array = encoder.encode(string);
-    return Array.from(uint8Array)
-        .map(byte => byte.toString(2).padStart(8, "0"))
-        .join(" ");
+    return bytesToBinary(new TextEncoder().encode(string));
+}
+
+/**
+ * Writes bytes as 8-digit binary, separated by spaces.
+ *
+ * @param {Iterable<number>} bytes - The byte values, 0 to 255.
+ * @returns {string} - The binary, such as "01001000 01101001".
+ */
+export function bytesToBinary(bytes) {
+    return Array.from(bytes, (byte) => byte.toString(2).padStart(8, "0")).join(" ");
+}
+
+/**
+ * Writes bytes as decimal numbers, separated by spaces.
+ *
+ * @param {Iterable<number>} bytes - The byte values, 0 to 255.
+ * @returns {string} - The numbers, such as "72 105".
+ */
+export function bytesToDecimal(bytes) {
+    return Array.from(bytes).join(" ");
+}
+
+/**
+ * Writes bytes as Base64. Builds the text btoa needs in slices, as String.fromCharCode takes a limited number of
+ * arguments.
+ *
+ * @param {Uint8Array|number[]} bytes - The byte values, 0 to 255.
+ * @returns {string} - The Base64.
+ */
+export function bytesToBase64(bytes) {
+    let binary = "";
+    for (let i = 0; i < bytes.length; i += 8192) {
+        binary += String.fromCharCode(...bytes.slice(i, i + 8192));
+    }
+    return btoa(binary);
 }
 
 
@@ -252,16 +283,7 @@ export function hexToString(string) {
  * @returns {string} - The Base64-encoded string.
  */
 export function stringToBase64(string) {
-    const encoder = new TextEncoder();
-    const uint8Array = encoder.encode(string);
-
-    let binaryString = "";
-    for (let i = 0; i < uint8Array.length; i++) {
-        binaryString += String.fromCharCode(uint8Array[i]);
-    }
-
-    // Encode the binary string to Base64
-    return btoa(binaryString);
+    return bytesToBase64(new TextEncoder().encode(string));
 }
 
 /**
@@ -312,7 +334,7 @@ export function ord(string) {
  * // Output: "72 195 169"
  */
 export function stringToDecimal(string) {
-    return Array.from(new TextEncoder().encode(string)).join(" ");
+    return bytesToDecimal(new TextEncoder().encode(string));
 }
 
 /**

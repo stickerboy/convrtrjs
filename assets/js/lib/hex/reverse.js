@@ -1,92 +1,87 @@
 import * as toolkit from "../toolkit.js";
 
 /**
- * Swaps the two hex digits (nibbles) of each byte in a hex string.
+ * Reverses the 4 bits of a nibble: 0b1000 becomes 0b0001.
  *
- * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
- * @returns {string} - The hexadecimal string with the digits of each byte swapped.
+ * @param {number} nibble - A number from 0 to 15.
+ * @returns {number} - The nibble with its bits in reverse order.
  *
+ * @example
+ * // Input: 0b1010 (10)
+ * // Output: 0b0101 (5)
+ */
+function reverseNibbleBits(nibble) {
+    return ((nibble & 0x1) << 3) | ((nibble & 0x2) << 1) | ((nibble & 0x4) >> 1) | ((nibble & 0x8) >> 3);
+}
+
+// Every byte's answer worked out once, as there are only 256: the bits of each nibble reversed in place, and all 8 bits
+// reversed (which is the same as reversing each nibble's bits and swapping the two nibbles)
+const NIBBLE_BITS_REVERSED = Array.from({ length: 256 }, (_, byte) =>
+    ((reverseNibbleBits(byte >> 4) << 4) | reverseNibbleBits(byte & 0xF)).toString(16).padStart(2, "0"));
+const BITS_REVERSED = Array.from({ length: 256 }, (_, byte) =>
+    ((reverseNibbleBits(byte & 0xF) << 4) | reverseNibbleBits(byte >> 4)).toString(16).padStart(2, "0"));
+
+/**
+ * Swaps the two hex digits of each byte, so 48 becomes 84. This is the same as swapping each byte's two nibbles, and as
+ * rev_n in the original Ruby (Sepheus/ONI-Tools).
+ *
+ * @param {string} string - The hex, with any of the usual separators between bytes, or none.
+ * @param {string} delimiter - The delimiter to write the result with.
+ * @returns {string} - The hex with the digits of each byte swapped.
  * @throws {Error} - If the input contains invalid characters.
  *
  * @example
- * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
+ * // Input: "48 65 6c 6c 6f" (Hello), delimiter " "
  * // Output: "84 56 c6 c6 f6"
- * reverseHexBytes("48 65 6c 6c 6f", " ");
  */
-export function reverseHexBytes(string, delimiter) {
-    return toolkit.joinHex(toolkit.hexToPairs(string).map(toolkit.reverseString), delimiter);
+export function reverseHexDigits(string, delimiter) {
+    return toolkit.joinHex(toolkit.hexToPairs(string).map((pair) => pair[1] + pair[0]), delimiter);
 }
 
 /**
- * Reverses the nibbles (4-bit segments) of a hexadecimal byte.
+ * Reverses all 8 bits of each byte, so 48 (01001000) becomes 12 (00010010).
  *
- * @param {string} hexByte - A string representing a single hexadecimal byte (e.g., "A5").
- * @returns {string} - The hexadecimal byte with its nibbles reversed.
- *
- * @example
- * // Input: "A5" (binary: 10100101)
- * // Output: "5A" (binary: 01011010)
- * reverseHexNibble("A5"); // Returns "5A"
- */
-function reverseHexNibble(string) {
-    let byte = parseInt(string, 16) & 0xFF; // Convert the hex value to a byte
-    let reversedHighNibble = reverseBitsInNibble((byte & 0xF0) >> 4);
-    let reversedLowNibble = reverseBitsInNibble(byte & 0x0F);
-    return ((reversedHighNibble << 4) | reversedLowNibble).toString(16).padStart(2, "0");
-}
-
-/**
- * Reverses the bits within each nibble (4 bits) of every byte in a hexadecimal string.
- * This is equivalent to converting the hex string to binary, reversing the bits in each nibble,
- * and converting it back to hexadecimal.
- *
- * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
- * @returns {string} - The hexadecimal string with reversed nibbles in each byte.
- *
+ * @param {string} string - The hex, with any of the usual separators between bytes, or none.
+ * @param {string} delimiter - The delimiter to write the result with.
+ * @returns {string} - The hex with the bits of each byte in reverse order.
  * @throws {Error} - If the input contains invalid characters.
  *
  * @example
- * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
- * // Output: "21 6A 36 36 F6"
- * reverseHexNibbles("48 65 6c 6c 6f", " ");
+ * // Input: "48 65 6c 6c 6f" (Hello), delimiter " "
+ * // Output: "12 a6 36 36 f6"
+ */
+export function reverseHexBits(string, delimiter) {
+    return toolkit.joinHex(toolkit.hexToBytes(string).map((byte) => BITS_REVERSED[byte]), delimiter);
+}
+
+/**
+ * Reverses the bits within each nibble (4 bits) of every byte, leaving the nibbles where they are, so 48 (0100 1000)
+ * becomes 21 (0010 0001).
+ *
+ * @param {string} string - The hex, with any of the usual separators between bytes, or none.
+ * @param {string} delimiter - The delimiter to write the result with.
+ * @returns {string} - The hex with the bits of each nibble in reverse order.
+ * @throws {Error} - If the input contains invalid characters.
+ *
+ * @example
+ * // Input: "48 65 6c 6c 6f" (Hello), delimiter " "
+ * // Output: "21 6a 63 63 6f"
  */
 export function reverseHexNibbles(string, delimiter) {
-    return toolkit.joinHex(toolkit.hexToPairs(string).map(reverseHexNibble), delimiter);
+    return toolkit.joinHex(toolkit.hexToBytes(string).map((byte) => NIBBLE_BITS_REVERSED[byte]), delimiter);
 }
 
 /**
- * Reverses the bits within a 4-bit nibble.
+ * Reverses the order of the bytes, leaving each byte as it is.
  *
- * @param {number} nibble - A 4-bit number (0-15) to reverse the bits of.
- * @returns {number} - The nibble with its bits reversed.
- *
- * @example
- * // Input: 0b1010 (10 in decimal)
- * // Output: 0b0101 (5 in decimal)
- * reverseBitsInNibble(10); // Returns 5
- */
-function reverseBitsInNibble(string) {
-    // Ensure the nibble is a 4-bit value
-    string = string & 0xF;
-    // Reverse the bits within the nibble
-    return ((string & 0x1) << 3) | ((string & 0x2) << 1) | ((string & 0x4) >> 1) | ((string & 0x8) >> 3);
-}
-
-/**
- * Reverses the order of bytes in a hex string.
- *
- * @param {string} string - The input hexadecimal string.
- * @param {string} delimiter - The delimiter to write the result with; the input can use any separator.
- * @returns {string} - The reversed hexadecimal string.
- *
+ * @param {string} string - The hex, with any of the usual separators between bytes, or none.
+ * @param {string} delimiter - The delimiter to write the result with.
+ * @returns {string} - The hex with its bytes in reverse order.
  * @throws {Error} - If the input contains invalid characters.
  *
  * @example
- * // Input: "48 65 6c 6c 6f" (hex for "hello"), delimiter: " "
+ * // Input: "48 65 6c 6c 6f" (Hello), delimiter " "
  * // Output: "6f 6c 6c 65 48"
- * reverseHexByteOrder("48 65 6c 6c 6f", " ");
  */
 export function reverseHexByteOrder(string, delimiter) {
     return toolkit.joinHex(toolkit.hexToPairs(string).reverse(), delimiter);

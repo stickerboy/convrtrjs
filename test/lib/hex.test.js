@@ -1,14 +1,15 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { reverseHexBytes, reverseHexByteOrder, reverseHexNibbles } from "../../assets/js/lib/hex/reverse.js";
-import { shiftHexString, shiftHexKey } from "../../assets/js/lib/hex/shift.js";
+import { reverseHexDigits, reverseHexBits, reverseHexByteOrder, reverseHexNibbles } from "../../assets/js/lib/hex/reverse.js";
+import { shiftHexString, shiftHexBytes, shiftHexKey } from "../../assets/js/lib/hex/shift.js";
+import { bytesToBinary, bytesToDecimal, bytesToBase64, bytesToString } from "../../assets/js/lib/toolkit.js";
 import { generateHexFrequencies, longestHexRun } from "../../assets/js/lib/hex/frequencies.js";
 import { isValidHex, hexToPairs, hexToBytes, bytesToHex } from "../../assets/js/lib/toolkit.js";
 
 describe("hex reverse", () => {
     it("reverses the digits within each byte", () => {
-        assert.equal(reverseHexBytes("48 65 6c", " "), "84 56 c6");
-        assert.equal(reverseHexBytes("48656c", ""), "8456c6");
+        assert.equal(reverseHexDigits("48 65 6c", " "), "84 56 c6");
+        assert.equal(reverseHexDigits("48656c", ""), "8456c6");
     });
     it("reverses the byte order", () => {
         assert.equal(reverseHexByteOrder("48 65 6c", " "), "6c 65 48");
@@ -17,9 +18,16 @@ describe("hex reverse", () => {
     it("reverses the bits within each nibble", () => {
         // 0x48 = 0100 1000 -> 0010 0001 = 0x21; 0x65 = 0110 0101 -> 0110 1010 = 0x6a
         assert.equal(reverseHexNibbles("48 65", " "), "21 6a");
+        // The page's example
+        assert.equal(reverseHexNibbles("48 65 6c 6c 6f", " "), "21 6a 63 63 6f");
+    });
+    it("reverses all 8 bits of each byte", () => {
+        assert.equal(reverseHexBits("48", " "), "12");
+        assert.equal(reverseHexBits("48 65 6c 6c 6f", " "), "12 a6 36 36 f6");
+        assert.equal(reverseHexBits("01 80 ff 00", ""), "8001ff00");
     });
     it("rejects invalid hex", () => {
-        assert.throws(() => reverseHexBytes("4G", " "), /invalid characters/);
+        assert.throws(() => reverseHexDigits("4G", " "), /invalid characters/);
     });
 });
 
@@ -28,6 +36,22 @@ describe("hex shift", () => {
         assert.equal(shiftHexString("48 65", 1, " "), "49 66");
         assert.equal(shiftHexString("ff 00", 1, " "), "00 01");
         assert.equal(shiftHexString("00", -1, " "), "ff");
+        assert.equal(shiftHexString("48", "257", " "), "49");
+    });
+    it("wraps a shift too big to hold exactly as a whole number would", () => {
+        assert.equal(shiftHexString("00", "123456789012345678901", " "), (123456789012345678901n % 256n).toString(16));
+        assert.equal(shiftHexString("00", "-123456789012345678901", " "), ((256n - 123456789012345678901n % 256n) % 256n).toString(16).padStart(2, "0"));
+    });
+    it("rejects a shift that isn't a whole number", () => {
+        assert.throws(() => shiftHexString("00", "1.5", " "), /whole number/);
+    });
+    // Shift hex's tabs come from the bytes, so bytes that aren't valid UTF-8 still show as themselves
+    it("gives the bytes for every tab, even when they aren't valid text", () => {
+        const bytes = shiftHexBytes("7f fe", 1);
+        assert.equal(bytesToDecimal(bytes), "128 255");
+        assert.equal(bytesToBinary(bytes), "10000000 11111111");
+        assert.equal(bytesToBase64(bytes), "gP8=");
+        assert.equal(bytesToString(shiftHexBytes("47 68", 1)), "Hi");
     });
     it("subtracts the key's bytes, showing bytes that aren't UTF-8 one character per byte", () => {
         // H-k = 221 (Ý), e-e = 0, l-y = 243 (ó), l-k = 1, o-e = 10
@@ -116,7 +140,7 @@ describe("hex tools with every delimiter", () => {
     for (const d of delimiters) {
         it(`delimiter ${JSON.stringify(d)}`, () => {
             const input = hex([0x48, 0x65, 0x6c], d);
-            assert.equal(reverseHexBytes(input, d), hex([0x84, 0x56, 0xc6], d));
+            assert.equal(reverseHexDigits(input, d), hex([0x84, 0x56, 0xc6], d));
             assert.equal(reverseHexByteOrder(input, d), hex([0x6c, 0x65, 0x48], d));
             assert.equal(reverseHexNibbles(input, d), hex([0x21, 0x6a, 0x63], d));
             assert.equal(shiftHexString(input, 1, d), hex([0x49, 0x66, 0x6d], d));
