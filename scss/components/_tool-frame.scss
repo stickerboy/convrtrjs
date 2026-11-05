@@ -1,62 +1,10 @@
-// The frame text tools sit in (macros/tool-frame.njk): an options bar over input and output panes. Controls keep their
-// full size (44px) for touch.
-//
-// The panes go side by side when the frame itself is wide enough, not the window, as the sidebar can take a third of
-// the width: from 45rem, or 66rem for a frame with output tabs, where each pane's header then has room for the tabs and
-// buttons on one line (see .tool-pane__head below).
-$tool-frame-side-by-side: 45rem;
-$tool-frame-side-by-side-tabs: 66rem;
+// The frame text tools sit in (macros/tool-frame.njk): the input with its result under it, and settings and actions in
+// a column beside them, or stacked when the frame itself is too narrow for that, not the window, as the sidebar can take
+// a third of the width. Controls keep their full size (44px) for touch.
 
-// Input and output side by side: the panes share rows, so their headers, boxes and status lines line up, with "Move to
-// input" in its own column between the boxes
-@mixin tool-frame-side-by-side {
-    .tool-frame__panes {
-        grid-template-rows: auto 1fr auto;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        column-gap: 0.5rem;
-        row-gap: 0.5rem;
-
-        .tool-pane {
-            display: grid;
-            grid-template-rows: subgrid;
-            grid-row: span 3;
-            grid-column: 1;
-
-            &:last-child {
-                grid-column: 3;
-            }
-        }
-        .tool-pane__head,
-        .tool-pane__status {
-            margin: 0;
-        }
-    }
-    .tool-frame__move {
-        flex-direction: column;
-        grid-row: 2;
-        grid-column: 2;
-        width: 4.5rem;
-    }
-    .tool-frame__move-button .bi {
-        transform: none;
-    }
-}
-
-@container tool-frame (min-width: #{$tool-frame-side-by-side}) {
-    .tool-frame:not(.tool-frame--tabs) {
-        @include tool-frame-side-by-side;
-    }
-}
-@container tool-frame (min-width: #{$tool-frame-side-by-side-tabs}) {
-    .tool-frame--tabs {
-        @include tool-frame-side-by-side;
-    }
-}
-
-// When a pane's header is too narrow for the output tabs and the select, copy and download buttons on one line (they
-// need about 459px), whether the panes are stacked or side by side: the buttons go first, on the right, and the tabs
-// take the line under them, full width and shared equally, so they sit on the box they choose for.
-@container tool-pane-head (max-width: 28.75rem) {
+// When a pane's header is too narrow for the output tabs and the buttons on one line: the buttons go first, on the
+// right, and the tabs take the line under them, full width and shared equally, so they sit on the result they choose for.
+@container tool-pane-head (max-width: 45rem) {
     .tool-pane__tabs {
         flex: 1 1 100%;
         order: 1;
@@ -112,37 +60,89 @@ $tool-frame-side-by-side-tabs: 66rem;
         color: var(--bs-secondary-color);
     }
 
-    // "Input → Encrypt with key World → Output"
-    &__flow {
+    // Stacked until the frame has room for a column (see $tool-frame-work-column below)
+    &__work {
+        --tool-work-padding: 1rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--tool-work-padding);
+        padding: var(--tool-work-padding);
+    }
+
+    &__settings {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.25rem 0.625rem;
+        gap: 0.75rem 1rem;
+        align-items: flex-end;
+        min-width: 0;
+    }
+
+    // The buttons on the left and Live typing on the right, or on the left too when it has to wrap
+    &__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem 1.25rem;
         align-items: center;
-        justify-content: center;
-        padding: 0.75rem 1rem 0;
+        justify-content: space-between;
+
+        .tool-frame__live {
+            margin: 0;
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        align-items: center;
+    }
+
+    // A switch among the settings or buttons: 44px tall, so it lines up with them
+    &__settings .form-switch,
+    &__buttons .form-switch {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+        min-height: 2.75rem;
+        padding: 0;
         margin: 0;
-        font-size: 0.875rem;
+
+        .form-check-input {
+            flex-shrink: 0;
+            float: none;
+            margin: 0;
+        }
+
+        .form-check-label {
+            margin: 0;
+        }
+    }
+
+    // A frame's results under its input and settings, full width
+    &__work + &__stack {
+        border-top: var(--bs-border-width) solid var(--bs-border-color);
+    }
+
+    // What made the result, as "Encrypt with key World", after the "Result" label
+    &__result-flow {
+        min-width: 0;
+        margin-right: auto;
+        font-size: 0.8125rem;
         color: var(--bs-secondary-color);
+        overflow-wrap: anywhere;
 
         b {
             font-weight: 600;
             color: var(--bs-emphasis-color);
-            overflow-wrap: anywhere;
-        }
-
-        .bi {
-            color: var(--convrtr-accent);
         }
     }
 
-    // Stacked until the frame is wide enough for them side by side (see tool-frame-side-by-side above)
-    &__panes {
-        display: grid;
-        gap: 1rem 1.25rem;
-        padding: 1rem;
+    // The result's pane only shows once there's a result
+    &__result:has(> .tool-pane__result:empty) {
+        display: none;
     }
 
-    // The "list" layout: the input full width, with the tool's list of results under it
+    // A tool's results under options, with its input full width
     &__stack {
         display: grid;
         gap: 1rem;
@@ -152,49 +152,64 @@ $tool-frame-side-by-side-tabs: 66rem;
             margin-bottom: 0.5rem;
         }
     }
+}
 
-    // "Move to input", between the panes: in a row between them when they stack, with the arrow turned up at the input,
-    // and in its own column pointing left when they're side by side
-    &__move {
+// A setting, with its label above, and sometimes a note on what it does on the label's right
+.tool-field {
+    display: grid;
+    flex: 0 1 15rem;
+    gap: 0.25rem;
+    min-width: 0;
+
+    &--short {
+        flex-basis: 7rem;
+    }
+
+    &__head {
         display: flex;
         gap: 0.5rem;
-        align-items: center;
-        justify-content: center;
+        align-items: baseline;
+        justify-content: space-between;
     }
 
-    &__move-button {
-        display: grid;
+    &__label {
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .form-control,
+    .form-select {
+        min-height: 2.75rem;
+    }
+
+    // Filling the field, with room for its arrow, however long the option is
+    .form-select {
+        width: 100%;
+        padding-right: 2.25rem;
+    }
+}
+
+// A number between its previous and next buttons, sharing the field's width
+.tool-stepper {
+    flex-wrap: nowrap;
+
+    .btn {
         flex-shrink: 0;
-        place-items: center;
-        width: 3rem;
-        height: 3rem;
-        padding: 0;
-        font-size: 1.125rem;
-        color: var(--convrtr-accent);
-        background-color: var(--bs-body-bg);
-        border: var(--bs-border-width) solid var(--convrtr-accent);
-        border-radius: 50%;
-        transition: color $convrtr-transition-duration ease-in-out, background-color $convrtr-transition-duration ease-in-out;
-
-        &:hover,
-        &:focus-visible {
-            color: var(--bs-body-bg);
-            background-color: var(--convrtr-accent);
-        }
-
-        .bi {
-            @extend %bi-centred;
-            display: inline-block;
-            transform: rotate(90deg);
-        }
+        min-width: 2.75rem;
+        padding-inline: 0;
     }
 
-    &__move-caption {
-        font-size: 0.75rem;
-        line-height: 1.2;
-        color: var(--bs-secondary-color);
-        text-align: center;
+    .form-control {
+        min-width: 0;
     }
+}
+
+// Swapping the fields either side of it, such as From and To
+.tool-swap {
+    flex-shrink: 0;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    padding-inline: 0;
 }
 
 .tool-pane {
@@ -273,13 +288,23 @@ $tool-frame-side-by-side-tabs: 66rem;
         margin-left: auto;
     }
 
-    // Both boxes grow to the taller pane's height, so input and output line up side by side
+    // The input grows with its pane, as tall as the settings and actions beside it
     &__box {
         flex-grow: 1;
     }
 
-    &__output {
+    // The result: text that grows with what's in it, then scrolls. It can be focused, so it scrolls
+    // from the keyboard too.
+    &__result {
+        max-height: 20rem;
+        padding: 0.375rem 0.75rem;
+        overflow: auto;
+        overscroll-behavior: contain;
+        overflow-wrap: anywhere;
+        white-space: pre-wrap;
         background-color: var(--bs-tertiary-bg);
+        border: var(--bs-border-width) solid var(--bs-border-color);
+        border-radius: var(--bs-border-radius);
     }
 
     // A tool's list of results: scrolls within a set height, so a long list doesn't stretch the page. It can be
@@ -319,6 +344,71 @@ $tool-frame-side-by-side-tabs: 66rem;
         .text-danger {
             font-weight: 600;
         }
+
+        // Always on the right, however many messages are before it
+        [data-count-input],
+        [data-count-output] {
+            margin-left: auto;
+        }
+    }
+}
+
+// The settings and actions move into a column once the frame has room for it and an input at least 400px wide. The
+// source order stays settings, input, actions, result, the order they're used in. The input spans the settings and
+// actions, so the result always starts below both; the column's background runs the full height. After the base rules
+// above, as it changes them.
+$tool-frame-work-column: 42rem;
+
+@container tool-frame (min-width: #{$tool-frame-work-column}) {
+    .tool-frame__work {
+        grid-template-rows: auto 1fr auto;
+        grid-template-columns: minmax(0, 1fr) 15rem;
+        gap: 0 calc(var(--tool-work-padding) * 2);
+
+        &::before {
+            grid-area: 1 / 2 / 4 / 3;
+            margin: calc(var(--tool-work-padding) * -1);
+            content: "";
+            background-color: var(--bs-tertiary-bg);
+            border-left: var(--bs-border-width) solid var(--bs-border-color);
+        }
+    }
+    .tool-frame__work > .tool-pane:not(.tool-frame__result) {
+        grid-area: 1 / 1 / 3 / 2;
+    }
+    .tool-frame__settings {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        grid-area: 1 / 2;
+        align-items: stretch;
+
+        .tool-field {
+            flex: none;
+        }
+    }
+    .tool-frame__actions {
+        flex-direction: column;
+        grid-area: 2 / 2;
+        align-items: stretch;
+        align-self: start;
+    }
+    .tool-frame__settings ~ .tool-frame__actions {
+        margin-top: var(--tool-work-padding);
+    }
+    .tool-frame__buttons {
+        display: grid;
+    }
+    .tool-swap {
+        align-self: center;
+
+        .bi {
+            display: inline-block;
+            transform: rotate(90deg);
+        }
+    }
+    .tool-frame__result {
+        grid-area: 3 / 1;
+        margin-top: var(--tool-work-padding);
     }
 }
 

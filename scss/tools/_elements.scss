@@ -233,13 +233,6 @@ $periodic-table-width: 50rem;
 }
 
 // The Elements converter's From, swap and To, kept together
-.elements-convert {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
-}
-
 // The real table, when there's room: after the tiles' rules, which it overrides
 @container periodic (min-width: #{$periodic-table-width}) {
     .periodic__table {

@@ -3,7 +3,6 @@ import { handleDownload } from '../../ui/image.js';
 import * as colors from '../../lib/misc/colors.js';
 
 const padding = document.getElementById("colorsPadding");
-const paddingField = document.querySelector("[data-colors-padding]");
 const plural = (count) => `${count.toLocaleString()} color${count === 1 ? "" : "s"}`;
 
 // The colors as a picture: a 64px block each, 16 to a row
@@ -54,6 +53,7 @@ bindToolFrame({
     errorPrefix: "Couldn't read the colors",
 });
 
-// Padding only applies to making colors
-document.getElementById("colorsEncode").addEventListener("click", () => (paddingField.hidden = false));
-document.getElementById("colorsDecode").addEventListener("click", () => (paddingField.hidden = true));
+// Padding only applies to making colors. It's turned off rather than hidden, so the buttons under it don't move as
+// they're pressed.
+document.getElementById("colorsEncode").addEventListener("click", () => (padding.disabled = false));
+document.getElementById("colorsDecode").addEventListener("click", () => (padding.disabled = true));

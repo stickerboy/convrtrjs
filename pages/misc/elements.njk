@@ -13,32 +13,29 @@ summary: >-
     <p class="tool-about__credit">Data from <a href="https://github.com/Bowserinator/Periodic-Table-JSON" class="text-convrtr">Bowserinator / Periodic-Table-JSON</a>, under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Periodic elements", placeholder = "Example: 34,7,52,7,58 [Atomic number] → Se,N,Te,N,Ce") %}
-<div class="elements-convert">
-    <div class="input-group w-auto">
-        <label class="input-group-text" for="elementPropFrom">From</label>
-        <select class="form-select" id="elementPropFrom" autocomplete="off">
+{% call toolFrame(filename, "Periodic elements", placeholder = "Example: 34,7,52,7,58 [Atomic number] → Se,N,Te,N,Ce", actions = [{ id: filename + "Run", label: "Convert" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="elementPropFrom">From</label>
+    <select class="form-select" id="elementPropFrom" autocomplete="off">
         <option value="symbol">Element symbol</option>
         <option value="name">Element name</option>
         <option value="number" selected>Atomic number</option>
         <option value="atomic_mass">Atomic mass</option>
         <option value="melt">Melting point</option>
         <option value="boil">Boiling point</option>
-        </select>
-    </div>
-    <button type="button" class="btn btn-light btn-icon-text" id="elementPropSwap" aria-label="Swap from and to" title="Swap from and to"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></button>
-    <div class="input-group w-auto">
-        <label class="input-group-text" for="elementPropTo">To</label>
-        <select class="form-select" id="elementPropTo" autocomplete="off">
+    </select>
+</div>
+<button type="button" class="btn btn-outline-convrtr tool-swap" id="elementPropSwap" aria-label="Swap from and to" title="Swap from and to"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></button>
+<div class="tool-field">
+    <label class="tool-field__label" for="elementPropTo">To</label>
+    <select class="form-select" id="elementPropTo" autocomplete="off">
         <option value="symbol" selected>Element symbol</option>
         <option value="name">Element name</option>
         <option value="number">Atomic number</option>
         <option value="atomic_mass">Atomic mass</option>
         <option value="melt">Melting point</option>
         <option value="boil">Boiling point</option>
-        </select>
-        <button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Convert</button>
-    </div>
+    </select>
 </div>
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="removeDelimiters">

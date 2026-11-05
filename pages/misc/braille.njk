@@ -12,10 +12,6 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠓⠑⠇⠇⠕", saveImage = true) %}
-<div class="btn-group" role="group" aria-label="Convert">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}ToBraille" aria-pressed="true">To Braille</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}ToText" aria-pressed="false">To text</button>
-</div>
+{% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠓⠑⠇⠇⠕", saveImage = true, actions = [{ id: filename + "ToBraille", label: "To Braille" }, { id: filename + "ToText", label: "To text" }]) %}
 {% endcall %}
 {% endcall %}

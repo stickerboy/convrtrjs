@@ -13,10 +13,9 @@ summary: >-
     <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how runs are written. Copy and download give the tables as tab-separated text, which pastes into a spreadsheet.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Hex frequencies", placeholder = "Example: 48 65 6c 6c 6f 00 00 00", layout = "analysis") %}
-<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Count</button>
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+{% call toolFrame(filename, "Hex frequencies", placeholder = "Example: 48 65 6c 6c 6f 00 00 00", layout = "analysis", actions = [{ id: filename + "Run", label: "Count" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
     {{ delimiter(filename) }}
 </div>
 {% endcall %}

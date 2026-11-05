@@ -14,14 +14,13 @@ summary: >-
     <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the result is written.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Shift hex", placeholder = "Example: 48 65 6c 6c 6f", tabs = ["Text", "Hex", "Binary", "Base64", "Decimal"]) %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Value">Shift<span class="visually-hidden"> each byte by</span></label>
+{% call toolFrame(filename, "Shift hex", placeholder = "Example: 48 65 6c 6c 6f", tabs = ["Text", "Hex", "Binary", "Base64", "Decimal"], actions = [{ id: filename + "Run", label: "Shift" }]) %}
+<div class="tool-field tool-field--short">
+    <label class="tool-field__label" for="{{ filename }}Value">Shift<span class="visually-hidden"> each byte by</span></label>
     <input type="number" class="form-control" id="{{ filename }}Value" autocomplete="off" value="1" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Shift</button>
 </div>
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
     {{ delimiter(filename) }}
 </div>
 {% endcall %}

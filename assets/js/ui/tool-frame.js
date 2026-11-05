@@ -14,7 +14,7 @@ const characters = (text) => {
 
 /**
  * Wires up a tool built with the toolFrame macro (macros/tool-frame.njk): its action buttons, live typing, the status
- * line, the flow line and "Move to input". Element ids all start with the frame's id: <id>Text, <id>Results, <id>Status,
+ * line, what the result's header says made it, and "Move to input". Element ids all start with the frame's id: <id>Text, <id>Results, <id>Status,
  * <id>Live.
  *
  * Each action button is also the tool's mode: it's shown as pressed, and live typing reruns the last one used.
@@ -31,8 +31,8 @@ const characters = (text) => {
  *   changing one updates the flow line and, with live typing on, runs the tool again.
  * @param {() => Array<string|{value: string}>} [options.flow] - The middle of the flow line, for a tool whose action is
  *   more than its button and fields: text, with {value} for the parts shown in bold. Replaces the fields' `flow`.
- * @param {(result: any, output: HTMLElement) => void} [options.render] - Shows the result, for the "list" layout where
- *   the output is the tool's own list (default: as the output box's text). renderResults draws the usual rows.
+ * @param {(result: any, output: HTMLElement) => void} [options.render] - Shows the result, for the "list" and "analysis"
+ *   layouts where the output is the tool's own (default: as the result's text). renderResults draws the usual rows.
  * @param {string} [options.moveTab] - With output tabs, the tab "Move to input" always moves, such as the one in the
  *   input's own format (default: the tab showing).
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't encrypt".
@@ -47,30 +47,26 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     const buttons = modes.map((mode) => ({ ...mode, el: byId(mode.button) }));
     let current = buttons[0];
 
-    // The output is a box of text, or with the "list" layout, a list the tool draws (and counts) itself
-    const isBox = output instanceof HTMLTextAreaElement;
-    const outputText = () => (isBox ? output.value : output.textContent);
+    // The output is a div of text, hidden while it's empty, so a problem empties it rather than leaving an old result
+    // showing; or with the "list" and "analysis" layouts, what the tool draws (and counts) itself
+    const isResult = output.matches(".tool-pane__result");
 
-    // With output tabs, the tool's run returns a value for each tab, and the box shows the chosen one
+    // With output tabs, the tool's run returns a value for each tab, and the result shows the chosen one
     const tabs = [...frame.querySelectorAll("[data-output-tabs] [role=tab]")];
     let results = null;
     let tab = tabs[0]?.dataset.tab;
 
     const clearOutput = () => {
         results = null;
-        if (isBox) {
-            output.value = "";
-        } else {
-            output.replaceChildren();
-            delete output.dataset.copy;
-            frame.querySelector("[data-count-output]").textContent = "";
-        }
+        output.replaceChildren();
+        delete output.dataset.copy;
+        frame.querySelector("[data-count-output]").textContent = "";
     };
 
     const updateCounts = () => {
         frame.querySelector("[data-count-input]").textContent = characters(input.value);
-        if (isBox) {
-            frame.querySelector("[data-count-output]").textContent = characters(output.value);
+        if (isResult && output.textContent !== "") {
+            frame.querySelector("[data-count-output]").textContent = characters(output.textContent);
         }
     };
 
@@ -85,15 +81,13 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
 
     const modeName = () => current.el.textContent.trim();
 
-    // "Input → Encrypt with key World → Output", and the line under Live typing, both following the mode and fields
+    // "Encrypt with key World" in the result's header, saying what made the result, so it only changes when the result does
     const flow = frame.querySelector("[data-flow]");
     const liveHint = frame.querySelector("[data-live-hint]");
-    const describe = () => {
-        liveHint.textContent = live.checked ? "Results update as you type" : `Press ${modeName()} to see results`;
+    const drawFlow = () => {
         if (!flow) {
             return;
         }
-        const arrow = () => Object.assign(document.createElement("i"), { className: "bi bi-arrow-right" });
         const bold = (text) => Object.assign(document.createElement("b"), { textContent: text });
         const step = document.createElement("span");
         if (describeFlow) {
@@ -105,7 +99,11 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
                 step.append(` ${before} `, bold(field.el.value || "…"), after ? ` ${after}` : "");
             }
         }
-        flow.replaceChildren(bold("Input"), arrow(), step, arrow(), bold("Output"));
+        flow.replaceChildren(step);
+    };
+    // The line under Live typing, following the mode
+    const describe = () => {
+        liveHint.textContent = live.checked ? "Results update as you type" : `Press ${modeName()} to see results`;
     };
 
     // A tool with one action has no mode to show, so its button stays an ordinary button
@@ -148,6 +146,9 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             }
             const problem = fieldProblem();
             if (problem) {
+                if (isResult) {
+                    clearOutput();
+                }
                 setStatus(problem.message, { error: true, field: problem.field });
                 return;
             }
@@ -155,6 +156,9 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         } else {
             const values = readToolInput({ input: `${id}Text`, key });
             if (!values) {
+                if (isResult) {
+                    clearOutput();
+                }
                 setStatus();
                 return;
             }
@@ -166,15 +170,20 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
                 render(result, output);
             } else if (tabs.length) {
                 results = result;
-                output.value = results[tab] ?? "";
+                output.textContent = results[tab] ?? "";
             } else {
-                output.value = result;
+                output.textContent = result;
             }
-            setStatus();
+            drawFlow();
+            // The result stays hidden when it's empty, so say so rather than seeming to do nothing
+            setStatus(isResult && output.textContent === "" ? "The result is empty" : "");
         };
         const fail = (error) => {
             if (!typed) {
                 showToast("Error", `${errorPrefix}: ${error.message}`, "danger");
+            }
+            if (isResult) {
+                clearOutput();
             }
             setStatus(`${errorPrefix}: ${error.message}`, { error: true });
         };
@@ -231,7 +240,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         }, () => showToast("Error", "Couldn't copy to the clipboard", "danger"));
     });
 
-    // Output tabs: click, or arrow keys, Home and End, as tabs do; the box shows the chosen tab's result
+    // Output tabs: click, or arrow keys, Home and End, as tabs do; the result shows the chosen tab's
     const selectTab = (button, focus = false) => {
         tab = button.dataset.tab;
         for (const other of tabs) {
@@ -241,7 +250,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         }
         output.setAttribute("aria-labelledby", button.id);
         if (results) {
-            output.value = results[tab] ?? "";
+            output.textContent = results[tab] ?? "";
             updateCounts();
         }
         if (focus) {
@@ -270,15 +279,15 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         }
     });
 
-    // "Move to input" (the panes layout): moves the output into the input, so the next run builds on it (what "Chain
-    // commands" used to do). The input flashes and says where its text came from, so it's clear what happened.
+    // "Move to input": moves the result into the input, so the next run builds on it (what "Chain commands" used to do).
+    // The input flashes and says where its text came from, so it's clear what happened.
     const inputStatus = byId(`${id}InputStatus`);
     let movedTimer;
     frame.querySelector("[data-use-as-input]")?.addEventListener("click", () => {
         // With tabs, moveTab's result (such as the hex, for a tool whose input is hex), whichever tab is showing
-        const moving = tabs.length && moveTab ? (results?.[moveTab] ?? "") : outputText();
+        const moving = tabs.length && moveTab ? (results?.[moveTab] ?? "") : output.textContent;
         if (moving === "") {
-            showToast("Warning", "There's no output to move to the input yet", "warning");
+            showToast("Warning", "There's no result to move to the input yet", "warning");
             return;
         }
         input.value = moving;
@@ -286,7 +295,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         input.classList.remove("tool-pane__box--moved");
         void input.offsetWidth; // restart the flash if it's already running
         input.classList.add("tool-pane__box--moved");
-        inputStatus.textContent = "Moved from the output";
+        inputStatus.textContent = "Moved from the result";
         clearTimeout(movedTimer);
         movedTimer = setTimeout(() => (inputStatus.textContent = ""), 4000);
         if (live.checked) {

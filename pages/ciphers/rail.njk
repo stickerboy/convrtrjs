@@ -20,12 +20,10 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Rail_fence_cipher" class="text-convrtr">Rail fence cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Rail fence cipher", placeholder = "Example: HELLO WORLD &srarr; 2 [rails] &srarr; HLOOLELWRD") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Amount"><span class="visually-hidden">Number of </span>Rails</label>
+{% call toolFrame(filename, "Rail fence cipher", placeholder = "Example: HELLO WORLD &srarr; 2 [rails] &srarr; HLOOLELWRD", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
+<div class="tool-field tool-field--short">
+    <label class="tool-field__label" for="{{ filename }}Amount"><span class="visually-hidden">Number of </span>Rails</label>
     <input type="number" class="form-control" id="{{ filename }}Amount" autocomplete="off" min="2" value="2" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
 {% endcall %}
 {% endcall %}

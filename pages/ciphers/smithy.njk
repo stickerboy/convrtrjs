@@ -12,12 +12,10 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Smithy_code" class="text-convrtr">Smithy code</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Smithy cipher", placeholder = "Example: Hello &srarr; World [key] &srarr; Rmxsp") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Key"><span class="visually-hidden">Smithy </span>Key</label>
+{% call toolFrame(filename, "Smithy cipher", placeholder = "Example: Hello &srarr; World [key] &srarr; Rmxsp", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Key"><span class="visually-hidden">Smithy </span>Key</label>
     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
 {% endcall %}
 {% endcall %}

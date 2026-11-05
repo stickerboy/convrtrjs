@@ -13,11 +13,10 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Substitution cipher", placeholder = "Example: Hello &srarr; World [key] &srarr; Cdhhk") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Key"><span class="visually-hidden">Substitution </span>Key</label>
+{% call toolFrame(filename, "Substitution cipher", placeholder = "Example: Hello &srarr; World [key] &srarr; Cdhhk", actions = [{ id: filename + "Encrypt", label: "Encrypt" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Key"><span class="visually-hidden">Substitution </span>Key</label>
     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
 </div>
 {% endcall %}
 {% endcall %}

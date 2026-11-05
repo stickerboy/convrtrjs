@@ -12,13 +12,9 @@ summary: >-
     <p>"Colors to text" goes the other way: paste hex colors, with or without #, to get the text back. Padding at the end is dropped. "Save as image" downloads the colors as a picture, one block each.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Colors", placeholder = "Example: Hello → #48656C #6C6FFF", layout = "analysis") %}
-<div class="btn-group" role="group" aria-label="Convert">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encode" aria-pressed="true">Text to colors</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decode" aria-pressed="false">Colors to text</button>
-</div>
-<div class="input-group w-auto" data-colors-padding>
-    <label class="input-group-text" for="{{ filename }}Padding">Padding</label>
+{% call toolFrame(filename, "Colors", placeholder = "Example: Hello → #48656C #6C6FFF", layout = "analysis", actions = [{ id: filename + "Encode", label: "Text to colors" }, { id: filename + "Decode", label: "Colors to text" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Padding">Padding</label>
     <select class="form-select" id="{{ filename }}Padding" autocomplete="off">
         <option value="F" selected>F padding</option>
         <option value="0">0 padding</option>

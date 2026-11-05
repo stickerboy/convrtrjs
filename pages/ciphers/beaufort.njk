@@ -12,12 +12,10 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Beaufort_cipher" class="text-convrtr">Beaufort cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Beaufort cipher", placeholder = "Example: Hello &srarr; Test [key] &srarr; Mahif") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Key"><span class="visually-hidden">Beaufort </span>Key</label>
+{% call toolFrame(filename, "Beaufort cipher", placeholder = "Example: Hello &srarr; Test [key] &srarr; Mahif", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Key"><span class="visually-hidden">Beaufort </span>Key</label>
     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
 {% endcall %}
 {% endcall %}

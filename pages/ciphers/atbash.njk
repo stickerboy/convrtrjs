@@ -12,9 +12,6 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Atbash" class="text-convrtr">Atbash</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Atbash cipher", placeholder = "Example: (Hello &lrarr; Svool)") %}
-<div class="input-group w-auto">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt">Encrypt</button>
-</div>
+{% call toolFrame(filename, "Atbash cipher", placeholder = "Example: (Hello &lrarr; Svool)", actions = [{ id: filename + "Encrypt", label: "Encrypt" }]) %}
 {% endcall %}
 {% endcall %}

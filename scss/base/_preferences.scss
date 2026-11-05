@@ -38,20 +38,25 @@
     .tool-frame__options {
         padding: 0.5rem 0.75rem;
     }
-    .tool-frame__panes,
     .tool-frame__stack {
         gap: 0.625rem 1rem;
         padding: 0.625rem;
     }
+    .tool-frame__work {
+        --tool-work-padding: 0.625rem;
+    }
 }
 
 // The text in tool boxes: monospace, so hex, binary and Morse line up, and a smaller or larger size
-[data-mono-boxes] textarea.form-control {
+[data-mono-boxes] textarea.form-control,
+[data-mono-boxes] .tool-pane__result {
     font-family: var(--bs-font-monospace);
 }
-[data-box-size="small"] textarea.form-control {
+[data-box-size="small"] textarea.form-control,
+[data-box-size="small"] .tool-pane__result {
     font-size: 0.875rem;
 }
-[data-box-size="large"] textarea.form-control {
+[data-box-size="large"] textarea.form-control,
+[data-box-size="large"] .tool-pane__result {
     font-size: 1.125rem;
 }

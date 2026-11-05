@@ -8,8 +8,7 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% call toolSection() %}
-{% call toolFrame(filename, "Flip text", placeholder = "Example: Hello &srarr; Hǝןןo") %}
-<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Flip</button>
+{% call toolFrame(filename, "Flip text", placeholder = "Example: Hello &srarr; Hǝןןo", actions = [{ id: filename + "Run", label: "Flip" }], switchWithActions = true) %}
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Direction">
     <label class="form-check-label" for="{{ filename }}Direction">Reverse</label>

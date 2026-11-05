@@ -13,7 +13,6 @@ summary: >-
     <p>Sort the table by First seen to list each character in the order it first appears. Copy and download give the table as tab-separated text, which pastes into a spreadsheet.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Character frequencies", placeholder = "Example: Meet me at the old mill", layout = "analysis") %}
-<button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Count</button>
+{% call toolFrame(filename, "Character frequencies", placeholder = "Example: Meet me at the old mill", layout = "analysis", actions = [{ id: filename + "Run", label: "Count" }]) %}
 {% endcall %}
 {% endcall %}

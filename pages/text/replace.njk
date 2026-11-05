@@ -9,13 +9,14 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% call toolSection() %}
-{% call toolFrame(filename, "Replace characters", placeholder = "Example: Hello &srarr; lo &srarr; ium &srarr; Helium") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Value">Old<span class="visually-hidden"> characters</span></label>
+{% call toolFrame(filename, "Replace characters", placeholder = "Example: Hello &srarr; lo &srarr; ium &srarr; Helium", actions = [{ id: filename + "Run", label: "Replace" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Value">Old<span class="visually-hidden"> characters</span></label>
     <input type="text" class="form-control" id="{{ filename }}Value" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <label class="input-group-text" for="{{ filename }}mentValue">New<span class="visually-hidden"> characters</span></label>
+</div>
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}mentValue">New<span class="visually-hidden"> characters</span></label>
     <input type="text" class="form-control" id="{{ filename }}mentValue" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Replace</button>
 </div>
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Case">

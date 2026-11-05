@@ -22,18 +22,17 @@ summary: >-
     <p>Your hex can use any of the usual delimiters between bytes (spaces, hyphens, colons, commas, semicolons, new lines, \x, 0x or %), or none, and they can be mixed. The delimiter dropdown chooses how the result is written.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Reverse hex", placeholder = "Example: 48 65 6c 6c 6f") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Type"><span class="visually-hidden">What to </span>Reverse</label>
+{% call toolFrame(filename, "Reverse hex", placeholder = "Example: 48 65 6c 6c 6f", actions = [{ id: filename + "Run", label: "Reverse" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Type"><span class="visually-hidden">What to </span>Reverse</label>
     <select class="form-select" id="{{ filename }}Type" autocomplete="off">
         <option value="bytes" selected="">Bytes</option>
         <option value="byte-order">Byte order</option>
         <option value="nibbles">Nibbles</option>
     </select>
-    <button type="button" class="btn btn-convrtr" id="{{ filename }}Run">Reverse</button>
 </div>
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Delimiter"><span class="visually-hidden">Hex </span>Delimiter</label>
     {{ delimiter(filename) }}
 </div>
 {% endcall %}

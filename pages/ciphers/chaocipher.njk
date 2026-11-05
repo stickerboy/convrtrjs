@@ -12,10 +12,6 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; WahqzIuets") %}
-<div class="input-group w-auto">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
-</div>
+{% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; WahqzIuets", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
 {% endcall %}
 {% endcall %}

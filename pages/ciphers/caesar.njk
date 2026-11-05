@@ -13,19 +13,22 @@ summary: >-
     <p>More on the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" class="text-convrtr">Caesar cipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Caesar cipher", placeholder = "Example: Hello → 5 [shift] → Mjqqt") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Key"><span class="visually-hidden">Caesar cipher </span>Key</label>
+{% call toolFrame(filename, "Caesar cipher", placeholder = "Example: Hello → 5 [shift] → Mjqqt", actions = [{ id: filename + "Run", label: "Shift" }]) %}
+{#- One shift at a time: previous and next apply the new shift straight away, as Shift does #}
+<div class="tool-field">
+    <div class="tool-field__head">
+        <label class="tool-field__label" for="{{ filename }}Shift">Shift</label>
+        <span class="caesar-map" id="{{ filename }}Map"></span>
+    </div>
+    <div class="input-group tool-stepper">
+        <button class="btn btn-outline-convrtr btn-icon-text" type="button" id="{{ filename }}Prev" aria-label="Previous shift"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+        <input type="number" class="form-control caesar-shift" id="{{ filename }}Shift" min="1" max="25" value="3" autocomplete="off" aria-describedby="{{ filename }}Map {{ filename }}Status">
+        <button class="btn btn-outline-convrtr btn-icon-text" type="button" id="{{ filename }}Next" aria-label="Next shift"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+    </div>
+</div>
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Key"><span class="visually-hidden">Caesar cipher </span>Key</label>
     <input type="text" class="form-control caesar-key" id="{{ filename }}Key" placeholder="Optional" autocomplete="off" aria-describedby="{{ filename }}Status">
 </div>
-{#- One shift at a time: previous and next apply the new shift straight away, as Shift does #}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Shift">Shift</label>
-    <button class="btn btn-outline-convrtr btn-icon-text" type="button" id="{{ filename }}Prev" aria-label="Previous shift"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
-    <input type="number" class="form-control caesar-shift" id="{{ filename }}Shift" min="1" max="25" value="3" autocomplete="off" aria-describedby="{{ filename }}Map {{ filename }}Status">
-    <button class="btn btn-outline-convrtr btn-icon-text" type="button" id="{{ filename }}Next" aria-label="Next shift"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Run">Shift</button>
-</div>
-<span class="caesar-map" id="{{ filename }}Map"></span>
 {% endcall %}
 {% endcall %}

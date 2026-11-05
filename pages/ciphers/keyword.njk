@@ -11,12 +11,10 @@ summary: >-
     <p>Repeated letters in the keyword are dropped, and the rest of the alphabet follows in order. <code class="tool-example">Hello World</code> encrypted with the key <code class="tool-example">Test</code> uses the alphabet <code class="tool-example">TESABCDFGH…</code> and becomes <code class="tool-example">Fbjjm Wmpja</code>.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Keyword cipher", placeholder = "Example: Hello World &srarr; Test [key] &srarr; Fbjjm Wmpja") %}
-<div class="input-group w-auto">
-    <label class="input-group-text" for="{{ filename }}Key"><span class="visually-hidden">Keyword </span>Key</label>
+{% call toolFrame(filename, "Keyword cipher", placeholder = "Example: Hello World &srarr; Test [key] &srarr; Fbjjm Wmpja", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="{{ filename }}Key"><span class="visually-hidden">Keyword </span>Key</label>
     <input type="text" class="form-control" id="{{ filename }}Key" autocomplete="off" aria-describedby="{{ filename }}Status">
-    <button class="btn btn-convrtr" type="button" id="{{ filename }}Encrypt" aria-pressed="true">Encrypt</button>
-    <button class="btn btn-outline-convrtr" type="button" id="{{ filename }}Decrypt" aria-pressed="false">Decrypt</button>
 </div>
 {% endcall %}
 {% endcall %}
