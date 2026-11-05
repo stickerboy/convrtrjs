@@ -1,14 +1,20 @@
 ---
 title: Keyword cipher
 tags: tools
+redirectFrom: /ciphers/substitution/
 summary: >-
     Builds a new alphabet that starts with a keyword, then swaps each letter of the message for the one in the same place.
+    Also known as a keyed substitution cipher.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
+    <p>Also called a substitution cipher, as each letter is substituted for another. This tool used to be split in two, with a separate Substitution cipher tool that could only encrypt.</p>
     <p>Repeated letters in the keyword are dropped, and the rest of the alphabet follows in order. <code class="tool-example">Hello World</code> encrypted with the key <code class="tool-example">Test</code> uses the alphabet <code class="tool-example">TESABCDFGH…</code> and becomes <code class="tool-example">Fbjjm Wmpja</code>.</p>
+    <p>The result can be a completely jumbled-up alphabet. With the key <code class="tool-example">HELLO</code>, the alphabet becomes <code class="tool-example">HELOABCDFGIJKMNPQRSTUVWXYZ</code>: H, E, L and O move to the start, and the second L is dropped because it's already used. <code class="tool-example">WORLD</code> then becomes <code class="tool-example">WNRJO</code>.</p>
+    <p>Your text keeps its case, and the key's case doesn't matter: <code class="tool-example">WOrld</code> with the key <code class="tool-example">HEllo</code> becomes <code class="tool-example">WNrjo</code>.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Keyword_cipher" class="text-convrtr">Keyword cipher</a> and <a href="https://en.wikipedia.org/wiki/Substitution_cipher" class="text-convrtr">Substitution cipher</a> Wikipedia pages.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Keyword cipher", placeholder = "Example: Hello World &srarr; Test [key] &srarr; Fbjjm Wmpja", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}

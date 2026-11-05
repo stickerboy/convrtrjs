@@ -18,7 +18,9 @@ if (dialog) {
         group: link.dataset.group,
         short: link.dataset.short,
         icon: link.dataset.icon,
-        landing: link.hasAttribute("data-landing")
+        landing: link.hasAttribute("data-landing"),
+        // Other names a tool goes by, such as Substitution cipher for the Keyword cipher (aliases in _data/nav.json)
+        aliases: (link.dataset.aliases ?? "").split("|").filter(Boolean)
     }));
 
     // The search box needs two characters before page text is searched, as on the search page
@@ -50,9 +52,9 @@ if (dialog) {
         return score;
     };
 
-    // Categories also match their short name, as the rail shows it
+    // Categories also match their short name, as the rail shows it, and tools their other names
     const rankLink = (link, terms) => {
-        const scores = [link.label, ...(link.landing ? [link.short] : [])].map((name) => rank(name, terms)).filter((score) => score >= 0);
+        const scores = [link.label, ...(link.landing ? [link.short] : []), ...link.aliases].map((name) => rank(name, terms)).filter((score) => score >= 0);
         return scores.length ? Math.min(...scores) : -1;
     };
 

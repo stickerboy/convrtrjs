@@ -8,10 +8,10 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>Invented by John F. Byrne in the 1920s. Only someone with the same settings can decode a message. For example, <code class="tool-example">Hello World</code> becomes <code class="tool-example">WahqzIuets</code>.</p>
+    <p>Invented by John F. Byrne in the 1920s. Only someone with the same settings can decode a message. For example, <code class="tool-example">Hello World</code> becomes <code class="tool-example">Wahqz Iuets</code>. Spaces, punctuation and numbers pass through unchanged.</p>
     <p>More on the <a href="https://en.wikipedia.org/wiki/Chaocipher" class="text-convrtr">Chaocipher</a> Wikipedia page.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; WahqzIuets", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
+{% call toolFrame(filename, "Chaocipher", placeholder = "Example: Hello World &srarr; Wahqz Iuets", actions = [{ id: filename + "Encrypt", label: "Encrypt" }, { id: filename + "Decrypt", label: "Decrypt" }]) %}
 {% endcall %}
 {% endcall %}

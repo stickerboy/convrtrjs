@@ -12,7 +12,6 @@ export * from "./ciphers/keyword.js";
 export * from "./ciphers/rail.js";
 export { default as rot } from "./ciphers/rot.js";
 export * from "./ciphers/smithy.js";
-export * from "./ciphers/substitution.js";
 export * from "./ciphers/vigenere.js";
 
 export * from "./files/check.js";

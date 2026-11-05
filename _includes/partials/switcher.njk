@@ -23,7 +23,7 @@
         {%- if link.children %}
         <a href="{{ categoryUrl(link) }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}" data-landing>{{ link.label }}</a>
         {%- for child in link.children | sort(false, true, "id") %}
-        <a href="{{ pageUrl(link, child) }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}">{{ child.label }}</a>
+        <a href="{{ pageUrl(link, child) }}" data-group="{{ link.label }}" data-short="{{ link.shortLabel }}" data-icon="{{ link.icon }}"{% if child.aliases %} data-aliases="{{ child.aliases | join('|') }}"{% endif %}>{{ child.label }}</a>
         {%- endfor %}
         {%- else %}
         <a href="{{ '/' ~ link.id ~ '/' }}" data-group="Site" data-short="Site" data-icon="{{ link.icon }}">{{ link.label }}</a>

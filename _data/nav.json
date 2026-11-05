@@ -37,14 +37,12 @@
                 "id": "caesar",
                 "label": "Caesar cipher"
             }, {
-                "id": "substitution",
-                "label": "Substitution cipher"
-            }, {
                 "id": "vigenere",
                 "label": "Vigenère cipher"
             },  {
                 "id": "keyword",
-                "label": "Keyword cipher"
+                "label": "Keyword cipher",
+                "aliases": ["Substitution cipher"]
             }, {
                 "id": "beaufort",
                 "label": "Beaufort cipher"

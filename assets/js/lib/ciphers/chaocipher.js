@@ -1,8 +1,17 @@
-import { lettersOnly } from "../strings.js";
-import { isUpperCase } from "../toolkit.js";
+const LEFT = "HXUCZVAMDSLKPEFJRIGTWOBNYQ";
+const RIGHT = "PTLNBQDEOYSFAVZKGJRIHWXUMC";
+/**
+ * Turns a wheel's letters into numbers, 0 for A to 25 for Z, which are quicker to move around than letters.
+ *
+ * @param {string} letters - The wheel's 26 uppercase letters, in order.
+ * @returns {Uint8Array} - The letters as numbers.
+ */
+function toWheel(letters) {
+    return Uint8Array.from(letters, (letter) => letter.charCodeAt(0) - 65);
+}
 
 /**
- * Rotates the wheel by a given number of steps.
+ * Rotates a wheel by a given number of steps.
  *
  * @param {Array} wheel - The wheel array to rotate.
  * @param {number} steps - The number of steps to rotate.
@@ -16,7 +25,32 @@ export function rotateWheel(wheel, steps) {
 }
 
 /**
- * Encodes a string using the Chaocipher algorithm.
+ * Permutes a wheel after a letter: turns it so the letter at `turn` is at the top (the zenith), then takes out the
+ * letter at `take` and puts it back at the bottom (the nadir, position 13). Writes into `into`, so nothing is created
+ * for each letter.
+ *
+ * @param {Uint8Array} wheel - The wheel as it is, as letter numbers.
+ * @param {Uint8Array} into - Where to write the permuted wheel, 26 long.
+ * @param {number} turn - The position to turn to the top, 0 to 25.
+ * @param {number} take - The position, after turning, of the letter that moves to the bottom, 0 to 25.
+ * @returns {void}
+ */
+function permute(wheel, into, turn, take) {
+    for (let i = 0; i < 26; i++) {
+        into[i] = wheel[(i + turn) % 26];
+    }
+    const taken = into[take];
+    if (take < 13) {
+        into.copyWithin(take, take + 1, 14);
+    } else if (take > 13) {
+        into.copyWithin(14, 13, take);
+    }
+    into[13] = taken;
+}
+
+/**
+ * Encodes a string using the Chaocipher algorithm. Letters keep their case; anything else passes through and doesn't
+ * move the wheels.
  *
  * @param {string} string - The input string to encode.
  * @param {number} [inc_a=0] - The increment for rotating the left wheel.
@@ -24,9 +58,13 @@ export function rotateWheel(wheel, steps) {
  * @param {number} [inc_b=1] - The increment for rotating the right wheel.
  * @param {number} [del_b=2] - The position for deletion and re-insertion in the right wheel.
  * @returns {string} - The encoded string.
+ *
+ * @example
+ * // Input: "Hello World"
+ * // Output: "Wahqz Iuets"
  */
 export function chaocipherEncode(string, inc_a = 0, del_a = 1, inc_b = 1, del_b = 2) {
-    return runChaocipher(lettersOnly(string), "encode", inc_a, del_a, inc_b, del_b);
+    return runChaocipher(string, "encode", inc_a, del_a, inc_b, del_b);
 }
 
 /**
@@ -55,29 +93,34 @@ export function chaocipherDecode(string, inc_a = 1, del_a = 2, inc_b = 0, del_b 
  * @returns {string} - The processed (encoded or decoded) string.
  */
 export function runChaocipher(string, mode, inc_a, del_a, inc_b, del_b) {
-    let left = ["H", "X", "U", "C", "Z", "V", "A", "M", "D", "S", "L", "K", "P", "E", "F", "J", "R", "I", "G", "T", "W", "O", "B", "N", "Y", "Q"];
-    let right = ["P", "T", "L", "N", "B", "Q", "D", "E", "O", "Y", "S", "F", "A", "V", "Z", "K", "G", "J", "R", "I", "H", "W", "X", "U", "M", "C"];
+    let left = toWheel(mode === "decode" ? RIGHT : LEFT);
+    let right = toWheel(mode === "decode" ? LEFT : RIGHT);
+    let spareLeft = new Uint8Array(26);
+    let spareRight = new Uint8Array(26);
+    const takeA = ((del_a % 26) + 26) % 26;
+    const takeB = ((del_b % 26) + 26) % 26;
 
-    if (mode === "decode") {
-        [left, right] = [right, left];
-    }
-
-    return Array.from(string).map(char => {
-        if (/[A-Za-z]/.test(char)) {
-            const index = right.indexOf(char.toUpperCase());
-            let out = left[index];
-            out = isUpperCase(char) ? out : out.toLowerCase();
-
-            left = rotateWheel(left, index + inc_a);
-            const delIndexA = (del_a < 0) ? left.length + del_a : del_a;
-            left.splice(13, 0, left.splice(delIndexA, 1)[0]);
-
-            right = rotateWheel(right, index + inc_b);
-            const delIndexB = (del_b < 0) ? right.length + del_b : del_b;
-            right.splice(13, 0, right.splice(delIndexB, 1)[0]);
-
-            return out;
+    // Letters as character codes, so case is a single bit: A-Z are 65-90, and a-z are the same with 32 added
+    const codes = new Uint16Array(string.length);
+    for (let i = 0; i < string.length; i++) {
+        const code = string.charCodeAt(i);
+        const lower = code | 32;
+        if (lower < 97 || lower > 122) {
+            codes[i] = code;
+            continue;
         }
-        return char;
-    }).join("");
+        const index = right.indexOf(lower - 97);
+        codes[i] = left[index] + 65 + (code & 32);
+
+        permute(left, spareLeft, (index + inc_a) % 26, takeA);
+        permute(right, spareRight, (index + inc_b) % 26, takeB);
+        [left, spareLeft] = [spareLeft, left];
+        [right, spareRight] = [spareRight, right];
+    }
+    // In slices, as String.fromCharCode takes a limited number of arguments
+    let result = "";
+    for (let i = 0; i < codes.length; i += 8192) {
+        result += String.fromCharCode(...codes.subarray(i, i + 8192));
+    }
+    return result;
 }

@@ -8,7 +8,6 @@ import { keywordEncode, keywordDecode } from "../../assets/js/lib/ciphers/keywor
 import { railFenceEncode, railFenceDecode } from "../../assets/js/lib/ciphers/rail.js";
 import rot from "../../assets/js/lib/ciphers/rot.js";
 import { smithyEncrypt, smithyDecrypt } from "../../assets/js/lib/ciphers/smithy.js";
-import { substituteChars } from "../../assets/js/lib/ciphers/substitution.js";
 import { vigenereEncrypt, vigenereDecrypt } from "../../assets/js/lib/ciphers/vigenere.js";
 
 describe("atbash", () => {
@@ -96,6 +95,20 @@ describe("rail fence", () => {
     it("needs at least 2 rails", () => {
         assert.throws(() => railFenceEncode("ABC", 1), /minimum of 2/);
         assert.throws(() => railFenceDecode("ABC", 0), /minimum of 2/);
+        assert.throws(() => railFenceEncode("ABC", "2.5"), /minimum of 2/);
+    });
+    it("takes the number of rails as text, as the tool's field gives it", () => {
+        assert.equal(railFenceEncode("WEAREDISCOVEREDFLEEATONCE", "3"), "WECRLTEERDSOEEFEAOCAIVDEN");
+    });
+    it("handles more rails than letters without setting aside room for each", () => {
+        assert.equal(railFenceEncode("Hello", 100_000_000), "Hello");
+        assert.equal(railFenceDecode("Hello", 100_000_000), "Hello");
+    });
+    it("decodes long text quickly", () => {
+        const text = "WEAREDISCOVEREDFLEEATONCE".repeat(40_000);
+        const start = performance.now();
+        assert.equal(railFenceDecode(railFenceEncode(text, 3), 3), text);
+        assert.ok(performance.now() - start < 2000, "a million letters should take well under 2 seconds");
     });
 });
 
@@ -109,6 +122,12 @@ describe("chaocipher", () => {
     });
     it("keeps case", () => {
         assert.equal(chaocipherDecode(chaocipherEncode("WellDone")), "WellDone");
+    });
+    // As the original Ruby (Sepheus/ONI-Tools): other characters don't move the wheels
+    it("passes spaces, punctuation and numbers through both ways", () => {
+        assert.equal(chaocipherEncode("Hello World"), "Wahqz Iuets");
+        assert.equal(chaocipherEncode("WELL DONE, IS 2 BETTER"), "OAHQ HCNY, NX 2 TSZJRR");
+        assert.equal(chaocipherDecode(chaocipherEncode("Well done! It's 100% better.")), "Well done! It's 100% better.");
     });
 });
 
@@ -131,12 +150,10 @@ describe("keyword", () => {
     });
 });
 
-describe("substitution", () => {
+describe("keyword, as a substitution cipher (the old Substitution tool)", () => {
     it("substitutes using the keyed alphabet, keeping case", () => {
-        assert.equal(substituteChars("flee at once. we are discovered!", "ZEBRAS"), "siaa zq lkba. va zoa rfpbluaoar!");
-    });
-    it("gives the same result for a lowercase key", () => {
-        assert.equal(substituteChars("flee at once", "zebras"), substituteChars("flee at once", "ZEBRAS"));
+        assert.equal(keywordEncode("flee at once. we are discovered!", "ZEBRAS"), "siaa zq lkba. va zoa rfpbluaoar!");
+        assert.equal(keywordEncode("Hello", "World"), "Cdhhk");
     });
 });
 
