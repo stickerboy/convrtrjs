@@ -3,7 +3,7 @@ title: Text replace
 tags: tools
 heading: "Replace characters"
 summary: >-
-    Replaces any characters or phrases in text with others, with <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> for advanced replacements.
+    Replaces any characters or phrases in text with others. Switch on Regex to use <a href="https://en.wikipedia.org/wiki/Regular_expression" class="text-convrtr" title="Regular expression wikipedia page">regex</a> patterns for advanced replacements.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
@@ -18,9 +18,22 @@ summary: >-
     <label class="tool-field__label" for="{{ filename }}mentValue">New<span class="visually-hidden"> characters</span></label>
     <input type="text" class="form-control" id="{{ filename }}mentValue" autocomplete="off" aria-describedby="{{ filename }}Status">
 </div>
+{#- Shown while Regex is on, pointing at the pattern and New as they're typed (tools/text/replace.js) #}
+<p class="tool-frame__settings-link" id="{{ filename }}Regex101Note" hidden>
+    <a href="https://regex101.com/?flavor=javascript" class="text-convrtr" id="{{ filename }}Regex101" target="_blank" rel="noopener noreferrer">Open this pattern in regex101<span class="visually-hidden"> (new tab)</span> <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
+</p>
+<div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Regex" aria-describedby="{{ filename }}RegexHint">
+    <label class="form-check-label" for="{{ filename }}Regex">Regex</label>
+</div>
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Case">
     <label class="form-check-label" for="{{ filename }}Case">Case sensitive</label>
+</div>
+{#- Shown while Regex is on (tools/text/replace.js) #}
+<div class="tool-frame__note" id="{{ filename }}RegexHint" hidden>
+    <p>Patterns use JavaScript's regex, and ^ and $ match at the start and end of each line. In New, $1 is the first group in brackets, $&lt;name&gt; a named group, $&amp; the whole match, and $$ a $ itself.</p>
+    <p>To build or test a pattern, try <a href="https://regex101.com/?flavor=javascript" class="text-convrtr" target="_blank" rel="noopener noreferrer">regex101<span class="visually-hidden"> (new tab)</span></a> with the ECMAScript flavour. "Open this pattern in regex101" opens yours there, sending only the pattern and New, not your text.</p>
 </div>
 {% endcall %}
 {% endcall %}

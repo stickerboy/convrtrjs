@@ -118,6 +118,43 @@
         }
     }
 
+    // A link among the settings, such as Replace's to its pattern on regex101: its own full-width row, 44px tall
+    &__settings-link {
+        flex-basis: 100%;
+        margin: 0;
+        font-size: 0.875rem;
+
+        &[hidden] {
+            display: none;
+        }
+
+        a {
+            display: inline-flex;
+            gap: 0.25rem;
+            align-items: center;
+            min-height: 2.75rem;
+        }
+    }
+
+    // Guidance among the settings, such as how to write a pattern: its own full-width row, in smaller text
+    &__note {
+        flex-basis: 100%;
+        font-size: 0.8125rem;
+        color: var(--bs-secondary-color);
+
+        &[hidden] {
+            display: none;
+        }
+
+        p {
+            margin: 0;
+        }
+
+        p + p {
+            margin-top: 0.5rem;
+        }
+    }
+
     // A frame's results under its input and settings, full width
     &__work + &__stack {
         border-top: var(--bs-border-width) solid var(--bs-border-color);

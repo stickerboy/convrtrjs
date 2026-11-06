@@ -4,6 +4,7 @@ import * as toolkit from "../../assets/js/lib/toolkit.js";
 import * as strings from "../../assets/js/lib/strings.js";
 import * as convrtrs from "../../assets/js/lib/text/convrtrs.js";
 import { flipText } from "../../assets/js/lib/text/flip.js";
+import * as replace from "../../assets/js/lib/text/replace.js";
 import { stringStats, characterFrequencies } from "../../assets/js/lib/text/frequencies.js";
 
 describe("binary", () => {
@@ -206,15 +207,75 @@ describe("text tools (strings.js)", () => {
     });
 });
 
-describe("replace and frequencies (toolkit)", () => {
-    it("replaces, optionally ignoring case, and supports regex", () => {
-        assert.equal(toolkit.replaceChars("hello", "l", "L", true), "heLLo");
-        assert.equal(toolkit.replaceChars("Hello", "h", "J", false), "Jello");
-        assert.equal(toolkit.replaceChars("a1b22c", "\\d+", "#", true), "a#b#c");
+describe("replace, as plain text", () => {
+    it("replaces, optionally ignoring case", () => {
+        assert.equal(replace.replaceText("hello", "l", "L", true), "heLLo");
+        assert.equal(replace.replaceText("Hello", "h", "J", false), "Jello");
+        assert.throws(() => replace.replaceText("Hello", "h", "J", true), /wasn't found/);
+    });
+    it("matches characters that have a meaning in regex as themselves", () => {
+        assert.equal(replace.replaceText("Hi. Bye.", ".", "!", false), "Hi! Bye!");
+        assert.equal(replace.replaceText("f(x)", "(", "[", false), "f[x)");
+        assert.equal(replace.replaceText("Why?", "?", "!", false), "Why!");
+        assert.equal(replace.replaceText("$5 a-b \\ /", "$", "£", false), "£5 a-b \\ /");
+        assert.equal(replace.replaceText("a-b/c", "-", "+", false), "a+b/c");
+        assert.equal(replace.replaceText("a\\b", "\\", "/", false), "a/b");
+    });
+    it("puts the replacement in exactly as typed", () => {
+        assert.equal(replace.replaceText("cost", "cost", "$&5 $1 $$", false), "$&5 $1 $$");
     });
     it("throws when there's nothing to replace", () => {
-        assert.throws(() => toolkit.replaceChars("hello", "z", "y", true), /was not found/);
+        assert.throws(() => replace.replaceText("hello", "z", "y", true), /wasn't found/);
     });
+    it("stops a result that would be too long", () => {
+        assert.throws(() => replace.replaceText("aaaa", "a", "bbb", false, 10), /over 10 characters/);
+        assert.equal(replace.replaceText("aaaa", "a", "bb", false, 8), "bbbbbbbb");
+    });
+});
+
+describe("replace, with a regex pattern", () => {
+    it("replaces with groups, named groups and the whole match", () => {
+        assert.equal(replace.replaceRegex("a1b22c", "\\d+", "#", true), "a#b#c");
+        assert.equal(replace.replaceRegex("ann@example", "(\\w+)@(\\w+)", "$2: $1", false), "example: ann");
+        assert.equal(replace.replaceRegex("ann@example", "(?<user>\\w+)@", "<$<user>>", false), "<ann>example");
+        assert.equal(replace.replaceRegex("abc", "b", "[$&|$`|$'|$$]", false), "a[b|a|c|$]c");
+    });
+    it("follows the built-in rules for references that don't name a group", () => {
+        const cases = [
+            ["(a)", "$0 $1 $2 $10 $01 $"],
+            ["(a)(b)(c)(d)(e)(f)(g)(h)(i)(j)", "$10 $11 $1x $9"],
+            ["a", "$<x> $"],
+            ["(?<x>a)", "$<x $<y> $<x>"],
+        ];
+        for (const [pattern, template] of cases) {
+            assert.equal(replace.replaceRegex("zabcdefghijz", pattern, template, true), "zabcdefghijz".replace(new RegExp(pattern, "gmu"), template));
+        }
+    });
+    it("matches ^ and $ at each line, and whole Unicode characters", () => {
+        assert.equal(replace.replaceRegex("one\ntwo", "^", "> ", false), "> one\n> two");
+        assert.equal(replace.replaceRegex("😀", ".", "x", false), "x");
+        assert.equal(replace.replaceRegex("héllo Жук", "\\p{L}+", "w", false), "w w");
+    });
+    it("explains a pattern that isn't valid in plain words", () => {
+        assert.throws(() => replace.replaceRegex("f(x)", "(", "[", false), /isn't valid: a \( isn't closed/);
+        assert.throws(() => replace.replaceRegex("why?", "?", "!", false), /isn't valid: a \*, \+, \? or \{ has nothing before it/);
+    });
+    it("throws when nothing matches", () => {
+        assert.throws(() => replace.replaceRegex("hello", "z+", "y", true), /Nothing matched/);
+    });
+    it("stops a pattern that matches empty text before the result grows too long", () => {
+        assert.throws(() => replace.replaceRegex("a".repeat(1000), "b*", "x".repeat(100), false, 10_000), /matches empty text/);
+        // $` is measured before it's built, so one this size never gets made
+        assert.throws(() => replace.replaceRegex("a".repeat(100_000), "a", "$`", false), /would be over/);
+    });
+    it("makes a regex101 link with only the pattern and replacement", () => {
+        const url = new URL(replace.regex101Link("(\\d+)", "$1!", false));
+        assert.equal(url.origin, "https://regex101.com");
+        assert.deepEqual(Object.fromEntries(url.searchParams), { regex: "(\\d+)", flags: "gimu", flavor: "javascript", subst: "$1!" });
+    });
+});
+
+describe("unique characters and frequencies (toolkit)", () => {
     it("finds unique characters and counts them", () => {
         assert.deepEqual(toolkit.uniqueArray("hello"), ["h", "e", "l", "o"]);
         assert.deepEqual(toolkit.countArrayFreq("hello"), { h: 1, e: 1, l: 2, o: 1 });

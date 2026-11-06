@@ -387,23 +387,6 @@ export function uniqueArray(str, chunkSize = 1) {
 }
 
 /**
- * Replace characters in a string, works for any unicode characters
- * Can also pass your own regex for replacements
- * @param {string} string - The input string.
- * @param {string} toReplace - The substring to replace.
- * @param {string} replacement - The replacement string.
- * @param {boolean} [caseSensitive=false] - If true, performs case-sensitive replacements.
- * @returns {string} - The modified string with replacements.
- */
-export function replaceChars(string, toReplace, replacement, caseSensitive) {
-    const regex = new RegExp(toReplace, `g${caseSensitive ? "" : "i"}`);
-    if (!regex.test(string)) {
-        throw new Error(`"${toReplace}" was not found within the original string.`);
-    }
-    return string.replaceAll(regex, replacement);
-}
-
-/**
  * Simple and efficient method of returning frequency counts of each unique grouping of the same characters in an array
  * If a delimiter is present, removes those characters from the string before processing. Emoji count as one character.
  * Based on code from this stackoverflow post
