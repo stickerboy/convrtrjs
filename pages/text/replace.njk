@@ -15,8 +15,11 @@ summary: >-
     <input type="text" class="form-control" id="{{ filename }}Value" autocomplete="off" aria-describedby="{{ filename }}Status">
 </div>
 <div class="tool-field">
-    <label class="tool-field__label" for="{{ filename }}mentValue">New<span class="visually-hidden"> characters</span></label>
-    <input type="text" class="form-control" id="{{ filename }}mentValue" autocomplete="off" aria-describedby="{{ filename }}Status">
+    <div class="tool-field__head">
+        <label class="tool-field__label" for="{{ filename }}mentValue">New<span class="visually-hidden"> characters</span></label>
+        <span class="tool-field__note" id="{{ filename }}mentNote">Leave empty to remove</span>
+    </div>
+    <input type="text" class="form-control" id="{{ filename }}mentValue" autocomplete="off" aria-describedby="{{ filename }}mentNote {{ filename }}Status">
 </div>
 {#- Shown while Regex is on, pointing at the pattern and New as they're typed (tools/text/replace.js) #}
 <p class="tool-frame__settings-link" id="{{ filename }}Regex101Note" hidden>

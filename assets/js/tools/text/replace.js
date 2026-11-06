@@ -101,11 +101,14 @@ bindToolFrame({
     }],
     key: [
         { id: "replaceValue", required: "Please provide the characters, words, or phrases you want to replace" },
-        { id: "replacementValue", required: "Please provide the new characters, word, or phrases you want to be the replacements" },
+        // Left empty, what matches is removed
+        { id: "replacementValue" },
     ],
     watch: ["replaceCase", "replaceRegex"],
     flow: () => [
-        useRegex.checked ? "Replace pattern " : "Replace ", { value: oldValue.value }, " with ", { value: newValue.value },
+        ...(newValue.value === ""
+            ? [useRegex.checked ? "Remove pattern " : "Remove ", { value: oldValue.value }]
+            : [useRegex.checked ? "Replace pattern " : "Replace ", { value: oldValue.value }, " with ", { value: newValue.value }]),
         matchCase.checked ? ", matching case" : "",
     ],
     errorPrefix: "Couldn't replace the characters",
