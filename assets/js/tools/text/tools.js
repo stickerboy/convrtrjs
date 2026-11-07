@@ -42,6 +42,6 @@ bindToolFrame({
         },
     }],
     watch: ["toolsSelect", "toolsPreserveWhitespace"],
-    flow: () => [{ value: chosen().textContent.replace("*", "").trim() }, keepsSpaces() ? ", keeping spaces" : ""],
+    flow: () => [{ value: chosen().textContent.replace("*", "").trim() }, keepsSpaces() ? ", keeping spaces and line breaks" : ""],
     errorPrefix: "Couldn't run the text tool",
 });

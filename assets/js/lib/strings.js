@@ -34,19 +34,22 @@ export function lowercase(string) {
  * seen (see graphemes), so an accent goes with its letter and an emoji with a skin tone is kept or dropped whole.
  *
  * @param {string} string - The input string.
- * @param {(kind: ReturnType<typeof characterKind>, char: string) => boolean} keep - Whether to keep a character.
- * @param {boolean} [preserveSpaces=false] - If true, keeps spaces too.
+ * @param {(kind: ReturnType<typeof characterKind>) => boolean} keep - Whether to keep a character.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines too, so lines stay apart.
  * @returns {string} - The characters kept, in order.
  */
 function keepCharacters(string, keep, preserveSpaces = false) {
     const kindOf = characterKinds();
-    return graphemes(string).filter((char) => (preserveSpaces === true && char === " ") || keep(kindOf(char), char)).join("");
+    return graphemes(string).filter((char) => {
+        const kind = kindOf(char);
+        return (preserveSpaces === true && kind.space) || keep(kind);
+    }).join("");
 }
 
 /**
  * Numbers only, including other numerals such as ², ½ and ٣
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with numbers.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with numbers.
  * @returns {string} - The input string with everything but numbers removed.
  */
 export function numbersOnly(string, preserveSpaces) {
@@ -56,7 +59,7 @@ export function numbersOnly(string, preserveSpaces) {
 /**
  * Letters only, including accented and other alphabets' letters, such as é, ß and Ж
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with letters.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with letters.
  * @returns {string} - The input string with everything but letters removed.
  */
 export function lettersOnly(string, preserveSpaces) {
@@ -66,7 +69,7 @@ export function lettersOnly(string, preserveSpaces) {
 /**
  * Capital letters only, including accented and other alphabets' capitals, such as É and Ж
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with capital letters.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with capital letters.
  * @returns {string} - The input string with everything but capital letters removed.
  */
 export function lettersOnlyCap(string, preserveSpaces) {
@@ -76,7 +79,7 @@ export function lettersOnlyCap(string, preserveSpaces) {
 /**
  * Lowercase letters only, including accented and other alphabets' lowercase letters, such as é, ß and ж
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with lowercase letters.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with lowercase letters.
  * @returns {string} - The input string with everything but lowercase letters removed.
  */
 export function lettersOnlyLow(string, preserveSpaces) {
@@ -86,7 +89,7 @@ export function lettersOnlyLow(string, preserveSpaces) {
 /**
  * Remove special characters: keeps only letters and numbers, of any alphabet
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with letters and numbers.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with letters and numbers.
  * @returns {string} - The input string with special characters removed.
  */
 export function stripSpecialChars(string, preserveSpaces) {
@@ -112,13 +115,14 @@ export function stripNumbers(string) {
 }
 
 /**
- * Special characters only: everything that isn't a letter or number, of any alphabet
+ * Special characters only: everything that isn't a letter, number or space (including tabs and new lines), of any
+ * alphabet
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with special characters.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces, tabs and new lines along with special characters.
  * @returns {string} - The input string containing only special characters.
  */
 export function specialCharsOnly(string, preserveSpaces) {
-    return keepCharacters(string, (kind, char) => !kind.letter && !kind.number && char !== " ", preserveSpaces);
+    return keepCharacters(string, (kind) => !kind.letter && !kind.number && !kind.space, preserveSpaces);
 }
 
 /**

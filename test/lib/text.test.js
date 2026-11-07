@@ -418,3 +418,17 @@ describe("text tools with any alphabet", () => {
         assert.equal(strings.lettersToNumbers("ßЖæ a"), "1");
     });
 });
+
+describe("keeping spaces and line breaks", () => {
+    const s = "a1 b2\nc3\td4!";
+    it("keeps spaces, tabs and new lines when asked, so lines stay apart", () => {
+        assert.equal(strings.numbersOnly(s, true), "1 2\n3\t4");
+        assert.equal(strings.lettersOnly(s, true), "a b\nc\td");
+        assert.equal(strings.specialCharsOnly(s, true), " \n\t!");
+    });
+    it("removes all of them otherwise", () => {
+        assert.equal(strings.numbersOnly(s), "1234");
+        assert.equal(strings.specialCharsOnly(s), "!");
+        assert.equal(strings.stripSpecialChars(s), "a1b2c3d4");
+    });
+});

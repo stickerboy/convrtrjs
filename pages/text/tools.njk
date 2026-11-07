@@ -9,7 +9,7 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>To run several tools in a row, use "Move to input" to bring the output back into the input, then run the next tool: strip spaces, move the result to the input, then run Remove all numbers. Preserve spaces only works on tools marked with an asterisk [*].</p>
+    <p>To run several tools in a row, use "Move to input" to bring the output back into the input, then run the next tool: strip spaces, move the result to the input, then run Remove all numbers. Keep spaces and line breaks only works on tools marked with an asterisk [*]: it keeps spaces, tabs and new lines, so each line stays on its own. Without it, those tools remove them all.</p>
     <p>Letters include accented letters and other alphabets (é, ß, Ж), and numbers include other numerals (², ½). Everything else, including emoji, is a special character. Letters to alphabet number takes accents off, so é is 5, and leaves out letters outside A to Z.</p>
 {% endset %}
 {% call toolSection(intro) %}
@@ -38,7 +38,7 @@ summary: >-
 </div>
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}PreserveWhitespace">
-    <label class="form-check-label" for="{{ filename }}PreserveWhitespace">Preserve spaces *</label>
+    <label class="form-check-label" for="{{ filename }}PreserveWhitespace">Keep spaces and line breaks *</label>
 </div>
 {% endcall %}
 {% endcall %}
