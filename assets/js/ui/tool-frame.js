@@ -1,14 +1,25 @@
 import { readToolInput } from "./tool.js";
 import { showToast } from "./toast.js";
 import { getLocalStorageItem, saveLocalStorage } from "./storage.js";
+import { countGraphemes } from "../lib/toolkit.js";
 
 // Live typing stops here, where the large data warning starts; the buttons still work up to the 1 million cap
 const LIVE_LIMIT = 200000;
 
 const byId = (id) => document.getElementById(id);
-// How many characters text has, counting an emoji (two UTF-16 units) as one, as the tools themselves do
+// Up to this length, the input is counted on every key; past it, after a short pause, as counting text that isn't
+// plain ASCII takes a few milliseconds for every 10,000 characters
+const COUNT_NOW_LIMIT = 50000;
+
+/**
+ * How many characters text has, counted as they are seen, as the tools themselves count them: an emoji with a skin
+ * tone, or a flag, is one character (see countGraphemes).
+ *
+ * @param {string} text - The text to count.
+ * @returns {string} The count, as "1,234 characters".
+ */
 const characters = (text) => {
-    const length = text.length - (text.match(/[\uD800-\uDBFF](?=[\uDC00-\uDFFF])/g)?.length ?? 0);
+    const length = countGraphemes(text);
     return `${length.toLocaleString()} character${length === 1 ? "" : "s"}`;
 };
 
@@ -63,9 +74,10 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
         frame.querySelector("[data-count-output]").textContent = "";
     };
 
-    const updateCounts = () => {
+    // Typing only changes the input, so only its count needs updating then
+    const updateCounts = ({ output: withOutput = true } = {}) => {
         frame.querySelector("[data-count-input]").textContent = characters(input.value);
-        if (isResult && output.textContent !== "") {
+        if (withOutput && isResult && output.textContent !== "") {
             frame.querySelector("[data-count-output]").textContent = characters(output.textContent);
         }
     };
@@ -204,8 +216,14 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
 
     // Live typing waits for a short pause, so long text isn't converted on every key
     let timer;
+    let countTimer;
     const typed = () => {
-        updateCounts();
+        clearTimeout(countTimer);
+        if (input.value.length > COUNT_NOW_LIMIT) {
+            countTimer = setTimeout(() => updateCounts({ output: false }), 150);
+        } else {
+            updateCounts({ output: false });
+        }
         if (live.checked) {
             clearTimeout(timer);
             timer = setTimeout(() => run(current, { typed: true }), 150);

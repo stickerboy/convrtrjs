@@ -5,7 +5,7 @@ import * as strings from "../../assets/js/lib/strings.js";
 import * as convrtrs from "../../assets/js/lib/text/convrtrs.js";
 import { flipText } from "../../assets/js/lib/text/flip.js";
 import * as replace from "../../assets/js/lib/text/replace.js";
-import { stringStats, characterFrequencies } from "../../assets/js/lib/text/frequencies.js";
+import { stringStats, characterFrequencies, textStats } from "../../assets/js/lib/text/frequencies.js";
 
 describe("binary", () => {
     it("encodes text as space-separated bytes", () => {
@@ -347,5 +347,49 @@ describe("guessEncoding", () => {
     it("needs the decoded text to be readable", () => {
         assert.equal(convrtrs.guessEncoding("00000000 00000000 00000000"), null);
         assert.equal(convrtrs.guessEncoding("ff fe fd fc"), null);
+    });
+});
+
+describe("characters as they're seen (graphemes)", () => {
+    const thumbs = "👍🏽";
+    const flag = "🇬🇧";
+    const family = "👨‍👩‍👧";
+    const accent = "é";
+    it("splits emoji with skin tones, flags, family emoji and separately typed accents as one character each", () => {
+        assert.deepEqual(toolkit.graphemes(`a${thumbs}${flag}${family}${accent}`), ["a", thumbs, flag, family, accent]);
+        assert.deepEqual(toolkit.graphemes("a\r\nb"), ["a", "\r\n", "b"]);
+        assert.deepEqual(toolkit.graphemes("abc"), ["a", "b", "c"]);
+    });
+    it("counts them the same way, quickly for plain ASCII", () => {
+        assert.equal(toolkit.countGraphemes(`a${thumbs}${flag}${family}${accent}`), 5);
+        assert.equal(toolkit.countGraphemes("a\r\nb"), 3);
+        assert.equal(toolkit.countGraphemes(""), 0);
+    });
+    it("reverses without breaking them apart", () => {
+        assert.equal(toolkit.reverseString(`x${flag}y`), `y${flag}x`);
+        assert.equal(toolkit.reverseString(`${accent}x`), `x${accent}`);
+        assert.equal(toolkit.reverseString(`a${thumbs}b`), `b${thumbs}a`);
+    });
+    it("keeps them whole in unique characters and flipped text", () => {
+        assert.deepEqual(toolkit.uniqueArray(`${thumbs}👍${thumbs}`), [thumbs, "👍"]);
+        assert.equal(toolkit.reverseString(flipText(`a${flag}`)), `ɐ${flag}`);
+    });
+    it("counts them as one character in the frequencies, as the page says", () => {
+        assert.equal(stringStats(thumbs, "char-count"), 1);
+        assert.equal(stringStats(family, "char-count"), 1);
+        assert.equal(stringStats(`${family} ${flag}`, "special-count-ns"), 2);
+        assert.equal(stringStats(accent, "letter-count"), 1);
+        assert.deepEqual(characterFrequencies(`${thumbs}👍`).map((row) => [row.char, row.count]), [[thumbs, 1], ["👍", 1]]);
+    });
+    it("works out every statistic in one pass, matching the one-at-a-time version", () => {
+        const text = `Héllo Wörld 123, Жук! ${thumbs}\n\tok`;
+        const all = textStats(text);
+        for (const stat of Object.keys(all)) {
+            assert.equal(stringStats(text, stat), all[stat]);
+        }
+        assert.deepEqual(all, {
+            "word-count": 6, "char-count": 27, "char-count-ns": 21, "letter-count": 15, "letter-count-caps": 3,
+            "letter-count-low": 12, "number-count": 3, "special-count": 9, "special-count-ns": 3,
+        });
     });
 });

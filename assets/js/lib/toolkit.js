@@ -102,13 +102,60 @@ export function inArray(string, array) {
     return array.includes(string);
 }
 
+// Splits text into characters as they're seen, where several code points can make one: an emoji with a skin tone, a
+// flag, a family emoji, or a letter followed by an accent typed separately. Missing only in very old browsers.
+const graphemeSegmenter = typeof Intl.Segmenter === "function" ? new Intl.Segmenter(undefined, { granularity: "grapheme" }) : null;
+
+// Plain ASCII, where every character is one code point, apart from \r\n, which counts as one character
+const isAscii = (string) => /^[\0-\x7F]*$/.test(string);
+
 /**
- * Reverse String
- * @param {string} string - The input string.
- * @returns {string} - The reversed string.
+ * Splits text into characters as they're seen: 👍🏽, 🇬🇧 and an e followed by a separate accent are each one character,
+ * not two. Plain ASCII takes a much quicker path, as each of its characters is one already.
+ *
+ * @param {string} string - The text to split.
+ * @returns {string[]} Each character, in order.
+ *
+ * @example
+ * // Input: "a👍🏽"
+ * // Output: ["a", "👍🏽"]
+ */
+export function graphemes(string) {
+    if (!graphemeSegmenter || (isAscii(string) && !string.includes("\r"))) {
+        return [...string];
+    }
+    return Array.from(graphemeSegmenter.segment(string), ({ segment }) => segment);
+}
+
+/**
+ * Counts the characters in text as they're seen, as graphemes splits it, without making a list of them.
+ *
+ * @param {string} string - The text to count.
+ * @returns {number} How many characters it has.
+ */
+export function countGraphemes(string) {
+    if (!graphemeSegmenter) {
+        return [...string].length;
+    }
+    if (isAscii(string)) {
+        return string.length - (string.match(/\r\n/g)?.length ?? 0);
+    }
+    let count = 0;
+    for (const _ of graphemeSegmenter.segment(string)) {
+        count++;
+    }
+    return count;
+}
+
+/**
+ * Reverses text, keeping each character as it's seen together: 🇬🇧 stays 🇬🇧 rather than becoming 🇧🇬, and an accent
+ * stays on its letter.
+ *
+ * @param {string} string - The text to reverse.
+ * @returns {string} The text, reversed.
  */
 export function reverseString(string) {
-    return Array.from(string).reverse().join("");
+    return graphemes(string).reverse().join("");
 }
 
 /**
@@ -367,7 +414,8 @@ export function decimalToString(string) {
 }
 
 /**
- * Return an array of unique character groups from a string, divided into chunks. Emoji count as one character.
+ * Return an array of unique character groups from a string, divided into chunks. Characters are counted as they are
+ * seen (see graphemes), so an emoji with a skin tone or a flag is one character.
  * @param {string} str - The input string.
  * @param {Number} [chunkSize=1] - The size of each chunk. Default is 1.
  * @returns {Array} - An array of unique character groups for each chunk.
@@ -377,7 +425,7 @@ export function uniqueArray(str, chunkSize = 1) {
         throw new Error("Invalid chunk size");
     }
 
-    const characters = [...str];
+    const characters = graphemes(str);
     const chunks = [];
     for (let i = 0; i < characters.length; i += chunkSize) {
         chunks.push(characters.slice(i, i + chunkSize).join(""));
@@ -388,7 +436,7 @@ export function uniqueArray(str, chunkSize = 1) {
 
 /**
  * Simple and efficient method of returning frequency counts of each unique grouping of the same characters in an array
- * If a delimiter is present, removes those characters from the string before processing. Emoji count as one character.
+ * If a delimiter is present, removes those characters from the string before processing. Characters are counted as they are seen (see graphemes).
  * Based on code from this stackoverflow post
  * https://stackoverflow.com/a/66002712/3172872
  *
@@ -408,7 +456,7 @@ export function countArrayFreq(string, chunkSize = 1, delimiter) {
     }
 
     // Split the string into substrings of the specified chunk size
-    const characters = [...string];
+    const characters = graphemes(string);
     let split = [];
     for (let i = 0; i <= characters.length - chunkSize; i += chunkSize) {
         const chunk = characters.slice(i, i + chunkSize);

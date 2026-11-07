@@ -9,7 +9,7 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>Useful for spotting patterns in data puzzles. Letters include accented letters and other alphabets, spaces include tabs and new lines, and an emoji counts as one character.</p>
+    <p>Useful for spotting patterns in data puzzles. Letters include accented letters and other alphabets, spaces include tabs and new lines. Characters are counted as you see them, so an emoji (even with a skin tone), a flag, or a letter with an accent counts as one.</p>
     <p>Sort the table by First seen to list each character in the order it first appears. Copy and download give the table as tab-separated text, which pastes into a spreadsheet.</p>
 {% endset %}
 {% call toolSection(intro) %}

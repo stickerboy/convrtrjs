@@ -1,4 +1,5 @@
 import { createImage } from "./image.js";
+import { countGraphemes } from "../lib/toolkit.js";
 
 const characters = (count) => `${count.toLocaleString()} character${count === 1 ? "" : "s"}`;
 
@@ -38,7 +39,7 @@ export function bindGlyphKeyboard({ id, filename, image = {} }) {
             }
             return glyph ?? "";
         }).join("");
-        count.textContent = characters([...text.value].length);
+        count.textContent = characters(countGraphemes(text.value));
         const list = [...missing].slice(0, 5).map((char) => `"${char}"`).join(", ");
         setStatus(missing.size ? `No glyph for ${list}${missing.size > 5 ? " and others" : ""}, so left out of the glyphs` : "");
     };

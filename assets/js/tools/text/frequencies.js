@@ -1,6 +1,7 @@
 import { bindToolFrame, resultRow } from '../../ui/tool-frame.js';
 import { renderFrequencies, characterCell, characterName } from '../../ui/frequencies.js';
 import * as frequencies from '../../lib/text/frequencies.js';
+import * as toolkit from '../../lib/toolkit.js';
 
 // Stats to display
 const stats = [
@@ -24,10 +25,13 @@ bindToolFrame({
     id: "frequencies",
     modes: [{
         button: "frequenciesRun",
+        // The text is split into characters once, and every figure and the table are worked out from those
         run: (text) => {
-            const rows = frequencies.characterFrequencies(text);
+            const chars = toolkit.graphemes(text);
+            const rows = frequencies.characterFrequencies(text, chars);
+            const figures = frequencies.textStats(text, chars);
             return {
-                stats: stats.map(({ label, stat }) => ({ label, value: frequencies.stringStats(text, stat).toLocaleString() })),
+                stats: stats.map(({ label, stat }) => ({ label, value: figures[stat].toLocaleString() })),
                 // Every character once, in the order each first appears, to copy as text
                 extra: resultRow({ label: `${rows.length.toLocaleString()} unique`, value: rows.map((row) => row.char).join("") }),
                 tables: [{ id: "characters", name: "Character frequencies", columns, rows }],

@@ -1,12 +1,73 @@
-// How many characters in a string match a pattern, counting each character once, emoji included
-const countMatches = (string, pattern) => string.match(pattern)?.length ?? 0;
+import { graphemes } from "../toolkit.js";
 
 /**
- * Provides various information about a given string based on the specified stat. Letters and numbers include accented
- * and other alphabets' letters (é, ß, Ж), and spaces include tabs and new lines. Each character counts once, emoji included.
+ * What kind of character something is, from its first code point: an accent typed separately belongs to the letter
+ * before it, and an emoji with a skin tone is one symbol.
+ *
+ * @param {string} char - One character, as graphemes splits text.
+ * @returns {{letter: boolean, upper: boolean, lower: boolean, number: boolean, space: boolean}} What it counts as.
+ */
+function kindOf(char) {
+    const first = String.fromCodePoint(char.codePointAt(0));
+    return {
+        letter: /\p{L}/u.test(first),
+        upper: /\p{Lu}/u.test(first),
+        lower: /\p{Ll}/u.test(first),
+        number: /\p{N}/u.test(first),
+        space: /\s/u.test(first),
+    };
+}
+
+/**
+ * Works out every statistic for a text in one pass over its characters. Characters are counted as they're seen (see
+ * graphemes): 👍🏽 and 🇬🇧 are one character each. Letters and numbers include accented and other alphabets' letters
+ * (é, ß, Ж), spaces include tabs and new lines, and special characters are everything that isn't a letter or number.
+ *
+ * @param {string} string - The text to analyze.
+ * @param {string[]} [chars=graphemes(string)] - Its characters, if they've been split already, so they aren't again.
+ * @param {string|RegExp} [delimiter=/\s+/u] - What separates words.
+ * @returns {Object<string, number>} Each statistic, by the names stringStats takes.
+ *
+ * @example
+ * // Input: "Hi 👍🏽"
+ * // Output: { "word-count": 2, "char-count": 4, "char-count-ns": 3, "letter-count": 2, ... "special-count": 2, ... }
+ */
+export function textStats(string, chars = graphemes(string), delimiter = /\s+/u) {
+    // Most texts use few different characters, so each is looked at once
+    const kinds = new Map();
+    let letters = 0, upper = 0, lower = 0, numbers = 0, spaces = 0;
+    for (const char of chars) {
+        let kind = kinds.get(char);
+        if (!kind) {
+            kind = kindOf(char);
+            kinds.set(char, kind);
+        }
+        letters += kind.letter;
+        upper += kind.upper;
+        lower += kind.lower;
+        numbers += kind.number;
+        spaces += kind.space;
+    }
+    const trimmed = string.trim();
+    const special = chars.length - letters - numbers;
+    return {
+        "word-count": trimmed === "" ? 0 : trimmed.split(delimiter).filter(Boolean).length,
+        "char-count": chars.length,
+        "char-count-ns": chars.length - spaces,
+        "letter-count": letters,
+        "letter-count-caps": upper,
+        "letter-count-low": lower,
+        "number-count": numbers,
+        "special-count": special,
+        "special-count-ns": special - spaces,
+    };
+}
+
+/**
+ * Gives one statistic about a text: see textStats, which works them all out at once.
  *
  * @param {string} string - The input string to analyze.
- * @param {string} stat - The type of information to retrieve / statistic to calculate (e.g., "word-count", "char-count", etc.).
+ * @param {string} stat - The statistic to calculate (e.g., "word-count", "char-count", etc.).
  * @param {string|RegExp} [delimiter] - What separates words (default: any spaces, tabs or new lines).
  * @returns {number|string} - The calculated statistic or an error message if the stat is not available.
  *
@@ -15,29 +76,16 @@ const countMatches = (string, pattern) => string.match(pattern)?.length ?? 0;
  * // Output: 2
  */
 export function stringStats(string, stat, delimiter = /\s+/u) {
-    // Mapping object for statistic functions
-    const statFunctions = {
-        "word-count":           str => str.trim() === "" ? 0 : str.trim().split(delimiter).filter(Boolean).length,
-        "char-count":           str => [...str].length,
-        "char-count-ns":        str => countMatches(str, /\S/gu),
-        "letter-count":         str => countMatches(str, /\p{L}/gu),
-        "letter-count-caps":    str => countMatches(str, /\p{Lu}/gu),
-        "letter-count-low":     str => countMatches(str, /\p{Ll}/gu),
-        "number-count":         str => countMatches(str, /\p{N}/gu),
-        // Anything that isn't a letter (or an accent on one) or a number
-        "special-count":        str => countMatches(str, /[^\p{L}\p{M}\p{N}]/gu),
-        "special-count-ns":     str => countMatches(str, /[^\p{L}\p{M}\p{N}\s]/gu)
-    };
-
-    // Get the selected stat function
-    const selectedStatFunction = statFunctions[stat];
-    return selectedStatFunction ? selectedStatFunction(string) : "No statistic specified or statistic is not available";
+    const stats = textStats(string, graphemes(string), delimiter);
+    return stat in stats ? stats[stat] : "No statistic specified or statistic is not available";
 }
 
 /**
- * Counts each character in a string, in the order each first appears. Emoji count as one character.
+ * Counts each character in a string, in the order each first appears. Characters are counted as they're seen (see
+ * graphemes), so 👍🏽 is one character, not 👍 and a skin tone.
  *
  * @param {string} string - The text to count.
+ * @param {string[]} [chars=graphemes(string)] - Its characters, if they've been split already, so they aren't again.
  * @returns {{char: string, count: number, first: number}[]} Each character, how often it appears, and where it first
  *   appears (1 for the first character).
  *
@@ -45,9 +93,9 @@ export function stringStats(string, stat, delimiter = /\s+/u) {
  * // Input: "hello"
  * // Output: [{ char: "h", count: 1, first: 1 }, { char: "e", count: 1, first: 2 }, { char: "l", count: 2, first: 3 }, { char: "o", count: 1, first: 5 }]
  */
-export function characterFrequencies(string) {
+export function characterFrequencies(string, chars = graphemes(string)) {
     const counts = new Map();
-    [...string].forEach((char, index) => {
+    chars.forEach((char, index) => {
         const entry = counts.get(char);
         if (entry) {
             entry.count++;
