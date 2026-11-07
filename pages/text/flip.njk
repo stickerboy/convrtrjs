@@ -2,13 +2,13 @@
 title: Flip text
 tags: tools
 summary: >-
-    Turns text upside down, so <code class="tool-example">this</code> becomes <code class="tool-example">ʇɥıs</code>.
+    Turns text upside down, so <code class="tool-example">this</code> becomes <code class="tool-example">ʇɥᴉs</code>. Digits and punctuation flip too, and flipping flipped text turns it back.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% call toolSection() %}
-{% call toolFrame(filename, "Flip text", placeholder = "Example: Hello &srarr; Hǝןןo", actions = [{ id: filename + "Run", label: "Flip" }], switchWithActions = true) %}
+{% call toolFrame(filename, "Flip text", placeholder = "Example: Hello &srarr; Hǝꞁꞁo", actions = [{ id: filename + "Run", label: "Flip" }], switchWithActions = true) %}
 <div class="form-check form-switch">
     <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Direction">
     <label class="form-check-label" for="{{ filename }}Direction">Reverse</label>

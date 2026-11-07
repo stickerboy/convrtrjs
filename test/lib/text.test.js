@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import * as toolkit from "../../assets/js/lib/toolkit.js";
 import * as strings from "../../assets/js/lib/strings.js";
 import * as convrtrs from "../../assets/js/lib/text/convrtrs.js";
-import { flipText } from "../../assets/js/lib/text/flip.js";
+import { flipText, flipCharacters } from "../../assets/js/lib/text/flip.js";
 import * as replace from "../../assets/js/lib/text/replace.js";
 import { stringStats, characterFrequencies, textStats } from "../../assets/js/lib/text/frequencies.js";
 
@@ -328,7 +328,24 @@ describe("text frequencies (stats)", () => {
 
 describe("flip", () => {
     it("turns text upside down", () => {
-        assert.equal(flipText("hello"), "oןןǝɥ");
+        assert.equal(flipText("hello"), "oꞁꞁǝɥ");
+        assert.equal(flipCharacters("Hello!"), "Hǝꞁꞁo¡");
+    });
+    it("flips capitals, digits and punctuation, each to its own character", () => {
+        assert.equal(flipCharacters("BQDPKkRr"), "ᗺΌᗡԀꓘʞᴚɹ");
+        assert.equal(flipCharacters("1234567890"), "Ɩ↊↋ᔭϛ9𝘓860");
+        assert.equal(flipCharacters(".,?!()[]{}<>_&;\""), "˙'¿¡)(][}{><‾⅋⸵„");
+    });
+    it("gives the original back when flipped again", () => {
+        const ascii = Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)).join("");
+        assert.equal(flipCharacters(flipCharacters(ascii)), ascii);
+        assert.equal(flipText(flipText(ascii)), ascii);
+        // Turkish ı isn't a flipped i, so it stays as it is
+        assert.equal(flipCharacters("ı"), "ı");
+    });
+    it("uses no characters that read right to left, which would reorder the text", () => {
+        const ascii = Array.from({ length: 95 }, (_, i) => String.fromCharCode(32 + i)).join("");
+        assert.doesNotMatch(flipCharacters(ascii), /[֐-ࣿיִ-﷿ﹰ-﻿]/u);
     });
 });
 
