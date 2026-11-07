@@ -37,14 +37,13 @@ bindToolFrame({
     errorPrefix: "Couldn't convert the Braille",
 });
 
-// An image of the result, as wide as it's shown and at least as tall as a few lines, whatever the result's height.
-// The button only shows once there's a result.
+// An image of the result, wrapped to about the width it's shown at. The button only shows once there's a result.
 const image = document.getElementById("brailleImage");
 image.addEventListener("click", () => {
-    createImage(output.offsetWidth, Math.max(output.offsetHeight, 240), "braille.png", image, output.textContent, {
+    createImage(output.textContent, {
+        filename: "braille.png",
+        width: output.offsetWidth,
         font: `3rem system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Segoe UI Symbol"`,
-        paddingTop: 0,
-        fontAdjust: true,
         ...(document.getElementById("brailleTransparent").checked ? { bgcolor: "rgba(0, 0, 0, 0)" } : {}),
     });
 });

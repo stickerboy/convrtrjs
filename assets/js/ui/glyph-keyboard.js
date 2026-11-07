@@ -1,5 +1,8 @@
 import { createImage } from "./image.js";
-import { countGraphemes } from "../lib/toolkit.js";
+import { countGraphemes, graphemes } from "../lib/toolkit.js";
+
+// The most characters drawn as glyphs
+const LIMIT = 10000;
 
 const characters = (count) => `${count.toLocaleString()} character${count === 1 ? "" : "s"}`;
 
@@ -11,7 +14,8 @@ const characters = (count) => `${count.toLocaleString()} character${count === 1 
  * @param {object} options
  * @param {string} options.id - The frame's id, usually the page's file slug.
  * @param {string} options.filename - What the image downloads as, e.g. "pigpen-glyphs.png".
- * @param {object} [options.image] - How the image is drawn, as createImage takes it (font, paddingTop, fontAdjust).
+ * @param {object} [options.image] - How the image is drawn, as createImage takes it, such as a different font (default:
+ *   the glyphs' own font, at 6rem).
  */
 export function bindGlyphKeyboard({ id, filename, image = {} }) {
     const text = document.getElementById(`${id}Text`);
@@ -26,11 +30,18 @@ export function bindGlyphKeyboard({ id, filename, image = {} }) {
         status.classList.toggle("text-danger", error);
     };
 
-    // Each character as its glyph, keeping spaces and new lines; characters with no glyph are left out, and listed
+    // Each character as its glyph, keeping spaces and new lines; characters with no glyph are left out, and listed.
+    // Past the limit, nothing is drawn: that many glyphs are too many to read, or to save as one image.
     const draw = () => {
+        count.textContent = characters(countGraphemes(text.value));
+        if (text.value.length > LIMIT) {
+            glyphs.textContent = "";
+            setStatus(`Too long: the glyphs are drawn for up to ${LIMIT.toLocaleString()} characters`, true);
+            return;
+        }
         const missing = new Set();
-        glyphs.textContent = [...text.value].map((char) => {
-            if (/\s/.test(char)) {
+        glyphs.textContent = graphemes(text.value).map((char) => {
+            if (/^\s+$/.test(char)) {
                 return char;
             }
             const glyph = keys.get(char.toUpperCase());
@@ -39,7 +50,6 @@ export function bindGlyphKeyboard({ id, filename, image = {} }) {
             }
             return glyph ?? "";
         }).join("");
-        count.textContent = characters(countGraphemes(text.value));
         const list = [...missing].slice(0, 5).map((char) => `"${char}"`).join(", ");
         setStatus(missing.size ? `No glyph for ${list}${missing.size > 5 ? " and others" : ""}, so left out of the glyphs` : "");
     };
@@ -71,13 +81,18 @@ export function bindGlyphKeyboard({ id, filename, image = {} }) {
 
     const button = document.getElementById(`${id}Image`);
     button.addEventListener("click", () => {
+        if (text.value.length > LIMIT) {
+            // The status line already says it's too long
+            return;
+        }
         if (glyphs.textContent.trim() === "") {
             setStatus("Type or tap some glyphs to make an image of", true);
             return;
         }
         const transparent = document.getElementById(`${id}Transparent`).checked;
-        createImage(glyphs.offsetWidth, glyphs.offsetHeight, filename, button, glyphs.textContent,
-            { ...image, ...(transparent ? { bgcolor: "rgba(0, 0, 0, 0)" } : {}) });
+        // The glyphs in the font they're shown in, larger
+        const font = `6rem ${getComputedStyle(glyphs).fontFamily}`;
+        createImage(glyphs.textContent, { font, ...image, filename, width: glyphs.offsetWidth, ...(transparent ? { bgcolor: "rgba(0, 0, 0, 0)" } : {}) });
     });
 
     draw();
