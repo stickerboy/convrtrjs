@@ -148,6 +148,43 @@ export function countGraphemes(string) {
 }
 
 /**
+ * What kind of character something is, from its first code point: an accent typed separately belongs to the letter
+ * before it, and an emoji with a skin tone is one symbol. Letters and numbers include accented and other alphabets'
+ * letters (é, ß, Ж) and other numerals (², ½, ٣), and spaces include tabs and new lines.
+ *
+ * @param {string} char - One character, as graphemes splits text.
+ * @returns {{letter: boolean, upper: boolean, lower: boolean, number: boolean, space: boolean}} What it counts as.
+ */
+export function characterKind(char) {
+    const first = String.fromCodePoint(char.codePointAt(0));
+    return {
+        letter: /\p{L}/u.test(first),
+        upper: /\p{Lu}/u.test(first),
+        lower: /\p{Ll}/u.test(first),
+        number: /\p{N}/u.test(first),
+        space: /\s/u.test(first),
+    };
+}
+
+/**
+ * Gives a function that tells what kind each character is (see characterKind), remembering each one it's seen, as
+ * most texts use only a few different characters.
+ *
+ * @returns {(char: string) => ReturnType<typeof characterKind>} The function, for one text.
+ */
+export function characterKinds() {
+    const kinds = new Map();
+    return (char) => {
+        let kind = kinds.get(char);
+        if (!kind) {
+            kind = characterKind(char);
+            kinds.set(char, kind);
+        }
+        return kind;
+    };
+}
+
+/**
  * Reverses text, keeping each character as it's seen together: 🇬🇧 stays 🇬🇧 rather than becoming 🇧🇬, and an accent
  * stays on its letter.
  *

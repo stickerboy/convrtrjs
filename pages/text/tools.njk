@@ -10,6 +10,7 @@ summary: >-
 {% set filename = page.fileSlug %}
 {% set intro %}
     <p>To run several tools in a row, use "Move to input" to bring the output back into the input, then run the next tool: strip spaces, move the result to the input, then run Remove all numbers. Preserve spaces only works on tools marked with an asterisk [*].</p>
+    <p>Letters include accented letters and other alphabets (é, ß, Ж), and numbers include other numerals (², ½). Everything else, including emoji, is a special character. Letters to alphabet number takes accents off, so é is 5, and leaves out letters outside A to Z.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Text tools", actions = [{ id: filename + "Run", label: "Run" }]) %}

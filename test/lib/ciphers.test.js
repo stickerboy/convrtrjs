@@ -169,3 +169,10 @@ describe("smithy", () => {
         assert.match(smithyEncrypt("Café ✓", "key"), /^[A-Za-z]{3}é ✓$/);
     });
 });
+
+describe("rail fence with accented letters", () => {
+    it("keeps letters of any alphabet, rather than dropping them", async () => {
+        const { railFenceEncode, railFenceDecode } = await import("../../assets/js/lib/ciphers/rail.js");
+        assert.equal(railFenceDecode(railFenceEncode("Café Жук", 2), 2), "CaféЖук");
+    });
+});

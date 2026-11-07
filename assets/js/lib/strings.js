@@ -1,3 +1,5 @@
+import { graphemes, characterKinds } from "./toolkit.js";
+
 /**
  * Strips spaces or all whitespace characters from a string.
  * @param {string} string - The input string to process.
@@ -28,87 +30,95 @@ export function lowercase(string) {
 }
 
 /**
- * Numbers only
+ * Keeps the characters of a kind, as characterKind sorts them, and drops the rest. Characters are taken as they're
+ * seen (see graphemes), so an accent goes with its letter and an emoji with a skin tone is kept or dropped whole.
+ *
+ * @param {string} string - The input string.
+ * @param {(kind: ReturnType<typeof characterKind>, char: string) => boolean} keep - Whether to keep a character.
+ * @param {boolean} [preserveSpaces=false] - If true, keeps spaces too.
+ * @returns {string} - The characters kept, in order.
+ */
+function keepCharacters(string, keep, preserveSpaces = false) {
+    const kindOf = characterKinds();
+    return graphemes(string).filter((char) => (preserveSpaces === true && char === " ") || keep(kindOf(char), char)).join("");
+}
+
+/**
+ * Numbers only, including other numerals such as ², ½ and ٣
  * @param {string} string - The input string.
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with numbers.
- * @returns {string} - The input string with non-numeric characters removed.
+ * @returns {string} - The input string with everything but numbers removed.
  */
 export function numbersOnly(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^0-9 ]/g : /[^0-9]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind) => kind.number, preserveSpaces);
 }
 
 /**
- * Letters only
+ * Letters only, including accented and other alphabets' letters, such as é, ß and Ж
  * @param {string} string - The input string.
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with letters.
- * @returns {string} - The input string with non-letter characters removed.
+ * @returns {string} - The input string with everything but letters removed.
  */
 export function lettersOnly(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^A-Za-z ]/g : /[^A-Za-z]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind) => kind.letter, preserveSpaces);
 }
 
 /**
- * Capital letters only
+ * Capital letters only, including accented and other alphabets' capitals, such as É and Ж
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with uppercase letters.
- * @returns {string} - The input string with non-uppercase letter characters removed.
+ * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with capital letters.
+ * @returns {string} - The input string with everything but capital letters removed.
  */
 export function lettersOnlyCap(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^A-Z ]/g : /[^A-Z]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind) => kind.upper, preserveSpaces);
 }
 
 /**
- * Lowercase letters only
+ * Lowercase letters only, including accented and other alphabets' lowercase letters, such as é, ß and ж
  * @param {string} string - The input string.
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with lowercase letters.
- * @returns {string} - The input string with non-lowercase letter characters removed.
+ * @returns {string} - The input string with everything but lowercase letters removed.
  */
 export function lettersOnlyLow(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^a-z ]/g : /[^a-z]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind) => kind.lower, preserveSpaces);
 }
 
 /**
- * Remove special characters
+ * Remove special characters: keeps only letters and numbers, of any alphabet
  * @param {string} string - The input string.
- * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with alphanumeric characters.
+ * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with letters and numbers.
  * @returns {string} - The input string with special characters removed.
  */
 export function stripSpecialChars(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[^0-9A-Za-z ]/g : /[^0-9A-Za-z]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind) => kind.letter || kind.number, preserveSpaces);
 }
 
 /**
- * Remove all letters
+ * Remove all letters, of any alphabet
  * @param {string} string - The input string.
  * @returns {string} - The input string with all letters removed.
  */
 export function stripLetters(string) {
-    return string.replace(/[A-Za-z]/g, "");
+    return keepCharacters(string, (kind) => !kind.letter);
 }
 
 /**
- * Remove all numbers
+ * Remove all numbers, including other numerals such as ² and ½
  * @param {string} string - The input string.
  * @returns {string} - The input string with all numbers removed.
  */
 export function stripNumbers(string) {
-    return string.replace(/[0-9]/g, "");
+    return keepCharacters(string, (kind) => !kind.number);
 }
 
 /**
- * Special characters only
+ * Special characters only: everything that isn't a letter or number, of any alphabet
  * @param {string} string - The input string.
  * @param {boolean} [preserveSpaces=false] - If true, preserves spaces along with special characters.
  * @returns {string} - The input string containing only special characters.
  */
 export function specialCharsOnly(string, preserveSpaces) {
-    let regex = preserveSpaces === true ? /[0-9A-Za-z]/g : /[0-9A-Za-z ]/g;
-    return string.replace(regex, "");
+    return keepCharacters(string, (kind, char) => !kind.letter && !kind.number && char !== " ", preserveSpaces);
 }
 
 /**
@@ -135,19 +145,32 @@ export function urlDecode(string) {
 }
 
 /**
- * Convert letters to their alphabet number: A = 1, B = 2, Z = 26
+ * Convert letters to their alphabet number: A = 1, B = 2, Z = 26. Accents are taken off first, so é is 5, and letters
+ * that aren't A to Z with or without an accent (ß, æ, Ж) are left out, as is everything that isn't a letter.
  * @param {string} string - The input string.
  * @returns {string} - A space-separated string of alphabet numbers.
+ *
+ * @example
+ * // Input: "Café"
+ * // Output: "3 1 6 5"
  */
 export function lettersToNumbers(string) {
-    // Ensure only letters are processed
-    const lettersOnlyString = lettersOnly(string);
-    // Map letters to their corresponding numbers and join with spaces
-    return lettersOnlyString
-        .toLowerCase()
-        .split("")
-        .map(char => char.charCodeAt(0) - 97 + 1)
-        .join(" ");
+    // Each different character is worked out once: most texts use only a few
+    const numbers = new Map();
+    const out = [];
+    for (const char of graphemes(string)) {
+        let number = numbers.get(char);
+        if (number === undefined) {
+            // "é" comes apart into "e" and its accent, which is dropped; 0 for anything that isn't A to Z
+            const base = char.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+            number = /^[a-z]$/.test(base) ? base.charCodeAt(0) - 96 : 0;
+            numbers.set(char, number);
+        }
+        if (number) {
+            out.push(number);
+        }
+    }
+    return out.join(" ");
 }
 
 /**

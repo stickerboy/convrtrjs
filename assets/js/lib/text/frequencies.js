@@ -1,22 +1,4 @@
-import { graphemes } from "../toolkit.js";
-
-/**
- * What kind of character something is, from its first code point: an accent typed separately belongs to the letter
- * before it, and an emoji with a skin tone is one symbol.
- *
- * @param {string} char - One character, as graphemes splits text.
- * @returns {{letter: boolean, upper: boolean, lower: boolean, number: boolean, space: boolean}} What it counts as.
- */
-function kindOf(char) {
-    const first = String.fromCodePoint(char.codePointAt(0));
-    return {
-        letter: /\p{L}/u.test(first),
-        upper: /\p{Lu}/u.test(first),
-        lower: /\p{Ll}/u.test(first),
-        number: /\p{N}/u.test(first),
-        space: /\s/u.test(first),
-    };
-}
+import { graphemes, characterKinds } from "../toolkit.js";
 
 /**
  * Works out every statistic for a text in one pass over its characters. Characters are counted as they're seen (see
@@ -33,15 +15,10 @@ function kindOf(char) {
  * // Output: { "word-count": 2, "char-count": 4, "char-count-ns": 3, "letter-count": 2, ... "special-count": 2, ... }
  */
 export function textStats(string, chars = graphemes(string), delimiter = /\s+/u) {
-    // Most texts use few different characters, so each is looked at once
-    const kinds = new Map();
+    const kindOf = characterKinds();
     let letters = 0, upper = 0, lower = 0, numbers = 0, spaces = 0;
     for (const char of chars) {
-        let kind = kinds.get(char);
-        if (!kind) {
-            kind = kindOf(char);
-            kinds.set(char, kind);
-        }
+        const kind = kindOf(char);
         letters += kind.letter;
         upper += kind.upper;
         lower += kind.lower;

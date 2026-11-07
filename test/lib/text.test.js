@@ -393,3 +393,28 @@ describe("characters as they're seen (graphemes)", () => {
         });
     });
 });
+
+describe("text tools with any alphabet", () => {
+    const s = "Café Straße Жук ÉTÉ 123 ²½ 👍🏽!";
+    it("keeps or drops letters of any alphabet, with their accents", () => {
+        assert.equal(strings.lettersOnly(s), "CaféStraßeЖукÉTÉ");
+        assert.equal(strings.lettersOnly(s, true), "Café Straße Жук ÉTÉ   ");
+        assert.equal(strings.lettersOnlyCap(s), "CSЖÉTÉ");
+        assert.equal(strings.lettersOnlyLow(s), "afétraßeук");
+        assert.equal(strings.lettersOnly("éx!"), "éx");
+        assert.equal(strings.stripLetters(s), "    123 ²½ 👍🏽!");
+    });
+    it("keeps or drops numbers, including other numerals", () => {
+        assert.equal(strings.numbersOnly(s), "123²½");
+        assert.equal(strings.stripNumbers("a1²½b"), "ab");
+    });
+    it("treats everything that isn't a letter or number as special, keeping emoji whole", () => {
+        assert.equal(strings.specialCharsOnly(s), "👍🏽!");
+        assert.equal(strings.stripSpecialChars(s), "CaféStraßeЖукÉTÉ123²½");
+    });
+    it("takes accents off for alphabet numbers, and leaves out letters that aren't A to Z", () => {
+        assert.equal(strings.lettersToNumbers("Café"), "3 1 6 5");
+        assert.equal(strings.lettersToNumbers("é"), "5");
+        assert.equal(strings.lettersToNumbers("ßЖæ a"), "1");
+    });
+});
