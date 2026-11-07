@@ -1,4 +1,4 @@
-import { getFileHeader } from '../../lib/files/check.js';
+import { getFileHeader, extensionOf, nameMismatch, looksLikeText } from '../../lib/files/check.js';
 import { bindFileDrop } from '../../ui/file-drop.js';
 import { escapeHtml } from '../../ui/tool-frame.js';
 
@@ -6,23 +6,51 @@ const MAX_FILES = 5;
 
 const fileSize = (bytes) => bytes < 1024 ? `${bytes.toLocaleString()} byte${bytes === 1 ? "" : "s"}`
     : bytes < 1048576 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / 1048576).toFixed(1)} MB`;
-const extensionOf = (name) => (name.includes(".") ? name.split(".").pop().toLowerCase() : "");
 const hexByte = (byte) => byte.toString(16).toUpperCase().padStart(2, "0");
 const printable = (byte) => (byte >= 32 && byte < 127 ? String.fromCharCode(byte) : ".");
 
-// What the header says, and whether the file's name disagrees: a renamed file is a common way to hide one
-function verdictOf(file, match) {
-    const extension = extensionOf(file.name);
-    const mismatch = Boolean(match && extension && match.extensions.length && !match.extensions.includes(extension));
-    return { match, extension, mismatch };
+/**
+ * What the header says, and whether the file's name disagrees: a renamed file is a common way to hide one. With no
+ * header, whether the file is empty, or starts like plain text.
+ *
+ * @param {File} file - The file.
+ * @param {Uint8Array} bytes - Its first bytes.
+ * @param {object|null} match - What its header matched (see matchFileHeader).
+ * @returns {{match: object|null, extension: string, mismatch: boolean, empty: boolean, text: boolean}} The verdict.
+ */
+function verdictOf(file, bytes, match) {
+    return {
+        match,
+        extension: extensionOf(file.name),
+        mismatch: nameMismatch(file.name, match),
+        empty: bytes.length === 0,
+        text: !match && looksLikeText(bytes),
+    };
 }
 
-function verdictHtml({ match, extension, mismatch }) {
+/**
+ * Says what the file is, as verdictOf found.
+ *
+ * @param {ReturnType<typeof verdictOf>} verdict - The verdict.
+ * @returns {string} The verdict's HTML.
+ */
+function verdictHtml({ match, extension, mismatch, empty, text }) {
+    if (empty) {
+        return `<div class="file-verdict file-verdict--unknown">` +
+            `<i class="bi bi-question-circle file-verdict__icon" aria-hidden="true"></i>` +
+            `<div><p class="file-verdict__title">The file is empty</p><p>It has no bytes, so there's no header to check.</p></div></div>`;
+    }
+    if (text) {
+        return `<div class="file-verdict file-verdict--match">` +
+            `<i class="bi bi-file-earmark-text file-verdict__icon" aria-hidden="true"></i>` +
+            `<div><p class="file-verdict__title">No header: it looks like plain text</p>` +
+            `<p>The start of the file reads as text. Text files, such as .txt, .csv, .json and .html, usually have no header, so the name can't be checked.</p></div></div>`;
+    }
     if (!match) {
         return `<div class="file-verdict file-verdict--unknown">` +
             `<i class="bi bi-question-circle file-verdict__icon" aria-hidden="true"></i>` +
             `<div><p class="file-verdict__title">Not a header we know</p>` +
-            `<p>None of the file headers match the start of this file. It may be plain text, or a type that's missing from the list.</p></div></div>`;
+            `<p>None of the file headers match the start of this file. It may be a type that's missing from the list, or data with no header, such as raw or encrypted bytes.</p></div></div>`;
     }
     const extensions = match.extensions.map((ext) => `<span class="file-badge">.${escapeHtml(ext)}</span>`).join("");
     return `<div class="file-verdict file-verdict--${mismatch ? "mismatch" : "match"}">` +
@@ -31,7 +59,7 @@ function verdictHtml({ match, extension, mismatch }) {
         (mismatch
             ? `<p><strong>The name ends in .${escapeHtml(extension)}, but the header says ${escapeHtml(match.name)}</strong>, usually .${escapeHtml(match.extensions[0])}. ` +
               `${escapeHtml(match.description)}.</p>`
-            : `<p>${escapeHtml(match.description)}.</p>`) +
+            : `<p>${escapeHtml(match.description)}.${match.anyName ? " Many kinds of file start this way, so the name can't be checked." : ""}</p>`) +
         `<p class="file-verdict__badges">${extensions}<span class="file-badge">Header <code>${escapeHtml(match.header)}</code></span></p></div></div>`;
 }
 
@@ -56,10 +84,11 @@ function summaryHtml(file) {
 }
 
 function copyText({ file, bytes, verdict }) {
-    const { match, extension, mismatch } = verdict;
+    const { match, extension, mismatch, empty, text } = verdict;
     return [
         file.name,
-        match ? `Type: ${match.name} (header ${match.header})` : "Type: not a header we know",
+        match ? `Type: ${match.name} (header ${match.header})`
+            : empty ? "Type: empty file" : text ? "Type: no header, looks like plain text" : "Type: not a header we know",
         mismatch ? `Warning: the name ends in .${extension}, but the header says ${match.name}` : null,
         `Hex: ${[...bytes].map(hexByte).join(" ")}`,
         `Text: ${[...bytes].map(printable).join("")}`,
@@ -72,17 +101,17 @@ bindFileDrop({
     run: async (files, output) => {
         const checked = await Promise.all(files.map(async (file) => {
             const { bytes, match } = await getFileHeader(file);
-            return { file, bytes, verdict: verdictOf(file, match) };
+            return { file, bytes, verdict: verdictOf(file, bytes, match) };
         }));
-        const details = (item) => verdictHtml(item.verdict) + dumpHtml(item.bytes, item.verdict.match);
+        const details = (item) => verdictHtml(item.verdict) + (item.verdict.empty ? "" : dumpHtml(item.bytes, item.verdict.match));
         if (checked.length === 1) {
             output.innerHTML = summaryHtml(checked[0].file) + details(checked[0]);
         } else {
             // A fold per file, its type on the right, so the list is the overview
             output.innerHTML = checked.map((item) => {
-                const { match, mismatch } = item.verdict;
+                const { match, mismatch, empty, text } = item.verdict;
                 const type = mismatch ? `<i class="bi bi-exclamation-triangle" aria-hidden="true"></i> ${escapeHtml(match.name)}, not .${escapeHtml(item.verdict.extension)}`
-                    : match ? escapeHtml(match.name) : "Not known";
+                    : match ? escapeHtml(match.name) : empty ? "Empty" : text ? "Plain text" : "Not known";
                 return `<details class="tool-fold file-fold${mismatch ? " file-fold--mismatch" : ""}">` +
                     `<summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>` +
                     `<span class="file-fold__name">${escapeHtml(item.file.name)}</span><small>${type}</small></summary>` +

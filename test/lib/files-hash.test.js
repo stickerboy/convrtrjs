@@ -2,7 +2,7 @@ import { describe, it } from "node:test";
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import zlib from "node:zlib";
-import { getFileHeader, matchFileHeader, convertToHexString, HEADER_LENGTH } from "../../assets/js/lib/files/check.js";
+import { getFileHeader, matchFileHeader, convertToHexString, HEADER_LENGTH, extensionOf, nameMismatch, looksLikeText } from "../../assets/js/lib/files/check.js";
 import HEADERS from "../../assets/js/data/headers.json" with { type: "json" };
 import { generateHashes, crc32 } from "../../assets/js/lib/ciphers/hash.js";
 
@@ -64,6 +64,36 @@ describe("file check", () => {
     it("has no header twice", () => {
         const all = HEADERS.flatMap((type) => type.hex);
         assert.equal(new Set(all).size, all.length);
+    });
+    it("reads a name's extension, skipping version numbers after it", () => {
+        assert.equal(extensionOf("photo.JPG"), "jpg");
+        assert.equal(extensionOf("libz.so.1.2"), "so");
+        assert.equal(extensionOf("archive.tar.gz"), "gz");
+        assert.equal(extensionOf("report.2024"), "2024");
+        assert.equal(extensionOf("README"), "");
+    });
+    it("warns when a name doesn't fit its header, but not for types any name fits", () => {
+        const png = matchFileHeader("89 50 4E 47 0D 0A 1A 0A");
+        assert.equal(nameMismatch("image.png", png), false);
+        assert.equal(nameMismatch("notes.txt", png), true);
+        assert.equal(nameMismatch("no-extension", png), false);
+        // A byte order mark only says how text is stored, so a .json with one is fine
+        const utf8 = matchFileHeader("EF BB BF 7B");
+        assert.equal(utf8.anyName, true);
+        assert.equal(nameMismatch("data.json", utf8), false);
+        assert.equal(nameMismatch("macro.xlsm", matchFileHeader("50 4B 03 04")), false);
+        assert.equal(nameMismatch("libz.so.1", matchFileHeader("7F 45 4C 46")), false);
+        assert.equal(nameMismatch("anything.bin", null), false);
+    });
+    it("tells plain text from binary", () => {
+        const bytes = (text) => new TextEncoder().encode(text);
+        assert.equal(looksLikeText(bytes("Hello, world!\r\n\tSecond line")), true);
+        assert.equal(looksLikeText(bytes("Café ✓ 😀")), true);
+        // The bytes read can end halfway through a character
+        assert.equal(looksLikeText(bytes("abc😀").subarray(0, 5)), true);
+        assert.equal(looksLikeText(new Uint8Array([0x00, 0x01, 0x02, 0x41])), false);
+        assert.equal(looksLikeText(new Uint8Array([0xFF, 0x41, 0x42, 0x43, 0x44])), false);
+        assert.equal(looksLikeText(new Uint8Array()), false);
     });
 });
 

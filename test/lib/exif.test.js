@@ -1,6 +1,6 @@
 import { describe, it } from "node:test";
 import assert from "node:assert/strict";
-import { summariseExif } from "../../assets/js/lib/files/exif.js";
+import { summariseExif, checkExifSize, MAX_EXIF_SIZE } from "../../assets/js/lib/files/exif.js";
 
 // Tags as ExifReader gives them with expanded: true
 const tag = (description) => ({ value: description, description });
@@ -16,6 +16,13 @@ const sample = {
     gps: { Latitude: 55.8642, Longitude: -4.2518 },
     Thumbnail: { image: new ArrayBuffer(4), type: "image/jpeg" },
 };
+
+describe("Exif size limit", () => {
+    it("takes files up to 500 MB, and says why it won't read a bigger one", () => {
+        assert.doesNotThrow(() => checkExifSize(MAX_EXIF_SIZE));
+        assert.throws(() => checkExifSize(2 * 1024 ** 3), /it's 2,048 MB, and the reader takes files up to 500 MB/);
+    });
+});
 
 describe("Exif summary", () => {
     const summary = summariseExif(sample);

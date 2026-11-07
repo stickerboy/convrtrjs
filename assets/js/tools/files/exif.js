@@ -113,12 +113,16 @@ bindFileDrop({
         output.dataset.copy = copyText(groups);
 
         // Filtering hides the highlights, so what matches is in view
+        // The parts are found now, as the results move to the page once they're drawn
         const filter = output.querySelector("#exifFilter");
+        const folds = output.querySelector("[data-exif-folds]");
+        const cards = output.querySelector("[data-exif-cards]");
+        const filterCount = output.querySelector("#exifFilterCount");
         filter.addEventListener("input", () => {
             const { html, count: matched } = foldsHtml(groups, filter.value);
-            output.querySelector("[data-exif-folds]").innerHTML = html;
-            output.querySelector("[data-exif-cards]").hidden = filter.value.trim() !== "";
-            output.querySelector("#exifFilterCount").textContent = filter.value.trim() ? `${matched} of ${plural(count, "tag")}` : "";
+            folds.innerHTML = html;
+            cards.hidden = filter.value.trim() !== "";
+            filterCount.textContent = filter.value.trim() ? `${matched} of ${plural(count, "tag")}` : "";
         });
         return "";
     },

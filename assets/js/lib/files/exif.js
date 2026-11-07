@@ -10,10 +10,37 @@ const EXIF_READER_URL = new URL("../../vendor/exif-reader.js", import.meta.url);
  * @param {boolean} [expanded=false] - Group the tags by where they're stored (exif, gps, xmp, iptc, icc, file, …), as
  *   summariseExif takes them, rather than all in one object.
  * @returns {Promise<Object>} - The tags, keyed by tag name, or by group and then tag name.
+ * @throws {Error} - If the file is bigger than MAX_EXIF_SIZE, or isn't an image format ExifReader reads. A
+ *   MetadataMissingError if the image has no metadata.
  */
 export async function readExifTags(file, expanded = false) {
+    checkExifSize(file.size);
     await loadScript(EXIF_READER_URL);
-    return window.ExifReader.load(await file.arrayBuffer(), { includeUnknown: true, async: true, expanded });
+    try {
+        return await window.ExifReader.load(await file.arrayBuffer(), { includeUnknown: true, async: true, expanded });
+    } catch (error) {
+        if (error.message === "Invalid image format") {
+            throw new Error("it isn't an image the reader knows. It reads JPEG, TIFF, PNG, HEIC, AVIF, WebP and GIF");
+        }
+        throw error;
+    }
+}
+
+// The biggest file read: it's read whole, and images with metadata are far smaller, so a bigger one is likely a video
+// or disk image dropped by mistake, which could run the browser out of memory
+export const MAX_EXIF_SIZE = 500 * 1024 * 1024;
+
+/**
+ * Checks a file isn't too big to read for metadata (see MAX_EXIF_SIZE).
+ *
+ * @param {number} size - The file's size, in bytes.
+ * @returns {void}
+ * @throws {Error} - If it's bigger than MAX_EXIF_SIZE.
+ */
+export function checkExifSize(size) {
+    if (size > MAX_EXIF_SIZE) {
+        throw new Error(`it's ${Math.round(size / 1048576).toLocaleString()} MB, and the reader takes files up to 500 MB. Images with metadata are far smaller`);
+    }
 }
 
 // ExifReader's groups, in the order they're shown, and what each is called. GPS tags are read with the Exif ones, and

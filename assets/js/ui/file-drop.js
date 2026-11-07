@@ -6,7 +6,8 @@
  * @param {string} options.id - The frame's id, usually the page's file slug.
  * @param {number} [options.max=1] - The most files read at once; any more are left out, with a note in the status line.
  * @param {(files: File[], output: HTMLElement) => Promise<string|void>|string|void} options.run - Reads the files and
- *   shows the results in output. What it returns is shown in the status line.
+ *   shows the results in output, a spare element whose contents move to the page when it's done, so anything kept for
+ *   later should be the elements themselves, not found in output then. What it returns is shown in the status line.
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't read the file".
  */
 export function bindFileDrop({ id, max = 1, run, errorPrefix = "Couldn't read the file" }) {
@@ -16,21 +17,38 @@ export function bindFileDrop({ id, max = 1, run, errorPrefix = "Couldn't read th
     const drop = input.closest("[data-drop]");
     const pane = output.closest("[data-file-results]");
 
+    // Each read is counted, so a slow file finishing after a newer one doesn't replace its result
+    let reads = 0;
     const read = async (chosen) => {
         const files = [...chosen];
         if (files.length === 0) {
             return;
         }
+        const thisRead = ++reads;
         pane.hidden = false;
         status.classList.remove("text-danger");
         status.textContent = "Reading…";
+        // The newer file's result is drawn into a spare output, so the one showing isn't touched until it's ready
+        const target = document.createElement("div");
         try {
-            const message = await run(files.slice(0, max), output);
+            const message = await run(files.slice(0, max), target);
+            if (thisRead !== reads) {
+                return;
+            }
+            output.replaceChildren(...target.childNodes);
+            if (target.dataset.copy === undefined) {
+                delete output.dataset.copy;
+            } else {
+                output.dataset.copy = target.dataset.copy;
+            }
             const skipped = files.length <= max ? ""
                 : max === 1 ? `Read the first of the ${files.length} files: this tool reads one at a time. `
                 : `Read the first ${max} of the ${files.length} files: choose up to ${max} at a time. `;
             status.textContent = skipped + (message ?? "");
         } catch (error) {
+            if (thisRead !== reads) {
+                return;
+            }
             output.replaceChildren();
             delete output.dataset.copy;
             status.classList.add("text-danger");

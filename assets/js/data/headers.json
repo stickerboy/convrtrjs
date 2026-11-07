@@ -10,7 +10,7 @@
     {
         "name": "JPEG image",
         "description": "JPEG, raw or in the JFIF or Exif file format",
-        "extensions": "jpg, jpeg, jfif",
+        "extensions": "jpg, jpeg, jfif, jpe, jif",
         "hex": [
             "FF D8 FF"
         ]
@@ -43,7 +43,7 @@
     {
         "name": "TIFF image",
         "description": "Tagged Image File Format, little or big endian. Many camera raw formats are built on it",
-        "extensions": "tif, tiff, dng, cr2, nef, arw",
+        "extensions": "tif, tiff, dng, cr2, nef, arw, pef, srw, nrw, 3fr, erf, dcr, kdc",
         "hex": [
             "49 49 2A 00",
             "4D 4D 00 2A"
@@ -137,7 +137,7 @@
     {
         "name": "Ogg media",
         "description": "Ogg, an open source media container, often holding Vorbis or Opus audio",
-        "extensions": "ogg, oga, ogv, opus",
+        "extensions": "ogg, oga, ogv, opus, spx, ogx",
         "hex": [
             "4F 67 67 53"
         ]
@@ -161,7 +161,7 @@
     {
         "name": "MP4 video",
         "description": "MPEG-4 video",
-        "extensions": "mp4, m4v",
+        "extensions": "mp4, m4v, f4v",
         "hex": [
             "?? ?? ?? ?? 66 74 79 70 69 73 6F 6D",
             "?? ?? ?? ?? 66 74 79 70 69 73 6F 32",
@@ -175,6 +175,7 @@
         "name": "ISO media",
         "description": "ISO Base Media file, the container MP4, MOV and HEIC are built on",
         "extensions": "mp4, mov, m4a, 3gp",
+        "anyName": true,
         "hex": [
             "?? ?? ?? ?? 66 74 79 70"
         ]
@@ -207,6 +208,7 @@
         "name": "RIFF file",
         "description": "Resource Interchange File Format, the container WAV, AVI and WebP are built on",
         "extensions": "wav, avi, webp",
+        "anyName": true,
         "hex": [
             "52 49 46 46"
         ]
@@ -254,7 +256,8 @@
     {
         "name": "XML document",
         "description": "XML, starting with its declaration",
-        "extensions": "xml, svg",
+        "extensions": "xml, svg, xsd, xsl, plist, rss, atom, gpx, kml, csproj, config, xaml, xhtml",
+        "anyName": true,
         "hex": [
             "3C 3F 78 6D 6C 20"
         ]
@@ -262,7 +265,7 @@
     {
         "name": "Office document (old)",
         "description": "Compound File Binary Format, a container from Microsoft used by Office before 2007, Windows Installer and others",
-        "extensions": "doc, xls, ppt, msi, msg, vsd",
+        "extensions": "doc, xls, ppt, msi, msg, vsd, dot, xlt, pot, pps, pub, mpp, db",
         "hex": [
             "D0 CF 11 E0 A1 B1 1A E1"
         ]
@@ -270,7 +273,8 @@
     {
         "name": "UTF-8 text",
         "description": "UTF-8 byte order mark, at the start of some text files",
-        "extensions": "txt, csv",
+        "extensions": "txt, csv, json, html, md, xml, srt",
+        "anyName": true,
         "hex": [
             "EF BB BF"
         ]
@@ -278,7 +282,8 @@
     {
         "name": "UTF-16 text (little endian)",
         "description": "UTF-16LE byte order mark, at the start of some text files",
-        "extensions": "txt",
+        "extensions": "txt, reg, csv",
+        "anyName": true,
         "hex": [
             "FF FE"
         ]
@@ -286,7 +291,8 @@
     {
         "name": "UTF-16 text (big endian)",
         "description": "UTF-16BE byte order mark, at the start of some text files",
-        "extensions": "txt",
+        "extensions": "txt, csv",
+        "anyName": true,
         "hex": [
             "FE FF"
         ]
@@ -295,6 +301,7 @@
         "name": "UTF-32 text (little endian)",
         "description": "UTF-32LE byte order mark",
         "extensions": "txt",
+        "anyName": true,
         "hex": [
             "FF FE 00 00"
         ]
@@ -303,6 +310,7 @@
         "name": "UTF-32 text (big endian)",
         "description": "UTF-32BE byte order mark",
         "extensions": "txt",
+        "anyName": true,
         "hex": [
             "00 00 FE FF"
         ]
@@ -310,7 +318,7 @@
     {
         "name": "Zip archive",
         "description": "Zip, and formats built on it, such as EPUB, JAR, Office documents and Android apps",
-        "extensions": "zip, docx, xlsx, pptx, odt, ods, odp, epub, jar, apk, ipa, xpi, kmz",
+        "extensions": "zip, docx, xlsx, pptx, odt, ods, odp, epub, jar, apk, ipa, xpi, kmz, docm, xlsm, pptm, dotx, xltx, potx, odg, whl, nupkg, vsix, war, ear, aar, cbz, 3mf, msix, appx, xps, oxps, usdz",
         "hex": [
             "50 4B 03 04",
             "50 4B 05 06",
@@ -320,7 +328,7 @@
     {
         "name": "Gzip archive",
         "description": "Gzip compressed file",
-        "extensions": "gz, tgz",
+        "extensions": "gz, tgz, svgz, emz",
         "hex": [
             "1F 8B"
         ]
@@ -377,7 +385,7 @@
     {
         "name": "Windows program",
         "description": "DOS MZ executable and its descendants (including NE and PE)",
-        "extensions": "exe, dll, sys, scr, cpl, ocx, efi",
+        "extensions": "exe, dll, sys, scr, cpl, ocx, efi, com, drv, mui, ax, pyd, node",
         "hex": [
             "4D 5A"
         ]
@@ -385,7 +393,7 @@
     {
         "name": "Linux program",
         "description": "Executable and Linkable Format, for Linux and other Unix programs",
-        "extensions": "elf, so, o, bin",
+        "extensions": "elf, so, o, bin, ko, out, appimage",
         "hex": [
             "7F 45 4C 46"
         ]
@@ -420,7 +428,8 @@
     {
         "name": "Script",
         "description": "A script that names its interpreter on its first line (a shebang)",
-        "extensions": "sh, py, pl",
+        "extensions": "sh, py, pl, bash, zsh, rb, js, php",
+        "anyName": true,
         "hex": [
             "23 21"
         ]
@@ -428,7 +437,7 @@
     {
         "name": "SQLite database",
         "description": "SQLite 3 database",
-        "extensions": "sqlite, sqlite3, db",
+        "extensions": "sqlite, sqlite3, db, db3, s3db, sl3, gpkg, mbtiles",
         "hex": [
             "53 51 4C 69 74 65 20 66 6F 72 6D 61 74 20 33 00"
         ]
@@ -497,7 +506,8 @@
     {
         "name": "PEM file",
         "description": "A certificate or key in the PEM format",
-        "extensions": "pem, crt, key",
+        "extensions": "pem, crt, key, cer, csr, pub",
+        "anyName": true,
         "hex": [
             "2D 2D 2D 2D 2D 42 45 47 49 4E 20"
         ]

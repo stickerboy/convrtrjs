@@ -10,7 +10,7 @@ noLimits: true
 {% from "macros/tool-frame.njk" import fileFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>A file's name can say one thing and its header another, as when a file is renamed to hide it, and the check says when they disagree.</p>
+    <p>A file's name can say one thing and its header another, as when a file is renamed to hide it, and the check says when they disagree. Some headers are shared by many kinds of file, such as text saved with a byte order mark, XML and scripts, so any name fits those. Most text files have no header at all, and are named as plain text.</p>
     <p>Only the first 36 bytes of each file are read, in your browser, and nothing is uploaded or stored. Headers are matched against the <a href="/files/headers/" class="text-convrtr">File headers</a> list, which won't catch everything. Feel free to reach out if there's a header missing, or one you think would be worth adding.</p>
 {% endset %}
 {% call toolSection(intro) %}
