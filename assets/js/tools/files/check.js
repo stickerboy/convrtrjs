@@ -1,12 +1,19 @@
 import { getFileHeader, extensionOf, nameMismatch, looksLikeText } from '../../lib/files/check.js';
-import { bindFileDrop } from '../../ui/file-drop.js';
+import { bindFileDrop, readProblem } from '../../ui/file-drop.js';
 import { escapeHtml } from '../../ui/tool-frame.js';
 
 const MAX_FILES = 5;
 
 const fileSize = (bytes) => bytes < 1024 ? `${bytes.toLocaleString()} byte${bytes === 1 ? "" : "s"}`
     : bytes < 1048576 ? `${(bytes / 1024).toFixed(1)} KB` : `${(bytes / 1048576).toFixed(1)} MB`;
-const hexByte = (byte) => byte.toString(16).toUpperCase().padStart(2, "0");
+/**
+ * Starts a message with a capital, for one shown on its own rather than after "Couldn't read the file: ".
+ *
+ * @param {string} text - The message.
+ * @returns {string} The message, with its first letter a capital.
+ */
+const capitalise = (text) => text.charAt(0).toUpperCase() + text.slice(1);
+const hexByte =(byte) => byte.toString(16).toUpperCase().padStart(2, "0");
 const printable = (byte) => (byte >= 32 && byte < 127 ? String.fromCharCode(byte) : ".");
 
 /**
@@ -99,16 +106,33 @@ bindFileDrop({
     id: "check",
     max: MAX_FILES,
     run: async (files, output) => {
+        // Each file is read on its own, so one the browser can't open (such as a dropped folder) doesn't lose the others'
+        // results. With one file, the problem is said in the status line, as for any tool.
         const checked = await Promise.all(files.map(async (file) => {
-            const { bytes, match } = await getFileHeader(file);
-            return { file, bytes, verdict: verdictOf(file, bytes, match) };
+            try {
+                const { bytes, match } = await getFileHeader(file);
+                return { file, bytes, verdict: verdictOf(file, bytes, match) };
+            } catch (error) {
+                if (files.length === 1) {
+                    throw error;
+                }
+                return { file, problem: readProblem(error) };
+            }
         }));
         const details = (item) => verdictHtml(item.verdict) + (item.verdict.empty ? "" : dumpHtml(item.bytes, item.verdict.match));
         if (checked.length === 1) {
             output.innerHTML = summaryHtml(checked[0].file) + details(checked[0]);
         } else {
-            // A fold per file, its type on the right, so the list is the overview
+            // A fold per file, its type on the right, so the list is the overview; a file that couldn't be read says why
             output.innerHTML = checked.map((item) => {
+                if (item.problem) {
+                    return `<details class="tool-fold file-fold file-fold--mismatch">` +
+                        `<summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>` +
+                        `<span class="file-fold__name">${escapeHtml(item.file.name)}</span><small>Couldn't read</small></summary>` +
+                        `<div class="file-fold__body"><div class="file-verdict file-verdict--unknown">` +
+                        `<i class="bi bi-question-circle file-verdict__icon" aria-hidden="true"></i>` +
+                        `<div><p class="file-verdict__title">Couldn't read this file</p><p>${escapeHtml(capitalise(item.problem))}.</p></div></div></div></details>`;
+                }
                 const { match, mismatch, empty, text } = item.verdict;
                 const type = mismatch ? `<i class="bi bi-exclamation-triangle" aria-hidden="true"></i> ${escapeHtml(match.name)}, not .${escapeHtml(item.verdict.extension)}`
                     : match ? escapeHtml(match.name) : empty ? "Empty" : text ? "Plain text" : "Not known";
@@ -118,9 +142,13 @@ bindFileDrop({
                     `<div class="file-fold__body">${summaryHtml(item.file)}${details(item)}</div></details>`;
             }).join("");
         }
-        output.dataset.copy = checked.map(copyText).join("\n\n");
-        const mismatches = checked.filter((item) => item.verdict.mismatch).length;
-        return checked.length === 1 ? "" : `Checked ${checked.length} files` +
-            (mismatches ? `: ${mismatches} ${mismatches === 1 ? "has a name that doesn't match its header" : "have names that don't match their headers"}` : "");
+        output.dataset.copy = checked.map((item) => (item.problem ? `${item.file.name}\nCouldn't read: ${item.problem}` : copyText(item))).join("\n\n");
+        const mismatches = checked.filter((item) => item.verdict?.mismatch).length;
+        const unread = checked.filter((item) => item.problem).length;
+        const notes = [
+            mismatches ? `${mismatches} ${mismatches === 1 ? "has a name that doesn't match its header" : "have names that don't match their headers"}` : "",
+            unread ? `${unread} couldn't be read` : "",
+        ].filter(Boolean);
+        return checked.length === 1 ? "" : `Checked ${checked.length} files${notes.length ? `: ${notes.join(", and ")}` : ""}`;
     },
 });

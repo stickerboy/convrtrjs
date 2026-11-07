@@ -1,3 +1,20 @@
+// The errors a browser gives for a file it can't open, rather than one the tool couldn't make sense of
+const UNREADABLE = new Set(["NotFoundError", "NotReadableError", "SecurityError", "AbortError"]);
+
+/**
+ * Says what went wrong reading a file, in plain words. The browser's own message for a file it can't open, such as a
+ * dropped folder or a file changed since it was chosen, says little ("A requested file or directory could not be
+ * found…"), so it's replaced.
+ *
+ * @param {Error} error - What reading the file threw.
+ * @returns {string} The message to show, starting in lowercase, to follow "Couldn't read the file: ".
+ */
+export function readProblem(error) {
+    return UNREADABLE.has(error?.name)
+        ? "the browser couldn't open it. It may be a folder, or it changed or moved after you chose it"
+        : error?.message ?? String(error);
+}
+
 /**
  * Wires up a file tool built with the fileFrame macro (macros/tool-frame.njk): choosing or dropping files, and showing
  * the results pane once there are some. Element ids all start with the frame's id: <id>Input, <id>Results, <id>Status.
@@ -52,7 +69,7 @@ export function bindFileDrop({ id, max = 1, run, errorPrefix = "Couldn't read th
             output.replaceChildren();
             delete output.dataset.copy;
             status.classList.add("text-danger");
-            status.textContent = `${errorPrefix}: ${error.message}`;
+            status.textContent = `${errorPrefix}: ${readProblem(error)}`;
         }
     };
 
