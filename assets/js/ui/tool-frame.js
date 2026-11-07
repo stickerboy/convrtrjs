@@ -24,6 +24,47 @@ const characters = (text) => {
 };
 
 /**
+ * A result with a note for the status line, such as what was left out of it. A mode's run can return one, or a promise
+ * of one, in place of its result.
+ */
+class NotedResult {
+    /**
+     * Keeps a result and its note together.
+     *
+     * @param {*} result - The result, as the mode would otherwise return it.
+     * @param {string} note - What to say about it, or "" for nothing.
+     */
+    constructor(result, note) {
+        this.result = result;
+        this.note = note;
+    }
+}
+
+/**
+ * Gives a result with a note for the status line (see NotedResult).
+ *
+ * @param {*} result - The result.
+ * @param {string} note - What to say about it, or "" for nothing.
+ * @returns {NotedResult} The result and its note.
+ */
+export const withNote = (result, note) => new NotedResult(result, note);
+
+/**
+ * Says which characters were left out of a result, for a status line: up to five, then "and others".
+ *
+ * @param {string[]} missing - The characters left out, once each.
+ * @param {string} what - What they had none of, e.g. "Braille".
+ * @returns {string} "No Braille for "😀", so left out", or "" if nothing was.
+ */
+export function leftOutNote(missing, what) {
+    if (missing.length === 0) {
+        return "";
+    }
+    const list = missing.slice(0, 5).map((char) => `"${char}"`).join(", ");
+    return `No ${what} for ${list}${missing.length > 5 ? " and others" : ""}, so left out`;
+}
+
+/**
  * Wires up a tool built with the toolFrame macro (macros/tool-frame.njk): its action buttons, live typing, the status
  * line, what the result's header says made it, and "Move to input". Element ids all start with the frame's id: <id>Text, <id>Results, <id>Status,
  * <id>Live.
@@ -34,7 +75,8 @@ const characters = (text) => {
  * @param {object} options
  * @param {string} options.id - The frame's id, usually the page's file slug.
  * @param {{button: string, run: (text: string, ...keys: string[]) => any}[]} options.modes - Each action button's id
- *   and its conversion, which may be async. The first is the mode until another is used.
+ *   and its conversion, which may be async. The first is the mode until another is used. A conversion can return
+ *   withNote(result, note) to say something about the result in the status line, such as what was left out.
  * @param {Field|Field[]} [options.key] - Extra fields, such as a cipher key, as readToolInput takes them. A field's
  *   `flow` is how it reads in the flow line: text before its value ("with key" gives "Encrypt with key World"), or
  *   [before, after] (["on", "rails"] gives "Encrypt on 2 rails"). An optional field is left out of the line while empty.
@@ -47,8 +89,10 @@ const characters = (text) => {
  * @param {string} [options.moveTab] - With output tabs, the tab "Move to input" always moves, such as the one in the
  *   input's own format (default: the tab showing).
  * @param {string} [options.errorPrefix] - Text shown before an error message, e.g. "Couldn't encrypt".
+ * @param {number} [options.limit] - The most characters the tool takes, for a tool whose result gets too big to show
+ *   well before the usual 1 million.
  */
-export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeFlow, render, moveTab, errorPrefix = "Something went wrong" }) {
+export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeFlow, render, moveTab, errorPrefix = "Something went wrong", limit }) {
     const input = byId(`${id}Text`);
     const output = byId(`${id}Results`);
     const status = byId(`${id}Status`);
@@ -152,6 +196,13 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
                 setStatus();
                 return;
             }
+            if (limit && input.value.length > limit) {
+                if (isResult) {
+                    clearOutput();
+                }
+                setStatus(`Too long: this tool takes up to ${limit.toLocaleString()} characters`, { error: true });
+                return;
+            }
             if (input.value.length > LIVE_LIMIT) {
                 setStatus(`Too long to convert as you type: use ${modeName()}`);
                 return;
@@ -166,7 +217,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             }
             text = input.value;
         } else {
-            const values = readToolInput({ input: `${id}Text`, key });
+            const values = readToolInput({ input: `${id}Text`, key, limit });
             if (!values) {
                 if (isResult) {
                     clearOutput();
@@ -177,7 +228,8 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             text = values.text;
         }
 
-        const show = (result) => {
+        const show = (value) => {
+            const { result, note } = value instanceof NotedResult ? value : { result: value, note: "" };
             if (render) {
                 render(result, output);
             } else if (tabs.length) {
@@ -188,7 +240,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             }
             drawFlow();
             // The result stays hidden when it's empty, so say so rather than seeming to do nothing
-            setStatus(isResult && output.textContent === "" ? "The result is empty" : "");
+            setStatus(isResult && output.textContent === "" ? ["The result is empty", note].filter(Boolean).join(". ") : note);
         };
         const fail = (error) => {
             if (!typed) {

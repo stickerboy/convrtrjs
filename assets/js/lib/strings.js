@@ -126,12 +126,18 @@ export function specialCharsOnly(string, preserveSpaces) {
 }
 
 /**
- * URL encode
+ * URL encode (a space is written as +, as in form data and query strings)
  * @param {string} string - The input string.
  * @returns {string} - The URL-encoded string.
+ * @throws {Error} - If the text has half of an emoji or other character on its own, which can't be written as UTF-8.
  */
 export function urlEncode(string) {
-    return encodeURIComponent(string).replace(/%20/g, "+");
+    try {
+        return encodeURIComponent(string).replace(/%20/g, "+");
+    } catch {
+        // Only a lone surrogate, half of a character such as an emoji, can make encodeURIComponent throw
+        throw new Error("The text has half of an emoji or other character on its own, which can't be URL encoded");
+    }
 }
 
 /**

@@ -4,11 +4,19 @@ import { showToast } from "./toast.js";
  * Checks if the data length exceeds a certain threshold and displays a warning if necessary
  * @param {string} data - The data to be checked.
  * @param {HTMLElement} container - The container element associated with the data (optional).
+ * @param {number} [limit=1000000] - The most characters the tool takes, for a tool that takes fewer than 1 million.
  * @returns {boolean} - Returns true if the data length is within acceptable limits, otherwise false.
  */
-export function largeDataWarning(data, container) {
+export function largeDataWarning(data, container, limit = 1000000) {
     if (container) {
         container.classList.remove("is-invalid", "ld-warning");
+    }
+    if (limit < 1000000 && data.length > limit) {
+        showToast("Too long", `This tool takes up to ${limit.toLocaleString()} characters`, "danger");
+        if (container) {
+            container.classList.add("is-invalid", "ld-warning");
+        }
+        return false;
     }
     if (data.length > 200000 && data.length < 1000000) {
         showToast("Large data warning", "You are attempting to process a large amount of data, performance may degrade or halt/crash.", "warning");

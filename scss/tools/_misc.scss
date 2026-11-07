@@ -1,10 +1,3 @@
-// hexToChunks' blocks (lib/misc/colors.js), for anyone using it from the console
-.color-block {
-    width: 1.75rem;
-    height: 1.75rem;
-    overflow: hidden;
-}
-
 // Colors: each color with its hex and the characters it holds, a strip of them all, and Save as image
 .color-results {
     &__bar {
@@ -39,16 +32,13 @@
     }
 }
 
-.color-strip {
-    display: flex;
-    height: 2.5rem;
-    overflow: hidden;
-    border: var(--bs-border-width) solid var(--bs-border-color);
+// The colors as a grid of blocks, a pixel each scaled up with sharp edges (see drawGrid in tools/misc/colors.js)
+.color-grid {
+    display: block;
+    width: 100%;
+    height: auto;
+    image-rendering: pixelated;
     border-radius: var(--bs-border-radius);
-
-    span {
-        flex: 1 1 0;
-    }
 }
 
 .color-swatches {

@@ -12,12 +12,13 @@ const byId = (id) => (id ? document.getElementById(id) : null);
  * @param {string} [options.output] - id of the result element (needed for chaining).
  * @param {string} [options.chain] - id of the "chain commands" checkbox.
  * @param {Field|Field[]} [options.key] - Extra field(s), e.g. a cipher key, checked in order.
+ * @param {number} [options.limit] - The most characters the tool takes, if fewer than the usual 1 million.
  * @typedef {{id: string, required?: string, pattern?: RegExp, invalid?: string}} Field - `required` is the message shown
  *   if it's empty (omit for an optional field); `pattern`/`invalid` validate a non-empty value.
  * @returns {{text: string, keys: string[], key: string}|null} - The text to process and the field values (`key` is the
  *   first), or null if a check failed (a toast is shown).
  */
-export function readToolInput({ input, output, chain, key }) {
+export function readToolInput({ input, output, chain, key, limit }) {
     const inputEl = byId(input);
     const fields = [key ?? []].flat().map((field) => ({ ...field, el: byId(field.id) }));
 
@@ -29,7 +30,7 @@ export function readToolInput({ input, output, chain, key }) {
             return null;
         }
     }
-    if (!largeDataWarning(inputEl.value, inputEl)) {
+    if (!largeDataWarning(inputEl.value, inputEl, limit)) {
         return null;
     }
     for (const field of fields) {

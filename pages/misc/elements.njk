@@ -9,7 +9,7 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>Only some element properties can be converted. Separate values with spaces, commas, colons, semicolons or hyphens: they can be mixed, but they're needed. Values are matched ignoring case, so se, Se and SE all find selenium. The swap button turns the conversion round.</p>
+    <p>Only some element properties can be converted. Separate values with spaces, commas, colons, semicolons or hyphens: they can be mixed, but they're needed. Values are matched ignoring case, so se, Se and SE all find selenium. Atomic masses and melting and boiling points can be typed rounded, so an atomic mass of 1.01 finds hydrogen (1.008). Melting and boiling points are in kelvin. Where several elements share a value, such as curium and berkelium's atomic mass of 247, all of them are given, separated by /. The swap button turns the conversion round.</p>
     <p class="tool-about__credit">Data from <a href="https://github.com/Bowserinator/Periodic-Table-JSON" class="text-convrtr">Bowserinator / Periodic-Table-JSON</a>, under the <a href="https://creativecommons.org/licenses/by-sa/3.0/" class="text-convrtr">Creative Commons Attribution-ShareAlike 3.0 License</a>.</p>
 {% endset %}
 {% call toolSection(intro) %}

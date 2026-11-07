@@ -8,8 +8,8 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>The colors are shown both as a list of hex colors and as blocks of color. Each color holds three characters of the text as three bytes of hex (red, green and blue), shown under it. Padding adds extra characters when the hex can't make up all 6 characters of the last color, and padded colors are marked with *.</p>
-    <p>"Colors to text" goes the other way: paste hex colors, with or without #, to get the text back. Padding at the end is dropped. "Save as image" downloads the colors as a picture, one block each.</p>
+    <p>The colors are shown as a grid of blocks, in reading order from the top left, and as a list of hex colors. Each color holds three characters of the text as three bytes of hex (red, green and blue), shown under it. Padding adds extra characters when the hex can't make up all 6 characters of the last color, and padded colors are marked with *.</p>
+    <p>"Colors to text" goes the other way: paste hex colors, with or without #, to get the text back. Padding at the end is dropped. "Save as image" downloads the grid as a picture. The tool takes up to 10,000 characters, as more colors than that are too many to look through.</p>
 {% endset %}
 {% call toolSection(intro) %}
 {% call toolFrame(filename, "Colors", placeholder = "Example: Hello → #48656C #6C6FFF", layout = "analysis", actions = [{ id: filename + "Encode", label: "Text to colors" }, { id: filename + "Decode", label: "Colors to text" }]) %}

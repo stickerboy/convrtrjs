@@ -1,4 +1,4 @@
-import { bindToolFrame } from '../../ui/tool-frame.js';
+import { bindToolFrame, withNote, leftOutNote } from '../../ui/tool-frame.js';
 import { createImage } from '../../ui/image.js';
 import * as braille from '../../lib/misc/braille.js';
 
@@ -12,13 +12,28 @@ toBraille.addEventListener("click", () => sizeOutput(true));
 toText.addEventListener("click", () => sizeOutput(false));
 sizeOutput(true);
 
-// convertBraille's mode names what it reads: "text" turns text into Braille
+const code = document.getElementById("brailleCode");
+
+/**
+ * Converts with the chosen code, noting anything left out.
+ *
+ * @param {string} text - The text or Braille.
+ * @param {string} mode - What it is: "text" is turned into Braille, "braille" back into text.
+ * @returns {object} The result, with a note of anything that had no Braille, or wasn't Braille the code has.
+ */
+const convert = (text, mode) => {
+    const { text: result, missing } = braille.translateBraille(text, mode, code.value);
+    return withNote(result, leftOutNote(missing, mode === "text" ? "Braille" : "letter or sign"));
+};
+
 bindToolFrame({
     id: "braille",
     modes: [
-        { button: "brailleToBraille", run: (text) => braille.convertBraille(text, "text") },
-        { button: "brailleToText", run: (text) => braille.convertBraille(text) },
+        { button: "brailleToBraille", run: (text) => convert(text, "text") },
+        { button: "brailleToText", run: (text) => convert(text, "braille") },
     ],
+    watch: ["brailleCode"],
+    flow: () => [document.querySelector("#brailleToBraille[aria-pressed=true]") ? "To Braille in " : "To text from ", { value: code.selectedOptions[0].textContent }],
     errorPrefix: "Couldn't convert the Braille",
 });
 

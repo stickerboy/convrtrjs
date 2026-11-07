@@ -8,10 +8,20 @@ summary: >-
 {% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
+    <p>Unified English Braille is the Braille English readers learn, and what most charts show. It's written here uncontracted, letter by letter, without grade 2's shortened words: a capital sign (⠠) goes before a capital letter, and the number sign (⠼) before a number, as digits share the first ten letters' cells. Accented letters keep their accents, written before the letter, so é is ⠘⠌⠑.</p>
+    <p>Braille ASCII is the computer code used in Braille files and by embossers. Each character has one cell, and there are no capitals, so text read back from it is in capitals. Accents are taken off.</p>
+    <p>Spaces, tabs and new lines are kept. Anything the chosen code has no Braille for is left out, and listed under the input.</p>
     <p>"Save as image" downloads the Braille in the output as a picture.</p>
-    <p>More on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> Wikipedia page.</p>
+    <p>More on the <a href="https://en.wikipedia.org/wiki/Braille" class="text-convrtr">Braille</a> and <a href="https://en.wikipedia.org/wiki/Unified_English_Braille" class="text-convrtr">Unified English Braille</a> Wikipedia pages.</p>
 {% endset %}
 {% call toolSection(intro) %}
-{% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠓⠑⠇⠇⠕", saveImage = true, actions = [{ id: filename + "ToBraille", label: "To Braille" }, { id: filename + "ToText", label: "To text" }]) %}
+{% call toolFrame(filename, "Braille", placeholder = "Example: Hello → ⠠⠓⠑⠇⠇⠕", saveImage = true, actions = [{ id: filename + "ToBraille", label: "To Braille" }, { id: filename + "ToText", label: "To text" }]) %}
+<div class="tool-field">
+    <label class="tool-field__label" for="brailleCode">Code</label>
+    <select class="form-select" id="brailleCode" autocomplete="off">
+        <option value="ueb" selected>Unified English Braille</option>
+        <option value="ascii">Braille ASCII</option>
+    </select>
+</div>
 {% endcall %}
 {% endcall %}

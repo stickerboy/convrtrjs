@@ -185,6 +185,7 @@ describe("text tools (strings.js)", () => {
     });
     it("URL encodes", () => {
         assert.equal(strings.urlEncode("a b&c=d"), "a+b%26c%3Dd");
+        assert.throws(() => strings.urlEncode("a\uD800b"), /half of an emoji/);
     });
     it("URL decodes, reading + as a space", () => {
         assert.equal(strings.urlDecode("a+b%26c%3Dd"), "a b&c=d");
