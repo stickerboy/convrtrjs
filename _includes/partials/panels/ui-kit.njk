@@ -1,0 +1,15 @@
+{#
+    The UI kit's sections, in the sidebar panel (see sidebarPanel in layouts/base.njk), under their group headings, from
+    kitSections and kitGroups in its front matter. assets/js/site/section-links.js marks the section being read with
+    aria-current="location".
+#}
+<h2 class="sidebar-panel__title" id="sidebar-page-title">UI kit</h2>
+<p class="sidebar-panel__count">{{ kitSections | length }} sections</p>
+{%- for group in kitGroups %}
+<p class="sidebar-panel__heading" id="ui-kit-group-{{ group | lower }}">{{ group }}</p>
+<ul class="sidebar-panel__list" aria-labelledby="ui-kit-group-{{ group | lower }}">
+    {%- for section in kitSections | where("group", group) %}
+    <li><a class="sidebar-panel__link" href="#{{ section.id }}" data-section-link="{{ section.id }}">{{ section.title }}</a></li>
+    {%- endfor %}
+</ul>
+{%- endfor %}

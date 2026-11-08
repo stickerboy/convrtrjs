@@ -6,6 +6,6 @@
 <p class="sidebar-panel__count">{{ settingsGroups | length }} groups</p>
 <ul class="sidebar-panel__list">
     {%- for group in settingsGroups %}
-    <li><a class="sidebar-panel__link" href="#{{ group.id }}" data-settings-link="{{ group.id }}">{{ group.title }}</a></li>
+    <li><a class="sidebar-panel__link" href="#{{ group.id }}" data-section-link="{{ group.id }}">{{ group.title }}</a></li>
     {%- endfor %}
 </ul>

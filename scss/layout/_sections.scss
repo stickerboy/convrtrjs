@@ -42,3 +42,47 @@
         display: block;
     }
 }
+
+// A row of links to the page's own sections (site/section-links.js), for when the sidebar panel that lists them
+// isn't showing: below md, or when it's been closed. It sticks to the top as the page scrolls, and scrolls sideways.
+.section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    display: none;
+    // Kept full height when it sits straight in the page, which lays out its sections in a column that can shrink
+    flex-shrink: 0;
+    flex-wrap: nowrap;
+    gap: 0.125rem;
+    padding: 0.5rem 0;
+    margin-top: -0.5rem;
+    overflow-x: auto;
+    // Scrolls by swiping, or as keyboard focus moves along it
+    scrollbar-width: none;
+    background-color: var(--convrtr-surface);
+    border-bottom: var(--bs-border-width) solid var(--bs-border-color);
+
+    .sidebar-panel__link {
+        display: inline-flex;
+        flex: none;
+        align-items: center;
+        min-height: 2.75rem;
+    }
+
+    @include media-breakpoint-down(md) {
+        display: flex;
+    }
+    html:has(#sidebar[data-panel="closed"]) & {
+        display: flex;
+    }
+}
+
+// Sections after the row of links stop below it when jumped to, while it's showing
+.section-nav ~ .section {
+    @include media-breakpoint-down(md) {
+        scroll-margin-top: 4rem;
+    }
+    html:has(#sidebar[data-panel="closed"]) & {
+        scroll-margin-top: 4rem;
+    }
+}

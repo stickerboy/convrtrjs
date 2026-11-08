@@ -9,3 +9,4 @@ import "./nav.js";
 import "./switcher.js";
 import "./info-popover.js";
 import "./console.js";
+import "./section-links.js";

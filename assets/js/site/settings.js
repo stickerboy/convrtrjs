@@ -406,35 +406,5 @@ if (page) {
         renderData();
     }
     showAll();
-
-    // ---------- Group links ----------
-    // The panel and the row of links mark the group being read, as you scroll or when you pick one. The row scrolls
-    // sideways on phones, so it brings the marked link into view.
-    const links = [...document.querySelectorAll("[data-settings-link]")];
-    const mark = (id) => {
-        for (const link of links) {
-            if (link.dataset.settingsLink === id) {
-                const changed = link.getAttribute("aria-current") !== "location";
-                link.setAttribute("aria-current", "location");
-                // After marking it, as the bold text makes it a little wider
-                const row = link.closest(".settings-nav");
-                if (changed && row) {
-                    row.scrollLeft = link.offsetLeft - (row.clientWidth - link.offsetWidth) / 2;
-                }
-            } else {
-                link.removeAttribute("aria-current");
-            }
-        }
-    };
-    const groups = [...page.querySelectorAll(".settings-group")];
-    const scroller = document.getElementById("content");
-    const onScroll = () => {
-        // The last group whose top has passed a third of the way down, or the first
-        const line = scroller.getBoundingClientRect().top + scroller.clientHeight / 3;
-        const atEnd = scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 2;
-        const current = atEnd ? groups.at(-1) : groups.filter((group) => group.getBoundingClientRect().top <= line).at(-1) || groups[0];
-        mark(current.id);
-    };
-    scroller.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
+    // The group links in the panel and the row above the groups are marked by site/section-links.js
 }

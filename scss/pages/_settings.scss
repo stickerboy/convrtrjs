@@ -1,41 +1,11 @@
 // The Settings page (settings.njk): groups of settings, each a row with what it is and does on the left and its control
 // on the right (under it on narrow screens). The groups are listed in the sidebar panel, or as a row of the same links
-// above them when the panel isn't showing: below md, or when it's been closed.
+// above them when the panel isn't showing (.section-nav, in layout/_sections.scss).
 .settings {
     container: settings-list / inline-size;
     display: grid;
     gap: 0.5rem;
     max-width: 90rem;
-}
-
-.settings-nav {
-    position: sticky;
-    top: 0;
-    z-index: 2;
-    display: none;
-    flex-wrap: nowrap;
-    gap: 0.125rem;
-    padding: 0.5rem 0;
-    margin-top: -0.5rem;
-    overflow-x: auto;
-    // Scrolls by swiping, or as keyboard focus moves along it
-    scrollbar-width: none;
-    background-color: var(--convrtr-surface);
-    border-bottom: var(--bs-border-width) solid var(--bs-border-color);
-
-    .sidebar-panel__link {
-        display: inline-flex;
-        flex: none;
-        align-items: center;
-        min-height: 2.75rem;
-    }
-
-    @include media-breakpoint-down(md) {
-        display: flex;
-    }
-    html:has(.sidebar[data-panel="closed"]) & {
-        display: flex;
-    }
 }
 
 .settings-group {

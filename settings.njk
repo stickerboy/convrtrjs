@@ -34,9 +34,9 @@ settingsGroups:
 {%- endmacro %}
 <section id="settings" class="section">
     <div class="settings py-4 px-3 px-sm-4" data-settings>
-        <nav class="settings-nav" aria-label="Settings groups">
+        <nav class="section-nav" aria-label="Settings groups">
             {%- for group in settingsGroups %}
-            <a class="sidebar-panel__link" href="#{{ group.id }}" data-settings-link="{{ group.id }}">{{ group.title }}</a>
+            <a class="sidebar-panel__link" href="#{{ group.id }}" data-section-link="{{ group.id }}">{{ group.title }}</a>
             {%- endfor %}
         </nav>
 
