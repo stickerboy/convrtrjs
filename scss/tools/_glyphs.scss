@@ -15,7 +15,10 @@
 
     }
 
+    // Kept as tall as its glyphs: as a flex item with a min-height, it could otherwise be sized for fewer lines than
+    // they wrap to, and they'd spill out under it
     &__glyphs {
+        flex-shrink: 0;
         min-height: 6rem;
         padding: 0.5rem 0.75rem;
         font-family: var(--glyph-font);

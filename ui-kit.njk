@@ -15,10 +15,13 @@ kitSections:
   - { id: tool-frame, title: Tool frame, group: Tools }
   - { id: input-boxes, title: Input boxes, group: Tools }
   - { id: results, title: Results, group: Tools }
+  - { id: file-tools, title: File tools, group: Tools }
+  - { id: glyph-keyboards, title: Glyph keyboards, group: Tools }
   - { id: sidebar-demo, title: Sidebar, group: Site }
   - { id: navigation, title: Navigation, group: Site }
   - { id: tables, title: Tables, group: Site }
-  - { id: badges, title: Badges, group: Site }
+  - { id: badges, title: Chips and badges, group: Site }
+  - { id: settings-rows, title: Settings rows, group: Site }
   - { id: feedback, title: Feedback, group: Site }
 ---
 {#
@@ -345,6 +348,80 @@ kitSections:
 </div>
 {% endmacro %}
 
+{#- File tools: the drop zone (fileFrame), and what File check shows for a file (tools/files/check.js) -#}
+{% from "macros/tool-frame.njk" import fileFrame, glyphFrame %}
+{% macro fileTools(t) %}
+{% call fileFrame("kit" ~ t ~ "File", "File check", "any type, up to 5 at once", "Only the first 36 bytes of each file are read, in your browser. Nothing is uploaded.", multiple = true) %}{% endcall %}
+<h3 class="h6 mt-4">One file's results</h3>
+<p class="small text-body-secondary">Its name and size, then the verdict, with the header's bytes marked in the dump.</p>
+<p class="file-summary"><span class="file-summary__name">holiday.png</span><span class="file-summary__meta">48.2 KB · your browser calls it image/png</span></p>
+<div class="file-verdict file-verdict--match">
+    <i class="bi bi-check-circle file-verdict__icon" aria-hidden="true"></i>
+    <div><p class="file-verdict__title">PNG image</p><p>Portable Network Graphics.</p>
+    <p class="file-verdict__badges"><span class="file-badge">.png</span><span class="file-badge">Header <code>89 50 4E 47 0D 0A 1A 0A</code></span></p></div>
+</div>
+<div class="file-dump" tabindex="0" role="region" aria-label="The file's first 16 bytes">
+    <table><thead><tr><th scope="col">Offset</th><th scope="col">Hex</th><th scope="col">Text</th></tr></thead>
+    <tbody><tr><th scope="row">0000</th><td><mark>89</mark> <mark>50</mark> <mark>4E</mark> <mark>47</mark> <mark>0D</mark> <mark>0A</mark> <mark>1A</mark> <mark>0A</mark> 00 00 00 0D 49 48 44 52</td>
+    <td class="file-dump__text"><mark>.</mark><mark>P</mark><mark>N</mark><mark>G</mark><mark>.</mark><mark>.</mark><mark>.</mark><mark>.</mark>....IHDR</td></tr></tbody></table>
+</div>
+<h3 class="h6 mt-4">Other verdicts</h3>
+<div class="file-verdict file-verdict--mismatch">
+    <i class="bi bi-exclamation-triangle file-verdict__icon" aria-hidden="true"></i>
+    <div><p class="file-verdict__title">ZIP archive</p><p><strong>The name ends in .jpg, but the header says ZIP archive</strong>, usually .zip.</p></div>
+</div>
+<div class="file-verdict file-verdict--unknown">
+    <i class="bi bi-question-circle file-verdict__icon" aria-hidden="true"></i>
+    <div><p class="file-verdict__title">Not a header we know</p><p>None of the file headers match the start of this file.</p></div>
+</div>
+<h3 class="h6 mt-4">Several files</h3>
+<p class="small text-body-secondary">A fold per file, its type on the right; a name that doesn't fit its header is marked.</p>
+<details class="tool-fold file-fold">
+    <summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i><span class="file-fold__name">holiday.png</span><small>PNG image</small></summary>
+    <div class="file-fold__body">…</div>
+</details>
+<details class="tool-fold file-fold file-fold--mismatch">
+    <summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i><span class="file-fold__name">photo.jpg</span><small><i class="bi bi-exclamation-triangle" aria-hidden="true"></i> ZIP archive, not .jpg</small></summary>
+    <div class="file-fold__body">…</div>
+</details>
+{% endmacro %}
+
+{#- Glyph keyboard: the real glyphFrame, wired up by ui-kit.js with ui/glyph-keyboard.js -#}
+{% macro glyphs(t) %}
+{{ glyphFrame("kit" ~ t ~ "Glyphs", "Pigpen cipher", "'Pigpen Cipher'", "ABCDEFGHIJKLM".split("")) }}
+{% endmacro %}
+
+{#- Settings rows: what a setting is and does on the left, its control on the right, as on the Settings page -#}
+{% macro settingsRows(t) %}
+<div class="settings">
+    <div class="setting">
+        <div class="setting__text">
+            <label class="setting__name" for="kit{{ t }}SettingLive">Live typing</label>
+            <small class="setting__hint" id="kit{{ t }}SettingLive-hint">Tools convert as you type, without pressing their button.</small>
+        </div>
+        <div class="setting__end">
+            <span class="setting__saved" aria-hidden="true">Saved</span>
+            <div class="form-check form-switch setting__control">
+                <input class="form-check-input" type="checkbox" role="switch" id="kit{{ t }}SettingLive" aria-describedby="kit{{ t }}SettingLive-hint">
+            </div>
+        </div>
+    </div>
+    <div class="setting">
+        <div class="setting__text">
+            <span class="setting__name" id="kit{{ t }}SettingSize-label">Text size in the boxes</span>
+            <small class="setting__hint" id="kit{{ t }}SettingSize-hint">For long puzzle data, or reading on a small screen.</small>
+        </div>
+        <div class="setting__end">
+            <div class="setting-segments setting__control" role="group" aria-labelledby="kit{{ t }}SettingSize-label" aria-describedby="kit{{ t }}SettingSize-hint" data-kit-segments>
+                <button type="button" aria-pressed="false">Smaller</button>
+                <button type="button" aria-pressed="true">Normal</button>
+                <button type="button" aria-pressed="false">Larger</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
 {#- Feedback -#}
 {% macro feedback(t) %}
 <div class="toast show mb-4" role="status" aria-live="off">
@@ -354,7 +431,18 @@ kitSections:
     </div>
     <div class="toast-body">The results have been copied to your clipboard.</div>
 </div>
-<div class="alert alert-info mb-0" role="note">Info alert, as the privacy notice uses when nothing is stored.</div>
+<div class="alert alert-info mb-4" role="note">Info alert, as the privacy notice uses when nothing is stored.</div>
+<p class="small text-body-secondary mb-2">An info popover, as on each Convrtrs box: the button opens it under itself (site/info-popover.js).</p>
+<div class="convrtr-head">
+    <div class="convrtr-head__titles"><span class="card-label">Base64</span></div>
+    <button type="button" class="convrtr-head__info" popovertarget="kit-{{ t }}-info" aria-label="About Base64" title="About Base64">
+        <i class="bi bi-info-circle" aria-hidden="true"></i>
+    </button>
+    <div class="info-popover" id="kit-{{ t }}-info" popover role="note">
+        <strong>Base64</strong>
+        <p>Writes bytes with 64 characters: A to Z, a to z, 0 to 9, + and /, with = to pad the end.</p>
+    </div>
+</div>
 {% endmacro %}
 
 {#- The sections as a row of links, for when the sidebar panel that lists them isn't showing (layout/_sections.scss) #}
@@ -408,6 +496,14 @@ kitSections:
 {{ panes(results) }}
 {% endcall %}
 
+{% call kitSection("file-tools", "File tools", "The drop zone a file tool starts with, and what File check shows: a verdict per file, its header's bytes, and a fold per file when there are several.") %}
+{{ panes(fileTools) }}
+{% endcall %}
+
+{% call kitSection("glyph-keyboards", "Glyph keyboards", "What Pigpen, Covenant and Forerunner sit in: type letters or tap glyphs, and the glyphs are drawn as you go. This one works, with the first 13 Pigpen glyphs.") %}
+{{ panes(glyphs) }}
+{% endcall %}
+
 {% call kitSection("sidebar-demo", "Sidebar", "The category rail and the panel of tools, as on a Caesar cipher page. With the panel open it shows the current category; with it closed, the bar on the rail marks the current category.") %}
 {{ panes(sidebarDemo) }}
 {% endcall %}
@@ -433,12 +529,24 @@ kitSections:
     <span class="badge text-bg-convrtr">12 results</span>
 </div>
 {% endset %}
-{% macro badges(t) %}{{ badgeHtml }}{% endmacro %}
-{% call kitSection("badges", "Badges", "Changelog labels, search result tags and counts.") %}
+{% macro badges(t) %}
+<p class="small text-body-secondary mb-2">Filter chips, as in the search and changelog panels: press one to filter by it.</p>
+<div class="filter-chips mb-4" role="group" aria-label="Section filters" data-kit-chips>
+    <button type="button" class="filter-chip" aria-pressed="true">Ciphers <span class="filter-chip__count">9</span></button>
+    <button type="button" class="filter-chip" aria-pressed="false">Hex <span class="filter-chip__count">3</span></button>
+    <button type="button" class="filter-chip" aria-pressed="false">ONI <span class="filter-chip__count">7</span></button>
+</div>
+{{ badgeHtml }}
+{% endmacro %}
+{% call kitSection("badges", "Chips and badges", "Filter chips, changelog labels, search result tags and counts.") %}
 {{ panes(badges) }}
 {% endcall %}
 
-{% call kitSection("feedback", "Feedback", "Toasts and alerts.") %}
+{% call kitSection("settings-rows", "Settings rows", "A setting with what it does on the left and its control on the right, under it on narrow screens: a switch, or a row of segments to choose one from.") %}
+{{ panes(settingsRows) }}
+{% endcall %}
+
+{% call kitSection("feedback", "Feedback", "Toasts, alerts and info popovers.") %}
 {{ panes(feedback) }}
 {% endcall %}
 

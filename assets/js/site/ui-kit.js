@@ -3,6 +3,9 @@
 import { bindInputList } from "../ui/input-list.js";
 import { bindToolFrame, renderResults } from "../ui/tool-frame.js";
 import { renderFrequencies, characterCell, characterName } from "../ui/frequencies.js";
+import { bindGlyphKeyboard } from "../ui/glyph-keyboard.js";
+import { bindFileDrop } from "../ui/file-drop.js";
+import { escapeHtml } from "../ui/tool-frame.js";
 import { railFenceEncode, railFenceDecode } from "../lib/ciphers/rail.js";
 import { bytesToHex, bytesToBinary, bytesToDecimal, bytesToBase64, graphemes } from "../lib/toolkit.js";
 
@@ -70,7 +73,37 @@ for (const t of ["light", "dark"]) {
         errorPrefix: "Couldn't list the formats",
     });
     showSample(`kit${t}List`, "Hi", `kit${t}ListRun`);
+
+    // Glyph keyboard
+    bindGlyphKeyboard({ id: `kit${t}Glyphs`, filename: "pigpen-glyphs.png" });
+    const message = document.getElementById(`kit${t}GlyphsText`);
+    // Only letters from A to M, which the demo has glyphs for
+    message.value = "MADE A BIG CAKE";
+    message.dispatchEvent(new Event("input", { bubbles: true }));
+
+    // The drop zone reads the files chosen, as a file tool does, and lists their names and sizes
+    bindFileDrop({
+        id: `kit${t}File`,
+        max: 5,
+        run: (files, output) => {
+            output.innerHTML = files.map((file) => `<p class="file-summary"><span class="file-summary__name">${escapeHtml(file.name)}</span>` +
+                `<span class="file-summary__meta">${file.size.toLocaleString()} bytes</span></p>`).join("");
+            return `Read ${files.length} file${files.length === 1 ? "" : "s"}`;
+        },
+    });
 }
+
+// Filter chips and setting segments: a chip turns on and off, and one segment is chosen at a time
+document.querySelectorAll("[data-kit-chips]").forEach((group) => group.addEventListener("click", (event) => {
+    const chip = event.target.closest(".filter-chip");
+    chip?.setAttribute("aria-pressed", String(chip.getAttribute("aria-pressed") !== "true"));
+}));
+document.querySelectorAll("[data-kit-segments]").forEach((group) => group.addEventListener("click", (event) => {
+    const chosen = event.target.closest("button");
+    if (chosen) {
+        group.querySelectorAll("button").forEach((button) => button.setAttribute("aria-pressed", String(button === chosen)));
+    }
+}));
 
 // Figures and tables, as the Character frequencies tool draws them for "Meet me at the old mill"
 const sample = "Meet me at the old mill";
