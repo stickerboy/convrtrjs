@@ -12,7 +12,9 @@ kitSections:
   - { id: typography, title: Typography, group: Foundations }
   - { id: buttons, title: Buttons, group: Controls }
   - { id: forms, title: Forms, group: Controls }
+  - { id: tool-frame, title: Tool frame, group: Tools }
   - { id: input-boxes, title: Input boxes, group: Tools }
+  - { id: results, title: Results, group: Tools }
   - { id: sidebar-demo, title: Sidebar, group: Site }
   - { id: navigation, title: Navigation, group: Site }
   - { id: tables, title: Tables, group: Site }
@@ -24,10 +26,11 @@ kitSections:
     and panes() renders it once in each theme. Use real site classes only, so the kit
     shows what the site actually renders.
 #}
-{% macro panes(demo) %}
+{#- wide: the two themes one above the other at every width, for a demo that needs the room, such as the tool frame #}
+{% macro panes(demo, wide = false) %}
 <div class="row g-3">
     {%- for theme in ["light", "dark"] %}
-    <div class="col-12 col-xxl-6">
+    <div class="col-12{% if not wide %} col-xxl-6{% endif %}">
         <div class="ui-kit-pane" data-bs-theme="{{ theme }}">
             <p class="ui-kit-pane__label">{{ theme | capitalize }}</p>
             {{ demo(theme) }}
@@ -152,39 +155,61 @@ kitSections:
 </div>
 {% endmacro %}
 
-{#- Forms -#}
+{#- Forms: a tool's settings, as tool fields with their label above (scss/components/_tool-frame.scss) -#}
+{% from "macros/delimiter.njk" import delimiter %}
 {% macro forms(t) %}
-<div class="row g-3">
-    <div class="col-12">
-        <label for="{{ t }}-textarea" class="form-label">Textarea</label>
-        <textarea id="{{ t }}-textarea" class="form-control" rows="3" placeholder="Example: Hello world"></textarea>
+<div class="d-flex flex-wrap gap-3 align-items-end mb-4">
+    <div class="tool-field">
+        <label class="tool-field__label" for="{{ t }}-key">Key</label>
+        <input type="text" class="form-control" id="{{ t }}-key" placeholder="Optional" autocomplete="off">
     </div>
-    <div class="col-12 col-md-6">
-        <div class="input-group">
-            <label class="input-group-text" for="{{ t }}-key">Key</label>
-            <input type="text" class="form-control" id="{{ t }}-key" autocomplete="off">
+    <div class="tool-field">
+        <div class="tool-field__head">
+            <label class="tool-field__label" for="{{ t }}-new">New</label>
+            <span class="tool-field__note" id="{{ t }}-new-note">Leave empty to remove</span>
+        </div>
+        <input type="text" class="form-control" id="{{ t }}-new" autocomplete="off" aria-describedby="{{ t }}-new-note">
+    </div>
+    <div class="tool-field tool-field--short">
+        <label class="tool-field__label" for="{{ t }}-rails">Rails</label>
+        <input type="number" class="form-control" id="{{ t }}-rails" min="2" value="3" autocomplete="off">
+    </div>
+</div>
+<p class="small text-body-secondary mb-2">A stepper, as Caesar's shift, and two dropdowns with Swap between them, as the Elements converter:</p>
+<div class="d-flex flex-wrap gap-3 align-items-end mb-4">
+    <div class="tool-field">
+        <label class="tool-field__label" for="{{ t }}-shift">Shift</label>
+        <div class="input-group tool-stepper">
+            <button class="btn btn-outline-convrtr btn-icon-text" type="button" aria-label="Previous shift"><i class="bi bi-chevron-left" aria-hidden="true"></i></button>
+            <input type="number" class="form-control" id="{{ t }}-shift" min="1" max="25" value="3" autocomplete="off">
+            <button class="btn btn-outline-convrtr btn-icon-text" type="button" aria-label="Next shift"><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
         </div>
     </div>
-    <div class="col-12 col-md-6">
-        <div class="input-group">
-            <label class="input-group-text" for="{{ t }}-shift">Shift value</label>
-            <input type="number" class="form-control" id="{{ t }}-shift" value="1">
-            <button class="btn btn-convrtr" type="button">Shift</button>
-        </div>
+    <div class="tool-field">
+        <label class="tool-field__label" for="{{ t }}-from">From</label>
+        <select class="form-select" id="{{ t }}-from"><option>Atomic number</option><option>Element symbol</option></select>
     </div>
-    <div class="col-12 col-md-6">
-        <label class="visually-hidden" for="{{ t }}-select">Delimiter</label>
-        <select class="form-select form-select--large" id="{{ t }}-select">
-            <option>Space</option>
-            <option>Comma</option>
-            <option>None</option>
-        </select>
+    <button type="button" class="btn btn-outline-convrtr tool-swap" aria-label="Swap from and to" title="Swap from and to"><i class="bi bi-arrow-left-right" aria-hidden="true"></i></button>
+    <div class="tool-field">
+        <label class="tool-field__label" for="{{ t }}-to">To</label>
+        <select class="form-select" id="{{ t }}-to"><option>Element symbol</option><option>Atomic number</option></select>
     </div>
-    <div class="col-12 col-md-6">
-        <input type="text" class="form-control is-invalid" aria-label="Invalid input" value="Not valid hex">
-        <div class="invalid-feedback">Not a valid hex string</div>
+    <div class="tool-field">
+        <label class="tool-field__label" for="{{ t }}Delimiter">Delimiter</label>
+        {{ delimiter(t) }}
     </div>
-    <div class="col-12 d-flex flex-wrap gap-4">
+</div>
+<p class="small text-body-secondary mb-2">A problem: the box that needs fixing is outlined, and the status line under it says what's wrong.</p>
+<div class="tool-pane mb-4">
+    <textarea class="form-control tool-pane__box is-invalid" rows="2" aria-label="Input with a problem" aria-describedby="{{ t }}-problem"></textarea>
+    <div class="tool-pane__status"><span id="{{ t }}-problem" class="text-danger">There's no text to convert</span><span>0 characters</span></div>
+</div>
+<p class="small text-body-secondary mb-2">A label joined to its box, an older pattern still on Hash's "Check a hash" and the File headers search:</p>
+<div class="input-group mb-4">
+    <label class="input-group-text" for="{{ t }}-check-hash">Check a hash</label>
+    <input type="text" class="form-control font-monospace" id="{{ t }}-check-hash" placeholder="Paste a hash to find its algorithm" autocomplete="off">
+</div>
+<div class="d-flex flex-wrap gap-4">
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="{{ t }}-switch" checked>
             <label class="form-check-label" for="{{ t }}-switch">Switch</label>
@@ -201,8 +226,47 @@ kitSections:
             <input class="form-check-input" type="radio" name="{{ t }}-radio" id="{{ t }}-radio2">
             <label class="form-check-label" for="{{ t }}-radio2">Radio</label>
         </div>
-    </div>
 </div>
+{% endmacro %}
+
+{#- Tool frame: the real macro, wired up by ui-kit.js with the real tool-frame.js, so it behaves as a tool does -#}
+{% from "macros/tool-frame.njk" import toolFrame %}
+{% macro toolFrames(t) %}
+<h3 class="h6">Input and result, with a field and two actions</h3>
+<p class="small text-body-secondary">The result's header says what made it. Settings and actions sit in a column beside the input once the frame is wide enough, and stack above and below it when it isn't.</p>
+{% call toolFrame("kit" ~ t ~ "Rail", "Rail fence cipher", placeholder = "Example: HELLO WORLD", actions = [{ id: "kit" ~ t ~ "RailEncrypt", label: "Encrypt" }, { id: "kit" ~ t ~ "RailDecrypt", label: "Decrypt" }]) %}
+<div class="tool-field tool-field--short">
+    <label class="tool-field__label" for="kit{{ t }}RailAmount">Rails</label>
+    <input type="number" class="form-control" id="kit{{ t }}RailAmount" min="2" value="3" autocomplete="off">
+</div>
+{% endcall %}
+<h3 class="h6 mt-4">Output tabs</h3>
+<p class="small text-body-secondary">One result in several formats, as Hex shift gives it. Move to input takes the tab the tool says, whichever is showing.</p>
+{% call toolFrame("kit" ~ t ~ "Bytes", "Text to bytes", placeholder = "Example: Hello", tabs = ["Hex", "Binary", "Decimal", "Base64"], actions = [{ id: "kit" ~ t ~ "BytesRun", label: "Convert" }]) %}{% endcall %}
+<h3 class="h6 mt-4">List of results</h3>
+<p class="small text-body-secondary">Several results at once, as Hash algorithms gives them: in groups, each row with its own copy button. The options sit in a bar above the input.</p>
+{% call toolFrame("kit" ~ t ~ "List", "Formats", placeholder = "Example: Hi", layout = "list", listLabel = "Formats") %}
+<button class="btn btn-convrtr" type="button" id="kit{{ t }}ListRun">Generate</button>
+{% endcall %}
+{% endmacro %}
+
+{#- Results: folds, and the figures and sortable tables the frequency tools draw (ui/frequencies.js, filled by ui-kit.js) -#}
+{% macro results(t) %}
+<h3 class="h6">Folds</h3>
+<p class="small text-body-secondary">A group of results that opens and closes, with what's in it on the right, as in the Exif reader.</p>
+<div class="mb-4">
+    <details class="tool-fold" open>
+        <summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>Camera<small>4 tags</small></summary>
+        <div class="p-3">Make: Apple · Model: iPhone 13 · Exposure: 1/120 s · f/1.6</div>
+    </details>
+    <details class="tool-fold">
+        <summary><i class="bi bi-chevron-right tool-fold__chevron" aria-hidden="true"></i>Location<small>3 tags</small></summary>
+        <div class="p-3">55.8642, -4.2518 · 38 m</div>
+    </details>
+</div>
+<h3 class="h6">Figures and tables</h3>
+<p class="small text-body-secondary">What the frequency tools show: figures first, then tables that sort by any column. With more than one table, each is in a fold.</p>
+<div class="tool-pane__analysis" id="kit{{ t }}Frequencies" data-kit-frequencies></div>
 {% endmacro %}
 
 {#- Navigation -#}
@@ -328,12 +392,20 @@ kitSections:
 {{ panes(buttons) }}
 {% endcall %}
 
-{% call kitSection("forms", "Forms", "Inputs, input groups, selects, switches and validation.") %}
+{% call kitSection("forms", "Forms", "A tool's settings: fields with their label above, sometimes with a note on the right, a short field for a number, a stepper, dropdowns with Swap, switches and checks, and how a problem shows.") %}
 {{ panes(forms) }}
+{% endcall %}
+
+{% call kitSection("tool-frame", "Tool frame", "What every text tool sits in (macros/tool-frame.njk), in its three layouts. These work: type, press the buttons, try Live typing and Move to input.") %}
+{{ panes(toolFrames, wide = true) }}
 {% endcall %}
 
 {% call kitSection("input-boxes", "Input boxes", "For a tool that takes more than one text: a set of boxes with Swap between them, as on Interleave, or a list that boxes can be added to and removed from, as on Merge Base64. Each box has its own label and count. The tool frame builds them from its inputs and inputList options, and ui/input-list.js runs them.") %}
 {{ panes(inputBoxes) }}
+{% endcall %}
+
+{% call kitSection("results", "Results", "What tools show besides a plain result: folds, and the figures and sortable tables of the frequency tools.") %}
+{{ panes(results) }}
 {% endcall %}
 
 {% call kitSection("sidebar-demo", "Sidebar", "The category rail and the panel of tools, as on a Caesar cipher page. With the panel open it shows the current category; with it closed, the bar on the rail marks the current category.") %}
