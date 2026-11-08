@@ -1,4 +1,5 @@
 import { readToolInput } from "./tool.js";
+import { bindInputList } from "./input-list.js";
 import { showToast } from "./toast.js";
 import { getLocalStorageItem, saveLocalStorage } from "./storage.js";
 import { countGraphemes } from "../lib/toolkit.js";
@@ -75,7 +76,8 @@ export function leftOutNote(missing, what) {
  * @param {object} options
  * @param {string} options.id - The frame's id, usually the page's file slug.
  * @param {{button: string, run: (text: string, ...keys: string[]) => any}[]} options.modes - Each action button's id
- *   and its conversion, which may be async. The first is the mode until another is used. A conversion can return
+ *   and its conversion, which may be async. With several input boxes, the conversion gets each box's text, then the
+ *   fields' values. The first is the mode until another is used. A conversion can return
  *   withNote(result, note) to say something about the result in the status line, such as what was left out.
  * @param {Field|Field[]} [options.key] - Extra fields, such as a cipher key, as readToolInput takes them. A field's
  *   `flow` is how it reads in the flow line: text before its value ("with key" gives "Encrypt with key World"), or
@@ -102,6 +104,15 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     const buttons = modes.map((mode) => ({ ...mode, el: byId(mode.button) }));
     let current = buttons[0];
 
+    // A frame with several input boxes (the macro's inputs or inputList): each box's text goes to the run in order.
+    // A swap, or removing a box with text in it, counts as typing.
+    const inputList = frame.querySelector("[data-input-list]");
+    const boxSet = inputList
+        ? bindInputList(inputList, { onChange: () => typed(), status: byId(`${id}InputStatus`) })
+        : null;
+    const boxes = () => (boxSet ? boxSet.boxes() : [input]);
+    const allText = () => boxes().map((box) => box.value).join("");
+
     // The output is a div of text, hidden while it's empty, so a problem empties it rather than leaving an old result
     // showing; or with the "list" and "analysis" layouts, what the tool draws (and counts) itself
     const isResult = output.matches(".tool-pane__result");
@@ -120,7 +131,14 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
 
     // Typing only changes the input, so only its count needs updating then
     const updateCounts = ({ output: withOutput = true } = {}) => {
-        frame.querySelector("[data-count-input]").textContent = characters(input.value);
+        if (boxSet) {
+            // Each box has its own count, beside its label, once it has text
+            for (const box of boxes()) {
+                box.closest("[data-input-item]").querySelector("[data-count-box]").textContent = box.value ? characters(box.value) : "";
+            }
+        } else {
+            frame.querySelector("[data-count-input]").textContent = characters(input.value);
+        }
         if (withOutput && isResult && output.textContent !== "") {
             frame.querySelector("[data-count-output]").textContent = characters(output.textContent);
         }
@@ -189,21 +207,22 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     };
 
     const run = (mode, { typed = false } = {}) => {
-        let text;
+        let texts;
         if (typed) {
-            if (input.value.trim() === "") {
+            const all = allText();
+            if (all.trim() === "") {
                 clearOutput();
                 setStatus();
                 return;
             }
-            if (limit && input.value.length > limit) {
+            if (limit && all.length > limit) {
                 if (isResult) {
                     clearOutput();
                 }
                 setStatus(`Too long: this tool takes up to ${limit.toLocaleString()} characters`, { error: true });
                 return;
             }
-            if (input.value.length > LIVE_LIMIT) {
+            if (all.length > LIVE_LIMIT) {
                 setStatus(`Too long to convert as you type: use ${modeName()}`);
                 return;
             }
@@ -215,9 +234,9 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
                 setStatus(problem.message, { error: true, field: problem.field });
                 return;
             }
-            text = input.value;
+            texts = boxes().map((box) => box.value);
         } else {
-            const values = readToolInput({ input: `${id}Text`, key, limit });
+            const values = readToolInput({ input: `${id}Text`, key, limit, boxes: boxSet ? boxes() : undefined });
             if (!values) {
                 if (isResult) {
                     clearOutput();
@@ -225,7 +244,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
                 setStatus();
                 return;
             }
-            text = values.text;
+            texts = values.texts;
         }
 
         const show = (value) => {
@@ -252,7 +271,7 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             setStatus(`${errorPrefix}: ${error.message}`, { error: true });
         };
         try {
-            const result = mode.run(text, ...fields.map((field) => field.el.value));
+            const result = mode.run(...texts, ...fields.map((field) => field.el.value));
             result instanceof Promise ? result.then(show, fail) : show(result);
         } catch (error) {
             fail(error);
@@ -269,9 +288,15 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
     // Live typing waits for a short pause, so long text isn't converted on every key
     let timer;
     let countTimer;
-    const typed = () => {
+    /**
+     * After the input changes: counts it, and with live typing on, runs the tool once typing pauses. A function, not an
+     * arrow, so the input list's onChange above can call it.
+     *
+     * @returns {void}
+     */
+    function typed() {
         clearTimeout(countTimer);
-        if (input.value.length > COUNT_NOW_LIMIT) {
+        if (allText().length > COUNT_NOW_LIMIT) {
             countTimer = setTimeout(() => updateCounts({ output: false }), 150);
         } else {
             updateCounts({ output: false });
@@ -280,8 +305,13 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             clearTimeout(timer);
             timer = setTimeout(() => run(current, { typed: true }), 150);
         }
-    };
-    input.addEventListener("input", typed);
+    }
+    // Listened for on the frame, so boxes added to an input list are heard too
+    frame.addEventListener("input", (event) => {
+        if (event.target.matches("[data-input-box]")) {
+            typed();
+        }
+    });
     for (const { el } of fields) {
         el.addEventListener("input", () => {
             describe();
@@ -360,7 +390,13 @@ export function bindToolFrame({ id, modes, key = [], watch = [], flow: describeF
             showToast("Warning", "There's no result to move to the input yet", "warning");
             return;
         }
-        input.value = moving;
+        // With several boxes, the result goes in the first and the rest are emptied, as it's made from all of them
+        if (boxSet) {
+            boxSet.fill(moving);
+            updateCounts({ output: false });
+        } else {
+            input.value = moving;
+        }
         input.focus();
         input.classList.remove("tool-pane__box--moved");
         void input.offsetWidth; // restart the flash if it's already running

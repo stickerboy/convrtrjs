@@ -2,35 +2,21 @@
 title: ONI unscramble
 tags: tools
 heading: "Unscramble"
-noScript: true
 summary: >-
     Unscrambles a string by swapping each pair of characters, so <code class="tool-example">abcdef</code> becomes <code class="tool-example">badcfe</code>.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>An unpaired last character is kept. Pass <code class="tool-example">true</code> as the second argument to drop it instead, as the original ONI-Tools version does.</p>
+    <p>Swapping the pairs again puts them back, so the same tool scrambles and unscrambles. With an odd number of characters, the last one has no pair and is kept as it is. Switch on "Drop an unpaired last character" to leave it out instead, as the original ONI-Tools version does.</p>
+    <p>In the browser console: <code class="tool-example">convrtr.{{ filename }}(string, dropUnpaired = false)</code></p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Unscramble</span>
-        <div class="card-body text-left">
-            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string, dropUnpaired = false)</code>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                    </div>
-                    <div class="col d-flex flex-fill justify-content-end">
-                        {% include "components/select-copy-dl.njk" %}
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="data-to-copy active"></div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Unscramble", placeholder = "Example: eHll,oW rodl! &srarr; Hello, World!", actions = [{ id: filename + "Run", label: "Unscramble" }]) %}
+<div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox" role="switch" id="{{ filename }}Drop">
+    <label class="form-check-label" for="{{ filename }}Drop">Drop an unpaired last character</label>
 </div>
+{% endcall %}
 {% endcall %}

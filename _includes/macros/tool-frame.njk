@@ -24,6 +24,13 @@
     figures and tables, which scroll on their own. With actions, the input and its settings are laid out as above, and the
     results run the frame's full width under them.
 
+    inputs: several input boxes in place of the one, as [{ label, placeholder }], for a tool that takes more than one
+    text (e.g. Interleave's First and Second). The tool's run gets each box's text in order, then the fields'.
+    swap: a Swap button between the first two inputs, trading their text.
+    inputList: a list of input boxes that more can be added to and taken away from, as { label, min, max, add,
+    placeholder } (e.g. { label: "String", min: 2, max: 10, add: "Add a string" }); it starts with min boxes, labelled
+    "String 1", "String 2"…, and the tool's run gets every box's text in order. ui/input-list.js runs it.
+
     id prefixes every element id: <id>Text, <id>Results, <id>Status, <id>Live. name labels the panes for screen readers
     and names downloads.
 #}
@@ -39,15 +46,65 @@
 </div>
 {% endmacro %}
 
-{% macro toolFrame(id, name, placeholder = "", layout = "workspace", listLabel = "Results", tabs = [], saveImage = false, actions = [], switchWithActions = false) %}
+{#-
+    One of several input boxes (see toolFrame's inputs and inputList): its label and count above it, and a button to
+    remove it for a list that can have boxes taken away. The first box is <id>Text, as a tool's only box is; the rest are
+    <id>Text2, <id>Text3 and so on, and ui/input-list.js renumbers them as boxes come and go.
+#}
+{% macro inputBox(id, n, label, placeholder = "", removable = false) %}
+<div class="tool-inputs__item" data-input-item>
+    <div class="tool-inputs__head">
+        <label class="tool-inputs__label" for="{{ id }}Text{{ n if n > 1 }}" data-input-label>{{ label }}</label>
+        <span class="tool-inputs__count" data-count-box></span>
+        {%- if removable %}
+        <button type="button" class="btn btn-light tool-inputs__remove" data-input-remove aria-label="Remove {{ label | lower }}" title="Remove"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+        {%- endif %}
+    </div>
+    <textarea id="{{ id }}Text{{ n if n > 1 }}" class="form-control tool-pane__box" rows="2" placeholder="{{ placeholder }}" autocomplete="off" data-input-box aria-describedby="{{ id }}Status"></textarea>
+</div>
+{% endmacro %}
+
+{% macro toolFrame(id, name, placeholder = "", layout = "workspace", listLabel = "Results", tabs = [], saveImage = false, actions = [], switchWithActions = false, inputs = [], swap = false, inputList = none) %}
 {%- set hasResults = layout == "list" or layout == "analysis" %}
 {%- set settings = caller() %}
 {%- set inputPane %}
+        {%- if inputs | length or inputList %}
+        {#- Several input boxes, each passed to the tool's run in order: a set of them, or a list that boxes can be added to #}
+        <div class="tool-pane">
+            <div class="tool-pane__head">
+                <span class="tool-pane__label" id="{{ id }}InputLabel">Input<span class="visually-hidden"> for the {{ name }}</span></span>
+            </div>
+            <div class="tool-inputs" role="group" aria-labelledby="{{ id }}InputLabel" data-input-list
+                {%- if inputList %} data-label="{{ inputList.label }}" data-min="{{ inputList.min or 2 }}" data-max="{{ inputList.max or 10 }}"{% endif %}>
+                {%- if inputList %}
+                {%- for n in range(1, (inputList.min or 2) + 1) %}
+                {{ inputBox(id, n, inputList.label + " " + n, inputList.placeholder, removable = true) }}
+                {%- endfor %}
+                {%- else %}
+                {%- for box in inputs %}
+                {{ inputBox(id, loop.index, box.label, box.placeholder) }}
+                {%- if swap and loop.first %}
+                <button type="button" class="btn btn-outline-convrtr btn-icon-text tool-inputs__swap" data-input-swap aria-label="Swap {{ inputs[0].label | lower }} and {{ inputs[1].label | lower }}"><i class="bi bi-arrow-down-up" aria-hidden="true"></i>Swap</button>
+                {%- endif %}
+                {%- endfor %}
+                {%- endif %}
+            </div>
+            {%- if inputList %}
+            <button type="button" class="btn btn-outline-convrtr btn-icon-text tool-inputs__add" data-input-add><i class="bi bi-plus-lg" aria-hidden="true"></i>{{ inputList.add or "Add another" }}</button>
+            {%- endif %}
+            <div class="tool-pane__status">
+                <span id="{{ id }}InputStatus" role="status"></span>
+                {%- if not hasResults %}
+                <span id="{{ id }}Status" role="status"></span>
+                {%- endif %}
+            </div>
+        </div>
+        {%- else %}
         <div class="tool-pane">
             <div class="tool-pane__head">
                 <label class="tool-pane__label" for="{{ id }}Text">Input<span class="visually-hidden"> for the {{ name }}</span></label>
             </div>
-            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="{{ 4 if hasResults else 6 }}" placeholder="{{ placeholder }}" autocomplete="off"{% if not hasResults %} aria-describedby="{{ id }}Status"{% endif %}></textarea>
+            <textarea id="{{ id }}Text" class="form-control tool-pane__box" rows="{{ 4 if hasResults else 6 }}" placeholder="{{ placeholder }}" autocomplete="off" data-input-box{% if not hasResults %} aria-describedby="{{ id }}Status"{% endif %}></textarea>
             <div class="tool-pane__status">
                 <span id="{{ id }}InputStatus" role="status"></span>
                 {%- if not hasResults %}
@@ -56,6 +113,7 @@
                 <span data-count-input></span>
             </div>
         </div>
+        {%- endif %}
 {%- endset %}
 {%- set liveSwitch %}
         <div class="form-check form-switch tool-frame__live">

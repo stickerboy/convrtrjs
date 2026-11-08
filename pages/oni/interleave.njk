@@ -2,32 +2,25 @@
 title: ONI interleave
 tags: tools
 heading: "Interleave"
-noScript: true
 summary: >-
     Interleaves the characters of two strings, with an optional delimiter.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
-{% call toolSection() %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">{{ filename | capitalize }}</span>
-        <div class="card-body text-left">
-            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string1, string2, delimiter = "")</code>
-        </div>
-        <div class="card-footer py-3">
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                    </div>
-                    <div class="col d-flex flex-fill justify-content-end">
-                        {% include "components/select-copy-dl.njk" %}
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="data-to-copy active convrtr-results"></div>
-        </div>
+{% set intro %}
+    <p>Takes a character from First, then one from Second, and so on, so <code class="tool-example">HLOWRD</code> and <code class="tool-example">EL OL</code> give <code class="tool-example">HELLO WORLD</code>. When one string is longer, the rest of it is added on the end. Swap changes which string goes first.</p>
+    <p>A delimiter goes between every character, such as a space, which can make interleaved hex easier to read.</p>
+    <p>In the browser console: <code class="tool-example">convrtr.{{ filename }}(string1, string2, delimiter = "")</code></p>
+{% endset %}
+{% call toolSection(intro) %}
+{% call toolFrame(filename, "Interleave", inputs = [{ label: "First", placeholder: "Example: HLOWRD" }, { label: "Second", placeholder: "Example: EL OL" }], swap = true, actions = [{ id: filename + "Run", label: "Interleave" }]) %}
+<div class="tool-field tool-field--short">
+    <div class="tool-field__head">
+        <label class="tool-field__label" for="{{ filename }}Delimiter">Delimiter</label>
     </div>
+    <input type="text" class="form-control" id="{{ filename }}Delimiter" autocomplete="off" aria-describedby="{{ filename }}DelimiterNote">
+    <span class="tool-field__note" id="{{ filename }}DelimiterNote">Between every character. Leave empty for none.</span>
 </div>
+{% endcall %}
 {% endcall %}

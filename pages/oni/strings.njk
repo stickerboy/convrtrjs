@@ -6,52 +6,18 @@ summary: >-
     Pulls out the runs of printable characters in a string that are at least a set length.
 ---
 {% from "macros/tool.njk" import toolSection with context %}
+{% from "macros/tool-frame.njk" import toolFrame %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>The minimum length is a whole number of at least 1, and is 4 if left out.</p>
+    <p>Useful for finding text hidden in data, such as a file decoded from Base64: printable characters are the letters, digits, punctuation and spaces of plain ASCII. The minimum length is a whole number of at least 1, and runs shorter than it are left out.</p>
+    <p>Strings lists the runs, one per line. Positions puts where each starts before it, counting characters from 0, so it can be found again in the input.</p>
+    <p>In the browser console: <code class="tool-example">convrtr.{{ filename }}(string, n = 4)</code> gives the runs, and <code class="tool-example">convrtr.findStrings(string, n = 4)</code> gives each with its position.</p>
 {% endset %}
 {% call toolSection(intro) %}
-<div class="col">
-    <div class="card">
-        <span class="card-label visually-hidden">Extract strings</span>
-        <div class="card-body text-left">
-            <code class="d-inline-flex px-2 bg-success bg-opacity-10 border border-success border-opacity-10 rounded-2 data-to-copy active">convrtr.{{ filename }}(string, n = 4)</code>
-            {#
-            <label for="{{ filename }}Text" class="visually-hidden">String to extract</label>
-            <textarea placeholder="Example: 4 &srarr; 'This is a test' &srarr; ['This'], ['test']" rows="6" id="{{ filename }}Text" class="form-control {{ filename }}-cipher" autocomplete="off"></textarea>
-            -#}
-        </div>
-        <div class="card-footer py-3">
-        {#
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                        <div class="input-group w-auto">
-                            <label class="input-group-text" id="{{ filename }}KeyLabel" for="{{ filename }}Key">Min<span class="visually-hidden">imum</span>&nbsp;Chars</label>
-                            <input type="number" class="form-control" id="{{ filename }}Key" autocomplete="off" min="1" value="1">
-                            <button class="btn btn-convrtr" type="button" id="{{ filename }}Decode">Generate</button>
-                        </div>
-                    </div>
-                    <div class="col d-flex flex-fill justify-content-end">
-                        {% include "components/select-copy-dl.njk" %}
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div id="{{ filename }}Results" class="data-to-copy active convrtr-results"></div>
-        -#}
-            <div class="text-center mb-4 g-0">
-                <div class="row row-cols-2 g-md-0 gx-0 gy-2">
-                    <div class="col col-12 col-md-auto">
-                    </div>
-                    <div class="col d-flex flex-fill justify-content-end">
-                        {% include "components/select-copy-dl.njk" %}
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="data-to-copy active convrtr-results"></div>
-        </div>
-    </div>
+{% call toolFrame(filename, "Extract strings", placeholder = "Example: ÿØÿàJFIF¤Hello there¶ü", tabs = ["Strings", "Positions"], actions = [{ id: filename + "Run", label: "Extract" }]) %}
+<div class="tool-field tool-field--short">
+    <label class="tool-field__label" for="{{ filename }}Min">Minimum length</label>
+    <input type="number" class="form-control" id="{{ filename }}Min" autocomplete="off" min="1" value="4" aria-describedby="{{ filename }}Status">
 </div>
+{% endcall %}
 {% endcall %}

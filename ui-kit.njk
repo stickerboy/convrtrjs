@@ -251,6 +251,33 @@ noindex: true
 </div>
 {% endmacro %}
 
+{#- Input boxes: a set with Swap (as Interleave), and a list boxes can be added to and removed from (as Merge Base64) -#}
+{% from "macros/tool-frame.njk" import inputBox %}
+{% macro inputBoxes(t) %}
+<div class="row g-4">
+    <div class="col-12 col-md-6">
+        <div class="tool-pane">
+            <div class="tool-inputs" role="group" aria-label="A set of two boxes" data-input-list>
+                {{ inputBox("kit" ~ t ~ "Pair", 1, "First", "Example: HLOWRD") }}
+                <button type="button" class="btn btn-outline-convrtr btn-icon-text tool-inputs__swap" data-input-swap aria-label="Swap first and second"><i class="bi bi-arrow-down-up" aria-hidden="true"></i>Swap</button>
+                {{ inputBox("kit" ~ t ~ "Pair", 2, "Second", "Example: EL OL") }}
+            </div>
+            <div class="tool-pane__status"><span id="kit{{ t }}PairInputStatus" role="status"></span></div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="tool-pane">
+            <div class="tool-inputs" role="group" aria-label="A list of boxes" data-input-list data-label="String" data-min="2" data-max="4">
+                {{ inputBox("kit" ~ t ~ "List", 1, "String 1", "", removable = true) }}
+                {{ inputBox("kit" ~ t ~ "List", 2, "String 2", "", removable = true) }}
+            </div>
+            <button type="button" class="btn btn-outline-convrtr btn-icon-text tool-inputs__add" data-input-add><i class="bi bi-plus-lg" aria-hidden="true"></i>Add a string</button>
+            <div class="tool-pane__status"><span id="kit{{ t }}ListInputStatus" role="status"></span></div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
 {#- Sidebar -#}
 {% from "macros/sidebar.njk" import sidebar %}
 {% macro sidebarDemo(t) %}
@@ -333,6 +360,10 @@ noindex: true
 
 {% call kitSection("tool-card", "Tool card", "The layout most tools share: input, options and the results toolbar, then the output.") %}
 {{ panes(toolCard) }}
+{% endcall %}
+
+{% call kitSection("input-boxes", "Input boxes", "For a tool that takes more than one text: a set of boxes with Swap between them, as on Interleave, or a list that boxes can be added to and removed from, as on Merge Base64. Each box has its own label and count. The tool frame builds them from its inputs and inputList options, and ui/input-list.js runs them.") %}
+{{ panes(inputBoxes) }}
 {% endcall %}
 
 {% call kitSection("navigation", "Navigation", "Breadcrumbs, pagination, the hex shift tabs and list groups.") %}

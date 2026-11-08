@@ -1,4 +1,5 @@
 // /ui-kit/: label each swatch with its computed colour and rate each contrast pair (WCAG 2)
+import { bindInputList } from "../ui/input-list.js";
 
 const parse = (css) => {
     const [r, g, b, a = 1] = css.match(/[\d.]+/g).map(Number);
@@ -43,4 +44,9 @@ for (const row of document.querySelectorAll(".ui-kit-contrast [data-fg]")) {
     const ratio = contrast(fg, bg);
     const [label, cls] = ratio >= 4.5 ? ["AA", "text-bg-success"] : ratio >= 3 ? ["Large/UI", "text-bg-warning"] : ["Fail", "text-bg-danger"];
     row.querySelector(".ui-kit-contrast__ratio").innerHTML = `${ratio.toFixed(2)}:1 <span class="badge ${cls} ms-1">${label}</span>`;
+}
+
+// The input box demos work as they do in a tool: Swap, and adding and removing boxes
+for (const list of document.querySelectorAll("[data-input-list]")) {
+    bindInputList(list, { status: list.parentElement.querySelector("[role=status]") });
 }

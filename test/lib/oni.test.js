@@ -5,8 +5,8 @@ import assert from "node:assert/strict";
 import { calendar } from "../../assets/js/lib/oni/calendar.js";
 import { interleave } from "../../assets/js/lib/oni/interleave.js";
 import { lookahead } from "../../assets/js/lib/oni/lookahead.js";
-import { mergeBase64 } from "../../assets/js/lib/oni/mergeBase64.js";
-import { strings } from "../../assets/js/lib/oni/strings.js";
+import { mergeBase64, compareBase64 } from "../../assets/js/lib/oni/mergeBase64.js";
+import { strings, findStrings } from "../../assets/js/lib/oni/strings.js";
 import { unmunge } from "../../assets/js/lib/oni/unmunge.js";
 import { unscramble } from "../../assets/js/lib/oni/unscramble.js";
 
@@ -36,6 +36,10 @@ describe("mergeBase64", () => {
         assert.equal(mergeBase64("abcd", "ab", "ab"), "abcd");
         assert.equal(mergeBase64("ab", "abcd"), "abcd");
     });
+    it("counts the positions where the strings disagree", () => {
+        assert.deepEqual(compareBase64("SGVzbG8h", "SGVsbG8h", "SGVsbG9h"), { merged: "SGVsbG8h", disagreements: 2 });
+        assert.deepEqual(compareBase64("abc", "abc"), { merged: "abc", disagreements: 0 });
+    });
     it("needs at least two strings", () => {
         assert.throws(() => mergeBase64(), /at least two/);
         assert.throws(() => mergeBase64("abc"), /at least two/);
@@ -49,6 +53,10 @@ describe("strings", () => {
     });
     it("needs n of at least 1", () => {
         assert.throws(() => strings("abc", 0), /less than one/);
+    });
+    it("says where each run starts, counting an emoji as one character", () => {
+        assert.deepEqual(findStrings("\x00\x01JFIF😀\xFFHello there", 4), [{ text: "JFIF", position: 2 }, { text: "Hello there", position: 8 }]);
+        assert.deepEqual(findStrings("\x00\x01", 4), []);
     });
     it("needs n to be a whole number", () => {
         assert.throws(() => strings("hello world", 2.5), /whole number/);

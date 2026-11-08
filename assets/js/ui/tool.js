@@ -13,16 +13,20 @@ const byId = (id) => (id ? document.getElementById(id) : null);
  * @param {string} [options.chain] - id of the "chain commands" checkbox.
  * @param {Field|Field[]} [options.key] - Extra field(s), e.g. a cipher key, checked in order.
  * @param {number} [options.limit] - The most characters the tool takes, if fewer than the usual 1 million.
+ * @param {HTMLTextAreaElement[]} [options.boxes] - Every input box, for a tool with several (input is the first): at
+ *   least one needs text, and the limit is for them all together.
  * @typedef {{id: string, required?: string, pattern?: RegExp, invalid?: string}} Field - `required` is the message shown
  *   if it's empty (omit for an optional field); `pattern`/`invalid` validate a non-empty value.
- * @returns {{text: string, keys: string[], key: string}|null} - The text to process and the field values (`key` is the
- *   first), or null if a check failed (a toast is shown).
+ * @returns {{text: string, texts: string[], keys: string[], key: string}|null} - The text to process, each box's text
+ *   (just the text, with one box), and the field values (`key` is the first), or null if a check failed (a toast is shown).
  */
-export function readToolInput({ input, output, chain, key, limit }) {
+export function readToolInput({ input, output, chain, key, limit, boxes }) {
     const inputEl = byId(input);
     const fields = [key ?? []].flat().map((field) => ({ ...field, el: byId(field.id) }));
+    // With several input boxes, they're checked as one: at least one has text, and all of it together isn't too long
+    const all = boxes ? boxes.map((box) => box.value).join("") : inputEl.value;
 
-    if (!emptyContainerCheck(inputEl.value, inputEl)) {
+    if (!emptyContainerCheck(all, inputEl)) {
         return null;
     }
     for (const field of fields) {
@@ -30,7 +34,7 @@ export function readToolInput({ input, output, chain, key, limit }) {
             return null;
         }
     }
-    if (!largeDataWarning(inputEl.value, inputEl, limit)) {
+    if (!largeDataWarning(all, inputEl, limit)) {
         return null;
     }
     for (const field of fields) {
@@ -43,7 +47,7 @@ export function readToolInput({ input, output, chain, key, limit }) {
     const previous = byId(output)?.textContent ?? "";
     const text = byId(chain)?.checked && previous.length > 0 ? previous : inputEl.value;
     const keys = fields.map((field) => field.el.value);
-    return { text, keys, key: keys[0] ?? "" };
+    return { text, texts: boxes ? boxes.map((box) => box.value) : [text], keys, key: keys[0] ?? "" };
 }
 
 /**
