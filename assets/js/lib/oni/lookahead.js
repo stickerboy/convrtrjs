@@ -7,7 +7,10 @@
  * @returns {string} - The processed output, one character per byte.
  */
 export function lookahead(key, datanode) {
-    const keyArray = Array.from(key, char => char.charCodeAt(0));
+    const keyArray = Array.from(String(key), char => char.charCodeAt(0));
+    if (keyArray.length === 0) {
+        throw new Error("The key can't be empty");
+    }
     let output = "";
 
     for (let i = 0; i < datanode.length >> 1; i++) {

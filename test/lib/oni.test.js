@@ -18,12 +18,27 @@ describe("interleave", () => {
         assert.equal(interleave("abc", "123"), "a1b2c3");
         assert.equal(interleave("abcde", "12"), "a1b2cde");
         assert.equal(interleave("ab", "12", "-"), "a-1-b-2");
+        assert.equal(interleave("12", "abcde"), "1a2bcde");
+    });
+    it("keeps emoji whole", () => {
+        assert.equal(interleave("😀😀", "ab"), "😀a😀b");
     });
 });
 
 describe("mergeBase64", () => {
     it("takes the most common character at each position", () => {
         assert.equal(mergeBase64("abc", "abd", "xbc"), "abc");
+    });
+    it("gives a tie to the character seen first", () => {
+        assert.equal(mergeBase64("ab", "xy"), "ab");
+    });
+    it("counts only the strings that reach a position", () => {
+        assert.equal(mergeBase64("abcd", "ab", "ab"), "abcd");
+        assert.equal(mergeBase64("ab", "abcd"), "abcd");
+    });
+    it("needs at least two strings", () => {
+        assert.throws(() => mergeBase64(), /at least two/);
+        assert.throws(() => mergeBase64("abc"), /at least two/);
     });
 });
 
@@ -34,6 +49,11 @@ describe("strings", () => {
     });
     it("needs n of at least 1", () => {
         assert.throws(() => strings("abc", 0), /less than one/);
+    });
+    it("needs n to be a whole number", () => {
+        assert.throws(() => strings("hello world", 2.5), /whole number/);
+        assert.throws(() => strings("hello world", "x"), /whole number/);
+        assert.deepEqual(strings("hi hello", "3"), ["hi hello"]);
     });
 });
 
@@ -61,12 +81,27 @@ describe("unmunge", () => {
         // e f g = 101 102 103 -> columns 1 2 3, then 3 2 (as in the Ruby: key + key.reverse[0...-1])
         assert.equal(unmunge("efg", "0123456789".repeat(6)), "123321");
     });
+    it("counts emoji as one character", () => {
+        assert.equal(unmunge("e", "0😀23456789"), "😀");
+    });
+    it("needs a key", () => {
+        assert.throws(() => unmunge("", "0123456789"), /can't be empty/);
+    });
 });
 
 describe("lookahead", () => {
     it("adds the key byte when the first of the pair is odd, otherwise subtracts it", () => {
         // "1" (49) is odd: 66 + 65 = 131; "2" (50) is even: 66 - 65 = 1
         assert.equal(lookahead("A", "1B2B"), "\x83\x01");
+    });
+    it("needs a key", () => {
+        assert.throws(() => lookahead("", "1B2B"), /can't be empty/);
+    });
+});
+
+describe("calendar", () => {
+    it("counts emoji as one character", () => {
+        assert.equal(calendar("a".repeat(31) + "😀" + "b".repeat(10)), "😀");
     });
 });
 

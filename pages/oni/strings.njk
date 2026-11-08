@@ -8,7 +8,7 @@ summary: >-
 {% from "macros/tool.njk" import toolSection with context %}
 {% set filename = page.fileSlug %}
 {% set intro %}
-    <p>The minimum length can't be less than 1.</p>
+    <p>The minimum length is a whole number of at least 1, and is 4 if left out.</p>
 {% endset %}
 {% call toolSection(intro) %}
 <div class="col">
